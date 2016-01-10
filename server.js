@@ -14,6 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var colors	= require('colors'); 
+
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -42,8 +44,11 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 app.listen(port);
 
 var util = require('./scripts/util');
+var appInfoServ = require('./services/appService');
 
-console.log('Application running at port ' + port);
+var appInfo = appInfoServ.info();
+console.log(colors.blue(util.formatString("\nApplication: %s ver %s:%s", appInfo.name, appInfo.version, appInfo.gitHash )));
+console.log(colors.blue(util.formatString('   running at port %s', port)));
 
 
 
