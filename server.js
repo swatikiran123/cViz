@@ -38,7 +38,16 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+require('./routes/appRoutes')(app, passport);
+require('./routes/apiRoutes')(app, passport);
+//require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+//app.use('/api/auth', require('./api/auth')(app,passport));
+
+//app.use('/api/auth', require('./api/auth'));
+//app.use('/api/app', require('./api/app'));
+//var constants = require('./config/constants');
+//console.log("@ server" + constants.paths.routes)
 
 // launch ======================================================================
 app.listen(port);
