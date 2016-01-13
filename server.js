@@ -31,6 +31,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
+var constants					= require('./scripts/constants');
+
+console.log("@server >> " + constants.paths.controllers);
+console.log("@server >> " + constants.paths.routes);
+
 // required for passport
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
@@ -39,8 +44,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 
-require('./routes/appRoutes')(app, passport);
-require('./routes/apiRoutes')(app, passport);
+//require('./routes/apiRoutes')(app, passport);
+require('./routes/main')(app, passport);
+
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 //app.use('/api/auth', require('./api/auth')(app,passport));
 

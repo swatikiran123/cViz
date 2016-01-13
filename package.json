@@ -25,6 +25,7 @@
     "cookie-parser": "~1.0.0",
     "method-override": "~1.0.0",
     "express-session": "~1.0.0",
+    "jwt-simple": "0.4.0",
 
     "git-rev-sync": "1.4.0",
     "colors": "1.1.2"
