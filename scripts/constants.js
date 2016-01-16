@@ -10,6 +10,7 @@ module.exports = {
         'views': __dirname + '/../views',
         'models': __dirname + '/../models',
         'config': __dirname + '/../config',
+        'scripts': __dirname + '/../scripts',
         'logs': __dirname + '/../logs',
         'app': __dirname + '/app',
         'api': __dirname + '/api'

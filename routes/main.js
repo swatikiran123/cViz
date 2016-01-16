@@ -1,3 +1,4 @@
+var express 			= require('express');
 var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
 
@@ -34,6 +35,10 @@ module.exports = function(app, passport) {
 	// include routes here
 	app.use('/', require('./apiRoutes'));
 	require('../app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+	app.use('/app', express.static('public/app'));
+
+	// include error handler
+	//require(constants.paths.scripts + '/err')(app,passport);
 
 	// If no route is matched by now, it must be a 404
 	app.use(function(req, res, next) {

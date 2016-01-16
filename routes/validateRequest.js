@@ -3,6 +3,9 @@ var jwt 						= require('jwt-simple');
 var constants 			= require('../scripts/constants');
 var validateUser 		= require(constants.paths.controllers + '/api/auth').validateUser;
 
+var config        = require(constants.paths.config + '/config'); 
+var authKey 			= config.get("auth.secret");
+
 module.exports = function(req, res, next) {
 
 	// When performing a cross domain request, you will recieve
@@ -11,13 +14,15 @@ module.exports = function(req, res, next) {
 	
 	// We skip the token outh for [OPTIONS] requests.
 	//if(req.method == 'OPTIONS') next();
-	console.log("Testing api security - validate request");
+	
 	var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
 	var key = (req.body && req.body.x_key) || (req.query && req.query.x_key) || req.headers['x-key'];
 
+	console.log("Api token validation>>" + token);
+	
 	if (token || key) {
-		try {
-			var decoded = jwt.decode(token, require('../config/secret.js')());
+
+			var decoded = jwt.decode(token, authKey);
 
 			if (decoded.exp <= Date.now()) {
 				res.status(400);
@@ -55,15 +60,7 @@ module.exports = function(req, res, next) {
 				});
 				return;
 			}
-		} catch (err) {
 
-			res.status(500);
-			res.json({
-				"status": 500,
-				"message": "Oops something went wrong",
-				"error": err
-			});
-		}
 	} else {
 
 		res.status(401);
