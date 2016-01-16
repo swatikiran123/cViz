@@ -14,12 +14,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var colors	= require('colors'); 
-
-var configDB = require('./config/database.js');
+var colors				= require('colors'); 
+var constants			= require('./scripts/constants');
+var config        = require(constants.paths.config + '/config');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(config.get("db.main")); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -30,8 +30,6 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
-
-var constants					= require('./scripts/constants');
 
 console.log("@server >> " + constants.paths.controllers);
 console.log("@server >> " + constants.paths.routes);
