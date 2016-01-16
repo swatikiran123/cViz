@@ -19,7 +19,7 @@ var constants			= require('./scripts/constants');
 var config        = require(constants.paths.config + '/config');
 
 // configuration ===============================================================
-mongoose.connect(config.get("db.main")); // connect to our database
+require('./scripts/database'); // load database management scripts
 
 require('./config/passport')(passport); // pass passport for configuration
 
