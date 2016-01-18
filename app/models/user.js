@@ -1,6 +1,22 @@
-// load the things we need
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
+var path            = require('path');
+var mongoose        = require('mongoose');
+var bcrypt          = require('bcrypt-nodejs');
+var jwt             = require('jwt-simple');
+var constants       = require('../../scripts/constants');
+var config          = require(path.join(constants.paths.config, '/config'));
+
+var Token = mongoose.Schema({
+    token           : {type: String},
+    dateCreated     : {type: Date, default: Date.now},
+});
+
+Token.statics.hasExpired= function(created) {
+    var now = new Date();
+    var diff = (now.getTime() - created);
+    return diff > config.get('auth.ttl');
+};
+
+var TokenModel = mongoose.model('Token', Token);
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
@@ -26,8 +42,31 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
+    },
+    token            : {type: Object}
 
+});
+
+// Execute before each user.save() call
+userSchema.pre('save', function(callback) {
+    var user = this;
+
+    // Break out if the password hasn't changed
+    //if (!user.isModified('password')) return callback();
+    this.token = genToken();
+    console.log("token updated");
+    callback();
+
+  // Password changed so we need to hash it
+/*  bcrypt.genSalt(5, function(err, salt) {
+    if (err) return callback(err);
+
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
+      if (err) return callback(err);
+      user.password = hash;
+      callback();
+    });
+  });*/
 });
 
 // generating a hash
@@ -40,5 +79,24 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+// private method
+function genToken() {
+  var expires = expiresIn(config.get('auth.expires'));
+  var token = jwt.encode({
+    exp: expires
+  }, config.get('auth.secret'));
+ 
+  return {
+    token: token,
+    dateCreated: new Date()
+  };
+}
+ 
+function expiresIn(numDays) {
+  var dateObj = new Date();
+  return dateObj.setDate(dateObj.getDate() + numDays);
+}
+
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
+module.exports.Token = TokenModel;

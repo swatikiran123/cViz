@@ -14,6 +14,13 @@ module.exports = function(app, passport) {
         });
     });
 
+    // Token SECTION =========================
+    app.get('/token', isLoggedIn, function(req, res) {
+        res.render('token.ejs', {
+            user : req.user
+        });
+    });
+
     app.get('/home', isLoggedIn, function(req, res) {
         res.render('home.ejs', {
             user : req.user

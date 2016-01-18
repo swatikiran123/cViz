@@ -1,6 +1,8 @@
 {
   "auth": {
-    "secret": "top secret"
+  	"ttl": "3600000",
+    "secret": "top secret",
+    "expires": "7"
   },
 
   "api": {
