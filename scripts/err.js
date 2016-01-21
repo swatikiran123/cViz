@@ -1,16 +1,38 @@
 var constants = require('./constants');
 var config = require(constants.paths.config + '/config');
 
-module.exports = function(app, passport) {
-  
-  //app.use(logErrors);
-  //app.use(clientErrorHandler);
-  
-  if (config.get("env") === 'development') {
-    app.use(catchRestAllDev);
-  } else {
-    app.use(catchRestAllProd);
+var errors = {
+  404: {
+    'internal': {
+      'message': '404 - Dev error - Page not found',
+      'stackTrace': true,
+      'help': 'Check application log for detailed information'
+    },
+    'external': {
+      'message': '404 - Dev error',
+      'stackTrace': false,
+      'help': 'Please contact your administrator for further help'
+    }
+  },
+  500: {
+    'internal': {
+      'message': '500 - Internal error',
+      'stackTrace': true,
+      'help': 'Check application log for detailed information'
+    },
+    'external': {
+      'message': 'Something went wrong with application',
+      'stackTrace': false,
+      'help': 'Please contact your administrator for further help'
+    }
   }
+}
+
+// Error handling middletier
+module.exports = function(app, passport) {
+  app.use(logErrors);
+  //app.use(clientErrorHandler);
+  app.use(catchRestAll);
 }
 
 
@@ -31,36 +53,36 @@ function clientErrorHandler(err, req, res, next) {
   }
 }
 
+function catchRestAll(err, req, res, next) {
 
-function catchRestAllDev(err, req, res, next) {
-  if (res.headersSent) {
-    console.log('res.headersSent');
-    return next(err);
-  }
-
-  if(req.url.indexOf('api') > -1) // it is an api call
-  {
-    res.status(500).send({
-      status:500, 
-      message: err.message,
-      error: err,
-      stack_trace: err.stack,
-      type:'internal'
-    }); 
+  var error = {}
+  
+  if (config.get("env") === 'development') {
+    error = {
+      env: config.get("env"),
+      err: err,
+      status:err.status,
+      message: errors[err.status].internal.message,
+      help : errors[err.status].internal.help,
+      trace: (errors[err.status].internal.stackTrace)? err.stack.split('\n'): 'Not available',
+    }
   } else {
-    res.render('/public/static/err/500.html') 
+    error = {
+      env: config.get("env"),
+      err: err,
+      status: err.status,
+      message: errors[err.status].external.message,
+      help : errors[err.status].external.help,
+      trace: (errors[err.status].external.stackTrace)? err.stack.split('\n'): 'Not available',
+    }
   }
-}
 
-function catchRestAllProd(err, req, res, next) {
   if(req.url.indexOf('api')>-1) // it is an api call
   {
-    res.status(500).send({
-      status:500, 
-      message: "Internal Error",
-      type:'internal'
-    }); 
+    res.status(500).send(error); 
   } else {
-    res.render('/public/static/err/500.html') 
+      res.render('err.ejs', {
+      err : error
+    });
   }
 }
