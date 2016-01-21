@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="ngclient">
+ 
+<head>
+  <title>ngClient</title>
+ 
+  <link rel="stylesheet" type="text/css" href="/public/libs/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/app.css">
+ 
+  <script type="text/javascript" src="/public/libs/angular/angular.min.js"></script>
+  <script type="text/javascript" src="/public/libs/angular-route/angular-route.min.js"></script>
+ 
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="services/factory.js"></script>
+  <script type="text/javascript" src="filters/filters.js"></script>
+  <script type="text/javascript" src="controllers/controllers.js"></script>
+ 
+  <script type="text/javascript" src="services/auth.factory.js"></script>
+  <script type="text/javascript" src="controllers/auth.controller.js"></script>
+ 
+</head>
+ 
+<body>
+  <div ng-include="'views/partials/header.html'"></div>
+  <div class="container" ng-view></div>
+  <div ng-include="'views/partials/footer.html'"></div>
+</body>
+ 
+</html>

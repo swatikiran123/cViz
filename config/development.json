@@ -1,0 +1,16 @@
+{
+  "auth": {
+  	"ttl": "3600000",
+    "secret": "top secret",
+    "expires": "7"
+  },
+
+  "api": {
+    "cors": "true"
+  },
+
+  "logging": {
+    "log-level": "debug"
+  }
+
+}

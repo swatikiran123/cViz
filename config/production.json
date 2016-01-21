@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "secret": "top secret"
+  },
+
+  "api": {
+    "cors": "true"
+  },
+
+  "logging": {
+    "log-level": "debug"
+  }
+
+}
