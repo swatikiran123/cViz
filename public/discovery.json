@@ -1,0 +1,11 @@
+{
+  "server": {
+  	"uri": "http://localhost:3030"
+  },
+
+  "api": {
+    "login": "/api/v1/login",
+    "token": "/token",
+    "app_info": "/api/v1/secure/app/info"
+  }
+}
