@@ -6,7 +6,7 @@ myApp.service('ApiDiscoveryService', ['$http', '$q', function($http, $q) {
 	var serviceDiscovery = {};
 
 	this.getEndPoint = function(key){
-		console.log('key: ' + key);
+		console.log('ApiDiscov->getEndPoint->key: ' + key);
 		var deferred = $q.defer();
 
 		//ToDo:: Optimize json load by caching it
@@ -16,20 +16,20 @@ myApp.service('ApiDiscoveryService', ['$http', '$q', function($http, $q) {
 				console.log(data);
 				serviceDiscovery = data;
 
-				console.log("Service log:: " + serviceDiscovery);
+				console.log("ApiDiscov->getEndPoint->Service log:: " + serviceDiscovery);
 
 				var path = serviceDiscovery.api[key];
 				if(path != null){
 					endPoint = serviceDiscovery.server.uri + serviceDiscovery.api[key];
-					console.log('endpoint gen:: ' + endPoint);
+					console.log('ApiDiscov->getEndPoint->endpoint gen:: ' + endPoint);
 					deferred.resolve(endPoint);
 				}
 				else
-					console.log('api key not found');
+					console.log('ApiDiscov->getEndPoint->api key not found');
 					deferred.resolve();
 			})
 			.error(function(data, status, headers, config) {
-				console.log('api discovery error');
+				console.log('ApiDiscov->getEndPoint->api discovery error');
      		deferred.reject(status);
 			}); // end of http.get
 		

@@ -42,9 +42,10 @@ myApp.config(function($routeProvider, $httpProvider) {
  
 myApp.run(function($rootScope, $window, $location, AuthenticationFactory) {
   // when the page refreshes, check if the user is already logged in
-  AuthenticationFactory.check();
- 
+  var promise = AuthenticationFactory.check();
+  promise.then(function(){
   $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
+    console.log("app->run->rchgStart::" + $location.path() + " - logged??" + AuthenticationFactory.isLogged);
     if ((nextRoute.access && nextRoute.access.requiredLogin) && !AuthenticationFactory.isLogged) {
       $location.path("/login");
     } else {
@@ -59,9 +60,10 @@ myApp.run(function($rootScope, $window, $location, AuthenticationFactory) {
     $rootScope.role = AuthenticationFactory.userRole;
     // if the user is already logged in, take him to the home page
     // 
-    console.log($location.path() + " - logged??" + AuthenticationFactory.isLogged);
+    console.log("app->run->rchgSucc::" + $location.path() + " - logged??" + AuthenticationFactory.isLogged);
     if (AuthenticationFactory.isLogged == true && $location.path() == '/login') {
       $location.path('/');
     }
   });
+});
 });

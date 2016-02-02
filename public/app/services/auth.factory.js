@@ -1,24 +1,34 @@
-myApp.factory('AuthenticationFactory', function($window, $http, ApiDiscoveryService) {
+myApp.factory('AuthenticationFactory', function($window, $http, $q, ApiDiscoveryService) {
   var auth = {
     isLogged: false,
     check: function() {
+      var deferred = $q.defer();
+      console.log("AuthFactory->check called");
       if ($window.sessionStorage.token && $window.sessionStorage.user) {
         this.isLogged = true;
       } else {
         // Check if server side login complete
         var promise = ApiDiscoveryService.getEndPoint('token');
         promise.then(function(apiEndPoint){
-          $http.get(apiEndPoint).success(function(data){
-            console.log('login: ' + data);
+          $http.get(apiEndPoint).success(function(data, status, headers){
+            console.log('AuthFactory->check:isLogged:: ' + data);
             this.isLogged = true;
-          }).error(function(data){
+          }).error(function(data, status, headers){
+
+            console.log('AuthFactory->check:isLogged:: error with status code::' + status);
             this.isLogged = false;
             delete this.user;
+
+            if(status==404){
+              // /token not found, login required
+              $window.location.href = "/login";
+            }
           }); // end of http.get
         }); // end of promise
 /*        this.isLogged = false;
         delete this.user;*/
       }
+      return deferred.promise;
     }
   }
  
