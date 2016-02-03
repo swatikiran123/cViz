@@ -32,7 +32,7 @@ var errors = {
 module.exports = function(app, passport) {
   app.use(logErrors);
   //app.use(clientErrorHandler);
-  app.use(catchRestAll);
+  //app.use(catchRestAll);
 }
 
 

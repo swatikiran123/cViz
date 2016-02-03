@@ -16,7 +16,7 @@ var users 						= require(constants.paths.controllers + '/api/users');
  */
 router.post('/api/v1/login', auth.login);
 router.get('/api/v1/me', users.getAll);
-router.get('/api/v1/secure/app/info', apps.info);
+router.get('/api/v1/app/info', apps.info);
 
  
 /*

@@ -33,8 +33,9 @@ module.exports = function(app, passport) {
 	app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
 
 	// include routes here
-	app.use('/', require('./apiRoutes'));
-	require('../app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+	app.use('/', require('./apiRoutes')); // load api endpoint routes
+	require('./authRoutes.js')(app, passport); // load authentication routes, fully configured with passport
+	//ToDo:: Tighten security for public assets
 	app.use('/public', express.static('public')); // folder to render public assets. Can be improved for security tightening
 	app.use('/app', express.static('public/app'));
 
