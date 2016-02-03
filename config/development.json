@@ -11,6 +11,10 @@
 
   "logging": {
     "log-level": "debug"
+  },
+
+  "sessions": {
+    "secret": "session top secret"
   }
 
 }

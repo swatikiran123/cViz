@@ -4,7 +4,15 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        if (!req.isAuthenticated())
+            res.render('index.ejs');
+        else{
+            console.log('already authenticated, go to landing page');
+            console.log(req.user);
+            res.render('home.ejs', {
+                user : req.user
+            });
+        }
     });
 
     // PROFILE SECTION =========================
@@ -22,6 +30,9 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
+        console.log('check auth:: ' + req.isAuthenticated());
+        //console.log(req.user);
+        console.log(req);
         res.render('home.ejs', {
             user : req.user
         });
@@ -200,6 +211,7 @@ module.exports = function(app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
+    console.log("Check isLoggedIn??::" + req.isAuthenticated());
     if (req.isAuthenticated())
         return next();
 
@@ -210,5 +222,5 @@ function isLoggedIn(req, res, next) {
     if(req.url.indexOf('/token') > -1)
         res.status(404).send("Not Found");
     else
-        res.redirect('/');
+        res.redirect('/login?' + req.path);
 }

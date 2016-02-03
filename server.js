@@ -12,7 +12,7 @@ var flash    = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
-var session      = require('express-session');
+
 
 var colors				= require('colors'); 
 var constants			= require('./scripts/constants');
@@ -35,7 +35,7 @@ console.log("@server >> " + constants.paths.controllers);
 console.log("@server >> " + constants.paths.routes);
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+require('./scripts/session')(app);
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
