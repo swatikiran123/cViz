@@ -1,11 +1,11 @@
 // config/auth.js
 
-// expose our config directly to our application using module.exports
+// OpenAuth configuration parameters
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'        : 'your-secret-clientID-here', // your App ID
-        'clientSecret'    : 'your-client-secret-here', // your App Secret
+        'clientID'        : 'facebook client ID', 
+        'clientSecret'    : 'facebook secret', 
         'callbackURL'     : 'http://localhost:3030/auth/facebook/callback'
     },
 
