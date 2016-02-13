@@ -12,6 +12,9 @@ function getInfo(){
 
     var info = {
         name: pjson.name,
+        title: pjson.siteTitle,
+        author: pjson.author,
+        description: pjson.description,
         version: pjson.version,
         gitHash: git.short()
     };

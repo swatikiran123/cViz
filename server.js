@@ -3,9 +3,10 @@
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
+var expressLayouts = require('express-ejs-layouts')
 var favicon = require('serve-favicon');
 var app      = express();
-var port     = process.env.PORT || 3030;
+var port     = process.env.PORT || 8001;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -32,6 +33,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
+app.set('layout', 'layouts/main')
+app.use(expressLayouts);
 
 console.log("@server >> " + constants.paths.controllers);
 console.log("@server >> " + constants.paths.routes);

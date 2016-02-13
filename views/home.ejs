@@ -1,5 +1,11 @@
-<%- include partials/header %>
 
-<%= user.local.email %>
 
-<%- include partials/footer %>
+Home page content...<br/>
+
+<%= user.local.email %><br/>
+
+<br/>
+<h1>Locals start here</h1><br/>
+<%= locals.siteTitle %><br/>
+<%= locals.title %><br/>
+<%= JSON.stringify(locals.app_info, null, 4) %><br/>

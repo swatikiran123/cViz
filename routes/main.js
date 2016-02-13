@@ -1,11 +1,20 @@
 var express 			= require('express');
 var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
+var appInfoServ   = require(constants.paths.services + '/appService');
 
 module.exports = function(app, passport) {
 
 	app.use(function (req, res, next) {
 	  console.log('Req @ Time:', Date.now());
+
+    res.locals={ 
+      siteTitle: "mSkeleton Title",
+      author: "Sankar Vema",
+      description: "Reusable MEAN stack template with MicroService architecture patterns",
+      app_info: appInfoServ.info()
+  	};
+
 	  next();
 	});
 

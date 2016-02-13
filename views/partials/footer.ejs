@@ -1,10 +1,6 @@
   <!-- Page footer :: Start -->
   <footer class="footer">
-     <p class="text-muted">&copy; All rights reserved 2015. Angular seed app: v<span app-version></span></p>
+     <span class="text-muted">&copy; All rights reserved 2015.</span>
+     <span "nav nav-right">ver: <%= locals.app_info.version %>:<%= locals.app_info.gitHash %></span>
   </footer>
   <!-- Page footer :: End -->
-
-<%- include include-std %>
-
-</body>
-</html>
