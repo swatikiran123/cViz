@@ -9,9 +9,11 @@ module.exports = function(app, passport) {
 	  console.log('Req @ Time:', Date.now());
 
     res.locals={ 
-      siteTitle: "mSkeleton Title",
+      appTitle: "mSkeleton",
+      pageTitle: "main",
       author: "Sankar Vema",
       description: "Reusable MEAN stack template with MicroService architecture patterns",
+      user: req.user,
       app_info: appInfoServ.info()
   	};
 

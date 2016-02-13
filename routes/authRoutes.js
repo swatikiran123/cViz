@@ -34,9 +34,15 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "Home Page";
         res.render('home.ejs', {
-            title: "Home Page",
             user : req.user
+        });
+    });
+
+    app.get('/app', isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "App Info";
+        res.render('app.ejs', {
         });
     });
 

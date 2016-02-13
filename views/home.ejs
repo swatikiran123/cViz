@@ -1,11 +1,12 @@
 
 
 Home page content...<br/>
-
-<%= user.local.email %><br/>
-
+<p/><p/><p/>
+Heading should be visible<br/>
+User Email: <%= user.local.email %><br/>
 <br/>
 <h1>Locals start here</h1><br/>
-<%= locals.siteTitle %><br/>
-<%= locals.title %><br/>
-<%= JSON.stringify(locals.app_info, null, 4) %><br/>
+App: <%= locals.appTitle %><br/>
+Page: <%= locals.pageTitle %><br/>
+App Info:<br/>
+<%= JSON.stringify(locals, null, 4) %><br/>

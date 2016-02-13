@@ -34,6 +34,12 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.set('layout', 'layouts/main')
+
+// set development environment configuration
+if (app.get('env') === 'development') {
+  app.locals.pretty = true;		//render html output with proper formating
+}
+
 app.use(expressLayouts);
 
 console.log("@server >> " + constants.paths.controllers);
