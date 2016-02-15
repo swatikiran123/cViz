@@ -17,16 +17,6 @@ var users 						= require(constants.paths.controllers + '/api/users');
 router.post('/api/v1/login', auth.login);
 router.get('/api/v1/me', users.getAll);
 router.get('/api/v1/app/info', apps.info);
-
- 
-/*
- * Routes that can be accessed only by autheticated users
- */
-/*router.get('/api/v1/products', products.getAll);
-router.get('/api/v1/product/:id', products.getOne);
-router.post('/api/v1/product/', products.create);
-router.put('/api/v1/product/:id', products.update);
-router.delete('/api/v1/product/:id', products.delete);*/
  
 /*
  * Routes that can be accessed only by authenticated & authorized users

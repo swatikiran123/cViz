@@ -3,9 +3,10 @@
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
+var expressLayouts = require('express-ejs-layouts')
 var favicon = require('serve-favicon');
 var app      = express();
-var port     = process.env.PORT || 3030;
+var port     = process.env.PORT || 8001;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -13,7 +14,6 @@ var flash    = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
-
 
 var colors				= require('colors'); 
 var constants			= require('./scripts/constants');
@@ -32,9 +32,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
+app.set('layout', 'layouts/main')
 
-console.log("@server >> " + constants.paths.controllers);
-console.log("@server >> " + constants.paths.routes);
+// set development environment configuration
+if (app.get('env') === 'development') {
+  app.locals.pretty = true;		//render html output with proper formating
+}
+
+app.use(expressLayouts);
 
 // required for passport
 require('./scripts/session')(app);
@@ -43,17 +48,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-
-//require('./routes/apiRoutes')(app, passport);
 require('./routes/main')(app, passport);
-
-//require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-//app.use('/api/auth', require('./api/auth')(app,passport));
-
-//app.use('/api/auth', require('./api/auth'));
-//app.use('/api/app', require('./api/app'));
-//var constants = require('./config/constants');
-//console.log("@ server" + constants.paths.routes)
 
 // launch ======================================================================
 app.listen(port);

@@ -1,19 +1,26 @@
 var express 			= require('express');
 var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
+var appInfoServ   = require(constants.paths.services + '/appService');
 
 module.exports = function(app, passport) {
 
 	app.use(function (req, res, next) {
-	  console.log('Req @ Time:', Date.now());
+	  //console.log('Req @ Time:', Date.now());
+
+    res.locals={ 
+      appTitle: "mSkeleton",
+      pageTitle: "main",
+      author: "Sankar Vema",
+      description: "Reusable MEAN stack template with MicroService architecture patterns",
+      user: req.user,
+      app_info: appInfoServ.info()
+  	};
+
 	  next();
 	});
 
-	//require('../app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-	//console.log(constants.paths.routes);
-	//
 	app.all('/*', function(req, res, next) {
-		console.log(colors.blue("  setting the api configuration params"));
 	  // CORS headers
 	  res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
 	  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');

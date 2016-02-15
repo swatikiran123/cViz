@@ -1,4 +1,8 @@
+
+
 module.exports = function(app, passport) {
+
+
 
 // normal routes ===============================================================
 
@@ -7,8 +11,6 @@ module.exports = function(app, passport) {
         if (!req.isAuthenticated())
             res.render('index.ejs');
         else{
-            console.log('already authenticated, go to landing page');
-            console.log(req.user);
             res.render('home.ejs', {
                 user : req.user
             });
@@ -30,13 +32,18 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
-        console.log('check auth:: ' + req.isAuthenticated());
-        //console.log(req.user);
-        console.log(req);
+        res.locals.pageTitle = "Home Page";
         res.render('home.ejs', {
             user : req.user
         });
     });
+
+    app.get('/app', isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "App Info";
+        res.render('app.ejs', {
+        });
+    });
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
@@ -211,11 +218,8 @@ module.exports = function(app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-    console.log("Check isLoggedIn??::" + req.isAuthenticated());
     if (req.isAuthenticated())
         return next();
-
-    console.log('token index ' + (req.url.indexOf('/token')));
 
     // A simple detour for token access
     // Application can access token after login to connect with API

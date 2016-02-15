@@ -1,5 +1,12 @@
-<%- include partials/header %>
 
-<%= user.local.email %>
 
-<%- include partials/footer %>
+Home page content...<br/>
+<p/><p/><p/>
+Heading should be visible<br/>
+User Email: <%= user.local.email %><br/>
+<br/>
+<h1>Locals start here</h1><br/>
+App: <%= locals.appTitle %><br/>
+Page: <%= locals.pageTitle %><br/>
+App Info:<br/>
+<%= JSON.stringify(locals, null, 4) %><br/>
