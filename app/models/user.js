@@ -20,7 +20,22 @@ var TokenModel = mongoose.model('Token', Token);
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
-
+    name             : {
+      prefix         : String,
+      first          : String,
+      middle         : String,
+      last           : String,
+      suffix         : String
+    },
+    avatar           : String,
+    summary          : String,
+    stats            : {
+      dateCreated    : Date,
+      dateLastLogin  : Date
+    },
+    preferences      : {
+      language       : String
+    },
     local            : {
         email        : String,
         password     : String
@@ -43,7 +58,8 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
-    token            : {type: Object}
+    token            : {type: Object},
+    status           : String
 
 });
 
@@ -67,6 +83,14 @@ userSchema.pre('save', function(callback) {
       callback();
     });
   });*/
+});
+
+userSchema.post('find', function(result) {
+  //console.log(this instanceof mongoose.Query); // true
+  // prints returned documents
+  console.log('find() returned ' + JSON.stringify(result));
+  // prints number of milliseconds the query took
+  console.log('find() took ' + (Date.now() - this.start) + ' millis');
 });
 
 // generating a hash

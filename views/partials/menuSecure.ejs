@@ -1,0 +1,84 @@
+<div ng-controller="userProfileController">
+<!-- activity menu being -->
+<ul class="nav navbar-nav">
+  <li class="active"><a href="/home">Dashboard</a></li>
+  <li><a href="#">Item</a></li>
+  <li><a href="#">Item</a></li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="/admin/groups">Groups</a></li>
+      <li><a href="/admin/users">Users</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li role="separator" class="divider"></li>
+      <li class="dropdown-header">Customize</li>
+      <li><a href="/customize/idea">Idea Templates</a></li>
+      <li><a href="/customize/workflow">Workflow</a></li>
+    </ul>
+  </li>
+</ul>
+<!-- activity menu end -->
+
+<!-- right menu begin -->
+<ul class="nav navbar-nav navbar-right">
+	<!-- Notifications badge starts here -->
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-bell-o"></i><span class="badge">15</span><span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="#">Action</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li class="dropdown-header">Nav header</li>
+      <li><a href="#">Separated link</a></li>
+      <li><a href="#">One more separated link</a></li>
+    </ul>
+  </li> <!-- notification badge ends here -->
+
+  <li><a href="/app"><i class="fa fa-question"></i></a></li>
+  
+  <!-- user profile panel starts here -->
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-user"></i>  Profile<span class="caret"></span>
+    </a>
+		
+		<!-- user profile pull down -->
+		<ul class="dropdown-menu dropdown-menu1" role="menu">
+			<li style="width:300px !important;">
+				<div class="container" style="width:300px;!important;">
+					<div class="row" >
+						<div class="col-md-4"> 
+							<img class="avatar" height="80" width="80" src="/public/assets/images/avatar.jpg" />
+						</div>
+						<div class="col-sm-5 col-sm-offset-1">
+							<div class="text-highlight"><%= locals.user.name.first %> <%= locals.user.name.last %></div>
+							<div class="text-xsmall">Last Login: <%= locals.user.stats.dateLastLogin %></div>
+							<div class="link"><a href="profile">Profile</a></div>
+						</div>
+					</div>
+
+					<!-- profile bottom area starts -->
+					<li class="divider"><!-- menu divider --> </li>
+					<div class="col-md-6">
+							<li class="link">
+								<a href="#">
+									Change Password
+								</a>
+							</li>
+					</div>
+					<div class="col-md-5">
+						<li class="link pull-right">
+							<a class="table-btn" href="logout"><span class="glyphicon glyphicon-logout" /> Logout</a>
+						</li>
+					</div>
+				</div>
+			</li>  
+		</ul>
+  </li> <!-- user profile ends here -->
+	
+</ul> <!-- right menu end-->
+
+ </div>

@@ -35,6 +35,71 @@ body {
     color: #ffffff;
     background-color:transparent;
 }
+
 .navbar-custom .navbar-brand {
     color:#eeeeee;
+}
+
+/* Text styles */
+
+.text-highlight{
+  font-size: 16px;
+  font-weight: bold !important;
+  color:black;
+}
+
+.text-big{
+  font-size: 16px;
+  font-weight: normal !important;
+  color:black;
+}
+
+.text-medium{
+  font-size: 14x;
+  color:black;
+}
+
+.text-small{
+  font-size: 12px;
+  color:black;
+}
+
+.text-xsmall{
+  font-size: 10px;
+  color:black;
+}
+
+.text-desc{
+  font-size: 11px;
+  font-style: italic;
+  color:black;
+}
+
+/* Menu styles */
+
+.avatar{
+  width: 40px;
+  height: 40px;
+}
+.dropdown-menu:before {
+  position: absolute;
+  top: -7px;
+  right: 9px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.dropdown-menu:after {
+  position: absolute;
+  top: -6px;
+  right: 10px;
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
 }

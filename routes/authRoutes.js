@@ -11,8 +11,6 @@ module.exports = function(app, passport) {
         if (!req.isAuthenticated())
             res.render('index.ejs');
         else{
-            console.log('already authenticated, go to landing page');
-            console.log(req.user);
             res.render('home.ejs', {
                 user : req.user
             });
@@ -46,73 +44,6 @@ module.exports = function(app, passport) {
         });
     });
 
-    // LOGOUT ==============================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-    
-// normal routes ===============================================================
-
-    // show the home page (will also have our login links)
-    app.get('/', function(req, res) {
-        if (!req.isAuthenticated())
-            res.render('index.ejs');
-        else{
-            console.log('already authenticated, go to landing page');
-            console.log(req.user);
-            res.render('home.ejs', {
-                user : req.user
-            });
-        }
-    });
-
-    // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
-        });
-    });
-
-    // Token SECTION =========================
-    app.get('/token', isLoggedIn, function(req, res) {
-        res.render('token.ejs', {
-            user : req.user
-        });
-    });
-
-    app.get('/home', isLoggedIn, function(req, res) {
-        console.log('check auth:: ' + req.isAuthenticated());
-        //console.log(req.user);
-        app.locals.title = "Some junk title like stuff goes here";
-        console.log(req);
-        res.render('home.ejs', {
-            title: "Home Page",
-            user : req.user
-        });
-    });
-
-    app.get('/test', isLoggedIn, function(req, res) {
-        console.log('check auth:: ' + req.isAuthenticated());
-        //console.log(req.user);
-        app.locals.title = "Some junk title like stuff goes here";
-        console.log(req);
-        res.render('test.ejs', {
-            user : req.user,
-            layout: 'secure-layout' 
-        });
-    });
-
-    app.get('/users', isLoggedIn, function(req, res) {
-        console.log('check auth:: ' + req.isAuthenticated());
-        //console.log(req.user);
-        app.locals.title = "Some junk title like stuff goes here";
-        console.log(req);
-        res.render('admin/users.ejs', {
-            user : req.user,
-            layout: 'admin/layout'
-        });
-    });
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
@@ -287,11 +218,8 @@ module.exports = function(app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-    console.log("Check isLoggedIn??::" + req.isAuthenticated());
     if (req.isAuthenticated())
         return next();
-
-    console.log('token index ' + (req.url.indexOf('/token')));
 
     // A simple detour for token access
     // Application can access token after login to connect with API

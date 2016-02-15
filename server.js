@@ -15,7 +15,6 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
-
 var colors				= require('colors'); 
 var constants			= require('./scripts/constants');
 var config        = require(constants.paths.config + '/config');
@@ -42,9 +41,6 @@ if (app.get('env') === 'development') {
 
 app.use(expressLayouts);
 
-console.log("@server >> " + constants.paths.controllers);
-console.log("@server >> " + constants.paths.routes);
-
 // required for passport
 require('./scripts/session')(app);
 app.use(passport.initialize());
@@ -52,17 +48,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-
-//require('./routes/apiRoutes')(app, passport);
 require('./routes/main')(app, passport);
-
-//require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-//app.use('/api/auth', require('./api/auth')(app,passport));
-
-//app.use('/api/auth', require('./api/auth'));
-//app.use('/api/app', require('./api/app'));
-//var constants = require('./config/constants');
-//console.log("@ server" + constants.paths.routes)
 
 // launch ======================================================================
 app.listen(port);
