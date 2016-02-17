@@ -40,5 +40,9 @@
     "angular-ui-grid":"latest",
     "angularjs-datepicker":"latest",
     "angular-growl-v2":"latest"
+  },
+  "resolutions": {
+    "angular": "~1.5.0"
   }
+
 }
