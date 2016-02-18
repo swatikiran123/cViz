@@ -55,5 +55,5 @@ module.exports = function(app, passport) {
 	});
 
 	// include error handler
-	require(constants.paths.scripts + '/err')(app,passport);
+	require(constants.paths.scripts + '/err')(app);
 }
