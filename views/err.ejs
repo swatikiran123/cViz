@@ -1,9 +1,13 @@
 <h1>Application error!!!</h1>
-<h3><%= err.env %></h3>
+<h6>env: <%= err.env %></h6>
+<hr/>
 <p/>
 
 Status Code: <%= err.status %><br/>
 Message: <%= err.message %><br/>
-Message: <%= err.help %><br/>
+Help: <%= err.help %><br/>
+<br/>
 Further details:	<br/>
+<pre>
 <%= err.trace %>
+</pre>
