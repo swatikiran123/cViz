@@ -4,8 +4,9 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 
-// load up the user model
-var User       = require('../app/models/user');
+var constants       = require('../scripts/constants');
+var User            = require('../app/models/user');
+var emailController = require(constants.paths.scripts + '/email');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
@@ -92,7 +93,6 @@ module.exports = function(passport) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
 
-console.log("user fullname: %j", req.body);
                         // create the user
                         var newUser                 = new User();
 
@@ -100,12 +100,15 @@ console.log("user fullname: %j", req.body);
                         newUser.local.password      = newUser.generateHash(password);
                         newUser.name.first          = req.body.firstname;
                         newUser.name.last           = req.body.lastname;
+                        newUser.email               = email;
                         newUser.stats.dateCreated   = Date.now();
                         newUser.stats.dateLastLogin = Date.now();
 
                         newUser.save(function(err) {
                             if (err)
                                 return done(err);
+
+                            emailController.sendMailOnRegistration(newUser);
 
                             return done(null, newUser);
                         });

@@ -11,6 +11,7 @@ module.exports = {
         'models'									: __dirname + '/../models',
         'config'									: __dirname + '/../config',
         'scripts'									: __dirname + '/../scripts',
+        'templates'								: __dirname + '/../templates',
         'logs'										: __dirname + '/../logs',
         'app'											: __dirname + '/app',
         'api'											: __dirname + '/api'
