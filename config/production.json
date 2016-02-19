@@ -13,6 +13,17 @@
 
   "sessions": {
     "secret": "session top secret"
+  },
+
+  "email": {
+    "smtp-options":{
+      "service": "gmail",
+      "auth": {
+          "user": "xxx@gmail.com",
+          "pass": "xxxxx"
+      }
+    },
+    "send-mails": "false"
   }
 
 }

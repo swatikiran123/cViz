@@ -27,6 +27,7 @@ var userSchema = mongoose.Schema({
       last           : String,
       suffix         : String
     },
+    email            : String,
     avatar           : String,
     summary          : String,
     stats            : {

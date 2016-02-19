@@ -33,6 +33,9 @@
 
     "git-rev-sync": "1.4.0",
     "colors": "1.1.2",
-    "convict": "1.0.2"
+    "convict": "1.0.2",
+    "nodemailer": "2.2.0",
+    "email-templates": "2.1.0",
+    "swig": "1.4.2"
   }
 }
