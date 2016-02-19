@@ -28,22 +28,24 @@ var errors = {
   }
 }
 
+var error = {}
+
 // Error handling middletier
 module.exports = function(app, passport) {
+  app.use(processError);
   app.use(logErrors);
   //app.use(clientErrorHandler);
-  //app.use(catchRestAll);
+  app.use(catchRestAll);
 }
 
 
 function logErrors(err, req, res, next) {
-  console.log('log error working');
-  console.error(err.stack);
+  console.error(error);
   next(err);
 }
 
 
-function clientErrorHandler(err, req, res, next) {
+/*function clientErrorHandler(err, req, res, next) {
   console.log('clientErrorHandler working');
   if (req.xhr) {
     console.log('req.xhr');
@@ -51,12 +53,9 @@ function clientErrorHandler(err, req, res, next) {
   } else {
     next(err);
   }
-}
+}*/
 
-function catchRestAll(err, req, res, next) {
-
-  var error = {}
-  
+function processError(err, req, res, next){
   if (config.get("env") === 'development') {
     error = {
       env: config.get("env"),
@@ -64,7 +63,7 @@ function catchRestAll(err, req, res, next) {
       status:err.status,
       message: errors[err.status].internal.message,
       help : errors[err.status].internal.help,
-      trace: (errors[err.status].internal.stackTrace)? err.stack.split('\n'): 'Not available',
+      trace: (errors[err.status].internal.stackTrace)? err.stack: 'Not available',
     }
   } else {
     error = {
@@ -73,16 +72,23 @@ function catchRestAll(err, req, res, next) {
       status: err.status,
       message: errors[err.status].external.message,
       help : errors[err.status].external.help,
-      trace: (errors[err.status].external.stackTrace)? err.stack.split('\n'): 'Not available',
+      trace: (errors[err.status].external.stackTrace)? err.stack: 'Not available',
     }
   }
 
+  next(err);
+}
+
+function catchRestAll(err, req, res, next) {
+
   if(req.url.indexOf('api')>-1) // it is an api call
   {
+    error.trace = error.trace.split('\n');
     res.status(500).send(error); 
   } else {
+      error.trace.replace('\n', '<br>');
       res.render('err.ejs', {
-      err : error
-    });
+        err : error
+      });
   }
 }
