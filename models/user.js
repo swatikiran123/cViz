@@ -2,7 +2,7 @@ var path            = require('path');
 var mongoose        = require('mongoose');
 var bcrypt          = require('bcrypt-nodejs');
 var jwt             = require('jwt-simple');
-var constants       = require('../../scripts/constants');
+var constants       = require('../scripts/constants');
 var config          = require(path.join(constants.paths.config, '/config'));
 
 var Token = mongoose.Schema({

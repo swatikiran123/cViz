@@ -1,21 +1,39 @@
-<div ng-controller="userProfileController">
+<div>
 <!-- activity menu being -->
 <ul class="nav navbar-nav">
   <li class="active"><a href="/home">Dashboard</a></li>
-  <li><a href="#">Item</a></li>
-  <li><a href="#">Item</a></li>
+  <li><a >Item</a></li>
+  <li><a >Item</a></li>
+
+  <!-- Additional pull down starts here -->
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Additional <span class="caret"></span></a>
+    <ul class="dropdown-menu callouts--left">
+      <li><a href="/keynotes/#/">Keynotes</a></li>
+      <li><a >Menu Item</a></li>
+      <li><a >Menu Item</a></li>
+      <li role="separator" class="divider"></li>
+      <li class="dropdown-header">Customize</li>
+      <li><a >Menu Item</a></li>
+      <li><a >Menu Item</a></li>
+    </ul>
+  </li>
+  <!-- Additional pull down ends -->
+
+  <!-- Admin pull down starts here -->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
       <li><a href="/admin/groups">Groups</a></li>
       <li><a href="/admin/users">Users</a></li>
-      <li><a href="#">Menu Item</a></li>
+      <li><a >Menu Item</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
       <li><a href="/customize/idea">Idea Templates</a></li>
       <li><a href="/customize/workflow">Workflow</a></li>
     </ul>
   </li>
+  <!-- Admin pull down ends -->
 </ul>
 <!-- activity menu end -->
 
@@ -23,17 +41,17 @@
 <ul class="nav navbar-nav navbar-right">
   <!-- Notifications badge starts here -->
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <i class="fa fa-bell-o"></i><span class="badge">15</span><span class="caret"></span>
     </a>
     <ul class="dropdown-menu callouts--left">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
+      <li><a >Action</a></li>
+      <li><a >Another action</a></li>
+      <li><a >Something else here</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Nav header</li>
-      <li><a href="#">Separated link</a></li>
-      <li><a href="#">One more separated link</a></li>
+      <li><a >Separated link</a></li>
+      <li><a >One more separated link</a></li>
     </ul>
   </li> <!-- notification badge ends here -->
 
@@ -41,7 +59,7 @@
   
   <!-- user profile panel starts here -->
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <i class="fa fa-user"></i>  Profile<span class="caret"></span>
     </a>
     
@@ -65,7 +83,7 @@ starts -->
           <li class="divider"><!-- menu divider --> </li>
           <div class="col-md-6">
               <li class="link">
-                <a href="#">
+                <a >
                   Change Password
                 </a>
               </li>

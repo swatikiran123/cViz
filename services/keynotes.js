@@ -2,7 +2,7 @@
 
 var Q               = require('q');
 var constants       = require('../scripts/constants');
-var model           = require(constants.paths.models +  '/keynotes')
+var model           = require(constants.paths.models +  '/keynote')
 
 // Service method definition -- Begin
 var service = {};
@@ -33,11 +33,11 @@ function getAll(){
 	return deferred.promise;
 }
 
-function getOneById(){
+function getOneById(id){
     var deferred = Q.defer();
 
     model.findOne(
-        { _id: param.id },
+        { _id: id },
         function (err, item) {
             if(err) {
                 console.log(err);
