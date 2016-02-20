@@ -5,7 +5,7 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 
 var constants       = require('../scripts/constants');
-var User            = require('../app/models/user');
+var User            = require(constants.paths.models +  '/user')
 var emailController = require(constants.paths.scripts + '/email');
 
 // load the auth variables
