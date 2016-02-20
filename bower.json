@@ -39,7 +39,9 @@
     "angular-animate":"latest",
     "angular-ui-grid":"latest",
     "angularjs-datepicker":"latest",
-    "angular-growl-v2":"latest"
+    "angular-growl-v2":"latest",
+
+    "angular-growl-v2":"0.7.9"
   },
   "resolutions": {
     "angular": "~1.5.0"

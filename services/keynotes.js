@@ -2,7 +2,7 @@
 
 var Q               = require('q');
 var constants       = require('../scripts/constants');
-var model           = require(constants.paths.models +  '/keynotes')
+var model           = require(constants.paths.models +  '/keynote')
 
 // Service method definition -- Begin
 var service = {};
