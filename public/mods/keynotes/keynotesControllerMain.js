@@ -2,10 +2,10 @@
 
 var keynotesApp = angular.module('keynotes');
 
-keynotesApp.controller('keynotesControllerMain', ['$scope', 
+/*keynotesApp.controller('keynotesControllerMain', ['$scope', 
   function($scope) {}]);
-
-/*keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
+*/
+keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
   function($scope, $http, $routeParams, $location, growl) {
 
   var id = $routeParams.id;
@@ -52,7 +52,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope',
   $scope.delete = function(keynotes) {
     //console.log(sub("Delete[keynotes::#{id}]"));
     var title = keynotes.title;
-    $http.delete('/keynotesApi/' + keynotes._id).success(function(response) {
+    $http.delete('/api/v1/keynotes/' + keynotes._id).success(function(response) {
       refresh();
       growl.info(parse("keynotes with Title: %s added successfully", title));
     });
@@ -60,7 +60,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope',
 
   $scope.update = function(id) {
     console.log(sub("Update[keynotes::#{id}]"));
-    $http.get('/keynotesApi/' + id).success(function(response) {
+    $http.get('/api/v1/keynotes/' + id).success(function(response) {
       $scope.keynotes = response;
     });
   };  
@@ -68,7 +68,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope',
   $scope.update = function() {
     console.log(("Delete[keynotes::#{id}]"));
     console.log($scope.keynotes._id);
-    $http.put('/keynotesApi/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
+    $http.put('/api/v1/keynotes/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
       refresh();
       growl.info(parse("keynotes with Title: %s edited successfully", $scope.keynotes.title));
     })
@@ -87,7 +87,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope',
       break;
     }
 
-    $location.path("/keynotes/list");
+    $location.path("/keynotes/#/");
   }
 
   $scope.deselect = function() {
@@ -95,7 +95,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope',
   }
 
 }]);﻿
-*/
+
 /*keynotesApp.directive('uiDate', function() {
     return {
       require: '?ngModel',
