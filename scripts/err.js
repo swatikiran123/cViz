@@ -58,6 +58,7 @@ function logErrors(err, req, res, next) {
 function processError(err, req, res, next){
   if (config.get("env") === 'development') {
     error = {
+      url: req.url,
       env: config.get("env"),
       err: err,
       status:err.status,
