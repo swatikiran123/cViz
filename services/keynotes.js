@@ -21,7 +21,6 @@ function getAll(){
     var deferred = Q.defer();
 
 	model.find(function(err, list){
-        console.log(list);
 		if(err) {
             console.log(err);
             deferred.reject(err);
@@ -31,7 +30,7 @@ function getAll(){
 	});
 
 	return deferred.promise;
-}
+} // getAll method ends
 
 function getOneById(id){
     var deferred = Q.defer();
@@ -48,20 +47,19 @@ function getOneById(id){
         });
 
     return deferred.promise;
-}
+} // gentOneById method ends
 
 function create(data) {
     var deferred = Q.defer();
 
-    // ToDo: implement validation logic here
-
     model.create(data, function (err, doc) {
         if (err) {
-            console.log(err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else
+        {
+            deferred.resolve();
+        }
     });
 
     return deferred.promise;
@@ -70,30 +68,27 @@ function create(data) {
 function updateById(id, data) {
     var deferred = Q.defer();
 
-    // ToDo: implement validation logic here
-console.log('service updating id '+ id+" to "+ JSON.stringify(data));
     model.findByIdAndUpdate(id, data, function (err, doc) {
         if (err) {
-            console.log(err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else
+            deferred.resolve(doc);
     });
 
     return deferred.promise;
 }
 
-function deleteById(id, data) {
+function deleteById(id) {
     var deferred = Q.defer();
 
-    model.findByIdAndRemove(id, data, function (err, doc) {
+    model.findByIdAndRemove(id, function (err, doc) {
         if (err) {
-            console.log(err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else{
+            deferred.resolve(doc);
+        }
     });
 
     return deferred.promise;

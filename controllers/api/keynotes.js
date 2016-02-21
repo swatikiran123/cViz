@@ -18,7 +18,6 @@ function getAll(req,res){
   dataService.getAll()
     .then(function(userList){
         if (userList){
-            console.log(userList);
             res.send(userList);
         }else {
             res.sendStatus(404);
@@ -34,7 +33,6 @@ function getOneById(req,res){
   dataService.getOneById(req.params.id)
     .then(function(userList){
         if (userList){
-            console.log(userList);
             res.send(userList);
         }else {
             res.sendStatus(404);
@@ -47,13 +45,12 @@ function getOneById(req,res){
 }
 
 function create(req, res) {
-  console.log('controller creating as ' + JSON.stringify(req.body));
   dataService.create(req.body)
     .then(function () {
-        res.sendStatus(200);
+        res.status(200).send("Doc added successfully");
     })
     .catch(function (err) {
-        console.log(err);
+        console.log("cntrl create: err - " + err);
         res.status(500).send(err);
     });
 }
@@ -61,19 +58,18 @@ function create(req, res) {
 function deleteById(req, res) {
   dataService.deleteById(req.params.id)
     .then(function () {
-        res.sendStatus(200);
+        res.status(200).send("Doc deleted successfully");
     })
     .catch(function (err) {
-        console.log(err);
+        console.log("controller delete err: " + err);
         res.status(500).send(err);
     });
 }
 
 function updateById(req, res) {
-  console.log('controller updating id '+req.params.id+" to "+ JSON.stringify(req.body));
   dataService.updateById(req.params.id, req.body)
     .then(function () {
-        res.sendStatus(200);
+        res.status(200).send("Doc updated successfully");
     }) 
     .catch(function (err) {
         console.log(err);
