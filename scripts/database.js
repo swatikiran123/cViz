@@ -1,8 +1,17 @@
 var mongoose      = require('mongoose');
 var constants     = require('./constants');
 var config        = require(constants.paths.config + '/config');
+var userSchema =  require(constants.paths.models + '/user');
+var keynote =  require(constants.paths.models + '/keynote');
 
 var databaseURI   = config.get("db.main");
+
+// load models
+// 
+// var models_path = __dirname + '/app/models'
+//fs.readdirSync(models_path).forEach(function (file) {
+//  if (~file.indexOf('.js')) require(models_path + '/' + file)
+//})
 
 mongoose.connect(databaseURI, function(err) {
   if (err) {

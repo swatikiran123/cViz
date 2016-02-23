@@ -25,7 +25,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
         case "edit":
           $scope.keynotes = $http.get('/api/v1/keynotes/' + id).success(function(response){
             $scope.keynotes = response;
-
+console.log($scope.keynotes);
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
           });
@@ -80,6 +80,12 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
       growl.error("Error updating keynote");
     }); // http put keynoges ends
   }; // update method ends
+
+  $scope.cancel = function() {
+
+    $scope.keynotes="";
+    $location.path("/");
+  }
 
 }]);﻿ // controller ends
 
