@@ -3,6 +3,7 @@
 var Q               = require('q');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/keynote')
+//var userModel           = require(constants.paths.models +  '/user')
 
 // Service method definition -- Begin
 var service = {};
@@ -21,7 +22,6 @@ function getAll(){
     var deferred = Q.defer();
 
 	model.find(function(err, list){
-        console.log(list);
 		if(err) {
             console.log(err);
             deferred.reject(err);
@@ -31,37 +31,40 @@ function getAll(){
 	});
 
 	return deferred.promise;
-}
+} // getAll method ends
 
 function getOneById(id){
     var deferred = Q.defer();
 
-    model.findOne(
-        { _id: id },
-        function (err, item) {
+    model
+        .findOne({ _id: id })
+        .populate('noteBy')
+        .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
             }
             else
+                console.log(item);
                 deferred.resolve(item);
         });
 
     return deferred.promise;
-}
+} // gentOneById method ends
 
 function create(data) {
     var deferred = Q.defer();
 
-    // ToDo: implement validation logic here
-
+    data.noteBy = "56c71b49bf009e7424e61099";
     model.create(data, function (err, doc) {
         if (err) {
-            console.log(err);
+            console.log("err- " + err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else
+        {
+            deferred.resolve();
+        }
     });
 
     return deferred.promise;
@@ -70,30 +73,27 @@ function create(data) {
 function updateById(id, data) {
     var deferred = Q.defer();
 
-    // ToDo: implement validation logic here
-console.log('service updating id '+ id+" to "+ JSON.stringify(data));
     model.findByIdAndUpdate(id, data, function (err, doc) {
         if (err) {
-            console.log(err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else
+            deferred.resolve(doc);
     });
 
     return deferred.promise;
 }
 
-function deleteById(id, data) {
+function deleteById(id) {
     var deferred = Q.defer();
 
-    model.findByIdAndRemove(id, data, function (err, doc) {
+    model.findByIdAndRemove(id, function (err, doc) {
         if (err) {
-            console.log(err);
             deferred.reject(err);
         }
-
-        deferred.resolve();
+        else{
+            deferred.resolve(doc);
+        }
     });
 
     return deferred.promise;
