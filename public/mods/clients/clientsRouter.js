@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('keynotes')
+angular.module('clients')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       
-      .when('/k/', {
-        templateUrl: '/public/mods/keynotes/keynotesViewMain.html',
-        controller: 'keynotesControllerMain'
+      .when('/c/', {
+        templateUrl: '/public/mods/clients/clientsViewMain.html',
+        controller: 'clientsControllerMain'
       })
 
-      .when('/add', {
+/*      .when('/add', {
         templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
         controller: 'keynotesControllerMain'
       })
@@ -23,7 +23,7 @@ angular.module('keynotes')
         templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
         controller: 'keynotesControllerMain'
       });
-
+*/
 
     }
   ]);
