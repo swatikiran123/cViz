@@ -10,4 +10,11 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/m/session', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "Visit schedules";
+        res.render('mobile/session.ejs', {
+            layout: 'layouts/schedule'
+        });
+    });
+
 }
