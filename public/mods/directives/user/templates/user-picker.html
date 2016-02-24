@@ -1,0 +1,14 @@
+<input type="text" name="user" id="user" 
+  placeholder="User" ng-blur="getUser()" ng-model="data.input" ng-minlength="1" ng-maxlength="75" required>
+
+<div ng-show="$scope.show" class="container" style="width:300px;!important;">
+  <div class="pull-left"> 
+    <img height="40" width="40" src="{{data.user.profilePic}}" />
+  </div>
+  <div class="pull-right">
+  <br>
+    <div class="text-highlight">{{data.user.name.first}} {{data.user.name.last}}</div>
+    <div class="text-xsmall">{{data.user.email}}</div>
+    <div class="text-xsmall">{{data.user.jobTitle}}<br/>{{data.user.organization}} </div>
+  </div>
+</div>

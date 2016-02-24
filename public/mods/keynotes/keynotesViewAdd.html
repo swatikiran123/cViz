@@ -120,10 +120,9 @@
                 <label class="col-md-4 control-label">Speaker &nbsp;&nbsp; :</label>  
                 <div class="col-md-4">
                     <div class="input-group">
-                        <textarea type="text" size="30" name="speaker" id="speaker" 
-                        placeholder="keynotes speaker" class="form-title form-control" 
-                        ng-model="keynotes.speaker" ng-minlength="2" ng-maxlength="5000" ng-trin="true" required>
-                        </textarea>
+                        <input type="text" name="speaker" id="speaker" 
+                          placeholder="keynotes speaker" class="form-title form-control" ng-blur="getUser()"
+                          ng-model="keynotes.speaker" ng-minlength="1" ng-maxlength="75" required>
 
                         <div class="help-block" ng-messages="keynotesForm.speaker.$error" ng-if="keynotesForm.speaker.$touched">
                             <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -132,6 +131,17 @@
                 </div>
             </div>
             <br>
+
+directive goes here
+            <!-- keynotes description input-->
+            <div class="form-group" ng-class="{ 'has-error': keynotesForm.speaker.$touched && keynotesForm.speaker.$invalid }">
+                <label class="col-md-4 control-label">Directive &nbsp;&nbsp; :</label>  
+                <div class="col-md-4">
+                        <div user ></div>
+                </div>
+            </div>
+            <br>
+              
 
             <!-- Button -->
             <div class="form-group">
