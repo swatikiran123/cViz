@@ -21,7 +21,7 @@ function getAll(req,res){
         if (userList){
             res.send(userList);
         }else {
-            res.sendStatus(404);
+            res.status(404).send("Doc not found");
         }
     })
     .catch(function (err){
@@ -36,7 +36,7 @@ function getOneById(req,res){
         if (userList){
             res.send(userList);
         }else {
-            res.sendStatus(404);
+            res.status(404).send("Doc not found");
         }
     })
     .catch(function (err){
@@ -51,7 +51,7 @@ function getByEmail(req,res){
         if (userList){
             res.send(userList);
         }else {
-            res.sendStatus(404);
+            res.status(404).send("Doc not found");
         }
     })
     .catch(function (err){
