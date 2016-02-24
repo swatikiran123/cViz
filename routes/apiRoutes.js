@@ -23,10 +23,11 @@ router.get('/api/v1/app/info', apps.info);
  * Routes that can be accessed only by authenticated & authorized users
  */
 router.get('/api/v1/secure/admin/users', users.getAll);
-router.get('/api/v1/secure/admin/users/:id', users.getOne);
+router.get('/api/v1/secure/admin/users/:id', users.getOneById);
 router.post('/api/v1/secure/admin/users/', users.create);
-router.put('/api/v1/secure/admin/users/:id', users.update);
-router.delete('/api/v1/secure/admin/users/:id', users.delete);
+router.put('/api/v1/secure/admin/users/:id', users.updateById);
+router.delete('/api/v1/secure/admin/users/:id', users.deleteById);
+router.get('/api/v1/admin/users/:email', users.getByEmail);
 
 // List of service routes for KeyNotes
 router.get('/api/v1/keynotes', keynotes.getAll);

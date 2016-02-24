@@ -87,5 +87,15 @@ console.log($scope.keynotes);
     $location.path("/");
   }
 
+  $scope.getUser = function(){
+    console.log($scope.keynotes.speaker);
+
+    $http.get('/api/v1/admin/users/' + $scope.keynotes.speaker).success(function(response) {
+      console.log(response);
+      var user = response;
+      $scope.keynotes.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
+    });
+  }
+
 }]);﻿ // controller ends
 

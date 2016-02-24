@@ -1,45 +1,94 @@
-var users = {
- 
-  getAll: function(req, res) {
-    var allusers = data; // Spoof a DB call
-    res.json(allusers);
-  },
- 
-  getOne: function(req, res) {
-    var id = req.params.id;
-    var user = data[0]; // Spoof a DB call
-    res.json(user);
-  },
- 
-  create: function(req, res) {
-    var newuser = req.body;
-    data.push(newuser); // Spoof a DB call
-    res.json(newuser);
-  },
- 
-  update: function(req, res) {
-    var updateuser = req.body;
-    var id = req.params.id;
-    data[id] = updateuser // Spoof a DB call
-    res.json(updateuser);
-  },
- 
-  delete: function(req, res) {
-    var id = req.params.id;
-    data.splice(id, 1) // Spoof a DB call
-    res.json(true);
-  }
-};
- 
-var data = [{
-  name: 'user 1',
-  id: '1'
-}, {
-  name: 'user 2',
-  id: '2'
-}, {
-  name: 'user 3',
-  id: '3'
-}];
- 
-module.exports = users;
+'use strict';
+
+var constants         = require('../../scripts/constants');
+var dataService     = require(constants.paths.services + '/users');
+
+var controller = {}
+
+controller.getAll     = getAll;
+controller.create     = create;
+
+controller.getOneById = getOneById;
+controller.updateById = updateById;
+controller.deleteById = deleteById;
+controller.getByEmail = getByEmail;
+
+module.exports = controller;
+
+function getAll(req,res){
+  dataService.getAll()
+    .then(function(userList){
+        if (userList){
+            res.send(userList);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getOneById(req,res){
+  dataService.getOneById(req.params.id)
+    .then(function(userList){
+        if (userList){
+            res.send(userList);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getByEmail(req,res){
+  dataService.getByEmail(req.params.email)
+    .then(function(userList){
+        if (userList){
+            res.send(userList);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function create(req, res) {
+  dataService.create(req.body)
+    .then(function () {
+        res.status(200).send("Doc added successfully");
+    })
+    .catch(function (err) {
+        console.log("cntrl create: err - " + err);
+        res.status(500).send(err);
+    });
+}
+
+function deleteById(req, res) {
+  dataService.deleteById(req.params.id)
+    .then(function () {
+        res.status(200).send("Doc deleted successfully");
+    })
+    .catch(function (err) {
+        console.log("controller delete err: " + err);
+        res.status(500).send(err);
+    });
+}
+
+function updateById(req, res) {
+  dataService.updateById(req.params.id, req.body)
+    .then(function () {
+        res.status(200).send("Doc updated successfully");
+    }) 
+    .catch(function (err) {
+        console.log(err);
+        res.status(500).send(err);
+    });
+}
