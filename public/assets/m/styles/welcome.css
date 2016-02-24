@@ -70,6 +70,10 @@ body {
   margin-right: 5px;
 }
 
+/* class for schedule icon */
+.color-accent-blue{
+  color: #FFF
+}
 
 /*Banner*/
 .banner {position: relative;color: #fff;}
