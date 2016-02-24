@@ -8,4 +8,11 @@ module.exports = function(app, passport) {
         res.render('misc/keynotes.ejs', {});
     });
 
+    // route to clients
+    app.get('/clients', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "Clients";
+        res.render('misc/clients.ejs', {});
+    });
+
+
 }
