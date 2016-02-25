@@ -12,6 +12,7 @@ var auth 							= require(constants.paths.controllers + '/api/auth');
 var users 						= require(constants.paths.controllers + '/api/users');
 var keynotes 					= require(constants.paths.controllers + '/api/keynotes');
 var clients 					= require(constants.paths.controllers + '/api/clients');
+var csclocations 					= require(constants.paths.controllers + '/api/csclocations');
  
 /*
  * Routes that can be accessed by any one
@@ -43,5 +44,12 @@ router.get('/api/v1/clients/:id', clients.getOneById);
 router.post('/api/v1/clients', clients.create);
 router.put('/api/v1/clients/:id', clients.updateById);
 router.delete('/api/v1/clients/:id', clients.deleteById);
+
+// List of service routes for csclocations
+router.get('/api/v1/csclocations', csclocations.getAll);
+router.get('/api/v1/csclocations/:id', csclocations.getOneById);
+router.post('/api/v1/csclocations', csclocations.create);
+router.put('/api/v1/csclocations/:id', csclocations.updateById);
+router.delete('/api/v1/csclocations/:id', csclocations.deleteById);
  
 module.exports = router;
