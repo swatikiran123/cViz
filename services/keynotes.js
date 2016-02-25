@@ -55,7 +55,9 @@ function getOneById(id){
 function create(data) {
     var deferred = Q.defer();
 
-    data.noteBy = "56c71b49bf009e7424e61099";
+    //data.noteBy = "56c71b49bf009e7424e61099";
+    console.log("Saving keynote........");
+    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

@@ -10,6 +10,10 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
+  $scope.noteById = "";
+  $scope.noteByEmail = "";
+  $scope.noteByUser =  "";
+
   var refresh = function() {
 
     $http.get('/api/v1/keynotes').success(function(response) {
@@ -25,7 +29,12 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
         case "edit":
           $scope.keynotes = $http.get('/api/v1/keynotes/' + id).success(function(response){
             $scope.keynotes = response;
-console.log($scope.keynotes);
+      
+            console.log($scope.keynotes);
+            console.log(response.noteBy);
+            $scope.noteByUser = response.noteBy;
+            $scope.noteByEmail = response.noteBy.email;
+            $scope.noteById = response.noteBy._id;
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
           });
@@ -37,6 +46,8 @@ console.log($scope.keynotes);
   refresh();
 
   $scope.save = function(){
+    // set noteBy based on the user picker value
+    $scope.keynotes.noteBy = $scope.noteById;
     switch($scope.mode)    {
       case "add":
         $scope.create();

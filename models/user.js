@@ -30,6 +30,16 @@ var userSchema = mongoose.Schema({
     email            : String,
     avatar           : String,
     summary          : String,
+    jobTitle         : String,
+    organization     : String,
+    socialProfile    : [{
+      handle         : String,
+      network        : String
+    }],
+    contactNo        : [{
+      number         : String,
+      type           : String
+    }],
     stats            : {
       dateCreated    : Date,
       dateLastLogin  : Date

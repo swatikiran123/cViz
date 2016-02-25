@@ -119,29 +119,10 @@
             <div class="form-group" ng-class="{ 'has-error': keynotesForm.speaker.$touched && keynotesForm.speaker.$invalid }">
                 <label class="col-md-4 control-label">Speaker &nbsp;&nbsp; :</label>  
                 <div class="col-md-4">
-                    <div class="input-group">
-                        <input type="text" name="speaker" id="speaker" 
-                          placeholder="keynotes speaker" class="form-title form-control" ng-blur="getUser()"
-                          ng-model="keynotes.speaker" ng-minlength="1" ng-maxlength="75" required>
-
-                        <div class="help-block" ng-messages="keynotesForm.speaker.$error" ng-if="keynotesForm.speaker.$touched">
-                            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                        </div>
-                    </div>
+                    <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
                 </div>
             </div>
             <br>
-
-directive goes here
-            <!-- keynotes description input-->
-            <div class="form-group" ng-class="{ 'has-error': keynotesForm.speaker.$touched && keynotesForm.speaker.$invalid }">
-                <label class="col-md-4 control-label">Directive &nbsp;&nbsp; :</label>  
-                <div class="col-md-4">
-                        <div user ></div>
-                </div>
-            </div>
-            <br>
-              
 
             <!-- Button -->
             <div class="form-group">
@@ -150,12 +131,8 @@ directive goes here
                 <button type="submit" class="btn btn-success" 
                     ng-disabled="keynotesForm.$invalid" ng-click="save()">Submit
                 </button>
-                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel </button>
+                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
               </div>
             </div>
-    <!-- keynotes title input-->
-        
-            
-
         </form>
     </div>
