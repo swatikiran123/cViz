@@ -6,6 +6,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 	function($scope, $http, $routeParams, $location, growl) {
 
 		console.log("clients controller invoked");
+		//user 
+		$scope.noteById = "";
+		$scope.noteByEmail = "";
+		$scope.noteByUser =  "";
 
   //acts as get all data
   var refresh = function() {

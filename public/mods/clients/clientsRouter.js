@@ -1,29 +1,28 @@
 'use strict';
 
 angular.module('clients')
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      
-      .when('/c/', {
-        templateUrl: '/public/mods/clients/clientsViewMain.html',
-        controller: 'clientsControllerMain'
-      })
+.config(['$routeProvider', function ($routeProvider) {
+  $routeProvider
 
-/*      .when('/add', {
-        templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
-        controller: 'keynotesControllerMain'
-      })
+  .when('/c/', {
+    templateUrl: '/public/mods/clients/clientsViewMain.html',
+    controller: 'clientsControllerMain'
+  })
 
-      .when('/:id/show', {
-        templateUrl: '/public/mods/keynotes/keynotesViewShow.html',
-        controller: 'keynotesControllerMain'
-      })
+  .when('/addAccount', {
+    templateUrl: '/public/mods/clients/clientsViewAdd.html',
+    controller: 'clientsControllerMain'
+  })
 
-      .when('/:id/edit', {
-        templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
-        controller: 'keynotesControllerMain'
-      });
-*/
+  .when('/:id/showClient', {
+    templateUrl: '/public/mods/clients/clientsViewShow.html',
+    controller: 'clientsControllerMain'
+  })
 
-    }
-  ]);
+  .when('/:id/editClient', {
+    templateUrl: '/public/mods/clients/clientsViewAdd.html',
+    controller: 'clientsControllerMain'
+  });
+
+}
+]);
