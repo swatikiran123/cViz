@@ -28,8 +28,26 @@
             <span class="glyphicon"></span>
             <a href="" ng-click="orderByField='profile'; reverseSort = !reverseSort">Profile</a>
           </th>         
-          <th></th>
-          <th></th>
+          <th>
+            <span class="glyphicon"></span>
+            <a href="" ng-click="orderByField='competitors'; reverseSort = !reverseSort">Competitors</a>
+          </th>
+          <th>
+            <span class="glyphicon"></span>
+            <a href="" ng-click="orderByField='regions'; reverseSort = !reverseSort">Regions</a>
+          </th>
+          <th>
+            <span class="glyphicon"></span>
+            <a href="" ng-click="orderByField='offerings'; reverseSort = !reverseSort">Offerings</a>
+          </th>
+          <th>
+            <span class="glyphicon"></span>
+            <a href="" ng-click="orderByField='cscPersonnel'; reverseSort = !reverseSort">CSC Personnel</a>
+          </th>
+          <th>
+            <span class="glyphicon"></span>
+            <a href="" ng-click="orderByField='netPromoterScore'; reverseSort = !reverseSort">Net Promoter Score</a>
+          </th>
         </tr>
       </thead>
       <tbody class="data-grid-data">
@@ -37,6 +55,11 @@
           <th><input type="text" ng-model="clients.name"></th>
           <th><input type="text" ng-model="clients.vertical"></th>
           <th><input type="text" ng-model="clients.profile"></th>
+          <th><input type="text" ng-model="clients.competitors" ng-list required></th>
+          <th><input type="text" ng-model="clients.regions" ng-list required></th>
+          <th><input type="text" ng-model="clients.offerings" ng-list required></th>
+          <th>Sales Exec:<input type="text" ng-model="clients.cscPersonnel.salesExec"></th>
+          <th><input type="text" ng-model="clients.netPromoterScore"></th>
           <th><button class="btn btn-primary" ng-click="addclients()">Add clients</button></th>
           <th><button class="btn btn-info" ng-click="update()">Update</button>
             <button class="btn btn-info" ng-click="deselect()">Clear</button></th>
@@ -45,6 +68,11 @@
             <td>{{clients.name}}</td>
             <td>{{clients.vertical}}</td>
             <td>{{clients.profile}}</td>
+            <td><div ng-repeat="competitors in clients.competitors track by $index">{{competitors}}</td>
+            <td><div ng-repeat="regions in clients.regions track by $index">{{regions}}</td>
+            <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td>
+            <td>{{clients.cscPersonnel.salesExec}}</td>
+            <td>{{clients.netPromoterScore}}</td>
             <td><button class="btn btn-danger" ng-click="remove(clients._id)">Remove</button></td>
             <td><button class="btn btn-warning" ng-click="edit(clients._id)">Edit</button></td>
           </tr>

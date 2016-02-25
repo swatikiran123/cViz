@@ -13,7 +13,8 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   		console.log("I got the data I requested");
   		$scope.clientsList = response;
   		$scope.clients = "";
-  	});
+  		 $scope.clients = { fields: [] };//clearing fields inside input repeat
+  		});
   };
   refresh();
 
@@ -54,9 +55,8 @@ $scope.update = function() {
 //clear a clients
 $scope.deselect = function() {
 	$scope.clients = "";
+	$scope.clients = { fields: [] };//clearing fields inside input repeat
+
 }
 
 }])
-
-
-
