@@ -3,64 +3,110 @@
 var clientsApp = angular.module('clients');
 
 clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
-	function($scope, $http, $routeParams, $location, growl) {
+  function($scope, $http, $routeParams, $location, growl) {
 
-		console.log("clients controller invoked");
-		//user 
-		$scope.noteById = "";
-		$scope.noteByEmail = "";
-		$scope.noteByUser =  "";
+  var id = $routeParams.id;
+  // AUtomatically swap between the edit and new mode to reuse the same frontend form
+  $scope.mode=(id==null? 'add': 'edit');
+  $scope.hideFilter = true;
 
-  //acts as get all data
+  $scope.noteById = "";
+  $scope.noteByEmail = "";
+  $scope.noteByUser =  "";
+
   var refresh = function() {
-  	$http.get('/api/v1/clients').success(function(response) {
-  		console.log("I got the data I requested");
-  		$scope.clientsList = response;
-  		$scope.clients = "";
-  		 $scope.clients = { fields: [] };//clearing fields inside input repeat
-  		});
-  };
+
+    $http.get('/api/v1/clients').success(function(response) {
+
+      $scope.clientsList = response;
+      $scope.clients = "";
+
+      switch($scope.mode)    {
+        case "add":
+          $scope.clients = "";
+          break;
+
+        case "edit":
+          $scope.clients = $http.get('/api/v1/clients/' + id).success(function(response){
+            $scope.clients = response;
+      
+            console.log($scope.clients);
+            console.log(response.noteBy);
+            $scope.noteByUser = response.noteBy;
+            $scope.noteByEmail = response.noteBy.email;
+            $scope.noteById = response.noteBy._id;
+            // reformat date fields to avoid type compability issues with <input type=date on ng-model
+            $scope.clients.startDate = new Date($scope.clients.createdOn);
+          });
+
+      } // switch scope.mode ends
+    }); // get client call back ends
+  }; // refresh method ends
+
   refresh();
 
+  $scope.save = function(){
+    // set noteBy based on the user picker value
+    $scope.clients.noteBy = $scope.noteById;
+    switch($scope.mode)    {
+      case "add":
+        $scope.create();
+        break;
 
-//add a clients
-$scope.addclients = function(){
-	console.log($scope.clients);
-	$http.post('/api/v1/clients',$scope.clients).success(function(response) {
-		console.log(response);
-		refresh();
-	});
-};
+      case "edit":
+        $scope.update();
+        break;
+      } // end of switch scope.mode ends
 
-//remove a clients
-$scope.remove = function(id) {
-	console.log(id);
-	$http.delete('/api/v1/clients/' + id).success(function(response) {
-		refresh();
-	});
-};
+      $location.path("/");
+  } // end of save method
 
-//edit a clients
-$scope.edit = function(id) {
-	console.log(id);
-	$http.get('/api/v1/clients/' + id).success(function(response) {
-		$scope.clients=response;
-	});
-}; 
+  $scope.create = function() {
+    $http.post('/api/v1/clients', $scope.clients).success(function(response) {
+      refresh();
+      growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.title));
+    })
+    .error(function(data, status){
+      growl.error("Error adding client");
+    }); // http post keynoges ends
+  }; // create method ends
 
-//update a clients
-$scope.update = function() {
-	console.log($scope.clients._id);
-	$http.put('/api/v1/clients/' + $scope.clients._id, $scope.clients).success(function(response) {
-		refresh();
-	})
-};
+  $scope.delete = function(clients) {
+    var title = clients.title;
+    $http.delete('/api/v1/clients/' + clients._id).success(function(response) {
+      refresh();
+      growl.info(parse("clients [%s]<br/>Deleted successfully", title));
+    })
+    .error(function(data, status){
+      growl.error("Error deleting client");
+    }); // http delete keynoges ends
+  }; // delete method ends
 
-//clear a clients
-$scope.deselect = function() {
-	$scope.clients = "";
-	$scope.clients = { fields: [] };//clearing fields inside input repeat
+  $scope.update = function() {
+    $http.put('/api/v1/clients/' + $scope.clients._id, $scope.clients).success(function(response) {
+      refresh();
+      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.title));
+    })
+    .error(function(data, status){
+      growl.error("Error updating client");
+    }); // http put keynoges ends
+  }; // update method ends
 
-}
+  $scope.cancel = function() {
 
-}])
+    $scope.clients="";
+    $location.path("/");
+  }
+
+  $scope.getUser = function(){
+    console.log($scope.clients.speaker);
+
+    $http.get('/api/v1/admin/users/' + $scope.clients.speaker).success(function(response) {
+      console.log(response);
+      var user = response;
+      $scope.clients.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
+    });
+  }
+
+}]);﻿ // controller ends
+
