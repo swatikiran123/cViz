@@ -107,7 +107,7 @@
         </div>
         <br>
 
-        <!-- clients description input-->
+        <!-- clients description input--> 
         <div class="form-group" ng-class="{ 'has-error': clientsForm.speaker.$touched && clientsForm.speaker.$invalid }">
             <label class="col-md-4 control-label">CSC Personnel &nbsp;&nbsp; :</label>  
             <div class="col-md-4">
@@ -121,8 +121,8 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <input type="text" name="netPromoterScore" id="netPromoterScore" 
-                    placeholder="clients Title" class="form-title form-control" 
-                    ng-model="clients.netPromoterScore" ng-minlength="1" ng-maxlength="75" ng-list required>
+                    placeholder="Net Promoter Score" class="form-title form-control" 
+                    ng-model="clients.netPromoterScore" ng-minlength="1" ng-maxlength="75" required>
 
                     <div class="help-block" ng-messages="clientsForm.netPromoterScore.$error" ng-if="clientsForm.netPromoterScore.$touched">
                         <div ng-messages-include="/public/mods/partials/messages.html"></div>

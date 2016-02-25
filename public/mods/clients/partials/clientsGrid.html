@@ -39,40 +39,28 @@
             <span class="glyphicon"></span>
             <a href="" ng-click="orderByField='netPromoterScore'; reverseSort = !reverseSort">Net Promoter Score</a>
           </th>
+          <th></th>
         </tr>
       </thead>
       <tbody class="data-grid-data">
-        <tr>
-          <th><input type="text" ng-model="clients.name"></th>
-          <th><input type="text" ng-model="clients.vertical"></th>
-          <th><input type="text" ng-model="clients.profile"></th>
-          <th><input type="text" ng-model="clients.competitors" ng-list required></th>
-          <th><input type="text" ng-model="clients.regions" ng-list required></th>
-          <th><input type="text" ng-model="clients.offerings" ng-list required></th>
-          <th><div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div></th>
-          <th><input type="text" ng-model="clients.netPromoterScore"></th>
-          <th><button class="btn btn-primary" ng-click="addclients()">Add clients</button></th>
-          <th><button class="btn btn-info" ng-click="update()">Update</button>
-            <button class="btn btn-info" ng-click="deselect()">Clear</button></th>
-          </tr>
-          <tr ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
-            <td>{{clients.name}}</td>
-            <td>{{clients.vertical}}</td>
-            <td>{{clients.profile}}</td>
-            <td><div ng-repeat="competitors in clients.competitors track by $index">{{competitors}}</td>
-            <td><div ng-repeat="regions in clients.regions track by $index">{{regions}}</td>
-            <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td>
-            <td>{{clients.cscPersonnel}}</td>
-            <td>{{clients.netPromoterScore}}</td>
+        <tr ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
+          <td>{{clients.name}}</td>
+          <td>{{clients.vertical}}</td>
+          <td>{{clients.profile}}</td>
+          <td><div ng-repeat="competitors in clients.competitors track by $index">{{competitors}}</td>
+          <td><div ng-repeat="regions in clients.regions track by $index">{{regions}}</td>
+          <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td>
+          <td>{{clients.cscPersonnel}}</td>
+          <td>{{clients.netPromoterScore}}</td>
 
-            <td>
-              <a class="table-btn" href="#/{{clients._id}}/showClient"><span class="glyphicon glyphicon-eye-open" /></a>
-              <a class="table-btn" href="#/{{clients._id}}/editClient"><span class="glyphicon glyphicon-edit" /></a>
-              <a class="table-btn" ng-click="remove(clients._id)"><span class="glyphicon glyphicon-trash" /></a>
-            </td>
-            <td><button class="btn btn-warning" ng-click="edit(clients._id)">Edit</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          <td>
+            <a class="table-btn" href="#/{{clients._id}}/showClient"><span class="glyphicon glyphicon-eye-open" /></a>
+            <a class="table-btn" href="#/{{clients._id}}/editClient"><span class="glyphicon glyphicon-edit" /></a>
+            <a class="table-btn" ng-click="remove(clients._id)"><span class="glyphicon glyphicon-trash" /></a>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
