@@ -62,37 +62,34 @@
                        />
             </div>
      <!-- keynotes speaker input--> 
+            <label>user:</label>
             <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
                
                 <div class="col-md-4">
 
                     <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
+
                 </div>
             </div>
-                         <div user >
-                        </div>
-                </div>
                 
-            </div>
+                
        
 
 
 
 
-<br>
-<br>
-<br>
-          
-               <div class="pull-left">
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="form-group">
+              <div class="pull-left">
                 <button type="submit" class="btn btn-success" 
                   ng-click="save()" ng-disabled="keynotesForm.$invalid">Submit
                 </button>
                 <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
               </div>
-            </div>
-
-                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel </button>
-               </div>
+           
                  
            
         </form>
