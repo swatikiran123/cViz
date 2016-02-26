@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('keynotes', ['ngRoute', 'angular-growl']);
+angular.module('keynotes', ['ngRoute', 'angular-growl','ngAnimate','ngFloatingLabels','ngTagsInput','textAngular']);
