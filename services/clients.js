@@ -38,7 +38,7 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
-        .populate('noteBy')
+        .populate('cscPersonnel')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

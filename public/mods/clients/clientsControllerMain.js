@@ -10,9 +10,14 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
-  $scope.noteById = "";
+  /*$scope.noteById = "";
   $scope.noteByEmail = "";
-  $scope.noteByUser =  "";
+  $scope.noteByUser =  "";*/
+
+  $scope.salesExecId = "";
+  $scope.salesExecEmail = "";
+  $scope.salesExecUser =  "";
+  
 
   var refresh = function() {
 
@@ -31,10 +36,15 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
             $scope.clients = response;
       
             console.log($scope.clients);
-            console.log(response.noteBy);
-            $scope.noteByUser = response.noteBy;
-            $scope.noteByEmail = response.noteBy.email;
-            $scope.noteById = response.noteBy._id;
+            console.log(response.cscPersonnel);
+            /*$scope.noteByUser = response.cscPersonnel;
+            $scope.noteByEmail = response.cscPersonnel.email;
+            $scope.noteById = response.cscPersonnel._id;*/
+            
+            $scope.salesExecUser = response.cscPersonnel;
+            $scope.salesExecEmail = response.cscPersonnel.email;
+            $scope.salesExecId = response.cscPersonnel._id;
+            
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.clients.startDate = new Date($scope.clients.createdOn);
           });
@@ -47,7 +57,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.save = function(){
     // set noteBy based on the user picker value
-    $scope.clients.noteBy = $scope.noteById;
+    $scope.clients.cscPersonnel = $scope.salesExecId;
     switch($scope.mode)    {
       case "add":
         $scope.create();
@@ -64,7 +74,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.create = function() {
     $http.post('/api/v1/clients', $scope.clients).success(function(response) {
       refresh();
-      growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.title));
+      growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
     })
     .error(function(data, status){
       growl.error("Error adding client");
@@ -72,10 +82,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // create method ends
 
   $scope.delete = function(clients) {
-    var title = clients.title;
+    var name = clients.name;
     $http.delete('/api/v1/clients/' + clients._id).success(function(response) {
       refresh();
-      growl.info(parse("clients [%s]<br/>Deleted successfully", title));
+      growl.info(parse("clients [%s]<br/>Deleted successfully", name));
     })
     .error(function(data, status){
       growl.error("Error deleting client");
@@ -85,7 +95,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.update = function() {
     $http.put('/api/v1/clients/' + $scope.clients._id, $scope.clients).success(function(response) {
       refresh();
-      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.title));
+      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));
     })
     .error(function(data, status){
       growl.error("Error updating client");
@@ -99,12 +109,12 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }
 
   $scope.getUser = function(){
-    console.log($scope.clients.speaker);
+    console.log($scope.clients.cscPersonnel);
 
-    $http.get('/api/v1/admin/users/' + $scope.clients.speaker).success(function(response) {
+    $http.get('/api/v1/admin/users/' + $scope.clients.cscPersonnel).success(function(response) {
       console.log(response);
       var user = response;
-      $scope.clients.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
+      $scope.clients.cscPersonnel = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
     });
   }
 

@@ -12,13 +12,14 @@ var clientSchema = new mongoose.Schema({
 	competitors 				: [{ type: String }],
 	regions 						: [{ type: String }],
 	offerings 					: [{ type: String }],
-	cscPersonnel				: {
+	cscPersonnel							: { type: Schema.Types.ObjectId, ref: 'User' },
+	/*cscPersonnel				: {
 		salesExec					: { type: Schema.Types.ObjectId, ref: 'User' },
 		accountGM					: { type: Schema.Types.ObjectId, ref: 'User' },
 		industryExec			: { type: Schema.Types.ObjectId, ref: 'User' },
 		globalDelivery		: { type: Schema.Types.ObjectId, ref: 'User' },
 		cre 							: { type: Schema.Types.ObjectId, ref: 'User' }
-	},
+	},*/
 	netPromoterScore		: { type: Number }
 	
 });

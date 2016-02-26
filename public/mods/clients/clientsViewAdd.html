@@ -108,10 +108,11 @@
         <br>
 
         <!-- clients description input--> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.speaker.$touched && clientsForm.speaker.$invalid }">
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.cscPersonnel.$touched && clientsForm.cscPersonnel.$invalid }">
             <label class="col-md-4 control-label">CSC Personnel &nbsp;&nbsp; :</label>  
             <div class="col-md-4">
-                <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
+                <div user type="picker" user-model="salesExecUser" user-id="salesExecId" user-email="salesExecEmail" placeholder="Sales Executive name" ></div>
+                <!--<div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>-->
             </div>
         </div>
         <br>
