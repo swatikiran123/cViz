@@ -1,138 +1,100 @@
-  <script>
 
-/*  $(function() {
-    $( "#startDate" ).datepicker();
-    $( "#endDate" ).datepicker();
-  });*/
 
-  </script>
+ <div class="row"> 
+    <div class="col-sm-1"></div>
+      <div class="col-md-8">
 
-<style>
-.page-header{
-  font: normal normal bold 20px/normal Verdana, Geneva, sans-serif;
-  color: rgba(96,93,93,0.9);
-  text-indent: 10px;
-}
-    
-.form-heading {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  border: 0 solid;
-  border-bottom: 4px solid #a2b3c4;
-  font: normal 20px/2 "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  color: #24486c;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  background: #e0edf9;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.25) ;
-}
+ <!-- page header/subheader -->
 
-.control-label{
-  border: none;
-  font: normal normal bold 12px/normal Verdana, Geneva, sans-serif;
-  color: rgba(96,93,93,0.9);
-  text-indent: 20px;
-   padding-right: 30px;
-}
-
-.form-control {
-    font: normal 12px/normal Verdana, Geneva, sans-serif;
-    color: rgba(96,93,93,0.9);
-    width:20px;
-}
-
-.help-block{
-    font: normal 10px/normal Verdana, Geneva, sans-serif;
-    color: maroon;
-}
-
-</style>
-
-    
-<div class="container">
     <div class="page-header">
       Keynotes Management - Add
       <div class="sub-header">Add new keynote
       </div>
     </div>
 
-    <div class="container data-form">
+   <!-- keynotes pageheader input--> 
+    <div class="data-form">
+      <form name="keynotesForm" id="keynotesForm" class="form-vertical" novalidate
+              ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
 
-        <form class="form-horizontal" id="keynotesForm" name="keynotesForm" novalidate>
-
-        
             <!-- keynotes title input-->
-            <div class="form-group" ng-class="{ 'has-error': keynotesForm.title.$touched && keynotesForm.title.$invalid }"><br>
-                <label class="col-md-4 control-label">Keynote Title &nbsp; &nbsp;  :</label>
-                    <div class="col-md-4">
-                    <div class="input-group">
-                        <input type="text" name="title" id="title" 
-                        placeholder="keynotes Title" class="form-title form-control" 
-                        ng-model="keynotes.title" ng-minlength="1" ng-maxlength="75" required>
-
-                          <div class="help-block" ng-messages="keynotesForm.title.$error" ng-if="keynotesForm.title.$touched">
-                            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Title" id="title" name="title"
+                       ng-model="keynotes.title" required ng-minlength="5" ng-maxlength="20"
+                       floating-validation/>
             </div>
-            <br>
 
-            <!-- keynotes description input-->
-            <div class="form-group" ng-class="{ 'has-error': keynotesForm.desc.$touched && keynotesForm.desc.$invalid }">
-                <label class="col-md-4 control-label">Description &nbsp;&nbsp; :</label>  
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <textarea type="text" size="30" name="desc" id="desc" 
-                        placeholder="keynotes desc" class="form-title form-control" 
-                        ng-model="keynotes.desc" ng-minlength="2" ng-maxlength="5000" ng-trin="true" required>
-                        </textarea>
-
-                        <div class="help-block" ng-messages="keynotesForm.desc.$error" ng-if="keynotesForm.desc.$touched">
-                            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                        </div>
-                    </div>
-                </div>
+         
+    
+           <!-- keynotes description input-->        
+            
+            <div class="form-group">
+                <textarea type="text" class="form-control" placeholder="description" id="description" name="description"
+                       ng-model="keynotes.desc" required ng-minlength="5"
+                       floating-validation/>
             </div>
-            <br>
 
-            <!-- keynotes description input-->
-            <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteText.$touched && keynotesForm.noteText.$invalid }">
-                <label class="col-md-4 control-label">Note / Message &nbsp;&nbsp; :</label>  
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <textarea type="text" size="30" name="noteText" id="noteText" 
-                        placeholder="keynotes noteText" class="form-title form-control" 
-                        ng-model="keynotes.noteText" ng-minlength="2" ng-maxlength="5000" ng-trin="true" required>
-                        </textarea>
-
-                        <div class="help-block" ng-messages="keynotesForm.noteText.$error" ng-if="keynotesForm.noteText.$touched">
-                            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                        </div>
-                    </div>
-                </div>
+          
+            
+          <!-- keynotes note input-->
+            
+            <div class="form-group">
+   
+              <div text-angular 
+                    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+                                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+                         ng-model="keynotes.noteText" name="note" placeholder="note" required />
             </div>
-            <br>
+            </div>
+            
+             <!-- keynotes tags input-->      
+            <div class="form-group">
+                <tags-input ng-model="keynotes.tags"></tags-input>
+                
+            </div>
 
-            <!-- keynotes description input-->
-            <div class="form-group" ng-class="{ 'has-error': keynotesForm.speaker.$touched && keynotesForm.speaker.$invalid }">
-                <label class="col-md-4 control-label">Speaker &nbsp;&nbsp; :</label>  
+           
+    <!-- keynotes speaker input--> 
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="keynotes speaker" id="speaker" name="title"
+                       ng-model="keynotes.speaker"  ng-minlength="1" ng-maxlength="75" ng-blur="getUser()" required
+                       />
+            </div>
+     <!-- keynotes speaker input--> 
+            <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
+               
                 <div class="col-md-4">
+
                     <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
                 </div>
             </div>
-            <br>
+                         <div user >
+                        </div>
+                </div>
+                
+            </div>
+       
 
-            <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label"></label>
-              <div class="col-md-4">
+
+
+
+<br>
+<br>
+<br>
+          
+               <div class="pull-left">
                 <button type="submit" class="btn btn-success" 
-                    ng-disabled="keynotesForm.$invalid" ng-click="save()">Submit
+                  ng-click="save()" ng-disabled="keynotesForm.$invalid">Submit
                 </button>
                 <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
               </div>
             </div>
+
+                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel </button>
+               </div>
+                 
+           
         </form>
     </div>
+</div>

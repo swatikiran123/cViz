@@ -53,9 +53,9 @@
   <tbody class="data-grid-data">
     <tr ng-repeat="keynote in keynotesList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{keynote.title}}</td>
-      <td>{{keynote.desc}}</td>
       <td>{{keynote.speaker}}</td>
-      <td class="hidden-xs">{{keynote.tags}}</td>
+      <td>{{keynote.desc}}</td>
+      <td class="hidden-xs">{{keynotes.tags}}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>

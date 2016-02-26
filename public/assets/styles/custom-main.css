@@ -5,6 +5,9 @@ html,body {
   height:100%;
 }
 
+
+
+
 body {
   /* Margin bottom by footer height */
   /* margin-bottom: 60px; */
@@ -20,6 +23,8 @@ body {
   /* Set the fixed height of thenav footer here */
   height: 40px;
   background-color: #e6e6ff;
+  z-index: 10000000;
+
 }
 .footer{
   padding-right: 35px;
@@ -136,6 +141,7 @@ height: 30px;
     border-radius:0;
     padding-right: 30px;
     padding-left: 15px;
+    z-index: 10000000;
 
 
 }
