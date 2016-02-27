@@ -4,7 +4,7 @@ angular.module('facts')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       
-      .when('/', {
+      .when('/m', {
         templateUrl: '/public/m/fcts/main.html',
         controller: 'factCntr'
       })

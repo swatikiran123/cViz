@@ -3,7 +3,7 @@ var auth = require('./auth.js');
 module.exports = function(app, passport) {
 
     // show welcome screen
-    app.get('/m/welcome', function(req, res) {
+    app.get('/m/', function(req, res) {
         res.locals.pageTitle = "Welcome...";
         res.render('mobile/welcome.ejs', {
             layout: 'layouts/mobile'
