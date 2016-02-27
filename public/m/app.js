@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('mApp', ['schedules']);
+angular.module('mApp', ['schedules', 'facts']);
