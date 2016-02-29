@@ -38,8 +38,11 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
-        .populate('noteBy')
-        .exec(function (err, item) {
+        .populate({path:'cscPersonnel.salesExec'})
+        .populate({path:'cscPersonnel.accountGM'})
+        .populate({path:'cscPersonnel.industryExec'})
+        .populate({path:'cscPersonnel.globalDelivery'})
+        .populate({path:'cscPersonnel.cre'}).exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
@@ -55,7 +58,8 @@ function getOneById(id){
 function create(data) {
     var deferred = Q.defer();
 
-    data.noteBy = "56c71b49bf009e7424e61099";
+    console.log("Saving an Account........");
+    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);
