@@ -1,48 +1,471 @@
 [
 
 	{
-			"_id"										: ObjectId("A06234567892345678900001"),
+			"_id"									: ObjectId("A06234567892345678900001"),
+			
 			"client" 								: ObjectId("A03234567892345678900001"),
-			"visit"									: ObjectId("A01234567892345678900001"),
-
-			"scheduleDate"					: ISODate("2016-04-10T04:46:37.467Z") ,
+			"visit"								: ObjectId("A01234567892345678900001"),
+			"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
+			
 			"session"							:
+				[
 					{
-						"startTime"				: ISODate("2016-04-10T08:30:37.467Z")  ,
-						"endTime"					: ISODate("2016-04-10T09:00:37.467Z")  ,
+						"type"						: "presentation",
+						"startTime"				: ISODate("2016-02-26T09:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-26T10:30:00.000Z")  ,
 						"title"						: "Welcome note by India MD",
 						"desc"						: "Mr. Sreekanth, MD India to deliver a welcome note to visiting client representatives",
-						"location"				: "Board room 4th floor, B7",
-						"owner"						: ObjectId("A02234567892345678900001"),
-						"supporter"				: ObjectId("A02234567892345678900002")
-					},
-
-			"invitees"							: [
-				ObjectId("A02234567892345678900001"),
-				ObjectId("A02234567892345678900002")
-			]
-	},
-
-	{
-			"_id"										: ObjectId("A06234567892345678900002"),
-			"client" 								: ObjectId("A03234567892345678900001"),
-			"visit"									: ObjectId("A01234567892345678900001"),
-
-			"scheduleDate"					: ISODate("2016-04-10T04:46:37.467Z") ,
-			"session"							:
-					{
-						"startTime"				: ISODate("2016-04-10T09:00:37.467Z")  ,
-						"endTime"					: ISODate("2016-04-10T10:00:37.467Z")  ,
-						"title"						: "CSC Corporate Presentation",
-						"desc"						: "Presentation on CSC financial and deliveer capabilities",
-						"location"				: "Board room 4th floor, B7",
+						"location"					: "Board room 4th floor, B7",
 						"owner"					: ObjectId("A02234567892345678900001"),
 						"supporter"				: ObjectId("A02234567892345678900002")
 					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-26T10:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-26T11:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "discussion",
+						"startTime"				: ISODate("2016-02-26T11:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-26T12:30:00.000Z")  ,
+						"title"						: "Discussion with CSC officials",
+						"desc"						: "Officials from Both the organizations will discuss on various ascepts",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+					
+					{
+						"type"						: "Lunch Break",
+						"startTime"				: ISODate("2016-02-26T12:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-26T13:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Presentations",
+						"startTime"				: ISODate("2016-02-26T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-26T15:00:00.000Z")  ,
+						"title"						: "Presentations from both the organizations",
+						"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900003"),
+						"supporter"				: ObjectId("A02234567892345678900004")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-26T15:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-26T15:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Floor Walk",
+						"startTime"				: ISODate("2016-02-26T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-26T15:00:00.000Z")  ,
+						"title"						: "Campuss Visit",
+						"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
+						"location"					: "B7",
+						"owner"					: ObjectId("A02234567892345678900003"),
+						"supporter"				: ObjectId("A02234567892345678900004")
+					},
+					
+					{
+						"type"						: "Discussion",
+						"startTime"				: ISODate("2016-02-26T15:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-26T17:00:00.000Z")  ,
+						"title"						: "Summary",
+						"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
+						"location"					: "Board room 4th floor,B7",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					}	
+				],
+			"invitees"							: 
+				[
+					ObjectId("A02234567892345678900019"),
+					ObjectId("A02234567892345678900020")
+				]
+	},
 
-			"invitees"							: [
-				ObjectId("A02234567892345678900001"),
-				ObjectId("A02234567892345678900002")
-			]
+	
+	
+	
+	
+	
+	{
+			"_id"									: ObjectId("A06234567892345678900002"),
+			"client" 								: ObjectId("A03234567892345678900002"),
+			"visit"								: ObjectId("A01234567892345678900002"),
+
+			"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
+			"session"							:
+				[
+					{
+						"type"						: "breakfast",
+						"startTime"				: ISODate("2016-02-02T08:00:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T09:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "presentation",
+						"startTime"				: ISODate("2016-02-02T09:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T10:30:00.000Z")  ,
+						"title"						: "CSC Corporate Presentation",
+						"desc"						: "Presentation on CSC financial and deliveer capabilities",
+						"location"					: "Board room 2th floor, B4",
+						"owner"					: ObjectId("A02234567892345678900005"),
+						"supporter"				: ObjectId("A02234567892345678900006")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-02T10:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-02T11:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "discussion",
+						"startTime"				: ISODate("2016-02-02T11:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T12:30:00.000Z")  ,
+						"title"						: "Discussion with CSC officials",
+						"desc"						: "Officials from Both the organizations will discuss on various ascepts",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900005"),
+						"supporter"				: ObjectId("A02234567892345678900006")
+					},
+					
+					{
+						"type"						: "Lunch Break",
+						"startTime"				: ISODate("2016-02-02T12:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-02T13:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Presentations",
+						"startTime"				: ISODate("2016-02-02T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T15:00:00.000Z")  ,
+						"title"						: "Presentations from both the organizations",
+						"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900007"),
+						"supporter"				: ObjectId("A02234567892345678900008")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-02T15:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-02T15:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Floor Walk",
+						"startTime"				: ISODate("2016-02-02T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T15:00:00.000Z")  ,
+						"title"						: "Campuss Visit",
+						"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
+						"location"					: "B7",
+						"owner"					: ObjectId("A02234567892345678900007"),
+						"supporter"				: ObjectId("A02234567892345678900008")
+					},
+					
+					{
+						"type"						: "Discussion",
+						"startTime"				: ISODate("2016-02-02T15:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-02T17:00:00.000Z")  ,
+						"title"						: "Summary",
+						"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
+						"location"					: "Board room 4th floor,B7",
+						"owner"					: ObjectId("A02234567892345678900009"),
+						"supporter"				: ObjectId("A02234567892345678900010")
+					}
+				],
+			"invitees"							:
+				[
+					ObjectId("A02234567892345678900016"),
+					ObjectId("A02234567892345678900015")
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+			"_id"									: ObjectId("A06234567892345678900003"),
+			"client" 								: ObjectId("A03234567892345678900005"),
+			"visit"								: ObjectId("A01234567892345678900005"),
+
+			"scheduleDate"					: ISODate("2016-02-14T08:00:00.000Z") ,
+			"session"							:
+				[
+					{
+						"type"						: "breakfast",
+						"startTime"				: ISODate("2016-02-14T08:00:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T09:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "presentation",
+						"startTime"				: ISODate("2016-02-14T09:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T10:30:00.000Z")  ,
+						"title"						: "Welcome note by India MD",
+						"desc"						: "Mr. Sreekanth, MD India to deliver a welcome note to visiting client representatives",
+						"location"					: "Board room 2th floor, B4",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-14T10:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-14T11:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "discussion",
+						"startTime"				: ISODate("2016-02-14T11:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T12:30:00.000Z")  ,
+						"title"						: "Discussion with CSC officials",
+						"desc"						: "Officials from Both the organizations will discuss on various ascepts",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+					
+					{
+						"type"						: "Lunch Break",
+						"startTime"				: ISODate("2016-02-14T12:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-14T13:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Presentations",
+						"startTime"				: ISODate("2016-02-14T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T15:00:00.000Z")  ,
+						"title"						: "Presentations from both the organizations",
+						"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900003"),
+						"supporter"				: ObjectId("A02234567892345678900004")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-14T15:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-14T15:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Floor Walk",
+						"startTime"				: ISODate("2016-02-14T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T15:00:00.000Z")  ,
+						"title"						: "Campuss Visit",
+						"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
+						"location"					: "B7",
+						"owner"					: ObjectId("A02234567892345678900003"),
+						"supporter"				: ObjectId("A02234567892345678900004")
+					},
+					
+					{
+						"type"						: "Discussion",
+						"startTime"				: ISODate("2016-02-14T15:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-14T17:00:00.000Z")  ,
+						"title"						: "Summary",
+						"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
+						"location"					: "Board room 4th floor,B7",
+						"owner"					: ObjectId("A02234567892345678900003"),
+						"supporter"				: ObjectId("A02234567892345678900004")
+					},
+					
+					
+					
+					
+					
+					{
+						"type"						: "breakfast",
+						"startTime"				: ISODate("2016-02-15T08:00:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T09:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "presentation",
+						"startTime"				: ISODate("2016-02-15T09:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T10:30:00.000Z")  ,
+						"title"						: "CSC Grobal Presentation",
+						"desc"						: "Presentation on CSC Acquations, Success Stories, deliver capabilities",
+						"location"					: "Board room 2th floor, B4",
+						"owner"					: ObjectId("A02234567892345678900005"),
+						"supporter"				: ObjectId("A02234567892345678900006")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-15T10:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-15T11:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "discussion",
+						"startTime"				: ISODate("2016-02-15T11:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T12:30:00.000Z")  ,
+						"title"						: "Discussion with CSC officials",
+						"desc"						: "Officials from Both the organizations will discuss on various ascepts",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900005"),
+						"supporter"				: ObjectId("A02234567892345678900006")
+					},
+					
+					{
+						"type"						: "Lunch Break",
+						"startTime"				: ISODate("2016-02-15T12:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-15T13:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Presentations",
+						"startTime"				: ISODate("2016-02-15T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T15:00:00.000Z")  ,
+						"title"						: "Presentations from both the organizations",
+						"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900005"),
+						"supporter"				: ObjectId("A02234567892345678900006")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-15T15:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-15T15:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Floor Walk",
+						"startTime"				: ISODate("2016-02-15T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T15:00:00.000Z")  ,
+						"title"						: "Campuss Visit",
+						"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
+						"location"					: "B7",
+						"owner"					: ObjectId("A02234567892345678900006"),
+						"supporter"				: ObjectId("A02234567892345678900005")
+					},
+					
+					{
+						"type"						: "Discussion",
+						"startTime"				: ISODate("2016-02-15T15:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-15T17:00:00.000Z")  ,
+						"title"						: "Summary",
+						"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
+						"location"					: "Board room 4th floor,B7",
+						"owner"					: ObjectId("A02234567892345678900007"),
+						"supporter"				: ObjectId("A02234567892345678900008")
+					},
+					
+					{
+						"type"						: "Dinner",
+						"startTime"				: ISODate("2016-02-15T18:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-15T20:00:00.000Z") 
+					},
+
+					
+					
+					
+					
+					
+					{
+						"type"						: "breakfast",
+						"startTime"				: ISODate("2016-02-16T08:00:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T09:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "presentation",
+						"startTime"				: ISODate("2016-02-16T09:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T10:30:00.000Z")  ,
+						"title"						: "CSC Grobal Presentation",
+						"desc"						: "Presentation on CSC Global Financial & deliver capabilities",
+						"location"					: "Board room 2th floor, B4",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-16T10:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-16T11:00:00.000Z") 
+					},
+					
+					{
+						"type"						: "discussion",
+						"startTime"				: ISODate("2016-02-16T11:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T12:30:00.000Z")  ,
+						"title"						: "Discussion with CSC officials",
+						"desc"						: "Officials from Both the organizations will discuss on various ascepts",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900009"),
+						"supporter"				: ObjectId("A02234567892345678900010")
+					},
+					
+					{
+						"type"						: "Lunch Break",
+						"startTime"				: ISODate("2016-02-16T12:31:00.000Z") ,
+						"endTime"				: ISODate("2016-02-16T13:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Presentations",
+						"startTime"				: ISODate("2016-02-16T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T15:00:00.000Z")  ,
+						"title"						: "Presentations from both the organizations",
+						"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+						"location"					: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900009"),
+						"supporter"				: ObjectId("A02234567892345678900010")
+					},
+					
+					{
+						"type"						: "Tea Break",
+						"startTime"				: ISODate("2016-02-16T15:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-16T15:30:00.000Z") 
+					},
+					
+					{
+						"type"						: "Floor Walk",
+						"startTime"				: ISODate("2016-02-16T13:31:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T15:00:00.000Z")  ,
+						"title"						: "Campuss Visit",
+						"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
+						"location"					: "B7",
+						"owner"					: ObjectId("A02234567892345678900009"),
+						"supporter"				: ObjectId("A02234567892345678900010")
+					},
+					
+					{
+						"type"						: "Discussion",
+						"startTime"				: ISODate("2016-02-16T15:01:00.000Z")  ,
+						"endTime"				: ISODate("2016-02-16T17:00:00.000Z")  ,
+						"title"						: "Summary",
+						"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
+						"location"					: "Board room 4th floor,B7",
+						"owner"					: ObjectId("A02234567892345678900011"),
+						"supporter"				: ObjectId("A02234567892345678900012")
+					},
+					
+					{
+						"type"						: "Dinner",
+						"startTime"				: ISODate("2016-02-16T18:01:00.000Z") ,
+						"endTime"				: ISODate("2016-02-16T20:30:00.000Z") 
+					}
+				],
+			"invitees"							:
+				[
+					ObjectId("A02234567892345678900018"),
+					ObjectId("A02234567892345678900017")
+				]
 	}
 ]

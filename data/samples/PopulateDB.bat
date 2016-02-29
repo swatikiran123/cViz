@@ -26,3 +26,4 @@ mongoimport --db cViz-Test --collection visit_schedules --file jsonFiles\visit_s
 
 ECHO:
 PAUSE
+

@@ -12,8 +12,8 @@
 					"suffix"		:  ""
 				},
 			"email"				: "sgoud@csc.com",
-			"avatar"			: "\\cViz\\public\\assets\\profilePics\\shiva1.jpg",
-			"summary"		: "Software Engineer",
+			"avatar"			:  "public\\upload\\profilePics\\shiva.png",
+			"summary"		: "Dr. Shiva Kumar is a partner in CSC’s Big Data and Analytics practice. He is a results-oriented data scientist with 15 years as an analytics subject matter expert. He is experienced in the design and execution of data-driven business strategy using analytics to drive results.",
 			"jobTitle"			: "Sr. Principal",
 			"organization"	: "CSC",	
 			
@@ -59,9 +59,9 @@
 					"suffix"		:  ""
 				},
 			"email"				: "spediripatti@csc.com",
-			"avatar"			: "\\cViz\\public\\assets\\profilePics\\spediripatti1.jpg",
-			"summary"		: " HR",
-			"jobTitle"			: "Chief Executive Officer",
+			"avatar"			: "public\\upload\\profilePics\\spediripatti.png",
+			"summary"		: " Proven ability in Building and leading teams, Engineering Program Management, Agile product development",
+			"jobTitle"			: "Chief Technical Officer",
 			"organization"	: "CSC",	
 			
 			"socialProfile"	:		 
@@ -71,7 +71,7 @@
 						"network"		: "facebook"
 					},
 					
-					{
+					{ 
 						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=635979",
 						"network"		: "CSC My Perks"
 					}
@@ -104,9 +104,9 @@
 					"suffix"		:  ""
 				},
 			"email"				: "spediri@csc.com",
-			"avatar"			: "\\cViz\\public\\assets\\profilePics\\spediri.jpg",
-			"summary"		: " HR",
-			"jobTitle"			: "Chief Executive Officer",
+			"avatar"			: "public\\upload\\profilePics\\spediri.png",
+			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
+			"jobTitle"			: "Senior Executive Officer",
 			"organization"	: "CSC",	
 			
 			"socialProfile"	:		 
@@ -130,6 +130,10 @@
 				]
 	},
 	
+	
+	
+	
+	
 	{
 				"_id"				: ObjectId("A02234567892345678900004"),
 		
@@ -142,9 +146,9 @@
 					"suffix"		:  ""
 				},
 			"email"				: "rwilliams@csc.com",
-			"avatar"			: "\\cViz\\public\\assets\\profilePics\\spediri.jpg",
-			"summary"		: " HR",
-			"jobTitle"			: "Chief Executive Officer",
+			"avatar"			: "public\\upload\\profilePics\\rwilliams.png",
+			"summary"		: " 10+ years of experience in the field of HR with exposure to Learning & Development, Induction/Orientation, Data Management, HRIS, Employee Engagement, Joining formalities and Campus Recruitment",
+			"jobTitle"			: "Chief  Executive Officer",
 			"organization"	: "CSC",	
 			
 			"socialProfile"	:		 
@@ -166,6 +170,722 @@
 						"type"			: "mobile"
 					}
 				]
+	},
+	
+	
+	
+	
+	
+	{
+				"_id"				: ObjectId("A02234567892345678900005"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Bhagyeshwari",
+					"middle"	:  "Reddy",
+					"last"		:  "Kurapati",
+					"suffix"		:  ""
+				},
+			"email"				: "kbhagya@csc.com",
+			"avatar"			: "public\\upload\\profilePics\\kbhgya.png",
+			"summary"		: " 8+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
+			"jobTitle"			: "Senior Executive",
+			"organization"	: "CSC",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/kbhgya115?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=635699",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "5783629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	{
+				"_id"				: ObjectId("A02234567892345678900006"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Aman",
+					"middle"	:  "Kumar",
+					"last"		:  "Erra",
+					"suffix"		:  ""
+				},
+			"email"				: "akumar@csc.com",
+			"avatar"			: "public\\upload\\profilePics\\akumar.png",
+			"summary"		: " Possess excellent leadership and people management skills and subject matter expertise on Learning and Development function. Have been instrumental in setting up the L&D function in my curent assignment",
+			"jobTitle"			: "Junior Executive Officer",
+			"organization"	: "CSC",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sgoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=636779",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9162849823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900007"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Rajesh",
+					"middle"	:  "Kumar",
+					"last"		:  "Gundala",
+					"suffix"		:  ""
+				},
+			"email"				: "rgundala@csc.com",
+			"avatar"			: "public\\upload\\profilePics\\rgundala.png",
+			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
+			"jobTitle"			: "Network Engineer",
+			"organization"	: "CSC",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/rajeshgoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=632379",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "8121629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900008"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Ashok",
+					"middle"	:  "Kumar",
+					"last"		:  "Yapa",
+					"suffix"		:  ""
+				},
+			"email"				: "ayapa@csc.com",
+			"avatar"			: "public\\upload\\profilePics\\ayapa.png",
+			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
+			"jobTitle"			: "Director CIO",
+			"organization"	: "CSC",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sashokoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=115979",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9700629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900009"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Sigamani",
+					"middle"	:  "Kumar",
+					"last"		:  "Jyothi",
+					"suffix"		:  ""
+				},
+			"email"				: "ksigamani@csc.com",
+			"avatar"			: "public\\upload\\profilePics\\ksigamani.png",
+			"summary"		: " Sigamani is a technology enthusiast, futurist, researcher and author who is an expert in artificial intelligence (AI) and other disruptive technologies.",
+			"jobTitle"			: "Chief Technology Officer",
+			"organization"	: "CSC",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/ssdgusgfd15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=637879",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9167673723",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900010"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Devender",
+					"middle"	:  "Kumar",
+					"last"		:  "Kamutam",
+					"suffix"		:  ""
+				},
+			"email"				: "dkammutami@fruition.com",
+			"avatar"			: "public\\upload\\profilePics\\dkammutami.png",
+			"summary"		: " Calling himself the “Everything Else Guy,” Heis a performance engineer whose wide-ranging technical expertise ensures that systems perform, are secure, fail over, and are easy to operate and troubleshoot.",
+			"jobTitle"			: "Chairman",
+			"organization"	: "Fruition",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/ssaydfyadud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=638879",
+						"network"		: "CSC My Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9768624223",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		{
+				"_id"				: ObjectId("A02234567892345678900011"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Shiva",
+					"middle"	:  "Kumar",
+					"last"		:  "Goud",
+					"suffix"		:  ""
+				},
+			"email"				: "sgoud@motorola.com",
+			"avatar"			: "public\\upload\\profilePics\\shiva.png",
+			"summary"		: "He is a lead architect with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
+			"jobTitle"			: "Sr. Principal",
+			"organization"	: "Motorola",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://linkedin/myperks/aboutuser/view?user.id=652752",
+						"network"		: "linkedin"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "864 643-0563",
+						"type"			: "mobile"
+					}
+				]
+	},
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+				"_id"				: ObjectId("A02234567892345678900012"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Suman",
+					"middle"	:  "Kumar",
+					"last"		:  "Pediripati",
+					"suffix"		:  ""
+				},
+			"email"				: "spediripatti@Vodafone.com",
+			"avatar"			: "public\\upload\\profilePics\\spediripatti.png",
+			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
+			"jobTitle"			: "Chief Executive Officer",
+			"organization"	: "Vodafone",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sumangoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://plus.google/profile/myperks/aboutuser/view?user.id=635979",
+						"network"		: "google"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9167629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+
+	
+	
+	
+	
+	
+	
+	
+	{
+				"_id"				: ObjectId("A02234567892345678900013"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Santhosh",
+					"middle"	:  "Kumar",
+					"last"		:  "Pediri",
+					"suffix"		:  ""
+				},
+			"email"				: "spediri@att.com",
+			"avatar"			: "public\\upload\\profilePics\\spediri.png",
+			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
+			"jobTitle"			: "Chief Executive Officer",
+			"organization"	: "AT&T",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sumanperiri15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://plus.google/profile/myperks/aboutuser/view?user.id=667979",
+						"network"		: "Google"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9354629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+		
+		
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900014"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Bharath",
+					"middle"	:  "Kumar",
+					"last"		:  "Pedda",
+					"suffix"		:  ""
+				},
+			"email"				: "bpeddha@hdfc.com",
+			"avatar"			: "public\\upload\\profilePics\\bpedda.png",
+			"summary"		: " 1 yr of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
+			"jobTitle"			: "Associate Professional",
+			"organization"	: "HDFC",
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/bpedda15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://hdfc.in/myperks/aboutuser/view?user.id=635239",
+						"network"		: "HDFC"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "8867629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900015"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Bhagyeshwari",
+					"middle"	:  "Reddy",
+					"last"		:  "Kurapati",
+					"suffix"		:  ""
+				},
+			"email"				: "kbhagya@royalsc.com",
+			"avatar"			: "public\\upload\\profilePics\\kbhgya.png",
+			"summary"		: " 8+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
+			"jobTitle"			: "Senior Executive",
+			"organization"	: "Royal Scotland Bank",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/kbhgya115?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://scotlandroyal.bank.in/myperks/aboutuser/view?user.id=635699",
+						"network"		: "Royal Scotland Bank"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "5783629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900016"),
+		
+			"name":
+				{
+					"prefix"		:  "Ms.",
+					"first"		:  "Nidhi",
+					"middle"	:  "Sharma",
+					"last"		:  "Joyaluka",
+					"suffix"		:  ""
+				},
+			"email"				: "usdusfdyuf@swiss.com",
+			"avatar"			: "public\\upload\\profilePics\\nidhi.png",
+			"summary"		: " 4+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
+			"jobTitle"			: "Junior Executive Officer",
+			"organization"	: "swissbank",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sgoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://bankswiss.in/myperks/aboutuser/view?user.id=636779",
+						"network"		: "Swiss Bank"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9162849823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900017"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Rajesh",
+					"middle"	:  "Kumar",
+					"last"		:  "Gundala",
+					"suffix"		:  ""
+				},
+			"email"				: "rgundala@walmart.com",
+			"avatar"			: "public\\upload\\profilePics\\rgundala.jpg",
+			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
+			"jobTitle"			: "Senior Proffesional",
+			"organization"	: "Walmart",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/rajeshgoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://walmart.myperks.in/myperks/aboutuser/view?user.id=632379",
+						"network"		: "Walmart profiles"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "8121629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				:ObjectId("A02234567892345678900018"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Ashok",
+					"middle"	:  "Kumar",
+					"last"		:  "Yapa",
+					"suffix"		:  ""
+				},
+			"email"				: "ayapa@toyato.com",
+			"avatar"			: "public\\upload\\profilePics\\spediripatti.jpg",
+			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
+			"jobTitle"			: "Director CIO",
+			"organization"	: "Toyata",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/sashokoud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://toyata.in/myperks/aboutuser/view?user.id=115979",
+						"network"		: "Toyata"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9700629823",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900019"),
+		
+			"name":
+				{
+					"prefix"		:  "Mr.",
+					"first"		:  "Sigamani",
+					"middle"	:  "Kumar",
+					"last"		:  "Bobilli",
+					"suffix"		:  ""
+				},
+			"email"				: "sbobilli@telenor.com",
+			"avatar"			: "public\\upload\\profilePics\\sbobilli.png",
+			"summary"		: " is an infrastructure and data domain expert with experience in data center optimization, consolidation, transformation and migration across multiple client accounts in a variety of industries ranging from financial services and healthcare to high-tech manufacturing",
+			"jobTitle"			: "Chief Technology Officer",
+			"organization"	: "Telenor",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/ssdgusgfd15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://zurich.myperks.in/myperks/aboutuser/view?user.id=637879",
+						"network"		: "Zurich Perks"
+					}
+				],
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9167673723",
+						"type"			: "mobile"
+					}
+				]
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	{
+				"_id"				: ObjectId("A02234567892345678900020"),
+		
+			"name":
+				{
+					"prefix"		:  "Ms.",
+					"first"		:  "Minal",
+					"middle"	:  "Naresh",
+					"last"		:  "Jumde",
+					"suffix"		:  ""
+				},
+			"email"				: "mjumde@zurich.com",
+			"avatar"			: "public\\upload\\profilePics\\mjumde.png",
+			"summary"		: " Minal works with Zurich which is a vibrant industry association with ambitions of representing the entire gamut of digital businesses in India. ",
+			"jobTitle"			: "Chairman",
+			"organization"	: "Zurich",	
+			
+			"socialProfile"	:		 
+				[
+					{
+						"handle"		: "https://www.facebook.com/ssaydfyadud15?fref=ts",
+						"network"		: "facebook"
+					},
+					
+					{
+						"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=638879",
+						"network"		: "CSC My Perks"
+					}
+				],
+				
+			"contactNo"			: 
+				[
+					{
+						"number"		: "9768624223",
+						"type"			: "mobile"
+					}
+				]
 	}
+
+
 	
 ]

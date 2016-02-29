@@ -4,20 +4,19 @@
 		"_id"						: ObjectId("A01234567892345678900001"),
 
 		"title"					: "Zurich Business Visit",
-		"visitOrg" 					: ObjectId("A03234567892345678900003"), 
-
-
+		"client" 					: ObjectId("A03234567892345678900001"), 
+		
 		"agenda"				: "Big Data Analytics",
+		
 		"agm"					: ObjectId("A02234567892345678900001"),
-
-
+		
 		"anchor"				: ObjectId("A02234567892345678900002"),
 
 		"schedule"			:
 			[
 				{
-					"startDate"		: ISODate("2016-02-26T02:46:37.467Z") ,
-					"endDate"			: ISODate("2016-02-26T09:46:37.467Z") ,
+					"startDate"		: ISODate("2016-02-26T09:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-26T20:00:00.000Z") ,
 					"location"			: "Hyderabad"
 				}
 			],
@@ -37,13 +36,240 @@
 
 		"interest"				:
 			{
+				"businessType"			: "repeat",
+				"visitType"				: "operational",
+				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
+			},
+
+		"status"					:  "tentaive",
+		"createBy"			: ObjectId("A02234567892345678900005")
+
+	},
+	
+	
+	
+	
+	
+	
+	{
+		"_id"						: ObjectId("A01234567892345678900002"),
+
+		"title"					: "Telenor Business Visit",
+		"client" 					: ObjectId("A03234567892345678900002"), 
+		
+		"agenda"				: "Migrating to DevOps",
+		
+		"agm"					: ObjectId("A02234567892345678900006"),
+		
+		"anchor"				: ObjectId("A02234567892345678900007"),
+
+		"schedule"			:
+			[
+				{
+					"startDate"		: ISODate("2016-02-02T08:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-02T20:00:00.000Z") ,
+					"location"			: "Bangalore"
+				}
+			],
+
+		"visitors"				:
+			[
+				{
+					"visitor"			: ObjectId("A02234567892345678900008"),
+					"influence"		: "others"
+				},
+
+				{
+					"visitor"			: ObjectId("A02234567892345678900009"),
+					"influence"		: "Decision Maker"
+				}
+			],
+
+		"interest"				:
+			{
 				"businessType"			: "new",
 				"visitType"				: "operational",
 				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
 			},
 
 		"status"					:  "confrimed",
-		"createBy"			: ObjectId("A02234567892345678900001")
+		"createBy"			: ObjectId("A02234567892345678900010")
+
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+		"_id"						: ObjectId("A01234567892345678900003"),
+
+		"title"					: "Motorola Visit",
+		"client" 					: ObjectId("A03234567892345678900003"), 
+		
+		"agenda"				: "Techology transformation",
+		
+		"agm"					: ObjectId("A02234567892345678900001"),
+		
+		"anchor"				: ObjectId("A02234567892345678900002"),
+
+		"schedule"			:
+			[
+				{
+					"startDate"		: ISODate("2016-02-02T09:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-02T20:00:00.000Z") ,
+					"location"			: "Chennai"
+				}
+			],
+
+		"visitors"				:
+			[
+				{
+					"visitor"			: ObjectId("A02234567892345678900020"),
+					"influence"		: "others"
+				},
+
+				{
+					"visitor"			: ObjectId("A02234567892345678900019"),
+					"influence"		: "Decision Maker"
+				}
+			],
+
+		"interest"				:
+			{
+				"businessType"			: "new",
+				"visitType"				: "strategic",
+				"objective"				: "To Know the Progress of CSC into DevOps"
+			},
+
+		"status"					:  "closed",
+		"createBy"			: ObjectId("A02234567892345678900003")
+
+	},
+	
+	
+	
+	
+	
+	
+	
+	{
+		"_id"						: ObjectId("A01234567892345678900004"),
+
+		"title"					: "Vodafone Visit",
+		"client" 					: ObjectId("A03234567892345678900004"), 
+		
+		"agenda"				: "Partnership",
+		
+		"agm"					: ObjectId("A02234567892345678900004"),
+		
+		"anchor"				: ObjectId("A02234567892345678900005"),
+
+		"schedule"			:
+			[
+				{	
+					"startDate"		: ISODate("2016-02-14T06:46:37.467Z") ,
+					"endDate"			: ISODate("2016-02-24T07:46:37.467Z") ,
+					"location"			: "Noida"
+				},
+			
+				{	
+					"startDate"		: ISODate("2016-02-25T06:46:37.467Z") ,
+					"endDate"			: ISODate("2016-02-29T07:46:37.467Z") ,
+					"location"			: "Bangalore"
+				}
+			],
+
+		"visitors"				:
+			[
+				{
+					"visitor"			: ObjectId("A02234567892345678900018"),
+					"influence"		: "others"
+				},
+
+				{
+					"visitor"			: ObjectId("A02234567892345678900017"),
+					"influence"		: "Decision Maker"
+				}
+			],
+
+		"interest"				:
+			{
+				"businessType"			: "repeat",
+				"visitType"				: "operational",
+				"objective"				: "Partnership"
+			},
+
+		"status"					:  "closed",
+		"createBy"			: ObjectId("A02234567892345678900006")
+
+	},
+	
+	
+	
+	
+	
+	
+	
+	{
+		"_id"						: ObjectId("A01234567892345678900005"),
+
+		"title"					: "AOLVisit",
+		"client" 					: ObjectId("A03234567892345678900005"), 
+		
+		"agenda"				: "New Client",
+		
+		"agm"					: ObjectId("A02234567892345678900007"),
+		
+		"anchor"				: ObjectId("A02234567892345678900008"),
+
+		"schedule"			:
+			[
+				{	
+					"startDate"		: ISODate("2016-02-14T08:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-14T18:00:00.000Z") ,
+					"location"			: "Mumbai"
+				},
+				
+				{	
+					"startDate"		: ISODate("2016-02-15T08:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-15T20:00:00.000Z") ,
+					"location"			: "Hyderabad"
+				},
+				
+				{	
+					"startDate"		: ISODate("2016-02-16T08:00:00.000Z") ,
+					"endDate"			: ISODate("2016-02-16T20:00:00.000Z") ,
+					"location"			: "Noida"
+				}
+			],
+
+		"visitors"				:
+			[
+				{
+					"visitor"			: ObjectId("A02234567892345678900016"),
+					"influence"		: "others"
+				},
+
+				{
+					"visitor"			: ObjectId("A02234567892345678900015"),
+					"influence"		: "End User"
+				}
+			],
+
+		"interest"				:
+			{
+				"businessType"			: "new",
+				"visitType"				: "stratagic",
+				"objective"				: "To observe the different activities and techniques"
+			},
+
+		"status"					:  "confrimed",
+		"createBy"			: ObjectId("A02234567892345678900009")
 
 	}
+	
 ]
