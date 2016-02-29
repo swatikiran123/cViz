@@ -5,6 +5,7 @@ var mongoose = require('mongoose')
 
 var userSchema 				= require('./user');
 var clientSchema 			= require('./client');
+//var visitScheduleSchema 			= require('./visitSchedule');
 
 var visitSchema = new mongoose.Schema({
 
