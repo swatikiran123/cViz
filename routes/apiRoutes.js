@@ -62,7 +62,7 @@ router.post('/api/v1/visits', visit.create);
 router.put('/api/v1/visits/:id', visit.updateById);
 router.delete('/api/v1/visits/:id', visit.deleteById);
 
-// List of service routes for visitSchedules
+// List of service routes for visitSchedule
 router.get('/api/v1/visitSchedules', visitSchedule.getAll);
 router.get('/api/v1/visitSchedules/:id', visitSchedule.getOneById);
 router.post('/api/v1/visitSchedules', visitSchedule.create);

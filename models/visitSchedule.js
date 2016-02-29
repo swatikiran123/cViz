@@ -25,4 +25,4 @@ var visitScheduleSchema = new mongoose.Schema({
 	
 });
 
-module.exports = mongoose.model('visitSchedules', visitScheduleSchema);
+module.exports = mongoose.model('visit_schedules', visitScheduleSchema);
