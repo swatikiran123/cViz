@@ -21,8 +21,8 @@ mongoimport --db cViz-Test --collection visits --file Json's\visit.json --type j
 
 
 ECHO:
-ECHO Creating VisitSchedule Collection
-mongoimport --db cViz-Test --collection visitSchedules --file Json's\visitSchedule.json --type json --jsonArray
+ECHO Creating Visit_schedule Collection
+mongoimport --db cViz-Test --collection visit_schedules --file Json's\visit_schedule.json --type json --jsonArray
 
 ECHO:
 PAUSE
