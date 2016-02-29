@@ -14,8 +14,8 @@ var visitScheduleSchema = new mongoose.Schema({
 	visit								: { type: Schema.Types.ObjectId, ref: 'Visit' },
 	scheduleDate				: { type: Date },
 	session							: {
-		startTime					: { type: Time },
-		endTime						: { type: Time },
+		startTime					: { type: Date, default: Date.now},
+		endTime						: { type: Date, default: Date.now},
 		title							: { type: String },
 		speaker						: { type: Schema.Types.ObjectId, ref: 'User' },
 		supporter					: { type: Schema.Types.ObjectId, ref: 'User' }
@@ -25,4 +25,4 @@ var visitScheduleSchema = new mongoose.Schema({
 	
 });
 
-module.exports = mongoose.model('visitors', visitorSchema);
+module.exports = mongoose.model('visitSchedules', visitScheduleSchema);

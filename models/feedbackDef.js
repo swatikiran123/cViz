@@ -12,7 +12,7 @@ var feedbackDefSchema = new mongoose.Schema({
 	item								: [{
 		query							: { type: String },
 		mode							: { type: String, lowercase: true, trim: true },  // {freetext, singlechoice, multichoice}
-		options						: [{
+		choices						: [{
 			value						: { type: String, trim: true }
 		}]
 	}],
