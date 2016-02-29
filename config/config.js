@@ -13,7 +13,7 @@ var config = convict({
     main: {
       doc: 'Main database',
       format: String,
-      default: 'mongodb://127.0.0.1/mStack',
+      default: 'mongodb://127.0.0.1/cViz-Test',
       env: 'MONGO_MAIN'
     },
     sessions: {
