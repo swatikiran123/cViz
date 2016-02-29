@@ -7,13 +7,13 @@
 				{
 					"$ref"			: "client",
 					"$id"				: "client001",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 			"visit"								: 
 				{
 						"$ref"			: "visit",
 						"$id"				: "visit001",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 				},
 				
 			"scheduleDate"				: ISODate("2016-02-26T04:46:37.467Z") ,
@@ -27,13 +27,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user001",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user002",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -45,13 +45,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user005",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user006",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					}
 					
@@ -61,13 +61,13 @@
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user003",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user004",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					}
 				]
 	},
@@ -88,13 +88,13 @@
 				{
 					"$ref"			: "client",
 					"$id"				: "client002",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 			"visit"								: 
 				{
 						"$ref"			: "visit",
 						"$id"				: "visit002",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 				},
 				
 			"scheduleDate"				: ISODate("2016-02-22T04:46:37.467Z") ,
@@ -108,13 +108,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user007",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user008",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -126,13 +126,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user009",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user010",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -144,13 +144,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user011",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user012",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					}
 				],
@@ -160,13 +160,13 @@
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user013",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user014",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					}
 				]
 	},
@@ -187,13 +187,13 @@
 				{
 					"$ref"			: "client",
 					"$id"				: "client003",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 			"visit"								: 
 				{
 						"$ref"			: "visit",
 						"$id"				: "visit003",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 				},
 				
 			"scheduleDate"				: ISODate("2016-02-26T04:46:37.467Z") ,
@@ -207,13 +207,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user015",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user016",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -225,13 +225,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user017",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user018",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -243,13 +243,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user019",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user020",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					}
 				],
@@ -259,19 +259,19 @@
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user001",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user002",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user003",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					}
 				]
 	},
@@ -293,13 +293,13 @@
 				{
 					"$ref"			: "client",
 					"$id"				: "client004",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 			"visit"								: 
 				{
 						"$ref"			: "visit",
 						"$id"				: "visit004",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 				},
 				
 			"scheduleDate"				: ISODate("2016-02-14T12:46:37.467Z") ,
@@ -313,13 +313,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user004",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user005",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -331,13 +331,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user006",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user007",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -349,13 +349,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user008",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user009",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					},
 					
@@ -367,13 +367,13 @@
 							{ 
 								"$ref"			: "user",
 								"$id"				: "user010",
-								"db"				: "mStack"
+								"db"				: "cViz-Test"
 							},
 						"supporter"			: 
 						{
 							"$ref"			: "user",
 							"$id"				: "user011",
-							"db"				: "mStack"
+							"db"				: "cViz-Test"
 						}
 					}
 				],
@@ -383,13 +383,13 @@
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user005",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					
 					{ 
 						"$ref"			: "user",
 						"$id"				: "user007",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					}
 				]
 	}

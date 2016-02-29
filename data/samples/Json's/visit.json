@@ -8,7 +8,7 @@
 			{ 
 				"$ref"			: "client",
 				"$id"				: "client001",
-				"db"				: "mStack"
+				"db"				: "cViz-Test"
 			},
 			
 		"agenda"				: "Big Data Analytics",
@@ -16,14 +16,14 @@
 			{ 
 				"$ref"			: "user",
 				"$id"				: "user001",
-				"db"				: "mStack"
+				"db"				: "cViz-Test"
 			},
 			
 		"anchor"				: 
 			{
 				"$ref"			: "user",
 				"$id"				: "user002",
-				"db"				: "mStack"
+				"db"				: "cViz-Test"
 			},
 			
 		"schedule"			: 
@@ -42,7 +42,7 @@
 					{
 						"$ref"			: "user",
 						"$id"				: "user003",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					"influence"		: "others"
 				},
@@ -52,7 +52,7 @@
 					{
 						"$ref"			: "user",
 						"$id"				: "user005",
-						"db"				: "mStack"
+						"db"				: "cViz-Test"
 					},
 					"influence"		: "Decision Maker"
 				}
@@ -70,7 +70,7 @@
 			{
 				"$ref"			: "user",
 				"$id"				: "user004",
-				"db"				: "mStack"
+				"db"				: "cViz-Test"
 			}
 		
 	},
@@ -89,7 +89,7 @@
 		{ 
 			"$ref"			: "client",
 			"$id"				: "client002",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"agenda"				: "Migrating to DevOps",
@@ -97,14 +97,14 @@
 		{ 
 			"$ref"			: "user",
 			"$id"				: "user005",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"anchor"				: 
 		{
 			"$ref"			: "user",
 			"$id"				: "user006",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"schedule"			: 
@@ -123,7 +123,7 @@
 				{
 					"$ref"			: "user",
 					"$id"				: "user007",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 				"influence"		: "others"
 			}
@@ -141,7 +141,7 @@
 		{
 			"$ref"			: "user",
 			"$id"				: "user008",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		}
 	
 },
@@ -160,7 +160,7 @@
 		{ 
 			"$ref"			: "client",
 			"$id"				: "client003",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"agenda"				: "Techology transformation",
@@ -168,14 +168,14 @@
 		{ 
 			"$ref"			: "user",
 			"$id"				: "user009",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"anchor"				: 
 		{
 			"$ref"			: "user",
 			"$id"				: "user010",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"schedule"			: 
@@ -194,7 +194,7 @@
 				{
 					"$ref"			: "user",
 					"$id"				: "user011",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 				"influence"		: "Decision Maker"
 			}
@@ -212,7 +212,7 @@
 		{
 			"$ref"			: "user",
 			"$id"				: "user012",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		}
 	
 },
@@ -233,7 +233,7 @@
 		{ 
 			"$ref"			: "client",
 			"$id"				: "client004",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"agenda"				: "Partnership",
@@ -241,14 +241,14 @@
 		{ 
 			"$ref"			: "user",
 			"$id"				: "user013",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"anchor"				: 
 		{
 			"$ref"			: "user",
 			"$id"				: "user014",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"schedule"			: 
@@ -273,7 +273,7 @@
 				{
 					"$ref"			: "user",
 					"$id"				: "user015",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 				"influence"		: "End User"
 			}
@@ -291,7 +291,7 @@
 		{
 			"$ref"			: "user",
 			"$id"				: "user016",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		}
 	
 },
@@ -310,7 +310,7 @@
 		{ 
 			"$ref"			: "client",
 			"$id"				: "client005",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"agenda"				: "New Client",
@@ -318,14 +318,14 @@
 		{ 
 			"$ref"			: "user",
 			"$id"				: "user0017",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"anchor"				: 
 		{
 			"$ref"			: "user",
 			"$id"				: "user018",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		},
 		
 	"schedule"			: 
@@ -356,7 +356,7 @@
 				{
 					"$ref"			: "user",
 					"$id"				: "user019",
-					"db"				: "mStack"
+					"db"				: "cViz-Test"
 				},
 				"influence"		: "End User"
 			}
@@ -374,7 +374,7 @@
 		{
 			"$ref"			: "user",
 			"$id"				: "user020",
-			"db"				: "mStack"
+			"db"				: "cViz-Test"
 		}
 	
 }
