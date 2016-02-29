@@ -2,7 +2,7 @@ var auth = require('./auth.js');
 
 module.exports = function(app, passport) {
 
-    var activeLayout = 'layouts/mobile';
+    var activeLayout = 'layouts/mobile-angular';
 
     // show welcome screen
     app.get('/m/', function(req, res) {
