@@ -1,173 +1,119 @@
-<div class="container">
-    <div class="page-header">
-      Account Management - Add
-      <div class="sub-header">Add new Account
+ <div class="row"> 
+    <div class="col-sm-1"></div>
+    <div class="col-md-8">
+
+       <!-- page header/subheader -->
+
+       <div class="page-header">
+          Account Management - Add
+          <div class="sub-header">Add new Client Account
+          </div>
       </div>
-  </div>
 
-  <div class="container data-form">
+      <!-- Client-Account pageheader input--> 
+      <div class="data-form">
+          <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate
+          ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
 
-    <form class="form-horizontal" id="clientsForm" name="clientsForm" novalidate>
-
-
-        <!-- Account name input-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.name.$touched && clientsForm.name.$invalid }"><br>
-            <label class="col-md-4 control-label">Name &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="name" id="name" 
-                    placeholder="Account Name" class="form-title form-control" 
-                    ng-model="clients.name" ng-minlength="1" ng-maxlength="75" required>
-
-                    <div class="help-block" ng-messages="clientsForm.name.$error" ng-if="clientsForm.name.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
+          <!-- Account name input-->
+          <div class="form-group"> 
+            <input type="text" class="form-control" placeholder="Account Name" id="name" name="name" ng-model="clients.name" required ng-minlength="3" ng-maxlength="20" floating-validation/>
         </div>
-        <br>
-        <!-- Vertical type input-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.vertical.$touched && clientsForm.vertical.$invalid }"><br>
-            <label class="col-md-4 control-label">Vertical &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="vertical" id="vertical" 
-                    placeholder="Vertical Type" class="form-title form-control" 
-                    ng-model="clients.vertical" ng-minlength="1" ng-maxlength="75" required>
 
-                    <div class="help-block" ng-messages="clientsForm.vertical.$error" ng-if="clientsForm.vertical.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
         <!-- Profile editor-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.profile.$touched && clientsForm.profile.$invalid }"><br>
-            <label class="col-md-4 control-label">Profile &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="profile" id="profile" 
-                    placeholder="Profile Title" class="form-title form-control" 
-                    ng-model="clients.profile" ng-minlength="1" ng-maxlength="75" required>
-
-                    <div class="help-block" ng-messages="clientsForm.profile.$error" ng-if="clientsForm.profile.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!-- competitors Type input-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.competitors.$touched && clientsForm.competitors.$invalid }"><br>
-            <label class="col-md-4 control-label">Competitors &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="competitors" id="competitors" 
-                    placeholder="Competitors Names" class="form-title form-control" 
-                    ng-model="clients.competitors" ng-minlength="1" ng-maxlength="75" ng-list required>
-
-                    <div class="help-block" ng-messages="clientsForm.competitors.$error" ng-if="clientsForm.competitors.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!-- regions checkbox-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.regions.$touched && clientsForm.regions.$invalid }"><br>
-            <label class="col-md-4 control-label">Regions &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="regions" id="regions" 
-                    placeholder="Regions places" class="form-title form-control" 
-                    ng-model="clients.regions" ng-minlength="1" ng-maxlength="75" ng-list required>
-
-                    <div class="help-block" ng-messages="clientsForm.regions.$error" ng-if="clientsForm.regions.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!-- offerings checkbox-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.offerings.$touched && clientsForm.offerings.$invalid }"><br>
-            <label class="col-md-4 control-label">Offerings &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="offerings" id="offerings" 
-                    placeholder="Offering Titles" class="form-title form-control" 
-                    ng-model="clients.offerings" ng-minlength="1" ng-maxlength="75" ng-list required>
-
-                    <div class="help-block" ng-messages="clientsForm.offerings.$error" ng-if="clientsForm.offerings.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- CSC Personnel input--> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
-            <label class="col-md-4 control-label">Sales Executive &nbsp;&nbsp; :</label>  
-            <div class="col-md-4">
-                <div user type="picker" user-model="salesExecUser" user-id="salesExecId" user-email="salesExecEmail" ></div>
-            </div>
-        </div> 
-        <br/>
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
-            <label class="col-md-4 control-label">Account General Manager &nbsp;&nbsp; :</label>  
-            <div class="col-md-4">
-                <div user type="picker" user-model="accountGMUser" user-id="accountGMId" user-email="accountGMEmail" ></div>
-            </div>
-        </div>
-        <br/> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.industryExecUser.$touched && clientsForm.industryExecUser.$invalid }">
-            <label class="col-md-4 control-label">Industry Executive &nbsp;&nbsp; :</label>  
-            <div class="col-md-4">
-                <div user type="picker" user-model="industryExecUser" user-id="industryExecId" user-email="industryExecEmail" ></div>
-            </div>
-        </div>
-        <br/> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.globalDeliveryUser.$touched && clientsForm.globalDeliveryUser.$invalid }">
-            <label class="col-md-4 control-label">Global Delivery &nbsp;&nbsp; :</label>  
-            <div class="col-md-4">
-                <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" user-email="globalDeliveryEmail" ></div>
-            </div>
-        </div>
-        <br/> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
-            <label class="col-md-4 control-label">CRE &nbsp;&nbsp; :</label>  
-            <div class="col-md-4">
-                <div user type="picker" user-model="creUser" user-id="creId" user-email="creEmail" ></div>
-            </div>
-        </div>
-        <br>
-        <!-- netPromoterScore Type input-->
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.netPromoterScore.$touched && clientsForm.netPromoterScore.$invalid }"><br>
-            <label class="col-md-4 control-label">Net Promoter Score &nbsp; &nbsp;  :</label>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="netPromoterScore" id="netPromoterScore" 
-                    placeholder="Net Promoter Score" class="form-title form-control" 
-                    ng-model="clients.netPromoterScore" ng-minlength="1" ng-maxlength="75" required>
-
-                    <div class="help-block" ng-messages="clientsForm.netPromoterScore.$error" ng-if="clientsForm.netPromoterScore.$touched">
-                        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!-- Button -->
         <div class="form-group">
-          <label class="col-md-4 control-label"></label>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-success" 
-            ng-disabled="clientsForm.$invalid" ng-click="save()">Submit
-        </button>
+          <text-angular 
+          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+          ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
+      </div>                    
+
+      <!-- vertical Type input-->
+      <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="vertical Names" id="vertical" name="vertical" ng-model="clients.vertical" required ng-minlength="3" ng-maxlength="200" floating-validation/>
+    </div>
+
+    <!-- competitors Type input-->
+    <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="Competitor Names" id="competitors" name="competitors" ng-model="clients.competitors" required ng-minlength="3" ng-maxlength="200" floating-validation/>
+    </div>
+
+    <!-- regions checkbox-->
+    <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="Region Places" id="regions" name="regions" ng-model="clients.regions" required ng-list floating-validation/>
+    </div>
+
+    <!-- offerings checkbox-->
+    <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="Offerings Provied" id="offerings" name="offerings" ng-model="clients.offerings" required ng-minlength="3" ng-maxlength="200" ng-list floating-validation/>
+    </div>
+
+    <!-- CSC Personnel input--> 
+    <!--salesExec-CSCPersonnel-->
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
+        <label class="col-md-4 control-label">Sales Executive &nbsp;&nbsp; :</label>  
+        <div class="col-md-4">
+            <div user type="picker" user-model="salesExecUser" user-id="salesExecId" user-email="salesExecEmail" ></div>
+        </div>
+    </div> 
+    <br>
+    <br>
+    <br>
+    <!--accountGM-CSCPersonnel-->
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
+        <label class="col-md-4 control-label">Account General Manager &nbsp;&nbsp; :</label>  
+        <div class="col-md-4">
+            <div user type="picker" user-model="accountGMUser" user-id="accountGMId" user-email="accountGMEmail" ></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!--industryExec-CSCPersonnel--> 
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.industryExecUser.$touched && clientsForm.industryExecUser.$invalid }">
+        <label class="col-md-4 control-label">Industry Executive &nbsp;&nbsp; :</label>  
+        <div class="col-md-4">
+            <div user type="picker" user-model="industryExecUser" user-id="industryExecId" user-email="industryExecEmail" ></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!--globalDelivery-CSCPersonnel--> 
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.globalDeliveryUser.$touched && clientsForm.globalDeliveryUser.$invalid }">
+        <label class="col-md-4 control-label">Global Delivery &nbsp;&nbsp; :</label>  
+        <div class="col-md-4">
+            <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" user-email="globalDeliveryEmail" ></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!--cre-CSCPersonnel--> 
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
+        <label class="col-md-4 control-label">CRE &nbsp;&nbsp; :</label>  
+        <div class="col-md-4">
+            <div user type="picker" user-model="creUser" user-id="creId" user-email="creEmail" ></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- netPromoterScore Type input-->
+    <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="Net Promoter Score" id="netPromoterScore" name="netPromoterScore" ng-model="clients.netPromoterScore" required ng-minlength="3" ng-maxlength="20" floating-validation/>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"></label>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-success" 
+        ng-disabled="clientsForm.$invalid" ng-click="save()">Submit</button>
         <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </div>
+</div>
 </form>
+</div>
 </div>

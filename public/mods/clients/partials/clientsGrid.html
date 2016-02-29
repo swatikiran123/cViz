@@ -1,13 +1,17 @@
+    <!-- Grid filter -->
     <div class="form-inline has-feedback filter-header">
       <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+
       <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
       <a class="btn btn-default btn-sm pull-right" href="/clients/#/addAccount">Add New Client</a>
-    </div>
+    </div><!-- Grid filter ends -->
+
     <table class="table table-striped table-condensed table-bordered table-responsive table-hover">
       <thead class="data-grid-header">
+        <!-- table header -->
         <tr>
           <th>
-            <span class="glyphicon glyphicon-user"></span>
+            <span class="glyphicon glyphicon-th-large"></span>
             <a href="" ng-click="orderByField='Name'; reverseSort = !reverseSort">Name</a>
           </th>
 
@@ -16,7 +20,7 @@
             <a href="" ng-click="orderByField='vertical'; reverseSort = !reverseSort">Vertical</a>
           </th>
           <th>
-            <span class="glyphicon"></span>
+            <span class="glyphicon glyphicon-globe"></span>
             <a href="" ng-click="orderByField='regions'; reverseSort = !reverseSort">Regions</a>
           </th>
           <th>
@@ -25,7 +29,17 @@
           </th>
           <th></th>
         </tr>
+
+        <!-- table filter -->
+        <tr ng-hide="hideFilter">
+          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.Name"></span></th>
+          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.vertical"></span></th>
+          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.regions"></span></th>
+          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.offerings"></span></th>
+        </tr>      
+
       </thead>
+
       <tbody class="data-grid-data">
         <tr ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
           <td>{{clients.name}}</td>
@@ -40,5 +54,4 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
+    
