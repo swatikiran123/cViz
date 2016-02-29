@@ -195,7 +195,7 @@ img.img-circle {
 .container{
     margin: 0px auto !important;
     text-align: center;
-    color: #FFF;
+    /*color: #FFF;*/
     padding-top: 20px;
  }
 

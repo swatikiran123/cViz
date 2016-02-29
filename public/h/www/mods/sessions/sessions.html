@@ -1,0 +1,10 @@
+<ion-view view-title="Session Schedule">
+  <ion-content>
+    <h1>List of sessions</h1>
+    <ion-list>
+      <ion-item ng-repeat="session in sessions" href="#/app/sessions/{{sessions.id}}">
+        {{session.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

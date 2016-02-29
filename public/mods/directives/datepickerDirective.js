@@ -1,5 +1,5 @@
 /* date picker directive required jquery.min.js,jquery-ui.min.js,jquery-ui.css*/
-var app =angular.module('welcome');
+var app =angular.module('datePicker', []);
 
 app.directive('uiDate', function() {
     return {

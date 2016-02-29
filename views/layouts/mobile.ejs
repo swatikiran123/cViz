@@ -1,31 +1,24 @@
+
 <!DOCTYPE html>
-<!--[if lt IE 7]><html lang="en" ng-app="ideation.main" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-  <!--[if IE 7]><html lang="en" ng-app="ideation.main" class="no-js lt-ie9 lt-ie8"><![endif]-->
-    <!--[if IE 8]><html lang="en" ng-app="ideation.main" class="no-js lt-ie9"><![endif]-->
-      <!--[if gt IE 8]><!--> 
-      <html lang="en" ng-app="mobApp" class="no-js"><!--<![endif]-->
-        <head>
-          <% include ../partials/head.ejs%>
-          <% include ../mobile/partials/sidebarBanner.ejs%>
-           <% include ../mobile/partials/include-mobapp.ejs%>
-          <!--link type="text/css" rel="stylesheet" media="screen" href="/public/assets/m/styles/main.css" />
-            <link rel="stylesheet" href="/public/assets/m/styles/style.css"> <!-- Resource style -->
-          <!--script src="/public/assets/m/scripts/modernizr.js"></script--> <!-- Modernizr -->
-        </head>
-        <body>
-          <div class="container">
 
-	<div class="notify">
-		<!-- application notification area, required for angular-growl-2-->
-		<div growl></div>
-	</div>
+<!--[if lt IE 7]>      <html lang="en" ng-app="mApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="mApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="mApp" class="no-js lt-ie9"> <![endif]-->
 
-  <div class="starter-template">
-      <%- body %>
-  </div>
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="mApp" class="no-js"> <!--<![endif]-->
 
-</div><!-- /.container -->
+  <head>
+    <% include ../partials/head.ejs%>
+    <% include ../mobile/partials/include-std.ejs%>
+    <% include ../mobile/partials/include-app.ejs%>
+  </head>
+  <body>
+    <% include ../mobile/partials/sidebarBanner.ejs%>
+    <div class="container">
+      <div class="starter-template">
+          <%- body %>
+      </div>
 
-         
-        </body>
-      </html>
+    </div><!-- container -->
+  </body>
+</html>
