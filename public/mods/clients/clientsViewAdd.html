@@ -42,7 +42,7 @@
             </div>
         </div>
         <br>
-        <!-- Profile Type input-->
+        <!-- Profile editor-->
         <div class="form-group" ng-class="{ 'has-error': clientsForm.profile.$touched && clientsForm.profile.$invalid }"><br>
             <label class="col-md-4 control-label">Profile &nbsp; &nbsp;  :</label>
             <div class="col-md-4">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <br>
-        <!-- regions Type input-->
+        <!-- regions checkbox-->
         <div class="form-group" ng-class="{ 'has-error': clientsForm.regions.$touched && clientsForm.regions.$invalid }"><br>
             <label class="col-md-4 control-label">Regions &nbsp; &nbsp;  :</label>
             <div class="col-md-4">
@@ -90,7 +90,7 @@
             </div>
         </div>
         <br>
-        <!-- offerings Type input-->
+        <!-- offerings checkbox-->
         <div class="form-group" ng-class="{ 'has-error': clientsForm.offerings.$touched && clientsForm.offerings.$invalid }"><br>
             <label class="col-md-4 control-label">Offerings &nbsp; &nbsp;  :</label>
             <div class="col-md-4">
@@ -107,12 +107,39 @@
         </div>
         <br>
 
-        <!-- clients description input--> 
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.cscPersonnel.$touched && clientsForm.cscPersonnel.$invalid }">
-            <label class="col-md-4 control-label">CSC Personnel &nbsp;&nbsp; :</label>  
+        <!-- CSC Personnel input--> 
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
+            <label class="col-md-4 control-label">Sales Executive &nbsp;&nbsp; :</label>  
             <div class="col-md-4">
-                <div user type="picker" user-model="salesExecUser" user-id="salesExecId" user-email="salesExecEmail" placeholder="Sales Executive name" ></div>
-                <!--<div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>-->
+                <div user type="picker" user-model="salesExecUser" user-id="salesExecId" user-email="salesExecEmail" ></div>
+            </div>
+        </div> 
+        <br/>
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
+            <label class="col-md-4 control-label">Account General Manager &nbsp;&nbsp; :</label>  
+            <div class="col-md-4">
+                <div user type="picker" user-model="accountGMUser" user-id="accountGMId" user-email="accountGMEmail" ></div>
+            </div>
+        </div>
+        <br/> 
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.industryExecUser.$touched && clientsForm.industryExecUser.$invalid }">
+            <label class="col-md-4 control-label">Industry Executive &nbsp;&nbsp; :</label>  
+            <div class="col-md-4">
+                <div user type="picker" user-model="industryExecUser" user-id="industryExecId" user-email="industryExecEmail" ></div>
+            </div>
+        </div>
+        <br/> 
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.globalDeliveryUser.$touched && clientsForm.globalDeliveryUser.$invalid }">
+            <label class="col-md-4 control-label">Global Delivery &nbsp;&nbsp; :</label>  
+            <div class="col-md-4">
+                <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" user-email="globalDeliveryEmail" ></div>
+            </div>
+        </div>
+        <br/> 
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
+            <label class="col-md-4 control-label">CRE &nbsp;&nbsp; :</label>  
+            <div class="col-md-4">
+                <div user type="picker" user-model="creUser" user-id="creId" user-email="creEmail" ></div>
             </div>
         </div>
         <br>

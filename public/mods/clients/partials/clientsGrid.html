@@ -17,27 +17,11 @@
           </th>
           <th>
             <span class="glyphicon"></span>
-            <a href="" ng-click="orderByField='profile'; reverseSort = !reverseSort">Profile</a>
-          </th>         
-          <th>
-            <span class="glyphicon"></span>
-            <a href="" ng-click="orderByField='competitors'; reverseSort = !reverseSort">Competitors</a>
-          </th>
-          <th>
-            <span class="glyphicon"></span>
             <a href="" ng-click="orderByField='regions'; reverseSort = !reverseSort">Regions</a>
           </th>
           <th>
             <span class="glyphicon"></span>
             <a href="" ng-click="orderByField='offerings'; reverseSort = !reverseSort">Offerings</a>
-          </th>
-          <th>
-            <span class="glyphicon"></span>
-            <a href="" ng-click="orderByField='cscPersonnel'; reverseSort = !reverseSort">CSC Personnel</a>
-          </th>
-          <th>
-            <span class="glyphicon"></span>
-            <a href="" ng-click="orderByField='netPromoterScore'; reverseSort = !reverseSort">Net Promoter Score</a>
           </th>
           <th></th>
         </tr>
@@ -46,19 +30,13 @@
         <tr ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
           <td>{{clients.name}}</td>
           <td>{{clients.vertical}}</td>
-          <td>{{clients.profile}}</td>
-          <td><div ng-repeat="competitors in clients.competitors track by $index">{{competitors}}</td>
           <td><div ng-repeat="regions in clients.regions track by $index">{{regions}}</td>
           <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td>
-          <td>{{clients.cscPersonnel}}</td>
-          <td>{{clients.netPromoterScore}}</td>
-
           <td>
             <a class="table-btn" href="#/{{clients._id}}/showClient"><span class="glyphicon glyphicon-eye-open" /></a>
             <a class="table-btn" href="#/{{clients._id}}/editClient"><span class="glyphicon glyphicon-edit" /></a>
             <a class="table-btn" ng-click="delete(clients)"><span class="glyphicon glyphicon-trash" /></a>
           </td>
-          
         </tr>
       </tbody>
     </table>
