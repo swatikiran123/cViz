@@ -78,7 +78,7 @@ body {
 /*Banner*/
 .banner {position: relative;color: #fff;}
 .banner p{margin:0; }
-.banner img.img-responsive{width: 100%;height:337px;}
+.banner img.img-responsive{width: 100%;height: 270px;}
 .banner .welcome-message{position: absolute;left: 0;right:0;bottom:0;top:0;text-align: center;}
 .banner .welcome-message .wrap-info{display: table;height: 100%;width: 100%;}
 .banner .welcome-message .wrap-info .information{display: inline;vertical-align: middle;}
@@ -154,15 +154,19 @@ a.js-showbanner{
     width: 10%;
     margin: -70px 0px 0px;
 }*/
-img.img-circle {
+/*img.img-circle {
   display: block;
   width: 10%;
   height: 10%;
   overflow: hidden;
   border: 9px solid rgba(0, 0, 0, 0.05);
   margin: 0 44%;
+}*/
+.userpic{
+  width: 100px;
+  height: 100px;
 }
-
+/*
 .tagline {
     font-weight: bold;
     margin-bottom: 9px;
@@ -182,8 +186,26 @@ img.img-circle {
 
 .taglinelocation span{
     text-decoration: underline dotted;
+}*/
+.tagline {
+    font-family: verdana, arial !important; 
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+.taglineinfo{
+    font-family: verdana,arial !important; 
+  font-size: 20px !important;
+  font-weight: normal;!important;   
+}
+.taglinelocation{
+   font-family: verdana,arial !important; 
+  font-size: 20px !important;
+  font-weight: normal !important; 
 }
 
+.taglinelocation span{
+    text-decoration: underline dotted;
+}
 /* Live clock start*/
 
 .section {
@@ -260,7 +282,7 @@ img.img-circle {
   }
   .banner img.img-responsive {
     width: 100%;
-    height: 282px;
+    height: 2px;
   }
 
   .js-removebanner{
@@ -293,12 +315,16 @@ img.img-circle {
     width: 100%;
     height: 283px;
  }
-  img.img-circle {
+ /* img.img-circle {
     display: block;
     width: 40%;
     overflow: hidden;
     border: 9px solid rgba(0, 0, 0, 0.05);
     margin: 12px 30% 2px;
+  }*/
+  .image{
+    width: 80px;
+    height: 80px;
   }
 
   .tagline {
