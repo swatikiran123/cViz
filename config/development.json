@@ -5,6 +5,10 @@
     "expires": "7"
   },
 
+  "profile":{
+    "default-pwd": "default"
+  },
+
   "api": {
     "cors": "true"
   },

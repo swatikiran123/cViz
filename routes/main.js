@@ -8,7 +8,7 @@ module.exports = function(app, passport) {
 	app.use(function (req, res, next) {
 	  //console.log('Req @ Time:', Date.now());
 
-    res.locals={ 
+    res.locals={
       appTitle: "mSkeleton",
       pageTitle: "main",
       author: "Sankar Vema",
@@ -36,8 +36,9 @@ module.exports = function(app, passport) {
 	// Auth Middleware - This will check if the token is valid
 	// Only the requests that start with /api/v1/* will be checked for the token.
 	// Any URL's that do not follow the below pattern would be avoided
-	
-	app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
+
+	// ToDo:: Api security supressed for dev - to be activated later
+	//app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
 
 	// include routes here
 	app.use('/', require('./apiRoutes')); // load api endpoint routes

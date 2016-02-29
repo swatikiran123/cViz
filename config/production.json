@@ -3,6 +3,10 @@
     "secret": "top secret"
   },
 
+  "profile":{
+    "default-pwd": "default"
+  },
+
   "api": {
     "cors": "true"
   },
