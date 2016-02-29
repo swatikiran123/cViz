@@ -45,6 +45,7 @@ function getOneById(id){
         .populate({path:'cscPersonnel.industryExec'})
         .populate({path:'cscPersonnel.globalDelivery'})
         .populate({path:'cscPersonnel.cre'})
+        .populate('editedBy')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

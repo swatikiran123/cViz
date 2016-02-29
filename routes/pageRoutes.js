@@ -14,5 +14,10 @@ module.exports = function(app, passport) {
         res.render('misc/clients.ejs', {});
     });
 
+    // route to facts
+    app.get('/facts', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "facts";
+        res.render('misc/facts.ejs', {});
+    });
 
 }
