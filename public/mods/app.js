@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('baseApp', ['keynotes', 'clients', 'userDirective'])
+angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler'])
 
 .config(['growlProvider', function(growlProvider) {
 	growlProvider.globalReversedOrder(true);

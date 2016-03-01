@@ -14,5 +14,9 @@ module.exports = function(app, passport) {
         res.render('misc/clients.ejs', {});
     });
 
-
+    // route to scheduler
+    app.get('/scheduler', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "Scheduler";
+        res.render('misc/scheduler.ejs', {});
+    });
 }
