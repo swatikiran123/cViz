@@ -37,14 +37,17 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
-        .populate('noteBy')
+        .populate('client')
+        .populate('agm')
+        .populate('anchor')
+        .populate('createBy')
+        .populate('visitors.visitor')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
             }
             else
-                console.log(item);
                 deferred.resolve(item);
         });
 
@@ -54,9 +57,6 @@ function getOneById(id){
 function create(data) {
     var deferred = Q.defer();
 
-    //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving keynote........");
-    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

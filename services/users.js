@@ -40,22 +40,24 @@ function getAll(){
 
 function getOneById(id){
     var deferred = Q.defer();
-
+console.log("Find " + id);
     model
         .findOne({ _id: id })
-        .populate('noteBy')
-        .populate({path:'cscPersonnel.salesExec'})
-        .populate({path:'cscPersonnel.accountGM'})
-        .populate({path:'cscPersonnel.industryExec'})
-        .populate({path:'cscPersonnel.globalDelivery'})
-        .populate({path:'cscPersonnel.cre'})
+        // .populate('noteBy')
+        // .populate({path:'cscPersonnel.salesExec'})
+        // .populate({path:'cscPersonnel.accountGM'})
+        // .populate({path:'cscPersonnel.industryExec'})
+        // .populate({path:'cscPersonnel.globalDelivery'})
+        // .populate({path:'cscPersonnel.cre'})
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
             }
-            else
-                deferred.resolve(item);
+            else{
+              console.log(item);
+              deferred.resolve(item);
+            }
         });
 
     return deferred.promise;

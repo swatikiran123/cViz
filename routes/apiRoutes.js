@@ -59,6 +59,7 @@ router.delete('/api/v1/secure/visits/:id', visit.deleteById);
 // List of service routes for visitSchedules
 router.get('/api/v1/secure/visitSchedules', visitSchedule.getAll);
 router.get('/api/v1/secure/visitSchedules/:id', visitSchedule.getOneById);
+router.get('/api/v1/secure/visitSchedules/visit/:id', visitSchedule.getAllByVisitId);
 router.post('/api/v1/secure/visitSchedules', visitSchedule.create);
 router.put('/api/v1/secure/visitSchedules/:id', visitSchedule.updateById);
 router.delete('/api/v1/secure/visitSchedules/:id', visitSchedule.deleteById);
