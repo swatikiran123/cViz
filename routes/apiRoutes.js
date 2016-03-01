@@ -62,7 +62,6 @@ router.get('/api/v1/secure/visitSchedules/:id', visitSchedule.getOneById);
 router.post('/api/v1/secure/visitSchedules', visitSchedule.create);
 router.put('/api/v1/secure/visitSchedules/:id', visitSchedule.updateById);
 router.delete('/api/v1/secure/visitSchedules/:id', visitSchedule.deleteById);
->>>>>>> Api routes updated to secure paths
 
 // List of service routes for feedbackDefs
 router.get('/api/v1/secure/feedbackDefs', feedbackDef.getAll);
