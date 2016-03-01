@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('cViz-m', ['ionic', 'appMain', 'sessions', 'generic'])
+angular.module('cViz-m', ['ionic', 'appMain', 'visits', 'sessions', 'generic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,6 +30,26 @@ angular.module('cViz-m', ['ionic', 'appMain', 'sessions', 'generic'])
     abstract: true,
     templateUrl: 'mods/menu.html',
     controller: 'appCtrl'
+  })
+
+  .state('app.visits', {
+    url: '/visits',
+    views: {
+      'menuContent': {
+        templateUrl: 'mods/visits/visits.html',
+        controller: 'visitsCtrl'
+      }
+    }
+  })
+
+  .state('app.visit', {
+    url: '/visits/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'mods/visits/visit.html',
+        controller: 'visitCtrl'
+      }
+    }
   })
 
   .state('app.sessions', {
