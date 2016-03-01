@@ -5,14 +5,13 @@ var mongoose = require('mongoose')
 
 var userSchema 				= require('./user');
 var clientSchema 			= require('./client');
-//var visitScheduleSchema 			= require('./visitSchedule');
 
 var visitSchema = new mongoose.Schema({
 
-	title							: { type: String },
-	client 							: { type: Schema.Types.ObjectId, ref: 'client' },
+	title								: { type: String },
+	client 							: { type: Schema.Types.ObjectId, ref: 'clients' },
 	agenda							: { type: String },
-	agm								: { type: Schema.Types.ObjectId, ref: 'User' },
+	agm									: { type: Schema.Types.ObjectId, ref: 'User' },
 	anchor							: { type: Schema.Types.ObjectId, ref: 'User' },
 	schedule						: [{
 		startDate					: { type: Date, default: Date.now },
@@ -24,7 +23,7 @@ var visitSchema = new mongoose.Schema({
 		influence					: { type: String, lowercase: true, trim: true },		// {Decision Maker, Influencer, End User, Others}
 	}],
 	interest						: [{
-		businessType				: { type: String, lowercase: true, trim: true },		// {new, repeat}
+		businessType			: { type: String, lowercase: true, trim: true },		// {new, repeat}
 		visitType					: { type: String, lowercase: true, trim: true },		// {new, repeat}
 		objective					: { type: String }
 	}],

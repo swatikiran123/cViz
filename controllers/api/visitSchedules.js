@@ -5,22 +5,23 @@ var dataService     = require(constants.paths.services + '/visitSchedules');
 
 var controller = {}
 
-controller.getAll     = getAll;
-controller.create     = create;
+controller.getAll               = getAll;
+controller.getAllByVisitId      = getAllByVisitId;
+controller.create               = create;
 
-controller.getOneById = getOneById;
-controller.updateById = updateById;
-controller.deleteById = deleteById;
+controller.getOneById           = getOneById;
+controller.updateById           = updateById;
+controller.deleteById           = deleteById;
 
 module.exports = controller;
 
 function getAll(req,res){
   dataService.getAll()
-    .then(function(userList){
-        if (userList){
-            res.send(userList);
+    .then(function(list){
+        if (list){
+            res.send(list);
         }else {
-            res.sendStatus(404);
+            res.status(404).send('Doc not found');
         }
     })
     .catch(function (err){
@@ -31,11 +32,26 @@ function getAll(req,res){
 
 function getOneById(req,res){
   dataService.getOneById(req.params.id)
-    .then(function(userList){
-        if (userList){
-            res.send(userList);
+    .then(function(list){
+        if (list){
+            res.send(list);
         }else {
-            res.sendStatus(404);
+            res.status(404).send('Doc not found');
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getAllByVisitId(req,res){
+  dataService.getAllByVisitId(req.params.id)
+    .then(function(list){
+        if (list){
+            res.send(list);
+        }else {
+            res.status(404).send('Doc not found');
         }
     })
     .catch(function (err){
@@ -70,7 +86,7 @@ function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
         res.status(200).send("Doc updated successfully");
-    }) 
+    })
     .catch(function (err) {
         console.log(err);
         res.status(500).send(err);

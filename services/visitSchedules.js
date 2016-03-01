@@ -7,8 +7,9 @@ var model           = require(constants.paths.models +  '/visitSchedule')
 // Service method definition -- Begin
 var service = {};
 
-service.getAll = getAll;
-service.create = create;
+service.getAll                = getAll;
+service.getAllByVisitId       = getAllByVisitId;
+service.create                = create;
 
 service.getOneById = getOneById;
 service.updateById = updateById;
@@ -22,9 +23,9 @@ function getAll(){
 
 	model.find(function(err, list){
 		if(err) {
-            console.log(err);
-            deferred.reject(err);
-        }
+      console.log(err);
+      deferred.reject(err);
+    }
 		else
 			deferred.resolve(list);
 	});
@@ -37,19 +38,44 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
-        .populate('noteBy')
+        .populate('visit')
+        .populate('client')
+        .populate('sessions.speaker')
+        .populate('sessions.supporter')
+        .populate('invitees')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
             }
             else
-                console.log(item);
                 deferred.resolve(item);
         });
 
     return deferred.promise;
 } // gentOneById method ends
+
+function getAllByVisitId(id){
+    var deferred = Q.defer();
+
+    model
+        .findOne({ visit: id })
+        .populate('visit')
+        .populate('client')
+        .populate('sessions.speaker')
+        .populate('sessions.supporter')
+        .populate('invitees')
+        .exec(function (err, item) {
+            if(err) {
+                console.log(err);
+                deferred.reject(err);
+            }
+            else
+                deferred.resolve(item);
+        });
+
+    return deferred.promise;
+} // getOneByVisitId method ends
 
 function create(data) {
     var deferred = Q.defer();

@@ -1,12 +1,22 @@
 <ion-view view-title="Visits">
   <ion-content>
-    <h1>List of visits</h1>
+    <h1 class="page-title">List of visits</h1>
 
-    <div ng-repeat="visit in visitList">
-      <div><a href="#/app/visits/{{visit._id}}"/>{{visit.title}}</a></div>
-      <div>{{visit.startDate}} - {{visit.endDate}}</div>
-      <div>{{visit.client.name}}</div>
-      <div>{{visit.agenda}}</div>
+    <div class="panel panel-primary" ng-repeat="visit in visitList">
+      <div class="panel-heading pn-hdr"><a href="#/app/visits/{{visit._id}}">{{visit.title}}</a></div>
+
+      <div class = "panel panel-primary pn-shdr text-small">
+        <div class="pull-left">
+          {{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
+        </div>
+        <div class="pull-right">{{visit.locations}}</div>
+      </div>
+
+      <div class="panel-body">
+          {{visit.agenda}}
+      </div>
+
     </div>
+
   </ion-content>
 </ion-view>
