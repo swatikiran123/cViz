@@ -2,7 +2,7 @@
 
 var keynotesApp = angular.module('keynotes');
 
-keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
+keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl',
   function($scope, $http, $routeParams, $location, growl) {
 
   var id = $routeParams.id;
@@ -16,7 +16,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
 
   var refresh = function() {
 
-    $http.get('/api/v1/keynotes').success(function(response) {
+    $http.get('/api/v1/secure/keynotes').success(function(response) {
 
       $scope.keynotesList = response;
       $scope.keynotes = "";
@@ -27,9 +27,9 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
           break;
 
         case "edit":
-          $scope.keynotes = $http.get('/api/v1/keynotes/' + id).success(function(response){
+          $scope.keynotes = $http.get('/api/v1/secure/keynotes/' + id).success(function(response){
             $scope.keynotes = response;
-      
+
             console.log($scope.keynotes);
             console.log(response.noteBy);
             $scope.noteByUser = response.noteBy;
@@ -62,7 +62,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   } // end of save method
 
   $scope.create = function() {
-    $http.post('/api/v1/keynotes', $scope.keynotes).success(function(response) {
+    $http.post('/api/v1/secure/keynotes', $scope.keynotes).success(function(response) {
       refresh();
       growl.info(parse("Keynote [%s]<br/>Added successfully", $scope.keynotes.title));
     })
@@ -73,7 +73,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
 
   $scope.delete = function(keynotes) {
     var title = keynotes.title;
-    $http.delete('/api/v1/keynotes/' + keynotes._id).success(function(response) {
+    $http.delete('/api/v1/secure/keynotes/' + keynotes._id).success(function(response) {
       refresh();
       growl.info(parse("Keynotes [%s]<br/>Deleted successfully", title));
     })
@@ -83,7 +83,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   }; // delete method ends
 
   $scope.update = function() {
-    $http.put('/api/v1/keynotes/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
+    $http.put('/api/v1/secure/keynotes/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
       refresh();
       growl.info(parse("Keynote [%s]<br/>Edited successfully", $scope.keynotes.title));
     })
@@ -101,10 +101,10 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   $scope.getUser = function(){
     console.log($scope.keynotes.speaker);
 
-    $http.get('/api/v1/admin/users/' + $scope.keynotes.speaker).success(function(response) {
+    $http.get('/api/v1/secure/admin/users/' + $scope.keynotes.speaker).success(function(response) {
       console.log(response);
       var user = response;
-      $scope.keynotes.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
+      $scope.keynotes.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
     });
   }
 
@@ -173,4 +173,3 @@ keynotesApp.directive('asyncValidator', ['$fakeValidationService', '$q', functio
         }
     }
 }])
-
