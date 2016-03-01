@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler'])
+angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler','profile'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
+			console.log($rootScope.user);
 		}
 	});
 })
