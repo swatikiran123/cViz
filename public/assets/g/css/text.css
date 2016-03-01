@@ -1,0 +1,34 @@
+/* Text styles */
+
+.text-highlight{
+  font-size: 16px;
+  font-weight: bold !important;
+  color:black;
+}
+
+.text-big{
+  font-size: 16px;
+  font-weight: normal !important;
+  color:black;
+}
+
+.text-medium{
+  font-size: 14x;
+  color:black;
+}
+
+.text-small{
+  font-size: 12px;
+  color:black;
+}
+
+.text-xsmall{
+  font-size: 10px;
+  color:black;
+}
+
+.text-desc{
+  font-size: 11px;
+  font-style: italic;
+  color:black;
+}
