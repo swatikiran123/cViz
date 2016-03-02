@@ -2,9 +2,8 @@
 
 var Q               = require('q');
 var constants       = require('../scripts/constants');
-var model           = require(constants.paths.models +  '/visit')
+var model           = require(constants.paths.models +  '/fact')
 //var userModel           = require(constants.paths.models +  '/user')
-
 
 // Service method definition -- Begin
 var service = {};
@@ -22,45 +21,41 @@ module.exports = service;
 function getAll(){
     var deferred = Q.defer();
 
-    model.find(function(err, list){
-      if(err) {
-        console.log(err);
-        deferred.reject(err);
-    }
-    else
-       deferred.resolve(list);
-});
+	model.find(function(err, list){
+		if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+		else
+			deferred.resolve(list);
+	});
 
-    return deferred.promise;
+	return deferred.promise;
 } // getAll method ends
 
 function getOneById(id){
     var deferred = Q.defer();
 
     model
-    .findOne({ _id: id })
-    .populate('agm')
-    .populate('anchor')
-    .populate('createBy')
-    .populate('client')
-    .populate('visitors.visitor')
-    .exec(function (err, item) {
-        if(err) {
-            console.log(err);
-            deferred.reject(err);
-        }
-        else
+        .findOne({ _id: id })
+        .populate('editedBy')
+        .exec(function (err, item) {
+            if(err) {
+                console.log(err);
+                deferred.reject(err);
+            }
+            else
+                console.log(item);
+                deferred.resolve(item);
+        });
 
-            deferred.resolve(item);
-    });
     return deferred.promise;
-
 } // gentOneById method ends
 
 function create(data) {
     var deferred = Q.defer();
 
-    console.log("Saving an visit........");
+    console.log("Saving a fact........");
     console.log(data);
     model.create(data, function (err, doc) {
         if (err) {

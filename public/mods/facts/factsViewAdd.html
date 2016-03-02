@@ -1,0 +1,59 @@
+
+
+<div class="row"> 
+  <div class="col-sm-1"></div>
+  <div class="col-md-8">
+
+   <!-- page header/subheader -->
+
+   <div class="page-header">
+    Facts Management - Add
+    <div class="sub-header">Add new fact
+    </div>
+  </div>
+
+  <!-- facts pageheader input--> 
+  <div class="data-form">
+    <form name="factsForm" id="factsForm" class="form-vertical" novalidate
+    ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+
+    <!-- facts title input-->
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title" id="title" name="title"
+      ng-model="facts.title" required ng-minlength="5" ng-maxlength="50"
+      floating-validation/>
+    </div>
+
+    <!-- facts description -->
+
+    <div class="form-group">
+
+      <text-angular 
+      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+      ng-model="facts.description" name="note" placeholder="Description the fact." required /></text-angular>
+    </div>
+
+    <!-- facts edited By input--> 
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
+      <label class="col-md-4 control-label">Edited By &nbsp;&nbsp; :</label>  
+      <div class="col-md-4">
+        <div user type="picker" user-model="editedByUser" user-id="editedById" user-email="editedByEmail" ></div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+<!--buttons-->
+    <div class="form-group">
+      <div class="pull-left">
+        <button type="submit" class="btn btn-success" 
+        ng-click="save()" ng-disabled="factsForm.$invalid">Submit
+      </button>
+      <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>
+</div>

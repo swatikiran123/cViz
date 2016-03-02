@@ -42,7 +42,9 @@ function getOneById(id){
         .populate({path:'cscPersonnel.accountGM'})
         .populate({path:'cscPersonnel.industryExec'})
         .populate({path:'cscPersonnel.globalDelivery'})
-        .populate({path:'cscPersonnel.cre'}).exec(function (err, item) {
+        .populate({path:'cscPersonnel.cre'})
+        .populate('client') 
+        .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);

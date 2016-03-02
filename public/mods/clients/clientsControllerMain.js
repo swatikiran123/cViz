@@ -34,7 +34,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   var refresh = function() {
 
-  	$http.get('/api/v1/clients').success(function(response) {
+  	$http.get('/api/v1/secure/clients').success(function(response) {
 
   		$scope.clientsList = response;
   		$scope.clients = "";
@@ -45,28 +45,28 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   			break;
 
   			case "edit":
-  			$scope.clients = $http.get('/api/v1/clients/' + id).success(function(response){
+  			$scope.clients = $http.get('/api/v1/secure/clients/' + id).success(function(response){
   				$scope.clients = response;
- 
-            $scope.salesExecUser = response.cscPersonnel.salesExec;
-            $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
-            $scope.salesExecId = response.cscPersonnel.salesExec._id;
 
-            $scope.accountGMUser = response.cscPersonnel.accountGM;
-            $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-            $scope.accountGMId = response.cscPersonnel.accountGM._id;       
+          $scope.salesExecUser = response.cscPersonnel.salesExec;
+          $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+          $scope.salesExecId = response.cscPersonnel.salesExec._id;
 
-            $scope.industryExecUser = response.cscPersonnel.industryExec;
-            $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-            $scope.industryExecId = response.cscPersonnel.industryExec._id; 
-            
-            $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
-            $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-            $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;    
+          $scope.accountGMUser = response.cscPersonnel.accountGM;
+          $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+          $scope.accountGMId = response.cscPersonnel.accountGM._id;       
 
-            $scope.creUser = response.cscPersonnel.cre;
-            $scope.creEmail = response.cscPersonnel.cre.email;
-            $scope.creId = response.cscPersonnel.cre._id;                    
+          $scope.industryExecUser = response.cscPersonnel.industryExec;
+          $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+          $scope.industryExecId = response.cscPersonnel.industryExec._id; 
+
+          $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+          $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;    
+
+          $scope.creUser = response.cscPersonnel.cre;
+          $scope.creEmail = response.cscPersonnel.cre.email;
+          $scope.creId = response.cscPersonnel.cre._id;                    
 
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.clients.startDate = new Date($scope.clients.createdOn);
@@ -99,15 +99,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   } // end of save method
 
   $scope.create = function() {
-    console.log($scope.cscPersonnel);
-    console.log($scope.clients);
     var inData  = $scope.clients;
     inData.cscPersonnel =$scope.cscPersonnel;
-    console.log(inData);
 
-    $http.post('/api/v1/clients', inData).success(function(response) {
-      console.log("im in create function")
-      console.log(response)
+    $http.post('/api/v1/secure/clients', inData).success(function(response) {
       refresh();
       growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
     })
@@ -118,7 +113,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.delete = function(clients) {
   	var name = clients.name;
-  	$http.delete('/api/v1/clients/' + clients._id).success(function(response) {
+  	$http.delete('/api/v1/secure/clients/' + clients._id).success(function(response) {
   		refresh();
   		growl.info(parse("clients [%s]<br/>Deleted successfully", name));
   	})
@@ -128,14 +123,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // delete method ends
 
   $scope.update = function() {
-    console.log($scope.cscPersonnel);
-    console.log($scope.clients);
     var inData  = $scope.clients;
     inData.cscPersonnel =$scope.cscPersonnel;
-    console.log(inData);
-
-
-    $http.put('/api/v1/clients/' + $scope.clients._id, inData).success(function(response) {
+    
+    $http.put('/api/v1/secure/clients/' + $scope.clients._id, inData).success(function(response) {
       refresh();
       growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));
     })
@@ -151,10 +142,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }
 
   $scope.getUser = function(){
-  	console.log($scope.cscPersonnel);
 
-  	$http.get('/api/v1/admin/users/' + $scope.cscPersonnel).success(function(response) {
-  		console.log(response);
+
+  	$http.get('/api/v1/secure/admin/users/' + $scope.cscPersonnel).success(function(response) {
+
   		var user = response;
   		$scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
       $scope.cscPersonnel.accountGM = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
