@@ -7,7 +7,7 @@
    <!-- page header/subheader -->
 
    <div class="page-header">
-    Facts Management - Add
+    Facts - Add
     <div class="sub-header">Add new fact
     </div>
   </div>
@@ -34,18 +34,8 @@
       ng-model="facts.description" name="note" placeholder="Description the fact." required /></text-angular>
     </div>
 
-    <!-- facts edited By input--> 
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
-      <label class="col-md-4 control-label">Edited By &nbsp;&nbsp; :</label>  
-      <div class="col-md-4">
-        <div user type="picker" user-model="editedByUser" user-id="editedById" user-email="editedByEmail" ></div>
-      </div>
-    </div>
-    <br>
-    <br>
-    <br>
 
-<!--buttons-->
+    <!--buttons-->
     <div class="form-group">
       <div class="pull-left">
         <button type="submit" class="btn btn-success" 

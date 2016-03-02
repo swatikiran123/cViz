@@ -43,17 +43,6 @@ function getOneById(id){
 console.log("Find " + id);
     model
         .findOne({ _id: id })
-        .populate('noteBy')//populating with keynote schema
-        .populate({path:'cscPersonnel.salesExec'})//populating with client schema
-        .populate({path:'cscPersonnel.accountGM'})
-        .populate({path:'cscPersonnel.industryExec'})
-        .populate({path:'cscPersonnel.globalDelivery'})
-        .populate({path:'cscPersonnel.cre'})
-        .populate('editedBy')//populating with fact schema
-        .populate('agm')//populating with visit Schema
-        .populate('anchor')//populating with visit Schema
-        .populate('createBy')//populating with visit Schema
-        .populate('visitors.visitor')//populating with visit Schema
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
