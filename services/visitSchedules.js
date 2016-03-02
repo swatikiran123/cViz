@@ -40,8 +40,8 @@ function getOneById(id){
         .findOne({ _id: id })
         .populate('visit')
         .populate('client')
-        .populate('sessions.speaker')
-        .populate('sessions.supporter')
+        .populate('session.owner')
+        .populate('session.supporter')
         .populate('invitees')
         .exec(function (err, item) {
             if(err) {
@@ -62,8 +62,8 @@ function getAllByVisitId(id){
         .findOne({ visit: id })
         .populate('visit')
         .populate('client')
-        .populate('sessions.speaker')
-        .populate('sessions.supporter')
+        .populate('session.owner')
+        .populate('session.supporter')
         .populate('invitees')
         .exec(function (err, item) {
             if(err) {
