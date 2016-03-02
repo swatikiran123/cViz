@@ -39,12 +39,12 @@
   <tbody class="data-grid-data">
     <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{fact.title}}</td>
-      <td>{{fact.editedBy}}</td>
+      <td>{{fact.name}}</td>
       <td>{{fact.description}}</td>
       <td>{{fact.createOn}}</td>
       <td>
-        <a class="table-btn" href="#/{{fact._id}}/showFacts"><span class="glyphicon glyphicon-eye-open" /></a>
-        <a class="table-btn" href="#/{{fact._id}}/editFacts"><span class="glyphicon glyphicon-edit" /></a>
+        <a class="table-btn" href="#/{{fact._id}}/showFact"><span class="glyphicon glyphicon-eye-open" /></a>
+        <a class="table-btn" href="#/{{fact._id}}/editFact"><span class="glyphicon glyphicon-edit" /></a>
         <a class="table-btn" ng-click="delete(fact)"><span class="glyphicon glyphicon-trash" /></a>
       </td>
     </tr>

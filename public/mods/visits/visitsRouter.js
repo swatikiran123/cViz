@@ -9,17 +9,17 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
-      .when('/add', {
+      .when('/addVisit', {
         templateUrl: '/public/mods/visits/visitsViewAdd.html',
         controller: 'visitsControllerMain'
       })
 
-      .when('/:id/show', {
+      .when('/:id/showVisit', {
         templateUrl: '/public/mods/visits/visitsViewShow.html',
         controller: 'visitsControllerMain'
       })
 
-      .when('/:id/edit', {
+      .when('/:id/editVisit', {
         templateUrl: '/public/mods/visits/visitsViewAdd.html',
         controller: 'visitsControllerMain'
       });

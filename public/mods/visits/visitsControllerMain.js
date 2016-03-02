@@ -224,7 +224,7 @@ $scope.editvisitor = function(index,visitorDef){
   console.log(visitorDef.visitor);
   $scope.visitorDef = visitorDef;
   console.log($scope.visitorDef.influence);
-    //$scope.visitors.splice(index, 1);
+  $scope.visitors.splice(index, 1);
   };
 // visit visitor table end
 

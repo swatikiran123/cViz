@@ -2,17 +2,13 @@
 
 var factsApp = angular.module('facts');
 
-factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
-  function($scope, $http, $routeParams, $location, growl) {
+factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$rootScope' ,'$location', 'growl', 
+  function($scope, $http, $routeParams,$rootScope ,$location, growl) {
 
-      var id = $routeParams.id;
+    var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
-
-  $scope.editedById = "";
-  $scope.editedByEmail = "";
-  $scope.editedByUser =  "";
 
   var refresh = function() {
 
@@ -23,21 +19,14 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams', '
 
       switch($scope.mode)    {
         case "add":
-          $scope.facts = "";
-          break;
+        $scope.facts = "";
+        break;
 
         case "edit":
-          $scope.facts = $http.get('/api/v1/secure/facts/' + id).success(function(response){
-            $scope.facts = response;
-      
-            console.log($scope.facts);
-            console.log(response.editedBy);
-            $scope.editedByUser = response.editedBy;
-            $scope.editedByEmail = response.editedBy.email;
-            $scope.editedById = response.editedBy._id;
-            // reformat date fields to avoid type compability issues with <input type=date on ng-model
-            $scope.facts.startDate = new Date($scope.facts.createdOn);
-          });
+        $scope.facts = $http.get('/api/v1/secure/facts/' + id).success(function(response){
+          $scope.facts = response;
+          $scope.facts.startDate = new Date($scope.facts.createdOn);
+        });
 
       } // switch scope.mode ends
     }); // get fact call back ends
@@ -47,15 +36,15 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams', '
 
   $scope.save = function(){
     // set editedBy based on the user picker value
-    $scope.facts.editedBy = $scope.editedById;
+    $scope.facts.editedBy = $rootScope.user._id;
     switch($scope.mode)    {
       case "add":
-        $scope.create();
-        break;
+      $scope.create();
+      break;
 
       case "edit":
-        $scope.update();
-        break;
+      $scope.update();
+      break;
       } // end of switch scope.mode ends
 
       $location.path("/");
@@ -98,15 +87,6 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams', '
     $location.path("/");
   }
 
-  $scope.getUser = function(){
-    console.log($scope.facts.editedBy);
-
-    $http.get('/api/v1/secure/admin/users/' + $scope.facts.editedBy).success(function(response) {
-      console.log(response);
-      var user = response;
-      $scope.facts.editedBy = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-    });
-  }
 
 }])
 
