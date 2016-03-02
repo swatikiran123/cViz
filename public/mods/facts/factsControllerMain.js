@@ -87,6 +87,15 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
     $location.path("/");
   }
 
+  $scope.getUser = function(){
+    console.log($scope.facts.editedBy);
+
+    $http.get('/api/v1/secure/admin/users/' + $scope.facts.editedBy).success(function(response) {
+      console.log(response);
+      var user = response;
+      $scope.facts.editedBy = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+    });
+  }
 
 }])
 
