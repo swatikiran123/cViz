@@ -31,7 +31,13 @@ module.exports = function(app, passport)
     // route to profile
     app.get('/profile', auth.isLoggedIn, function(req, res) {
         res.locals.pageTitle = "profile";
-        res.render('profile.ejs', {user : req.user});
+        res.render('profile.ejs', {});
+    });
+
+    // route to feedback
+    app.get('/feedback', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "feedback";
+        res.render('misc/feedback.ejs', {});
     });
     // route to visits
     app.get('/visits', auth.isLoggedIn, function(req, res) {
