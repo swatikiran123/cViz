@@ -53,6 +53,6 @@
     "angularjs-datepicker": "latest",
     "angular-growl-v2": "latest",
     "angular-animate": "~1.5.0"
-  },
+  }
 
 }
