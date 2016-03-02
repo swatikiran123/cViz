@@ -1,7 +1,7 @@
 'use strict';
 
 var constants         = require('../../scripts/constants');
-var dataService     = require(constants.paths.services + '/visits');
+var dataService     = require(constants.paths.services + '/facts');
 
 var controller = {}
 

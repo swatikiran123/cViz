@@ -8,13 +8,12 @@ var users 						= require(constants.paths.controllers + '/api/users');
 var keynotes 					= require(constants.paths.controllers + '/api/keynotes');
 var clients 					= require(constants.paths.controllers + '/api/clients');
 var csclocations 			= require(constants.paths.controllers + '/api/csclocations');
-var visit 						= require(constants.paths.controllers + '/api/visits');
+var visits 						= require(constants.paths.controllers + '/api/visits');
 var visitSchedule 		= require(constants.paths.controllers + '/api/visitSchedules');
 var feedbackDef 			= require(constants.paths.controllers + '/api/feedbackDefs');
-
-var csclocations 					= require(constants.paths.controllers + '/api/csclocations');
 var fileupload						= require(constants.paths.controllers + '/api/fileupload');
- 
+var facts 					= require(constants.paths.controllers + '/api/facts');
+
 /*
  * Routes that can be accessed by any one
  */
@@ -34,7 +33,7 @@ router.get('/api/v1/admin/users/:email', users.getByEmail);
 router.get('/api/v1/users/:id',users.getOneById);
 router.get('/api/v1/users', users.getAll);
 router.post('/api/v1/users/', users.create);
-router.put('/api/v1/users/:id',users.updateById);
+router.put('/api/v1/users/:id',users.updateById); 
 
 //Route for file upload
 router.post('/api/v1/upload/',fileupload.create);
@@ -53,6 +52,14 @@ router.post('/api/v1/secure/clients', clients.create);
 router.put('/api/v1/secure/clients/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);
 
+
+// List of service routes for facts
+router.get('/api/v1/secure/facts', facts.getAll);
+router.get('/api/v1/secure/facts/:id', facts.getOneById);
+router.post('/api/v1/secure/facts', facts.create);
+router.put('/api/v1/secure/facts/:id', facts.updateById);
+router.delete('/api/v1/secure/facts/:id', facts.deleteById);
+
 // List of service routes for csclocations
 router.get('/api/v1/secure/csclocations', csclocations.getAll);
 router.get('/api/v1/secure/csclocations/:id', csclocations.getOneById);
@@ -61,11 +68,11 @@ router.put('/api/v1/secure/csclocations/:id', csclocations.updateById);
 router.delete('/api/v1/secure/csclocations/:id', csclocations.deleteById);
 
 // List of service routes for visits
-router.get('/api/v1/secure/visits', visit.getAll);
-router.get('/api/v1/secure/visits/:id', visit.getOneById);
-router.post('/api/v1/secure/visits', visit.create);
-router.put('/api/v1/secure/visits/:id', visit.updateById);
-router.delete('/api/v1/secure/visits/:id', visit.deleteById);
+router.get('/api/v1/secure/visits', visits.getAll);
+router.get('/api/v1/secure/visits/:id', visits.getOneById);
+router.post('/api/v1/secure/visits', visits.create);
+router.put('/api/v1/secure/visits/:id', visits.updateById);
+router.delete('/api/v1/secure/visits/:id', visits.deleteById);
 
 // List of service routes for visitSchedules
 router.get('/api/v1/secure/visitSchedules', visitSchedule.getAll);

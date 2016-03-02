@@ -1,0 +1,29 @@
+<!--schedules-->
+<b>schedules</b><br>
+<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+  <thead class="data-grid-header">
+    <tr>
+      <th><span  class="glyphicon glyphicon-calendar"></span>Start Date</th>
+      <th><span  class="glyphicon glyphicon-calendar"></span>End Date</th>
+      <th><span  class="glyphicon glyphicon-globe"></span>Location</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="data-grid-data">
+    <tr>
+     <td><input type="text" placeholder="startDate" ng-model="schedule.startDate" ui-date novalidate></td>
+     <td><input type="text" placeholder="endDate" ng-model="schedule.endDate" ui-date novalidate></td>
+     <td><input type="text" placeholder="Location" ng-model="schedule.location"/></td>
+     <td><button class="btn btn-primary" ng-click="addSchedule(schedule)">Add Schedule</button></td>
+     
+   </tr>
+   <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">
+    <td>{{schedule.startDate}}</td>
+    <td>{{schedule.endDate}}</td>
+    <td>{{schedule.location}}</td>
+    <td><a class="table-btn" ng-click="removeSchedule($index)"><span class="glyphicon glyphicon-trash" /></a>
+      <a class="table-btn" ng-click="editSchedule($index,schedule)"><span class="glyphicon glyphicon-edit" /></a>
+    </td>
+  </tr>
+</tbody>
+</table>
