@@ -13,15 +13,16 @@ var visitScheduleSchema = new mongoose.Schema({
 	client 							: { type: Schema.Types.ObjectId, ref: 'clients' },
 	visit								: { type: Schema.Types.ObjectId, ref: 'visits' },
 	scheduleDate				: { type: Date },
-	sessions						: [{
+	session							: {
+		type							: { type: String }, //presentation, discussion, tea, lunch, dinner, floor-walk
 		startTime					: { type: Date, default: Date.now},
 		endTime						: { type: Date, default: Date.now},
 		title							: { type: String },
 		location					: { type: String },
 		desc							: { type: String },
-		speaker						: { type: Schema.Types.ObjectId, ref: 'User' },
+		owner							: { type: Schema.Types.ObjectId, ref: 'User' },
 		supporter					: { type: Schema.Types.ObjectId, ref: 'User' }
-	}],
+	},
 	invitees						: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 	//feedbackTemplate		: { type: Schema.Types.ObjectId, ref: 'FeedbackDef' }
 

@@ -1,0 +1,48 @@
+[
+
+	{
+			"_id"										: ObjectId("A06234567892345678900001"),
+			"client" 								: ObjectId("A03234567892345678900001"),
+			"visit"									: ObjectId("A01234567892345678900001"),
+
+			"scheduleDate"					: ISODate("2016-04-10T04:46:37.467Z") ,
+			"session"							:
+					{
+						"startTime"				: ISODate("2016-04-10T08:30:37.467Z")  ,
+						"endTime"					: ISODate("2016-04-10T09:00:37.467Z")  ,
+						"title"						: "Welcome note by India MD",
+						"desc"						: "Mr. Sreekanth, MD India to deliver a welcome note to visiting client representatives",
+						"location"				: "Board room 4th floor, B7",
+						"owner"						: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+
+			"invitees"							: [
+				ObjectId("A02234567892345678900001"),
+				ObjectId("A02234567892345678900002")
+			]
+	},
+
+	{
+			"_id"										: ObjectId("A06234567892345678900002"),
+			"client" 								: ObjectId("A03234567892345678900001"),
+			"visit"									: ObjectId("A01234567892345678900001"),
+
+			"scheduleDate"					: ISODate("2016-04-10T04:46:37.467Z") ,
+			"session"							:
+					{
+						"startTime"				: ISODate("2016-04-10T09:00:37.467Z")  ,
+						"endTime"					: ISODate("2016-04-10T10:00:37.467Z")  ,
+						"title"						: "CSC Corporate Presentation",
+						"desc"						: "Presentation on CSC financial and deliveer capabilities",
+						"location"				: "Board room 4th floor, B7",
+						"owner"					: ObjectId("A02234567892345678900001"),
+						"supporter"				: ObjectId("A02234567892345678900002")
+					},
+
+			"invitees"							: [
+				ObjectId("A02234567892345678900001"),
+				ObjectId("A02234567892345678900002")
+			]
+	}
+]
