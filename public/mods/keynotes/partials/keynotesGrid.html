@@ -16,23 +16,23 @@
       </th>
       <th>
         <span class="glyphicon glyphicon-calendar"></span>
-        <a href="" ng-click="orderByField='startDate'; reverseSort = !reverseSort">Speaker</a>
+        <a href="" ng-click="orderByField='speaker'; reverseSort = !reverseSort">Speaker</a>
       </th>
       <th>
         <span class="glyphicon glyphicon-calendar"></span>
-        <a href="" ng-click="orderByField='endDate'; reverseSort = !reverseSort">Desc</a>
+        <a href="" ng-click="orderByField='Desc'; reverseSort = !reverseSort">Desc</a>
       </th>
       <th class="hidden-xs">
         <span class="glyphicon glyphicon-user"></span>
-        <a href="" ng-click="orderByField='sponsor'; reverseSort = !reverseSort">Tags</a>
+        <a href="" ng-click="orderByField='Tags'; reverseSort = !reverseSort">Tags</a>
       </th>
       <th class="hidden-xs">
         <span class="glyphicon glyphicon-list-alt"></span>
-        <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Created</a>
+        <a href="" ng-click="orderByField='Created'; reverseSort = !reverseSort">Created</a>
       </th>
       <th class="hidden-xs">
         <span class="glyphicon glyphicon-dashboard"></span>
-        <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Link</a>
+        <a href="" ng-click="orderByField='link'; reverseSort = !reverseSort">Link</a>
       </th>
       <th>&nbsp;</th>
     </tr>
@@ -53,10 +53,10 @@
   <tbody class="data-grid-data">
     <tr ng-repeat="keynote in keynotesList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{keynote.title}}</td>
-      <td>{{keynote.speaker}}</td>
+      <td>{{keynote.noteBy}}</td>
       <td>{{keynote.desc}}</td>
-      <td class="hidden-xs">{{keynotes.tags}}</td>
-      <td class="hidden-xs">ToBeDefined</td>
+      <td class="hidden-xs">{{keynote.tags}}</td>
+      <td class="hidden-xs">{{keynote.createOn}}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>
         <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>

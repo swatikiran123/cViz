@@ -133,7 +133,15 @@ height: 30px;
 
 
 
+.growl-container.growl-fixed {
+  position: absolute;
+  float: right;
+  width: 180%;
+  max-width: 400px;
+  z-index: 9999;
+  padding-top:50px;
 
+}
 
 .navbar-custom {
     background-color:#006699;

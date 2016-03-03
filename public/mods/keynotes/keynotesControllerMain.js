@@ -2,11 +2,13 @@
 
 var keynotesApp = angular.module('keynotes');
 
-keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl',
-  function($scope, $http, $routeParams, $location, growl) {
+keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope', '$routeParams', '$location', 'growl',
+  function($scope, $http,$rootScope, $routeParams, $location, growl) {
+  
 
-  var id = $routeParams.id;
-  // AUtomatically swap between the edit and new mode to reuse the same frontend form
+
+var id = $routeParams.id;
+      // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
@@ -14,12 +16,16 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   $scope.noteByEmail = "";
   $scope.noteByUser =  "";
 
-  var refresh = function() {
 
+  var refresh = function() {
     $http.get('/api/v1/secure/keynotes').success(function(response) {
 
       $scope.keynotesList = response;
       $scope.keynotes = "";
+ 
+
+
+
 
       switch($scope.mode)    {
         case "add":
@@ -35,6 +41,8 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
             $scope.noteByUser = response.noteBy;
             $scope.noteByEmail = response.noteBy.email;
             $scope.noteById = response.noteBy._id;
+             
+
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
           });
@@ -48,6 +56,11 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
   $scope.save = function(){
     // set noteBy based on the user picker value
     $scope.keynotes.noteBy = $scope.noteById;
+         $scope.keynotes.createby = $rootScope.user._id;
+         console.log($scope.keynotes.createby);
+ 
+
+
     switch($scope.mode)    {
       case "add":
         $scope.create();
@@ -63,6 +76,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
 
   $scope.create = function() {
     $http.post('/api/v1/secure/keynotes', $scope.keynotes).success(function(response) {
+      console.log($scope.keynotes.title)
       refresh();
       growl.info(parse("Keynote [%s]<br/>Added successfully", $scope.keynotes.title));
     })
@@ -100,12 +114,17 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http', '$routePara
 
   $scope.getUser = function(){
     console.log($scope.keynotes.speaker);
-
+    console.log($scope.keynote.receiver);
     $http.get('/api/v1/secure/admin/users/' + $scope.keynotes.speaker).success(function(response) {
       console.log(response);
       var user = response;
       $scope.keynotes.speaker = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-    });
+    });/*
+     $http.get('/api/v1/secure/admin/users/' + $scope.keynotes.receiver).success(function(response) {
+      console.log(response);
+      var user = response;
+      $scope.keynotes.receiver = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+    });*/
   }
 
 }]);﻿ // controller ends
