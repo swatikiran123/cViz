@@ -1,8 +1,4 @@
-<script type="text/javascript" src="/public/assets/js/ngFloatingLabels.js"></script>
-<link rel="stylesheet" href="/public/assets/styles/formstyles.css" />
 
-<link rel="stylesheet" href="/public/assets/styles/liststyles.css" />
-<link rel="stylesheet" href="/public/assets/styles/ng-floating-labels.css" />
  <div class="row"> 
     <div class="col-sm-1"></div>
       <div class="col-md-8">
@@ -20,18 +16,12 @@
       <form name="keynotesForm" id="keynotesForm" class="form-vertical" novalidate
            ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}" >
 
-         
-  <div class="form-group">
-                <input type="text" class="title" class="form-control" placeholder="title" id="title" name="title"
-                       ng-model="keynotes.title1" visible="false"
-                       />
-            </div>
+
       <div class="form-group">
                 <input type="text" class="form-control" placeholder="title" id="title" name="title"
-                       ng-model="keynotes.title" required ng-minlength="5"
-                       floating-validation/>
+                       ng-model="keynotes.title" />
             </div>     
-         {{keynotes.title}}
+      
 
 
 
@@ -42,7 +32,7 @@
                        ng-model="keynotes.desc" required ng-minlength="5"
                        floating-validation/>
             </div>
-               {{keynotes.desc}}
+         
             
           <!-- keynotes note input-->
             
