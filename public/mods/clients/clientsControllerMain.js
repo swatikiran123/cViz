@@ -10,6 +10,19 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
+  $http.get('/api/v1/secure/lov/regions').success(function(response) {
+    console.log(response);
+    $scope.regions=response.values;
+    console.log($scope.regions)
+  });
+
+  $http.get('/api/v1/secure/lov/offerings').success(function(response) {
+    console.log(response);
+    $scope.offerings=response.values;
+    console.log($scope.offerings)
+  });
+
+
   $scope.cscPersonnel={};
 
   $scope.salesExecId = "";
@@ -34,39 +47,39 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   var refresh = function() {
 
-  	$http.get('/api/v1/secure/clients').success(function(response) {
+    $http.get('/api/v1/secure/clients').success(function(response) {
 
-  		$scope.clientsList = response;
-  		$scope.clients = "";
+      $scope.clientsList = response;
+      $scope.clients = "";
 
-  		switch($scope.mode)    {
-  			case "add":
-  			$scope.clients = "";
-  			break;
+      switch($scope.mode)    {
+       case "add":
+       $scope.clients = "";
+       break;
 
-  			case "edit":
-  			$scope.clients = $http.get('/api/v1/secure/clients/' + id).success(function(response){
-  				$scope.clients = response;
+       case "edit":
+       $scope.clients = $http.get('/api/v1/secure/clients/' + id).success(function(response){
+        $scope.clients = response;
 
-          $scope.salesExecUser = response.cscPersonnel.salesExec;
-          $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
-          $scope.salesExecId = response.cscPersonnel.salesExec._id;
+        $scope.salesExecUser = response.cscPersonnel.salesExec;
+        $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+        $scope.salesExecId = response.cscPersonnel.salesExec._id;
 
-          $scope.accountGMUser = response.cscPersonnel.accountGM;
-          $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-          $scope.accountGMId = response.cscPersonnel.accountGM._id;       
+        $scope.accountGMUser = response.cscPersonnel.accountGM;
+        $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+        $scope.accountGMId = response.cscPersonnel.accountGM._id;       
 
-          $scope.industryExecUser = response.cscPersonnel.industryExec;
-          $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-          $scope.industryExecId = response.cscPersonnel.industryExec._id; 
+        $scope.industryExecUser = response.cscPersonnel.industryExec;
+        $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+        $scope.industryExecId = response.cscPersonnel.industryExec._id; 
 
-          $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
-          $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;    
+        $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+        $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+        $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;    
 
-          $scope.creUser = response.cscPersonnel.cre;
-          $scope.creEmail = response.cscPersonnel.cre.email;
-          $scope.creId = response.cscPersonnel.cre._id;                    
+        $scope.creUser = response.cscPersonnel.cre;
+        $scope.creEmail = response.cscPersonnel.cre.email;
+        $scope.creId = response.cscPersonnel.cre._id;                    
 
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.clients.startDate = new Date($scope.clients.createdOn);
@@ -79,6 +92,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   refresh();
   
   $scope.save = function(){
+    console.log($scope.regions);
     // set noteBy based on the user picker value
     $scope.cscPersonnel.salesExec = $scope.salesExecId;
     $scope.cscPersonnel.accountGM= $scope.accountGMId;
@@ -157,4 +171,3 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }
 
 }]);﻿ // controller ends
-

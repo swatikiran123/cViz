@@ -13,6 +13,7 @@ var visitSchedule 		= require(constants.paths.controllers + '/api/visitSchedules
 var feedbackDef 			= require(constants.paths.controllers + '/api/feedbackDefs');
 var fileupload						= require(constants.paths.controllers + '/api/fileupload');
 var facts 					= require(constants.paths.controllers + '/api/facts');
+var lov 					= require(constants.paths.controllers + '/api/lov');
 
 /*
  * Routes that can be accessed by any one
@@ -52,6 +53,12 @@ router.post('/api/v1/secure/clients', clients.create);
 router.put('/api/v1/secure/clients/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);
 
+// List of service routes for lov
+router.get('/api/v1/secure/lov', lov.getAll);
+router.get('/api/v1/secure/lov/:name', lov.getOneByName);
+router.post('/api/v1/secure/lov', lov.create);
+router.put('/api/v1/secure/lov/:name', lov.updateByName);
+router.delete('/api/v1/secure/lov/:name', lov.deleteByName);
 
 // List of service routes for facts
 router.get('/api/v1/secure/facts', facts.getAll);
