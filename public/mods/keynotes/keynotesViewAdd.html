@@ -1,5 +1,4 @@
 
-
  <div class="row"> 
     <div class="col-sm-1"></div>
       <div class="col-md-8">
@@ -15,17 +14,17 @@
    <!-- keynotes pageheader input--> 
     <div class="data-form">
       <form name="keynotesForm" id="keynotesForm" class="form-vertical" novalidate
-              ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+           ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}" >
 
-            <!-- keynotes title input-->
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title" id="title" name="title"
-                       ng-model="keynotes.title" required ng-minlength="5" ng-maxlength="20"
-                       floating-validation/>
-            </div>
 
-         
-    
+      <div class="form-group">
+                <input type="text" class="form-control" placeholder="title" id="title" name="title"
+                       ng-model="keynotes.title" />
+            </div>     
+      
+
+
+
            <!-- keynotes description input-->        
             
             <div class="form-group">
@@ -33,8 +32,7 @@
                        ng-model="keynotes.desc" required ng-minlength="5"
                        floating-validation/>
             </div>
-
-          
+         
             
           <!-- keynotes note input-->
             
@@ -45,7 +43,7 @@
                                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
                          ng-model="keynotes.noteText" name="note" placeholder="note" required />
             </div>
-            </div>
+            
             
              <!-- keynotes tags input-->      
             <div class="form-group">
@@ -53,17 +51,11 @@
                 
             </div>
 
-           
-    <!-- keynotes speaker input--> 
 
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="keynotes speaker" id="speaker" name="title"
-                       ng-model="keynotes.speaker"  ng-minlength="1" ng-maxlength="75" ng-blur="getUser()" required
-                       />
-            </div>
+
      <!-- keynotes speaker input--> 
-            <label>user:</label>
-            <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
+            <label>noteby :</label>
+          <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
                
                 <div class="col-md-4">
 
@@ -71,17 +63,9 @@
 
                 </div>
             </div>
-                
-                
+<br><br><br><br>
+
        
-
-
-
-
-          <br>
-          <br>
-          <br>
-          <br>
           <div class="form-group">
               <div class="pull-left">
                 <button type="submit" class="btn btn-success" 
