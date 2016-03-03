@@ -14,7 +14,11 @@ var cityFactSchema = new mongoose.Schema({
   geospot: { coordinates: {type: "Number", index: '2dsphere'} },
 
 	places : [{
-		
+		name: { type: String },
+	  desc: { type: String },
+		imageLinks: [{ type: String }],
+		geospot: { coordinates: {type: "Number", index: '2dsphere'} },
+		quickFacts: [{type: String }],
 	}],
 
   quickFacts: [{type: String }],
