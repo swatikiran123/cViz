@@ -1,5 +1,9 @@
 /* CSS used here will be applied after bootstrap.css */
-img.avatar,
+img.pic {
+  width: 122px;
+  height: 122px;
+}
+
 div.avatar {
   border: 1px solid #eee;
   width: 122px;
@@ -30,10 +34,12 @@ div.avatar {
 .cropArea {
   background: #E4E4E4;
   background-image: url("/public/assets/images/draganddrop.png");
+  background-size: 100% 100%;
   overflow: hidden;
   width:732px;
   height:405px;
-}
+} 
+
 
 @media only screen and (min-width: 768px) {
   .cropArea {
@@ -48,3 +54,13 @@ div.avatar {
     height:200px;
   }
 }
+.dialogdemoBasicUsage #popupContainer {
+  position: relative;
+  padding-top: 500px; }
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
