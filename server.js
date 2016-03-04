@@ -51,7 +51,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // multer for storing the images locally
 app.use(multer({
  // dest: './uploads/',
-  dest: './profile/avatar/',
+  dest: './public/uploads/profilePics',
  rename:function(fieldname,filename){
     return Date.now() + '.jpg';
   },

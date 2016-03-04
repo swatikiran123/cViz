@@ -16,3 +16,6 @@ public/libs
 npm-debug.log
 node_modules
 
+public/uploads
+
+profile

@@ -12,13 +12,10 @@ var feedbackDefSchema = new mongoose.Schema({
 	item								: [{
 		query							: { type: String },
 		mode							: { type: String, lowercase: true, trim: true },  // {freetext, singlechoice, multichoice}
-		choices						: [{
-			value						: { type: String, trim: true }
-		}]
+		choices							: [ { type: String, trim: true } ]
 	}],
 	createBy						: { type: Schema.Types.ObjectId, ref: 'User' },
 	createOn						: { type: Date, default: Date.now }
-
 });
 
 module.exports = mongoose.model('feedbackDefs', feedbackDefSchema);

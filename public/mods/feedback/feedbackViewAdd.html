@@ -1,0 +1,67 @@
+ <div class="row"> 
+    <div class="col-sm-1"></div>
+    <div class="col-md-8">
+
+       <!-- page header/subheader -->
+
+       <div class="page-header">
+          Feedback Template
+          <div class="sub-header">Add new Feedback Template
+          </div>
+      </div>
+
+      <!--Feedback pageheader input--> 
+      <div class="data-form">
+          <form name="feedbackForm" id="feedbackForm" class="form-vertical" novalidate
+          ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+
+          <!--Feedback Title-->
+          <div class="form-group"> 
+            <input type="text" class="form-control" placeholder="Feedback Title" id="title" name="title" 
+            ng-model="feedbackDefs.title" required/>
+          </div>                  
+
+         <!-- Feedback Type input-->
+          <div class="form-group" > 
+          Feedback Type
+          <div class="radio-inline" style="margin-left: 1cm" >
+            <label>
+            <input type="radio" ng-model="feedbackDefs.type" value="Session" required>
+              Session
+            </label><br/>
+          </div>
+          <div class="radio-inline">  
+            <label>
+            <input type="radio" ng-model="feedbackDefs.type" value="Visit">
+              Visit
+            </label><br/>
+          </div>  
+          </div>   
+          <hr>
+          <!-- Feedback Item-->   
+          Feedback Item         
+           <div ng-include src="'/public/mods/feedback/itemViewAdd.html'"></div>
+            
+         <!-- createBy
+          <div class="form-group"> 
+            <input type="text" class="form-control" placeholder="createBy" id="createBy" name="createBy" 
+            ng-model="feedbackDefs.createBy" required ng-list floating-validation/>
+          </div>
+          -->
+        <!-- createOn
+          <div class="form-group"> 
+             <input type="text" class="form-control" placeholder="createOn" id="createOn" name="createOn" 
+             ng-model="feedbackDefs.createOn" required ng-minlength="3" ng-maxlength="200" ng-list floating-validation/>
+          </div>
+        -->
+        <!-- Button -->
+          <div class="form-group">              
+              <div>
+                <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="feedbackForm.$invalid">Submit</button>
+                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+              </div>
+          </div>
+          </form>
+      </div>
+</div>
+</div>
