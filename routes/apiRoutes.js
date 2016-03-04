@@ -15,6 +15,7 @@ var fileupload						= require(constants.paths.controllers + '/api/fileupload');
 var facts 					= require(constants.paths.controllers + '/api/facts');
 
 var lov 					= require(constants.paths.controllers + '/api/lov');
+var groups					= require(constants.paths.controllers + '/api/groups');	
 
 var cityFacts				= require(constants.paths.controllers + '/api/cityFacts');
 var factSheets				=	require(constants.paths.controllers + '/api/factSheets');
@@ -120,5 +121,12 @@ router.get('/api/v1/secure/teasers/:id', teasers.getOneById);
 router.post('/api/v1/secure/teasers', teasers.create);
 router.put('/api/v1/secure/teasers/:id', teasers.updateById);
 router.delete('/api/v1/secure/teasers/:id', teasers.deleteById);
+
+// List of service routes for groups
+router.get('/api/v1/secure/admin/groups', groups.getAll);
+router.get('/api/v1/secure/admin/groups/:id', groups.getOneById);
+router.post('/api/v1/secure/admin/groups', groups.create);
+router.put('/api/v1/secure/admin/groups/:id', groups.updateById);
+router.delete('/api/v1/secure/admin/groups/:id', groups.deleteById);
 
 module.exports = router;
