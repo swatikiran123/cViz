@@ -8,5 +8,11 @@ angular.module('profile')
         templateUrl: '/public/mods/profile/profileViewMain.html',
         controller: 'profileControllerMain'
       })
+
+      .when('/:id/show/', {
+        templateUrl: '/public/mods/profile/profileViewEdit.html',
+        controller: 'profilebyIdControllerMain'
+      })
     }
+
   ]);
