@@ -10,8 +10,8 @@
     visits Management - Add
     <div class="sub-header">Add new visit           
       <a class="table-btn" href="#"><span class="glyphicon glyphicon-envelope" /></a>
-        <a class="table-btn" href="#"><span class="glyphicon glyphicon-hand-up" /></a>
-        <a class="table-btn" href="#/session"><span class="glyphicon glyphicon-calendar" /></a>
+      <a class="table-btn" href="#"><span class="glyphicon glyphicon-hand-up" /></a>
+      <a class="table-btn" href="#/session"><span class="glyphicon glyphicon-calendar" /></a>
     </div>
   </div>
 
@@ -27,13 +27,18 @@
       floating-validation/>
     </div>
     
-    <!-- visits client input-->
+    <!-- visits client input
     <div class="form-group">
       <input type="text" class="form-control" placeholder="client" id="client" name="client"
       ng-model="visits.client" required ng-minlength="5" ng-maxlength="50"
       floating-validation/>
+    </div>-->
+    
+    <!-- visits client input-->
+    <div class="form-group">
+      <input class="form-control" ng-model="client" autocomplete placeholder="client" id="client" name="client" required floating-validation/>
     </div>
-   
+
     <!-- visits agenda -->
     <div class="form-group">
       <text-angular 
@@ -71,21 +76,21 @@
     <div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>
 
     <!--vist Interest interest. businessType visitType objective-->
-  
+
     <!-- visits businessType-->
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Business Type" id="businessType" name="businessType"
       ng-model="visits.interest.businessType" required ng-minlength="5" ng-maxlength="50"
       floating-validation/>
     </div>
-   
-   <!-- visits visitType-->
+
+    <!-- visits visitType-->
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Visit Type" id="visitType" name="visitType"
       ng-model="visits.interest.visitType" required ng-minlength="5" ng-maxlength="50"
       floating-validation/>
     </div>
-   
+
     <!-- visits objective -->
     <div class="form-group">
       <text-angular 
@@ -111,6 +116,8 @@
     <br>
     <br>
     <br>
+    <br><br>
+    
     
     <!--buttons-->
     <div class="form-group">
@@ -121,7 +128,6 @@
       <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
   </div>
-
 </form>
 </div>
 </div>

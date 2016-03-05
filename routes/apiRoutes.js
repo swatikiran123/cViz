@@ -52,6 +52,7 @@ router.get('/api/v1/secure/clients/:id', clients.getOneById);
 router.post('/api/v1/secure/clients', clients.create);
 router.put('/api/v1/secure/clients/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);
+router.get('/api/v1/secure/clients/clientName/:name', clients.getOneByName);
 
 // List of service routes for lov
 router.get('/api/v1/secure/lov', lov.getAll);

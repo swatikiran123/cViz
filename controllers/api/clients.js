@@ -11,6 +11,7 @@ controller.create     = create;
 controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
+controller.getOneByName = getOneByName;
 
 module.exports = controller;
 
@@ -30,6 +31,7 @@ function getAll(req,res){
 }
 
 function getOneById(req,res){
+    console.log("im in here")
   dataService.getOneById(req.params.id)
     .then(function(data){
         if (data){
@@ -43,6 +45,23 @@ function getOneById(req,res){
         res.status(500).send(err);
     });
 }
+
+function getOneByName(req,res){
+    console.log(req.params.name);
+  dataService.getOneByName(req.params.name)
+  .then(function(data){
+    if (data){
+        res.send(data);
+    }else {
+        res.sendStatus(404).send("Doc dont exists");
+    }
+})
+  .catch(function (err){
+    console.log("doc dont exists" + err);
+    res.status(500).send(err);
+});
+}
+
 
 function create(req, res) {
   dataService.create(req.body)

@@ -2,8 +2,19 @@
 
 var visitsApp = angular.module('visits');
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
-  function($scope, $http, $routeParams, $location, growl) {
+//autocompleate
+visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
+  return {
+    search: function (term) {
+      return $http.get('/api/v1/secure/clients/clientName/' + term).then(function (response) {
+        return response.data;
+      });
+    }
+  };
+}]);
+
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 'AutoCompleteService',
+  function($scope, $http, $routeParams, $location, growl, AutoCompleteService) {
 
     var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -106,6 +117,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     var inData       = $scope.visits;
     inData.schedule = $scope.schedules;
     inData.visitors = $scope.visitors;
+    inData.client = $scope.client;
+    
     console.log(inData);
 
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -225,11 +238,36 @@ $scope.editvisitor = function(index,visitorDef){
   $scope.visitorDef = visitorDef;
   console.log($scope.visitorDef.influence);
   $scope.visitors.splice(index, 1);
-  };
+};
 // visit visitor table end
-
 }])
 
+//Aoutocompleate
+visitsApp.directive("autocomplete", ["AutoCompleteService", function (AutoCompleteService) {
+  return {
+    restrict: "A",              //taking attribute value
+    link: function (scope, elem, attr, ctrl) {
+      elem.autocomplete({
+        source: function (searchTerm, response) {
+          AutoCompleteService.search(searchTerm.term).then(function (autocompleteResults) {
+            response($.map(autocompleteResults, function (autocompleteResult) {
+              return {
+                label: autocompleteResult.YourDisplayProperty,
+                value: autocompleteResult 
+              }
+            }))
+          });
+        },
+        minLength: 4,
+        select: function (event, selectedItem) {
+          scope.client= selectedItem.item.value;
+          scope.$apply();
+          event.preventDefault();
+        }
+      });
+    }
+  };
+}]);
 //ui-date picker
 visitsApp.directive('uiDate', function() {
   return {
@@ -262,4 +300,3 @@ visitsApp.directive('uiDate', function() {
     }
   };
 });
-
