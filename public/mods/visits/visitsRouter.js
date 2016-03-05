@@ -28,7 +28,11 @@ angular.module('visits')
         templateUrl: '/public/mods/scheduler/schedulerView.html',
         controller: 'schedulerController'
       })
-
+      
+      .when('/panelsVisitview', {
+        templateUrl: '/public/mods/visits/partials/visitsViewPanels.html',
+        controller: 'visitsControllerMain'
+      })
       .when('/:id/editVisit', {
         templateUrl: '/public/mods/visits/visitsViewAdd.html',
         controller: 'visitsControllerMain'

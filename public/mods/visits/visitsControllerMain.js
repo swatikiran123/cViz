@@ -2,16 +2,46 @@
 
 var visitsApp = angular.module('visits');
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
-  function($scope, $http, $routeParams, $location, growl) {
+//Autocompleate - Factory
+visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
+  return {
+    search: function (term) {
+      //var client = {name: new RegExp(term, 'i')};
+      var maxRecs = 10;
+      var fields = ('name _id');
+      var sort = ({name:'ascending'});
+      return $http({
+        method: 'GET',
+        url: '/api/v1/secure/clients/find',
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+      }).then(function (response) {
+        return response.data;
+      });
+    }
+  };
+}]);
+
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams', '$rootScope', '$location', 'growl', 'AutoCompleteService',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService) {
 
     var id = $routeParams.id;
+
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
   $scope.schedules=[];
   $scope.visitors=[];
+  var name= $rootScope.user._id;
   
+  //Location - Http get for drop-down
+  $http.get('/api/v1/secure/lov/location').success(function(response) {
+    $scope.location=response.values;
+  });
+
+  //Influence - Http get for drop-down
+  $http.get('/api/v1/secure/lov/influence').success(function(response) {
+    $scope.influence=response.values;
+  });
 
   $scope.visitorId = "";
   $scope.visitor = "";
@@ -25,66 +55,63 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.anchorEmail = "";
   $scope.anchorUser =  "";
 
-  $scope.createById = "";
-  $scope.createByEmail = "";
-  $scope.createByUser =  "";
-
   var refresh = function() {
 
     $http.get('/api/v1/secure/visits').success(function(response) {
-      console.log(response);
-      console.log($scope.visits);
       $scope.visitsList = response;
       $scope.visits = "";
       $scope.schedules=[];
       $scope.visitors=[];
 
-      switch($scope.mode)    {
-        case "add":
-        $scope.visits = "";
-        break;
+        //Start-date End-date Locations 
+        angular.forEach($scope.visitsList, function(item){
+         item.startDate = item.schedule[0].startDate;
+         item.endDate = item.schedule[item.schedule.length-1].endDate;
 
-        case "edit":
-        $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
-          var visits = response;
-          $scope.schedules = visits.schedule;       //list of schedules
-          $scope.visitors = visits.visitors;      //list of visitors
-          $scope.visits = visits;               //whole form object
-          //$scope.visits = response;
-          console.log($scope.visitors);
-          console.log($scope.schedules);
-          console.log($scope.visits);
-          console.log(response.agm);
-          console.log(response.anchor);
-          console.log(response.createBy);
+         angular.forEach(item.schedule, function(sch){
+           if(item.locations === undefined)
+            item.locations = sch.location;
+          else
+            item.locations = item.locations + ", " + sch.location;
 
+        })
+       })
+        switch($scope.mode)    {
+          case "add":
+          $scope.visits = "";
+          break;
+
+          case "edit":
+          $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
+            var visits = response;
+          $scope.schedules = visits.schedule;       //List of schedules
+          $scope.visitors = visits.visitors;      //List of visitors
+          $scope.visits = visits;               //Whole form object
+          
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
-
+          $scope.clientName= response.client.name;
 
           $scope.anchorUser = response.anchor;
           $scope.anchorEmail = response.anchor.email;
           $scope.anchorId = response.anchor._id;
 
-          $scope.createByUser = response.createBy;
-          $scope.createByEmail = response.createBy.email;
-          $scope.createById = response.createBy._id;
-            // reformat date fields to avoid type compability issues with <input type=date on ng-model
+            // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
           });
 
-      } // switch scope.mode ends
-    }); // get visit call back ends
-  }; // refresh method ends
+      } // Switch scope.mode ends
+    }); // Get visit call back ends
+  }; // Refresh method ends
 
   refresh();
 
   $scope.save = function(){
-    // set agm based on the user picker value
+    // Set agm based on the user picker value
     $scope.visits.agm = $scope.agmId;
     $scope.visits.anchor = $scope.anchorId;
-    $scope.visits.createBy = $scope.createById;
+    console.log($rootScope.user._id);
 
     switch($scope.mode)    {
       case "add":
@@ -94,19 +121,18 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       case "edit":
       $scope.update();
       break;
-      } // end of switch scope.mode ends
+      } // End of switch scope.mode ends
 
       $location.path("/");
-  } // end of save method
+  } // End of save method
 
   $scope.create = function() {
 
-    console.log($scope.schedules);
-    console.log($scope.visitors);
     var inData       = $scope.visits;
     inData.schedule = $scope.schedules;
     inData.visitors = $scope.visitors;
-    console.log(inData);
+    inData.client = $scope.clientId;
+    inData.createBy =  $rootScope.user._id;
 
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
       refresh();
@@ -114,8 +140,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     })
     .error(function(data, status){
       growl.error("Error adding visit");
-    }); // http post keynoges ends
-  }; // create method ends
+    }); // Http post visit ends
+  }; //End of create method
 
   $scope.delete = function(visits) {
     var title = visits.title;
@@ -125,8 +151,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     })
     .error(function(data, status){
       growl.error("Error deleting visit");
-    }); // http delete keynoges ends
-  }; // delete method ends
+    }); // Http put delete ends
+  }; // Delete method ends
 
   $scope.update = function() {
 
@@ -136,8 +162,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     })
     .error(function(data, status){
       growl.error("Error updating visit");
-    }); // http put keynoges ends
-  }; // update method ends
+    }); // Http put visit ends
+  }; // Update method ends
 
   $scope.cancel = function() {
 
@@ -158,20 +184,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       var user = response;
       $scope.visits.anchor = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);  });
 
-    $http.get('/api/v1/secure/admin/users/' + inData.createBy).success(function(response) {
-      console.log(response);
-      var user = response;
-      $scope.visits.createBy = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-    });
   }
 
-  // visit schedule table
+  // Visit schedule table
 
   $scope.addSchedule=function(schedule){
-
-    console.log(schedule.startDate);
-    console.log(schedule.endDate);
-    console.log(schedule.location)
 
     $scope.schedules.push({
       startDate: schedule.startDate,
@@ -189,21 +206,15 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   }; 
 
   $scope.editSchedule = function(index,schedule){
-    console.log(schedule.location);
     $scope.schedule= schedule;
     $scope.schedules.splice(index, 1);
   };
-// visit schedule table end
+// Visit schedule table end
 
 
-  // visit visitor table
+  // Visit visitor table
 
   $scope.addvisitor=function(visitorDef){
-
-   // $scope.visitorDef.visitor = $scope.visitor;
-   console.log(visitorDef.influence);
-   console.log(visitorDef.visitor);
-
 
    $scope.visitors.push({
     visitor: visitorDef.visitorId,
@@ -221,16 +232,41 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 }; 
 
 $scope.editvisitor = function(index,visitorDef){
-  console.log(visitorDef.visitor);
   $scope.visitorDef = visitorDef;
-  console.log($scope.visitorDef.influence);
   $scope.visitors.splice(index, 1);
-  };
-// visit visitor table end
-
+};
+// Visit visitor table end
 }])
 
-//ui-date picker
+//Autocompleate - Directive
+visitsApp.directive("autocomplete", ["AutoCompleteService", function (AutoCompleteService) {
+  return {
+    restrict: "A",              //Taking attribute value
+    link: function (scope, elem, attr, ctrl) {
+      elem.autocomplete({
+        source: function (searchTerm, response) {
+          AutoCompleteService.search(searchTerm.term).then(function (autocompleteResults) {
+            response($.map(autocompleteResults, function (autocompleteResult) {
+              return {
+                label: autocompleteResult.name,
+                value: autocompleteResult.name,
+                id: autocompleteResult._id
+              }
+            }))
+          });
+        },
+        minLength: 4,
+        select: function (event, selectedItem) {
+          scope.clientName= selectedItem.item.value;
+          scope.clientId= selectedItem.item.id;
+          scope.$apply();
+          event.preventDefault();
+        }
+      });
+    }
+  };
+}]);
+//ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
   return {
     require: '?ngModel',
@@ -262,4 +298,3 @@ visitsApp.directive('uiDate', function() {
     }
   };
 });
-

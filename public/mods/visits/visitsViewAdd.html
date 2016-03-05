@@ -7,62 +7,72 @@
    <!-- page header/subheader -->
 
    <div class="page-header">
-    visits Management - Add
+    Visit Planner - Add
     <div class="sub-header">Add new visit           
-      <a class="table-btn" href="#"><span class="glyphicon glyphicon-envelope" /></a>
-        <a class="table-btn" href="#"><span class="glyphicon glyphicon-hand-up" /></a>
-        <a class="table-btn" href="#/session"><span class="glyphicon glyphicon-calendar" /></a>
     </div>
   </div>
+  <div class= "page-toolbar"> 
 
+    <div class="pull-right">
+
+      <a href="#"><i class="fa fa-envelope"></i></a>&nbsp;email&nbsp;
+      <a href="#"> <i class="fa fa-thumbs-o-up"></i></a>&nbsp;follow&nbsp;
+      <a href="#/session"><i class="fa fa-calendar"></i></a>&nbsp;schedule&nbsp;
+    </div>
+  </div><br><br>
   <!-- visits pageheader input--> 
   <div class="data-form">
-    <form name="visitsForm" id="visitsForm" class="form-vertical" novalidate
-    ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+    <form name="visitsForm" id="visitsForm" class="form-vertical" >
 
-    <!-- visits title input-->
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Title" id="title" name="title"
-      ng-model="visits.title" required ng-minlength="3" ng-maxlength="50"
-      floating-validation/>
-    </div>
-    
-    <!-- visits client input-->
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="client" id="client" name="client"
-      ng-model="visits.client" required ng-minlength="5" ng-maxlength="50"
-      floating-validation/>
-    </div>
-   
-    <!-- visits agenda -->
-    <div class="form-group">
-      <text-angular 
-      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.agenda" name="note" placeholder="Agenda of visit." required /></text-angular>
-    </div>
 
-    <!-- visits edited By input--> 
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
-      <label class="col-md-4 control-label">AGM &nbsp;&nbsp; :</label>  
-      <div class="col-md-4">
-        <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" ></div>
-      </div>
-    </div>
-    <br>
-    <br>
-    <br>
+      <!-- visits title input-->
+      <md-input-container class="md-block">
+      <label>Title</label>
+      <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
+      <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
 
-    <!-- visits anchor By input--> 
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
-      <label class="col-md-4 control-label">Anchor &nbsp;&nbsp; :</label>  
-      <div class="col-md-4">
+      <!-- visits client input-->
+      <md-input-container class="md-block">
+      <label>Client Name</label>
+      <input  required name="clientname" ng-model="clientName" autocomplete required>
+      <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+        </div></div>
+      </md-input-container>
+
+      <!-- visits agenda -->
+      <div class="field">
+        <label ng-show="visits.agenda" class="show-hide">Agenda</label>
+        <div class="form-group">
+          <text-angular 
+          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+          ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+        </div></div>
+
+        <!-- visits AGM By input--> 
+
+        <md-input-container class="md-block">
+        <label>AGM</label>
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
+          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" ></div>
+        </div>
+      </md-input-container>
+
+      <!-- visits anchor By input--> 
+
+      <md-input-container class="md-block">
+      <label>Anchor</label>
+      <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
         <div user type="picker" user-model="anchorUser" user-id="anchorId" user-email="anchorEmail" ></div>
       </div>
-    </div>
-    <br>
-    <br>
-    <br>
+    </md-input-container>
 
     <!--visit Schedule-->
     <div ng-include src="'/public/mods/visits/scheduleViewAdd.html'"></div>
@@ -71,58 +81,59 @@
     <div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>
 
     <!--vist Interest interest. businessType visitType objective-->
-  
+
     <!-- visits businessType-->
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Business Type" id="businessType" name="businessType"
-      ng-model="visits.interest.businessType" required ng-minlength="5" ng-maxlength="50"
-      floating-validation/>
-    </div>
-   
-   <!-- visits visitType-->
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Visit Type" id="visitType" name="visitType"
-      ng-model="visits.interest.visitType" required ng-minlength="5" ng-maxlength="50"
-      floating-validation/>
-    </div>
-   
+    <md-input-container class="md-block">
+    <label>Business Type</label>
+    <input md-maxlength="30" minlength="5" required name="businessType" ng-model="visits.interest.businessType">
+    <div ng-messages="visitsForm.interest.businessType.$error" ng-show="visitsForm.interest.businessType.$touched || !visitsForm.interest.businessType.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The business type has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the business type should contain minimum 5characters</div></div></div>
+    </md-input-container>
+
+    <!-- visits visitType-->
+    <md-input-container class="md-block">
+    <label>Visit Type</label>
+    <input md-maxlength="30" minlength="5" required name="visitType" ng-model="visits.interest.visitType">
+    <div ng-messages="visitsForm.interest.visitType.$error" ng-show="visitsForm.interest.visitType.$touched || !visitsForm.interest.visitType.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The visit type has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the visit type should contain minimum 5characters</div></div></div>
+    </md-input-container>
+
     <!-- visits objective -->
-    <div class="form-group">
-      <text-angular 
-      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.interest.objective" name="objective" placeholder="Intrest Objective of visit." required /></text-angular>
-    </div>
+    <div class="field">
+      <label ng-show="visits.objective" class="show-hide">Visits Objective</label>
+      <div class="form-group">
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+        ng-model="visits.interest.objective" name="objective" placeholder="Describe visit Objective" required /></text-angular>
+      </div></div>
 
-    <!-- visits status input-->
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.status.$touched && clientsForm.status.$invalid }">
-      <input type="text" class="form-control" id="status" name="status"
-      ng-model="visits.status" required ng-minlength="5" ng-maxlength="50"
-      floating-validation/>
-    </div> 
-
-    <!-- visits createBy --> 
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.createByUser.$touched && clientsForm.createByUser.$invalid }">
-      <label class="col-md-4 control-label">Created By &nbsp;&nbsp; :</label>  
-      <div class="col-md-4">
-        <div user type="picker" user-model="createByUser" user-id="createById" user-email="createByEmail" ></div>
+      <!-- visits status input-->
+      <md-input-container class="md-block">
+      <label>Status</label>
+      <input md-maxlength="30" minlength="3" required name="status" ng-model="visits.status">
+      <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The visit type has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the visit type should contain minimum 5characters</div></div></div>
+      </md-input-container>
+      <!--buttons-->
+      <div class="form-group">
+        <div class="pull-left">
+          <button type="submit" class="btn btn-success" 
+          ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
+        </button>
+        <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    
-    <!--buttons-->
-    <div class="form-group">
-      <div class="pull-left">
-        <button type="submit" class="btn btn-success" 
-        ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
-      </button>
-      <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>
-  </div>
-
-</form>
+  </form>
 </div>
 </div>
 </div>
