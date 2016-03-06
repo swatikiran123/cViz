@@ -57,22 +57,24 @@ body {
 .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
   color: black;
   background-color:#ebebfa;
-  border-top: 5px solid red;
+  border-bottom: 3px solid red;
 }
 
 .navbar-custom .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: black;
   background-color:#ebebfa;
-  border-top: 5px solid red;
+  border-bottom: 3px solid red;
 }
 
 .dropdown-menu{
   background-color:#f0f0f5;
 }
+
 .navbar-custom .navbar-brand {
     color:#eeeeee;
 }
 
+/* styles to change hamburger menu icon */
 .navbar-toggle .icon-bar:nth-of-type(2) {
 	  top: 1px;
 }
@@ -80,8 +82,6 @@ body {
 .navbar-toggle .icon-bar:nth-of-type(3) {
   	top: 2px;
 }
-
-
 
 .navbar-toggle .icon-bar {
 	  position: relative;
@@ -101,6 +101,32 @@ body {
 .navbar-toggle.active .icon-bar:nth-of-type(3) {
 	  top: -6px;
 	  transform: rotate(-45deg);
+}
+
+/* style for left pull menu */
+@media screen and (max-width: 768px) {
+  .side-collapse-container{
+      width:100%;
+      position:relative;
+      left:0;
+      transition:left .4s;
+  }
+  .side-collapse-container.out{
+      left:200px;
+  }
+  .side-collapse {
+      top:50px;
+      background-color:#ebebfa;
+      bottom:0;
+      left:0;
+      width:200px;
+      position:fixed;
+      overflow:hidden;
+      transition:width .4s;
+  }
+  .side-collapse.in {
+      width:0;
+  }
 }
 
 /* Text styles */
