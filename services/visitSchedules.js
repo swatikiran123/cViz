@@ -59,12 +59,13 @@ function getAllByVisitId(id){
     var deferred = Q.defer();
 
     model
-        .findOne({ visit: id })
+        .find({ visit: id })
         .populate('visit')
         .populate('client')
         .populate('session.owner')
         .populate('session.supporter')
         .populate('invitees')
+        .sort({scheduleDate: 1, 'session.startTime': 1})
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

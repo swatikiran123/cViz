@@ -2,169 +2,153 @@
 
 var schedulerApp = angular.module('scheduler', ['ngFloatingLabels', "kendo.directives"]);
 
-schedulerApp.controller('schedulerController', ['$scope', '$http', '$routeParams', '$location', 'growl',
-    function($scope, $http, $routeParams, $location, growl) {
+schedulerApp.controller('schedulerController', ['$scope', '$http', '$routeParams', 'growl',
+  function($scope, $http, $routeParams, growl) {
 
-        var id = $routeParams.id;
-        // AUtomatically swap between the edit and new mode to reuse the same frontend form
-        $scope.mode = (id == null ? 'add' : 'edit');
-        $scope.hideFilter = true;
+  $scope.visitId = $routeParams.id;
 
-        $scope.session = {};
+  $scope.ownerId = "";
+  $scope.ownerEmail = "";
+  $scope.ownerUser = "";
 
-        $scope.ownerId = "";
-        $scope.ownerEmail = "";
-        $scope.ownerUser = "";
+  $scope.supporterId = "";
+  $scope.supporterEmail = "";
+  $scope.supporterUser = "";
 
-        $scope.supporterId = "";
-        $scope.supporterEmail = "";
-        $scope.supporterUser = "";
+  var refresh = function() {
 
+    $scope.visit="";
+    $scope.schedule={};
 
-        var refresh = function() {
+    $http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
+      $scope.visit = response;
+      $scope.visitStartDate = $scope.visit.schedule[0].startDate;
+      $scope.visitEndDate = $scope.visit.schedule[$scope.visit.schedule.length-1].endDate;
+      $scope.scheduleDates = $scope.buildScheduleDates();
+    });
 
-            $http.get('/api/v1/secure/visitSchedules').success(function(response) {
+    $http.get('/api/v1/secure/visitSchedules/visit/' + $scope.visitId ).success(function(response) {
+      $scope.scheduleList = response;
+    }); // get visitSchedule call back ends
+  }; // refresh method ends
 
-                $scope.visit_schedulesList = response;
-                $scope.visit_schedules = "";
+  refresh();
 
-                switch ($scope.mode) {
-                    case "add":
-                        $scope.visit_schedules = "";
-                        break;
-
-                    case "edit":
-                        $scope.visit_schedules = $http.get('/api/v1/secure/visitSchedules/' + id).success(function(response) {
-                            $scope.visit_schedules = response;
-
-                            $scope.ownerUser = response.session.owner;
-                            $scope.ownerEmail = response.session.owner.email;
-                            $scope.ownerId = response.session.owner._id;
-
-                            $scope.supporterUser = response.session.supporter;
-                            $scope.supporterEmail = response.session.supporter.email;
-                            $scope.supporterId = response.session.supporter._id;
-
-
-                        });
-
-                } // switch scope.mode ends
-            }); // get visitSchedule call back ends
-        }; // refresh method ends
-
-        refresh();
-
-        $scope.save = function() {
-                // set noteBy based on the user picker value
-                $scope.session.owner = $scope.ownerId;
-                $scope.session.supporter = $scope.supporterId;
-                switch ($scope.mode) {
-                    case "add":
-                        $scope.create();
-                        break;
-
-                    case "edit":
-                        $scope.update();
-                        break;
-                } // end of switch scope.mode ends
-
-                $location.path("/s/");
-            } // end of save method
-
-        $scope.create = function() {
-            var inData = $scope.visit_schedules;
-            inData = $scope.session;
-            $http.post('/api/v1/secure/visitSchedules', inData).success(function(response) {
-                    refresh();
-
-                    growl.info(parse("visitSchedule [%s]<br/>Added successfully", $scope.visit_schedules.visit));
-                })
-                .error(function(data, status) {
-                    growl.error("Error adding visitSchedule");
-                }); // http post visitSchedule ends
-        }; // create method ends
-
-        $scope.delete = function(visit_schedules) {
-            var visit = visit_schedules.visit;
-            $http.delete('/api/v1/secure/visitSchedules/' + visit_schedules._id).success(function(response) {
-                    refresh();
-                    growl.info(parse("visitSchedule [%s]<br/>Deleted successfully", visit));
-                })
-                .error(function(data, status) {
-                    growl.error("Error deleting visitSchedule");
-                }); // http delete visitSchedule ends
-        }; // delete method ends
-
-        $scope.update = function() {
-            var inData = $scope.visit_schedules;
-            inData = $scope.session;
-
-            $http.put('/api/v1/secure/visitSchedules/' + $scope.visit_schedules._id, inData).success(function(response) {
-                    refresh();
-                    growl.info(parse("visitSchedule [%s]<br/>Edited successfully", $scope.visit_schedules.visit));
-                })
-                .error(function(data, status) {
-                    growl.error("Error updating visitSchedule");
-                }); // http put visitSchedule ends
-        }; // update method ends
-
-        $scope.cancel = function() {
-
-            $scope.visit_schedules = "";
-            $location.path("/s/");
-        }
-
-        $scope.getUser = function() {
-
-
-            $http.get('/api/v1/secure/admin/users/' + $scope.session).success(function(response) {
-
-                var user = response;
-                $scope.session.owner = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-                $scope.session.supporter = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-
-
-            });
-        }
-        $scope.showModal = false;
-        $scope.toggleModal = function() {
-            $scope.showModal = !$scope.showModal;
-        };
-
-
-        // type field dropdown list
-        $scope.type = [{
-            session: 'presentation'
-        }, {
-            session: 'discussion'
-        }, {
-            session: 'tea'
-        }, {
-            session: 'lunch'
-        }, {
-            session: 'dinner'
-        }, {
-            session: 'floor-walk'
-        }];
-
-        
-        // location field dropdown list
-        $scope.location = [{
-            session: 'Hyderabad'
-        }, {
-            session: 'Chennai'
-        }, {
-            session: 'Banglore'
-        }, {
-            session: 'Indore'
-        }, {
-            session: 'Noida'
-        }, {
-            session: 'Mumbai'
-        }];
-
-
+  $scope.buildScheduleDates = function()
+  {
+    var scheduleDates = [];
+    for (var d = new Date($scope.visitStartDate); d <= new Date($scope.visitEndDate); d.setDate(d.getDate() + 1)) {
+        scheduleDates.push(new Date(d));
     }
+    return scheduleDates;
+  }
+
+  $scope.addSession = function(){
+    $scope.mode = "add";
+    $scope.toggleModal();
+  }
+
+  $scope.editSession = function(id){
+    $scope.mode = "edit";
+    $http.get('/api/v1/secure/visitSchedules/' + id ).success(function(response) {
+      $scope.schedule = response;
+      $scope.schedule.startTime = new Date($scope.schedule.startTime);
+      $scope.schedule.endTime = new Date($scope.schedule.endTime);
+    }); // get visitSchedule call back ends
+    $scope.toggleModal();
+  }
+
+  $scope.deleteSession = function(schedule) {
+    $http.delete('/api/v1/secure/visitSchedules/' + session._id).success(function(response) {
+      refresh();
+      growl.info(parse("Title: [%s]<br/>Session schedule deleted successfully", visit));
+    })
+    .error(function(data, status) {
+      growl.error("Error deleting visitSchedule");
+    }); // http delete visitSchedule ends
+  }; // delete method ends
+
+  $scope.save = function() {
+    $scope.schedule.owner = $scope.ownerId;
+    $scope.schedule.supporter = $scope.supporterId;
+    $scope.schedule.scheduleDate = $scope.scheduleDate;
+    $scope.schedule.visit = $scope.visit._id;
+    $scope.schedule.client = $scope.visit.client._id;
+
+    console.log("Session ["+ $scope.mode +"]"+ JSON.stringify( $scope.schedule));
+    switch ($scope.mode) {
+      case "add":
+        $scope.create();
+        break;
+
+      case "edit":
+        $scope.update();
+        break;
+    } // end of switch scope.mode ends
+    $scope.toggleModal();
+  } // end of save method
+
+  $scope.create = function() {
+
+    $http.post('/api/v1/secure/visitSchedules', $scope.schedule).success(function(response) {
+      refresh();
+      growl.info(parse("Title: [%s]<br/>New session schedule added", $scope.schedule.title));
+    })
+    .error(function(data, status) {
+      growl.error("Error adding visitSchedule");
+    }); // http post visitSchedule ends
+  }; // create method ends
+
+  $scope.update = function() {
+    $http.put('/api/v1/secure/visitSchedules/' + $scope.visit_schedules._id, inData).success(function(response) {
+      refresh();
+      growl.info(parse("Title: [%s]<br/>Session schedule updated successfully", $scope.visit_schedules.visit));
+    })
+    .error(function(data, status) {
+    growl.error("Error updating visitSchedule");
+    }); // http put visitSchedule ends
+  }; // update method ends
+
+  $scope.cancel = function() {
+    $scope.toggleModal();
+  }
+
+  $scope.showModal = false;
+  $scope.toggleModal = function() {
+      $scope.showModal = !$scope.showModal;
+  };
+
+  // type field dropdown list
+  $scope.type = [{
+      session: 'presentation'
+  }, {
+      session: 'discussion'
+  }, {
+      session: 'tea'
+  }, {
+      session: 'lunch'
+  }, {
+      session: 'dinner'
+  }, {
+      session: 'floor-walk'
+  }];
+
+    // location field dropdown list
+    $scope.location = [{
+        session: 'Board Room'
+    }, {
+        session: '1st Floor Conference Room'
+    }, {
+        session: 'B4 Cafeteria'
+    }, {
+        session: 'B4 Executive Dining Room'
+    }, {
+        session: 'Amphi Theatre'
+    }, {
+        session: 'Main Lobby'
+    }];
+
+  }
 ]);
 
 // Pop up directive
