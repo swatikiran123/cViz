@@ -23,7 +23,7 @@
         <label>Title</label>
         <input md-maxlength="30" minlength="5" required name="title" ng-model="keynotes.title">
         <div ng-messages="keynotesForm.title.$error" ng-show="keynotesForm.title.$touched || !keynotesForm.title.$pristine">
-             <div class="text-desc">
+             <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
          <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
@@ -34,12 +34,13 @@
     <md-input-container class="md-block">
         <label>Description</label>
         <textarea md-maxlength="1000" minlength="5" required name="desc" ng-model="keynotes.desc"></textarea>
-        <div ng-messages="keynotesForm.desc.$error" ng-show="keynotesForm.desc.$touched || !keynotesForm.desc.$pristine"><div class="text-desc">
+        <div ng-messages="keynotesForm.desc.$error" ng-show="keynotesForm.desc.$touched || !keynotesForm.desc.$pristine">
+        <div class="messagenotify">
          <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The description has to be less than 1000characters long.</div>
          <div ng-message="minlength" >the description should contain minimum 5characters</div></div></div>
       </md-input-container>
-       <br>
+       
          
     <div class="field">
                   <label ng-show="keynotes.noteText" class="show-hide">note</label><br>
@@ -48,23 +49,10 @@
                                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
                          ng-model="keynotes.noteText" name="note"/>
          </text-angular></div>
-
-
-     
-
-  
-<md-chips 
-       name="tags"
-        ng-model="tags"
-        readonly="ctrl.readonly"
-        placeholder="Enter a tag"
-        delete-button-label="Remove Tag"
-        delete-hint="Press delete to remove tag"
-        secondary-placeholder="+Tag"></md-chips></md-input-container>
  
 
      <!-- keynotes speaker input--> 
-       <br>
+       
           <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
                <div class="col=md-4">
            <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
@@ -73,7 +61,16 @@
             </div>
 
 
-       
+ 
+<md-chips 
+       name="tags"
+        ng-model="tags"
+        readonly="ctrl.readonly"
+        placeholder="Enter a tag"
+        delete-button-label="Remove Tag"
+        delete-hint="Press delete to remove tag"
+        secondary-placeholder="+Tag"></md-chips></md-input-container>
+<br>
           <div class="form-group">
               <div class="pull-left">
                 <button type="submit" class="btn btn-success" 
