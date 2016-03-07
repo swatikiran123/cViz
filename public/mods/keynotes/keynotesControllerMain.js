@@ -5,9 +5,14 @@ var keynotesApp = angular.module('keynotes');
 keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope', '$routeParams', '$location', 'growl',
   function($scope, $http,$rootScope, $routeParams, $location, growl) {
   
-
-
-var id = $routeParams.id;
+    var self = this;
+    self.readonly = false;
+    // Lists of fruit names and Vegetable objects
+ 
+    $scope.tags=[];
+    var tag=$scope.tags;
+    console.log(tag);
+    var id = $routeParams.id;
       // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
@@ -22,12 +27,9 @@ var id = $routeParams.id;
 
       $scope.keynotesList = response;
       $scope.keynotes = "";
- 
 
-
-
-
-      switch($scope.mode)    {
+    
+  switch($scope.mode)    {
         case "add":
           $scope.keynotes = "";
           break;
@@ -56,10 +58,19 @@ var id = $routeParams.id;
   $scope.save = function(){
     // set noteBy based on the user picker value
     $scope.keynotes.noteBy = $scope.noteById;
-         $scope.keynotes.createby = $rootScope.user._id;
-         console.log($scope.keynotes.createby);
- 
+    console.log($scope.keynotes.noteBy);
+    $scope.keynotes.createby = $rootScope.user._id;
+    
+     $scope.keynotes.tags = tag;
+         angular.forEach($scope.keynotes.tags, function(ofrngs){
+               if($scope.keynotes.tags === undefined)
+        $scope.keynotes.tags = ofrngs.tag1;
+      else
+        $scope.keynotes.tags = $scope.keynotes.tags+ ", " + ofrngs.tag1;
 
+     });
+
+   console.log($scope.keynotes.tags);
 
     switch($scope.mode)    {
       case "add":

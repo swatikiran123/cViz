@@ -1,0 +1,82 @@
+/*dataview table styles*/ 
+
+/* table styles */
+table.table
+{
+  border: none;
+  border-spacing: 2px;
+  border-collapse: collapse;
+}
+
+table.table td, table.table th
+{
+    padding: 0; /* 'cellpadding' equivalent */
+}
+
+/* table head styles */
+table.table tr th
+{
+  background-color:#6495ce !important; 
+  font-color:white !important;
+  font-family: verdana, arial !important; 
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+table.table tr th a
+{
+  color: #ecf2f9;
+}
+
+/* table body  font  styles */
+table.table tr td
+{
+  font-family: verdana, arial !important; 
+  font-size: 12px !important;
+  font-weight: normal !important;
+}
+
+/* table body  stripped colors  styles */
+
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+   background-color: #ecf2f8;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: white;
+}
+
+/* table button glyphicons styles */
+
+.table-btn:hover
+{
+  cursor: pointer; cursor: hand; 
+}
+
+.table-btn:hover .glyphicon {
+    font-size: 14px;
+    color:blue;
+}
+
+.table-btn .glyphicon {
+    font-size: 14px;
+    color:gray;
+}
+
+/*filter head style*/
+.filter-header
+{
+  width: 100%;
+  margin: 10px 10px 10px 0px;
+}
+
+/*table footer style*/
+tfoot{
+  background-color:#6495ce !important; 
+  font-color:white !important;
+  font-family: verdana, arial !important; 
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #ecf2f9;
+
+}
