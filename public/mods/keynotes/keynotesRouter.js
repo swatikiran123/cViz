@@ -22,6 +22,11 @@ angular.module('keynotes')
       .when('/:id/edit', {
         templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
         controller: 'keynotesControllerMain'
+      })
+
+      .when('/panelsview', {
+        templateUrl: '/public/mods/keynotes/keynotesViewPanels.html',
+        controller: 'keynotesControllerMain'
       });
 
 

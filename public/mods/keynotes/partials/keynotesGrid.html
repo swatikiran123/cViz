@@ -55,7 +55,7 @@
       <td>{{keynote.title}}</td>
       <td>{{keynote.noteBy}}</td>
       <td>{{keynote.desc}}</td>
-      <td class="hidden-xs">{{keynote.tags}}</td>
+      <td class="hidden-xs"><div ng-repeat="tags in keynote.tags track by $index"--> {{tags}}</div></td>
       <td class="hidden-xs">{{keynote.createOn}}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>
@@ -65,4 +65,8 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+    <td></td><td></td><td>&nbsp;&nbsp;keynotes grid view</td><td></td><td></td><td></td><td>&nbsp;</td></tr>
+  </tfoot>
 </table>
