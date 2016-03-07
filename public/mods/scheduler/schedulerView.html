@@ -1,43 +1,53 @@
 <script type="text/javascript" src="/public/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
 <div class="container" >
   <div class="page-header">
     Visit Schedule
     <div class="sub-header">Enter Your Schedule
     </div>
     <br><br>
-    <button ng-click="toggleModal()" class="btn btn-default">Add session</button>
+<div ng-include src="'/public/mods/scheduler/partials/visitPanel.html'"></div>
+<br/>
+<div class="table-responsive data-grid">
+  <div ng-include src="'/public/mods/scheduler/partials/scheduleList.html'"></div>
+</div>
+
+    <button ng-click="addSession()" class="btn btn-default">Add session</button>
     <modal title="Session Entry form" visible="showModal">
       <form role="form">
-      
+
         <!--hard code Client name (should be taken from visit form) -->
         <!-- <div class="form-group">
           <input type="text" class="form-control" placeholder="Client name" id="client"
-            ng-model="visit_schedules.client"  />
+            ng-model="schedule.client"  />
           </div> -->
 
         <!--hard code Visit title (should be taken from visit form)-->
         <!-- <div class="form-group">
           <input type="text" class="form-control" placeholder="visit title" id="visit" name="visit"
-            ng-model="visit_schedules.visit"  />
+            ng-model="schedule.visit"  />
           </div> -->
 
         <!-- session start date and end date -->
         <div class="form-group">
+
           <div>
             <h4>Session schedule</h4>
             <h6>From:</h6>
-            <input kendo-time-picker ng-model="visit_schedules.session.startTime" type="date" class="form-control" id="startDate" required/>
+            <input kendo-time-picker ng-model="schedule.session.startTime" type="date" class="form-control" id="startDate" required/>
           </div>
           <h6>To:</h6>
           <div>
-            <input kendo-time-picker ng-model="visit_schedules.session.endTime" type="date" class="form-control" id="endDate" ng-change='checkErr(startDate,endDate)' required/>
+            <input kendo-time-picker ng-model="schedule.session.endTime" type="date" class="form-control" id="endDate" ng-change='checkErr(startDate,endDate)' required/>
           </div>
           <span>{{errMessage}}</span>
         </div>
 
         <!-- session type -->
         <div class="form-group">
-          <select  class="form-control"  id="type" ng-model="session.type" ng-options="t.session for t in type ">
+          <select  class="form-control"  id="type" ng-model="schedule.session.type" ng-options="t.session for t in type ">
             <option value="">---select session type---</option>
           </select>
         </div>
@@ -45,7 +55,7 @@
         <!--title have to pic from User -->
         <div class="form-group">
           <input type="text" class="form-control" placeholder="title" id="title"
-            ng-model="visit_schedules.session.title"  />
+            ng-model="schedule.session.title"  />
         </div>
 
         <!--location have to pic from User -->
@@ -58,7 +68,7 @@
         <!--desc have to pic from User -->
         <div class="form-group">
           <textarea type="text" class="form-control" placeholder="description" id="desc"
-            ng-model="visit_schedules.session.desc"  />
+            ng-model="schedule.session.desc"  />
         </div>
 
         <!--Supporter have to pic from User -->
@@ -78,7 +88,7 @@
             <div user type="picker" class="form-control" user-model="ownerUser" user-id="ownerId" user-email="ownerEmail" ></div>
           </div>
         </div>
-        <br><br> 
+        <br><br>
         <button class="btn btn-primary" ng-click="save()" >Save</button>
         <button type="reset" class="btn btn-primary" ng-click="cancel()">Cancel</button>
       </form>

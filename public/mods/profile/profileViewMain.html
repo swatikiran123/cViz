@@ -8,7 +8,7 @@
             result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
           </img-crop>
         </div>
-        
+
         <div class="pull-right">
           <button class="btn btn-info" ngf-select ng-model="picFile" accept="image/*">
             Select a photo from your computer
@@ -36,7 +36,7 @@
             <div class="row" ng-controller="profileControllerMain">
 
                 <div class="col-md-4 text-center">
-                  <img ng-src="/{{user.avatar}}" class="img-rectangle avatar avatar-original "
+                  <img ng-src="{{user.avatar}}" class="img-rectangle avatar avatar-original "
                   style="background-size:cover;"/>
                   <div ng-controller="MainCtrl">
                     <button class="btn btn-link btn-file" ng-click="clickToOpen()">Change your picture

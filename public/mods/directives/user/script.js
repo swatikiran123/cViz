@@ -3,9 +3,6 @@
 angular.module('userDirective', [])
 .controller('userDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
 
-console.log($scope.userModel);
-console.log($scope.userEmail);
-
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
