@@ -7,7 +7,6 @@ angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler','
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
-			console.log($rootScope.user);
 		}
 	});
 })
