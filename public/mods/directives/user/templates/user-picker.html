@@ -1,12 +1,10 @@
- <md-input-container class="md-block">
-        <label>noteby</label>
-<input type="text" name="user" id="user" 
+<input type="text" name="user" id="user"
   placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75">
 
 <ANY ng-switch="showFlag">
   <ANY ng-switch-when="user">
-  	<div class="user-badge" style="width:180px;!important;">
-		  <div class="pull-left"> 
+  	<!-- <div class="user-badge" style="width:180px;!important;">
+		  <div class="pull-left">
 		    <img height="40" width="40" src="/public/assets/images/avatar.jpg" />
 		  </div>
 		  <div class="pull-right">
@@ -14,7 +12,19 @@
 		    <div class="text-xsmall">{{userModel.email}}</div>
 		    <div class="text-xsmall">{{userModel.jobTitle}}<br/>{{userModel.organization}} </div>
 		  </div>
-		</div>
+		</div> -->
+    <div class="panel panel-default" class="panel-bg">
+      <div class="panel-body">
+        <div class="pull-left">
+          <img src="{{userModel.avatar}}" class="img-circle" width="50" height="50">
+        </div>
+        <div class="panelpad pull-right">
+          <div class="username">{{userModel.name.first}} {{userModel.name.last}}</div>
+          <div class="usertitle">{{userModel.email}}</div>
+          <div class="userorganisation">{{userModel.jobTitle}}<br/>{{userModel.organization}}</div>
+        </div>
+      </div>
+    </div>
   </ANY>
 
   <ANY ng-switch-when="noUser">
@@ -29,4 +39,3 @@
 		</div>
 	</ANY>
 </ANY>
-</md-input-container>
