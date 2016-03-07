@@ -17,7 +17,7 @@ console.log($scope.userEmail);
       return;
     }
 
-    $http.get('/api/v1/admin/users/' + $scope.userEmail).success(function(response) {
+    $http.get('/api/v1/secure/admin/users/email/' + $scope.userEmail).success(function(response) {
       $scope.userModel = response;
       $scope.userId = response._id;
       $scope.userEmail = response.email;
@@ -34,7 +34,7 @@ console.log($scope.userEmail);
         console.log("error with user directive");
     });
   }
-  
+
 }])
 
 .directive('user', function() {
@@ -48,4 +48,3 @@ console.log($scope.userEmail);
     }
   };
 });
-
