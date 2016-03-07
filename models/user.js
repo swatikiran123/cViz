@@ -96,6 +96,12 @@ userSchema.pre('save', function(callback) {
   });*/
 });
 
+userSchema.post('init', function(doc) {
+  if(doc.avatar === undefined){
+    doc.avatar = "/public/assets/g/imgs/avatar.jpg";
+  }
+});
+
 userSchema.post('find', function(result) {
   //console.log(this instanceof mongoose.Query); // true
   // prints returned documents
@@ -120,13 +126,13 @@ function genToken() {
   var token = jwt.encode({
     exp: expires
   }, config.get('auth.secret'));
- 
+
   return {
     token: token,
     dateCreated: new Date()
   };
 }
- 
+
 function expiresIn(numDays) {
   var dateObj = new Date();
   return dateObj.setDate(dateObj.getDate() + numDays);

@@ -1,8 +1,4 @@
 /* CSS used here will be applied after bootstrap.css */
-body {
-  background-color: #eaeaea;
-}
-
 img.avatar,
 div.avatar {
   border: 1px solid #eee;
@@ -30,10 +26,25 @@ div.avatar {
     cursor: inherit;
     display: block;
 }
+
 .cropArea {
   background: #E4E4E4;
   background-image: url("/public/assets/images/draganddrop.png");
   overflow: hidden;
   width:732px;
   height:405px;
+}
+
+@media only screen and (min-width: 768px) {
+  .cropArea {
+    width:732px;
+    height:405px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cropArea {
+    width:350px;
+    height:200px;
+  }
 }

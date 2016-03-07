@@ -1,12 +1,9 @@
 html,body {
   position: relative;
   min-height: 100%;
-  width:100%; 
+  width:100%;
   height:100%;
 }
-
-
-
 
 body {
   /* Margin bottom by footer height */
@@ -16,6 +13,7 @@ body {
   padding-top: 50px;
   padding-bottom: 10px;
 }
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -26,112 +24,12 @@ body {
   z-index: 10000000;
 
 }
+
 .footer{
   padding-right: 35px;
   padding-left: 25px;
   padding-top: 10px;
 }
-/* Nav bar customizations */
-wrapper {
-
-}
- .push {
-height: 30px;
-}
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
- padding: 0 0 2.5em;
-  }
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.8em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-.navbar-default .navbar-brand {
-    color: #fff;
-}
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: #5E5E5E;
-}
-/* link */
-.navbar-default .navbar-nav > li > a {
-    color: #fff;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #333;
-}
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
-.navbar-default .navbar-nav > .active > a:focus {
-    color: #555;
-    background-color: #EBF0FA;
-}
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
-.navbar-default .navbar-nav > .open > a:focus {
-    color: #555;
-    background-color: #D5D5D5;
-}
-/* caret */
-.navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-}
-.navbar-default .navbar-nav > .dropdown > a:hover .caret,
-.navbar-default .navbar-nav > .dropdown > a:focus .caret {
-    border-top-color: #333;
-    border-bottom-color: #333;
-}
-.navbar-default .navbar-nav > .open > a .caret, 
-.navbar-default .navbar-nav > .open > a:hover .caret, 
-.navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #555;
-    border-bottom-color: #555;
-}
-/* mobile version */
-.navbar-default .navbar-toggle {
-    border-color: #DDD;
-}
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-    background-color: #DDD;
-}
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #CCC;
-}
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #fff;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #333;
-    }
-}
-
-
 
 .growl-container.growl-fixed {
   position: absolute;
@@ -150,20 +48,85 @@ height: 30px;
     padding-right: 30px;
     padding-left: 15px;
     z-index: 10000000;
-
-
 }
 
 .navbar-custom .navbar-nav > li > a {
     color:silver;
 }
+
 .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color:transparent;
+  color: black;
+  background-color:#ebebfa;
+  border-bottom: 3px solid red;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: black;
+  background-color:#ebebfa;
+  border-bottom: 3px solid red;
+}
+
+.dropdown-menu{
+  background-color:#f0f0f5;
 }
 
 .navbar-custom .navbar-brand {
     color:#eeeeee;
+}
+
+/* styles to change hamburger menu icon */
+.navbar-toggle .icon-bar:nth-of-type(2) {
+	  top: 1px;
+}
+
+.navbar-toggle .icon-bar:nth-of-type(3) {
+  	top: 2px;
+}
+
+.navbar-toggle .icon-bar {
+	  position: relative;
+	  transition: all 500ms ease-in-out;
+		background-color: #fff;
+}
+
+.navbar-toggle.active .icon-bar:nth-of-type(1) {
+	  top: 6px;
+	  transform: rotate(45deg);
+}
+
+.navbar-toggle.active .icon-bar:nth-of-type(2) {
+	  background-color: transparent;
+}
+
+.navbar-toggle.active .icon-bar:nth-of-type(3) {
+	  top: -6px;
+	  transform: rotate(-45deg);
+}
+
+/* style for left pull menu */
+@media screen and (max-width: 768px) {
+  .side-collapse-container{
+      width:100%;
+      position:relative;
+      left:0;
+      transition:left .4s;
+  }
+  .side-collapse-container.out{
+      left:200px;
+  }
+  .side-collapse {
+      top:50px;
+      background-color:#ebebfa;
+      bottom:0;
+      left:0;
+      width:200px;
+      position:fixed;
+      overflow:hidden;
+      transition:width .4s;
+  }
+  .side-collapse.in {
+      width:0;
+  }
 }
 
 /* Text styles */
@@ -172,6 +135,7 @@ height: 30px;
   font-size: 16px;
   font-weight: bold !important;
   color:black;
+  text-transform: capitalize;
 }
 
 .text-big{
@@ -232,7 +196,7 @@ height: 30px;
 .callouts--left:before {
   position: absolute;
   top: -7px;
-  left: 9px; 
+  left: 9px;
   display: inline-block;
   border-left: 7px solid transparent;
   border-bottom: 7px solid #ccc;
@@ -252,4 +216,17 @@ height: 30px;
   content: '';
 }
 
+.profile-details {
+    width: 160px;
+    height: 90px;
+    display: inline-block;
+    vertical-align: top; /* here */
+}
 
+.change-icon > .fa + .fa,
+.change-icon:hover > .fa {
+  display: none;
+}
+.change-icon:hover > .fa + .fa {
+  display: inherit;
+}
