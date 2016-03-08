@@ -1,0 +1,41 @@
+[
+
+	{
+		"_id"									: ObjectId("A04234567892345678900001"),
+
+		"title" 								: "HCL-CSC Partnership",
+		"teaser"							: "HCL Technologies, and CSC,  have formed a strategic partnership",
+		"type"                				: "Text",
+		"teaserText"          			: "HCL Technologies, a leading global IT services provider, and CSC, a global leader in next-generation IT services and solutions, have formed a strategic partnership to address the substantial market opportunity created by the need for enterprise clients to modernize their applications and transition to the cloud.",
+		"externalLink"        			: "",
+		"tags"								: ["HCL", "CSC", "Partnership"],
+		"createdBy"						: ObjectId("A02234567892345678900001")
+	},
+	
+	
+	{
+		"_id"									: ObjectId("A04234567892345678900002"),
+
+		"title" 								: "CSC Acquired UXC",
+		"teaser"							: "CSC Completes UXC Acquisition to Form One of Largest IT Services Companies in the Australia-New Zealand Region ",
+		"type"                				: "audio",
+		"teaserText"          			: " ",
+		"externalLink"        			: "\\uploads\\audios\\CSC_UXC.m4a",
+		"tags"								: ["CSC", "UXC", "Acquisition", "Australia"],
+		"createdBy"						: ObjectId("A02234567892345678900002")
+	},
+
+	
+	{
+		"_id"									: ObjectId("A04234567892345678900003"),
+
+		"title" 								: "CSC Acquired Fruition",
+		"teaser"							: "CSC Finalizes Fruition Partners Acquisition  ",
+		"type"                				: "video",
+		"teaserText"          			: "",
+		"externalLink"        			: "\\uploads\\videos\\CSC and HCL.mp4",
+		"tags"								: ["CSC", "Fruition", "Acquisition"],
+		"createdBy"						: ObjectId("A02234567892345678900003")
+	}
+	
+]

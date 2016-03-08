@@ -24,6 +24,27 @@ ECHO:
 ECHO Creating Visit_schedule Collection
 mongoimport --db cViz-Test --collection visit_schedules --file jsonFiles\visit_schedule.json --type json --jsonArray
 
+
+
+ECHO:
+ECHO Creating Teaser Collection
+mongoimport --db cViz-Test --collection teasers --file jsonFiles\teaser.json --type json --jsonArray
+
+
+
+ECHO:
+ECHO Creating CityFacts Collection
+mongoimport --db cViz-Test --collection city_facts --file jsonFiles\cityFacts.json --type json --jsonArray
+
+
+
+
+ECHO:
+ECHO Creating FactSheet Collection
+mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles\factSheet.json --type json --jsonArray
+
+
+
 ECHO:
 PAUSE
 

@@ -13,7 +13,13 @@ var visitSchedule 		= require(constants.paths.controllers + '/api/visitSchedules
 var feedbackDef 			= require(constants.paths.controllers + '/api/feedbackDefs');
 var fileupload						= require(constants.paths.controllers + '/api/fileupload');
 var facts 					= require(constants.paths.controllers + '/api/facts');
+
 var lov 					= require(constants.paths.controllers + '/api/lov');
+
+var cityFacts				= require(constants.paths.controllers + '/api/cityFacts');
+var factSheets				=	require(constants.paths.controllers + '/api/factSheets');
+var teasers					=	require(constants.paths.controllers + '/api/teasers');
+
 
 /*
  * Routes that can be accessed by any one
@@ -95,5 +101,26 @@ router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
 router.post('/api/v1/secure/feedbackDefs', feedbackDef.create);
 router.put('/api/v1/secure/feedbackDefs/:id', feedbackDef.updateById);
 router.delete('/api/v1/secure/feedbackDefs/:id', feedbackDef.deleteById);
+
+
+router.get('/api/v1/secure/cityFacts', cityFacts.getAll);
+router.get('/api/v1/secure/cityFacts/:id', cityFacts.getOneById);
+router.post('/api/v1/secure/cityFacts', cityFacts.create);
+router.put('/api/v1/secure/cityFacts/:id', cityFacts.updateById);
+router.delete('/api/v1/secure/cityFacts/:id', cityFacts.deleteById);
+
+
+router.get('/api/v1/secure/factSheets', factSheets.getAll);
+router.get('/api/v1/secure/factSheets/:id', factSheets.getOneById);
+router.post('/api/v1/secure/factSheets', factSheets.create);
+router.put('/api/v1/secure/factSheets/:id', factSheets.updateById);
+router.delete('/api/v1/secure/factSheets/:id', factSheets.deleteById);
+
+
+router.get('/api/v1/secure/teasers', teasers.getAll);
+router.get('/api/v1/secure/teasers/:id', teasers.getOneById);
+router.post('/api/v1/secure/teasers', teasers.create);
+router.put('/api/v1/secure/teasers/:id', teasers.updateById);
+router.delete('/api/v1/secure/teasers/:id', teasers.deleteById);
 
 module.exports = router;
