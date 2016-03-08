@@ -42,8 +42,8 @@
     "ngFloatingLabels": "angular-floating-labels#*",
     "ng-tags-input": "3.0.0",
     "ng-file-upload": "11.0.0",
-    "ngImgCrop": "0.3.2"
-
+    "ngImgCrop": "0.3.2",
+    "angular-material": "1.0.6"
 },
   "resolutions": {
 

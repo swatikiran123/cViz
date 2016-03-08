@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/public/assets/styles/profile-pic.css" />
-<script src="http://cdn.rawgit.com/zachsnow/ng-elif/4f9cf12c46dca340de2d784f0a2be5e4bebaf1ff/src/elif.js"></script>
 <script type="text/ng-template" id="templateId">
 
     <div class="row" ng-controller="profileControllerMain">
@@ -36,11 +35,14 @@
             <div class="row" ng-controller="profileControllerMain">
 
                 <div class="col-md-4 text-center">
-                  <img ng-src="{{user.avatar}}" class="img-rectangle avatar avatar-original "
+
+                  <img ng-src="{{user.avatar}}" class="img-rectangle avatar-original pic"
                   style="background-size:cover;"/>
-                  <div ng-controller="MainCtrl">
-                    <button class="btn btn-link btn-file" ng-click="clickToOpen()">Change your picture
-                    </button>
+                  <div ng-controller="AppCtrl">
+               
+                    <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex="100" flex-gt-md="auto">
+                     change picture
+                    </md-button>
                   </div>
                 </div>
 
@@ -70,7 +72,7 @@
                       <input type="text" class="form-control" id="token" name="token"
                       ng-model="user.twitter.token">
                     </div>
-                    <button class="btn btn-primary pull-right" ng-click="editprofile(id)">
+                    <button class="btn btn-primary pull-right" ng-click="editprofile(user._id)">
                       <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Edit Profile
                     </button>
               </div>

@@ -37,11 +37,6 @@ router.put('/api/v1/secure/admin/users/:id', users.updateById);
 router.delete('/api/v1/secure/admin/users/:id', users.deleteById);
 router.get('/api/v1/secure/admin/users/email/:email', users.getByEmail);
 
-router.get('/api/v1/users/:id',users.getOneById);
-router.get('/api/v1/users', users.getAll);
-router.post('/api/v1/users/', users.create);
-router.put('/api/v1/users/:id',users.updateById);
-
 //Route for file upload
 router.post('/api/v1/upload/',fileupload.create);
 

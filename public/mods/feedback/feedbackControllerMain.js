@@ -4,7 +4,6 @@ var feedbackApp = angular.module('feedback');
 
 feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope',
 	function($scope, $http, $routeParams, $location,growl,$rootScope) {	
-  console.log('feedback controller');
  	$scope.items=[];
  	var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -13,12 +12,13 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   var refresh = function() {
 
     $http.get('/api/v1/secure/feedbackDefs').success(function(response) {
-      console.log(response);
+
       $scope.feedbackList = response;
       $scope.feedbackDefs = "";
       $scope.items=[];
             
       switch($scope.mode)    {
+       
         case "add":
           $scope.feedbackDefs = "";
           break;
@@ -40,6 +40,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   $scope.save = function(){
     //$scope.feedbackDefs.createBy = $rootScope.user._id;    
     switch($scope.mode)    {
+      
       case "add":
         $scope.create();
         break;
@@ -55,16 +56,11 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
 
   $scope.create = function() {
     
-    console.log($scope.items);
-   // $scope.feedbackDefs.createBy = $rootScope.user._id;
     var inData = $scope.feedbackDefs;
     inData.item = $scope.items;
     inData.createBy = $rootScope.user._id;
-   	//inData.item.choices.value=$scope.items.value;
-    console.log(inData);
 
     $http.post('/api/v1/secure/feedbackDefs', inData).success(function(response) {
-      console.log(response);
       refresh();
       growl.info(parse("Feedback Definition [%s]<br/>Added successfully", inData.title));
     })
@@ -85,7 +81,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   }; // delete method ends
 
   $scope.update = function() {    
-    //console.log($scope.feedback);
+
     $http.put('/api/v1/secure/feedbackDefs/' + $scope.feedbackDefs._id,  $scope.feedbackDefs).success(function(response) {
       refresh();
       growl.info(parse("Feedback [%s]<br/>Edited successfully", $scope.feedback.title));
@@ -103,10 +99,6 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
 
   // feedback item table
   $scope.addItem=function(item){
-  	console.log('hi');
-    console.log(item.query);
-    console.log(item.mode);
-    console.log(item.choices);
 
     $scope.items.push({
       query: item.query,

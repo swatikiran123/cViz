@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler','profile','facts','visits','feedback'])
+angular.module('baseApp', ['keynotes', 'clients', 'userDirective', 'scheduler','profile','facts','visits','feedback','users'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')

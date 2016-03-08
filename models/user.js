@@ -70,7 +70,7 @@ var userSchema = mongoose.Schema({
         name         : String
     },
     token            : {type: Object},
-    status           : String
+    status           : {type: String, default: 'Active'}
 
 });
 

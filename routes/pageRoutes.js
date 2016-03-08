@@ -44,4 +44,11 @@ module.exports = function(app, passport)
         res.locals.pageTitle = "visits";
         res.render('misc/visits.ejs', {});
     });
+
+    // route to admin/users
+    app.get('/admin/users', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "users";
+        res.render('misc/admin/users.ejs', {});
+    });
+
 }
