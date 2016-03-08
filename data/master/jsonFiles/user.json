@@ -2,7 +2,7 @@
 
 	{
 
-		"_id"				: ObjectId("A02234567892345678900001"),
+		"_id"				: ObjectId("A02234567892345678900021"),
 
 		 "token"		: 
 			{
@@ -21,7 +21,9 @@
 			
 		"__v"				:	0,
 		"email"				: "admin@csc.com",
-		"avatar"			:  "public\\uploads\\profilePics\\shiva.jpg",
+
+		"avatar"			:  "\\public\\uploads\\profilePics\\shiva.jpg",
+
 		
 		"local"				:
 			{

@@ -20,7 +20,9 @@
 		"teaser"							: "CSC Completes UXC Acquisition to Form One of Largest IT Services Companies in the Australia-New Zealand Region ",
 		"type"                				: "audio",
 		"teaserText"          			: " ",
-		"externalLink"        			: "public\\uploads\\audios\\CSC_UXC.m4a",
+
+		"externalLink"        			: "\\public\\uploads\\audios\\CSC_UXC.m4a",
+
 		"tags"								: ["CSC", "UXC", "Acquisition", "Australia"],
 		"createdBy"						: ObjectId("A02234567892345678900002")
 	},
@@ -33,7 +35,9 @@
 		"teaser"							: "CSC Finalizes Fruition Partners Acquisition  ",
 		"type"                				: "video",
 		"teaserText"          			: "",
-		"externalLink"        			: "public\\uploads\\videos\\CSC and HCL.mp4",
+
+		"externalLink"        			: "\\public\\uploads\\videos\\CSC and HCL.mp4",
+
 		"tags"								: ["CSC", "Fruition", "Acquisition"],
 		"createdBy"						: ObjectId("A02234567892345678900003")
 	}
