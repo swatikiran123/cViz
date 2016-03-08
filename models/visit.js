@@ -9,9 +9,9 @@ var clientSchema 			= require('./client');
 var visitSchema = new mongoose.Schema({
 
 	title						    : { type: String },
-	client 						    : { type: Schema.Types.ObjectId, ref: 'clients' },
+	client 						    : { type: Schema.Types.ObjectId, ref: 'clients' },//{ type: String },
 	agenda							: { type: String },
-	agm									: { type: Schema.Types.ObjectId, ref: 'User' },
+	agm								: { type: Schema.Types.ObjectId, ref: 'User' },
 	anchor							: { type: Schema.Types.ObjectId, ref: 'User' },
 	schedule						: [{
 		startDate					: { type: Date},//, default: Date.now },

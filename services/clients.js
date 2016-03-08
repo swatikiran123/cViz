@@ -14,6 +14,7 @@ service.create = create;
 service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
+service.getWithQuery = getWithQuery;
 
 module.exports = service;
 
@@ -43,7 +44,6 @@ function getOneById(id){
         .populate({path:'cscPersonnel.industryExec'})
         .populate({path:'cscPersonnel.globalDelivery'})
         .populate({path:'cscPersonnel.cre'})
-        .populate('client') 
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
@@ -56,6 +56,29 @@ function getOneById(id){
 
     return deferred.promise;
 } // gentOneById method ends
+
+function getWithQuery(query, fields, maxRecs, sortEx){
+    var deferred = Q.defer();
+    
+    model
+    .find(query)
+    .limit(maxRecs)
+    .select(fields)
+    .sort(sortEx)
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+        {
+            console.log(item);
+            deferred.resolve(item);
+        }
+    });
+
+    return deferred.promise;
+} // getWithQuery method ends
 
 function create(data) {
     var deferred = Q.defer();

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="page-header">
+    Visit Planner - List
+    <div class="sub-header">Manage the list of visits in the panels
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="pnbdr panel panel-primary">
+      <!--div class="panel-heading">visits panels view</div--><div class="searchpad">
+      <div class="form-inline has-feedback filter-header">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+        <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+        <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button></div>
+        <div ng-repeat="visit in visitsList | filter: search |orderBy:orderByField:reverseSort">
+          <div class="row">
+
+            <div class="pn-bodypad">
+              <div class="col-xs-11">
+                <div class="panel panel-info">
+                  <div class="panel-heading pn-bodyhdr" pull-left>
+                    <span>Title:{{visit.title}}</span><div class="pull-right">
+                    <a class="table-btn" href="#/{{visit._id}}/showVisit"><span class="glyphicon glyphicon-eye-open" /></a>
+                    <a class="table-btn" href="#/{{visit._id}}/editVisit"><span class="glyphicon glyphicon-edit" /></a>
+                    <a class="table-btn" ng-click="delete(visit)"><span class="glyphicon glyphicon-trash" /></a>
+                    <a class="table-btn" href="#/{{visit._id}}/editSession"><span class="glyphicon glyphicon-calendar" /></a></div>
+                  </div>
+
+                  <div class="panel-body">
+
+                    <div class="pull-left">
+                      <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
+                    </div>
+                    <div class="pn-inrbodypad">
+
+                      <div class="text-highlight">Client:&nbsp;{{visit.client.name}}</div>
+                      <div class="text-desc">Agenda:{{visit.agenda}}</div>
+                      <div class="text-xs">{{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
+
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
