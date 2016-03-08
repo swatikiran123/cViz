@@ -4,7 +4,7 @@
 		"_id"								:  ObjectId("A05234567892345678900001"),
 		
 		"title" 							: "CSC India",
-		"logoLink"            			: "\\uploads\\linkPics\\CSC_Logo.jpg",
+		"logoLink"            			: "public\\uploads\\linkPics\\CSC_Logo.jpg",
 		"address"            			:
 			{
 				"street"			: "Product Development Centre, No 19 Hafiz Court, Dr. M.G.R. Salai, Nungambakkam",
@@ -125,7 +125,7 @@
 		"_id"								:  ObjectId("A05234567892345678900002"),
 		
 		"title" 							: "CSC Australia",
-		"logoLink"            			: "\\uploads\\linkPics\\CSC_Logo.jpg",
+		"logoLink"            			: "public\\uploads\\linkPics\\CSC_Logo.jpg",
 		"address"            			: 
 			{ 
 				"street"			: "26 Talavera Road, Macquarie Park, NSW",

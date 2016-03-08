@@ -33,6 +33,7 @@ function getAll(){
 	return deferred.promise;
 } // getAll method ends
 
+//get one teaser by ID
 function getOneById(id){
     var deferred = Q.defer();
 
@@ -51,6 +52,8 @@ function getOneById(id){
     return deferred.promise;
 } // gentOneById method ends
 
+
+//create teaser model
 function create(data) {
     var deferred = Q.defer();
 
@@ -71,6 +74,8 @@ function create(data) {
     return deferred.promise;
 }
 
+
+//update teaser by ID
 function updateById(id, data) {
     var deferred = Q.defer();
 
@@ -85,6 +90,8 @@ function updateById(id, data) {
     return deferred.promise;
 }
 
+
+//delete teaser by ID
 function deleteById(id) {
     var deferred = Q.defer();
 

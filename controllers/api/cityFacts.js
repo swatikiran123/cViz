@@ -14,9 +14,12 @@ controller.deleteById = deleteById;
 
 module.exports = controller;
 
+
+
+//call getAll() function from the cityFacts service
 function getAll(req,res){
   dataService.getAll()
-    .then(function(userList){
+    .then(function(userList){                              
         if (userList){
             res.send(userList);
         }else {
@@ -29,6 +32,8 @@ function getAll(req,res){
     });
 }
 
+
+//call getOneById() function from the cityFacts service
 function getOneById(req,res){
   dataService.getOneById(req.params.id)
     .then(function(userList){
@@ -44,6 +49,9 @@ function getOneById(req,res){
     });
 }
 
+
+
+//call create() function from the cityFacts service
 function create(req, res) {
   dataService.create(req.body)
     .then(function () {
@@ -55,6 +63,9 @@ function create(req, res) {
     });
 }
 
+
+
+//call  deleteById() function from the cityFacts service
 function deleteById(req, res) {
   dataService.deleteById(req.params.id)
     .then(function () {
@@ -66,6 +77,9 @@ function deleteById(req, res) {
     });
 }
 
+
+
+//call  updateById() function from the cityFacts service
 function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
