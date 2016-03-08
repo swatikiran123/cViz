@@ -6,16 +6,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="/public/assets/w/styles/dashboard.css" />
+  
+
+  <style type="text/css">
+
+  body, html {
+     /*background: url(C:/Users/krekam/Desktop/blue.jpg) no-repeat center center fixed;*/
+      width: 100%;
+      height: 100%;
+      background:  url(img/20BG.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+
+
+    .panel-default {
+      
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border: 0px;
+    }
+
+    .panel-heading {
+      
+      
+      opacity: 0.6;
+      text-align: center;
+      
+    }
+
+    .panel-footer {
+      background-color: rgba(255, 0, 0, 0);
+      
+      text-align: right;
+      height: 30px;
+    }
+
+    .panel-subheader{
+      background-color: rgba(255, 0, 0, 0);
+
+     
+    }
+
+    .highlight {
+      position: relative;
+      top: -17px;
+      
+      width: 40px;
+      border: solid 1px #ccc;
+      height: 40px;
+      background: #5b92d9;
+      background: -moz-linear-gradient(top, #5b92d9 0%, #5b92d9 20%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b92d9), color-stop(20%, #5b92d9));
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      font : bold 2em Impact;
+      font-family: sans-serif;
+      
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 -1px 0 #334F71;
+    }
+
+
+  </style> 
+
 
 </head>
 
- <body > 
+<body > 
   <div class="container">
-   
-    <h2>Static Content</h2>
-    
-     <br>
+    <br>
+
      <div class="row">
       <div class="col-sm-9">
         <div class="panel panel-default">
@@ -39,7 +104,7 @@
           </div>
 
           <div class="panel-footer">
-            <p></p>
+            <p>v1.0</p>
           </div>
         </div>
       </div>
@@ -50,20 +115,20 @@
               <div class="pull-left">
                 <p class="highlight">03</p>
               </div>
-              <h3 class="panel-title"><b> Visits Score </b></h3>  
+              <h3 class="panel-title"><b> Visits Score </b></h3>
             </div>
 
             <div class="panel-body">
-              <p>
-                <font size="30">
-                  <center> 
-                    <b>02</b>
-                  </center>
-                </font>
-              </p>
+              This is a panel Content
+              Line 1 Some Text<br>
+              <div>
+                Line 2 Some Text
+                
+                
+              </div>
             </div>
             <div class="panel-footer">
-              <p></p>  
+              <p>v2.0</p>  
             </div>
           </div>
       </div>
@@ -83,18 +148,38 @@
           </div>
 
 
-          <div class="panel-body"> 
-            <p>
-                <font size="30">
-                  <center> 
-                    <b>03</b>
-                  </center>
-                </font>
-              </p>
+          <div class="panel-body">
+            
+            Last Week Score
+            <br>
+            Line 1 Some Text
+            
           </div>
 
           <div class="panel-footer">
-            <p></p>
+            <p>v1.0</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="pull-left">
+              <p class="highlight"> 02 </p>
+            </div>
+            <h3 class="panel-title"><b> Visits Score </b></h3>
+          </div>
+
+
+          <div class="panel-body">
+            
+            Last Week Score
+            <br>
+            Line 1 Some Text
+            
+          </div>
+
+          <div class="panel-footer">
+            <p>v1.0</p>
           </div>
         </div>
       </div>
@@ -125,7 +210,7 @@
               Chennai
           </div>
             <div class="panel-footer">
-              <p></p>  
+              <p>v2.0</p>  
             </div>
           </div>
       </div>
@@ -163,7 +248,7 @@
           </div>
 
           <div class="panel-footer">
-            <p></p>
+            <p>v1.0</p>
           </div>
         </div>
       </div>
@@ -195,7 +280,7 @@
             End-Time: 2016-02-16, 20:00:00
           </div>
           <div class="panel-footer">
-            <p></p>  
+            <p>v2.0</p>  
           </div>
         </div>
       </div>
@@ -227,7 +312,7 @@
             End-Time: 2016-02-16, 20:00:00
           </div>
           <div class="panel-footer">
-            <p></p>  
+            <p>v2.0</p>  
           </div>
         </div>
       </div>
@@ -258,12 +343,79 @@
             End-Time: 2016-02-16, 20:00:00
           </div>
           <div class="panel-footer">
-            <p></p>  
+            <p>v2.0</p>  
           </div>
         </div>
       </div>
     </div>
     <br>
+
+
+    <!--<div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="pull-left">
+              <p class="highlight"> 06 </p>
+            </div>
+            <h3 class="panel-title"> Cisco</h3>
+          </div>
+
+          <div class = "panel-subheader">
+            subheading
+          </div>
+
+          <div class="panel-body">
+            This is a panel Content
+            <p>Line 1 Some Text</p>
+            <div>
+              <p>Line 2 Some Text</p>
+              
+              <p> Line 3 Some Text </p>
+            </div>
+          </div>
+
+          <div class="panel-footer">
+            <p>v1.0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="pull-left">
+                <p class="highlight">06</p>
+              </div>
+              <h3 class="panel-title"> lenovo </h3>
+            </div>
+
+            <div class = "panel-subheader">
+              subheading
+            </div>
+
+            <div class="panel-body">
+              This is a panel Content
+              <p>Line 1 Some Text</p>
+              <div>
+                <p>Line 2 Some Text</p>
+                
+                <p> Line 3 Some Text </p>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <p>v2.0</p>  
+            </div>
+          </div>
+      </div>
+    </div>
+
+     <br> -->
+
+
+   
+
 
   </div>
 
