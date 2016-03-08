@@ -12,7 +12,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "sgoud@csc.com",
-			"avatar"			:  "cViz\\data\\samples\\uploads\\profilePics\\shiva.png",
+			"avatar"			:  "\\uploads\\profilePics\\\\shiva.jpg",
 			"summary"		: "Dr. Shiva Kumar is a partner in CSC’s Big Data and Analytics practice. He is a results-oriented data scientist with 15 years as an analytics subject matter expert. He is experienced in the design and execution of data-driven business strategy using analytics to drive results.",
 			"jobTitle"			: "Sr. Principal",
 			"organization"	: "CSC",	
@@ -59,7 +59,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "spediripatti@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\spediripatti.png",
+			"avatar"			: "\\uploads\\profilePics\\\\spediripatti.jpg",
 			"summary"		: " Proven ability in Building and leading teams, Engineering Program Management, Agile product development",
 			"jobTitle"			: "Chief Technical Officer",
 			"organization"	: "CSC",	
@@ -104,7 +104,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "spediri@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\spediri.png",
+			"avatar"			: "\\uploads\\profilePics\\\\spediri.jpg",
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
 			"jobTitle"			: "Senior Executive Officer",
 			"organization"	: "CSC",	
@@ -146,7 +146,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "rwilliams@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\rwilliams.png",
+			"avatar"			: "\\uploads\\profilePics\\\\rwilliams.jpg",
 			"summary"		: " 10+ years of experience in the field of HR with exposure to Learning & Development, Induction/Orientation, Data Management, HRIS, Employee Engagement, Joining formalities and Campus Recruitment",
 			"jobTitle"			: "Chief  Executive Officer",
 			"organization"	: "CSC",	
@@ -188,7 +188,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "kbhagya@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\kbhgya.png",
+			"avatar"			: "\\uploads\\profilePics\\\\kbhgya.jpg",
 			"summary"		: " 8+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
 			"jobTitle"			: "Senior Executive",
 			"organization"	: "CSC",	
@@ -231,7 +231,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "akumar@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\akumar.png",
+			"avatar"			: "\\uploads\\profilePics\\\\akumar.jpg",
 			"summary"		: " Possess excellent leadership and people management skills and subject matter expertise on Learning and Development function. Have been instrumental in setting up the L&D function in my curent assignment",
 			"jobTitle"			: "Junior Executive Officer",
 			"organization"	: "CSC",	
@@ -276,7 +276,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "rgundala@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\rgundala.png",
+			"avatar"			: "\\uploads\\profilePics\\\\rgundala.jpg",
 			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
 			"jobTitle"			: "Network Engineer",
 			"organization"	: "CSC",	
@@ -321,7 +321,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "ayapa@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\ayapa.png",
+			"avatar"			: "\\uploads\\profilePics\\\\ayapa.jpg",
 			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
 			"jobTitle"			: "Director CIO",
 			"organization"	: "CSC",	
@@ -365,7 +365,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "ksigamani@csc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\ksigamani.png",
+			"avatar"			: "\\uploads\\profilePics\\\\ksigamani.jpg",
 			"summary"		: " Sigamani is a technology enthusiast, futurist, researcher and author who is an expert in artificial intelligence (AI) and other disruptive technologies.",
 			"jobTitle"			: "Chief Technology Officer",
 			"organization"	: "CSC",	
@@ -410,8 +410,8 @@
 					"last"		:  "Kamutam",
 					"suffix"		:  ""
 				},
-			"email"				: "dkammutami@fruition.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\dkammutami.png",
+			"email"				: "dkammutam@fruition.com",
+			"avatar"			: "\\uploads\\profilePics\\\\dkammutam.jpg",
 			"summary"		: " Calling himself the “Everything Else Guy,” Heis a performance engineer whose wide-ranging technical expertise ensures that systems perform, are secure, fail over, and are easy to operate and troubleshoot.",
 			"jobTitle"			: "Chairman",
 			"organization"	: "Fruition",	
@@ -451,13 +451,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Shiva",
-					"middle"	:  "Kumar",
-					"last"		:  "Goud",
+					"first"		:  "Lebron",
+					"middle"	:  "J",
+					"last"		:  "Chris",
 					"suffix"		:  ""
 				},
-			"email"				: "sgoud@motorola.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\shiva.png",
+			"email"				: "lchris@motorola.com",
+			"avatar"			: "\\uploads\\profilePics\\\\lchris.jpg",
 			"summary"		: "He is a lead architect with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
 			"jobTitle"			: "Sr. Principal",
 			"organization"	: "Motorola",	
@@ -498,13 +498,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Suman",
-					"middle"	:  "Kumar",
-					"last"		:  "Pediripati",
+					"first"		:  "Dominic",
+					"middle"	:  "M",
+					"last"		:  "Torreto",
 					"suffix"		:  ""
 				},
-			"email"				: "spediripatti@Vodafone.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\spediripatti.png",
+			"email"				: "dtorreto@Vodafone.com",
+			"avatar"			: "\\uploads\\profilePics\\\\dtorreto.png",
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
 			"jobTitle"			: "Chief Executive Officer",
 			"organization"	: "Vodafone",	
@@ -543,13 +543,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Santhosh",
-					"middle"	:  "Kumar",
-					"last"		:  "Pediri",
+					"first"		:  "Sam",
+					"middle"	:  "J",
+					"last"		:  "Andresson",
 					"suffix"		:  ""
 				},
-			"email"				: "spediri@att.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\spediri.png",
+			"email"				: "sandresson@att.com",
+			"avatar"			: "\\uploads\\profilePics\\\\sandresson.png",
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
 			"jobTitle"			: "Chief Executive Officer",
 			"organization"	: "AT&T",	
@@ -586,13 +586,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Bharath",
-					"middle"	:  "Kumar",
-					"last"		:  "Pedda",
+					"first"		:  "Alfred",
+					"middle"	:  "J",
+					"last"		:  "Penny",
 					"suffix"		:  ""
 				},
-			"email"				: "bpeddha@hdfc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\bpedda.png",
+			"email"				: "apenny@hdfc.com",
+			"avatar"			: "\\uploads\\profilePics\\\\apenny.png",
 			"summary"		: " 1 yr of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
 			"jobTitle"			: "Associate Professional",
 			"organization"	: "HDFC",
@@ -630,14 +630,14 @@
 		
 			"name":
 				{
-					"prefix"		:  "Mr.",
-					"first"		:  "Bhagyeshwari",
-					"middle"	:  "Reddy",
-					"last"		:  "Kurapati",
+					"prefix"		:  "Ms.",
+					"first"		:  "Jessica",
+					"middle"	:  "M",
+					"last"		:  "Lewis",
 					"suffix"		:  ""
 				},
-			"email"				: "kbhagya@royalsc.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\kbhgya.png",
+			"email"				: "jlewis@royalsc.com",
+			"avatar"			: "\\uploads\\profilePics\\\\jlewis.png",
 			"summary"		: " 8+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
 			"jobTitle"			: "Senior Executive",
 			"organization"	: "Royal Scotland Bank",	
@@ -680,8 +680,8 @@
 					"last"		:  "Joyaluka",
 					"suffix"		:  ""
 				},
-			"email"				: "usdusfdyuf@swiss.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\nidhi.jpg",
+			"email"				: "njoyaluka@swiss.com",
+			"avatar"			: "\\uploads\\profilePics\\\\nidhi.jpg",
 			"summary"		: " 4+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
 			"jobTitle"			: "Junior Executive Officer",
 			"organization"	: "swissbank",	
@@ -718,13 +718,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Rajesh",
-					"middle"	:  "Kumar",
-					"last"		:  "Gundala",
+					"first"		:  "Mark",
+					"middle"	:  "Josheph",
+					"last"		:  "Watney",
 					"suffix"		:  ""
 				},
-			"email"				: "rgundala@walmart.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\rgundala.png",
+			"email"				: "mwatney@walmart.com",
+			"avatar"			: "\\uploads\\profilePics\\\\mwatney.png",
 			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
 			"jobTitle"			: "Senior Proffesional",
 			"organization"	: "Walmart",	
@@ -763,13 +763,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Ashok",
-					"middle"	:  "Kumar",
-					"last"		:  "Yapa",
+					"first"		:  "Frank",
+					"middle"	:  "J",
+					"last"		:  "Copper",
 					"suffix"		:  ""
 				},
-			"email"				: "ayapa@toyato.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\spediripatti.png",
+			"email"				: "fcopper@toyato.com",
+			"avatar"			: "\\uploads\\profilePics\\\\fcopper.png",
 			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
 			"jobTitle"			: "Director CIO",
 			"organization"	: "Toyata",	
@@ -807,13 +807,13 @@
 			"name":
 				{
 					"prefix"		:  "Mr.",
-					"first"		:  "Sigamani",
-					"middle"	:  "Kumar",
-					"last"		:  "Bobilli",
+					"first"		:  "John",
+					"middle"	:  "K",
+					"last"		:  "Berg",
 					"suffix"		:  ""
 				},
-			"email"				: "sbobilli@telenor.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\sbobilli.png",
+			"email"				: "jberg@telenor.com",
+			"avatar"			: "\\uploads\\profilePics\\\\jberg.png",
 			"summary"		: " is an infrastructure and data domain expert with experience in data center optimization, consolidation, transformation and migration across multiple client accounts in a variety of industries ranging from financial services and healthcare to high-tech manufacturing",
 			"jobTitle"			: "Chief Technology Officer",
 			"organization"	: "Telenor",	
@@ -859,7 +859,7 @@
 					"suffix"		:  ""
 				},
 			"email"				: "mjumde@zurich.com",
-			"avatar"			: "cViz\\data\\samples\\uploads\\profilePics\\mjumde.png",
+			"avatar"			: "\\uploads\\profilePics\\\\mjumde.png",
 			"summary"		: " Minal works with Zurich which is a vibrant industry association with ambitions of representing the entire gamut of digital businesses in India. ",
 			"jobTitle"			: "Chairman",
 			"organization"	: "Zurich",	
