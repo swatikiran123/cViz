@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- <html  ng-app="cViz-m" ng-strict-di> -->
+<html  ng-app="cViz-m">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/schedule.css" rel="stylesheet">
+
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-route/angular-route.js"></script>
+
+    <!-- your app's js -->
+    <script src="mods/app.js"></script>
+    <script src="mods/controllers.js"></script>
+    <script src="mods/GenericCtrl.js"></script>
+    <script src="mods/visits/visitsCtrl.js"></script>
+    <script src="mods/sessions/sessionsCtrl.js"></script>
+
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/assets/g/css/panels.css">
+    <link rel="stylesheet" href="/public/assets/g/css/text.css">
+
+  </head>
+
+  <body>
+    <h3>
+      <i class="fa fa-bars"></i>&nbsp;&nbsp;
+      <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;
+      <i class="fa fa-home"></i>&nbsp;&nbsp;
+      CSC
+      <i class="fa fa-arrows pull-right"></i>
+    </h3>
+
+    <hr/>
+    <center>
+      <img src="{{user.avatar}}" height="50" width="50"/><br/>
+      {{user.name.first}} {{user.name.last}} <br/>
+      {{user.jobTitle}}, {{user.organization}}
+    </center>
+
+    <div ng-include src="'./mods/menu.html'"></div>
+
+    <hr/>
+
+    <div class="container">
+      <ng-view></ng-view>
+    </div>
+
+  </body>
+</html>
