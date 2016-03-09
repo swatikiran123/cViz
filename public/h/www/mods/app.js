@@ -32,6 +32,16 @@ angular.module('cViz-m', ['ionic', 'appMain', 'visits', 'sessions', 'generic'])
     controller: 'appCtrl'
   })
 
+  .state('app.home', {
+    url: '/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'mods/home/home.html',
+        controller: 'genericCtrl'
+      }
+    }
+  })
+
   .state('app.visits', {
     url: '/visits',
     views: {
@@ -122,5 +132,5 @@ angular.module('cViz-m', ['ionic', 'appMain', 'visits', 'sessions', 'generic'])
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/sessions');
+  $urlRouterProvider.otherwise('/app/home');
 });
