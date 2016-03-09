@@ -33,6 +33,8 @@ function getAll(){
 	return deferred.promise;
 } // getAll method ends
 
+
+//get one factSheet by ID
 function getOneById(id){
     var deferred = Q.defer();
 
@@ -52,11 +54,13 @@ function getOneById(id){
     return deferred.promise;
 } // gentOneById method ends
 
+
+//crete Facsheet
 function create(data) {
     var deferred = Q.defer();
 
     //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving keynote........");
+    console.log("Saving FactSheets........");
     console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
@@ -72,6 +76,8 @@ function create(data) {
     return deferred.promise;
 }
 
+
+//Update factSheet by ID
 function updateById(id, data) {
     var deferred = Q.defer();
 
@@ -86,6 +92,8 @@ function updateById(id, data) {
     return deferred.promise;
 }
 
+
+//delete factSheet by ID
 function deleteById(id) {
     var deferred = Q.defer();
 

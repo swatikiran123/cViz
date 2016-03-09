@@ -99,7 +99,7 @@ router.post('/api/v1/secure/feedbackDefs', feedbackDef.create);
 router.put('/api/v1/secure/feedbackDefs/:id', feedbackDef.updateById);
 router.delete('/api/v1/secure/feedbackDefs/:id', feedbackDef.deleteById);
 
-
+//list of service routes for cityFacts
 router.get('/api/v1/secure/cityFacts', cityFacts.getAll);
 router.get('/api/v1/secure/cityFacts/:id', cityFacts.getOneById);
 router.post('/api/v1/secure/cityFacts', cityFacts.create);
@@ -107,13 +107,14 @@ router.put('/api/v1/secure/cityFacts/:id', cityFacts.updateById);
 router.delete('/api/v1/secure/cityFacts/:id', cityFacts.deleteById);
 
 
+//list of service routes for factSheets
 router.get('/api/v1/secure/factSheets', factSheets.getAll);
 router.get('/api/v1/secure/factSheets/:id', factSheets.getOneById);
 router.post('/api/v1/secure/factSheets', factSheets.create);
 router.put('/api/v1/secure/factSheets/:id', factSheets.updateById);
 router.delete('/api/v1/secure/factSheets/:id', factSheets.deleteById);
 
-
+//list of service routes for teasers
 router.get('/api/v1/secure/teasers', teasers.getAll);
 router.get('/api/v1/secure/teasers/:id', teasers.getOneById);
 router.post('/api/v1/secure/teasers', teasers.create);

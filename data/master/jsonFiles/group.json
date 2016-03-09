@@ -1,0 +1,55 @@
+[
+
+	{
+		"_id"							: ObjectId("A10234567892345678900001"),
+		
+		"name"						: "Admin Group",
+		"description"				: "Users who have privileged rights and who has access to modify the content of the application, adding, deleting users,keynotes, factsheets etc ",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900001"),
+			ObjectId("A02234567892345678900002")
+		]
+	},
+	
+	
+	{
+		"_id"							: ObjectId("A10234567892345678900002"),
+		
+		"name"						: "AGM Group",
+		"description"				: "This group consists of users who has some specific rights like adding the owners, visitors, supporters for the visits & etc ",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900001"),
+			ObjectId("A02234567892345678900002")
+		]
+	},
+	
+	
+	{
+		"_id"							: ObjectId("A10234567892345678900003"),
+		
+		"name"						: "Visit Manager Group",
+		"description"				: "This Group consists of users who can manage the entire visits like scheduling, modifying the visits",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900001"),
+			ObjectId("A02234567892345678900002")
+		]
+	},
+
+	
+	
+	{
+		"_id"							: ObjectId("A10234567892345678900004"),
+		
+		"name"						: "Feedback Manager Group",
+		"description"				: "This group consists of users can manage the feedbacks of the single sessions & feedbacks of the entire visit ",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900001"),
+			ObjectId("A02234567892345678900002")
+		]
+	}
+
+]

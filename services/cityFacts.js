@@ -51,11 +51,12 @@ function getOneById(id){
     return deferred.promise;
 } // gentOneById method ends
 
+
+//create model for cityFacts
 function create(data) {
     var deferred = Q.defer();
 
-    //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving keynote........");
+    console.log("Saving cityFacts........");
     console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
@@ -71,6 +72,8 @@ function create(data) {
     return deferred.promise;
 }
 
+
+//update model by ID
 function updateById(id, data) {
     var deferred = Q.defer();
 
@@ -85,6 +88,8 @@ function updateById(id, data) {
     return deferred.promise;
 }
 
+
+//delete model for ID
 function deleteById(id) {
     var deferred = Q.defer();
 
