@@ -1,9 +1,10 @@
 var path            = require('path');
-var mongoose        = require('mongoose');
+var mongoose        = require('mongoose'), Schema = mongoose.Schema;
 var bcrypt          = require('bcrypt-nodejs');
 var jwt             = require('jwt-simple');
 var constants       = require('../scripts/constants');
 var config          = require(path.join(constants.paths.config, '/config'));
+var groupSchema     = require('./group');
 
 var Token = mongoose.Schema({
     token           : {type: String},
@@ -70,7 +71,8 @@ var userSchema = mongoose.Schema({
         name         : String
     },
     token            : {type: Object},
-    status           : {type: String, default: 'Active'}
+    status           : {type: String, default: 'Active'},
+    group            : [{ type: Schema.Types.ObjectId, ref: 'group' }]
 
 });
 
