@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose')
+, _ = require('underscore')
 , Schema = mongoose.Schema;
 
 var userSchema 				= require('./user');
@@ -31,6 +32,26 @@ var visitSchema = new mongoose.Schema({
 	createBy						: { type: Schema.Types.ObjectId, ref: 'User' },
 	createOn						: { type: Date, default: Date.now }
 
+});
+
+visitSchema.post('init', function(doc) {
+
+	var schedules =  _.sortBy( doc.schedule, 'startDate' );
+	var startDate = schedules[0].startDate;
+	var endDate = schedules[schedules.length-1].endDate;
+	var locations = "";
+
+	schedules.forEach(function(sch){
+		if(locations === "")
+		 locations = sch.location;
+	 else
+		 locations = locations + ", " + sch.location;
+	})
+
+	// add temporary variable to be added to doc
+	doc.set( "locations", locations, { strict: false });
+	doc.set( "startDate", startDate, { strict: false });
+	doc.set( "endDate", endDate, { strict: false });
 });
 
 module.exports = mongoose.model('visits', visitSchema);
