@@ -14,8 +14,8 @@ var visitScheduleSchema = new mongoose.Schema({
 	scheduleDate						: { type: Date },
 	session							: {
 		type						: { type: String }, //presentation, discussion, tea, lunch, dinner, floor-walk
-		startTime					: { type: Date, default: Date.now},
-		endTime						: { type: Date, default: Date.now},
+		startTime					: { type: Date},
+		endTime						: { type: Date},
 		title						: { type: String },
 		location					: { type: String },
 		desc						: { type: String },

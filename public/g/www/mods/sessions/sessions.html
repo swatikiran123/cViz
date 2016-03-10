@@ -1,2 +1,24 @@
+<ion-view view-title="visitSchedules">
+  <ion-content>
+    <h1 class="page-title">List of sessions</h1>
 
-    <h1>List of sessions</h1>
+    <div class="panel panel-primary" ng-repeat="visitSchedules in visitScheduleList">
+      <div class="panel-heading pn-hdr"><a href="#/sessions/{{visitSchedules._id}}">{{visitSchedules.session.title}}</a></div>
+
+      <div class = "panel panel-primary pn-shdr text-small">
+        <div class="pull-left">
+          {{visitSchedules.session.startTime | date:"HH:mm"}} - {{visitSchedules.session.endTime | date:"HH:mm"}}
+        </div>
+      
+      </div>
+
+      <div class="panel-body">
+      <br>{{visitSchedules.session.location}}<br>
+          {{visitSchedules.session.owner}}<br>
+          {{visitSchedules.session.supporter}}
+      </div>
+      <hr/>
+    </div>
+
+  </ion-content>
+</ion-view>
