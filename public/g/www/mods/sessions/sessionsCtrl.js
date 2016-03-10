@@ -1,7 +1,6 @@
 angular.module('sessions', [])
 
 .controller('sessionsCtrl', function($scope) {
-	console.log("Sessions controller running");
 
   $scope.sessions = [
     { title: 'Welcome note by Managing Director', id: 1, startTime: '08:30', endTime: '09:00' },

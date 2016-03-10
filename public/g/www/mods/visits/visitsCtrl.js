@@ -20,8 +20,8 @@ angular.module('visits', [])
 	});
 })
 
-.controller('visitCtrl', function($scope, $stateParams, $http) {
-	$http.get('/api/v1/secure/visits/' + $stateParams.id).success(function(response) {
+.controller('visitCtrl', function($scope, $routeParams, $http) {
+	$http.get('/api/v1/secure/visits/' + $routeParams.id).success(function(response) {
 		$scope.visit = response;
 	});
 });

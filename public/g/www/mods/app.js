@@ -1,69 +1,106 @@
 
-angular.module('cViz-m', ['ngRoute', 'appMain', 'visits', 'sessions', 'generic'])
+angular.module('cViz-m', ['ngRoute', 'ngAnimate', 'appMain', 'visits', 'sessions', 'generic'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
-      console.log($rootScope.user);
 		}
     else {
-      console.log("no user");
+			// user not found, ask to login
     }
 	});
 })
+
+.run(function ($rootScope, $location) {
+
+	var history = [];
+
+	$rootScope.$on('$routeChangeSuccess', function() {
+		if($location.$$path != "/")
+			history.push($location.$$path);
+	});
+
+	$rootScope.canBack = function(){
+		return (history.lenth > 1);
+	};
+
+	$rootScope.back = function () {
+			var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
+			$location.path(prevUrl);
+	};
+
+})
+
+.controller('ctrl', function($scope, $rootScope){
+	  $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+			$rootScope.animation = currRoute.animation;
+	  });
+
+
+	})
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
   .when('/home', {
     templateUrl: 'mods/home/home.html',
-    controller: 'genericCtrl'
+    controller: 'genericCtrl',
+		animation: 'first'
   })
 
   .when('/visits', {
     templateUrl: 'mods/visits/visits.html',
-    controller: 'visitsCtrl'
+    controller: 'visitsCtrl',
+		animation: 'second'
   })
 
   .when('/visits/:id', {
     templateUrl: 'mods/visits/visit.html',
-    controller: 'visitCtrl'
+    controller: 'visitCtrl',
+		animation: 'second'
   })
 
   .when('/sessions', {
     templateUrl: 'mods/sessions/sessions.html',
-    controller: 'sessionsCtrl'
+    controller: 'sessionsCtrl',
+		animation: 'second'
   })
 
   .when('/sessions/:id', {
     templateUrl: 'mods/sessions/session.html',
-    controller: 'sessionCtrl'
+    controller: 'sessionCtrl',
+		animation: 'second'
   })
 
   .when('/facts', {
     templateUrl: 'mods/factsheet/facts.html',
-    controller: 'genericCtrl'
+    controller: 'genericCtrl',
+		animation: 'second'
   })
 
   .when('/contacts', {
         templateUrl: 'mods/contacts/main.html',
-        controller: 'genericCtrl'
+        controller: 'genericCtrl',
+				animation: 'second'
   })
 
   .when('/city', {
         templateUrl: 'mods/city/main.html',
-        controller: 'genericCtrl'
+        controller: 'genericCtrl',
+				animation: 'second'
   })
 
   .when('/feedback', {
         templateUrl: 'mods/sessions/feedback.html',
-        controller: 'genericCtrl'
+        controller: 'genericCtrl',
+				animation: 'second'
   })
 
   .when('/search', {
-        templateUrl: 'mods/search.html'
+        templateUrl: 'mods/search.html',
+				animation: 'second'
   })
 
   // if none of the above states are matched, use this as the fallback
