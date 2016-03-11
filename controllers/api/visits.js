@@ -9,6 +9,7 @@ controller.getAll     = getAll;
 controller.create     = create;
 
 controller.getOneById = getOneById;
+controller.getSessionsById = getSessionsById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 
@@ -31,6 +32,21 @@ function getAll(req,res){
 
 function getOneById(req,res){
   dataService.getOneById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getSessionsById(req,res){
+  dataService.getSessionsById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
@@ -70,7 +86,7 @@ function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
         res.status(200).send("Doc updated successfully");
-    }) 
+    })
     .catch(function (err) {
         console.log(err);
         res.status(500).send(err);

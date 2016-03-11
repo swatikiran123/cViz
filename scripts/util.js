@@ -1,6 +1,7 @@
 var util = {};
 
 util.formatString = formatString;
+util.dateOnly = dateOnly;
 
 module.exports = util;
 
@@ -12,4 +13,9 @@ function formatString(str) {
   return str.replace(/%s/g, function() {
       return args[i++];
   });
+};
+
+
+function dateOnly(myDate){
+	return (new Date(myDate.getFullYear(), myDate.getMonth(), myDate.getDate()));
 };
