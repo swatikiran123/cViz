@@ -2,11 +2,6 @@
   placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75">
 
 
-  <md-input-container class="md-block">
-     
-<input type="text" name="user" id="user"
-  placeholder="" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75" required></div><div lass="col-sm-2">
-   </div>
 <br>
 <ANY ng-switch="showFlag">
   <ANY ng-switch-when="user">
@@ -20,18 +15,9 @@
 		    <div class="text-xsmall">{{userModel.jobTitle}}<br/>{{userModel.organization}} </div>
 		  </div>
 		</div> -->
-    <div class="panel panel-default" class="panel-bg">
-      <div class="panel-body">
-        <div class="pull-left">
-          <img src="{{userModel.avatar}}" class="img-circle" width="50" height="50">
-        </div>
-        <div class="panelpad pull-right">
-          <div class="username">{{userModel.name.first}} {{userModel.name.last}}</div>
-          <div class="usertitle">{{userModel.email}}</div>
-          <div class="userorganisation">{{userModel.jobTitle}}<br/>{{userModel.organization}}</div>
-        </div>
-      </div>
-    </div>
+      <div ng-include = "getTemplate()">
+
+</div>
   </ANY>
 
   <ANY ng-switch-when="noUser">
