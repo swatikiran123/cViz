@@ -1,6 +1,7 @@
 'use strict';
 
 var Q               = require('q');
+var _ 							= require('underscore');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/visitSchedule')
 
@@ -60,11 +61,6 @@ function getAllByVisitId(id){
 
     model
         .find({ visit: id })
-        .populate('visit')
-        .populate('client')
-        .populate('session.owner')
-        .populate('session.supporter')
-        .populate('invitees')
         .sort({scheduleDate: 1, 'session.startTime': 1})
         .exec(function (err, item) {
             if(err) {
@@ -72,8 +68,10 @@ function getAllByVisitId(id){
                 deferred.reject(err);
             }
             else
+            {
                 deferred.resolve(item);
-        });
+            }
+        }); // end of model
 
     return deferred.promise;
 } // getOneByVisitId method ends
@@ -81,9 +79,6 @@ function getAllByVisitId(id){
 function create(data) {
     var deferred = Q.defer();
 
-    //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving schedule........");
-    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);
