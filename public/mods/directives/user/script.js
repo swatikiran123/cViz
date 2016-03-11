@@ -41,7 +41,30 @@ angular.module('userDirective', [])
     scope: {
       userModel: "=userModel",
       userId: "=userId",
-      userEmail: "=userEmail"
+      userEmail: "=userEmail",
+      viewType: "=viewType"
+    },
+
+    link : function(scope,element,attrs)
+    {
+      scope.getTemplate = function(){
+      
+      var viewmode = scope.viewType.toLowerCase();
+
+       if(viewmode === "small")
+       {
+        return "/public/mods/directives/user/templates/smallpanel.html";
+      }
+      if(viewmode === "large"){
+        return "/public/mods/directives/user/templates/largepanel.html";
+      }
+      if(viewmode === "medium"){
+        return "/public/mods/directives/user/templates/mediumpanel.html";
+      }
+
     }
-  };
+  }
+
+
+};
 });

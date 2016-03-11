@@ -20,6 +20,9 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   $scope.noteById = "";
   $scope.noteByEmail = "";
   $scope.noteByUser =  "";
+  $scope.small= "small";
+  $scope.large= "LARGE";
+  $scope.medium= "medium";
 
 
   var refresh = function() {
