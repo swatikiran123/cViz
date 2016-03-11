@@ -76,13 +76,20 @@ function create(userParam) {
         });
 
     function createUser() {
-        // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
-        if(userParam.password == null)
-            userParam.password = config.get('profile.default-pwd');
+      if(typeof userParam.local == "undefined")
+        userParam.local = {};
+
+      // set user object to userParam without the cleartext password
+      var user = _.omit(userParam, 'password');
+
+      if(userParam.local.email == null)
+        userParam.local.email = userParam.email;
+
+      if(userParam.local.password == null)
+          userParam.local.password = config.get('profile.default-pwd');
 
         // add hashed password to user object
-        user.pwdHash = bcrypt.hashSync(userParam.password, 10);
+        user.local.password = bcrypt.hashSync(userParam.local.password, bcrypt.genSaltSync(8), null);
 
         model.create(
             user,
