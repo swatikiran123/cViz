@@ -22,6 +22,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     console.log($scope.offerings)
   });
 
+  $scope.small= "small";
+  $scope.large= "LARGE";
+  $scope.medium= "medium";
+
 
   $scope.cscPersonnel={};
 

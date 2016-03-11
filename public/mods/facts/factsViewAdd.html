@@ -14,19 +14,28 @@
 
   <!-- facts pageheader input--> 
   <div class="data-form">
-    <form name="factsForm" id="factsForm" class="form-vertical" novalidate
-    ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+    <form name="factsForm" id="factsForm" class="form-vertical" novalidate>
+    
+
 
     <!-- facts title input-->
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Title" id="title" name="title"
-      ng-model="facts.title" required ng-minlength="5" ng-maxlength="50"
-      floating-validation/>
-    </div>
+    <form name="factsForm">
+      <md-input-container class="md-block">
+        <label>Title</label>
+        <input md-maxlength="30" minlength="5" required name="title"   ng-model="facts.title">
+        <div ng-messages="factsForm.title.$error" ng-show="factsForm.title.$touched || !factsForm.title.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+
 
     <!-- facts description -->
 
-    <div class="form-group">
+       
+    <div class="field">
+                  <label ng-show="facts.description" class="show-hide">note</label>
 
       <text-angular 
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],

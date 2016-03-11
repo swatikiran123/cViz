@@ -51,11 +51,16 @@
          </text-angular></div>
  
 
-     <!-- keynotes speaker input--> 
+     <!-- keynotes speaker input-->
        
           <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
                <div class="col=md-4">
            <div user type="picker" user-model="noteByUser" user-id="noteById" user-email="noteByEmail" ></div>
+            <div class="field">
+     <!--label ng-show="noteByUser" class="show-hide">user</label-->
+     <label>user:</label>
+              
+           <div user type="picker" user-model="noteByUser" view-type="large" user-id="noteById" user-email="noteByEmail"></div>
 
                 </div>
             </div>
