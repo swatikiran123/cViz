@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="baseApp" class="no-js"> <!--<![endif]-->
+
+<head>
+  <title><%=locals.appTitle%> <%=locals.pageTitle%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Skeleton solution for MEAN Stack">
+  <meta name="author" content="Sankar Vema">
+
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" href="/public/assets/w/styles/layout.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/pagestyles.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/materialform.css" />
+
+  <link rel="stylesheet" href="/public/assets/w/styles/dataview-table.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/dataview-panels.css" />
+  <script type="text/javascript" src="/public/assets/w/js/textAngular.js"></script> 
+  <style>.growl {
+    position: fixed;
+    padding-top: 50px;
+    top: 10px;
+    right: 10px;
+    float: left;
+    width: 250px;
+    z-index: 9999;
+  }
+  .growl-item.ng-enter {
+    -webkit-animation: bounceIn 0.5s;
+    animation: bounceIn 0.5s;
+  }
+  .growl-item.ng-leave {
+    -webkit-animation: bounceOut 0.5s;
+    animation: bounceOut 0.5s;
+  }
+  .buttons {
+    margin: 220px 4px;
+  }
+
+  /*dialog styles*/
+  .dialogpad
+  {
+    padding-left: 25%;
+  }
+  .dialogmessage
+  {
+    padding-left: 3%;
+    padding-right: 3%;
+    
+  }
+  .dialog-content-container{
+    padding-left: 4%;
+    padding-top: 1px;}
+    .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
+      color: white; 
+      width:20px;}</style>
+      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+      <!-- material designs -->
+
+
+
+      <!-- angular-growl-->
+
+      <script type="text/javascript" src ="https://code.angularjs.org/1.2.1/angular-sanitize.js"></script> 
+      <script type="text/javascript" src ="https://raw.githack.com/marcorinck/angular-growl/master/build/angular-growl.js"></script> 
+      <link rel="stylesheet" href="https://raw.githack.com/marcorinck/angular-growl/master/build/angular-growl.min.css">
+    </head>
+    <body>
+     <div class="row"> 
+      <div class="col-sm-1"></div>
+      <div class="col-md-8">
+        <div ng-controller="BasicDemoCtrl as ctrl" layout="column" ng-cloak>
+          <br>
+          <br>
+          <md-toolbar>
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2>
+            <span>Entry components styles</span>
+          </h2>
+          <span flex></span>
+          
+          <md-button class="md-icon-button" aria-label="More">
+          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <h2 class="md-title">Form Styles.</h2>
+    
+    <form name="projectForm">
+      
+     
+      <md-input-container class="md-block">
+      <label>Title</label>
+      <input md-maxlength="30" minlength="5" required name="title" ng-model="project.title">
+      <div ng-messages="projectForm.title.$error" ng-show="projectForm.title.$touched || !projectForm.title.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+      <label>Description</label>
+      <input md-maxlength="30" minlength="5" required name="description" ng-model="project.description">
+      <div ng-messages="projectForm.description.$error" ng-show="projectForm.description.$touched || !projectForm.description.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">the title should contain minimum 5characters</div></div>
+        </div>
+      </md-input-container>
+      
+      <div class="field">
+        <label ng-show="project.noteText" class="show-hide">note</label><br>
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
+        ng-model="project.noteText" name="note"/>
+      </text-angular></div>
+
+      
+      <div class="field">
+        <label>tags(md-chisp)</label><br>
+        <md-chips
+        ng-model="tags"
+        readonly="ctrl.readonly"
+        placeholder="Enter a tag"
+        delete-button-label="Remove Tag"
+        delete-hint="Press delete to remove tag"
+        secondary-placeholder="enter a tag"></md-chips>
+        <br/>
+
+        <div class="form-group">
+          <div class="pull-left">
+            <button type="submit" class="btn btn-success" 
+            ng-click="save()" ng-disabled="ProjectForm.$invalid">Submit
+          </button>
+          <button type="submit" class="btn btn-success" 
+          ng-click="save()" ng-disabled="ProjectForm.$invalid">ok
+        </button>
+        <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-success btn-sm" ng-click="showSuccess()">Show Success!</button>
+      </div></div></div>
+    </form>
+
+    <h3>dropdown</h3>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">select the view
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Grid</a></li>
+          <li><a href="#">Panels</a></li>  
+          <li><a href="#">List</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <h3>Dialog Box</h3>
+    <div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak>
+
+      <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex="100" flex-gt-md="auto">
+      Custom Dialog
+    </md-button>
+  </div>
+
+  <h3>panles rows</h3>
+
+  <div class="row">
+    <div class="pn-bodypad">
+      <div class="col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading pn-bodyhdr" pull-left>
+            <span>Title:Welcome</span>
+            <div class="pull-right">
+              <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
+              <a class="table-btn" href="#/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+              <a class="table-btn" ng-click="delete(keynote)"><span class="glyphicon glyphicon-trash" /></a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="pull-left">
+              <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
+            </div>
+
+            <div class="pn-inrbodypad">
+              <div class="row">
+                <div class="col-sm-4 text-big-normal">speaker:Some One</div>
+                <div class="col-sm-4 text-medium">created on:26-06-2016</div>
+                <div class="col-sm-4 text-small">link:to view details</div>
+                <div class="col-sm-5 text-small">link:to view details</div>
+                <div class="col-sm-5 text-xsmall">tags:some, one, someone</div>
+                <div class="col-sm-11">
+                  <div class="text-desc">desc: lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet </div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+    </div></div></div>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+     
+     'use strict';
+     var projectApp = angular.module('baseApp', ['ngMaterial', 'textAngular', 'ngMessages', 'angular-growl']);
+
+     projectApp.controller('BasicDemoCtrl', ['$scope', 'growl',
+      function($scope, growl) {
+        var self = this;
+        self.readonly = false;
+    // Lists of fruit names and Vegetable objects
+    
+    $scope.tags = [];
+    $scope.project = "";
+    
+    $scope.showSuccess = function () {
+      growl.addSuccessMessage('<b>Yay!</b> Something worked.');
+    };
+    
+  }])
+
+     projectApp.controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+      $scope.status = '  '; 
+
+      $scope.showAdvanced = function(ev) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: '/dialog',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true
+          
+        })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+        
+      };
+
+    });
+
+     function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+    }
+
+
+  </script>
+  
+</body>
+</html>
