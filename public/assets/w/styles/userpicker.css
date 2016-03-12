@@ -1,0 +1,46 @@
+
+/*  panel styles*/
+
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 0 1px 1px #fff;
+          box-shadow: 0 0 1px 1px  rgba(0, 0, 0, .05);
+}
+
+
+/*  panel padding styles*/
+
+.panelpad{
+	padding-left: 55px;
+}
+.panelpdmd{
+  padding-left: 65px;
+}
+.panelpdlg{
+  padding-left: 110px;
+}
+
+/*  panel background*/
+.panel-bg{
+	background-image: url('../images/background.jpg');
+	
+}
+
+
+/*  panel picture styles*/
+.userpic{
+  width:50px;
+  height:45px;
+}
+.userpicmd{
+  width:60px;
+  height:55px;
+}
+.userpiclg{
+  width:100px;
+  height:95px;
+}

@@ -42,6 +42,7 @@ module.exports = function(app, passport)
         res.locals.pageTitle = "dialog";
         res.render('dialog.ejs', {});
     });
+
         
 
     // route to feedback
