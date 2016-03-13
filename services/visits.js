@@ -2,10 +2,11 @@
 
 var Q               = require('q');
 var _								= require('underscore');
+var moment 					= require('moment');  require('moment-range');
 var constants       = require('../scripts/constants');
 var util						= require(constants.paths.scripts + "/util");
 var model           = require(constants.paths.models +  '/visit');
-var schedule        = require(constants.paths.models +  '/visitSchedule');
+var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 
 // Service method definition -- Begin
 var service = {};
@@ -72,19 +73,20 @@ function getSessionsById(id){
             deferred.reject(err);
         }
         else{
-					schedule
+					scheduleModel
 						.find({ visit: id })
 						.exec(function (err, sessions){
 							if(err){
+								console.log(err);
 								deferred.reject(err);
 							}
 							else{
 								transform(visit, sessions);
 								deferred.resolve(sessionDays);
 							}
-						})
-					}
-    });
+						}); // end of scheduleModel find
+					} // end of if else
+    }); // end of model find
 
 		// Internal method to transform visit data to session
 		function transform(visit, sessions)
@@ -95,29 +97,32 @@ function getSessionsById(id){
 			var i=1;
 			vistSchedule.forEach(function(sch){
 
-				for (var d = new Date(util.dateOnly(sch.startDate));
-									d <= new Date(util.dateOnly(sch.endDate));
-									d.setDate(d.getDate() + 1)) {
+				// loop thru each of the days in the schedule
+				var dayRange = moment.range(sch.startDate, sch.endDate);
+				dayRange.toArray('days').forEach(function(d){
 
-					// assign schedule data for each of the days
-					var daySessions = _.where(sessions, function(scheduleDate, d){
-						return util.dateOnly(scheduleDate) === util.dateOnly(d);
+					// filter schedule data for each of the days
+					var daySessions = sessions.filter(function(x){
+						var thisDay = moment(x.scheduleDate);
+						return d.isSame(thisDay, 'day')
 					});
 
-				  schedule = {
-						day : i,
-						date : util.dateOnly(d),
-						location: sch.location,
-						sessions: daySessions
-					}; // end of schedule object
-					i++;
+					// skip days for which sessions are not scheduled
+					if(daySessions.length > 0){
+					  var schedule = {
+							day : i,
+							date : d,
+							location: sch.location,
+							//count: daySessions.length,
+							sessions: daySessions
+						}; // end of schedule object
+
+						i++;
+					}
 
 					sessionDays.push(schedule);
-				} // end of date range loop
-				// console.log(sch.location);
+				}); // end of date range loop
 			}); // end of visit vistSchedule loop
-
-			return sessionDays;
 		}
 
     return deferred.promise;

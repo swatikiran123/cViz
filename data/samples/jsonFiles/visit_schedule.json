@@ -1,12 +1,13 @@
 [
 
+
 	{
 		"_id"									: ObjectId("A06234567892345678900001"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "presentation",
@@ -18,38 +19,38 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-		
-		"invitees"							: 
+
+		"invitees"							:
 			[
 				ObjectId("A02234567892345678900019"),
 				ObjectId("A02234567892345678900020")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900002"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-26T10:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-26T11:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-26T11:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900003"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "discussion",
@@ -61,37 +62,37 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-			
-		"invitees"							: 
+
+		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900017")
-			]	
+			]
 	},
-	
+
 	{
 		"_id"									: ObjectId("A06234567892345678900004"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Lunch Break",
 				"startTime"				: ISODate("2016-02-26T12:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-26T13:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-26T13:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900005"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Presentations",
@@ -103,39 +104,39 @@
 				"owner"					: ObjectId("A02234567892345678900003"),
 				"supporter"				: ObjectId("A02234567892345678900004")
 			},
-			
-		"invitees"							: 
+
+		"invitees"							:
 			[
 				ObjectId("A02234567892345678900015"),
 				ObjectId("A02234567892345678900016"),
 				ObjectId("A02234567892345678900017")
-			]		
+			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900006"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-26T15:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-26T15:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-26T15:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900007"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Floor Walk",
@@ -147,23 +148,23 @@
 				"owner"					: ObjectId("A02234567892345678900003"),
 				"supporter"				: ObjectId("A02234567892345678900004")
 			},
-			
-		"invitees"							: 
+
+		"invitees"							:
 			[
 				ObjectId("A02234567892345678900012"),
 				ObjectId("A02234567892345678900011"),
 				ObjectId("A02234567892345678900013")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900008"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900001"),
 		"visit"								: ObjectId("A01234567892345678900001"),
 		"scheduleDate"					: ISODate("2016-02-26T09:00:00.000Z") ,
-		
+
 		"session"							:
 			{
 				"type"						: "Discussion",
@@ -175,46 +176,46 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-			
-		"invitees"							: 
+
+		"invitees"							:
 			[
 				ObjectId("A02234567892345678900019"),
 				ObjectId("A02234567892345678900020")
 			]
 	},
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900009"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "breakfast",
 				"startTime"				: ISODate("2016-02-02T08:00:00.000Z")  ,
-				"endTime"					: ISODate("2016-02-02T09:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-02T09:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900010"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "presentation",
 				"startTime"				: ISODate("2016-02-02T09:01:00.000Z")  ,
 				"endTime"					: ISODate("2016-02-02T10:30:00.000Z")  ,
@@ -224,41 +225,41 @@
 				"owner"					: ObjectId("A02234567892345678900005"),
 				"supporter"				: ObjectId("A02234567892345678900006")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900016"),
 				ObjectId("A02234567892345678900015")
-			]	
+			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900011"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-02T10:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-02T11:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-02T11:00:00.000Z")
 			}
 	},
-	
-	
-	
+
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900012"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "discussion",
 				"startTime"				: ISODate("2016-02-02T11:01:00.000Z")  ,
 				"endTime"					: ISODate("2016-02-02T12:30:00.000Z")  ,
@@ -268,41 +269,41 @@
 				"owner"					: ObjectId("A02234567892345678900005"),
 				"supporter"				: ObjectId("A02234567892345678900006")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900013"),
 				ObjectId("A02234567892345678900014"),
 				ObjectId("A02234567892345678900015")
-			]	
+			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900013"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Lunch Break",
 				"startTime"				: ISODate("2016-02-02T12:31:00.000Z") ,
-				"endTime"				: ISODate("2016-02-02T13:30:00.000Z") 
+				"endTime"				: ISODate("2016-02-02T13:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900014"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-02-02T13:31:00.000Z")  ,
 				"endTime"				: ISODate("2016-02-02T15:00:00.000Z")  ,
@@ -312,40 +313,40 @@
 				"owner"					: ObjectId("A02234567892345678900007"),
 				"supporter"				: ObjectId("A02234567892345678900008")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900017"),
 				ObjectId("A02234567892345678900015")
-			]	
+			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900015"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-02T15:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-02T15:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-02T15:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900016"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-02-02T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-02-02T17:00:00.000Z")  ,
@@ -355,24 +356,24 @@
 				"owner"					: ObjectId("A02234567892345678900007"),
 				"supporter"				: ObjectId("A02234567892345678900008")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900020"),
 				ObjectId("A02234567892345678900019")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900017"),
-		
+
 		"client" 								: ObjectId("A03234567892345678900002"),
 		"visit"								: ObjectId("A01234567892345678900002"),
 		"scheduleDate"					: ISODate("2016-02-02T08:00:00.000Z") ,
-		
+
 		"session"							:
-			{	
+			{
 				"type"						: "Discussion",
 				"startTime"				: ISODate("2016-02-02T17:01:00.000Z")  ,
 				"endTime"				: ISODate("2016-02-02T18:00:00.000Z")  ,
@@ -382,23 +383,23 @@
 				"owner"					: ObjectId("A02234567892345678900009"),
 				"supporter"				: ObjectId("A02234567892345678900010")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900011"),
 				ObjectId("A02234567892345678900015")
 			]
 	},
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900018"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -409,11 +410,11 @@
 			{
 				"type"						: "breakfast",
 				"startTime"				: ISODate("2016-02-14T08:01:00.000Z")  ,
-				"endTime"					: ISODate("2016-02-14T09:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-14T09:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900019"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -431,15 +432,15 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900017")
 			]
 	},
-		
-		
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900020"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -450,11 +451,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-14T10:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-14T11:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-14T11:00:00.000Z")
 			}
-	},	
-	
-	
+	},
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900021"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -472,15 +473,15 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900019"),
 				ObjectId("A02234567892345678900020")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900022"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -491,11 +492,11 @@
 			{
 				"type"						: "Lunch Break",
 				"startTime"				: ISODate("2016-02-14T12:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-14T13:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-14T13:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900023"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -513,7 +514,7 @@
 				"owner"					: ObjectId("A02234567892345678900003"),
 				"supporter"				: ObjectId("A02234567892345678900004")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900019"),
@@ -521,8 +522,8 @@
 				ObjectId("A02234567892345678900018")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900024"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -533,11 +534,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-14T15:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-14T15:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-14T15:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900025"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -555,7 +556,7 @@
 				"owner"					: ObjectId("A02234567892345678900003"),
 				"supporter"				: ObjectId("A02234567892345678900004")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900012"),
@@ -563,8 +564,8 @@
 				ObjectId("A02234567892345678900016")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900026"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -582,7 +583,7 @@
 				"owner"					: ObjectId("A02234567892345678900003"),
 				"supporter"				: ObjectId("A02234567892345678900004")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900013"),
@@ -590,13 +591,13 @@
 				ObjectId("A02234567892345678900017")
 			]
 	},
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900027"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -607,11 +608,11 @@
 			{
 				"type"						: "breakfast",
 				"startTime"				: ISODate("2016-02-15T08:00:00.000Z")  ,
-				"endTime"					: ISODate("2016-02-15T09:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-15T09:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900028"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -629,7 +630,7 @@
 				"owner"					: ObjectId("A02234567892345678900005"),
 				"supporter"				: ObjectId("A02234567892345678900006")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900011"),
@@ -637,7 +638,7 @@
 				ObjectId("A02234567892345678900013")
 			]
 	},
-	
+
 	{
 		"_id"									: ObjectId("A06234567892345678900029"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -648,11 +649,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-15T10:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-15T11:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-15T11:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900030"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -670,15 +671,15 @@
 				"owner"					: ObjectId("A02234567892345678900005"),
 				"supporter"				: ObjectId("A02234567892345678900006")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900014"),
 				ObjectId("A02234567892345678900015")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900031"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -689,11 +690,11 @@
 			{
 				"type"						: "Lunch Break",
 				"startTime"				: ISODate("2016-02-15T12:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-15T13:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-15T13:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900032"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -711,15 +712,15 @@
 				"owner"					: ObjectId("A02234567892345678900005"),
 				"supporter"				: ObjectId("A02234567892345678900006")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900016"),
 				ObjectId("A02234567892345678900017")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900033"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -730,11 +731,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-15T15:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-15T15:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-15T15:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900034"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -752,15 +753,15 @@
 				"owner"					: ObjectId("A02234567892345678900006"),
 				"supporter"				: ObjectId("A02234567892345678900005")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900019")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900035"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -778,15 +779,15 @@
 				"owner"					: ObjectId("A02234567892345678900007"),
 				"supporter"				: ObjectId("A02234567892345678900008")
 			},
-			
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900019")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900036"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -797,15 +798,15 @@
 			{
 				"type"						: "Dinner",
 				"startTime"				: ISODate("2016-02-15T18:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-15T20:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-15T20:00:00.000Z")
 			}
 	},
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900037"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -816,11 +817,11 @@
 			{
 				"type"						: "breakfast",
 				"startTime"				: ISODate("2016-02-16T08:00:00.000Z")  ,
-				"endTime"					: ISODate("2016-02-16T09:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-16T09:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900038"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -838,15 +839,15 @@
 				"owner"					: ObjectId("A02234567892345678900001"),
 				"supporter"				: ObjectId("A02234567892345678900002")
 			},
-		
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900019")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900039"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -857,11 +858,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-16T10:31:00.000Z") ,
-				"endTime"					: ISODate("2016-02-16T11:00:00.000Z") 
+				"endTime"					: ISODate("2016-02-16T11:00:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900040"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -879,15 +880,15 @@
 				"owner"					: ObjectId("A02234567892345678900009"),
 				"supporter"				: ObjectId("A02234567892345678900010")
 			},
-		
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900018"),
 				ObjectId("A02234567892345678900020")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900041"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -898,11 +899,11 @@
 			{
 			"type"						: "Lunch Break",
 			"startTime"				: ISODate("2016-02-16T12:31:00.000Z") ,
-			"endTime"					: ISODate("2016-02-16T13:30:00.000Z") 
+			"endTime"					: ISODate("2016-02-16T13:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900042"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -920,7 +921,7 @@
 				"owner"					: ObjectId("A02234567892345678900009"),
 				"supporter"				: ObjectId("A02234567892345678900010")
 			},
-		
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900014"),
@@ -928,8 +929,8 @@
 				ObjectId("A02234567892345678900016")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900043"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -940,11 +941,11 @@
 			{
 				"type"						: "Tea Break",
 				"startTime"				: ISODate("2016-02-16T15:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-16T15:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-16T15:30:00.000Z")
 			}
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900044"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -962,7 +963,7 @@
 				"owner"					: ObjectId("A02234567892345678900009"),
 				"supporter"				: ObjectId("A02234567892345678900010")
 			},
-		
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900012"),
@@ -970,8 +971,8 @@
 				ObjectId("A02234567892345678900014")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900045"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -989,7 +990,7 @@
 				"owner"					: ObjectId("A02234567892345678900011"),
 				"supporter"				: ObjectId("A02234567892345678900012")
 			},
-		
+
 		"invitees"							:
 			[
 				ObjectId("A02234567892345678900012"),
@@ -1000,8 +1001,8 @@
 				ObjectId("A02234567892345678900016")
 			]
 	},
-	
-	
+
+
 	{
 		"_id"									: ObjectId("A06234567892345678900046"),
 		"client" 								: ObjectId("A03234567892345678900005"),
@@ -1012,10 +1013,1138 @@
 			{
 				"type"						: "Dinner",
 				"startTime"				: ISODate("2016-02-16T18:01:00.000Z") ,
-				"endTime"					: ISODate("2016-02-16T20:30:00.000Z") 
+				"endTime"					: ISODate("2016-02-16T20:30:00.000Z")
 			}
-	}
-	
-	
-	
+	},
+
+
+
+{
+		"_id"									: ObjectId("A06234567892345678900047"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Presentations",
+				"startTime"				: ISODate("2016-04-11T08:30:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T09:00:00.000Z") ,
+				"title"						: "Day 1 Session 1/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900048"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Presentations",
+				"startTime"				: ISODate("2016-04-11T09:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T10:00:00.000Z") ,
+				"title"						: "Day 1 Session 2/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900049"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Presentations",
+				"startTime"				: ISODate("2016-04-11T10:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T11:00:00.000Z") ,
+				"title"						: "Day 1 Session 3/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900050"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Presentations",
+				"startTime"				: ISODate("2016-04-11T11:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T12:00:00.000Z") ,
+				"title"						: "Day 1 Session 4/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900051"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Executive Lunch",
+				"startTime"				: ISODate("2016-04-11T12:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T13:00:00.000Z") ,
+				"title"						: "Day 1 Lunch Session 5/12",
+				"location"					: "B7 Executive Lunch area"
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900052"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Floor Walk",
+				"startTime"				: ISODate("2016-04-11T13:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T14:00:00.000Z") ,
+				"title"						: "Day 1 Session 6/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900053"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Floor Walk",
+				"startTime"				: ISODate("2016-04-11T14:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T15:00:00.000Z") ,
+				"title"						: "Day 1 Session 7/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900054"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Tea Break",
+				"startTime"				: ISODate("2016-04-11T15:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T15:15:00.000Z") ,
+				"title"						: "Day 1 Session 8/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900055"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Floor Walk",
+				"startTime"				: ISODate("2016-04-11T15:15:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T16:00:00.000Z") ,
+				"title"						: "Day 1 Session 9/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900056"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Floor Walk",
+				"startTime"				: ISODate("2016-04-11T16:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T17:00:00.000Z") ,
+				"title"						: "Day 1 Session 10/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+		"_id"									: ObjectId("A06234567892345678900057"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Floor Walk",
+				"startTime"				: ISODate("2016-04-11T17:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T18:00:00.000Z") ,
+				"title"						: "Day 1 Session 11/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Board room 4th floor, B7",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+		{
+		"_id"									: ObjectId("A06234567892345678900058"),
+		"client" 								: ObjectId("A03234567892345678900005"),
+		"visit"								: ObjectId("A01234567892345678900006"),
+
+		"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
+		"session"							:
+			{
+				"type"						: "Dinner",
+				"startTime"				: ISODate("2016-04-11T19:00:00.000Z") ,
+				"endTime"					: ISODate("2016-04-11T20:30:00.000Z") ,
+				"title"						: "Day 1 Special Dinner Session 12/12",
+				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+				"location"					: "Westin Main Plaza",
+				"owner"					: ObjectId("A02234567892345678900009"),
+				"supporter"				: ObjectId("A02234567892345678900010")
+			}
+	},
+
+	{
+	"_id"									: ObjectId("A06234567892345678900059"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-12T08:30:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T09:00:00.000Z") ,
+			"title"						: "Day 2 Session 1/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900060"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-12T09:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T10:00:00.000Z") ,
+			"title"						: "Day 2 Session 2/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900253"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-12T10:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T11:00:00.000Z") ,
+			"title"						: "Day 2 Session 3/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900254"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-12T11:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T12:00:00.000Z") ,
+			"title"						: "Day 2 Session 4/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900255"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Executive Lunch",
+			"startTime"				: ISODate("2016-04-12T12:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T13:00:00.000Z") ,
+			"title"						: "Day 2 Lunch Session 5/12",
+			"location"					: "B7 Executive Lunch area"
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900256"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-12T13:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T14:00:00.000Z") ,
+			"title"						: "Day 2 Session 6/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900257"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-12T14:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T15:00:00.000Z") ,
+			"title"						: "Day 2 Session 7/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900258"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Tea Break",
+			"startTime"				: ISODate("2016-04-12T15:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T15:15:00.000Z") ,
+			"title"						: "Day 2 Session 8/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900259"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-12T15:15:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T16:00:00.000Z") ,
+			"title"						: "Day 2 Session 9/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900260"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-12T16:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T17:00:00.000Z") ,
+			"title"						: "Day 2 Session 10/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900261"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-12T17:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T18:00:00.000Z") ,
+			"title"						: "Day 2 Session 11/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900262"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Dinner",
+			"startTime"				: ISODate("2016-04-12T19:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-12T20:30:00.000Z") ,
+			"title"						: "Day 2 Special Dinner Session 12/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Westin Main Plaza",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+
+{
+	"_id"									: ObjectId("A06234567892345678900351"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-13T08:30:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T09:00:00.000Z") ,
+			"title"						: "Day 3 Session 1/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900352"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-13T09:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T10:00:00.000Z") ,
+			"title"						: "Day 3 Session 2/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900353"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-13T10:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T11:00:00.000Z") ,
+			"title"						: "Day 3 Session 3/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900354"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-13T11:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T12:00:00.000Z") ,
+			"title"						: "Day 3 Session 4/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900355"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Executive Lunch",
+			"startTime"				: ISODate("2016-04-13T12:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T13:00:00.000Z") ,
+			"title"						: "Day 3 Lunch Session 5/12",
+			"location"					: "B7 Executive Lunch area"
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900356"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-13T13:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T14:00:00.000Z") ,
+			"title"						: "Day 3 Session 6/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900357"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-13T14:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T15:00:00.000Z") ,
+			"title"						: "Day 3 Session 7/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+
+{
+	"_id"									: ObjectId("A06234567892345678900358"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Tea Break",
+			"startTime"				: ISODate("2016-04-13T15:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T15:15:00.000Z") ,
+			"title"						: "Day 3 Session 8/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900359"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-13T15:15:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T16:00:00.000Z") ,
+			"title"						: "Day 3 Session 9/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900360"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-13T16:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T17:00:00.000Z") ,
+			"title"						: "Day 3 Session 10/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900361"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-13T17:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T18:00:00.000Z") ,
+			"title"						: "Day 3 Session 11/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900362"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Dinner",
+			"startTime"				: ISODate("2016-04-13T19:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-13T20:30:00.000Z") ,
+			"title"						: "Day 3 Special Dinner Session 12/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Westin Main Plaza",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900451"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-14T08:30:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T09:00:00.000Z") ,
+			"title"						: "Day 4 Session 1/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900452"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-14T09:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T10:00:00.000Z") ,
+			"title"						: "Day 4 Session 2/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900453"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-14T10:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T11:00:00.000Z") ,
+			"title"						: "Day 4 Session 3/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900454"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-14T11:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T12:00:00.000Z") ,
+			"title"						: "Day 4 Session 4/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900455"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Executive Lunch",
+			"startTime"				: ISODate("2016-04-14T12:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T13:00:00.000Z") ,
+			"title"						: "Day 4 Lunch Session 5/12",
+			"location"					: "B7 Executive Lunch area"
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900456"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-14T13:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T14:00:00.000Z") ,
+			"title"						: "Day 4 Session 6/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900457"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-14T14:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T15:00:00.000Z") ,
+			"title"						: "Day 4 Session 7/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900458"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Tea Break",
+			"startTime"				: ISODate("2016-04-14T15:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T15:15:00.000Z") ,
+			"title"						: "Day 4 Session 8/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900459"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-14T15:15:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T16:00:00.000Z") ,
+			"title"						: "Day 4 Session 9/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900460"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-14T16:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T17:00:00.000Z") ,
+			"title"						: "Day 4 Session 10/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+
+{
+	"_id"									: ObjectId("A06234567892345678900461"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-14T17:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T18:00:00.000Z") ,
+			"title"						: "Day 4 Session 11/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900462"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Dinner",
+			"startTime"				: ISODate("2016-04-14T19:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-14T20:30:00.000Z") ,
+			"title"						: "Day 4 Special Dinner Session 12/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Westin Main Plaza",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900551"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-15T08:30:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T09:00:00.000Z") ,
+			"title"						: "Day 5 Session 1/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900552"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-15T09:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T10:00:00.000Z") ,
+			"title"						: "Day 5 Session 2/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900553"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-15T10:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T11:00:00.000Z") ,
+			"title"						: "Day 5 Session 3/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900554"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Presentations",
+			"startTime"				: ISODate("2016-04-15T11:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T12:00:00.000Z") ,
+			"title"						: "Day 5 Session 4/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900555"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Executive Lunch",
+			"startTime"				: ISODate("2016-04-15T12:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T13:00:00.000Z") ,
+			"title"						: "Day 5 Lunch Session 5/12",
+			"location"					: "B7 Executive Lunch area"
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900556"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-15T13:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T14:00:00.000Z") ,
+			"title"						: "Day 5 Session 6/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900557"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-15T14:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T15:00:00.000Z") ,
+			"title"						: "Day 5 Session 7/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900558"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Tea Break",
+			"startTime"				: ISODate("2016-04-15T15:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T15:15:00.000Z") ,
+			"title"						: "Day 5 Session 8/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900559"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-15T15:15:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T16:00:00.000Z") ,
+			"title"						: "Day 5 Session 9/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900560"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-15T16:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T17:00:00.000Z") ,
+			"title"						: "Day 5 Session 10/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900561"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Floor Walk",
+			"startTime"				: ISODate("2016-04-15T17:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T18:00:00.000Z") ,
+			"title"						: "Day 5 Session 11/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Board room 4th floor, B7",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+},
+
+{
+	"_id"									: ObjectId("A06234567892345678900562"),
+	"client" 								: ObjectId("A03234567892345678900005"),
+	"visit"								: ObjectId("A01234567892345678900006"),
+
+	"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
+	"session"							:
+		{
+			"type"						: "Dinner",
+			"startTime"				: ISODate("2016-04-15T19:00:00.000Z") ,
+			"endTime"					: ISODate("2016-04-15T20:30:00.000Z") ,
+			"title"						: "Day 5 Special Dinner Session 12/12",
+			"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
+			"location"					: "Westin Main Plaza",
+			"owner"					: ObjectId("A02234567892345678900009"),
+			"supporter"				: ObjectId("A02234567892345678900010")
+		}
+}
+
 ]
