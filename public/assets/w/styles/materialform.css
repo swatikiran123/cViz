@@ -23229,3 +23229,44 @@ md-tooltip {
     max-width: 400px;
     margin-top: 15px
 }
+
+
+/*growl styles*/
+.growl {
+    position: fixed;
+    padding-top: 50px;
+    top: 10px;
+    right: 10px;
+    float: left;
+    width: 250px;
+    z-index: 9999;
+  }
+  .growl-item.ng-enter {
+    -webkit-animation: bounceIn 0.5s;
+    animation: bounceIn 0.5s;
+  }
+  .growl-item.ng-leave {
+    -webkit-animation: bounceOut 0.5s;
+    animation: bounceOut 0.5s;
+  }
+  .buttons {
+    margin: 220px 4px;
+  }
+
+  /*dialog styles*/
+  .dialogpad
+  {
+    padding-left: 25%;
+  }
+  .dialogmessage
+  {
+    padding-left: 3%;
+    padding-right: 3%;
+    
+  }
+  .dialog-content-container{
+    padding-left: 4%;
+    padding-top: 1px;}
+    .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
+      color: white; 
+      width:20px;}
