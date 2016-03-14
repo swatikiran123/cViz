@@ -1,1 +1,39 @@
-/* Empty. Add your own CSS if you like */
+div#profileDetails {
+    padding-top: 20px;
+    background: url("../img/bg/header.jpg") no-repeat;
+    background-size: 113%;
+}
+
+div#profileDetails .profilePic,
+div#profileDetails .profileName,
+div#profileDetails .profileDesg,
+div#profileDetails .profileLoc {
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: workSansBold;
+    text-shadow: 1px 1px #444444;
+}
+div#profileDetails .profileLoc {
+    font-family: robotoBold;
+}
+
+div#profileDetails .profileName {
+    font-size: 1.3125em;
+}
+
+div#profileDetails .profileDesg {
+    font-size: 0.875em;
+}
+
+div#profileDetails .profileLoc {
+    padding-bottom: 15px;
+    font-size: 0.75em;
+}
+
+div#profileDetails .profileLoc img {
+    width: 15px;
+    padding-right: 5px;
+    display: inline-block;
+}

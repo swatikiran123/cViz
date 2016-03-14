@@ -6,20 +6,26 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/anim.css">
+
 
     <script src="libs/angular/angular.js"></script>
     <script src="libs/angular-route/angular-route.js"></script>
     <script src="libs/angular-animate/angular-animate.js"></script>
 
-    <!-- your app's js -->
+    <!-- application js files referenced here  -->
     <script src="mods/app.js"></script>
     <script src="mods/controllers.js"></script>
     <script src="mods/GenericCtrl.js"></script>
     <script src="mods/visits/visitsCtrl.js"></script>
     <script src="mods/sessions/sessionsCtrl.js"></script>
+		<script src="mods/dir/hmnu/dir.js"></script>
 
+		<!-- Application styles goes here -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/anim.css">
+		<link rel="stylesheet" href="assets/css/hmnu.css">
+
+		<!-- standard library styles goes here -->
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
 
   </head>
@@ -32,7 +38,8 @@
       <a href="#/home"><i class="fa fa-home"></i></a>&nbsp;&nbsp;
       CSC
             <i class="fa fa-arrows pull-right"></i>
-      <div ng-include src="'./mods/menu.html'" class="pull-right"></div>
+      <!-- <div ng-include src="'./mods/menu.html'" class="pull-right"></div> -->
+			<ham-menu></ham-menu>
 
     </h3>
 
