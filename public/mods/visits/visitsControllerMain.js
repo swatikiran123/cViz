@@ -21,8 +21,8 @@ visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams', '$rootScope', '$location', 'growl', 'AutoCompleteService',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -31,7 +31,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.hideFilter = true;
   $scope.schedules=[];
   $scope.visitors=[];
-  var name= $rootScope.user._id;
+  //filter table
+  $scope.showAll = true;
+  $scope.showFiltered = false;
+
   
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/location').success(function(response) {
@@ -111,8 +114,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     // Set agm based on the user picker value
     $scope.visits.agm = $scope.agmId;
     $scope.visits.anchor = $scope.anchorId;
-    console.log($rootScope.user._id);
-
+    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.client = $scope.clientId;
     switch($scope.mode)    {
       case "add":
       $scope.create();
@@ -131,7 +134,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     var inData       = $scope.visits;
     inData.schedule = $scope.schedules;
     inData.visitors = $scope.visitors;
-    inData.client = $scope.clientId;
     inData.createBy =  $rootScope.user._id;
 
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -206,6 +208,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   }; 
 
   $scope.editSchedule = function(index,schedule){
+    console.log(schedule);
     $scope.schedule= schedule;
     $scope.schedules.splice(index, 1);
   };
@@ -236,6 +239,71 @@ $scope.editvisitor = function(index,visitorDef){
   $scope.visitors.splice(index, 1);
 };
 // Visit visitor table end
+
+//date- filter http://stackoverflow.com/questions/25719572/angularjs-next-and-previous-day-year-month
+$scope.eventDateFilter = function(column) {
+
+  if(column === 'today') {
+    var currentDate = $filter('date')(new Date(), "dd MMM yyyy");
+    $scope.visitsList.forEach(function(visit) {
+      visit.startDate = $filter('date')(visit.startDate, "dd MMM yyyy");
+    });
+    $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: currentDate});
+    $scope.showFiltered = true;
+    $scope.showAll = false; 
+  }
+
+  else if (column === 'pastMonth') {
+
+    var previousMonth = new Date()
+    previousMonth.setMonth(previousMonth.getMonth() - 1);
+    $scope.pmonth = previousMonth;
+
+    var pastMonth = $filter('date')($scope.pmonth, 'MMM');
+    $scope.visitsList.forEach(function(visit) {
+      visit.startDate = $filter('date')(visit.startDate, "dd MMM yyyy");
+    });
+    $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: pastMonth});
+    $scope.showFiltered = true;
+    $scope.showAll = false;  
+  } 
+  else if (column === 'thisMonth') {
+
+    var previousMonth = new Date()
+    previousMonth.setMonth(previousMonth.getMonth());
+    $scope.month = previousMonth;
+
+    var pastMonth = $filter('date')($scope.month, 'MMM');
+    $scope.visitsList.forEach(function(visit) {
+      visit.startDate = $filter('date')(visit.startDate, "dd MMM yyyy");
+    });
+    $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: pastMonth});
+    $scope.showFiltered = true;
+    $scope.showAll = false;  
+  } 
+  else if (column === 'future') {
+
+    var nextmonth = new Date()
+    nextmonth.setMonth(nextmonth.getMonth() + 1);
+    $scope.nmonth = nextmonth;
+
+    var nextMonth = $filter('date')($scope.nmonth, 'MMM');
+    $scope.visitsList.forEach(function(visit) {
+      visit.startDate = $filter('date')(visit.startDate, "dd MMM yyyy");
+    });
+    $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: nextMonth});
+    $scope.showFiltered = true;
+    $scope.showAll = false; 
+  } 
+  else {
+    $scope.showAll = true;
+    $scope.showFiltered = false;
+  }
+}
+
+
+//date
+
 }])
 
 //Autocompleate - Directive
