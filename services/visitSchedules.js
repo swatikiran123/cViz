@@ -39,11 +39,11 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
-        .populate('visit')
-        .populate('client')
-        .populate('session.owner')
-        .populate('session.supporter')
-        .populate('invitees')
+        // .populate('visit')
+        // .populate('client')
+        // .populate('session.owner')
+        // .populate('session.supporter')
+        // .populate('invitees')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

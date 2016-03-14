@@ -67,7 +67,7 @@ angular.module('cViz-m', [
 		animation: 'second'
   })
 
-  .when('/sessions', {
+  .when('/session/:id', {
     templateUrl: 'mods/sessions/sessions.html',
     controller: 'sessionsCtrl',
 		animation: 'second'
