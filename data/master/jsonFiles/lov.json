@@ -63,56 +63,15 @@
 		"name"						: "locations",
 		"values"					: 
 			[
-				"Africa",
-				"Brazil",
-				"Canada",
-				"Chile",
-				"USA",
-				"AMEA",
-				"China",
-				"Hong Kong",
-				"India",
-				"Japan",
-				"Korea",
-				"Malaysia",
-				"Singapore",
-				"Thailand",
-				"Vietnam",
-				"Austria",
-				"Belgium",
-				"Bulgaria",
-				"Czech Republic",
-				"Denmark",
-				"France",
-				"Germany",
-				"Italy",
-				"Lithuania",
-				"Luxembourg",
-				"Netherlands",
-				"Norway",
-				"Poland",
-				"Portugal",
-				"Romania",
-				"Slovakia",
-				"Spain",
-				"Sweden",
-				"Switzerland",
-				"Turkey",
-				"United Kingdom",
-				"Middle East"
-			]
-	},
-	
-	
-	
-	{
-		"_id"							: ObjectId("A09234567892345678900005"),
-		"name"						: "choices",
-		"values"					: 
-			[
-				"free Text",
-				"Single Choice",
-				"Multiple Choice"
+
+				"Chennai",
+				"Hyderabad",
+				"Bangalore",
+				"Noida",
+				"Vadodara",
+				"Indore",
+				"Mumbai"
+
 			]
 	}
 ]
