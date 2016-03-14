@@ -1,5 +1,10 @@
 
-angular.module('cViz-m', ['ngRoute', 'ngAnimate', 'appMain', 'visits', 'sessions', 'generic'])
+angular.module('cViz-m', [
+	'ngRoute', 'ngAnimate',
+	'appMain',
+	'visits', 'sessions',
+	'HamMenu',
+	'generic'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')

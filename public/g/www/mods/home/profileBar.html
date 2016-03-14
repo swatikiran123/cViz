@@ -1,6 +1,9 @@
-<center>
-  <img src="{{user.avatar}}" height="50" width="50"/><br/>
-  {{user.name.first}} {{user.name.last}} <br/>
-  {{user.jobTitle}}, {{user.organization}}
-</center>
-<hr/>
+
+<div id="profileDetails">
+		<div class="notifications"><img src="assets/img/ic/ibox-f.png"></div>
+		<div class="profilePic"><img src="{{user.avatar}}"></div>
+		<div class="profileName">{{user.name.first}} {{user.name.last}}</div>
+		<div class="profileDesg">{{user.jobTitle}}, {{user.organization}}</div>
+		<div class="profileLoc"><img src="assets/img/ic/loc.png">You are at <u>CSC India, Bangalore</u></div>
+
+</div>
