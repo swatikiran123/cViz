@@ -1,0 +1,193 @@
+<div  view-title="Fact Sheet">
+  <div class="container">
+		<h3>Organization facts & news</h3><br/>
+		<hr/>
+		<a href="/m/facts/#/mstone">Key milestones</a>
+ </div>
+</div>
+
+
+<div class="factsheetMainContainer">
+    <div class="factsheetTopBlock">
+
+
+        <div class="backDiv" ng-click="goBack()">
+            <img class="backIcon" src="../assets/backarrow.png">
+        </div>
+        
+        <h1 class="mapTitle">Quick Facts</h1>
+
+        <div class="toprow">
+            <div class="startedBlock">
+                <img src="../assets/started.png"  class ="img_factsheet">
+                <span class="startedText1">STARTED IN</span>
+                <span class="startedText2">1991</span>
+            </div>
+
+            <div class="professionalsBlock">
+                <img src="../assets/professionals.png"  class ="img_factsheet">
+                <span class="professionalsText1">20355</span>
+                <span class="professionalsText2">PROFFESIONALS</span>
+            </div>   
+        </div>
+
+        <div class="middlerow" >
+            <div class="imgBlock">
+                <img src="../assets/csclogo-hexagon-size.png"  class ="img_factsheet factsheet-csc-logo">            
+            </div>
+
+            <div class="clientsBlock">
+                <img src="../assets/clients.png"  class ="img_factsheet">
+                <span class="clientsBlockText1">400+</span>
+                <span class="clientsBlockText2">CLIENTS</span>
+            </div> 
+        </div>
+
+        <div class="bottomrow">
+            <div class="top10Block">
+                <img src="../assets/top10.png"  class ="img_factsheet">
+                <span class="top10text1">TOP 10</span>
+                <span class="top10text2">EMPLOYERS IN INDIA - NASSCOM(2014)</span>
+            </div>
+
+            <div class="largestBlock">
+                <img src="../assets/largest.png"  class ="img_factsheet">
+                <span class="largesttext1">2<sup>ND</sup> LARGEST</span>
+                <span class="largesttext2">DELIVERY BASE OF CSC</span>
+            </div>        
+        </div>
+    </div>
+    <div class="factsheetSecondBlock">
+        <h1 class="mapTitle">CSC India Delivery Centers</h1>
+
+        <div class="indiaMapBlock">
+
+            <img src="../assets/india-map.png"  alt="India Map" usemap="#indiaMap" class="indiaMap">      
+
+            <div class="loc1" ng-click="openGallery(cscIndiaLocations[0].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText1" class="">{{cscIndiaLocations[0].cityName}}</span>            
+            </div>
+
+            <div class="loc2" ng-click="openGallery(cscIndiaLocations[1].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText2">{{cscIndiaLocations[1].cityName}}</span>            
+            </div>
+
+            <div class="loc3" ng-click="openGallery(cscIndiaLocations[2].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText3">{{cscIndiaLocations[2].cityName}}</span>            
+            </div>
+
+            <div class="loc4" ng-click="openGallery(cscIndiaLocations[3].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText4">{{cscIndiaLocations[3].cityName}}</span>            
+            </div>
+
+            <div class="loc5" ng-click="openGallery(cscIndiaLocations[4].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText5">{{cscIndiaLocations[4].cityName}}</span>            
+            </div>
+
+            <div class="loc6" ng-click="openGallery(cscIndiaLocations[5].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText6">{{cscIndiaLocations[5].cityName}}</span>            
+            </div>
+
+            <div class="loc7" ng-click="openGallery(cscIndiaLocations[6].cityName)">
+                <img src="../assets/red-marker.png" class="marker" >
+                <span class="markerText7">{{cscIndiaLocations[6].cityName}}</span>            
+            </div>
+        </div>
+    </div>
+
+    <div class="factsheetThirdBlock">
+        <h1 class="mapTitle">CSC India Journey so far</h1>
+        <div class= "ftb_journeyBlock" ng-repeat="journeyImage in journeyImages">
+            <label class= "ftb_yearClass">{{journeyImage.year}} </label>
+            <img ng-src="{{journeyImage.line_slice}}" class= "ftb_sliceClass" />
+            <div class= "ftb_secondBlock">
+                <svg class="ftb_circleClass">
+                    <circle cx="90" cy="90" r="90" stroke="" stroke-width="" fill="#88ba41" />
+                </svg>
+                <span class="ftb_titleText">{{journeyImage.titleText}}</span>
+            </div>
+            <div class= "ftb_thirdBlock">
+                <img ng-src="{{journeyImage.image1}}" class= "ftb_image1Class" />
+                <span class="ftb_text1">{{journeyImage.startedText1}}</span>
+                <span class="ftb_text2">{{journeyImage.startedText2}}</span>
+            </div>
+            <label class= "ftb_titleClass">{{journeyImage.title}} </label>
+        </div>
+    </div>
+
+    <div id="industries" class="factsheetFourthBlock">
+        <h1 class="heading">Industries</h1>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/insurance.png">
+                <label>INSURANCE</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/banking.png">
+                <label>BANKING AND PAYMENT SERVICES</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/healthcare.png">
+                <label>HEALTHCARE</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/diversified.png">
+                <label>DIVERSIFIED</label>
+            </div>
+        </div>
+    </div>
+    <div id="rewards_recog">
+        <h1 class="heading">Rewards and Recognition</h1>
+        <div class="row">
+            <div class="col-xs-4 col-sm-3 col-md-3 rewardBadgeContainer">
+                <img src="../assets/reward-badge.png">
+            </div>
+            <div class="rewardSet col-xs-8 col-sm-9 col-md-9">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <img src="../assets/1-global.png">
+                    <label>2013 and 2012 GLOBAL SERVICES 100</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <img src="../assets/2-nasscom.png">
+                    <label>TOP 10 IT EMPLOYERS IN INDIA, 2014</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <img src="../assets/3-amity.png">
+                    <label>AMITY CSR AWARDS, 2013</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <img src="../assets/4-loma.png">
+                    <label>EXCELLENCE IN EDUCATION AWARD, 2012</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="certifications">
+        <h1 class="heading">Certifications</h1>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/iso-1.png">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/iso-1.png">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/iso-1.png">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <img src="../assets/iso-1.png">
+            </div>
+        </div>
+    </div>    
+
+    <div class="">
+        <img src="../assets/btn-floater-menu.png" class="menuBtn">        
+    </div>
+    
+</div>

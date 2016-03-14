@@ -1,10 +1,8 @@
 
-angular.module('cViz-m', [
-	'ngRoute', 'ngAnimate',
-	'appMain',
-	'visits', 'sessions',
-	'HamMenu',
-	'generic'])
+
+
+angular.module('cViz-m', ['ngRoute', 'ngAnimate', 'appMain', 'visits', 'sessions', 'generic', 'factCtrl'])
+
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
@@ -80,8 +78,8 @@ angular.module('cViz-m', [
   })
 
   .when('/facts', {
-    templateUrl: 'mods/factsheet/facts.html',
-    controller: 'genericCtrl',
+    templateUrl: 'mods/facts/facts.html',
+    controller: 'factCtrl',
 		animation: 'second'
   })
 
