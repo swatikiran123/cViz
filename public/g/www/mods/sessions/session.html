@@ -1,18 +1,35 @@
-<ion-view view-title="Session Details">
-    <ion-content>
-        <h1>Session</h1>
-        <hr/>
+<div>
+    <h1>Session</h1>
+    <hr/>
+    <h3>{{session.session.title}}</h3>
 
-        <div>
-            <h3>{{visitSchedule.session.title}}</h3>
-            <br> {{visitSchedule.session.type}}
-            <br> {{visitSchedule.session.startTime | date:"HH:mm"}}
-            <br> {{visitSchedule.session.endTime | date:"HH:mm"}}
-            <br> {{visitSchedule.session.location}}
-            <br> {{visitSchedule.session.desc}}
-            <br> {{visitSchedule.session.owner.name.first}} {{visitSchedule.session.owner.name.last}}
-            <br> {{visitSchedule.session.supporter.name.first}} {{visitSchedule.session.supporter.name.last}} 
-            <!-- <br><li ng-repeat="invitee in invitess track by $id">{{visitSchedule.invitee._id}}</li> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">session type: </div>
+            <div class="col-sm-3">{{session.session.type}}</div>
         </div>
-    </ion-content>
-</ion-view>
+
+        <div class="row">
+            <div class="col-sm-2">Time: </div>
+            <div class="col-sm-3">{{session.session.startTime | date:"HH:mm"}} - {{session.session.endTime | date:"HH:mm"}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">Location: </div>
+            <div class="col-sm-3">{{session.session.location}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">Description: </div>
+            <div class="col-sm-3">{{session.session.desc}}</div>
+        </div>
+        
+        
+    
+        <br>{{session.client}}
+       <br>{{session.session.owner}} 
+        <br> {{session.session.supporter}} 
+
+        </div>
+   <!--  <br><li ng-repeat="invitee in invitees">{{session.invitee._id}}</li> -->
+</div>
