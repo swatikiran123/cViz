@@ -106,6 +106,8 @@ module.exports = function(passport) {
                         newUser.name.first          = req.body.firstname;
                         newUser.name.last           = req.body.lastname;
                         newUser.email               = email;
+												newUser.organization				= "CSC";
+												newUser.association					= "employee";
                         newUser.stats.dateCreated   = Date.now();
                         newUser.stats.dateLastLogin = Date.now();
 
