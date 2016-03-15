@@ -16,19 +16,24 @@
         <!-- table header -->
         <thead md-head md-order="filter">
          <tr md-row>
-          <br>   
-          <th md-colum>&nbsp;&nbsp;&nbsp;Group Name</th>                  
+					<th md-colum>&nbsp;</th>
+          <th md-colum>Group Name</th>
+					<th md-colum>Description</th>
          </tr>
         </thead>
-        
+
         <!-- table body -->
         <tbody md-body>
           <tr md-row ng-repeat="group in grouplist" >
-            <td md-cell >&nbsp;&nbsp;&nbsp;<input type="checkbox" value="{{group._id}}" ng-checked="selection.indexOf(group._id) > -1" ng-click="toggleSelection(group._id)" class="checkbox-inline"> {{group.name}}</td>
+            <td md-cell >&nbsp;&nbsp;&nbsp;<input type="checkbox" value="{{group._id}}"
+							ng-checked="selection.indexOf(group._id) > -1" ng-click="toggleSelection(group._id)"
+							class="checkbox-inline"></td>
+						<td>{{group.name}}</td>
+						<td>{{group.description}}</td>
           </tr>
-        </tbody> 
+        </tbody>
       </table>
-    </md-table-container>  
+    </md-table-container>
   </md-dialog-content>
 
   <md-dialog-actions layout="row">

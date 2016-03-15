@@ -33,6 +33,8 @@ var userSchema = mongoose.Schema({
     summary          : String,
     jobTitle         : String,
     organization     : String,
+		orgRef					 : { type: Schema.Types.ObjectId, ref: 'group' },
+		association			 : {type: String, enum: ['employee', 'partner', 'customer', 'contractor']},
     socialProfile    : [{
       handle         : String,
       network        : String
@@ -72,7 +74,7 @@ var userSchema = mongoose.Schema({
     },
     token            : {type: Object},
     status           : {type: String, default: 'Active'},
-    group            : [{ type: Schema.Types.ObjectId, ref: 'group' }]
+    memberOf         : [{ type: Schema.Types.ObjectId, ref: 'group' }]
 
 });
 
