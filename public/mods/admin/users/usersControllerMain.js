@@ -2,7 +2,7 @@
 var usersApp = angular.module('users');
 
 usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope','$mdDialog',
-  function($scope, $http, $routeParams, $location,growl,$rootScope,$mdDialog) { 
+  function($scope, $http, $routeParams, $location,growl,$rootScope,$mdDialog) {
 
     $scope.hideFilter = true;
     $scope.hideAddRow = true;
@@ -10,13 +10,13 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
     //fetching all the user details by calling refresh function
     var refresh = function() {
-      $http.get('/api/v1/secure/admin/users').success(function(response) {       
+      $http.get('/api/v1/secure/admin/users').success(function(response) {
         $scope.userlist = response;
         $scope.user = "";
       });
 
-      $http.get('/api/v1/secure/admin/groups').success(function(response) {       
-        $scope.grouplist = response;       
+      $http.get('/api/v1/secure/admin/groups').success(function(response) {
+        $scope.grouplist = response;
       });
     };
 
@@ -41,8 +41,8 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     }
 
     //adding new user into the user model
-    $scope.addUser = function() {      
-      $http.post('/api/v1/secure/admin/users/', $scope.user).success(function(response) {        
+    $scope.addUser = function() {
+      $http.post('/api/v1/secure/admin/users/', $scope.user).success(function(response) {
         refresh();
         $scope.action = "none";
         $scope.hideAddRow = true;
@@ -60,16 +60,16 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
    };
 
    //editing the existing user details
-   $scope.edit = function(id) {      
+   $scope.edit = function(id) {
     $http.get('/api/v1/secure/admin/users/' + id).success(function(response) {
       $scope.user = response;
       $scope.hideAddRow = false;
       $scope.action = "edit";
     });
-  }; 
+  };
 
   //updating user details
-  $scope.update = function() {      
+  $scope.update = function() {
     $http.put('/api/v1/secure/admin/users/' + $scope.user._id, $scope.user).success(function(response) {
       refresh();
       $scope.action = "none";
@@ -83,20 +83,20 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     $scope.hideAddRow = true;
   }
 
-  //lock the existing user whose status is active  
+  //lock the existing user whose status is active
   $scope.lock = function(id,user) {
     user.status = "Locked" ;
     $http.put('/api/v1/secure/admin/users/' + id,user).success(function(response) {
       refresh();
-      growl.info(parse("User with email [%s]<br/>locked successfully",user.email));        
+      growl.info(parse("User with email [%s]<br/>locked successfully",user.email));
     })
   };
 
-  //unlock the existing user whose status is locked  
+  //unlock the existing user whose status is locked
   $scope.unlock = function(id,user) {
     user.status = "Active" ;
     $http.put('/api/v1/secure/admin/users/' + id, user).success(function(response) {
-      refresh();       
+      refresh();
       growl.info(parse("User with email [%s]<br/>unlocked successfully",user.email));
     })
   };
@@ -111,7 +111,7 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
      targetEvent: ev,
      clickOutsideToClose:true
    });
-  }; 
+  };
 
     // selected groups
     $scope.selection = [];
@@ -126,7 +126,7 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
       if (idx > -1) {
         $scope.selection.splice(idx, 1);
       }
-      
+
       // is newly selected
       else {
         $scope.selection.push(groupId);
@@ -137,12 +137,12 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     $scope.addGroup = function(selection,usersid) {
 
       $http.get('/api/v1/secure/admin/users/' + usersid).success(function(response) {
-        $scope.users=response;            
+        $scope.users=response;
 
         angular.forEach(selection, function(value, key) {
 
           // if groups already exists in users data,don't include groups in users data.
-          var groupFound = $scope.users.group.reduce(function(previous, i){
+          var groupFound = $scope.users.memberOf.reduce(function(previous, i){
             if (value === i) return true;
             return previous;
           }, false);
@@ -151,14 +151,17 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
             }
             //else add group to users data one by one
             else{
-              $scope.users.group.push(value);
-            }            
+              $scope.users.memberOf.push(value);
+            }
           });
 
         $http.put('/api/v1/secure/admin/users/' + usersid,$scope.users).success(function(response) {
-          growl.info(parse("groups added successfully for email id [%s]",$scope.users.email));  
+          growl.info(parse("Groups added successfully for user <br/>Name: %s %s<br/>Email: %s"
+						, $scope.users.name.first
+						, $scope.users.name.last
+						,	$scope.users.email));
         })
-      }) 
+      })
       $mdDialog.hide();
     };
 

@@ -72,7 +72,7 @@ var userSchema = mongoose.Schema({
     },
     token            : {type: Object},
     status           : {type: String, default: 'Active'},
-    group            : [{ type: Schema.Types.ObjectId, ref: 'group' }]
+    memberOf         : [{ type: Schema.Types.ObjectId, ref: 'group' }]
 
 });
 
