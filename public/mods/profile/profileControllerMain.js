@@ -19,7 +19,7 @@ profileApp.service('multipartForm', ['$http', function($http){
 profileApp.controller('profileControllerMain', ['$scope', '$http', 'growl', '$rootScope', 'Upload', '$timeout','$mdDialog','$mdMedia',
   function($scope, $http, growl, $rootScope, Upload, $timeout,$mdDialog,$mdMedia) { 
       
-      //acts as get user profile by id
+      //acts as get user profile by id for logged in user
       var refresh = function(id) {
       id=$rootScope.user._id;
       $http.get('/api/v1/secure/admin/users/'+id).success(function(response) {
@@ -31,7 +31,24 @@ profileApp.controller('profileControllerMain', ['$scope', '$http', 'growl', '$ro
       });
       };refresh();  
 
-/*      
+}])
+
+profileApp.controller('profilebyIdControllerMain', ['$scope', '$http', 'growl','$routeParams','Upload', '$timeout','$mdDialog','$mdMedia',
+  function($scope, $http, growl,$routeParams, Upload, $timeout,$mdDialog,$mdMedia) { 
+     
+      $scope.profileId = $routeParams.id;
+      //acts as get user profile by id
+      var refresh = function(id) {
+      id=$scope.profileId;
+      $http.get('/api/v1/secure/admin/users/'+id).success(function(response) {
+      $scope.userdata = response;  
+      $scope.email = $scope.userdata.email;
+      $scope.facebooktoken = '';
+      $scope.twittertoken = '';
+      $scope.googletoken = '';
+      });
+      };refresh();  
+      
       //upload the file(url of image) to database with ngFileupload and multer 
       $scope.upload = function (dataUrl) {
           Upload.upload({
@@ -66,23 +83,23 @@ profileApp.controller('profileControllerMain', ['$scope', '$http', 'growl', '$ro
       };  
       
       //edit the profile data user by taking user id.
-      $scope.editprofile = function (id) {         
-          $http.put('/api/v1/secure/admin/users/'+ id, $scope.user).success(function(response) {
-                
+      $scope.editprofile = function (userdata,id) {         
+          $http.put('/api/v1/secure/admin/users/'+ id, $scope.userdata).success(function(response) {
+                growl.info(parse("Profile for user [%s]<br/>Edited successfully", id));
           });
       };  
 
-      $scope.showAdvanced = function(user,ev) {
+      $scope.showAdvanced = function(userdata,ev) {
         $mdDialog.show({
           controller: DialogController,
           templateUrl: '/public/mods/profile/profiledialog.html',
-          locals: { users: user },
+          locals: { users: userdata },
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:true      
         })   
       };
-*/
+
   
 }])
 
@@ -93,7 +110,7 @@ profileApp.controller('MainCtrl', function($scope, ngDialog) {
     };
 });
 */
-/*
+
 function DialogController($scope, $mdDialog, users) {
 
   $scope.usersdata=users;
@@ -108,4 +125,3 @@ function DialogController($scope, $mdDialog, users) {
     $mdDialog.hide(answer);
   };
 }
-*/

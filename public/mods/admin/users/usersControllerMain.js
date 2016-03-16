@@ -21,7 +21,8 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     };
 
     refresh();
-
+    
+    //method for adding new record dynamically
     $scope.addRecord = function(){
       $scope.hideAddRow = false;
       $scope.action = "add";
