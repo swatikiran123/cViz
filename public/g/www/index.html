@@ -6,24 +6,14 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title></title>
   <!-- Latest compiled and minified CSS -->
-
-
-
-
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
-
   <script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
-
   <script type="text/javascript" src="libs/jquery-ui/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="/public/libs/jquery-ui/themes/smoothness/jquery-ui.css"> 
 
-
-
-
-
- 
   <!-- application dependeces files referenced here  -->
 
-   <script src="libs/angular/angular.js"></script>
+  <script src="libs/angular/angular.js"></script>
   <script src="libs/angular-route/angular-route.js"></script>
   <script src="libs/angular-animate/angular-animate.js"></script>
 
@@ -38,10 +28,10 @@
   <script type="text/javascript" src="libs/lodash/lodash.js"></script>
 
 
-    <!-- standard library styles goes here -->
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
- 
+  <!-- standard library styles goes here -->
+  <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+
 
   <!-- application js files referenced here  -->
   <script src="mods/app.js"></script>
@@ -54,7 +44,7 @@
   <script src="mods/facts/factCtrl.js"></script>
   <link rel="stylesheet" href="assets/css/font.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/hmnu.css">
+  <!--link rel="stylesheet" href="assets/css/hmnu.css-->
   <link rel="stylesheet" href="assets/css/anim.css">
   <link rel="stylesheet" href="assets/css/fact.css">
 
@@ -65,9 +55,9 @@
 
 <body ng-class="animation" ng-controller="ctrl">
 
-    <div ng-include src="'./mods/menu.html'" ></div>
-   <!--  <ham-menu></ham-menu> -->
-    <div ng-view class="view"></div>
+  <div ng-include src="'./mods/menu.html'" ></div>
+  <!--  <ham-menu></ham-menu> -->
+  <div ng-view class="view"></div>
 
 </body>
 </html>
