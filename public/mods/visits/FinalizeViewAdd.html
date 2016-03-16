@@ -1,0 +1,9 @@
+<!-- visits client input-->
+      <md-input-container class="md-block">
+      <label>Client Name</label>
+      <input  required name="feedback" ng-model="feedback" autocompleteS required>
+      <div ng-messages="visitsForm.feedback.$error" ng-show="visitsForm.feedback.$touched || !visitsForm.feedback.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+        </div></div>
+      </md-input-container>
