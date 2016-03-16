@@ -1,84 +1,61 @@
+ <div class="data-form">
+  <form name="visitsForm" id="visitsForm" class="form-vertical" >
 
 
-<div class="row"> 
-  <div class="col-sm-1"></div>
-  <div class="col-md-8">
+    <!-- visits title input-->
+    <md-input-container class="md-block">
+    <label>Title</label>
+    <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
+    <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+    </md-input-container>
 
-   <!-- page header/subheader -->
+    <!-- visits client input-->
+    <md-input-container class="md-block">
+    <label>Client Name</label>
+    <input  required name="clientname" ng-model="clientName" autocomplete required>
+    <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
+      <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+      </div></div>
+    </md-input-container>
 
-   <div class="page-header">
-    Visit Planner - Add
-    <div class="sub-header">Add new visit           
-    </div>
-  </div>
-  <div class= "page-toolbar"> 
+    <!-- visits agenda -->
+    <div class="field">
+      <label ng-show="visits.agenda" class="show-hide">Agenda</label>
+      <div class="form-group">
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+        ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+      </div></div>
 
-    <div class="pull-right">
-
-      <a href="#"><i class="fa fa-envelope"></i></a>&nbsp;email&nbsp;
-      <a href="#"> <i class="fa fa-thumbs-o-up"></i></a>&nbsp;follow&nbsp;
-      <a href="#/session"><i class="fa fa-calendar"></i></a>&nbsp;schedule&nbsp;
-    </div>
-  </div><br><br>
-  <!-- visits pageheader input--> 
-  <div class="data-form">
-    <form name="visitsForm" id="visitsForm" class="form-vertical" >
-
-
-      <!-- visits title input-->
-      <md-input-container class="md-block">
-      <label>Title</label>
-      <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
-      <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
-       <div class="messagenotify">
-        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-        <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-        <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
-      </md-input-container>
-
-      <!-- visits client input-->
-      <md-input-container class="md-block">
-      <label>Client Name</label>
-      <input  required name="clientname" ng-model="clientName" autocomplete required>
-      <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
-        <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>  
-        </div></div>
-      </md-input-container>
-
-      <!-- visits agenda -->
-      <div class="field">
-        <label ng-show="visits.agenda" class="show-hide">Agenda</label>
-        <div class="form-group">
-          <text-angular 
-          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-          ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
-        </div></div>
-
-        <!-- visits AGM By input--> 
-
-        <md-input-container class="md-block">
-        <label>AGM</label>
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
-          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="large" ></div>
-        </div>
-      </md-input-container>
-
-      <!-- visits anchor By input--> 
+      <!-- visits AGM By input--> 
 
       <md-input-container class="md-block">
-      <label>Anchor</label>
-      <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
-        <div user type="picker" user-model="anchorUser" user-id="anchorId" user-email="anchorEmail" view-type="large"></div>
+      <label>AGM</label>
+      <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
+        <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="large" ></div>
       </div>
     </md-input-container>
 
-    <!--visit Schedule-->
-    <div ng-include src="'/public/mods/visits/scheduleViewAdd.html'"></div>
-    <br>
-    <!--visitors in the vist-->
-    <div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>
+    <!-- visits anchor By input--> 
+
+    <md-input-container class="md-block">
+    <label>Anchor</label>
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
+      <div user type="picker" user-model="anchorUser" user-id="anchorId" user-email="anchorEmail" view-type="large"></div>
+    </div>
+  </md-input-container>
+
+  <!--visit Schedule-->
+  <div ng-include src="'/public/mods/visits/scheduleViewAdd.html'"></div>
+  <br>
+    <!--visitors in the vist
+    <div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>-->
 
     <!--vist Interest interest. businessType visitType objective-->
 
@@ -134,6 +111,4 @@
       </div>
     </div>
   </form>
-</div>
-</div>
 </div>
