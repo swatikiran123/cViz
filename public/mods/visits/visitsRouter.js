@@ -10,7 +10,7 @@ angular.module('visits')
       })
 
       .when('/addVisit', {
-        templateUrl: '/public/mods/visits/visitsViewAdd.html',
+        templateUrl: '/public/mods/visits/tabvisit.html',
         controller: 'visitsControllerMain'
       })
 
@@ -33,8 +33,9 @@ angular.module('visits')
         templateUrl: '/public/mods/visits/partials/visitsViewPanels.html',
         controller: 'visitsControllerMain'
       })
+
       .when('/:id/editVisit', {
-        templateUrl: '/public/mods/visits/visitsViewAdd.html',
+        templateUrl: '/public/mods/visits/tabVisit.html',
         controller: 'visitsControllerMain'
       });
 
