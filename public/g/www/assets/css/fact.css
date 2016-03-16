@@ -1,61 +1,69 @@
-.factsheetMainContainer{
-   width: 100%;
-   text-align: center;
-   background-color: #f7f9fb; 
- }
-
- .backDiv{  
-  text-align: left;
- }
-
- .backIcon{
-  margin: 20px 20px 10px 20px;
-  width: 40px;
-  height: 28px;
- }
-
- .factsheetTopBlock{
+.factsheet-main-container {
   width: 100%;
   text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
-  background-color: #eae9f4;
+  background-color: #f7f9fb;
 }
 
-.img_factsheet {
+.factsheet-scrollable-block {
+  height: auto;
+  width: auto;
+}
+
+.factsheet-menu-block {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  height: 100%;
+  z-index: 20;
+  opacity: 0.9;
+}
+
+.factsheet-menu-content {
+  position: absolute;
+  bottom: 180px;
+  right: 0;
+}
+
+.factsheet-top-block {
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #eae9f4;
+  margin-top: 50px;
+}
+
+.img-factsheet {
   width: 160px;
-  height:184px;
+  height: 184px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-
-.factsheet-csc-logo{
+.factsheet-csc-logo {
   margin-left: 170px;
 }
 
-.imgBlock{
-  display: inline-block;  
+.imgBlock {
+  display: inline-block;
 }
 
-.bottomrow{
+.bottomrow {
   padding-bottom: 30px;
 }
 
-.startedBlock, .professionalsBlock , .clientsBlock , .top10Block , .largestBlock{
-
+.startedBlock, .professionalsBlock, .clientsBlock, .top10Block, .largestBlock {
   display: inline-block;
   position: relative;
   color: #fff;
-
 }
 
-.middlerow{
+.middlerow {
   margin-bottom: -35px;
   margin-top: -35px;
 }
 
-.startedText1{
+.startedText1 {
   position: absolute;
   top: 60px;
   font-size: 20px;
@@ -66,18 +74,40 @@
   padding-right: 10px;
 }
 
-.startedText2{
+.startedText2 {
   position: absolute;
   top: 80px;
   font-size: 35px;
   font-family: antonioBold;
   width: 100%;
-  left: 0px;
+  left: 0;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.professionalsText1{
+.professionalsText1 {
+  position: absolute;
+  top: 60px;
+  font-size: 35px;
+  font-family: antonioBold;
+  width: 100%;
+  left: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.professionalsText2 {
+  position: absolute;
+  top: 100px;
+  font-size: 18px;
+  font-family: workSansBold;
+  width: 100%;
+  left: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.clientsBlockText1 {
   position: absolute;
   top: 60px;
   font-size: 35px;
@@ -88,51 +118,29 @@
   padding-right: 10px;
 }
 
-.professionalsText2{
+.clients-block-text-2 {
   position: absolute;
   top: 100px;
   font-size: 18px;
   font-family: workSansBold;
   width: 100%;
-  left: 0px;
+  left: 0;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.clientsBlockText1{
-  position: absolute;
-  top: 60px;
-  font-size: 35px;
-  font-family: antonioBold;
-  width: 100%;
-  left: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.clientsBlockText2{
-  position: absolute;
-  top: 100px;
-  font-size: 18px;
-  font-family: workSansBold;
-  width: 100%;
-  left: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.top10text1{
+.top10text1 {
   position: absolute;
   top: 60px;
   font-size: 24px;
   font-family: antonioBold;
   width: 100%;
-  left: 0px;
+  left: 0;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.top10text2{
+.top10text2 {
   position: absolute;
   top: 100px;
   font-size: 14px;
@@ -140,21 +148,21 @@
   padding-left: 10px;
   padding-right: 10px;
   width: 100%;
-  left: 0px;
+  left: 0;
 }
 
-.largesttext1{
+.largest-text-1 {
   position: absolute;
   top: 60px;
   font-size: 24px;
   font-family: antonioBold;
   width: 100%;
-  left: 0px;
+  left: 0;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.largesttext2{
+.largest-text-2 {
   position: absolute;
   top: 100px;
   font-size: 14px;
@@ -162,349 +170,369 @@
   padding-right: 20px;
   font-family: workSansBold;
   width: 100%;
-  left: 0px;
+  left: 0;
 }
 
-.factsheetSecondBlock{
+.factsheet-second-block {
   margin-top: 20px;
 }
 
-.indiaMapBlock{
+.indiaMapBlock {
   display: inline-block;
   position: relative;
   font-family: robotoBold;
   color: #fff;
   font-size: 14px;
-  text-shadow: 1px 1px #555555;  
+  text-shadow: 1px 1px #555555;
   margin-bottom: 30px;
 }
 
-.mapTitle{
+.map-title {
   width: 100%;
-  text-align: left; 
+  text-align: left;
   padding: 30px 20px;
   font-size: 22px;
   font-family: workSansMedium;
-  color: #555555; 
-  margin-top: 0px;
-  margin-bottom: 0px; 
+  color: #555555;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-
 
 .indiaMap {
-  width:550px;
-  height:600px;
+  width: 550px;
+  height: 600px;
 }
 
-.loc1{  
+.loc1 {
   left: 170px;
   position: absolute;
-  top: 155px; 
+  top: 155px;
 }
 
-.loc2{  
+.loc2 {
   left: 140px;
   position: absolute;
   top: 290px;
 }
 
-.loc3{  
+.loc3 {
   left: 85px;
   position: absolute;
   top: 300px;
 }
 
-.loc4{  
+.loc4 {
   left: 85px;
   position: absolute;
-  top: 360px; 
+  top: 360px;
 }
 
-.loc5{  
+.loc5 {
   left: 176px;
   position: absolute;
   top: 414px;
 }
 
-.loc6{  
+.loc6 {
   bottom: 64px;
   left: 170px;
   position: absolute;
 }
 
-.loc7{  
+.loc7 {
   bottom: 69px;
   left: 212px;
   position: absolute;
 }
 
-
-.marker{
-  width:15px;
-  height:24px;
+.marker {
+  width: 15px;
+  height: 24px;
 
 }
 
-.markerText1 ,{
+.markerText1 {
   bottom: -15px;
   left: -5px;
   position: absolute;
 }
 
-.markerText2 , .markerText4 , .markerText5{
-  bottom: -2px;  
+.markerText2, .markerText4, .markerText5 {
+  bottom: -2px;
   position: absolute;
 }
 
-.markerText3{
+.markerText3 {
   bottom: -15px;
   left: 1px;
   position: absolute;
 }
 
-.markerText6{
+.markerText6 {
   bottom: -15px;
   position: absolute;
   right: 10px;
 }
 
-.markerText7{
+.markerText7 {
   bottom: -15px;
   left: -5px;
   position: absolute;
 }
 
-
-.menuBtn{
-  position: fixed;  
+.menuBtn {
+  position: fixed;
   width: 60px;
-  height: 60px;  
+  height: 60px;
   right: 30px;
   bottom: 30px;
+  z-index: 50;
 }
 
+.backDiv {
+  background-color: #eae9f4;
+  opacity: 0.9;
+  padding: 0;
+  position: fixed;
+  text-align: left;
+  top: 0;
+  z-index: 1;
+}
+
+.backIcon {
+  margin: 20px 20px 10px 20px;
+  width: 40px;
+  height: 28px;
+}
+
+.factsheet-menu-item {
+  width: 100%;
+  text-align: right;
+  padding: 20px;
+  font-size: 18px;
+  font-family: workSansMedium;
+  color: #555555;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 @media only screen and (max-width: 599px) {
 
-   .backIcon{     
+  .backIcon {
     width: 25px;
     height: 20px;
-   }
-
-  .img_factsheet {
-    width: 133px;
-    height:154px;    
   }
 
-  .factsheet-csc-logo{
+  .img-factsheet {
+    width: 133px;
+    height: 154px;
+  }
+
+  .factsheet-csc-logo {
     margin-left: 150px;
   }
 
-  .middlerow{
+  .middlerow {
     margin-top: -27px;
     margin-bottom: -27px;
   }
 
-  .startedText1{
+  .startedText1 {
     top: 50px;
-    font-size: 18px;   
+    font-size: 18px;
   }
 
-  .startedText2{
+  .startedText2 {
     top: 70px;
-    font-size: 34px;    
+    font-size: 34px;
   }
 
-  .professionalsText1{    
-    top: 40px; 
-    font-size: 34px;    
+  .professionalsText1 {
+    top: 40px;
+    font-size: 34px;
   }
 
-  .professionalsText2{    
+  .professionalsText2 {
     font-size: 15px;
-    top: 90px;    
+    top: 90px;
   }
 
-  .clientsBlockText1{   
+  .clients-block-text-1 {
     font-size: 34px;
     top: 40px;
   }
 
-  .clientsBlockText2{   
+  .clients-block-text-2 {
     font-size: 18px;
-    top: 85px; 
+    top: 85px;
   }
 
-  .top10text1{    
+  .top10text1 {
     font-size: 24px;
-    top: 45px;   
+    top: 45px;
   }
 
-  .top10text2{   
+  .top10text2 {
     font-size: 11px;
     padding-left: 12px;
     padding-right: 12px;
     top: 80px;
   }
 
-  .largesttext1{   
+  .largest-text-1 {
     font-size: 24px;
     top: 45px;
   }
 
-  .largesttext2{   
-    top: 80px;   
+  .largest-text-2 {
+    top: 80px;
     font-size: 11px;
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .indiaMapBlock{    
+  .indiaMapBlock {
     font-size: 14px;
-  } 
+  }
 
-  .mapTitle{  
+  .map-title {
     font-size: 18px;
-  } 
+  }
 
   .indiaMap {
-    width:385px;
-    height:420px;
+    width: 385px;
+    height: 420px;
   }
 
-  .marker{
-    width:15px;
-    height:24px;
+  .marker {
+    width: 15px;
+    height: 24px;
   }
 
-  .loc1{  
-    left: 120px;    
-    top: 105px; 
+  .loc1 {
+    left: 120px;
+    top: 105px;
   }
 
-  .loc2{  
+  .loc2 {
     left: 95px;
     top: 200px;
   }
 
-  .loc3{  
+  .loc3 {
     left: 59px;
     top: 205px;
   }
 
-  .loc4{  
+  .loc4 {
     left: 56px;
     top: 245px;
   }
 
-  .loc5{  
+  .loc5 {
     left: 127px;
     top: 287px;
   }
 
-  .loc6{  
+  .loc6 {
     bottom: 44px;
-    left: 118px;   
+    left: 118px;
   }
 
-  .loc7{  
+  .loc7 {
     bottom: 47px;
-    left: 148px;   
+    left: 148px;
   }
 
-
-  .menuBtn{  
+  .menuBtn {
     width: 45px;
     height: 45px;
   }
-
 }
-
 
 @media only screen and (max-width: 450px) {
 
-  .img_factsheet {
+  .img-factsheet {
     width: 95px;
-    height:109px;
+    height: 109px;
     margin-left: 3px;
     margin-right: 3px;
   }
 
-  .factsheet-csc-logo{
+  .factsheet-csc-logo {
     margin-left: 100px;
   }
 
-
- .mapTitle{  
+  .map-title {
     font-size: 16px;
-  } 
+  }
 
-  .middlerow{
+  .middlerow {
     margin-top: -20px;
     margin-bottom: -20px;
   }
 
-  .startedText1{
+  .startedText1 {
     font-size: 13px;
-    top: 30px;    
+    top: 30px;
   }
 
-  .startedText2{
+  .startedText2 {
     font-size: 30px;
-    top: 45px;  
+    top: 45px;
   }
 
-  .professionalsText1{    
-    top: 30px;   
+  .professionalsText1 {
+    top: 30px;
     font-size: 30px;
   }
 
-  .professionalsText2{    
-    font-size: 10px;    
-    top: 65px;   
+  .professionalsText2 {
+    font-size: 10px;
+    top: 65px;
   }
 
-  .clientsBlockText1{   
-    font-size: 28px;    
+  .clients-block-text1 {
+    font-size: 28px;
     top: 25px;
   }
 
-  .clientsBlockText2{   
-    font-size: 16px;   
-    top: 60px; 
+  .clients-block-text-2 {
+    font-size: 16px;
+    top: 60px;
   }
 
-  .top10text1{    
-    font-size: 19px;    
-    top: 25px;  
+  .top10text1 {
+    font-size: 19px;
+    top: 25px;
   }
 
-  .top10text2{   
+  .top10text2 {
     font-size: 8.4px;
     padding-left: 5px;
     padding-right: 5px;
     top: 55px;
   }
 
-  .largesttext1{   
-    font-size: 16px;    
+  .largest-text-1 {
+    font-size: 16px;
     top: 30px;
   }
 
-  .largesttext2{   
+  .largest-text-2 {
     font-size: 8.4px;
     padding-left: 15px;
     padding-right: 15px;
     top: 55px;
   }
 
-  .indiaMapBlock{
+  .indiaMapBlock {
     font-size: 12px;
   }
 
   .indiaMap {
-    width:275px;
-    height:300px;
+    width: 275px;
+    height: 300px;
   }
 
   .loc1 {
@@ -542,134 +570,140 @@
     left: 101px;
   }
 }
-/*factsheet REWARDS CSS*/
+
+/* rewards less */
 #industries {
-    background-color: #F4ECE9;
+  background-color: #F4ECE9;
 }
 
 #industries .heading,
-#rewards_recog .heading,
+#rewards-recognition .heading,
 #certifications .heading {
-    color: #555555;
-    font-size: 16px;
-    padding: 5px;
-    margin-top: 0;
-    font-family: workSansMedium;
-    text-align: left;
+  color: #555555;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 0;
+  font-family: workSansMedium;
+  text-align: left;
 }
 
 #industries .row div {
-    text-align: center;
-    color: #7E685B;
-    font-size: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  text-align: center;
+  color: #7E685B;
+  font-size: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #industries .row div label {
-    font-weight: 100;
-    padding-top: 10px;
-    font-family: workSansSemiBold;
+  font-weight: 100;
+  padding-top: 10px;
+  font-family: workSansSemiBold;
 }
 
 #industries .row div img {
-    width: 50px;
-    display: block;
-    margin: 0 auto;
+  width: 50px;
+  display: block;
+  margin: 0 auto;
 }
 
-#rewards_recog {
-    background-color: #F5EAD4;
+#rewards-recognition {
+  background-color: #F5EAD4;
 }
 
-#rewards_recog .row .rewardSet div {
-    height: 85px;
-    text-align: left;
+#rewards-recognition .row .reward-set div {
+  height: 85px;
+  text-align: left;
 }
 
-#rewards_recog img {
-    width: 120px;
+#rewards-recognition img {
+  width: 120px;
 }
 
-#rewards_recog .rewardSet img {
-    width: 72px;
-    display: block;
+#rewards-recognition .reward-set img {
+  width: 72px;
+  display: block;
 }
 
-#rewards_recog label {
-    color: #8E6D25;
-    font-size: 12px;
-    font-family: workSansBold;
-    padding-top: 5px;
-    text-align: left;
+#rewards-recognition label {
+  color: #8E6D25;
+  font-size: 12px;
+  font-family: workSansBold;
+  padding-top: 5px;
+  text-align: left;
 }
 
-.rewardBadgeContainer {
-    text-align: center;
+.reward-badge-container {
+  text-align: center;
 }
 
 #certifications {
-    background-color: #F3E9F4;
+  background-color: #F3E9F4;
 }
 
 #certifications .row div {
-    text-align: center;
+  text-align: center;
 }
 
 #certifications .row div img {
-    width: 100px;
-    padding: 10px;
+  width: 100px;
+  padding: 10px;
 }
 
 .row {
-    margin-right: 0px;
-    margin-left: 0px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-    #rewards_recog .rewardSet img {
-        width: 85px;
-    }
-    #industries .row div img {
-        width: 75px;
-    }
-    #industries .row div {
-      font-size: 12px;
+  #rewards-recognition .reward-set img {
+    width: 85px;
+  }
+
+  #industries .row div img {
+    width: 75px;
+  }
+
+  #industries .row div {
+    font-size: 12px;
   }
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1439px) {
-    #rewards_recog img {
-        width: 150px;
-    }
-    #rewards_recog .row .rewardSet div {
-        height: 100px;
-    }
-    #rewards_recog .rewardSet img {
-        width: 100px;
-    }
-    #industries .row div img {
-        width: 75px;
-    }
-    #industries .row div {
-      font-size: 12px;
+  #rewards-recognition img {
+    width: 150px;
+  }
+
+  #rewards-recognition .row .reward-set div {
+    height: 100px;
+  }
+
+  #rewards-recognition .reward-set img {
+    width: 100px;
+  }
+
+  #industries .row div img {
+    width: 75px;
+  }
+
+  #industries .row div {
+    font-size: 12px;
   }
 }
-
-/* */
-.factsheetThirdBlock {
+/* facts journey */
+.factsheet-third-block {
   width: 100%;
   text-align: center;
   background-color: #ebf1e5;
   padding-bottom: 20px;
 }
 
-.ftb_journeyBlock {
+.ftb-journey-block {
   position: relative;
   height: 300px;
 }
 
-.ftb_yearClass {
+.ftb-year-class {
   position: absolute;
   left: 24%;
   font-size: 30px;
@@ -677,14 +711,14 @@
   color: #b4d191;
 }
 
-.ftb_sliceClass {
+.ftb-slice-class {
   position: absolute;
   height: 310px;
   width: 20px;
   left: 29%;
 }
 
-.ftb_thirdBlock {
+.ftb-third-block {
   position: absolute;
   height: 170px;
   width: 145px;
@@ -692,13 +726,13 @@
   left: 32%;
 }
 
-.ftb_image1Class {
+.ftb-image1Class {
   height: 170px;
   width: 145px;
   padding-bottom: 30px;
 }
 
-.ftb_text1 {
+.ftb-text-1 {
   position: absolute;
   top: 25%;
   left: 26%;
@@ -707,7 +741,7 @@
   color: #fff;
 }
 
-.ftb_text2 {
+.ftb-text-2 {
   position: absolute;
   top: 43%;
   left: 17%;
@@ -716,7 +750,7 @@
   color: #fff;
 }
 
-.ftb_secondBlock {
+.ftb-second-block {
   position: absolute;
   height: 200px;
   width: 200px;
@@ -724,12 +758,16 @@
   left: 39%;
 }
 
-.ftb_circleClass {
+.ftb-circle-class {
   height: 200px;
   width: 200px;
+  .ftb-circle-class-circle {
+    stroke: none;
+    fill: #88ba41;
+  }
 }
 
-.ftb_titleText {
+.ftb-title-text {
   position: absolute;
   width: 52%;
   top: 30%;
@@ -739,7 +777,7 @@
   color: #fff;
 }
 
-.ftb_titleClass {
+.ftb-title-class {
   position: absolute;
   top: 98%;
   left: 32%;
@@ -748,82 +786,95 @@
   color: #3f561e;
 }
 
-
-/**********media queries *****************/
-
 @media only screen and (max-device-width: 1024px) {
 
-  .ftb_yearClass {
+  .ftb-year-class {
     left: 17%;
   }
-  .ftb_sliceClass {
-    left: 26%;
-  } 
-  .ftb_text1 {
+
+  .ftb-slice-class {
     left: 26%;
   }
-  .ftb_text2 {
+
+  .ftb-text-1 {
+    left: 26%;
+  }
+
+  .ftb-text-2 {
     left: 16%;
   }
-  .ftb_titleText {
+
+  .ftb-title-text {
     left: 29%;
   }
-  .ftb_titleClass {
+
+  .ftb-title-class {
     left: 32%;
   }
 }
 
 @media only screen and (max-device-width: 760px) {
-
-  .ftb_yearClass {
+  .ftb-year-class {
     left: 6%;
   }
-  .ftb_sliceClass {
+
+  .ftb-slice-class {
     left: 22%;
   }
-  .ftb_secondBlock {
+
+  .ftb-second-block {
     top: 29%;
     left: 45%;
   }
-  .ftb_text1 {
+
+  .ftb-text-1 {
     left: 24%;
   }
-  .ftb_text2 {
+
+  .ftb-text-2 {
     left: 12%;
   }
-  .ftb_titleText {
+
+  .ftb-title-text {
     left: 23%;
   }
-  .ftb_titleClass {
+
+  .ftb-title-class {
     left: 32%;
   }
 }
 
 @media only screen and (max-device-width: 370px) {
-  .ftb_yearClass {
+  .ftb-year-class {
     left: 2%;
   }
-  .ftb_sliceClass {
+
+  .ftb-slice-class {
     left: 20%;
   }
 
-  .ftb_secondBlock {
-    left: 37%; 
+  .ftb-second-block {
+    left: 37%;
   }
-  .ftb_text1 {
+
+  .ftb-text-1 {
     left: 22%;
   }
-  .ftb_text2 {
+
+  .ftb-text-2 {
     left: 13%;
   }
-  .ftb_thirdBlock {
-    left: 29%; 
+
+  .ftb-third-block {
+    left: 29%;
   }
-  .ftb_titleText {
+
+  .ftb-title-text {
     top: 36%;
     left: 21%;
   }
-  .ftb_titleClass {
+
+  .ftb-title-class {
     left: 31%;
   }
 }

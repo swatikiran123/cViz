@@ -1,7 +1,9 @@
 
 
 
-angular.module('cViz-m', ['ngRoute', 'ngAnimate', 'appMain', 'visits', 'sessions', 'generic', 'factCtrl'])
+
+angular.module('cViz-m', ['ngRoute', 'ngAnimate', 'appMain', 'visits', 'sessions', 'generic', 'fact', 'ui.bootstrap', 'ui.grid', 'ngSanitize', 'lctnGalry'])
+
 
 
 .run(function ($rootScope, $location, $http) {
