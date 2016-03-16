@@ -7,266 +7,319 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <link rel="stylesheet" href="/public/assets/w/styles/dashboard.css" />
+  <script type="text/javascript" src="http://www.onextrapixel.com/examples/touch-swipe/jquery.touchSwipe.min.js"></script>
+
+  <script type="text/javascript"> 
+    $(window).load(function(){
+        $("[data-toggle]").click(function() {
+          var toggle_el = $(this).data("toggle");
+          $(toggle_el).toggleClass("open-sidebar");
+        });
+
+         $(".swipe-area").swipe({
+              swipeStatus:function(event, phase, direction, distance, duration, fingers)
+                  {
+                      if (phase=="move" && direction =="left") {
+                           $(".container").addClass("open-sidebar");
+                           return false;
+                      }
+                      if (phase=="move" && direction =="right") {
+                           $(".container").removeClass("open-sidebar");
+                           return false;
+                      }
+                  }
+          }); 
+      });
+  </script>
 
 </head>
 
- <body > 
+
+<body>
   <div class="container">
-   
-    <h2>Static Content</h2>
+    <div id="sidebar">
+    <br><br><br>
+      <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=230&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=en.indian%23holiday%40group.v.calendar.google.com&amp;color=%2329527A&amp;ctz=Asia%2FCalcutta" style="border-width:0" width="230" height="230" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <div class="main-content">
     
-     <br>
-     <div class="row">
-      <div class="col-sm-9">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight">03</p>
-            </div>
-            <h3 class="panel-title"> <b>Visits This Week</b></h3>
-          </div>
+    <br><br>
+      <a href="#" data-toggle=".container" id="sidebar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
 
-          <div class = "panel-subheader">
-           <center> Mar, 2016</center>
-          </div>
+      <div class="content">
+        <h2>Static Content</h2>
+        <br>
 
-          <div class="panel-body">
-            Zurich Visit on 2nd-Mar<br>
-              Hyderabad
-            <br><br>
-            AOL Visit on 4th-Mar<br>
-              Bangalore
-          </div>
-
-          <div class="panel-footer">
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="pull-left">
-                <p class="highlight">03</p>
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">03</p>
+                </div>
+                <h3 class="panel-title"> <b>Visits This Week</b></h3>
               </div>
-              <h3 class="panel-title"><b> Visits Score </b></h3>  
-            </div>
 
-            <div class="panel-body">
-              <p>
-                <font size="30">
-                  <center> 
-                    <b>02</b>
-                  </center>
-                </font>
-              </p>
-            </div>
-            <div class="panel-footer">
-              <p></p>  
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight"> 02 </p>
-            </div>
-            <h3 class="panel-title"><b> Visits Score </b></h3>
-          </div>
-
-
-          <div class="panel-body"> 
-            <p>
-                <font size="30">
-                  <center> 
-                    <b>03</b>
-                  </center>
-                </font>
-              </p>
-          </div>
-
-          <div class="panel-footer">
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-9">
-        
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="pull-left">
-                <p class="highlight">02</p>
+              <div class = "panel-subheader">
+               <center> Mar, 2016</center>
               </div>
-              <h3 class="panel-title"> <b> Visits Last Week </b></h3>
-            </div>
 
-            <div class = "panel-subheader">
-              <center> Feb, 2016</center>
-            </div>
+             <div class="panel-body">
+                Zurich Visit on 2nd-Mar<br>
+                Hyderabad
+                <br><br>
+                AOL Visit on 4th-Mar<br>
+                Bangalore
+              </div>
 
-            <div class="panel-body">
-          
-            Motorola Visit on 12nd-Feb<br>
-              Noida
-            <br><br>
-            Telenor Visit on 16th-Feb <br>
-              Indore
-            <br><br>
-            Vodafone Visit on 6th-Mar<br>
-              Chennai
-          </div>
-            <div class="panel-footer">
-              <p></p>  
+              <div class="panel-footer">
+                <p></p>
+              </div>
             </div>
           </div>
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">03</p>
+                </div>
+                <h3 class="panel-title"><b> Visits Score </b></h3>  
+              </div>
+
+              <div class="panel-body">
+                <p>
+                  <font size="30">
+                    <center> 
+                      <b>02</b>
+                    </center>
+                  </font>
+                </p>
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <br>
+
+        <div class="row">
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight"> 02 </p>
+                </div>
+                <h3 class="panel-title"><b> Visits Score </b></h3>
+              </div>
+
+
+              <div class="panel-body"> 
+                <p>
+                  <font size="30">
+                    <center> 
+                      <b>03</b>
+                    </center>
+                  </font>
+                </p>
+              </div>
+
+              <div class="panel-footer">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-9">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">02</p>
+                </div>
+                <h3 class="panel-title"> <b> Visits Last Week </b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                <center> Feb, 2016</center>
+              </div>
+
+              <div class="panel-body">
+
+                Motorola Visit on 12nd-Feb<br>
+                Noida
+                <br><br>
+                Telenor Visit on 16th-Feb <br>
+                Indore
+                <br><br>
+                Vodafone Visit on 6th-Mar<br>
+                Chennai
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+
+        <div class="row">
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight"> 03 </p>
+                </div>
+                <h3 class="panel-title"> <b> Hyderabad</b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i><b>Zurich </b></i><br>
+                Start-Time: 2016-02-02, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i><b> Vodafone</b> </i><br>
+                Start-Time: 2016-02-04, 09:00:00<br>
+                End-Time: 2016-02-04, 20:00:00
+                <br><br>
+                <i> <b> Telenor </b> </i><br>
+                Start-Time: 2016-02-06, 09:00:00<br>
+                End-Time: 2016-02-06, 20:00:00
+              </div>
+
+              <div class="panel-footer">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">02</p>
+                </div>
+                <h3 class="panel-title"> <b>  Bangalore</b> </h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i> <b> Aol </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i> <b> Motorola </b></i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> NASA </b> </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">03</p>
+                </div>
+                <h3 class="panel-title"><b> Chennai</b> </h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i><b> SRA </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i><b> HCL </b> </i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> Fruition </b> </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">04</p>
+                </div>
+                <h3 class="panel-title"><b> Noida </b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits 
+              </div>
+
+              <div class="panel-body">
+                <i> <b> SRA </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i> <b> UXC </b></i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> Xchanging</b>  </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-
-
-    <div class="row">
-
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight"> 03 </p>
-            </div>
-            <h3 class="panel-title"> <b> Hyderabad</b></h3>
-          </div>
-
-          <div class = "panel-subheader">
-            Visits
-          </div>
-
-          <div class="panel-body">
-            <i><b>Zurich </b></i><br>
-            Start-Time: 2016-02-02, 09:00:00<br>
-            End-Time: 2016-02-02T20:00:00
-            <br><br>
-            <i><b> Vodafone</b> </i><br>
-            Start-Time: 2016-02-04, 09:00:00<br>
-            End-Time: 2016-02-04, 20:00:00
-            <br><br>
-            <i> <b> Telenor </b> </i><br>
-            Start-Time: 2016-02-06, 09:00:00<br>
-            End-Time: 2016-02-06, 20:00:00
-          </div>
-
-          <div class="panel-footer">
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight">02</p>
-            </div>
-            <h3 class="panel-title"> <b>  Bangalore</b> </h3>
-          </div>
-
-          <div class = "panel-subheader">
-            Visits
-          </div>
-
-          <div class="panel-body">
-            <i> <b> Aol </b></i><br>
-            Start-Time: 2016-02-12, 09:00:00<br>
-            End-Time: 2016-02-02T20:00:00
-            <br><br>
-            <i> <b> Motorola </b></i><br>
-            Start-Time: 2016-02-14, 09:00:00<br>
-            End-Time: 2016-02-14, 20:00:00
-            <br><br>
-            <i> <b> NASA </b> </i><br>
-            Start-Time: 2016-02-16, 09:00:00<br>
-            End-Time: 2016-02-16, 20:00:00
-          </div>
-          <div class="panel-footer">
-            <p></p>  
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight">03</p>
-            </div>
-            <h3 class="panel-title"><b> Chennai</b> </h3>
-          </div>
-
-          <div class = "panel-subheader">
-            Visits
-          </div>
-
-          <div class="panel-body">
-            <i><b> SRA </b></i><br>
-            Start-Time: 2016-02-12, 09:00:00<br>
-            End-Time: 2016-02-02T20:00:00
-            <br><br>
-            <i><b> HCL </b> </i><br>
-            Start-Time: 2016-02-14, 09:00:00<br>
-            End-Time: 2016-02-14, 20:00:00
-            <br><br>
-            <i> <b> Fruition </b> </i><br>
-            Start-Time: 2016-02-16, 09:00:00<br>
-            End-Time: 2016-02-16, 20:00:00
-          </div>
-          <div class="panel-footer">
-            <p></p>  
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-left">
-              <p class="highlight">04</p>
-            </div>
-            <h3 class="panel-title"><b> Noida </b></h3>
-          </div>
-
-          <div class = "panel-subheader">
-           Visits 
-          </div>
-          <div class="panel-body">
-            <i> <b> SRA </b></i><br>
-            Start-Time: 2016-02-12, 09:00:00<br>
-            End-Time: 2016-02-02T20:00:00
-            <br><br>
-            <i> <b> UXC </b></i><br>
-            Start-Time: 2016-02-14, 09:00:00<br>
-            End-Time: 2016-02-14, 20:00:00
-            <br><br>
-            <i> <b> Xchanging</b>  </i><br>
-            Start-Time: 2016-02-16, 09:00:00<br>
-            End-Time: 2016-02-16, 20:00:00
-          </div>
-          <div class="panel-footer">
-            <p></p>  
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-
   </div>
 
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-8453623-1");
+    pageTracker._trackPageview();
+  } catch(err) {}
+</script> 
 
 </body>
 </html>

@@ -6,6 +6,9 @@
   font-family: verdana, arial !important; 
   font-size: 20px !important;
   font-weight: bold !important;
+  background: url(/public/assets/images/istock.jpg);
+  background-size: 100%;
+  width: 100% !important;
 }
 
 /* page subheader styles */
