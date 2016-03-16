@@ -17,18 +17,15 @@
   <script type="text/javascript" src="libs/jquery-ui/jquery-ui.min.js"></script>
 
 
-    <!-- application js files referenced here  -->
-    <!-- your app's js -->
-    <script src="mods/app.js"></script>
-    <script src="mods/controllers.js"></script>
-    <script src="mods/GenericCtrl.js"></script>
-    <script src="mods/visits/visitsCtrl.js"></script>
-    <script src="mods/sessions/sessionsCtrl.js"></script>    
-  <script src="libs/angular/angular.js"></script>
+
+
+
+ 
+  <!-- application dependeces files referenced here  -->
+
+   <script src="libs/angular/angular.js"></script>
   <script src="libs/angular-route/angular-route.js"></script>
   <script src="libs/angular-animate/angular-animate.js"></script>
-  <!--general angualrjs dependencies -->
- 
 
   <script type="text/javascript" src="assets/js/ui-grid-unstable.js"></script>
 
@@ -41,10 +38,10 @@
   <script type="text/javascript" src="libs/lodash/lodash.js"></script>
 
 
-		<!-- standard library styles goes here -->
+    <!-- standard library styles goes here -->
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
-  </head>
+ 
 
   <!-- application js files referenced here  -->
   <script src="mods/app.js"></script>
@@ -57,36 +54,20 @@
   <script src="mods/facts/factCtrl.js"></script>
   <link rel="stylesheet" href="assets/css/font.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/hmnu.css">
   <link rel="stylesheet" href="assets/css/anim.css">
   <link rel="stylesheet" href="assets/css/fact.css">
-
 
   <link rel="stylesheet" href="assets/css/ui-grid-unstable.css">
   <link rel="stylesheet" href="assets/css/lctnGalry.css">
 
-  <!-- standard library styles goes here -->
-  <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-
 </head>
 
 <body ng-class="animation" ng-controller="ctrl">
-  <h3>
-    <i class="fa fa-bars"></i>&nbsp;&nbsp;
 
-    <a ng-click='back()' ng-if="canBack()"><i class="fa fa-arrow-left"></i></a>&nbsp;&nbsp;
-    <a href="#/home"><i class="fa fa-home"></i></a>&nbsp;&nbsp;
-    CSC
-    <i class="fa fa-arrows pull-right"></i>
-    <!-- <div ng-include src="'./mods/menu.html'" class="pull-right"></div> -->
-    <ham-menu></ham-menu>
-
-  </h3>
-
-  <hr/>
-
-    <div ng-view class="view">
-
-  </div>
+    <div ng-include src="'./mods/menu.html'" ></div>
+   <!--  <ham-menu></ham-menu> -->
+    <div ng-view class="view"></div>
 
 </body>
 </html>
