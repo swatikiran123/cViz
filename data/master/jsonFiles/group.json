@@ -7,8 +7,7 @@
 		"description"				: "Users who have privileged rights and who has access to modify the content of the application, adding, deleting users,keynotes, factsheets etc ",
 		"users"						:
 		[
-			ObjectId("A02234567892345678900001"),
-			ObjectId("A02234567892345678900002")
+			ObjectId("A20474567892345678900001")
 		]
 	},
 
@@ -21,7 +20,8 @@
 		"users"						:
 		[
 			ObjectId("A02234567892345678900001"),
-			ObjectId("A02234567892345678900002")
+			ObjectId("A02234567892345678900002"),
+			ObjectId("A02234567892345678900003")
 		]
 	},
 
@@ -33,8 +33,9 @@
 		"description"				: "This Group consists of users who can manage the entire visits like scheduling, modifying the visits",
 		"users"						:
 		[
-			ObjectId("A02234567892345678900001"),
-			ObjectId("A02234567892345678900002")
+			ObjectId("A02234567892345678900004"),
+			ObjectId("A02234567892345678900005"),
+			ObjectId("A02234567892345678900006")
 		]
 	}
 
