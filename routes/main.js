@@ -6,13 +6,11 @@ var appInfoServ   = require(constants.paths.services + '/appService');
 module.exports = function(app, passport) {
 
 	app.use(function (req, res, next) {
-	  //console.log('Req @ Time:', Date.now());
-
     res.locals={
-      appTitle: "mSkeleton",
+      appTitle: "Visit Portal",
       pageTitle: "main",
       author: "Sankar Vema",
-      description: "Reusable MEAN stack template with MicroService architecture patterns",
+      description: "Customer Visit Management Portal",
       user: req.user,
       app_info: appInfoServ.info()
   	};
