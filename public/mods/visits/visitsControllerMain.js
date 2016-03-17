@@ -38,9 +38,27 @@ visitsApp.factory('FeedbackService', ["$http", function ($http) {
     }
   };
 }]);
+//Autocompleate - Factory
+visitsApp.factory('KeynoteService', ["$http", function ($http) {
+  return {
+    search: function (term) {
+      //var client = {title: new RegExp(term, 'i')};
+      var maxRecs = 10;
+      var fields = ('title _id');
+      var sort = ({title:'ascending'});
+      return $http({
+        method: 'GET',
+        url: '/api/v1/secure/keynotes/find',
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+      }).then(function (response) {
+        return response.data;
+      });
+    }
+  };
+}]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', 'FeedbackService', '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, FeedbackService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, FeedbackService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -49,6 +67,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.hideFilter = true;
   $scope.schedules=[];
   $scope.visitors=[];
+  $scope.keynotes=[];
   $scope.small= "small";
   $scope.large= "LARGE";
   $scope.medium= "medium";
@@ -86,6 +105,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       $scope.visits = "";
       $scope.schedules=[];
       $scope.visitors=[];
+      $scope.keynotes=[];
 
         //Start-date End-date Locations 
         angular.forEach($scope.visitsList, function(item){
@@ -109,6 +129,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
             var visits = response;
           $scope.schedules = visits.schedule;       //List of schedules
+          $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;      //List of visitors
           $scope.visits = visits;               //Whole form object
           
@@ -116,8 +137,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
           
-          $scope.clientName= response.client.name;
-          $scope.feedback= response.feedbackTmpl.title;
+          $scope.clientName= response.client.name;//auto fill with reff client db
+          $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
           
           $scope.anchorUser = response.anchor;
           $scope.anchorEmail = response.anchor.email;
@@ -139,6 +160,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.anchor = $scope.anchorId;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
+    //$scope.keynote.note = $scope.keynoteId;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     switch($scope.mode)    {
       case "add":
@@ -157,6 +179,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     var inData       = $scope.visits;
     inData.schedule = $scope.schedules;
+    inData.keynote = $scope.keynotes;
     inData.visitors = $scope.visitors;
     inData.createBy =  $rootScope.user._id;
 
@@ -232,6 +255,32 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.schedules.splice(index, 1);
   };
 // Visit schedule table end
+
+ // Visit keynote table
+
+  $scope.addkeynote=function(keynoteDef){
+
+    $scope.keynotes.push({
+      note: keynoteDef.note,
+      context: keynoteDef.context,
+      order: keynoteDef.order
+    });
+
+     keynoteDef.note='';
+    keynoteDef.context='';
+    keynoteDef.order='';
+  };
+
+  $scope.removekeynote = function(index){
+    $scope.keynotes.splice(index, 1);
+  }; 
+
+  $scope.editkeynote = function(index,keynoteDef){
+    console.log(keynoteDef);
+    $scope.keynoteDef= keynoteDef;
+    $scope.keynotes.splice(index, 1);
+  };
+// Visit keynote table end
 
 
   // Visit visitor table
@@ -399,7 +448,34 @@ visitsApp.directive("feedback", ["FeedbackService", function (FeedbackService) {
     }
   };
 }]);
-
+//Autocompleate - Directive
+visitsApp.directive("keynote", ["KeynoteService", function (KeynoteService) {
+  return {
+    restrict: "A",              //Taking attribute value
+    link: function (scope, elem, attr, ctrl) {
+      elem.autocomplete({
+        source: function (searchTerm, response) {
+          KeynoteService.search(searchTerm.term).then(function (autocompleteResults) {
+            response($.map(autocompleteResults, function (autocompleteResult) {
+              return {
+                label: autocompleteResult.title,
+                value: autocompleteResult._id,
+                //id: autocompleteResult._id
+              }
+            }))
+          });
+        },
+        minLength: 4,
+        select: function (event, selectedItem) {
+          scope.keynoteDef.note= selectedItem.item.value;
+         // scope.keynoteId= selectedItem.item.id;
+          scope.$apply();
+          event.preventDefault();
+        }
+      });
+    }
+  };
+}]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
   return {

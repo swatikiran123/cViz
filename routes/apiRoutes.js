@@ -43,10 +43,11 @@ router.post('/api/v1/upload/',fileupload.create);
 
 // List of service routes for KeyNotes
 router.get('/api/v1/secure/keynotes', keynotes.getAll);
-router.get('/api/v1/secure/keynotes/:id', keynotes.getOneById);
+//router.get('/api/v1/secure/keynotes/:id', keynotes.getOneById);
 router.post('/api/v1/secure/keynotes', keynotes.create);
 router.put('/api/v1/secure/keynotes/:id', keynotes.updateById);
 router.delete('/api/v1/secure/keynotes/:id', keynotes.deleteById);
+router.get('/api/v1/secure/keynotes/find', keynotes.getWithQuery);
 
 // List of service routes for clients
 router.get('/api/v1/secure/clients', clients.getAll);

@@ -47,7 +47,7 @@ function getOneById(id){
     .populate('createBy')
     .populate('client')
     .populate('feedbackTmpl')
-    //.populate('visitors.visitor')
+    .populate('keynote.note')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
