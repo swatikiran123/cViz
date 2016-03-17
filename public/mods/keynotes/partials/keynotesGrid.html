@@ -53,7 +53,7 @@
   <tbody class="data-grid-data">
     <tr ng-repeat="keynote in keynotesList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{keynote.title}}</td>
-      <td>{{keynote.noteBy}}</td>
+      <td><div userdisplay view-mode="nameonly" user-id="keynote.noteBy"></div></td>
       <td>{{keynote.desc}}</td>
       <td class="hidden-xs"><div ng-repeat="tags in keynote.tags track by $index"--> {{tags}}</div></td>
       <td class="hidden-xs">{{keynote.createOn}}</td>
