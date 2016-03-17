@@ -1,6 +1,6 @@
 var auth = require('./auth.js');
 
-module.exports = function(app, passport) 
+module.exports = function(app) 
 {
 
     // route to keynotes
@@ -34,16 +34,9 @@ module.exports = function(app, passport)
         res.render('profile.ejs', {});
     });
 
-      app.get('/style', function(req, res) {
-        res.locals.pageTitle = "style";
-        res.render('styles.ejs', {});
-    });
-        app.get('/dialog', function(req, res) {
-        res.locals.pageTitle = "dialog";
-        res.render('dialog.ejs', {});
-    });
 
-        
+
+
 
     // route to feedback
     app.get('/feedback', auth.isLoggedIn, function(req, res) {

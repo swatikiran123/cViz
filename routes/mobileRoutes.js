@@ -1,6 +1,6 @@
 var auth = require('./auth.js');
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
     var activeLayout = 'layouts/mobile-angular';
 
@@ -41,4 +41,3 @@ module.exports = function(app, passport) {
         });
     });
 }
-
