@@ -9,10 +9,10 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
-      .when('/addVisit', {
-        templateUrl: '/public/mods/visits/tabvisit.html',
-        controller: 'visitsControllerMain'
-      })
+      // .when('/addVisit', {
+      //   templateUrl: '/public/mods/visits/VisitsViewAdd.html',
+      //   controller: 'visitsControllerMain'
+      // })
 
       .when('/:id/showVisit', {
         templateUrl: '/public/mods/visits/visitsViewShow.html',
@@ -34,8 +34,16 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
+      // .when('/:id/editVisit', {
+      //   templateUrl: '/public/mods/visits/VisitsViewAdd.html',
+      //   controller: 'visitsControllerMain'
+      // })
+      .when('/addVisit', {
+        templateUrl: '/public/mods/visits/tabvisit.html',
+        controller: 'visitsControllerMain'
+      })
       .when('/:id/editVisit', {
-        templateUrl: '/public/mods/visits/tabVisit.html',
+        templateUrl: '/public/mods/visits/tabvisit.html',
         controller: 'visitsControllerMain'
       });
 

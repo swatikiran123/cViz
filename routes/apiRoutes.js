@@ -96,10 +96,11 @@ router.delete('/api/v1/secure/visitSchedules/:id', visitSchedule.deleteById);
 
 // List of service routes for feedbackDefs
 router.get('/api/v1/secure/feedbackDefs', feedbackDef.getAll);
-router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
+//router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
 router.post('/api/v1/secure/feedbackDefs', feedbackDef.create);
 router.put('/api/v1/secure/feedbackDefs/:id', feedbackDef.updateById);
 router.delete('/api/v1/secure/feedbackDefs/:id', feedbackDef.deleteById);
+router.get('/api/v1/secure/feedbackDefs/find', feedbackDef.getWithQuery);
 
 //list of service routes for cityFacts
 router.get('/api/v1/secure/cityFacts', cityFacts.getAll);

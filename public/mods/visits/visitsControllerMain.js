@@ -20,9 +20,27 @@ visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
     }
   };
 }]);
+//Autocompleate - Factory
+visitsApp.factory('FeedbackService', ["$http", function ($http) {
+  return {
+    search: function (term) {
+      //var client = {title: new RegExp(term, 'i')};
+      var maxRecs = 10;
+      var fields = ('title _id');
+      var sort = ({title:'ascending'});
+      return $http({
+        method: 'GET',
+        url: '/api/v1/secure/feedbackDefs/find',
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+      }).then(function (response) {
+        return response.data;
+      });
+    }
+  };
+}]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', 'FeedbackService', '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, FeedbackService, $filter) {
 
     var id = $routeParams.id;
 
@@ -40,7 +58,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
   
   //Location - Http get for drop-down
-  $http.get('/api/v1/secure/lov/location').success(function(response) {
+  $http.get('/api/v1/secure/lov/locations').success(function(response) {
     $scope.location=response.values;
   });
 
@@ -97,8 +115,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
+          
           $scope.clientName= response.client.name;
-
+          $scope.feedback= response.feedbackTmpl.title;
+          
           $scope.anchorUser = response.anchor;
           $scope.anchorEmail = response.anchor.email;
           $scope.anchorId = response.anchor._id;
@@ -119,6 +139,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.anchor = $scope.anchorId;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
     switch($scope.mode)    {
       case "add":
       $scope.create();
@@ -177,15 +198,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   }
 
   $scope.getUser = function(){
-    console.log($scope.visits.agm);
-
     $http.get('/api/v1/secure/admin/users/' + inData.agm).success(function(response) {
-      console.log(response);
       var user = response;
       $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
 
     $http.get('/api/v1/secure/admin/users/' + inData.anchor).success(function(response) {
-      console.log(response);
       var user = response;
       $scope.visits.anchor = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);  });
 
@@ -211,7 +228,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   }; 
 
   $scope.editSchedule = function(index,schedule){
-    console.log(schedule);
     $scope.schedule= schedule;
     $scope.schedules.splice(index, 1);
   };
@@ -355,6 +371,35 @@ visitsApp.directive("autocomplete", ["AutoCompleteService", function (AutoComple
     }
   };
 }]);
+//Autocompleate - Directive
+visitsApp.directive("feedback", ["FeedbackService", function (FeedbackService) {
+  return {
+    restrict: "A",              //Taking attribute value
+    link: function (scope, elem, attr, ctrl) {
+      elem.autocomplete({
+        source: function (searchTerm, response) {
+          FeedbackService.search(searchTerm.term).then(function (autocompleteResults) {
+            response($.map(autocompleteResults, function (autocompleteResult) {
+              return {
+                label: autocompleteResult.title,
+                value: autocompleteResult.title,
+                id: autocompleteResult._id
+              }
+            }))
+          });
+        },
+        minLength: 4,
+        select: function (event, selectedItem) {
+          scope.feedback= selectedItem.item.value;
+          scope.feedbackId= selectedItem.item.id;
+          scope.$apply();
+          event.preventDefault();
+        }
+      });
+    }
+  };
+}]);
+
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
   return {

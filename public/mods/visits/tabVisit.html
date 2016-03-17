@@ -21,16 +21,171 @@
     <!--Basic Information tab page-->
     <md-tab label="Basic Information">
     <md-content class="md-padding">
-    <div ng-include src="'/public/mods/visits/visitsViewAdd.html'"></div>
+      <div class="data-form">
+    <form name="visitsForm" id="visitsForm" class="form-vertical" >
+
+
+      <!-- visits title input-->
+      <md-input-container class="md-block">
+      <label>Title</label>
+      <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
+      <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+
+      <!-- visits client input-->
+      <md-input-container class="md-block">
+      <label>Client Name</label>
+      <input  required name="clientname" ng-model="clientName" autocomplete required>
+      <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+        </div></div>
+      </md-input-container>
+
+      <!-- visits agenda--> 
+      <div class="field">
+        <label ng-show="visits.agenda" class="show-hide">Agenda</label>
+        <div class="form-group">
+          <text-angular 
+          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+          ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+        </div></div>
+
+        <!-- visits AGM By input-->
+
+        <md-input-container class="md-block">
+        <label>AGM</label>
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
+          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="large" ></div>
+        </div>
+      </md-input-container>
+
+      <!-- visits anchor By input-->
+
+      <md-input-container class="md-block">
+      <label>Anchor</label>
+      <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
+        <div user type="picker" user-model="anchorUser" user-id="anchorId" user-email="anchorEmail" view-type="large"></div>
+      </div>
+    </md-input-container>
+
+    <!--visit Schedule-->
+    <div ng-include src="'/public/mods/visits/scheduleViewAdd.html'"></div>
+    <br>
+    <!--visitors in the vist
+    <div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>
+
+    <!--vist Interest interest. businessType visitType objective-->
+
+    <!-- visits businessType-->
+    <md-input-container class="md-block">
+    <label>Business Type</label>
+    <input md-maxlength="30" minlength="5" required name="businessType" ng-model="visits.interest.businessType">
+    <div ng-messages="visitsForm.interest.businessType.$error" ng-show="visitsForm.interest.businessType.$touched || !visitsForm.interest.businessType.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The business type has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the business type should contain minimum 5characters</div></div></div>
+    </md-input-container>
+
+    <!-- visits visitType-->
+    <md-input-container class="md-block">
+    <label>Visit Type</label>
+    <input md-maxlength="30" minlength="5" required name="visitType" ng-model="visits.interest.visitType">
+    <div ng-messages="visitsForm.interest.visitType.$error" ng-show="visitsForm.interest.visitType.$touched || !visitsForm.interest.visitType.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The visit type has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the visit type should contain minimum 5characters</div></div></div>
+    </md-input-container>
+
+    <!-- visits objective -->
+    <div class="field">
+      <label ng-show="visits.objective" class="show-hide">Visits Objective</label>
+      <div class="form-group">
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+        ng-model="visits.interest.objective" name="objective" placeholder="Describe visit Objective" required /></text-angular>
+      </div></div>
+
+      <!-- visits status input-->
+      <md-input-container class="md-block">
+      <label>Status</label>
+      <input md-maxlength="30" minlength="3" required name="status" ng-model="visits.status">
+      <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The visit type has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the visit type should contain minimum 5characters</div></div></div>
+      </md-input-container>
+      <!--buttons-->
+      <div class="form-group">
+        <div class="pull-left">
+          <button type="submit" class="btn btn-success" 
+          ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
+        </button>
+        <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
   </md-content>
 </md-tab>
 <!--Add Visitors tab page-->
 <md-tab label="Add Visitors">
 <md-content class="md-padding">
-<div ng-include src="'/public/mods/visits/visitorsViewAdd.html'"></div>
+<!--visitors-->
+<b>Add - Visitor</b><br>
+<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+  <thead class="data-grid-header">
+    <tr>
+      <th><span  class="fa fa-user"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+      <th><span  class="glyphicon"></span>Influence</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="data-grid-data">
+    <tr>
+      <td>    
+        <input type="email" ng-model="visitorDef.visitorId">
+      </td>
+      <td><select 
+       ng-model="visitorDef.influence" 
+       ng-options="data for data in influence">
+     </select>
+     <pre>selected: {{visitorDef.influence}}</pre>
+   </td>
+   <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)">Add visitor</button></td>
+ </tr>
+ 
+ <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
+  <td><userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor"/></td>
+  <td>{{visitorDef.influence}}</td>
+  <td>
+    <a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
+    <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
+
+  </td>
+</tr>
+
+    <td ng-if="showFlag == 'noUser'">
+    
+ {{message}}
+
+    </td>
+
+</tbody>
+</table>
 </md-content>
 </md-tab>
-<!--Schedules tab page-->
+<!--Schedules tab page
 <md-tab label="Schedules">
 <md-content class="md-padding">
 <div ng-include src="'/lol.html'"></div>
@@ -39,7 +194,15 @@
 <!--Finalize tab page-->
 <md-tab label="Finalize">
 <md-content class="md-padding">
-<div ng-include src="'/lol.html'"></div>
+<!-- visits client input-->
+      <md-input-container class="md-block">
+      <label>Feedback Template</label>
+      <input name="feedback" ng-model="feedback" feedback required>
+      <div ng-messages="visitsForm.feedback.$error" ng-show="visitsForm.feedback.$touched || !visitsForm.feedback.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+        </div></div>
+      </md-input-container>
 </md-content>
 </md-tab>
 </div>    
