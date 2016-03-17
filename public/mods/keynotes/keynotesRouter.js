@@ -14,7 +14,7 @@ angular.module('keynotes')
         controller: 'keynotesControllerMain'
       })
 
-      .when('/:id/show', {
+      .when('/:id/show1', {
         templateUrl: '/public/mods/keynotes/keynotesViewShow.html',
         controller: 'keynotesControllerMain'
       })
