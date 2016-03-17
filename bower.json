@@ -1,9 +1,9 @@
 {
-  "name": "mStack",
+  "name": "cViz",
   "version": "0.0.1",
   "homepage": "about:blank",
   "authors": [
-    "Sankar Vema <sans.vema@gmail.com>"
+    "Sankar Vema <svema@csc.com>"
   ],
   "moduleType": [
     "node"
