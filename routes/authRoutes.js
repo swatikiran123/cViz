@@ -1,27 +1,25 @@
 
+var constants					= require('../scripts/constants');
+var logger = require(constants.paths.scripts + '/logger');
+var util = require(constants.paths.scripts + '/util');
+var assetBuilder = require(constants.paths.scripts + '/assetBuilder');
 
 module.exports = function(app, passport) {
-
-
 
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
         if (!req.isAuthenticated())
-            res.render('index.ejs');
+            res.render('index.ejs',{
+							stdAssets: assetBuilder.getAssets("stdAssets", "general,index", "dev"),
+							appAssets: assetBuilder.getAssets("appAssets", "general", "dev")
+						});
         else{
             res.render('home.ejs', {
                 user : req.user
             });
         }
-    });
-
-    // Profile SECTION =========================
-    app.get('/profileold', isLoggedIn, function(req, res) {
-        res.render('profileold.ejs', {
-            user : req.user
-        });
     });
 
     // Token SECTION =========================

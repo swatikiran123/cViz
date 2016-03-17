@@ -41,6 +41,7 @@ module.exports = function(app, passport) {
 	// include routes here
 	app.use('/', require('./apiRoutes')); // load api endpoint routes
 	require('./authRoutes.js')(app, passport); // load authentication routes, fully configured with passport
+	require('./publicRoutes.js')(app);
 	require('./pageRoutes.js')(app);
 	require('./mobileRoutes.js')(app);
 	//ToDo:: Tighten security for public assets
