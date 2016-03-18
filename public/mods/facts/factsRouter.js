@@ -3,23 +3,23 @@
 angular.module('facts')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      
-      .when('/f/', {
+
+      .when('/facts/list', {
         templateUrl: '/public/mods/facts/factsViewMain.html',
         controller: 'factsControllerMain'
       })
 
-      .when('/addFact', {
+      .when('/facts/add', {
         templateUrl: '/public/mods/facts/factsViewAdd.html',
         controller: 'factsControllerMain'
       })
 
-      .when('/:id/showFact', {
+      .when('/facts/:id/show', {
         templateUrl: '/public/mods/facts/factsViewShow.html',
         controller: 'factsControllerMain'
       })
 
-      .when('/:id/editFact', {
+      .when('/facts/:id/edit', {
         templateUrl: '/public/mods/facts/factsViewAdd.html',
         controller: 'factsControllerMain'
       });

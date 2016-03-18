@@ -3,7 +3,7 @@
 var feedbackApp = angular.module('feedback');
 
 feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope',
-	function($scope, $http, $routeParams, $location,growl,$rootScope) {	
+	function($scope, $http, $routeParams, $location,growl,$rootScope) {
  	$scope.items=[];
  	var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -16,9 +16,9 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
       $scope.feedbackList = response;
       $scope.feedbackDefs = "";
       $scope.items=[];
-            
+
       switch($scope.mode)    {
-       
+
         case "add":
           $scope.feedbackDefs = "";
           break;
@@ -26,9 +26,9 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
         case "edit":
           $scope.feedbackDefs = $http.get('/api/v1/secure/feedbackDefs/' + id).success(function(response){
             var feedbackDefs = response;
-            $scope.items = feedbackDefs.item;       //list of item            
+            $scope.items = feedbackDefs.item;       //list of item
             $scope.feedbackDefs = feedbackDefs;     //whole form object
-            console.log($scope.items);          
+            console.log($scope.items);
           });
 
       } // switch scope.mode ends
@@ -38,9 +38,9 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   refresh();
 
   $scope.save = function(){
-    //$scope.feedbackDefs.createBy = $rootScope.user._id;    
+    //$scope.feedbackDefs.createBy = $rootScope.user._id;
     switch($scope.mode)    {
-      
+
       case "add":
         $scope.create();
         break;
@@ -50,12 +50,12 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
         break;
       } // end of switch scope.mode ends
 
-      $location.path("/");
+      $location.path("feedbackTmpl/list");
   } // end of save method
 
 
   $scope.create = function() {
-    
+
     var inData = $scope.feedbackDefs;
     inData.item = $scope.items;
     inData.createBy = $rootScope.user._id;
@@ -80,7 +80,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
     }); // http delete feedback ends
   }; // delete method ends
 
-  $scope.update = function() {    
+  $scope.update = function() {
 
     $http.put('/api/v1/secure/feedbackDefs/' + $scope.feedbackDefs._id,  $scope.feedbackDefs).success(function(response) {
       refresh();
@@ -94,7 +94,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   $scope.cancel = function() {
 
     $scope.feedbackDefs="";
-    $location.path("/");
+    $location.path("feedbackTmpl/list");
   }
 
   // feedback item table
@@ -113,10 +113,10 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
 
   $scope.removeItem = function(index){
     $scope.items.splice(index, 1);
-  }; 
+  };
 
-  $scope.editItem = function(index,item){    
-    $scope.item = item;    
+  $scope.editItem = function(index,item){
+    $scope.item = item;
     $scope.items.splice(index, 1);
   };
 
@@ -186,5 +186,3 @@ feedbackApp.directive('asyncValidator', ['$fakeValidationService', '$q', functio
         }
     }
 }])
-
-
