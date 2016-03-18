@@ -6,7 +6,12 @@ module.exports = {
 		"login": [],
 		"home": [],
 		"admin": ["admin"],
-		"customize": ["customize","directives"]
+		"customize": ["customize","directives"],
+
+
+		"m-home": ["m-common"],
+		"m-facts": ["m-facts"],
+		"m-visits": ["m-visits"]
 
 	}
 }

@@ -79,6 +79,45 @@ module.exports = {
 			"/public/mods/keynotes/keynotesRouter.js"
 		]
 	},
+
+	"m-common":{
+		"dev":[
+			"/public/assets/m/css/font.css",
+			"/public/assets/m/css/style.css",
+		],
+		"prod":[
+
+		]
+	},
+
+	"m-main":{
+		"dev":[
+			"/public/m/home/home.js",
+			"/public/m/home/homeCtrl.js"
+		]
+	},
+
+	"m-facts":{
+		"dev":[
+			"/public/assets/m/css/fact.css",
+			"/public/assets/m/css/lctnGalry.css",
+
+			"/public/m/facts/facts.js",
+			"/public/m/facts/factsCtrl.js",
+			"/public/m/facts/lctnGalry/lctnGalryCtrl.js"
+		],
+		"prod":[
+
+		]
+	},
+
+	"m-visits":{
+		"dev":[
+			"/public/m/visits/visits.js",
+			"/public/m/visits/visitsCtrl.js"
+		]
+	}
+
 }
 
 };

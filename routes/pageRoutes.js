@@ -71,4 +71,31 @@ module.exports = function(app)
 				res.render('admin/home.ejs', {});
 		});
 
+		// route to main module
+		app.get('/m/main/', auth.isLoggedIn, function(req, res) {
+				res.locals.pageTitle = "Mobile Home";
+				res.locals.appName = "ng-app='mviz-main'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-home");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-home");
+				res.render('mobile/home.ejs', {});
+		});
+
+		// route to facts module
+		app.get('/m/facts/', auth.isLoggedIn, function(req, res) {
+				res.locals.pageTitle = "Factsheets";
+				res.locals.appName = "ng-app='mviz-facts'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-facts");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-facts");
+				res.render('mobile/home.ejs', {});
+		});
+
+		// route to visits module
+		app.get('/m/visits/', auth.isLoggedIn, function(req, res) {
+				res.locals.pageTitle = "Visit Agenda";
+				res.locals.appName = "ng-app='mviz-visits'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-visits");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-visits");
+				res.render('mobile/home.ejs', {});
+		});
+
 }
