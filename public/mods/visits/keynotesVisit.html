@@ -1,0 +1,28 @@
+<!-- visits keynotes input-->
+<b>Add - Keynotes</b><br>
+<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+  <thead class="data-grid-header">
+    <tr>
+      <th>Keynote</th>
+      <th>Context</th>
+      <th>Order</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="data-grid-data">
+    <tr>
+      <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote required></td>
+     <td><input type="text" placeholder="context" ng-model="keynoteDef.context" ></td>
+     <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
+     <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add keynote</button></td>
+   </tr>
+   <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
+    <td>{{keynoteDef.note}}</td>
+    <td>{{keynoteDef.context}}</td>
+    <td>{{keynoteDef.order}}</td>
+    <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash" /></a>
+      <a class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit" /></a>
+    </td>
+  </tr>
+</tbody>
+</table>
