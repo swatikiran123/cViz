@@ -85,14 +85,16 @@ angular.module('userprofileDirective', [])
   $scope.editpicture = function (dataUrl,users) {
     console.log(users._id);
     Upload.upload({
-      url: '/api/v1/upload/',
+      url: '/api/v1/upload/profilePics',
       data: {
         file: Upload.dataUrltoBlob(dataUrl),                
       },
     }).then(function (response) {
       console.log('update');
       $scope.result = response.data;
-      users.avatar = '\\' + response.data.file.path;
+      var filepath = response.data.file.path;
+      var imagepath = '/'+ filepath.replace(/\\/g , "/");
+      users.avatar = imagepath;
       console.log(users.avatar);                
       $http.put('/api/v1/secure/admin/users/'+ users._id, users).success(function(response1) {
           $mdDialog.hide();
