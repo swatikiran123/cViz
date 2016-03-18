@@ -1,8 +1,8 @@
 
 var constants					= require('../scripts/constants');
-var logger = require(constants.paths.scripts + '/logger');
-var util = require(constants.paths.scripts + '/util');
-var assetBuilder = require(constants.paths.scripts + '/assetBuilder');
+var logger 						= require(constants.paths.scripts + '/logger');
+var util 							= require(constants.paths.scripts + '/util');
+var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
 
 module.exports = function(app, passport) {
 

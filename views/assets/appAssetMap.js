@@ -3,7 +3,8 @@ module.exports = {
 		"general" : ["app-css"],
 		"index": [],
 		"login": [],
-		"home": []
+		"home": [],
+		"admin": []
 
 	}
 }

@@ -75,6 +75,10 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
+			"/public/libs/angular-animate/angular-animate.js",
+			"/public/libs/angular-aria/angular-aria.js",
+			"/public/libs/angular-material/angular-material.js",
+			"/public/libs/angular-material/angular-material.css"
 		],
 		"prod":[
 		]

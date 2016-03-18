@@ -14,7 +14,8 @@ module.exports = function(app, passport) {
       user: req.user,
       app_info: appInfoServ.info(),
 			appAssets: '',
-			stdAssets: ''
+			stdAssets: '',
+			appName: ''
   	};
 
 	  next();

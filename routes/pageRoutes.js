@@ -1,6 +1,10 @@
-var auth = require('./auth.js');
+var constants					= require('../scripts/constants');
+var logger 						= require(constants.paths.scripts + '/logger');
+var util 							= require(constants.paths.scripts + '/util');
+var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
+var auth 							= require('./auth.js');
 
-module.exports = function(app) 
+module.exports = function(app)
 {
 
     // route to keynotes
@@ -50,9 +54,12 @@ module.exports = function(app)
     });
 
     // route to admin/users
-    app.get('/admin/users', auth.isLoggedIn, function(req, res) {
-        res.locals.pageTitle = "users";
-        res.render('misc/admin/users.ejs', {});
+    app.get('/admin/', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "Site Administration";
+			  res.locals.appName = "ng-app='cviz-admin'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,admin");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,admin");
+        res.render('admin/home.ejs', {});
     });
 
 }
