@@ -18,6 +18,15 @@ module.exports = {
 			"/public/assets/w/styles/dataview-panels.min.css",
 			"/public/assets/w/styles/userpicker.min.css"
 		]
+	},
+
+	"utils":{
+		"dev":[
+			"/public/assets/g/js/utils.js"
+		],
+		"prod":[
+			"/public/assets/g/js/utils.js"
+		]
 	}
 }
 

@@ -1,6 +1,9 @@
 module.exports = {
 	assetMap : {
-		"general" : ["app-css"]
+		"general" : ["app-css"],
+		"index": [],
+		"login": [],
+		"home": []
 
 	}
 }

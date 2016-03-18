@@ -1,7 +1,10 @@
 module.exports = {
 	assetMap : {
-		"general" : ["bootstrap"],
-		"index" : ["font-awesome"]
+		"general" : ["jquery","bootstrap","font-awesome"],
+		"angular" : ["jquery","angular-core"],
+		"index" : [],
+		"login": [],
+		"home": []
 
 	}
 }
