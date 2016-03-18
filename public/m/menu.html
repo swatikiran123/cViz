@@ -1,0 +1,81 @@
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button data-toggle="collapse-side" data-target="#side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand">Visit Portal</a>
+    </div>
+    <div class="navbar-custom side-collapse in" id="side-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#/home"><i class="fa fa-home">&nbsp;&nbsp;Home</i></a></li>
+            <li>
+                <a href="#/visits">
+                    <i class="fa fa-plane"></i>&nbsp;&nbsp;Visits
+                </a>
+            </li>
+            <li>
+                <a href="#/sessions">
+                    <i class="fa fa-calendar"></i>&nbsp;&nbsp;Schedule
+                </a>
+            </li>
+            <li>
+                <a href="#/facts">
+                    <i class="fa fa-trello"></i>&nbsp;&nbsp;Factsheet
+                </a>
+            </li>
+            <li>
+                <a href="#/feedback">
+                    <i class="fa fa-comments-o"></i>&nbsp;&nbsp;Feedback
+                </a>
+            </li>
+            <li>
+                <a href="#/contacts">
+                    <i class="fa fa-phone"></i>&nbsp;&nbsp;Local Contacts
+                </a>
+            </li>
+            <li>
+                <a href="#/city">
+                    <i class="fa fa-map-marker"></i>&nbsp;&nbsp;City
+                </a>
+            </li>
+            <li>
+                <a href="#/search">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Search
+                </a>
+            </li>
+        </ul>
+   
+    </div>
+  </div>
+</nav>
+<!-- Navbar icon animation script -->
+<script>
+// script to animate hamburger menu icon
+$(document).ready(function () {
+      $(".navbar-toggle").on("click", function () {
+            $(this).toggleClass("active");
+      });
+});
+
+// scripot to select active menu item
+$('.navbar-custom .navbar-nav > li > a').click(function(e) {
+    var $this = $(this);
+    $this.parent().siblings().removeClass('active').end().addClass('active');
+});
+
+// script for left pull menu
+$(document).ready(function() {
+    var sideslider = $('[data-toggle=collapse-side]');
+    var sel = sideslider.attr('data-target');
+    var sel2 = sideslider.attr('data-target-2');
+    sideslider.click(function(event){
+        $(sel).toggleClass('in');
+        $(sel2).toggleClass('out');
+    });
+});
+</script>
+

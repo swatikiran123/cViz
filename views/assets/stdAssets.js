@@ -61,6 +61,25 @@ module.exports = {
 		]
 	},
 
+	"angular-ui":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/angular-animate/angular-animate.js",
+			"/public/libs/angular-touch/angular-touch.js",
+			"/public/libs/angular-ui/build/angular-ui.js",
+			"/public/libs/angular-ui/build/angular-ui.css"
+		],
+		"prod":[]
+	},
+
+	"angular-bootstrap":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/angular-bootstrap/ui-bootstrap-tpls.js"
+		],
+		"prod":[]
+	},
+
 	"angular-animate": {
 		"cdn": [
 		],
