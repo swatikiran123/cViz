@@ -4,11 +4,11 @@ var keynotesApp = angular.module('keynotes');
 
 keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope', '$routeParams', '$location', 'growl',
   function($scope, $http,$rootScope, $routeParams, $location, growl) {
-  
+
     var self = this;
     self.readonly = false;
     // Lists of fruit names and Vegetable objects
- 
+
     $scope.tags=[];
     var tag=$scope.tags;
     console.log(tag);
@@ -31,7 +31,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.keynotesList = response;
       $scope.keynotes = "";
 
-    
+
   switch($scope.mode)    {
         case "add":
           $scope.keynotes = "";
@@ -46,7 +46,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
             $scope.noteByUser = response.noteBy;
             $scope.noteByEmail = response.noteBy.email;
             $scope.noteById = response.noteBy._id;
-             
+
 
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
@@ -63,7 +63,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
     $scope.keynotes.noteBy = $scope.noteById;
     console.log($scope.keynotes.noteBy);
     $scope.keynotes.createby = $rootScope.user._id;
-    
+
      $scope.keynotes.tags = tag;
          angular.forEach($scope.keynotes.tags, function(ofrngs){
                if($scope.keynotes.tags === undefined)
@@ -85,7 +85,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
         break;
       } // end of switch scope.mode ends
 
-      $location.path("/");
+      $location.path("keynotes/list");
   } // end of save method
 
   $scope.create = function() {
@@ -123,7 +123,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   $scope.cancel = function() {
 
     $scope.keynotes="";
-    $location.path("/");
+    $location.path("keynotes/list");
   }
 
   $scope.getUser = function(){
@@ -142,4 +142,3 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   }
 
 }]);﻿ // controller ends
-

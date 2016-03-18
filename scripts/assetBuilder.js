@@ -39,11 +39,13 @@ function getAssets(type, handles){
 			break;
 	}
 
-//console.log(assetType);
+
 	var script = [];
 	_.each(handles.split(','), function(handle){
+		logger.writeJson(util.formatString("%s with handle %s", type, handle),'debug',1);
+
 		assetMap.assetMap[handle].forEach(function(map){
-			//logger.writeJson(assetType.assets[map],'',1);
+
 			if(assetType.assets[map] === undefined){
 				logger.writeLine(util.formatString("%s is not defined for %s", map, type), 'error', 1);
 				logger.writeLine("...skipping", 'error', 1);

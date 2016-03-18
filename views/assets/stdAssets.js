@@ -94,17 +94,6 @@ module.exports = {
 		]
 	},
 
-	"angular-tags": {
-		"cdn": [
-		],
-		"dev":[
-			"/public/libs/ng-tags-input/ng-tags-input.css",
-			"/public/libs/ng-tags-input/ng-tags-input.js"
-		],
-		"prod":[
-		]
-	},
-
 	"angular-growl": {
 		"cdn": [
 		],

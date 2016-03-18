@@ -5,7 +5,8 @@ module.exports = {
 		"index" : [],
 		"login": [],
 		"home": [],
-		"admin": ["angular-material"]
+		"admin": ["angular-material"],
+		"customize": ["angular-material","angular-text"]
 
 	}
 }
