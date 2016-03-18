@@ -10,16 +10,15 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        if (!req.isAuthenticated())
-            res.render('index.ejs',{
-							stdAssets: assetBuilder.getAssets("stdAssets", "general,index", "dev"),
-							appAssets: assetBuilder.getAssets("appAssets", "general", "dev")
-						});
-        else{
-            res.render('home.ejs', {
-                user : req.user
-            });
-        }
+
+      if (!req.isAuthenticated()){
+				res.locals.pageTitle = "Main";
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
+        res.render('index.ejs');
+			} else {
+				renderHome(req, res);
+      }
     });
 
     // Token SECTION =========================
@@ -29,11 +28,17 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
-        res.locals.pageTitle = "Home Page";
-        res.render('home.ejs', {
-            user : req.user
-        });
+        renderHome(req, res);
     });
+
+		function renderHome(req, res){
+			res.locals.pageTitle = "Home";
+			res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
+			res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
+			res.render('home.ejs', {
+					user : req.user
+			});
+		}
 
     app.get('/app', isLoggedIn, function(req, res) {
         res.locals.pageTitle = "App Info";
@@ -55,7 +60,10 @@ module.exports = function(app, passport) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+					res.locals.pageTitle = "Login";
+					res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+					res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,login");
+          res.render('login.ejs', { message: req.flash('loginMessage') });
         });
 
         // process the login form

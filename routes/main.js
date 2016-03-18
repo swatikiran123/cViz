@@ -12,7 +12,9 @@ module.exports = function(app, passport) {
       author: "Sankar Vema",
       description: "Customer Visit Management Portal",
       user: req.user,
-      app_info: appInfoServ.info()
+      app_info: appInfoServ.info(),
+			appAssets: '',
+			stdAssets: ''
   	};
 
 	  next();
