@@ -18,7 +18,6 @@ profileApp.service('multipartForm', ['$http', function($http){
 
 profileApp.controller('profileControllerMain', ['$scope', '$http', 'growl', '$rootScope', 'Upload', '$timeout','$mdDialog','$mdMedia',
   function($scope, $http, growl, $rootScope, Upload, $timeout,$mdDialog,$mdMedia) { 
-      
       //acts as get user profile by id for logged in user
       var refresh = function(id) {
       id=$rootScope.user._id;
@@ -68,13 +67,15 @@ profileApp.controller('profilebyIdControllerMain', ['$scope', '$http', 'growl','
       //edit the profile picture of user by taking dataurl and user id.
       $scope.editpicture = function (dataUrl,usersdata) {
           Upload.upload({
-              url: '/api/v1/upload/',
+              url: '/api/v1/upload/profilePics',
               data: {
                   file: Upload.dataUrltoBlob(dataUrl),                
               },
           }).then(function (response) {
                 $scope.result = response.data;
-                usersdata.avatar= '\\' + response.data.file.path;
+                var filepath = response.data.file.path;
+                var imagepath = '/'+ filepath.replace(/\\/g , "/");
+                usersdata.avatar = imagepath;
                 $http.put('/api/v1/secure/admin/users/'+ usersdata._id, usersdata).success(function(response1) {
                   $mdDialog.hide();
                 });
