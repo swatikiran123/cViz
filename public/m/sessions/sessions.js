@@ -16,11 +16,6 @@ angular.module('sessions', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
-	.when('/visits/:id/agenda', {
-    templateUrl: '/public/m/sessions/sessions.html',
-    controller: 'sessionsCtrl'
-  })
-
 	.when('/sessions/:id', {
 		templateUrl: '/public/m/sessions/sessions.html',
 		controller: 'sessionsCtrl'

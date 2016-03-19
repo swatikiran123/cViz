@@ -2,10 +2,18 @@ var express 			= require('express');
 var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
 var appInfoServ   = require(constants.paths.services + '/appService');
+var menuBuilder   = require(constants.paths.scripts + '/menuBuilder');
 
 module.exports = function(app, passport) {
 
 	app.use(function (req, res, next) {
+
+		// build side menu if user is logged in
+		var sideMenu = "";
+		if(req.user !== undefined){
+			sideMenu = menuBuilder.getMenu(req.user,"side");
+		}
+
     res.locals={
       appTitle: "Visit Portal",
       pageTitle: "main",
@@ -15,7 +23,8 @@ module.exports = function(app, passport) {
       app_info: appInfoServ.info(),
 			appAssets: '',
 			stdAssets: '',
-			appName: ''
+			appName: '',
+			menu: sideMenu			//ToDo: Can be effect performance & menu usage, improve this
   	};
 
 	  next();

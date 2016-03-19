@@ -2,7 +2,7 @@ module.exports = {
 	assetMap : {
 		"general" : ["app-css"],
 		"angular" : ["utils"],
-		"index": [],
+		"index": ["index"],
 		"login": [],
 		"home": [],
 		"admin": ["admin"],

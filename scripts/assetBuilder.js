@@ -73,5 +73,5 @@ function getAssets(type, handles){
 	});
 	logger.writeLine("scripts for handle: " + handles, 'debug', 1);
 	logger.writeLine(script, 'debug', 1);
-	return script;
+	return script.join(" ");
 }
