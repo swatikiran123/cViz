@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
       if (!req.isAuthenticated()){
 				res.locals.pageTitle = "Main";
 				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
-				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
         res.render('index.ejs');
 			} else {
 				renderHome(req, res);
