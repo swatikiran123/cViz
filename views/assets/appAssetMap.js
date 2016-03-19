@@ -11,7 +11,7 @@ module.exports = {
 
 		"m-home": ["m-common"],
 		"m-facts": ["m-facts"],
-		"m-visits": ["m-visits"]
+		"m-visits": ["m-visits","m-sessions"]
 
 	}
 }

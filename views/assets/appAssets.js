@@ -84,6 +84,9 @@ module.exports = {
 		"dev":[
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
+			"/public/d/geoLocation/scr.js",
+			"/public/d/geoLocation/locator.js",
+			"/public/d/geoLocation/locator-tpl.js"
 		],
 		"prod":[
 
@@ -115,6 +118,13 @@ module.exports = {
 		"dev":[
 			"/public/m/visits/visits.js",
 			"/public/m/visits/visitsCtrl.js"
+		]
+	},
+
+	"m-sessions":{
+		"dev":[
+			"/public/m/sessions/sessions.js",
+			"/public/m/sessions/sessionsCtrl.js"
 		]
 	}
 
