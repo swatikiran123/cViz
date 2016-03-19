@@ -133,7 +133,8 @@ module.exports = {
 	"m-sessions":{
 		"dev":[
 			"/public/m/sessions/sessions.js",
-			"/public/m/sessions/sessionsCtrl.js"
+			"/public/m/sessions/sessionsCtrl.js",
+			"/public/assets/m/css/sessions.css"
 		]
 	}
 
