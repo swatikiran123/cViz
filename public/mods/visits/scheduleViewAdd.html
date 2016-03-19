@@ -1,5 +1,5 @@
 <!--schedules-->
-<b>Add - Schedule</b><br>
+<br>
 <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
   <thead class="data-grid-header">
     <tr>
@@ -17,7 +17,7 @@
        ng-model="schedule.location" 
        ng-options="data for data in location">
      </select>
-     <pre>selected: {{schedule.location}}</pre>
+     <!-- <pre>selected: {{schedule.location}}</pre> -->
    </td>
    <td><button class="btn btn-primary" ng-click="addSchedule(schedule)">Add Schedule</button></td>
    

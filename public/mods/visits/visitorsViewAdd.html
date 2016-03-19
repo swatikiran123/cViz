@@ -17,26 +17,27 @@
        ng-model="visitorDef.influence" 
        ng-options="data for data in influence">
      </select>
-     <pre>selected: {{visitorDef.influence}}</pre>
+     <!-- <pre>selected: {{visitorDef.influence}}</pre> -->
    </td>
    <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)">Add visitor</button></td>
  </tr>
  
  <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
-  <td><userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor"/></td>
-  <td>{{visitorDef.influence}}</td>
-  <td>
-    <a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
-    <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
-
-  </td>
+  <td col-span="3"> <div>
+    <div>{{visitorDef.influence}}</div>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
+      <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
+    </div>
+  </div>
+  <userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor"/></td>
+</td>
 </tr>
 
-    <td ng-if="showFlag == 'noUser'">
-    
+<td ng-if="showFlag == 'noUser'">
+
  {{message}}
 
-    </td>
+</td>
 
 </tbody>
 </table>

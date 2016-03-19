@@ -1,0 +1,21 @@
+
+.md-tab:first-child{background: white; } 
+.md-tab:nth-child(2){background: white; } 
+.md-tab:nth-child(3){background: white; }
+.md-tab:nth-child(4){background: white; }
+.panel{
+
+
+}
+body, html {
+	/*background: url(C:/Users/krekam/Desktop/blue.jpg) no-repeat center center fixed;*/
+
+	height: 100%;
+	margin: 0;
+
+	background-color: #ddd;  
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
