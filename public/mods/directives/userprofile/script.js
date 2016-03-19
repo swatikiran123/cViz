@@ -2,7 +2,7 @@
 
 angular.module('userprofileDirective', [])
 .controller('userprofileDirectiveControllerMain', ['$scope', '$http', '$mdDialog', '$mdMedia','Upload','growl', function($scope, $http, $mdDialog, $mdMedia,Upload,growl) {
-
+  $scope.entity = "entity";
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
