@@ -3,8 +3,13 @@
 		<div class="profile-pic"><img src="{{user.avatar}}"></div>
 		<div class="profile-name">{{user.name.first}} {{user.name.last}}</div>
 		<div class="profile-desc">{{user.jobTitle}} {{user.organization}}</div>
-		<div class="profile-location"><img src="/public/assets/m/img/ic/loc.png">You are at <u>CSC India, Bangalore</u></div>
-<div class="session-overview" ng-hide="!visitStartSuccess">
+		<div class="profile-location">
+			<img src="/public/assets/m/img/ic/loc.png">
+			<location-picker ng-model="pickedLocation" limit-to="2"><br/>
+			</location-picker>You are at <u>CSC India, Bangalore</u>
+		</div>
+		
+		<div class="session-overview" ng-hide="!visitStartSuccess">
             <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4 currentSession">
                     <div class="on-time">ON TIME</div>

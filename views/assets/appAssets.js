@@ -31,6 +31,15 @@ module.exports = {
 		]
 	},
 
+	"index":{
+		"dev":[
+			"/public/assets/w/styles/index.css"
+		],
+		"prod":[
+			"/public/assets/w/styles/index.css"
+		]
+	},
+	
 	"admin":{
 		"dev":[
 			"/public/mods/admin/users/usersModule.js",
