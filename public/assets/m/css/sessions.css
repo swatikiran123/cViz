@@ -1,3 +1,6 @@
+body,html{
+  padding-top: 20px;
+}
 .agenda-parent-div {
   /*position: relative;*/
   color: #000;

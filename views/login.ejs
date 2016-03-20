@@ -5,13 +5,117 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
-        body         { padding-top:80px; }
+      body,html{
+  padding-top: 25px;}
+
+
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+ 
+  html,body { 
+
+  background: url(/public/assets/w/images/bg-320.jpg) no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%; 
+}
+
+     }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg-480.jpg) no-repeat  fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%; 
+}
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg-768.jpg) no-repeat  fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%; 
+}
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg--992.jpg) no-repeat  fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%; 
+}
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg-1200.jpg) no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+
+}
+
+    }
+
+
+
+    /*==========  Non-Mobile First Method  ==========*/
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg-1200.jpg) no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+}
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+
+  html,body { 
+
+  background: url(/public/assets/w/images/bg.jpg) no-repeat  fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+}}
     </style>
 </head>
 <body>
 <div class="container">
 <div class="col-sm-6 col-sm-offset-3">
-
+<br>
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
     <% if (message.length > 0) { %>
