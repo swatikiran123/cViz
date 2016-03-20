@@ -41,6 +41,7 @@ router.get('/api/v1/secure/admin/users/email/:email', users.getByEmail);
 //Route for file upload
 //router.post('/api/v1/upload',fileupload.create);
 router.post('/api/v1/upload/:entity',fileupload.create);
+router.post('/api/v1/multiupload/:entity',fileupload.create);
 
 // List of service routes for KeyNotes
 router.get('/api/v1/secure/keynotes', keynotes.getAll);
