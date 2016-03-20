@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 				res.locals.pageTitle = "Main";
 				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
 				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
-        res.render('index.ejs');
+        res.render('index.ejs',{layout: 'layouts/public'});
 			} else {
 				renderHome(req, res);
       }
@@ -63,7 +63,10 @@ module.exports = function(app, passport) {
 					res.locals.pageTitle = "Login";
 					res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
 					res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,login");
-          res.render('login.ejs', { message: req.flash('loginMessage') });
+          res.render('login.ejs', {
+						message: req.flash('loginMessage'),
+						layout: 'layouts/public'
+					});
         });
 
         // process the login form
@@ -76,7 +79,10 @@ module.exports = function(app, passport) {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+            res.render('signup.ejs', {
+							layout: 'layouts/public',
+							message: req.flash('signupMessage')
+						});
         });
 
         // process the signup form

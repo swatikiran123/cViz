@@ -11,27 +11,19 @@
 	</div> <!-- end of agenda header -->
 
 	<!-- begin of tab content -->
- 	<div id="agenda-scrollable-block" class="col-xs-12 col-sm-12 col-md-12 div-padding">
 		<div class="container-fluid div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day">
 			<h1 class="day-agenda-header">
 				{{schedules.date | date : "dd MMM yyyy"}} -
 				{{schedules.location}}
 			</h1>
-			<div class="agenda-session-block" ng-repeat="session in schedules.sessions">
-				<div class="agenda-block-sub-div" ng-switch on="session.session.type">
-					<div ng-switch-when="presentation">
+			<div id="agenda-scrollable-block" class="col-xs-12 col-sm-12 col-md-12 div-padding">
+				<!-- dummy session -->
+				<div id="session1" class="agenda-session-block">
+					<div class="agenda-block-sub-div">
 						<p>
-							<span ng-switch on="session.session.type">
-								<img ng-switch-when="presentation" src="/public/assets/g/imgs/avatar.jpg" class="session-status-img">
-								<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
-								<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
-								<img ng-switch-when="tea" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
-								<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
-							</span>
-							<span class="agenda-session-time">{{session.session.startTime | date : "HH:mm"}} - {{session.session.type}}</span>
-							<span class="agenda-session-name">
-								<a href="#/sessions/{{session._id}}">{{session.session.title}}</a>
-							</span>
+							<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+							<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
+							<span class="agenda-session-name">BREAKFAST</span><!-- Worksans light without any letter spacing -->
 						</p>
 						<div class="agenda-session-overview">
 							<p class="agenda-session-loc"><!--Worksans-->
@@ -45,20 +37,45 @@
 								<span class="expand-session">...</span>
 							</p>
 							<button>FEEDBACK</button>
-						</div> <!-- end of agenda overview block -->
-					</div> <!-- end of presentation template -->
-					<div ng-switch-default>
+						</div>
+					</div>
+				</div>
+<!-- dummy session ends here -->
+			<div class="agenda-session-block" ng-repeat="session in schedules.sessions">
+				<div class="agenda-block-sub-div">
+					<div>
 						<p>
-							<img src="/public/assets/g/imgs/avatar.jpg" class="session-status-img">
-							<span class="agenda-session-time">{{session.session.startTime | date : "HH:mm"}}</span> <!-- Antonio bold -->
-							<span class="agenda-session-name"><a href="#/sessions/{{session._id}}">{{session.session.title}}</a></span><!-- Worksans light without any letter spacing -->
+							<span ng-switch on="session.type">
+								<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
+								<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+								<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
+								<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
+								<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+								<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
+								<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+							</span>
+							<span class="agenda-session-time">
+								{{session.startTime | date : "HH:mm"}}
+							</span>
+							<span class="agenda-session-name">
+								<a href="#/sessions/{{session._id}}">{{session.title}}</a>
+							</span>
 						</p>
 						<div class="agenda-session-overview">
-							<p class="agenda-session-loc"><!--Worksans-->
-								<img src=""> 45 min <img src=""> Boardroom 2, 4th floor, EGL
+							<p class="agenda-session-loc">
+								<img src=""> {{session.duration}} min <img src=""> {{session.location}}
 							</p>
+							<p> <!--Roboto-->
+								<span class="agenda-session-loc">with</span>
+								<!--{{session.owner}}, {{session.supporter}}-->
+								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
+								+{{session.invitees.length}}
+								<span class="expand-session">...</span>
+							</p>
+							<button>FEEDBACK</button>
 						</div> <!-- end of agenda overview block -->
-					</div> <!-- end of default switch template -->
+					</div> <!-- end of presentation template -->
 				</div> <!-- end of agenda sub-block -->
 	    </div> <!-- end of day -->
 		</div> <!-- enf of days - sessions-->
