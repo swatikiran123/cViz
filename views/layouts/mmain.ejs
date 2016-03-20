@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html lang="en" <%-appName%> class="no-js"> <!--<![endif]-->
+
+<head>
+	<% include ../partials/head.ejs%>
+	<!-- standard assets  -->
+	<%-locals.stdAssets%>
+	<!-- application assets  -->
+	<%-locals.appAssets%>
+
+</head>
+
+<body>
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<%if (locals.user !== undefined) { %>
+			<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
+			<div class="menu-profile-name"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
+			<% } %>
+			<div class="sidebar-nav">
+				<ul >
+
+						<li class="sidebar-item">
+								<a href="/m/main/">Welcome</a>
+						</li>
+						<li class="sidebar-brand sidebar-item">
+								<a href="/">
+										Dashbaard
+								</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/m/visits/">Visits</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/m/visits/#/agenda">Agenda</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/m/facts/">Facts</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="#">Events</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="#">About</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/contacts">Contacts</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/logout">Logout</a>
+						</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /#sidebar-wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+				<div class="container-fluid">
+						<!-- <div class="row">
+								<div class="col-lg-12">
+										<h1>Simple Sidebar</h1>
+										<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+										<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+										<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+								</div>
+						</div> -->
+						<!-- Fixed navbar :: Start-->
+						<nav class="navbar navbar-custom navbar-fixed-top">
+
+							<div class="navbar-header">
+
+								<a id="menu-toggle" href="#menu-toggle" class="navbar-brand">
+									<i class="fa fa-bars"></i>
+								</a>
+								<a  href="/" class="navbar-brand">
+									Visit Portal</a>
+							</div>
+							<div id="navbar" class="navbar-inverse side-collapse in">
+								<%if (locals.user != null) { %>
+								<% include ../partials/menuSecure.ejs %>
+								<% } else { %>
+								<% include ../partials/menu.ejs %>
+								<% } %>
+
+							</div>
+						</nav>
+						<!-- fixed navebar :: End -->
+						<div class="notify">
+							<!-- application notification area, required for angular-growl-2-->
+							<div growl></div>
+						</div>
+
+
+						<div class="starter-template">
+							<%- body%>
+						</div>
+				</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+	</div> <!-- end of page wrapper -->
+
+<!-- Menu Toggle Script -->
+<script>
+$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+});
+</script>
+
+</body>
+
+</html>

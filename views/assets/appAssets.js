@@ -9,7 +9,8 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.css",
 			"/public/assets/w/styles/dataview-panels.css",
 			"/public/assets/w/styles/userpicker.css",
-			"/public/mods/appController.js"
+			"/public/mods/appController.js",
+			"/public/assets/g/css/sidebar.css"
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -18,7 +19,8 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.min.css",
 			"/public/assets/w/styles/dataview-panels.min.css",
 			"/public/assets/w/styles/userpicker.min.css",
-			"/public/mods/appController.min.js"
+			"/public/mods/appController.min.js",
+			"/public/assets/g/css/sidebar.css"
 		]
 	},
 
@@ -39,7 +41,7 @@ module.exports = {
 			"/public/assets/w/styles/index.css"
 		]
 	},
-	
+
 	"admin":{
 		"dev":[
 			"/public/mods/admin/users/usersModule.js",

@@ -15,7 +15,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
-var colors				= require('colors'); 
+var colors				= require('colors');
 var constants			= require('./scripts/constants');
 var config        = require(constants.paths.config + '/config');
 var multer = require('multer');
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
-app.set('layout', 'layouts/main')
+app.set('layout', 'layouts/mmain')
 
 // set development environment configuration
 if (app.get('env') === 'development') {
@@ -72,7 +72,3 @@ var appInfoServ = require('./services/appService');
 var appInfo = appInfoServ.info();
 console.log(colors.blue(util.formatString("\nApplication: %s ver %s:%s", appInfo.name, appInfo.version, appInfo.gitHash )));
 console.log(colors.blue(util.formatString('   running at port %s', port)));
-
-
-
-
