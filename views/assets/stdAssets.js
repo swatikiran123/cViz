@@ -61,16 +61,17 @@ module.exports = {
 		]
 	},
 
-	"angular-ui":{
-		"cdn":[],
-		"dev":[
-			"/public/libs/angular-animate/angular-animate.js",
-			"/public/libs/angular-touch/angular-touch.js",
-			"/public/libs/angular-ui/build/angular-ui.js",
-			"/public/libs/angular-ui/build/angular-ui.css"
-		],
-		"prod":[]
-	},
+// Heavy donot use this, use angular bootstrap instead
+	// "angular-ui":{
+	// 	"cdn":[],
+	// 	"dev":[
+	// 		"/public/libs/angular-animate/angular-animate.js",
+	// 		"/public/libs/angular-touch/angular-touch.js",
+	// 		"/public/libs/angular-ui/build/angular-ui.js",
+	// 		"/public/libs/angular-ui/build/angular-ui.css"
+	// 	],
+	// 	"prod":[]
+	// },
 
 	"angular-bootstrap":{
 		"cdn":[],

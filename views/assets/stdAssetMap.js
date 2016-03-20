@@ -11,7 +11,7 @@ module.exports = {
 
 		"m-home": [],
 		"m-facts": ["angular-bootstrap"],
-		"m-visits": []
+		"m-visits": ["angular-bootstrap"]
 
 	}
 }
