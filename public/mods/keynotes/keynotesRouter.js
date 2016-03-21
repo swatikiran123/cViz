@@ -28,7 +28,5 @@ angular.module('keynotes')
         templateUrl: '/public/mods/keynotes/keynotesViewPanels.html',
         controller: 'keynotesControllerMain'
       });
-
-
     }
   ]);

@@ -9,9 +9,11 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.css",
 			"/public/assets/w/styles/dataview-panels.css",
 			"/public/assets/w/styles/userpicker.css",
+
 			"/public/mods/appController.js",
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css"
+
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -20,9 +22,12 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.min.css",
 			"/public/assets/w/styles/dataview-panels.min.css",
 			"/public/assets/w/styles/userpicker.min.css",
+
 			"/public/mods/appController.min.js",
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css"
+
+
 		]
 	},
 
@@ -57,18 +62,16 @@ module.exports = {
 		]
 	},
 
-	"directives":{
+	"dir-web":{
 		"dev":[
-			"/public/mods/directives/userprofile/script.js",
-			"/public/mods/directives/userdisplay/script.js",
-			"/public/mods/directives/user/script.js",
-			"/public/mods/directives/datepickerDirective.js"
+			"/public/d/userProfile/script.js",
+			"/public/d/userDisplay/script.js",
+			"/public/d/user/script.js",
+			"/public/d/fileUpload/script.js",
+			"/public/d/fileAttachment/script.js",
+			"/public/d/datePicker/script.js"
 		],
 		"prod":[
-			"/public/mods/directives/userprofile/script.js",
-			"/public/mods/directives/userdisplay/script.js",
-			"/public/mods/directives/user/script.js",
-			"/public/mods/directives/datepickerDirective.js"
 		]
 	},
 
@@ -90,6 +93,36 @@ module.exports = {
 			"/public/mods/keynotes/keynotesModule.js",
 			"/public/mods/keynotes/keynotesControllerMain.js",
 			"/public/mods/keynotes/keynotesRouter.js"
+		]
+	},
+
+	"clients":{
+		"dev":[
+			"/public/mods/clients/clientsModule.js",
+			"/public/mods/clients/clientsControllerMain.js",
+			"/public/mods/clients/clientsRouter.js"
+		],
+		"prod":[
+		]
+	},
+
+	"visits":{
+		"dev":[
+			"/public/mods/visits/visitsModule.js",
+			"/public/mods/visits/visitsControllerMain.js",
+			"/public/mods/visits/visitsRouter.js"
+		],
+		"prod":[
+		]
+	},
+
+	"profile":{
+		"dev":[
+			"/public/mods/profile/profileModule.js",
+			"/public/mods/profile/profileControllerMain.js",
+			"/public/mods/profile/profileRouter.js"
+		],
+		"prod":[
 		]
 	},
 

@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/public/assets/styles/profile-pic.css" />
+<!-- ng-img-crop extended dependencies for cropping image -->
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+<form name="UploadForm">
+  <md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>FILE UPLOAD</h2>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()">
+    <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+  </md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+  <div ngf-drop ng-model="picFile" ngf-pattern="image/*" name="filedraganddrop" class="cropArea" ngf-max-size="1MB" required>
+    <img-crop  image="picFile  | ngfDataUrl"
+     ng-init="croppedDataUrl=''" area-type="rectangle"  result-image-size={w:1000,h:500} result-image="croppedDataUrl">
+  </img-crop>
+</div>
+
+<md-dialog-actions layout="row">
+<md-button class="btn btn-info" ngf-select ng-model="picFile" name="fileselect" accept="image/*" ngf-max-size="1MB" required>
+select photo
+</md-button>
+<span flex></span>
+<div ng-controller="fileuploadDirectiveControllerMain">
+<md-button class="btn btn-primary" ng-click="upload(croppedDataUrl)">
+upload
+</md-button>
+</div>
+<md-button class="btn btn-danger" ng-click="cancel()" >
+cancel
+</md-button>
+
+</md-dialog-actions>
+<i ng-show="UploadForm.filedraganddrop.$error.maxSize"><b>&nbsp;&nbsp;File too large 
+  {{picFile.size / 1000000|number:1}}max 1MB allowed</b></i>
+<i ng-show="UploadForm.fileselect.$error.maxSize"><b>&nbsp;&nbsp;File too large 
+  {{picFile.size / 1000000|number:1}}max 1MB allowed</b></i>
+<span class="err" ng-show="errorMsg">{{errorMsg}}</span>  
+</form>
+</md-dialog>
+
+

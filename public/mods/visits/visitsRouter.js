@@ -3,42 +3,40 @@
 angular.module('visits')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      
-      .when('/v/', {
+
+      .when('/visits/list', {
         templateUrl: '/public/mods/visits/visitsViewMain.html',
         controller: 'visitsControllerMain'
       })
 
-      .when('/addVisit', {
-        templateUrl: '/public/mods/visits/tabvisit.html',
-        controller: 'visitsControllerMain'
-      })
-
-      .when('/:id/showVisit', {
-        templateUrl: '/public/mods/visits/visitsViewShow.html',
-        controller: 'visitsControllerMain'
-      })
-
-      .when('/:id/editSession', {
-        templateUrl: '/public/mods/scheduler/schedulerView.html',
-        controller: 'schedulerController'
-      })
-
-      .when('/session', {
-        templateUrl: '/public/mods/scheduler/schedulerView.html',
-        controller: 'schedulerController'
-      })
-      
-      .when('/panelsVisitview', {
+			.when('/visits/panels', {
         templateUrl: '/public/mods/visits/partials/visitsViewPanels.html',
         controller: 'visitsControllerMain'
       })
 
-      .when('/:id/editVisit', {
-        templateUrl: '/public/mods/visits/tabVisit.html',
+      .when('/visits/add', {
+        templateUrl: '/public/mods/visits/visitsViewAdd.html',
         controller: 'visitsControllerMain'
-      });
+      })
 
+			.when('/visits/:id/edit', {
+        templateUrl: '/public/mods/visits/visitsViewAdd.html',
+        controller: 'visitsControllerMain'
+      })
+
+      .when('/visits/:id/show', {
+        templateUrl: '/public/mods/visits/visitsViewShow.html',
+        controller: 'visitsControllerMain'
+      })
+
+			.when('/visits/:id/sessions', {
+				templateUrl: '/public/mods/sessions/sessionsViewMain.html',
+				controller: 'sessionsControllerMain'
+			})
+
+			.otherwise({
+				redirectTo: '/visits/list'
+			})
 
     }
   ]);

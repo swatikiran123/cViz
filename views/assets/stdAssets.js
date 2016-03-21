@@ -73,6 +73,14 @@ module.exports = {
 	// 	"prod":[]
 	// },
 
+	"angular-forms":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/angular-messages/angular-messages.min.js"
+		],
+		"prod":[]
+	},
+
 	"angular-bootstrap":{
 		"cdn":[],
 		"dev":[
@@ -123,7 +131,32 @@ module.exports = {
 		],
 		"prod":[
 		]
-	}
+	},
+
+	"angular-fileupload":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/ng-file-upload/ng-file-upload.js",
+			"/public/libs/ng-file-upload/ng-file-upload-shim.js"
+		],
+	},
+
+	"angular-image":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
+			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
+		],
+	},
+
+	"angular-dialog":{
+		"cdn":[],
+		"dev":[
+			"/public/assets/styles/ngDialog-theme-default.css",
+			"/public/assets/styles/ngDialog.css",
+			"/public/assets/js/ngDialog.min.js"
+		],
+	},
 
 }
 

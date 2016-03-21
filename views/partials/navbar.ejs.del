@@ -163,9 +163,19 @@
         <div id="sidebar-wrapper">
 
 
+<<<<<<< HEAD
+            <ul class="sidebar-nav padleft">
+
+            <li>
+            <br> <div class="menu-profile-pic padleft1"><img class="avatar" height="80" width="80" src=""></div>
+                <div class="menu-profile-name padleft1"></div>
+            </li>
+                             <li class="active">
+=======
           	<ul class="sidebar-nav padleft">
 
            <li class="active">
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 
                 <a href="#/cscHome" class="home-menu"><img  class="menuicon" src="/public/assets/m/img/ic/home.png"> &nbsp;&nbsp;Home</a>
             </li>

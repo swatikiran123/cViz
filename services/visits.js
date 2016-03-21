@@ -49,7 +49,8 @@ function getOneById(id){
     .populate('anchor')
     .populate('createBy')
     .populate('client')
-    //.populate('visitors.visitor')
+    .populate('feedbackTmpl')
+    .populate('keynote.note')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
@@ -91,7 +92,7 @@ function getSessionsById(id){
 					} // end of if else
     }); // end of model find
 
-		// Internal method to transform visit data to session
+		//Internal method to transform visit data to session
 		function transform(visit, sessions)
 		{
 			// sort sessions by schedule startDate

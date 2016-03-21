@@ -48,18 +48,49 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// multer for storing the images locally
-app.use(multer({
- // dest: './uploads/',
-  dest: './public/uploads/profilePics',
- rename:function(fieldname,filename){
+//multer for storing the images locally
+// app.use(multer({
+//  // dest: './uploads/',
+//   dest: './public/uploads/profilePics',
+//  rename:function(fieldname,filename){
+//     return Date.now() + '.jpg';
+//   },
+//   onFileUploadComplete: function(file) {
+//   console.log(file.fieldname + ' uploaded to the ' + file.path);
+// }
+// }));
+
+//multer for storing images locally and dynamically based on the entity value.
+app.use('/api/v1/upload/:entity',multer({
+  dest: './public/uploads/',
+  rename:function(fieldname,filename){
     return Date.now() + '.jpg';
   },
+  changeDest: function(dest, req, res) {
+    console.log(req.params.entity);
+    dest += req.params.entity;
+    return dest;
+  },
   onFileUploadComplete: function(file) {
-  console.log(file.fieldname + ' uploaded to the ' + file.path);
-}
+    console.log(file.fieldname + ' uploaded to the ' + file.path);
+  }
 }));
 
+//multer for storing images locally and dynamically based on the entity value.
+app.use('/api/v1/multiupload/:entity',multer({
+  dest: './public/uploads/',
+  rename:function(fieldname,filename){
+   return filename + '_' + Date.now();
+  },
+  changeDest: function(dest, req, res) {
+    console.log(req.params.entity);
+    dest += req.params.entity;
+    return dest;
+  },
+  onFileUploadComplete: function(file) {
+    console.log(file.fieldname + ' uploaded to the ' + file.path);
+  }
+}));
 // routes ======================================================================
 require('./routes/main')(app, passport);
 

@@ -39,14 +39,17 @@ router.delete('/api/v1/secure/admin/users/:id', users.deleteById);
 router.get('/api/v1/secure/admin/users/email/:email', users.getByEmail);
 
 //Route for file upload
-router.post('/api/v1/upload/',fileupload.create);
+//router.post('/api/v1/upload',fileupload.create);
+router.post('/api/v1/upload/:entity',fileupload.create);
+router.post('/api/v1/multiupload/:entity',fileupload.create);
 
 // List of service routes for KeyNotes
 router.get('/api/v1/secure/keynotes', keynotes.getAll);
-router.get('/api/v1/secure/keynotes/:id', keynotes.getOneById);
+//router.get('/api/v1/secure/keynotes/:id', keynotes.getOneById);
 router.post('/api/v1/secure/keynotes', keynotes.create);
 router.put('/api/v1/secure/keynotes/:id', keynotes.updateById);
 router.delete('/api/v1/secure/keynotes/:id', keynotes.deleteById);
+router.get('/api/v1/secure/keynotes/find', keynotes.getWithQuery);
 
 // List of service routes for clients
 router.get('/api/v1/secure/clients', clients.getAll);
@@ -96,10 +99,11 @@ router.delete('/api/v1/secure/visitSchedules/:id', visitSchedule.deleteById);
 
 // List of service routes for feedbackDefs
 router.get('/api/v1/secure/feedbackDefs', feedbackDef.getAll);
-router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
+//router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
 router.post('/api/v1/secure/feedbackDefs', feedbackDef.create);
 router.put('/api/v1/secure/feedbackDefs/:id', feedbackDef.updateById);
 router.delete('/api/v1/secure/feedbackDefs/:id', feedbackDef.deleteById);
+router.get('/api/v1/secure/feedbackDefs/find', feedbackDef.getWithQuery);
 
 //list of service routes for cityFacts
 router.get('/api/v1/secure/cityFacts', cityFacts.getAll);

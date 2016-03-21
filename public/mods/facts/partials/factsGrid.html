@@ -39,7 +39,7 @@
   <tbody class="data-grid-data">
     <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{fact.title}}</td>
-      <td>{{fact.editedBy}}</td>
+      <td><div userdisplay view-mode="nameonly" user-id="fact.editedBy"></div></td>
       <td>{{fact.description}}</td>
       <td>{{fact.createOn}}</td>
       <td>

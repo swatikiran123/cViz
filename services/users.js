@@ -43,7 +43,7 @@ function getOneById(id){
 console.log("Find " + id);
     model
         .findOne({ _id: id })
-        .populate('memberOf')
+        // .populate('memberOf')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

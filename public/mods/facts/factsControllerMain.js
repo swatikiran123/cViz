@@ -9,7 +9,7 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
-
+  $scope.nameonly= "nameonly";
   var refresh = function() {
 
     $http.get('/api/v1/secure/facts').success(function(response) {

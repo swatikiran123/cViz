@@ -35,7 +35,7 @@
     <tr ng-repeat="feedback in feedbackList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{feedback.title}}</td>
       <td>{{feedback.type}}</td>
-      <td>{{feedback.createBy}}</td>
+      <td><div userdisplay view-mode="nameonly" user-id="feedback.createBy"></div></td>
       <td>{{feedback.createOn}}</td>
       <td>
         <a class="table-btn" href="#/{{feedback._id}}/showFeedback"><span class="glyphicon glyphicon-eye-open" /></a>

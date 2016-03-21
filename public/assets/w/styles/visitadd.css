@@ -1,0 +1,91 @@
+
+  body, html {
+     /*background: url(C:/Users/krekam/Desktop/blue.jpg) no-repeat center center fixed;*/
+      
+      height: 100%;
+      margin: 0;
+
+      background:  url(/public/assets/images/new-york.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+  all-tabs {font-size: 20px;}
+.demo-tab {
+  color:green;
+}
+.md-tab:first-child{background: #ddd; } 
+ .md-tab:nth-child(2){background: #ddd; } 
+ .md-tab:nth-child(3){background: #ddd; }
+  .md-tab:nth-child(4){background: white; } 
+  .panel-bg{
+  background-color: silver;
+
+}
+    .panel-tabhead {
+      opacity: 0.4;
+      text-align: center;
+    }
+    .panel-default {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border: 0px;
+    }
+    .panel-body{
+      background-color: #ddd;
+      opacity: 0.9;
+    }
+
+    .panel-heading {
+      opacity: 0.7;
+     
+    }
+
+    .panel-footer {
+      background-color: rgba(255, 0, 0, 0);
+      text-align: right;
+      height: 30px;
+    }
+
+    .panel-subheader{
+      /*background-color: rgba(255, 0, 0, 0);*/
+    }
+
+    .highlight {
+      position: relative;
+      top: -17px;
+      width: 40px;
+      border: solid 1px #ccc;
+      height: 40px;
+      background: #5b92d9;
+      background: -moz-linear-gradient(top, #5b92d9 0%, #5b92d9 20%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b92d9), color-stop(20%, #5b92d9));
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      font : bold 2em Impact;
+      font-family: sans-serif;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 -1px 0 #334F71;
+    }
+
+    h2, h4 {
+      color: white;
+      text-align: center;
+    }
+
+    .container{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      right: 0;
+      -webkit-transition:  left 1s ease-in-out;
+      -moz-transition:  left 1s ease-in-out;
+      -ms-transition:  left 1s ease-in-out;
+      -o-transition:  left 1s ease-in-out;
+      transition:  left 1s ease-in-out;
+    }
+
+ 

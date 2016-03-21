@@ -37,7 +37,7 @@ angular.module('userDirective', [])
 .directive('user', function() {
   return {
     controller: 'userDirectiveControllerMain',
-    templateUrl: '/public/mods/directives/user/templates/user-picker.html',
+    templateUrl: '/public/d/user/templates/user-picker.html',
     scope: {
       userModel: "=userModel",
       userId: "=userId",
@@ -48,18 +48,18 @@ angular.module('userDirective', [])
     link : function(scope,element,attrs)
     {
       scope.getTemplate = function(){
-      
+
       var viewmode = scope.viewType.toLowerCase();
 
        if(viewmode === "small")
        {
-        return "/public/mods/directives/user/templates/smallpanel.html";
+        return "/public/d/user/templates/smallpanel.html";
       }
       if(viewmode === "large"){
-        return "/public/mods/directives/user/templates/largepanel.html";
+        return "/public/d/user/templates/largepanel.html";
       }
       if(viewmode === "medium"){
-        return "/public/mods/directives/user/templates/mediumpanel.html";
+        return "/public/d/user/templates/mediumpanel.html";
       }
 
     }
