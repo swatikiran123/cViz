@@ -7,8 +7,13 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
 
     var self = this;
     self.readonly = false;
+<<<<<<< HEAD
 
     $scope.nameonly= "nameonly";
+=======
+    // Lists of fruit names and Vegetable objects
+
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
     $scope.tags=[];
     var tag=$scope.tags;
     console.log(tag);
