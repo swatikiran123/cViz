@@ -4,125 +4,29 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
     <style>
-      body,html{
-  padding-top: 25px;}
-
-
-
-    /* Custom, iPhone Retina */ 
-    @media only screen and (min-width : 320px) {
+    html,body { 
  
-  html,body { 
-
-  background: url(/public/assets/w/images/bg-320.jpg) no-repeat fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%; 
-}
-
-     }
-
-    /* Extra Small Devices, Phones */ 
-    @media only screen and (min-width : 480px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg-480.jpg) no-repeat  fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%; 
-}
+    background: url(/public/assets/w/images/loginbg.jpg) no-repeat  center scroll;
+ 
+  
 
     }
 
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg-768.jpg) no-repeat  fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%; 
-}
-
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg--992.jpg) no-repeat  fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%; 
-}
-
-    }
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg-1200.jpg) no-repeat fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%;
-
-}
-
-    }
-
-
-
-    /*==========  Non-Mobile First Method  ==========*/
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (max-width : 1200px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg-1200.jpg) no-repeat fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%;
-}
-
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (max-width : 992px) {
-
-  html,body { 
-
-  background: url(/public/assets/w/images/bg.jpg) no-repeat  fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%;
-}}
     </style>
 </head>
 <body>
-<div class="container">
-<div class="col-sm-6 col-sm-offset-3">
+<div class="container pull-left">
+<div class="col-sm-6 col-sm-offset-2 pull-left">
 <br>
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
+    <h1 class="login"><span class="fa fa-sign-in"></span>Login</h1>
 
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-    <!-- LOGIN FORM -->
+    <!-- LOGIN FORM --><br>
     <form action="/login" method="post">
         <div class="form-group">
             <label>Email</label>
@@ -144,8 +48,8 @@
     </div>
     <hr>
 
-    <p>Need an account? <a href="/signup">Signup</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    <p>Need an account? <a href="/signup">Signup</a>
+    Or go <a href="/">home</a>.</p>
 
 </div>
 </div>

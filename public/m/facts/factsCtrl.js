@@ -24,7 +24,7 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $
                 id: 1275339
             },
             {
-                cityName: "Hydrabad",
+                cityName: "Hyderabad",
                 id: 1176734
             },
             {
