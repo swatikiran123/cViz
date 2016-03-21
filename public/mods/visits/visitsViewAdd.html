@@ -1,27 +1,27 @@
-<link rel="stylesheet" href="/public/assets/w/styles/visitnobg.css" />
-<div class="row"> 
+
+<div class="row">
   <div class="col-sm-1"></div>
   <div class="col-md-8">
 
    <!-- page header/subheader -->
    <div class="page-header">
     Visit Planner - Add
-    <div class="sub-header">Add new visit           
+    <div class="sub-header">Add new visit
     </div>
   </div>
-  <div class= "page-toolbar"> 
+  <div class= "page-toolbar">
     <div class="pull-right">
       <a href="#"><i class="fa fa-envelope"></i></a>&nbsp;email&nbsp;
       <a href="#"> <i class="fa fa-thumbs-o-up"></i></a>&nbsp;follow&nbsp;
       <a href="#/session"><i class="fa fa-calendar"></i></a>&nbsp;schedule&nbsp;
     </div>
   </div><br>
-  
-  <!-- visits pageheader input--> 
+
+  <!-- visits pageheader input-->
   <!-- <md-content class="md-padding"> -->
   <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
   <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;"></div>
-  
+
   <!--Basic Information TAB PAGE ONE-->
   <md-tab label="Basic Information">
   <div class="panel-group">
@@ -58,16 +58,16 @@
         <input  required name="clientname" ng-model="clientName" autocomplete required>
         <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
           <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+            <div ng-messages-include="/public/mods/partials/messages.html"></div>
           </div>
         </div>
       </md-input-container>
 
-      <!-- visits agenda--> 
+      <!-- visits agenda-->
       <div class="field">
         <label ng-show="visits.agenda" class="show-hide">Agenda</label>
         <div class="form-group">
-          <text-angular 
+          <text-angular
           ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
           ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
           ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
@@ -207,7 +207,7 @@
               <option ng-option value="renewals">Renewals</option>
               <option ng-option value="newBusiness">New Business</option>
               <option ng-option value="strategic">Strategic</option>
-            </select>   
+            </select>
           </div>
         </div>
       </div>
@@ -217,7 +217,7 @@
     <div class="field">
       <label ng-show="visits.objective" class="show-hide">Visits Objective</label>
       <div class="form-group">
-        <text-angular 
+        <text-angular
         ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
         ng-model="visits.interest.objective" name="objective" placeholder="Describe visit Objective" required /></text-angular>
@@ -240,7 +240,7 @@
 <!--buttons-->
 <div class="form-group">
   <div class="pull-left">
-    <button type="submit" class="btn btn-success" 
+    <button type="submit" class="btn btn-success"
     ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
@@ -277,7 +277,7 @@
 <input name="feedback" ng-model="feedback" feedback required>
 <div ng-messages="visitsForm.feedback.$error" ng-show="visitsForm.feedback.$touched || !visitsForm.feedback.$pristine">
   <div class="messagenotify">
-    <div ng-messages-include="/public/mods/partials/messages.html"></div>  
+    <div ng-messages-include="/public/mods/partials/messages.html"></div>
   </div>
 </div>
 </md-input-container>
@@ -287,7 +287,7 @@
 </md-content>
 </md-tab>
 
-</div>    
+</div>
 </md-tabs><!--end of tabs-->
 </md-content><!--end of content-->
 </div>
