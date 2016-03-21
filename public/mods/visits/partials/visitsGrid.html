@@ -66,10 +66,10 @@
         <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:"dd MMM yyyy"}}</td>
         <td>{{visit.locations}}</td>
         <td>
-         <a class="table-btn" href="#/{{visit._id}}/showVisit"><span class="fa fa-eye" /></a>
-         <a class="table-btn" href="#/{{visit._id}}/editVisit"><span class="fa fa-edit" /></a>
-         <a class="table-btn" ng-click="delete(visit)"><span class="fa fa-trash" /></a>
-         <a class="table-btn" href="#/{{visit._id}}/editSession"><span class="fa fa-calendar" /></a>
+					<a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
+	        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
+	        <a class="table-btn" ng-click="delete(visit)"><span class="fa fa-trash" /></a>
+	        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
        </td>
      </tr>
      <!--sorted date table-->

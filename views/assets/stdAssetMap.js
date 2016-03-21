@@ -7,7 +7,7 @@ module.exports = {
 		"home": [],
 		"admin": ["angular-material"],
 		"customize": ["angular-material","angular-text","angular-forms"],
-		"visits": ["angular-material","angular-text","angular-forms"],
+		"visits": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog"],
 		"profile": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog"],
 
 

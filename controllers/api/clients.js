@@ -8,7 +8,7 @@ var controller = {}
 controller.getAll     = getAll;
 controller.create     = create;
 
-//controller.getOneById = getOneById;
+controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 controller.getWithQuery = getWithQuery;
@@ -50,7 +50,7 @@ function getWithQuery(req,res){
     console.log(req.params);
     var name= req.param('query');
     var query = {name: new RegExp(name, 'i')};
-    var maxRecs = req.param('maxRecs'); 
+    var maxRecs = req.param('maxRecs');
     var fields = req.param('fields');
     var sort = req.param('sort');
     dataService.getWithQuery(query,fields ,maxRecs, sort)
@@ -93,7 +93,7 @@ function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
   .then(function () {
     res.status(200).send("Doc updated successfully");
-}) 
+})
   .catch(function (err) {
     console.log(err);
     res.status(500).send(err);

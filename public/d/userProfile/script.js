@@ -110,7 +110,7 @@ angular.module('userprofileDirective', [])
     //console.log(userModel);
     $mdDialog.show({
       controller: DialogCtrl,
-      templateUrl: '/public/d/userprofile/templates/user-dialog.html',
+      templateUrl: '/public/d/userProfile/templates/user-dialog.html',
       locals: { userModel: userModel },
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -130,7 +130,7 @@ angular.module('userprofileDirective', [])
 .directive('userprofile', function() {
   return {
     controller: 'userprofileDirectiveControllerMain',
-    templateUrl: '/public/d/userprofile/templates/user-profile.html',
+    templateUrl: '/public/d/userProfile/templates/user-profile.html',
     scope: {
       userModel: "=userModel",
       userId: "=userId",
