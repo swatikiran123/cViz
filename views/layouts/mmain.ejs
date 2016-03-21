@@ -7,6 +7,7 @@
 <!--[if gt IE 8]><!--> <html lang="en" <%-appName%> class="no-js"> <!--<![endif]-->
 
 <head>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
 	<% include ../partials/head.ejs%>
 	<!-- standard assets  -->
 	<%-locals.stdAssets%>
@@ -20,29 +21,31 @@
 
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
+		    <div class="paddg">
 			<%if (locals.user !== undefined) { %>
 			<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
 			<div class="menu-profile-name"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
-			<% } %>
+			<% } %></div>
 			<div class="sidebar-nav">
-				<ul >
-
-						<li class="sidebar-item">
-								<a href="/m/main/">Welcome</a>
+				<ul>
+                  <li class="sidebar-item">
+							 <a href="/m/main/"><img  class="menu-icon" src="/public/assets/m/img/ic/home.png">Welcome</a>
 						</li>
 						<li class="sidebar-brand sidebar-item">
-								<a href="/">
-										Dashbaard
+								<a href="/"><i class="fa fa-tachometer" style="font-size:20px;color:purple;"></i>
+										Dashboard
 								</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/visits/">Visits</a>
+								<a href="/m/visits/"><img class="menu-icon" src="/public/assets/m/img/ic/cals1.png">Visits</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/visits/#/agenda">Agenda</a>
+
+                          <a href="/m/visits/#/agenda"><img class="menu-icon" src="/public/assets/m/img/ic/agenda.png">Agenda</a>
+								
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/facts/">Facts</a>
+								<a href="/m/facts/"><img  class="menu-icon" src="/public/assets/m/img/ic/facts1.png">Facts</a>
 						</li>
 						<li class="sidebar-item">
 								<a href="#">Events</a>
@@ -51,10 +54,10 @@
 								<a href="#">About</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/contacts">Contacts</a>
+								<a href="/contacts"><img class="menuicon" src="/public/assets/m/img/ic/contct1.png">Contacts</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/logout">Logout</a>
+								<a href="/logout"><img class="menuicon" src="/public/assets/m/img/ic/logout.png">Logout</a>
 						</li>
 				</ul>
 			</div>
@@ -63,7 +66,8 @@
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
-				<div class="container-fluid">
+				<div class="container">
+					
 						<!-- <div class="row">
 								<div class="col-lg-12">
 										<h1>Simple Sidebar</h1>
@@ -103,6 +107,9 @@
 							<%- body%>
 						</div>
 				</div>
+			</div>
+		</div>
+	</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 	</div> <!-- end of page wrapper -->

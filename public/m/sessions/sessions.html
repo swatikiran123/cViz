@@ -1,6 +1,9 @@
+
+
+
 <div class="agenda-parent-div">
   <div class="container-fluid agenda-header-div">
-	  <h1>Agenda</h1>
+	  
 		<div class="container-fluid" data-spy = "scroll" data-target = ".agenga-list">
 			<ul ng-init="vm.tab=1" class="nav navbar-nav agenga-list">
 				<li ng-repeat="schedules in scheduleList">
@@ -10,33 +13,38 @@
 		</div> <!-- end of tab header -->
 	</div> <!-- end of agenda header -->
 
+	
 	<!-- begin of tab content -->
-		<div class="container-fluid div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day">
+		<div class="div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day">
 			<h1 class="day-agenda-header">
-				{{schedules.date | date : "dd MMM yyyy"}} -
+			 <img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
+				{{schedules.date | date : "dd MMM yyyy"}} 
+				<img src="/public/assets/m/img/ic/location-icon.png" class="day-agenda-header-img">
 				{{schedules.location}}
 			</h1>
-			<div id="agenda-scrollable-block" class="col-xs-12 col-sm-12 col-md-12 div-padding">
+			<div id="agenda-scrollable-block" class="scroll">
 				<!-- dummy session -->
 				<div id="session1" class="agenda-session-block">
 					<div class="agenda-block-sub-div">
 						<p>
 							<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
 							<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
+							    
 							<span class="agenda-session-name">BREAKFAST</span><!-- Worksans light without any letter spacing -->
 						</p>
 						<div class="agenda-session-overview">
 							<p class="agenda-session-loc"><!--Worksans-->
-								<img src=""> 45 min <img src=""> Boardroom 2, 4th floor, EGL
+								<img src="/public/assets/m/img/ic/hourglass.png" class="session-img"> 45 min <img src="/public/assets/m/img/ic/venue-bldg.png" class="session-img"> Boardroom 2, 4th floor, EGL
 							</p>
 							<p> <!--Roboto-->
 								<span class="agenda-session-loc">with</span>
-								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
-								<span class="expand-session">...</span>
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<span class="expand-session">...</span> 
+								<a class="feedback-link" href="#">Feedback</a>
 							</p>
-							<button>FEEDBACK</button>
+							
 						</div>
 					</div>
 				</div>
@@ -63,17 +71,18 @@
 						</p>
 						<div class="agenda-session-overview">
 							<p class="agenda-session-loc">
-								<img src=""> {{session.duration}} min <img src=""> {{session.location}}
+									<img src="/public/assets/m/img/ic/hourglass.png">{{session.duration}} min <img src="/public/assets/m/img/ic/venue-bldg.png"> {{session.location}}
 							</p>
 							<p> <!--Roboto-->
 								<span class="agenda-session-loc">with</span>
 								<!--{{session.owner}}, {{session.supporter}}-->
-								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="profile-img">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
 								+{{session.invitees.length}}
 								<span class="expand-session">...</span>
+								<a class="feedback-link" href="#">Feedback</a>
 							</p>
-							<button>FEEDBACK</button>
+							
 						</div> <!-- end of agenda overview block -->
 					</div> <!-- end of presentation template -->
 				</div> <!-- end of agenda sub-block -->

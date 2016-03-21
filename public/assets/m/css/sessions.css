@@ -1,18 +1,25 @@
-body,html{
-  padding-top: 20px;
-}
+
 .agenda-parent-div {
   /*position: relative;*/
   color: #000;
+  padding-top: 25px;
   /*height: 100%;*/
   overflow-y: hidden; 
 
   }
 
+.scroll
+{
+  width:100%;
+}
+
+
+
   #agenda-scrollable-block{   
     overflow-y: auto;
     height: 80%;
     position: fixed;
+    padding: none;
   }
 
   .day-agenda-header{
@@ -23,12 +30,27 @@ body,html{
     padding: 10px;
     font-family: robotoCondensedBold;
     font-size: 24px;
+    text-align: center;
   }
 
-  .profile-img {
-    width: 40px;
-    height: 40px;
+  
+
+  .feedback-link{
+    text-decoration: underline;
+    margin-left: 50px;
+    color: #969696;
+    -moz-text-decoration-color: #d6d6d6; /* Code for Firefox */
+    text-decoration-color: #d6d6d6;
   }
+  .day-agenda-header-img{
+    width: 25px;
+    height: 30px;
+  }
+  .session-img{
+    width: 25px;
+    height: 20px;
+  }
+
 
   .expand-session {
     float: right;
@@ -50,9 +72,9 @@ body,html{
   }
 
   .session-status-img {
-    width: 30px;
-    height: 30px;
-    margin-left: -15px;
+    width: 50px;
+    height: 50px;
+    margin-left: -19px;
   }
   #session1 {
     background-color: #F3E8EC;

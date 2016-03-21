@@ -10,8 +10,8 @@ module.exports = {
 
 
 		"m-home": ["m-common"],
-		"m-facts": ["m-facts"],
-		"m-visits": ["m-visits","m-sessions"]
+		"m-facts": ["m-common","m-facts",],
+		"m-visits": ["m-common","m-visits","m-sessions"]
 
 	}
 }

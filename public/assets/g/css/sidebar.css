@@ -1,4 +1,11 @@
-
+.paddg{
+  padding-top: 45px;
+}
+.container{
+ 
+ 
+  width: 98%;
+}
 
 #wrapper {
     padding-left: 0;
@@ -57,6 +64,9 @@
 .sidebar-nav  ul li {
   border-bottom: 1px solid #ddd;
 }
+.icon-dashboard{
+  color: pink;
+}
 
 .sidebar-item {
   position: relative;
@@ -70,7 +80,7 @@
 .sidebar-item a {
   display: block;
   padding: 12px;
-  padding-left: 14px;
+  padding-left: 0px;
   color: #2a2a2a;
   font-family: robotoLight;
   font-size: 1.1em;
@@ -79,6 +89,7 @@
 
 .menu-icon{
   width: 20px;
+  height: 20px;
   display: inline-block;
   margin-right: 15px;
 }
