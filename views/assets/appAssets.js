@@ -53,18 +53,16 @@ module.exports = {
 		]
 	},
 
-	"directives":{
+	"dir-web":{
 		"dev":[
-			"/public/mods/directives/userprofile/script.js",
-			"/public/mods/directives/userdisplay/script.js",
-			"/public/mods/directives/user/script.js",
-			"/public/mods/directives/datepickerDirective.js"
+			"/public/d/userProfile/script.js",
+			"/public/d/userDisplay/script.js",
+			"/public/d/user/script.js",
+			"/public/d/fileUpload/script.js",
+			"/public/d/fileAttachment/script.js",
+			"/public/d/datePicker/script.js"
 		],
 		"prod":[
-			"/public/mods/directives/userprofile/script.js",
-			"/public/mods/directives/userdisplay/script.js",
-			"/public/mods/directives/user/script.js",
-			"/public/mods/directives/datepickerDirective.js"
 		]
 	},
 

@@ -15,7 +15,7 @@ angular.module('profile')
       })
 
 			.otherwise({
-				redirect: '/me'
+				redirectTo: '/me'
 			})
     }
 

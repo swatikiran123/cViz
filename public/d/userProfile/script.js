@@ -13,14 +13,14 @@ angular.module('userprofileDirective', [])
   function getUser() {
 
     //if both the email and id are given find the user by id only
-    if($scope.userEmail || $scope.userId)   
-    { 
+    if($scope.userEmail || $scope.userId)
+    {
       $http.get('/api/v1/secure/admin/users/' + $scope.userId).success(function(response) {
         $scope.userModel = response;
         $scope.showFlag = "user";
       })
 
-      //if user email is not given then get user by id  
+      //if user email is not given then get user by id
       if($scope.userId)
       {
         $http.get('/api/v1/secure/admin/users/' + $scope.userId).success(function(response) {
@@ -35,7 +35,7 @@ angular.module('userprofileDirective', [])
           }
           else
             console.log("error with user directive");
-        }); 
+        });
       }
 
       //if user id is not given then get user by email
@@ -53,7 +53,7 @@ angular.module('userprofileDirective', [])
           }
           else
             console.log("error with user directive");
-        }); 
+        });
       }
     }
 
@@ -65,10 +65,10 @@ angular.module('userprofileDirective', [])
           message = "User not found";
         }
         else
-        {  
+        {
         console.log("Error with the directive");
         }
-    }  
+    }
 }
 
   $scope.editprofile = function (user,id) {
@@ -76,7 +76,7 @@ angular.module('userprofileDirective', [])
     console.log(id);
     var userid = id;
     $http.put('/api/v1/secure/admin/users/'+ id, user).success(function(response) {
-      
+
       growl.info(parse("Profile for user [%s]<br/>Edited successfully", userid));
     });
   };
@@ -87,7 +87,7 @@ angular.module('userprofileDirective', [])
     Upload.upload({
       url: '/api/v1/upload/profilePics',
       data: {
-        file: Upload.dataUrltoBlob(dataUrl),                
+        file: Upload.dataUrltoBlob(dataUrl),
       },
     }).then(function (response) {
       console.log('update');
@@ -95,22 +95,22 @@ angular.module('userprofileDirective', [])
       var filepath = response.data.file.path;
       var imagepath = '/'+ filepath.replace(/\\/g , "/");
       users.avatar = imagepath;
-      console.log(users.avatar);                
+      console.log(users.avatar);
       $http.put('/api/v1/secure/admin/users/'+ users._id, users).success(function(response1) {
           $mdDialog.hide();
       });
-     
+
     });
 
-  };  
+  };
 
-  $scope.status = '  '; 
+  $scope.status = '  ';
 
   $scope.showButton = function(userModel,ev) {
     //console.log(userModel);
     $mdDialog.show({
       controller: DialogCtrl,
-      templateUrl: '/public/mods/directives/userprofile/templates/user-dialog.html',
+      templateUrl: '/public/d/userprofile/templates/user-dialog.html',
       locals: { userModel: userModel },
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -130,17 +130,17 @@ angular.module('userprofileDirective', [])
 .directive('userprofile', function() {
   return {
     controller: 'userprofileDirectiveControllerMain',
-    templateUrl: '/public/mods/directives/userprofile/templates/user-profile.html',
+    templateUrl: '/public/d/userprofile/templates/user-profile.html',
     scope: {
       userModel: "=userModel",
       userId: "=userId",
-      userEmail: "=userEmail",     
+      userEmail: "=userEmail",
    }
   };
 });
 
 function DialogCtrl($scope, $mdDialog,userModel) {
-  
+
   $scope.users = userModel;
   console.log($scope.users);
   console.log($scope.users._id);

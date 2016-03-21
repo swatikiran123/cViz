@@ -6,7 +6,7 @@ angular.module('dropzone', [])
  var folderType = $scope.folderType;
  var filesize = $scope.fileSize;
  var files = $scope.fileAllowed;
- 
+
  //dropzone configuration for uploading files,files allowed,max File size,acceptedFiles.
  $scope.dropzoneConfig = {
     'options': { // passed into the Dropzone constructor
@@ -23,8 +23,8 @@ angular.module('dropzone', [])
    'eventHandlers': {
     'sending': function (file, xhr, formData) {
     },
-    //event handler for checking the file type and based on file type showing the thumbnail. 
-    'addedfile': function(file) { 
+    //event handler for checking the file type and based on file type showing the thumbnail.
+    'addedfile': function(file) {
       console.log(file.type);
       if (file.type ==='application/msword' || file.type ==='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.type ==='application/vnd.ms-excel.sheet.macroEnabled.12')
         {
@@ -36,7 +36,7 @@ angular.module('dropzone', [])
         }
 
         else if (file.type ==='application/vnd.ms-excel' || file.type ==='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
-          this.emit("thumbnail", file, "/public/assets/g/imgs/excel.jpg");                                    
+          this.emit("thumbnail", file, "/public/assets/g/imgs/excel.jpg");
         }
 
         else if(file.type === 'application/vnd.ms-powerpointtd>' || file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation'){
@@ -44,25 +44,25 @@ angular.module('dropzone', [])
         }
 
         else if (file.type ==='application/pdf'){
-          this.emit("thumbnail", file, "/public/assets/g/imgs/pdf.jpg");                                    
+          this.emit("thumbnail", file, "/public/assets/g/imgs/pdf.jpg");
         }
     },
     'success': function (file, responseText) {
       console.log(responseText.file.path);
     }
   }
-}; 
+};
 
 var dropzoneConfig =$scope.dropzoneConfig; //stroping dropzone configuraton in dropzoneConfig to send into Dialog Box.
 
-$scope.status = '  '; 
+$scope.status = '  ';
 
 //event handler for showing the dialog box.
 $scope.showUploadButton = function(ev) {
    console.log(dropzoneConfig);
    $mdDialog.show({
     controller: DialogUploadCtrl,
-    templateUrl: '/public/mods/directives/fileattachment/templates/fileDialog.html',
+    templateUrl: '/public/d/fileAttachment/templates/fileDialog.html',
     parent: angular.element(document.body),
     locals: { dropzoneConfig: dropzoneConfig },
     targetEvent: ev,
@@ -83,7 +83,7 @@ $scope.showUploadButton = function(ev) {
 .directive('fileattachment',function(){
   return {
     controller: 'fileattachmentDirectiveControllerMain',
-    templateUrl: '/public/mods/directives/fileAttachment/templates/fileAttachment.html',
+    templateUrl: '/public/d/fileAttachment/templates/fileAttachment.html',
     scope: {
       folderType:"=folderType",
       fileSize:"=fileSize",

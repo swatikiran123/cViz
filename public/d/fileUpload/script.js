@@ -14,17 +14,17 @@ angular.module('fileuploadDirective', [])
      //console.log((filedata.size)/1048576);
      var filesize = (filedata.size)/1048576 //file size in MB
      console.log(filesize);
-     if (filesize > 0.6 && filesize < 1) 
+     if (filesize > 0.6 && filesize < 1)
      {
      Upload.upload({
       url: '/api/v1/upload/' + folderType,
       data: {
-        file: filedata,                
+        file: filedata,
       },
-    }).then(function (response) {            
+    }).then(function (response) {
       $scope.result = response.data;
       console.log($scope.result);
-      $mdDialog.hide();     
+      $mdDialog.hide();
     });
      }
      else if (filesize > 1)
@@ -38,15 +38,15 @@ angular.module('fileuploadDirective', [])
       window.alert("Cropped Image too small.Please crop image in a nice dimension.");
      }
   };
-  } 
+  }
 
-  $scope.status = '  '; 
+  $scope.status = '  ';
 
   $scope.showUploadButton = function(ev) {
    // console.log(folderType);
     $mdDialog.show({
       controller: DialogUploadCtrl,
-      templateUrl: '/public/mods/directives/fileupload/templates/fileDialog.html',
+      templateUrl: '/public/d/fileUpload/templates/fileDialog.html',
       locals: { folderType: folderType },
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -66,7 +66,7 @@ angular.module('fileuploadDirective', [])
 .directive('fileupload', function() {
   return {
     controller: 'fileuploadDirectiveControllerMain',
-    templateUrl: '/public/mods/directives/fileupload/templates/fileUpload.html',
+    templateUrl: '/public/d/fileUpload/templates/fileUpload.html',
     scope: {
       folderType:"=folderType"
    },
@@ -79,13 +79,13 @@ angular.module('fileuploadDirective', [])
 
       if(foldertype === "profilepics")
       {
-        return "/public/mods/directives/fileupload/templates/fileProfileUpload.html";
+        return "/public/d/fileUpload/templates/fileProfileUpload.html";
       }
       if(foldertype === "entity"){
-        return "/public/mods/directives/fileupload/templates/fileEntityUpload.html";
+        return "/public/d/fileUpload/templates/fileEntityUpload.html";
       }
       if(foldertype === "location"){
-        return "/public/mods/directives/fileupload/templates/fileLocationUpload.html";
+        return "/public/d/fileUpload/templates/fileLocationUpload.html";
       }
 
     }
@@ -106,4 +106,3 @@ function DialogUploadCtrl($scope, $mdDialog ,folderType) {
     $mdDialog.hide(answer);
   };
 }
-

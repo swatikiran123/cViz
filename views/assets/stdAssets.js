@@ -147,7 +147,16 @@ module.exports = {
 			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
 			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
 		],
-	}
+	},
+
+	"angular-dialog":{
+		"cdn":[],
+		"dev":[
+			"/public/assets/styles/ngDialog-theme-default.css",
+			"/public/assets/styles/ngDialog.css",
+			"/public/assets/js/ngDialog.min.js"
+		],
+	},
 
 }
 

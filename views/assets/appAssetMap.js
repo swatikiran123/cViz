@@ -5,10 +5,10 @@ module.exports = {
 		"index": ["index"],
 		"login": [],
 		"home": [],
-		"admin": ["admin"],
-		"customize": ["directives","customize"],
-		"visits": ["directives","clients","visits"],
-		"profile": ["directives","profile"],
+		"admin": ["dir-web","admin"],
+		"customize": ["dir-web","customize"],
+		"visits": ["dir-web","clients","visits"],
+		"profile": ["dir-web","profile"],
 
 
 		"m-home": ["m-common"],
