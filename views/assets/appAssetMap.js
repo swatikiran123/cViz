@@ -8,6 +8,7 @@ module.exports = {
 		"admin": ["admin"],
 		"customize": ["directives","customize"],
 		"visits": ["directives","clients","visits"],
+		"profile": ["directives","profile"],
 
 
 		"m-home": ["m-common"],

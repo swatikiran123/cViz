@@ -109,6 +109,16 @@ module.exports = {
 		]
 	},
 
+	"profile":{
+		"dev":[
+			"/public/mods/profile/profileModule.js",
+			"/public/mods/profile/profileControllerMain.js",
+			"/public/mods/profile/profileRouter.js"
+		],
+		"prod":[
+		]
+	},
+
 	"m-common":{
 		"dev":[
 			"/public/assets/m/css/font.css",

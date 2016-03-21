@@ -131,6 +131,22 @@ module.exports = {
 		],
 		"prod":[
 		]
+	},
+
+	"angular-fileupload":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/ng-file-upload/ng-file-upload.js",
+			"/public/libs/ng-file-upload/ng-file-upload-shim.js"
+		],
+	},
+
+	"angular-image":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
+			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
+		],
 	}
 
 }

@@ -62,6 +62,14 @@ module.exports = function(app)
         res.render('admin/home.ejs', {});
     });
 
+		app.get('/profile/', auth.isLoggedIn, function(req, res) {
+        res.locals.pageTitle = "User Profile";
+			  res.locals.appName = "ng-app='cviz-profile'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,profile");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,profile");
+        res.render('admin/home.ejs', {});
+    });
+
 		// route to supporting modules
 		app.get('/customize/', auth.isLoggedIn, function(req, res) {
 				res.locals.pageTitle = "Customize";
