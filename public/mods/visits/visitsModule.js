@@ -1,6 +1,5 @@
 'use strict';
 
-//angular.module('visits', ['ngRoute', 'angular-growl','ngAnimate','ngTagsInput','textAngular','ngMaterial','ngMessages'])
 angular.module('visits', ['ngRoute','angular-growl','textAngular','ngMaterial','ngMessages'])
 
 .run(function ($rootScope, $location, $http) {

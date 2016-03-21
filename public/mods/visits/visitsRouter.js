@@ -34,5 +34,9 @@ angular.module('visits')
 				controller: 'sessionsControllerMain'
 			})
 
+			.otherwise({
+				redirectTo: '/visits/list'
+			})
+
     }
   ]);

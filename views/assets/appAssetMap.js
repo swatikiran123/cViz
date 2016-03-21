@@ -6,8 +6,8 @@ module.exports = {
 		"login": [],
 		"home": [],
 		"admin": ["admin"],
-		"customize": ["customize","directives"],
-		"visits": ["visits","directives"],
+		"customize": ["directives","customize"],
+		"visits": ["directives","clients","visits"],
 
 
 		"m-home": ["m-common"],

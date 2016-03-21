@@ -6,7 +6,7 @@ module.exports = {
 		"login": [],
 		"home": [],
 		"admin": ["angular-material"],
-		"customize": ["angular-material","angular-text"],
+		"customize": ["angular-material","angular-text","angular-forms"],
 		"visits": ["angular-material","angular-text","angular-forms"],
 
 

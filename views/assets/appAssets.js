@@ -89,6 +89,16 @@ module.exports = {
 		]
 	},
 
+	"clients":{
+		"dev":[
+			"/public/mods/clients/clientsModule.js",
+			"/public/mods/clients/clientsControllerMain.js",
+			"/public/mods/clients/clientsRouter.js"
+		],
+		"prod":[
+		]
+	},
+
 	"visits":{
 		"dev":[
 			"/public/mods/visits/visitsModule.js",
