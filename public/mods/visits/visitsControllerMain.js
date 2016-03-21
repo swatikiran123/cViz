@@ -65,17 +65,18 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
+  $scope.checked = false;
   $scope.schedules=[];
   $scope.visitors=[];
   $scope.keynotes=[];
   $scope.small= "small";
   $scope.large= "LARGE";
   $scope.medium= "medium";
-  //filter table
-  $scope.showAll = true;
-  $scope.showFiltered = false;
+    //filter table
+    $scope.showAll = true;
+    $scope.showFiltered = false;
 
-  
+
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
     $scope.location=response.values;
@@ -160,7 +161,18 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.anchor = $scope.anchorId;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
-    //$scope.keynote.note = $scope.keynoteId;
+    
+    if ($scope.checked == false){
+      $scope.unbillable= "non-billable";
+      if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
+      $scope.visits.billable=$scope.unbillable;}//check code
+      else{
+        $scope.billable= "billable";
+         if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
+        $scope.visits.billable=$scope.billable;}//WBS code
+        
+    console.log($scope.visits.billable);
+
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     switch($scope.mode)    {
       case "add":
@@ -258,28 +270,28 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
  // Visit keynote table
 
-  $scope.addkeynote=function(keynoteDef){
+ $scope.addkeynote=function(keynoteDef){
 
-    $scope.keynotes.push({
-      note: keynoteDef.note,
-      context: keynoteDef.context,
-      order: keynoteDef.order
-    });
+  $scope.keynotes.push({
+    note: keynoteDef.note,
+    context: keynoteDef.context,
+    order: keynoteDef.order
+  });
 
-     keynoteDef.note='';
-    keynoteDef.context='';
-    keynoteDef.order='';
-  };
+  keynoteDef.note='';
+  keynoteDef.context='';
+  keynoteDef.order='';
+};
 
-  $scope.removekeynote = function(index){
-    $scope.keynotes.splice(index, 1);
-  }; 
+$scope.removekeynote = function(index){
+  $scope.keynotes.splice(index, 1);
+}; 
 
-  $scope.editkeynote = function(index,keynoteDef){
-    console.log(keynoteDef);
-    $scope.keynoteDef= keynoteDef;
-    $scope.keynotes.splice(index, 1);
-  };
+$scope.editkeynote = function(index,keynoteDef){
+  console.log(keynoteDef);
+  $scope.keynoteDef= keynoteDef;
+  $scope.keynotes.splice(index, 1);
+};
 // Visit keynote table end
 
 
@@ -469,10 +481,10 @@ visitsApp.directive("keynote", ["KeynoteService", function (KeynoteService) {
         select: function (event, selectedItem) {
           scope.keynoteDef.note= selectedItem.item.value;
          // scope.keynoteId= selectedItem.item.id;
-          scope.$apply();
-          event.preventDefault();
-        }
-      });
+         scope.$apply();
+         event.preventDefault();
+       }
+     });
     }
   };
 }]);

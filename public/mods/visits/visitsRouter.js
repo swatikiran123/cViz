@@ -14,6 +14,11 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
+        .when('/lol', {
+        templateUrl: '/public/mods/visits/lol.html',
+        controller: 'visitsControllerMain'
+      })
+
       .when('/:id/showVisit', {
         templateUrl: '/public/mods/visits/visitsViewShow.html',
         controller: 'visitsControllerMain'
