@@ -4,9 +4,11 @@ var logger 						= require(constants.paths.scripts + '/logger');
 var util 							= require(constants.paths.scripts + '/util');
 var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
 
+
 module.exports = function(app, passport) {
 
 // normal routes ===============================================================
+
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
@@ -35,9 +37,13 @@ module.exports = function(app, passport) {
 			res.locals.pageTitle = "Home";
 			res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
 			res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
-			res.render('home.ejs', {
-					user : req.user
-			});
+			if("desktop".compare(res.locals.device)){
+				res.render('home.ejs', {
+						user : req.user
+				});
+			} else {
+				res.redirect('/m/main');
+			}
 		}
 
     app.get('/app', isLoggedIn, function(req, res) {

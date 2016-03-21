@@ -3,9 +3,12 @@ var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
 var appInfoServ   = require(constants.paths.services + '/appService');
 var menuBuilder   = require(constants.paths.scripts + '/menuBuilder');
+var device = require('express-device');
 
 module.exports = function(app, passport) {
 
+		app.use(device.capture());
+		
 	app.use(function (req, res, next) {
 
 		// build side menu if user is logged in
@@ -24,6 +27,7 @@ module.exports = function(app, passport) {
 			appAssets: '',
 			stdAssets: '',
 			appName: '',
+			device: req.device.type,
 			menu: sideMenu			//ToDo: Can be effect performance & menu usage, improve this
   	};
 
