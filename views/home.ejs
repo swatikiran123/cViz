@@ -15,22 +15,9 @@
         $("[data-toggle]").click(function() {
           var toggle_el = $(this).data("toggle");
           $(toggle_el).toggleClass("open-sidebar");
-        });
+        }); // end of data-toggle
 
-         $(".swipe-area").swipe({
-              swipeStatus:function(event, phase, direction, distance, duration, fingers)
-                  {
-                      if (phase=="move" && direction =="left") {
-                           $(".container").addClass("open-sidebar");
-                           return false;
-                      }
-                      if (phase=="move" && direction =="right") {
-                           $(".container").removeClass("open-sidebar");
-                           return false;
-                      }
-                  }
-          });
-      });
+    }); // end of window load
   </script>
 
 </head>
@@ -40,10 +27,6 @@
   <div class="container">
     <div id="sidebar">
     <br><br><br>
-<<<<<<< HEAD
-
-=======
->>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 			My Calendar comes here
     </div>
 

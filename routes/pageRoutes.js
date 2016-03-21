@@ -48,10 +48,10 @@ module.exports = function(app)
         res.render('misc/feedback.ejs', {});
     });
     // route to visits
-    app.get('/visits', auth.isLoggedIn, function(req, res) {
-        res.locals.pageTitle = "visits";
-        res.render('misc/visits.ejs', {});
-    });
+    // app.get('/visits', auth.isLoggedIn, function(req, res) {
+    //     res.locals.pageTitle = "visits";
+    //     res.render('misc/visits.ejs', {});
+    // });
 
     // route to admin module
     app.get('/admin/', auth.isLoggedIn, function(req, res) {
@@ -68,6 +68,15 @@ module.exports = function(app)
 				res.locals.appName = "ng-app='cviz-customize'"
 				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,customize");
 				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,customize");
+				res.render('admin/home.ejs', {});
+		});
+
+		// route to visits modules
+		app.get('/visits/', auth.isLoggedIn, function(req, res) {
+				res.locals.pageTitle = "Visits";
+				res.locals.appName = "ng-app='cviz-visits'"
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,visits");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,visits");
 				res.render('admin/home.ejs', {});
 		});
 

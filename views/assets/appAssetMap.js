@@ -7,6 +7,7 @@ module.exports = {
 		"home": [],
 		"admin": ["admin"],
 		"customize": ["customize","directives"],
+		"visits": ["visits","directives"],
 
 
 		"m-home": ["m-common"],

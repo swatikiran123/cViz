@@ -17,13 +17,13 @@ function getMenu(user, type){
 
 	var script = [];
 
-	logger.writeJson(user.memberOf);
-	logger.writeLine();
-	logger.writeJson(menuDef.items);
+	// logger.writeJson(user.memberOf);
+	// logger.writeLine();
+	// logger.writeJson(menuDef.items);
 
 	menuDef.items.forEach(function(item){
 		if(secure.isInAnyGroups(user, item.roles)){
-			logger.writeLine(item.name, '', 1);
+			// logger.writeLine(item.name, '', 1);
 
 			var menu = [];
 			menu.push("<li>");

@@ -9,7 +9,6 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.css",
 			"/public/assets/w/styles/dataview-panels.css",
 			"/public/assets/w/styles/userpicker.css",
-			"/public/mods/appController.js",
 			"/public/assets/g/css/sidebar.css"
 		],
 		"prod":[
@@ -19,7 +18,6 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.min.css",
 			"/public/assets/w/styles/dataview-panels.min.css",
 			"/public/assets/w/styles/userpicker.min.css",
-			"/public/mods/appController.min.js",
 			"/public/assets/g/css/sidebar.css"
 		]
 	},
@@ -88,6 +86,16 @@ module.exports = {
 			"/public/mods/keynotes/keynotesModule.js",
 			"/public/mods/keynotes/keynotesControllerMain.js",
 			"/public/mods/keynotes/keynotesRouter.js"
+		]
+	},
+
+	"visits":{
+		"dev":[
+			"/public/mods/visits/visitsModule.js",
+			"/public/mods/visits/visitsControllerMain.js",
+			"/public/mods/visits/visitsRouter.js"
+		],
+		"prod":[
 		]
 	},
 

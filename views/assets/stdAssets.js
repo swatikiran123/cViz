@@ -73,6 +73,14 @@ module.exports = {
 	// 	"prod":[]
 	// },
 
+	"angular-forms":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/angular-messages/angular-messages.min.js"
+		],
+		"prod":[]
+	},
+
 	"angular-bootstrap":{
 		"cdn":[],
 		"dev":[

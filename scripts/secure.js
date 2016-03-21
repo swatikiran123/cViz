@@ -18,31 +18,31 @@ function isInAnyGroups(user, grps){
 
 	// filter identified groups and user
 	var check = false;
-	logger.writeLine("check ??? " + grps, 'debug', 0);
+	// logger.writeLine("check ??? " + grps, 'debug', 0);
 	//return;
 	grps.split(",").forEach(function(grp){
 		grp = grp.trim();
 
 		if(grp.toLowerCase() == "customer" && user.association == "customer"){
-			logger.writeLine('yes customer','debug',2);
+			// logger.writeLine('yes customer','debug',2);
 			check = true;
 		}
 
 		if (grp.toLowerCase() == "user"){
-			logger.writeLine('yes user','debug',2);
+			// logger.writeLine('yes user','debug',2);
 			check = true;
 		}
 
 		// check with predefined groups
 		//logger.writeLine('predefined groups', 'debug', 0);
 		if(groups[grp] !== undefined){
-			logger.writeLine("Checking for " + grp + " : " + groups[grp], 'debug', 1);
+			// logger.writeLine("Checking for " + grp + " : " + groups[grp], 'debug', 1);
 			user.memberOf.forEach(function(member){
 				member = ""+ member;
-				logger.writeLine("try " + member, 'debug', 1)
+				// logger.writeLine("try " + member, 'debug', 1)
 				// if(member.toLowerCase() == groups[grp].toLowerCase()){
 				if(member.compare(groups[grp])){
-					logger.writeLine('yes '+grp,'debug',2);
+					// logger.writeLine('yes '+grp,'debug',2);
 					check = true;
 				}
 			});
