@@ -37,6 +37,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Break",
 				"startTime"				: ISODate("2016-02-10T10:31:00.000Z") ,
 				"endTime"					: ISODate("2016-02-10T11:00:00.000Z"),
@@ -51,6 +53,14 @@
 				ObjectId("A02234567892345678900010"),
 				ObjectId("A02234567892345678900007")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-26T10:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-26T11:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -89,6 +99,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Break",
 				"startTime"				: ISODate("2016-02-10T12:31:00.000Z") ,
 				"endTime"					: ISODate("2016-02-10T13:30:00.000Z"),
@@ -103,6 +115,14 @@
 				ObjectId("A02234567892345678900010"),
 				ObjectId("A02234567892345678900008")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "lunch",
+				"startTime"				: ISODate("2016-02-26T12:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-26T13:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -115,10 +135,23 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-02-10T13:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-02-10T15:00:00.000Z")  ,
 				"title"						: "Presentations from both the organizations",
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "presentation",
+				"startTime"				: ISODate("2016-02-26T13:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-26T15:00:00.000Z")  ,
+				"title"						: "presentation from both the organizations",
+<<<<<<< HEAD
+>>>>>>> mobile Session visits added
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Board room 4th floor, B7",
 				"owner"					: ObjectId("A02234567892345678900001"),
@@ -142,6 +175,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Break",
 				"startTime"				: ISODate("2016-02-10T15:01:00.000Z") ,
 				"endTime"					: ISODate("2016-02-10T15:30:00.000Z"),
@@ -156,6 +191,14 @@
 				ObjectId("A02234567892345678900010"),
 				ObjectId("A02234567892345678900011")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-26T15:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-26T15:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -168,9 +211,18 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-02-10T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-02-10T17:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "floor-walk",
+				"startTime"				: ISODate("2016-02-26T15:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-26T17:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Campuss Visit",
 				"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
 				"location"					: "B7",
@@ -281,6 +333,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-08T10:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-08T11:00:00.000Z"),
@@ -295,6 +349,14 @@
 				ObjectId("A02234567892345678900009"),
 				ObjectId("A02234567892345678900007")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-02T10:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-02T11:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -335,6 +397,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Break",
 				"startTime"				: ISODate("2016-03-08T12:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-08T13:30:00.000Z"),
@@ -349,6 +413,14 @@
 				ObjectId("A02234567892345678900009"),
 				ObjectId("A02234567892345678900010")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "lunch",
+				"startTime"				: ISODate("2016-02-02T12:31:00.000Z") ,
+				"endTime"				: ISODate("2016-02-02T13:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -361,10 +433,23 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-03-08T13:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-08T15:00:00.000Z")  ,
 				"title"						: "Presentations from both the organizations",
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "presentation",
+				"startTime"				: ISODate("2016-02-02T13:31:00.000Z")  ,
+				"endTime"				: ISODate("2016-02-02T15:00:00.000Z")  ,
+				"title"						: "presentation from both the organizations",
+<<<<<<< HEAD
+>>>>>>> mobile Session visits added
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Board room 4th floor, B7",
 				"owner"					: ObjectId("A02234567892345678900003"),
@@ -388,6 +473,8 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-08T15:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-08T15:30:00.000Z"),
@@ -402,6 +489,14 @@
 				ObjectId("A02234567892345678900009"),
 				ObjectId("A02234567892345678900006")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-02T15:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-02T15:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -414,9 +509,18 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-03-08T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-08T17:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "floor-walk",
+				"startTime"				: ISODate("2016-02-02T15:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-02T17:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Campuss Visit",
 				"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
 				"location"					: "B7",
@@ -441,9 +545,18 @@
 
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Discussion",
 				"startTime"				: ISODate("2016-03-08T17:01:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-08T18:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "discussion",
+				"startTime"				: ISODate("2016-02-02T17:01:00.000Z")  ,
+				"endTime"				: ISODate("2016-02-02T18:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Summary",
 				"desc"						: "Officials from both the organizations will summarize on what they have discussed till now ",
 				"location"					: "Board room 4th floor,B7",
@@ -518,6 +631,8 @@
 		"scheduleDate"					: ISODate("2016-03-14T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-14T10:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-14T11:00:00.000Z"),
@@ -532,6 +647,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900022")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-14T10:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-14T11:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -569,6 +692,8 @@
 		"scheduleDate"					: ISODate("2016-03-14T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-14T12:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-14T13:30:00.000Z"),
@@ -583,6 +708,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900023")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "lunch",
+				"startTime"				: ISODate("2016-02-14T12:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-14T13:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -594,10 +727,23 @@
 		"scheduleDate"					: ISODate("2016-03-14T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-03-14T13:31:00.000Z"),
 				"endTime"					: ISODate("2016-03-14T15:00:00.000Z"),
 				"title"						: "Presentations from both the organizations",
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "presentation",
+				"startTime"				: ISODate("2016-02-14T13:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-14T15:00:00.000Z")  ,
+				"title"						: "presentation from both the organizations",
+<<<<<<< HEAD
+>>>>>>> mobile Session visits added
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Board room 4th floor, B7",
 				"owner"					: ObjectId("A02234567892345678900005"),
@@ -620,6 +766,8 @@
 		"scheduleDate"					: ISODate("2016-03-14T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-14T15:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-14T15:30:00.000Z"),
@@ -634,6 +782,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900022")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-14T15:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-14T15:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -645,9 +801,18 @@
 		"scheduleDate"					: ISODate("2016-03-14T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-03-14T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-14T17:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "floor-walk",
+				"startTime"				: ISODate("2016-02-14T15:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-14T17:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Campuss Visit",
 				"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
 				"location"					: "B7",
@@ -747,6 +912,8 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-15T10:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-15T11:00:00.000Z"),
@@ -761,6 +928,14 @@
 				ObjectId("A02234567892345678900008"),
 				ObjectId("A02234567892345678900011")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-15T10:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-15T11:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -798,6 +973,8 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-15T12:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-15T13:30:00.000Z"),
@@ -812,6 +989,14 @@
 				ObjectId("A02234567892345678900008"),
 				ObjectId("A02234567892345678900009")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "lunch",
+				"startTime"				: ISODate("2016-02-15T12:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-15T13:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -823,10 +1008,23 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-03-15T13:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-15T15:00:00.000Z")  ,
 				"title"						: "Presentations from both the organizations",
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "presentation",
+				"startTime"				: ISODate("2016-02-15T13:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-15T15:00:00.000Z")  ,
+				"title"						: "presentation from both the organizations",
+<<<<<<< HEAD
+>>>>>>> mobile Session visits added
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Board room 4th floor, B7",
 				"owner"					: ObjectId("A02234567892345678900001"),
@@ -849,6 +1047,8 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-15T15:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-15T15:30:00.000Z"),
@@ -863,6 +1063,14 @@
 				ObjectId("A02234567892345678900008"),
 				ObjectId("A02234567892345678900011")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-15T15:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-15T15:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -874,9 +1082,18 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-03-15T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-15T17:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "floor-walk",
+				"startTime"				: ISODate("2016-02-15T15:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-15T17:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Campuss Visit",
 				"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
 				"location"					: "B7",
@@ -926,6 +1143,8 @@
 		"scheduleDate"					: ISODate("2016-03-15T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Dinner",
 				"startTime"				: ISODate("2016-03-15T18:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-15T20:00:00.000Z"),
@@ -941,6 +1160,14 @@
 				ObjectId("A02234567892345678900009"),
 				ObjectId("A02234567892345678900011")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "dinner",
+				"startTime"				: ISODate("2016-02-15T18:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-15T20:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -1007,6 +1234,8 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-16T10:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-16T11:00:00.000Z"),
@@ -1021,6 +1250,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900005")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-16T10:31:00.000Z") ,
+				"endTime"					: ISODate("2016-02-16T11:00:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -1058,6 +1295,8 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-16T12:31:00.000Z") ,
 				"endTime"					: ISODate("2016-03-16T13:30:00.000Z"),
@@ -1072,6 +1311,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900006")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+			"type"						: "lunch",
+			"startTime"				: ISODate("2016-02-16T12:31:00.000Z") ,
+			"endTime"					: ISODate("2016-02-16T13:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -1083,10 +1330,23 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Presentations",
 				"startTime"				: ISODate("2016-03-16T13:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-16T15:00:00.000Z")  ,
 				"title"						: "Presentations from both the organizations",
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "presentation",
+				"startTime"				: ISODate("2016-02-16T13:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-16T15:00:00.000Z")  ,
+				"title"						: "presentation from both the organizations",
+<<<<<<< HEAD
+>>>>>>> mobile Session visits added
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Board room 4th floor, B7",
 				"owner"					: ObjectId("A02234567892345678900003"),
@@ -1109,6 +1369,8 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "break",
 				"startTime"				: ISODate("2016-03-16T15:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-16T15:30:00.000Z"),
@@ -1123,6 +1385,14 @@
 				ObjectId("A02234567892345678900021"),
 				ObjectId("A02234567892345678900005")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "tea-break",
+				"startTime"				: ISODate("2016-02-16T15:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-16T15:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -1134,9 +1404,18 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Floor Walk",
 				"startTime"				: ISODate("2016-03-16T15:31:00.000Z")  ,
 				"endTime"					: ISODate("2016-03-16T17:00:00.000Z")  ,
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "floor-walk",
+				"startTime"				: ISODate("2016-02-16T15:31:00.000Z")  ,
+				"endTime"					: ISODate("2016-02-16T17:00:00.000Z")  ,
+>>>>>>> mobile Session visits added
 				"title"						: "Campuss Visit",
 				"desc"						: "CSC Officials will walk through the campuss & show them the Infrastructure ",
 				"location"					: "B7",
@@ -1187,6 +1466,8 @@
 		"scheduleDate"					: ISODate("2016-03-16T08:00:00.000Z") ,
 		"session"							:
 			{
+<<<<<<< HEAD
+<<<<<<< 186d0a9f733d0bfe6f983bf5a80cf8c6f3c895cd
 				"type"						: "Dinner",
 				"startTime"				: ISODate("2016-03-16T18:01:00.000Z") ,
 				"endTime"					: ISODate("2016-03-16T20:30:00.000Z"),
@@ -1202,6 +1483,14 @@
 				ObjectId("A02234567892345678900005"),
 				ObjectId("A02234567892345678900006")
 			]
+=======
+=======
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+				"type"						: "dinner",
+				"startTime"				: ISODate("2016-02-16T18:01:00.000Z") ,
+				"endTime"					: ISODate("2016-02-16T20:30:00.000Z")
+			}
+>>>>>>> mobile Session visits added
 	},
 
 
@@ -1214,7 +1503,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Presentations",
+					"type"						: "presentation",
 					"startTime"				: ISODate("2016-04-11T08:30:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T09:00:00.000Z") ,
 					"title"						: "Day 1 Session 1/12",
@@ -1230,8 +1519,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900048"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1240,7 +1529,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Presentations",
+					"type"						: "presentation",
 					"startTime"				: ISODate("2016-04-11T09:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T10:00:00.000Z") ,
 					"title"						: "Day 1 Session 2/12",
@@ -1256,8 +1545,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900049"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1266,7 +1555,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Presentations",
+					"type"						: "presentation",
 					"startTime"				: ISODate("2016-04-11T10:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T11:00:00.000Z") ,
 					"title"						: "Day 1 Session 3/12",
@@ -1282,8 +1571,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900050"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1292,7 +1581,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Presentations",
+					"type"						: "presentation",
 					"startTime"				: ISODate("2016-04-11T11:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T12:00:00.000Z") ,
 					"title"						: "Day 1 Session 4/12",
@@ -1308,8 +1597,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900051"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1318,11 +1607,11 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Executive Lunch",
+					"type"						: "lunch",
 					"startTime"				: ISODate("2016-04-11T12:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T13:00:00.000Z") ,
 					"title"						: "Day 1 Lunch Session 5/12",
-					"location"					: "B7 Executive Lunch area"
+					"location"					: "B7 lunch area"
 				},
 			"invitees"							:
 				[
@@ -1331,8 +1620,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900052"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1341,7 +1630,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Floor Walk",
+					"type"						: "floor-walk",
 					"startTime"				: ISODate("2016-04-11T13:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T14:00:00.000Z") ,
 					"title"						: "Day 1 Session 6/12",
@@ -1357,8 +1646,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900053"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1367,7 +1656,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Floor Walk",
+					"type"						: "floor-walk",
 					"startTime"				: ISODate("2016-04-11T14:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T15:00:00.000Z") ,
 					"title"						: "Day 1 Session 7/12",
@@ -1383,8 +1672,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900054"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1393,7 +1682,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Tea Break",
+					"type"						: "tea-break",
 					"startTime"				: ISODate("2016-04-11T15:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T15:15:00.000Z") ,
 					"title"						: "Day 1 Session 8/12",
@@ -1409,8 +1698,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900055"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1419,7 +1708,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Floor Walk",
+					"type"						: "floor-walk",
 					"startTime"				: ISODate("2016-04-11T15:15:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T16:00:00.000Z") ,
 					"title"						: "Day 1 Session 9/12",
@@ -1435,8 +1724,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900056"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1445,7 +1734,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Floor Walk",
+					"type"						: "floor-walk",
 					"startTime"				: ISODate("2016-04-11T16:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T17:00:00.000Z") ,
 					"title"						: "Day 1 Session 10/12",
@@ -1461,8 +1750,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900057"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1471,7 +1760,7 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Floor Walk",
+					"type"						: "floor-walk",
 					"startTime"				: ISODate("2016-04-11T17:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T18:00:00.000Z") ,
 					"title"						: "Day 1 Session 11/12",
@@ -1487,8 +1776,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900058"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1497,10 +1786,10 @@
 			"scheduleDate"					: ISODate("2016-04-11T08:00:00.000Z") ,
 			"session"							:
 				{
-					"type"						: "Dinner",
+					"type"						: "dinner",
 					"startTime"				: ISODate("2016-04-11T19:00:00.000Z") ,
 					"endTime"					: ISODate("2016-04-11T20:30:00.000Z") ,
-					"title"						: "Day 1 Special Dinner Session 12/12",
+					"title"						: "Day 1 Special dinner Session 12/12",
 					"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 					"location"					: "Westin Main Plaza",
 					"owner"					: ObjectId("A02234567892345678900021"),
@@ -1513,8 +1802,8 @@
 				]
 		},
 
-		
-		
+
+
 		{
 			"_id"									: ObjectId("A06234567892345678900059"),
 			"client" 								: ObjectId("A03234567892345678900005"),
@@ -1523,7 +1812,7 @@
 			"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 			"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-12T08:30:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T09:00:00.000Z") ,
 				"title"						: "Day 2 Session 1/12",
@@ -1549,7 +1838,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-12T09:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T10:00:00.000Z") ,
 				"title"						: "Day 2 Session 2/12",
@@ -1575,7 +1864,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-12T10:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T11:00:00.000Z") ,
 				"title"						: "Day 2 Session 3/12",
@@ -1601,7 +1890,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-12T11:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T12:00:00.000Z") ,
 				"title"						: "Day 2 Session 4/12",
@@ -1627,11 +1916,11 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Executive Lunch",
+				"type"						: "lunch",
 				"startTime"				: ISODate("2016-04-12T12:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T13:00:00.000Z") ,
 				"title"						: "Day 2 Lunch Session 5/12",
-				"location"					: "B7 Executive Lunch area"
+				"location"					: "B7 lunch area"
 			},
 			"invitees"							:
 				[
@@ -1650,7 +1939,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-12T13:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T14:00:00.000Z") ,
 				"title"						: "Day 2 Session 6/12",
@@ -1676,7 +1965,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-12T14:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T15:00:00.000Z") ,
 				"title"						: "Day 2 Session 7/12",
@@ -1702,7 +1991,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Tea Break",
+				"type"						: "tea-break",
 				"startTime"				: ISODate("2016-04-12T15:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T15:15:00.000Z") ,
 				"title"						: "Day 2 Session 8/12",
@@ -1728,7 +2017,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-12T15:15:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T16:00:00.000Z") ,
 				"title"						: "Day 2 Session 9/12",
@@ -1754,7 +2043,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-12T16:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T17:00:00.000Z") ,
 				"title"						: "Day 2 Session 10/12",
@@ -1780,7 +2069,7 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-12T17:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T18:00:00.000Z") ,
 				"title"						: "Day 2 Session 11/12",
@@ -1806,10 +2095,10 @@
 		"scheduleDate"					: ISODate("2016-04-12T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Dinner",
+				"type"						: "dinner",
 				"startTime"				: ISODate("2016-04-12T19:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-12T20:30:00.000Z") ,
-				"title"						: "Day 2 Special Dinner Session 12/12",
+				"title"						: "Day 2 Special dinner Session 12/12",
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Westin Main Plaza",
 				"owner"					: ObjectId("A02234567892345678900022"),
@@ -1832,7 +2121,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-13T08:30:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T09:00:00.000Z") ,
 				"title"						: "Day 3 Session 1/12",
@@ -1858,7 +2147,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-13T09:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T10:00:00.000Z") ,
 				"title"						: "Day 3 Session 2/12",
@@ -1884,7 +2173,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-13T10:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T11:00:00.000Z") ,
 				"title"						: "Day 3 Session 3/12",
@@ -1910,7 +2199,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-13T11:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T12:00:00.000Z") ,
 				"title"						: "Day 3 Session 4/12",
@@ -1936,11 +2225,11 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Executive Lunch",
+				"type"						: "lunch",
 				"startTime"				: ISODate("2016-04-13T12:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T13:00:00.000Z") ,
 				"title"						: "Day 3 Lunch Session 5/12",
-				"location"					: "B7 Executive Lunch area"
+				"location"					: "B7 lunch area"
 			},
 			"invitees"							:
 				[
@@ -1959,7 +2248,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-13T13:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T14:00:00.000Z") ,
 				"title"						: "Day 3 Session 6/12",
@@ -1985,7 +2274,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-13T14:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T15:00:00.000Z") ,
 				"title"						: "Day 3 Session 7/12",
@@ -2011,7 +2300,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Tea Break",
+				"type"						: "tea-break",
 				"startTime"				: ISODate("2016-04-13T15:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T15:15:00.000Z") ,
 				"title"						: "Day 3 Session 8/12",
@@ -2037,7 +2326,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-13T15:15:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T16:00:00.000Z") ,
 				"title"						: "Day 3 Session 9/12",
@@ -2063,7 +2352,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-13T16:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T17:00:00.000Z") ,
 				"title"						: "Day 3 Session 10/12",
@@ -2089,7 +2378,7 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-13T17:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T18:00:00.000Z") ,
 				"title"						: "Day 3 Session 11/12",
@@ -2115,10 +2404,10 @@
 		"scheduleDate"					: ISODate("2016-04-13T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Dinner",
+				"type"						: "dinner",
 				"startTime"				: ISODate("2016-04-13T19:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-13T20:30:00.000Z") ,
-				"title"						: "Day 3 Special Dinner Session 12/12",
+				"title"						: "Day 3 Special dinner Session 12/12",
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Westin Main Plaza",
 				"owner"					: ObjectId("A02234567892345678900005"),
@@ -2141,7 +2430,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-14T08:30:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T09:00:00.000Z") ,
 				"title"						: "Day 4 Session 1/12",
@@ -2167,7 +2456,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-14T09:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T10:00:00.000Z") ,
 				"title"						: "Day 4 Session 2/12",
@@ -2193,7 +2482,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-14T10:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T11:00:00.000Z") ,
 				"title"						: "Day 4 Session 3/12",
@@ -2219,7 +2508,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-14T11:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T12:00:00.000Z") ,
 				"title"						: "Day 4 Session 4/12",
@@ -2245,11 +2534,11 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Executive Lunch",
+				"type"						: "lunch",
 				"startTime"				: ISODate("2016-04-14T12:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T13:00:00.000Z") ,
 				"title"						: "Day 4 Lunch Session 5/12",
-				"location"					: "B7 Executive Lunch area"
+				"location"					: "B7 lunch area"
 			},
 			"invitees"							:
 				[
@@ -2268,7 +2557,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-14T13:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T14:00:00.000Z") ,
 				"title"						: "Day 4 Session 6/12",
@@ -2294,7 +2583,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-14T14:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T15:00:00.000Z") ,
 				"title"						: "Day 4 Session 7/12",
@@ -2320,7 +2609,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Tea Break",
+				"type"						: "tea-break",
 				"startTime"				: ISODate("2016-04-14T15:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T15:15:00.000Z") ,
 				"title"						: "Day 4 Session 8/12",
@@ -2346,7 +2635,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-14T15:15:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T16:00:00.000Z") ,
 				"title"						: "Day 4 Session 9/12",
@@ -2372,7 +2661,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-14T16:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T17:00:00.000Z") ,
 				"title"						: "Day 4 Session 10/12",
@@ -2398,7 +2687,7 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-14T17:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T18:00:00.000Z") ,
 				"title"						: "Day 4 Session 11/12",
@@ -2424,10 +2713,10 @@
 		"scheduleDate"					: ISODate("2016-04-14T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Dinner",
+				"type"						: "dinner",
 				"startTime"				: ISODate("2016-04-14T19:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-14T20:30:00.000Z") ,
-				"title"						: "Day 4 Special Dinner Session 12/12",
+				"title"						: "Day 4 Special dinner Session 12/12",
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Westin Main Plaza",
 				"owner"					: ObjectId("A02234567892345678900023"),
@@ -2450,7 +2739,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-15T08:30:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T09:00:00.000Z") ,
 				"title"						: "Day 5 Session 1/12",
@@ -2476,7 +2765,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-15T09:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T10:00:00.000Z") ,
 				"title"						: "Day 5 Session 2/12",
@@ -2502,7 +2791,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-15T10:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T11:00:00.000Z") ,
 				"title"						: "Day 5 Session 3/12",
@@ -2528,7 +2817,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Presentations",
+				"type"						: "presentation",
 				"startTime"				: ISODate("2016-04-15T11:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T12:00:00.000Z") ,
 				"title"						: "Day 5 Session 4/12",
@@ -2554,11 +2843,11 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Executive Lunch",
+				"type"						: "lunch",
 				"startTime"				: ISODate("2016-04-15T12:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T13:00:00.000Z") ,
 				"title"						: "Day 5 Lunch Session 5/12",
-				"location"					: "B7 Executive Lunch area"
+				"location"					: "B7 lunch area"
 			},
 			"invitees"							:
 				[
@@ -2577,7 +2866,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-15T13:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T14:00:00.000Z") ,
 				"title"						: "Day 5 Session 6/12",
@@ -2603,7 +2892,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-15T14:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T15:00:00.000Z") ,
 				"title"						: "Day 5 Session 7/12",
@@ -2629,7 +2918,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Tea Break",
+				"type"						: "tea-break",
 				"startTime"				: ISODate("2016-04-15T15:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T15:15:00.000Z") ,
 				"title"						: "Day 5 Session 8/12",
@@ -2655,7 +2944,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-15T15:15:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T16:00:00.000Z") ,
 				"title"						: "Day 5 Session 9/12",
@@ -2681,7 +2970,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-15T16:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T17:00:00.000Z") ,
 				"title"						: "Day 5 Session 10/12",
@@ -2707,7 +2996,7 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Floor Walk",
+				"type"						: "floor-walk",
 				"startTime"				: ISODate("2016-04-15T17:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T18:00:00.000Z") ,
 				"title"						: "Day 5 Session 11/12",
@@ -2733,10 +3022,10 @@
 		"scheduleDate"					: ISODate("2016-04-15T08:00:00.000Z") ,
 		"session"							:
 			{
-				"type"						: "Dinner",
+				"type"						: "dinner",
 				"startTime"				: ISODate("2016-04-15T19:00:00.000Z") ,
 				"endTime"					: ISODate("2016-04-15T20:30:00.000Z") ,
-				"title"						: "Day 5 Special Dinner Session 12/12",
+				"title"						: "Day 5 Special dinner Session 12/12",
 				"desc"						: "Officials from Both the organizations will present & explain on various ascepts they are going to work ",
 				"location"					: "Westin Main Plaza",
 				"owner"					: ObjectId("A02234567892345678900023"),

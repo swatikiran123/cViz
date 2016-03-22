@@ -2,9 +2,9 @@
 <!-- activity menu being -->
 <ul class="nav navbar-nav">
   <li class="active"><a href="/home">Dashboard</a></li>
-  <li><a href="/visits/#/v/">Visit Planner</a></li>
+  <li><a href="/manage/#/visits/list">Visit Planner</a></li>
   <li>
-    <a href="/visits/#/addVisit">
+    <a href="/manage/#/visits/add">
       <span class="change-icon">
       <i class="fa fa-plus"></i>
       <i class="fa fa-gear"></i>
@@ -17,12 +17,12 @@
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
       <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
-      <li><a href="/clients/#/c/">Clients</a></li>
-      <li><a href="/keynotes/#/k/">Keynotes</a></li>
-      <li><a href="/facts/#/f/">Facts</a></li>
+      <li><a href="/manage/#/clients/list">Clients</a></li>
+      <li><a href="/customize/#/keynotes/list">Keynotes</a></li>
+      <li><a href="/customize/#/facts/list">Facts</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
-      <li><a href="/feedback/#/fback/">Feedback</a></li>
+      <li><a href="/customize/#/feedbackTmpl/list">Feedback</a></li>
     </ul>
   </li>
   <!-- Additional pull down ends -->
@@ -31,12 +31,11 @@
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
-      <li><a href="/admin/users/#/g/">Groups</a></li>
-      <li><a href="/admin/users/#/u/">Users</a></li>
-      <li><a >Menu Item</a></li>
+      <li><a href="/admin/#/groups/">Groups</a></li>
+      <li><a href="/admin/#/users/">Users</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
-      <li><a href="/customize/idea">Idea Templates</a></li>
+      <li><a href="/customize/idea">Settings</a></li>
       <li><a href="/customize/workflow">Workflow</a></li>
     </ul>
   </li>
@@ -62,7 +61,7 @@
     </ul>
   </li> <!-- notification badge ends here -->
 
-  <li><a href="/public/g/www/"><i class="fa fa-mobile"></i></a></li>
+  <li><a href="/m/main/"><i class="fa fa-mobile"></i></a></li>
   <li><a href="/app"><i class="fa fa-question"></i></a></li>
 
   <!-- user profile panel starts here -->

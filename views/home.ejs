@@ -1,35 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>panels</title>
+  <title>Visit Portal - Dashboard</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="/public/assets/w/styles/dashboard.css" />
-  <script type="text/javascript" src="http://www.onextrapixel.com/examples/touch-swipe/jquery.touchSwipe.min.js"></script>
+<<<<<<< HEAD
+=======
 
-  <script type="text/javascript"> 
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+  <link rel="stylesheet" href="/public/assets/w/styles/dashboard.css" />
+
+  <script type="text/javascript">
     $(window).load(function(){
         $("[data-toggle]").click(function() {
           var toggle_el = $(this).data("toggle");
           $(toggle_el).toggleClass("open-sidebar");
-        });
+        }); // end of data-toggle
 
-         $(".swipe-area").swipe({
-              swipeStatus:function(event, phase, direction, distance, duration, fingers)
-                  {
-                      if (phase=="move" && direction =="left") {
-                           $(".container").addClass("open-sidebar");
-                           return false;
-                      }
-                      if (phase=="move" && direction =="right") {
-                           $(".container").removeClass("open-sidebar");
-                           return false;
-                      }
-                  }
-          }); 
-      });
+    }); // end of window load
   </script>
 
 </head>
@@ -39,11 +27,11 @@
   <div class="container">
     <div id="sidebar">
     <br><br><br>
-      
+			My Calendar comes here
     </div>
 
     <div class="main-content">
-    
+
     <br><br>
       <a href="#" data-toggle=".container" id="sidebar-toggle">
         <span class="bar"></span>
@@ -89,20 +77,20 @@
                 <div class="pull-left">
                   <p class="highlight">03</p>
                 </div>
-                <h3 class="panel-title"><b> Visits Score </b></h3>  
+                <h3 class="panel-title"><b> Visits Score </b></h3>
               </div>
 
               <div class="panel-body">
                 <p>
                   <font size="30">
-                    <center> 
+                    <center>
                       <b>02</b>
                     </center>
                   </font>
                 </p>
               </div>
               <div class="panel-footer">
-                <p></p>  
+                <p></p>
               </div>
             </div>
           </div>
@@ -122,10 +110,10 @@
               </div>
 
 
-              <div class="panel-body"> 
+              <div class="panel-body">
                 <p>
                   <font size="30">
-                    <center> 
+                    <center>
                       <b>03</b>
                     </center>
                   </font>
@@ -164,7 +152,7 @@
                 Chennai
               </div>
               <div class="panel-footer">
-                <p></p>  
+                <p></p>
               </div>
             </div>
           </div>
@@ -234,7 +222,7 @@
                 End-Time: 2016-02-16, 20:00:00
               </div>
               <div class="panel-footer">
-                <p></p>  
+                <p></p>
               </div>
             </div>
           </div>
@@ -266,7 +254,7 @@
                 End-Time: 2016-02-16, 20:00:00
               </div>
               <div class="panel-footer">
-                <p></p>  
+                <p></p>
               </div>
             </div>
           </div>
@@ -281,7 +269,7 @@
               </div>
 
               <div class = "panel-subheader">
-                Visits 
+                Visits
               </div>
 
               <div class="panel-body">
@@ -299,7 +287,7 @@
               </div>
 
               <div class="panel-footer">
-                <p></p>  
+                <p></p>
               </div>
             </div>
           </div>
@@ -307,19 +295,6 @@
       </div>
     </div>
   </div>
-
-
-<script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<script type="text/javascript">
-  try {
-    var pageTracker = _gat._getTracker("UA-8453623-1");
-    pageTracker._trackPageview();
-  } catch(err) {}
-</script> 
 
 </body>
 </html>

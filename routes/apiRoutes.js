@@ -15,7 +15,7 @@ var fileupload						= require(constants.paths.controllers + '/api/fileupload');
 var facts 					= require(constants.paths.controllers + '/api/facts');
 
 var lov 					= require(constants.paths.controllers + '/api/lov');
-var groups					= require(constants.paths.controllers + '/api/groups');	
+var groups					= require(constants.paths.controllers + '/api/groups');
 
 var cityFacts				= require(constants.paths.controllers + '/api/cityFacts');
 var factSheets				=	require(constants.paths.controllers + '/api/factSheets');
@@ -53,7 +53,7 @@ router.get('/api/v1/secure/keynotes/find', keynotes.getWithQuery);
 
 // List of service routes for clients
 router.get('/api/v1/secure/clients', clients.getAll);
-//router.get('/api/v1/secure/clients/:id', clients.getOneById);
+router.get('/api/v1/secure/clients/id/:id', clients.getOneById);
 router.post('/api/v1/secure/clients', clients.create);
 router.put('/api/v1/secure/clients/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);

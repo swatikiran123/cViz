@@ -108,7 +108,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       $scope.visitors=[];
       $scope.keynotes=[];
 
-        //Start-date End-date Locations 
+        //Start-date End-date Locations
         angular.forEach($scope.visitsList, function(item){
          item.startDate = item.schedule[0].startDate;
          item.endDate = item.schedule[item.schedule.length-1].endDate;
@@ -133,14 +133,14 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;      //List of visitors
           $scope.visits = visits;               //Whole form object
-          
+
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
-          
+
           $scope.clientName= response.client.name;//auto fill with reff client db
           $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
-          
+
           $scope.anchorUser = response.anchor;
           $scope.anchorEmail = response.anchor.email;
           $scope.anchorId = response.anchor._id;
@@ -161,7 +161,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.anchor = $scope.anchorId;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
-    
+
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
       if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
@@ -170,7 +170,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
         $scope.billable= "billable";
          if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
         $scope.visits.billable=$scope.billable;}//WBS code
-        
+
     console.log($scope.visits.billable);
 
     $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -184,7 +184,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       break;
       } // End of switch scope.mode ends
 
-      $location.path("/");
+      $location.path("visits/list");
   } // End of save method
 
   $scope.create = function() {
@@ -229,7 +229,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.cancel = function() {
 
     $scope.visits="";
-    $location.path("/");
+    $location.path("visits/list");
   }
 
   $scope.getUser = function(){
@@ -260,7 +260,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
   $scope.removeSchedule = function(index){
     $scope.schedules.splice(index, 1);
-  }; 
+  };
 
   $scope.editSchedule = function(index,schedule){
     $scope.schedule= schedule;
@@ -285,7 +285,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
 $scope.removekeynote = function(index){
   $scope.keynotes.splice(index, 1);
-}; 
+};
 
 $scope.editkeynote = function(index,keynoteDef){
   console.log(keynoteDef);
@@ -300,7 +300,7 @@ $scope.editkeynote = function(index,keynoteDef){
   $scope.addvisitor=function(visitorDef){
     $scope.showFlag='';
     $scope.message='';
-    var influence= visitorDef.influence; 
+    var influence= visitorDef.influence;
     $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitorId).success(function(response) {
      $scope.userId = response._id;
      $scope.showFlag = "user";
@@ -319,8 +319,8 @@ $scope.editkeynote = function(index,keynoteDef){
      }
      else
       console.log("error with user directive");
-  }); 
-    
+  });
+
 
     //if not found add visitor-post that and get id
     visitorDef.influence='';
@@ -330,7 +330,7 @@ $scope.editkeynote = function(index,keynoteDef){
   };
   $scope.removevisitor = function(index){
     $scope.visitors.splice(index, 1);
-  }; 
+  };
 
   $scope.editvisitor = function(index,visitorDef){
     $scope.visitorDef = visitorDef;
@@ -348,7 +348,7 @@ $scope.eventDateFilter = function(column) {
     });
     $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: currentDate});
     $scope.showFiltered = true;
-    $scope.showAll = false; 
+    $scope.showAll = false;
   }
 
   else if (column === 'pastMonth') {
@@ -363,8 +363,8 @@ $scope.eventDateFilter = function(column) {
     });
     $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: pastMonth});
     $scope.showFiltered = true;
-    $scope.showAll = false;  
-  } 
+    $scope.showAll = false;
+  }
   else if (column === 'thisMonth') {
 
     var previousMonth = new Date()
@@ -377,8 +377,8 @@ $scope.eventDateFilter = function(column) {
     });
     $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: pastMonth});
     $scope.showFiltered = true;
-    $scope.showAll = false;  
-  } 
+    $scope.showAll = false;
+  }
   else if (column === 'future') {
 
     var nextmonth = new Date()
@@ -391,8 +391,8 @@ $scope.eventDateFilter = function(column) {
     });
     $scope.filteredDate = $filter('filter')($scope.visitsList, {startDate: nextMonth});
     $scope.showFiltered = true;
-    $scope.showAll = false; 
-  } 
+    $scope.showAll = false;
+  }
   else {
     $scope.showAll = true;
     $scope.showFiltered = false;

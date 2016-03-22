@@ -3,10 +3,9 @@
 /* page header styles */
 .page-header
 {
-  font-family: verdana, arial !important; 
+  font-family: verdana, arial !important;
   font-size: 20px !important;
   font-weight: bold !important;
-  background: url(/public/assets/images/istock.jpg);
   background-size: 100%;
   width: 100% !important;
 }
@@ -14,7 +13,7 @@
 /* page subheader styles */
 .sub-header
 {
-  font-family: verdana, arial !important; 
+  font-family: verdana, arial !important;
   font-size: 16px !important;
   font-weight: normal !important;
 }

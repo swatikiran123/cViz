@@ -3,8 +3,11 @@
 var Q               = require('q');
 var _								= require('underscore');
 var moment 					= require('moment');  require('moment-range');
+
 var constants       = require('../scripts/constants');
 var util						= require(constants.paths.scripts + "/util");
+var logger					= require(constants.paths.scripts + "/logger");
+
 var model           = require(constants.paths.models +  '/visit');
 var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 
@@ -92,10 +95,11 @@ function getSessionsById(id){
 		//Internal method to transform visit data to session
 		function transform(visit, sessions)
 		{
+			// sort sessions by schedule startDate
 			var vistSchedule =  _.sortBy( visit.schedule, 'startDate' );
 
 			// first built list of all days with location from visit data
-			var i=1;
+			var dayCounter=1;
 			vistSchedule.forEach(function(sch){
 
 				// loop thru each of the days in the schedule
@@ -108,17 +112,53 @@ function getSessionsById(id){
 						return d.isSame(thisDay, 'day')
 					});
 
+					// sort day sessions by starttime
+					var daySessionsSorted =  _.sortBy( daySessions, 'session.startTime' );
+
+					var i = 1;
+					var daySessionsTran = [];
+					daySessionsSorted.forEach(function(sess){
+
+						logger.writeLine("Session " + i, 'verbose', 0);
+						logger.writeJson(sess);
+						//sessTrans.index = i;
+						//logger.writeLine("Start " + sess.session.startTime + " - " + sess.session.endTime, 'verbose', 1);
+						//var starts = moment(sess.session.startTime,"HH:mm");
+						var starts = moment(sess.session.startTime).hours() + ":" + moment(sess.session.startTime).minutes();
+						var duration = moment.duration(moment(sess.session.endTime).diff(moment(sess.session.startTime))).asMinutes();
+						//logger.writeLine("Duration " + duration + " - Hrs: " + hours, 'verbose', 1);
+						//sessTrans.duration = duration.asMinutes();
+						//sessTrans.type = sess.type;
+						var sessTrans = {
+							index: i,
+							duration: duration,
+							startAt: starts,
+							type: sess.session.type,
+							startTime: sess.session.startTime,
+							endTime: sess.session.endTime,
+							title: sess.session.title,
+							desc: sess.session.desc,
+							location: sess.session.location,
+							owner: sess.session.owner,
+							supporter: sess.session.supporter,
+							invitees: sess.invitees
+						};
+logger.writeJson(sessTrans,'verbose',1);
+						daySessionsTran.push(sessTrans);
+						i++;
+					});
+
 					// skip days for which sessions are not scheduled
-					if(daySessions.length > 0){
+					if(daySessionsTran.length > 0){
 					  var schedule = {
-							day : i,
+							day : dayCounter,
 							date : d,
 							location: sch.location,
-							//count: daySessions.length,
-							sessions: daySessions
+							count: daySessionsTran.length,
+							sessions: daySessionsTran
 						}; // end of schedule object
 
-						i++;
+						dayCounter++;
 					}
 
 					sessionDays.push(schedule);

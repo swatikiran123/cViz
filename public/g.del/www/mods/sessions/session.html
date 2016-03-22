@@ -1,0 +1,35 @@
+<div>
+    <h1>Session</h1>
+    <hr/>
+    <h3>{{session.session.title}}</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">session type: </div>
+            <div class="col-sm-3">{{session.session.type}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">Time: </div>
+            <div class="col-sm-3">{{session.session.startTime | date:"HH:mm"}} - {{session.session.endTime | date:"HH:mm"}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">Location: </div>
+            <div class="col-sm-3">{{session.session.location}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">Description: </div>
+            <div class="col-sm-3">{{session.session.desc}}</div>
+        </div>
+        
+        
+    
+        <br>{{session.client}}
+       <br>{{session.session.owner}} 
+        <br> {{session.session.supporter}} 
+
+        </div>
+   <!--  <br><li ng-repeat="invitee in invitees">{{session.invitee._id}}</li> -->
+</div>

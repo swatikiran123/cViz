@@ -19,6 +19,10 @@
     "secret": "session top secret"
   },
 
+	"assets":{
+		"mode": "prod"
+	},
+
   "email": {
     "smtp-options":{
       "service": "gmail",

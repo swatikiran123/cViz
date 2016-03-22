@@ -3,16 +3,16 @@
 angular.module('users')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      
-      .when('/u/', {
+
+      .when('/users/', {
         templateUrl: '/public/mods/admin/users/usersViewMain.html',
         controller: 'usersControllerMain'
       })
-      
-      .when('/g/', {
+
+      .when('/groups/', {
         templateUrl: '/public/mods/admin/users/groupsViewMain.html',
         controller: 'usersControllerMain'
       });
-      
+
     }
   ]);

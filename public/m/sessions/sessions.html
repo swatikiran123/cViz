@@ -1,0 +1,92 @@
+
+
+
+<div class="agenda-parent-div">
+  <div class="container-fluid agenda-header-div">
+	  
+		<div class="container-fluid" data-spy = "scroll" data-target = ".agenga-list">
+			<ul ng-init="vm.tab=1" class="nav navbar-nav agenga-list">
+				<li ng-repeat="schedules in scheduleList">
+					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}</a>
+				</li>
+			</ul> <!-- end of tabs -->
+		</div> <!-- end of tab header -->
+	</div> <!-- end of agenda header -->
+
+	
+	<!-- begin of tab content -->
+		<div class="div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day">
+			<h1 class="day-agenda-header">
+			 <img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
+				{{schedules.date | date : "dd MMM yyyy"}} 
+				<img src="/public/assets/m/img/ic/location-icon.png" class="day-agenda-header-img">
+				{{schedules.location}}
+			</h1>
+			<div id="agenda-scrollable-block" class="scroll">
+				<!-- dummy session -->
+				<div id="session1" class="agenda-session-block">
+					<div class="agenda-block-sub-div">
+						<p>
+							<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+							<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
+							    
+							<span class="agenda-session-name">BREAKFAST</span><!-- Worksans light without any letter spacing -->
+						</p>
+						<div class="agenda-session-overview">
+							<p class="agenda-session-loc"><!--Worksans-->
+								<img src="/public/assets/m/img/ic/hourglass.png" class="session-img"> 45 min <img src="/public/assets/m/img/ic/venue-bldg.png" class="session-img"> Boardroom 2, 4th floor, EGL
+							</p>
+							<p> <!--Roboto-->
+								<span class="agenda-session-loc">with</span>
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<span class="expand-session">...</span> 
+								<a class="feedback-link" href="#">Feedback</a>
+							</p>
+							
+						</div>
+					</div>
+				</div>
+<!-- dummy session ends here -->
+			<div class="agenda-session-block" ng-repeat="session in schedules.sessions">
+				<div class="agenda-block-sub-div">
+					<div>
+						<p>
+							<span ng-switch on="session.type">
+								<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
+								<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+								<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
+								<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
+								<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+								<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
+								<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+							</span>
+							<span class="agenda-session-time">
+								{{session.startTime | date : "HH:mm"}}
+							</span>
+							<span class="agenda-session-name">
+								<a href="#/sessions/{{session._id}}">{{session.title}}</a>
+							</span>
+						</p>
+						<div class="agenda-session-overview">
+							<p class="agenda-session-loc">
+									<img src="/public/assets/m/img/ic/hourglass.png">{{session.duration}} min <img src="/public/assets/m/img/ic/venue-bldg.png"> {{session.location}}
+							</p>
+							<p> <!--Roboto-->
+								<span class="agenda-session-loc">with</span>
+								<!--{{session.owner}}, {{session.supporter}}-->
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+								+{{session.invitees.length}}
+								<span class="expand-session">...</span>
+								<a class="feedback-link" href="#">Feedback</a>
+							</p>
+							
+						</div> <!-- end of agenda overview block -->
+					</div> <!-- end of presentation template -->
+				</div> <!-- end of agenda sub-block -->
+	    </div> <!-- end of day -->
+		</div> <!-- enf of days - sessions-->
+	</div> <!-- end of scrollable area -->
+</div> <!-- end of page container -->

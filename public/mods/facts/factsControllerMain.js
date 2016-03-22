@@ -2,7 +2,7 @@
 
 var factsApp = angular.module('facts');
 
-factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$rootScope' ,'$location', 'growl', 
+factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$rootScope' ,'$location', 'growl',
   function($scope, $http, $routeParams,$rootScope ,$location, growl) {
 
     var id = $routeParams.id;
@@ -47,7 +47,7 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
       break;
       } // end of switch scope.mode ends
 
-      $location.path("/");
+      $location.path("facts/list");
   } // end of save method
 
   $scope.create = function() {
@@ -84,7 +84,7 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
   $scope.cancel = function() {
 
     $scope.facts="";
-    $location.path("/");
+    $location.path("facts/list");
   }
 
   $scope.getUser = function(){
@@ -98,4 +98,3 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
   }
 
 }])
-

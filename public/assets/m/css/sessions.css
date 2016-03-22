@@ -1,0 +1,115 @@
+
+.agenda-parent-div {
+  /*position: relative;*/
+  color: #000;
+  padding-top: 25px;
+  /*height: 100%;*/
+  overflow-y: hidden; 
+
+  }
+
+.scroll
+{
+  width:100%;
+}
+
+
+
+  #agenda-scrollable-block{   
+    overflow-y: auto;
+    height: 80%;
+    position: fixed;
+    padding: none;
+  }
+
+  .day-agenda-header{
+    background: linear-gradient(#87075A, #9B3678);
+    color: #fff;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 10px;
+    font-family: robotoCondensedBold;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  
+
+  .feedback-link{
+    text-decoration: underline;
+    margin-left: 50px;
+    color: #969696;
+    -moz-text-decoration-color: #d6d6d6; /* Code for Firefox */
+    text-decoration-color: #d6d6d6;
+  }
+  .day-agenda-header-img{
+    width: 25px;
+    height: 30px;
+  }
+  .session-img{
+    width: 25px;
+    height: 20px;
+  }
+
+
+  .expand-session {
+    float: right;
+  }
+
+  .agenda-session-overview {
+    padding-left: 50px;
+  }
+
+  .agenda-session-block {
+    border-left: 7px solid #fff;
+    /*padding-top: 20px;*/
+  }
+
+  .agenda-block-sub-div {
+    border-left: 1px solid #000;
+    margin: 0 20px;
+    padding: 20px 0;
+  }
+
+  .session-status-img {
+    width: 50px;
+    height: 50px;
+    margin-left: -19px;
+  }
+  #session1 {
+    background-color: #F3E8EC;
+    border-left: 7px solid #850157;
+  }
+
+  .agenda-session-time {
+    font-family: antonioBold;
+    font-size: 36px;
+    color: #87075A;
+  }
+
+  .agenda-session-name {
+    font-family: workSansLight;
+    font-size: 36px;
+    color: #87075A;
+  }
+  .agenda-session-loc {
+    color: #999999;
+    font-family: workSansMedium;
+    font-size: 20px;
+  }
+
+}
+
+/*.affix {
+  top:0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+
+.affix ~ .container-fluid {
+ position: relative;
+ top: 50px;
+}*/

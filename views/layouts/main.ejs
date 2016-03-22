@@ -4,13 +4,12 @@
 <!--[if IE 7]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9"> <![endif]-->
 
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="baseApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" <%-appName%> class="no-js"> <!--<![endif]-->
 
 <head>
-    <% include ../partials/head.ejs%>
-    <% include ../partials/include-std.ejs%>
-    <% include ../partials/include-app.ejs%>
-
+  <% include ../partials/head.ejs%>
+	<!-- standard assets  -->
+	<%-locals.stdAssets%>
 </head>
 
 <body>
@@ -36,3 +35,6 @@
 
 </body>
 </html>
+
+<!-- application assets  -->
+<%-locals.appAssets%>

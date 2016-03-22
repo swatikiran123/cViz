@@ -4,21 +4,29 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
     <style>
-        body         { padding-top:80px; }
+    html,body {
+
+    background: url(/public/assets/w/images/loginbg.jpg) no-repeat center scroll;
+
+
+
+    }
+
     </style>
 </head>
 <body>
 <div class="container">
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-6 col-sm-offset-2 pull-left">
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
+    <h1 class="login"><span class="fa fa-sign-in"></span> Signup</h1>
 
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-    <!-- LOGIN FORM -->
+    <!-- LOGIN FORM --><br><br>
     <form action="/signup" method="post">
         <div class="form-group">
             <label>First Name</label>
@@ -42,8 +50,7 @@
 
     <hr>
 
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    <p>Already have an account? <a href="/login">Login</a> Or go <a href="/">home</a>.</p>
 
 </div>
 </div>

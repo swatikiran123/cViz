@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html lang="en" <%-appName%> class="no-js"> <!--<![endif]-->
+
+<head>
+
+	<% include ../partials/head.ejs%>
+	<!-- standard assets  -->
+	<%-locals.stdAssets%>
+	<!-- application assets  -->
+	<%-locals.appAssets%>
+
+</head>
+
+<body>
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+		    <div class="paddg">
+			<%if (locals.user !== undefined) { %>
+			<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
+			<div class="menu-profile-name header"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
+			<% } %></div>
+			<div class="sidebar-nav">
+				<ul>
+            <li class="sidebar-item">
+							 <a href="/m/main/"><img  class="menu-icon" src="/public/assets/m/img/ic/home.png">Welcome</a>
+						</li>
+						<li class="sidebar-brand sidebar-item">
+								<a href="/"><i class="menu-icon fa fa-tachometer" style="font-size:20px;color:purple;"></i>
+										Dashboard
+								</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/m/visits/"><img class="menu-icon" src="/public/assets/m/img/ic/cals1.png">Visits</a>
+						</li>
+						<li class="sidebar-item">
+                <a href="/m/visits/#/agenda"><img class="menu-icon" src="/public/assets/m/img/ic/agenda.png">Agenda</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/m/facts/"><img  class="menu-icon" src="/public/assets/m/img/ic/facts1.png">Facts</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/contacts"><img class="menu-icon" src="/public/assets/m/img/ic/contct1.png">Contacts</a>
+						</li>
+						<li class="sidebar-item">
+								<a href="/logout"><img class="menu-icon" src="/public/assets/m/img/ic/logout.png">Logout</a>
+						</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /#sidebar-wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+				<div class="container">
+
+						<!-- Fixed navbar :: Start-->
+						<nav class="navbar navbar-custom navbar-fixed-top">
+
+							<div class="navbar-header">
+
+								<a id="menu-toggle" href="#menu-toggle" class="navbar-brand">
+									<i class="fa fa-bars"></i>
+								</a>
+								<a  href="/" class="navbar-brand">
+									Visit Portal</a>
+							</div>
+							<div id="navbar" class="navbar-inverse side-collapse in">
+								<%if (locals.user != null) { %>
+								<% include ../partials/menuSecure.ejs %>
+								<% } else { %>
+								<% include ../partials/menu.ejs %>
+								<% } %>
+
+							</div>
+						</nav>
+						<!-- fixed navebar :: End -->
+						<div class="notify">
+							<!-- application notification area, required for angular-growl-2-->
+							<div growl></div>
+						</div>
+
+
+						<div class="starter-template">
+							<%- body%>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+	</div> <!-- end of page wrapper -->
+
+<!-- Menu Toggle Script -->
+<script>
+$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+});
+</script>
+
+</body>
+
+</html>

@@ -34,12 +34,12 @@ var visitSchema = new mongoose.Schema({
 	status							: { type: String, lowercase: true, trim: true, required: true },		// {confirmed, tentative, freeze, done}
 	createBy						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	createOn						: { type: Date, default: Date.now, required: true },
-	feedbackTmpl				    : { type: Schema.Types.ObjectId, ref: 'feedbackDefs', required: true },
+	feedbackTmpl				    : { type: Schema.Types.ObjectId, ref: 'feedbackDefs', required: false },
 	 keynote						: [{
-		note   						: { type: Schema.Types.ObjectId, ref: 'keynotes', required: true },
-	 	context 					: {type: String, enum: ['welcome', 'thankyou'], required: true},
-	 	order						: {type: Number, required: true}
-	 }] 
+		note   						: { type: Schema.Types.ObjectId, ref: 'keynotes', required: false },
+	 	context 					: {type: String, enum: ['welcome', 'thankyou'], required: false},
+	 	order						: {type: Number, required: false}
+	 }]
 
 });
 

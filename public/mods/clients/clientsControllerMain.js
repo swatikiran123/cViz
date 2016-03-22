@@ -2,7 +2,7 @@
 
 var clientsApp = angular.module('clients');
 
-clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl', 
+clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl',
 	function($scope, $http, $routeParams, $location, growl) {
 
 		var id = $routeParams.id;
@@ -62,7 +62,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        break;
 
        case "edit":
-       $scope.clients = $http.get('/api/v1/secure/clients/' + id).success(function(response){
+       $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
 
         $scope.salesExecUser = response.cscPersonnel.salesExec;
@@ -71,19 +71,19 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
         $scope.accountGMUser = response.cscPersonnel.accountGM;
         $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-        $scope.accountGMId = response.cscPersonnel.accountGM._id;       
+        $scope.accountGMId = response.cscPersonnel.accountGM._id;
 
         $scope.industryExecUser = response.cscPersonnel.industryExec;
         $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-        $scope.industryExecId = response.cscPersonnel.industryExec._id; 
+        $scope.industryExecId = response.cscPersonnel.industryExec._id;
 
         $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
         $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-        $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;    
+        $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
 
         $scope.creUser = response.cscPersonnel.cre;
         $scope.creEmail = response.cscPersonnel.cre.email;
-        $scope.creId = response.cscPersonnel.cre._id;                    
+        $scope.creId = response.cscPersonnel.cre._id;
 
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.clients.startDate = new Date($scope.clients.createdOn);
@@ -94,7 +94,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // refresh method ends
 
   refresh();
-  
+
   $scope.save = function(){
     console.log($scope.regions);
     // set noteBy based on the user picker value
@@ -113,7 +113,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     	break;
       } // end of switch scope.mode ends
 
-      $location.path("/");
+      $location.path("clients/list");
   } // end of save method
 
   $scope.create = function() {
@@ -143,8 +143,8 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.update = function() {
     var inData  = $scope.clients;
     inData.cscPersonnel =$scope.cscPersonnel;
-    
-    $http.put('/api/v1/secure/clients/' + $scope.clients._id, inData).success(function(response) {
+
+    $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {
       refresh();
       growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));
     })
@@ -156,7 +156,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.cancel = function() {
 
   	$scope.clients="";
-  	$location.path("/");
+  	$location.path("clients/list");
   }
 
   $scope.getUser = function(){
@@ -165,11 +165,11 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   	$http.get('/api/v1/secure/admin/users/' + $scope.cscPersonnel).success(function(response) {
 
   		var user = response;
-  		$scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-      $scope.cscPersonnel.accountGM = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-      $scope.cscPersonnel.industryExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-      $scope.cscPersonnel.globalDelivery = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
-      $scope.cscPersonnel.cre = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); 
+  		$scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+      $scope.cscPersonnel.accountGM = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+      $scope.cscPersonnel.industryExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+      $scope.cscPersonnel.globalDelivery = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+      $scope.cscPersonnel.cre = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
 
     });
   }

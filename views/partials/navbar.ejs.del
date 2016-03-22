@@ -1,0 +1,241 @@
+ <link href="/public/assets/m/css/hmnu.css"/>
+ <style>
+ /* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: black;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: black;
+    background: none;
+}
+
+@media screen and (max-width: 768px) and (min-width: 768px)
+{
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.padleft{
+    padding-left: 15px;
+}
+.padleft1{
+    padding-left: 10px;
+}
+ </style>
+
+  <!-- Fixed navbar :: Start-->
+  <nav class="navbar navbar-custom navbar-fixed-top">
+
+    <div class="navbar-header">
+      <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-right">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="pull-left">  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-bars"></i></button></i>
+</a></div>
+      <a class="navbar-brand" href="/">Visit Portal</a>
+    </div>
+    <div id="navbar" class="navbar-inverse side-collapse in">
+  <%if (locals.user != null) { %>
+  <% include menuSecure.ejs %>
+  <% } else { %>
+  <% include menu.ejs %>
+  <% } %>
+
+    </div><!--/.nav-collapse -->
+
+
+
+
+       </nav>   <!-- Fixed navbar :: Emd-->
+
+
+        <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+
+
+<<<<<<< HEAD
+            <ul class="sidebar-nav padleft">
+
+            <li>
+            <br> <div class="menu-profile-pic padleft1"><img class="avatar" height="80" width="80" src=""></div>
+                <div class="menu-profile-name padleft1"></div>
+            </li>
+                             <li class="active">
+=======
+          	<ul class="sidebar-nav padleft">
+
+           <li class="active">
+>>>>>>> e9dbb780f054d2da0ca508abd92f0988704ee215
+
+                <a href="#/cscHome" class="home-menu"><img  class="menuicon" src="/public/assets/m/img/ic/home.png"> &nbsp;&nbsp;Home</a>
+            </li>
+            <li>
+                <a href="#" class="view-agenda-menu"><img class="menuicon" src="/public/assets/m/img/ic/agenda.png">&nbsp;&nbsp;View Agenda</a>
+            </li>
+            <li>
+                <a href="#/facts" class="facts-menu"><img  class="menuicon" src="/public/assets/m/img/ic/facts1.png"> &nbsp;&nbsp;Factsheets</a>
+            </li>
+            <li>
+                <a href="#/contacts" class="contact-menu"><img class="menuicon" src="/public/assets/m/img/ic/contct1.png">&nbsp;&nbsp;Contact SPOC</a>
+            </li>
+            <li>
+                <a href="#/feedback" class="feedback-menu"><img class="menuicon" src="/public/assets/m/img/ic/fb.png">&nbsp;&nbsp;Feedback</a>
+            </li>
+            <li>
+                <a href="#" class="exec-menu"><img class="menuicon" src="/public/assets/m/img/ic/grp.png">&nbsp;&nbsp; Executive BIO'S</a>
+            </li>
+            <li>
+                <a href="#" class="past-visits-menu"><img class="menuicon" src="/public/assets/m/img/ic/cals1.png">&nbsp;&nbsp; Past Visits</a>
+            </li>
+            <li>
+                <a href="#" class="settings-menu"><img class="menuicon" src="/public/assets/m/img/ic/setting.png">&nbsp;&nbsp; Settings</a>
+            </li>
+            <li>
+                <a href="#" class="logout-menu"><img class="menuicon" src="/public/assets/m/img/ic/logout.png">&nbsp;&nbsp; Logout</a>
+            </li>
+
+            </ul>
+        </div>
+
+<!-- Navbar icon animation script -->
+<script>
+ $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+// script to animate hamburger menu icon
+$(document).ready(function () {
+    $(".navbar-toggle").on("click", function () {
+        $(this).toggleClass("active");
+    });
+});
+
+// scripot to select active menu item
+$('.navbar-custom .navbar-nav > li > a').click(function(e) {
+    var $this = $(this);
+    $this.parent().siblings().removeClass('active').end().addClass('active');
+});
+
+// script for left pull menu
+$(document).ready(function() {
+    var sideslider = $('[data-toggle=collapse-side]');
+    var sel = sideslider.attr('data-target');
+    var sel2 = sideslider.attr('data-target-2');
+    sideslider.click(function(event){
+        $(sel).toggleClass('in');
+        $(sel2).toggleClass('out');
+    });
+});
+</script>
