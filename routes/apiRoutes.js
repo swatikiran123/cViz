@@ -20,6 +20,7 @@ var groups					= require(constants.paths.controllers + '/api/groups');
 var cityFacts				= require(constants.paths.controllers + '/api/cityFacts');
 var factSheets				=	require(constants.paths.controllers + '/api/factSheets');
 var teasers					=	require(constants.paths.controllers + '/api/teasers');
+var contactList			=	require(constants.paths.controllers + '/api/contactList');
 
 
 /*
@@ -126,6 +127,14 @@ router.get('/api/v1/secure/teasers/:id', teasers.getOneById);
 router.post('/api/v1/secure/teasers', teasers.create);
 router.put('/api/v1/secure/teasers/:id', teasers.updateById);
 router.delete('/api/v1/secure/teasers/:id', teasers.deleteById);
+
+//list of service routes for contactList
+router.get('/api/v1/secure/contactList', contactList.getAll);
+router.get('/api/v1/secure/contactList/:id', contactList.getOneById);
+router.post('/api/v1/secure/contactList', contactList.create);
+router.put('/api/v1/secure/contactList/:id', contactList.updateById);
+router.delete('/api/v1/secure/contactList/:id', contactList.deleteById);
+router.get('/api/v1/secure/contactList/city/:location', contactList.getWithCity);
 
 // List of service routes for groups
 router.get('/api/v1/secure/admin/groups', groups.getAll);

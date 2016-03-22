@@ -88,7 +88,11 @@ module.exports = {
 
 			"/public/mods/feedback/feedbackModule.js",
 			"/public/mods/feedback/feedbackControllerMain.js",
-			"/public/mods/feedback/feedbackRouter.js"
+			"/public/mods/feedback/feedbackRouter.js",
+
+			"/public/mods/contactList/contactListModule.js",
+			"/public/mods/contactList/contactListControllerMain.js",
+			"/public/mods/contactList/contactListRouter.js"
 		],
 		"prod":[
 			"/public/mods/keynotes/keynotesModule.js",
