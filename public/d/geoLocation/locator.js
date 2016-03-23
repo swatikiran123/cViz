@@ -1,34 +1,8 @@
-angular.module("locator", []), angular.module("locator").directive("locationLookup", [function() {
-    return {
-        restrict: "E",
-        require: "?ngModel",
-        templateUrl: "location-lookup/location-lookup.html",
-        scope: {},
-        link: function(e, o, t, n) {
-            e.limitTo = e.$eval(t.limitTo) || 15, e.callback = e.$eval(t.callback), e.results = [];
-            var a = document.createElement("div");
-            a.setAttribute("id", e.ID);
-            var r = new google.maps.places.PlacesService(o[0].appendChild(a));
-            e.clear = function() {
-                e.results = []
-            }, e.pickLocation = function(o) {
-                r.getDetails({
-                    reference: o.reference
-                }, function(t) {
-                    e.$apply(function() {
-                        var a = {
-                            name: o.terms[0].value,
-                            description: o.description,
-                            latitude: t.geometry.location.lat(),
-                            longitude: t.geometry.location.lng()
-                        };
-                        n.$setViewValue(a), e.callback && e.callback(a)
-                    })
-                })
-            }
-        }
-    }
-}]), angular.module("locator").directive("locationPredictions", [function() {
+var app =angular.module("locator", []);
+var app= angular.module("locator");
+
+app.directive("locationPredictions", [function() {
+
     return {
         restrict: "E",
         scope: {
@@ -58,12 +32,13 @@ angular.module("locator", []), angular.module("locator").directive("locationLook
             })
         }
     }
-}]), angular.module("locator").directive("locationPicker", ["$log", "location", "reverseGeocoder", function(e, o, t) {
+}]);
+app.directive("locationPicker", ["$log", "location", "reverseGeocoder", function(e, o, t) {
     return {
         restrict: "E",
         require: "?ngModel",
         scope: {},
-        templateUrl: "location-picker/location-picker.html",
+        templateUrl: "/public/m/home/profileBar.html",
         link: function(n, a, r, i) {
             n.limitTo = n.$eval(r.limitTo) || 15, o.ready(function() {
                 t.geocode(o.current).then(function(e) {
