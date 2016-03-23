@@ -11,15 +11,15 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.hideFilter = true;
 
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
-    console.log(response);
     $scope.regions=response.values;
-    console.log($scope.regions)
   });
 
   $http.get('/api/v1/secure/lov/offerings').success(function(response) {
-    console.log(response);
     $scope.offerings=response.values;
-    console.log($scope.offerings)
+  });
+
+  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
+    $scope.vertical=response.values;
   });
 
   $scope.small= "small";

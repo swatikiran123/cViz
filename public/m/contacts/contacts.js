@@ -16,7 +16,7 @@ angular.module('contacts', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
-	.when('/contacts', {
+	.when('/contacts/:city', {
 		templateUrl: '/public/m/contacts/contacts.html',
 		controller: 'contactsCtrl'
 	})
