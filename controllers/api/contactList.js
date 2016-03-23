@@ -47,11 +47,7 @@ function getOneById(req,res){
 
 function getWithCity(req,res){
     console.log(req.params);
-    //var location= req.param('location');
-    //var query = {location: new RegExp(location, 'i')};
-    // var fields = req.param('fields');
-    //var sort = req.param('sort');
-    dataService.getWithCity(req.params)//, sort)//,fields
+    dataService.getWithCity(req.params)
     .then(function(data){
         if (data){
             res.send(data);

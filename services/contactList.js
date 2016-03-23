@@ -53,18 +53,12 @@ function getOneById(id){
     return deferred.promise;
 } // gentOneById method ends
 
-function getWithCity(query){//, sortEx){//, fields
+function getWithCity(query){
     var deferred = Q.defer();
     console.log("im here:"+query.location);
     model
-    //.find(query)
-    //.limit(maxRecs)
-    //.select(fields)
     .aggregate(
         [ { $match : { location : query.location} } ])
-    
-        //.select('user type')
-        //.sort(sortEx)
         .exec(function (err, item) {
             if(err) {
                 console.log(err);

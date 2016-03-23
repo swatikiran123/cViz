@@ -180,14 +180,19 @@ module.exports = {
 		]
 	},
 
-
 	"m-execBios":{
 		"dev":[
 			"/public/assets/m/css/execBios.css",
 		    "/public/m/execBios/execBiosCtrl.js"
-			
-		]
-	}
+		    ]
+		 },
+
+	"m-contacts":{
+		"dev":[
+			"/public/m/contacts/contacts.js",
+			"/public/m/contacts/contactsCtrl.js",
+			]
+		}
 
 }
 

@@ -1,0 +1,13 @@
+ <h1>Contact details</h1>
+
+ <div class="panel panel-info" ng-repeat="contact in contactList">
+ 	<div class="panel-heading pn-hdr">Contact details for location :{{contact.location}}</div>
+ 	<div class = "panel panel-primary pn-shdr text-small">
+ 		<div class="pull-left">
+ 			{{contact.type}}
+ 		</div>
+ 	</div>
+ 	<div class="panel-body">
+ 		<div userdisplay view-mode="nameonly" user-id="contact.user"></div>
+ 	</div>
+ </div>
