@@ -158,7 +158,9 @@ module.exports = {
 			"/public/d/geoLocation/locator.js",
 			"/public/d/geoLocation/locator-tpl.js"
 		]
+
 	},
+
 
 	"m-facts":{
 		"dev":[
@@ -185,7 +187,8 @@ module.exports = {
 		"dev":[
 			"/public/m/sessions/sessions.js",
 			"/public/m/sessions/sessionsCtrl.js",
-			"/public/assets/m/css/sessions.css"
+			"/public/assets/m/css/sessions.css",
+			"/public/assets/m/css/sessionDetail.css"
 		]
 	},
 
@@ -202,7 +205,6 @@ module.exports = {
 			"/public/m/contacts/contactsCtrl.js",
 			]
 		}
-
-}
+	}
 
 };

@@ -7,7 +7,8 @@
         <div class="list-group">
             <div href="#" class="list-group-item" ng-repeat="clientRep in representative.client_representatives" ng-click="collapseDiv($index,'client')">
                 <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <img ng-src="{{clientRep.picture}}">
+                    <img  class="img-circle pic" ng-src="{{clientRep.picture}}">
+                   
                 </div>
                 <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                     <div class="representative-name">{{clientRep.name}}</div>
@@ -34,7 +35,8 @@
         <div class="list-group">
             <div href="#" class="list-group-item" ng-repeat="cscRep in representative.csc_india_representatives" ng-click="collapseDiv($index,'cscRep')">
                 <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <img ng-src="{{cscRep.picture}}">
+                    
+                       <img ng-src="{{cscRep.picture}}" class="img-circle pic" alt> 
                 </div>
                 <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                     <div class="representative-name">{{cscRep.name}}</div>

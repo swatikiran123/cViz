@@ -15,21 +15,21 @@ bios.controller('execBiosCtrl', function($scope) {
     $scope.representatives = [{
         'csc_india_representatives': [{
             'name': 'Mr Ram',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, CSC, India',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',
             'telephone': '+555 555 555'
         }, {
             'name': 'Mr Sham',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, CSC, India',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',
             'telephone': '+555 555 555'
         }, {
             'name': 'Mrs Megha',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, CSC, India',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',
@@ -37,21 +37,21 @@ bios.controller('execBiosCtrl', function($scope) {
         }],
         'client_representatives': [{
             'name': 'Harry John',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, EMC Inc, IL, USA',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',
             'telephone': '+555 555 555'
         }, {
             'name': 'Jayne Smith',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, EMC Inc, IL, USA',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',
             'telephone': '+555 555 555'
         }, {
             'name': 'Rossy Hall',
-            'picture': '/public/assets/m/rem/profile-pic.png',
+            'picture': '/public/assets/g/imgs/avatar.jpg',
             'designation': 'Sr Analyst, EMC Inc, IL, USA',
             'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
             'email': 'vincent@csc.com',

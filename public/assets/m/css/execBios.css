@@ -1,6 +1,10 @@
 #exec-bios {
     background-color: #eeeeee;
 }
+.app{
+    height:55px;
+    width: 60px;
+}
     .header {
         padding: 10px;
         background-color: #fff;

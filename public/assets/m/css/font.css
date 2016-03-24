@@ -1,55 +1,65 @@
 
 @font-face {
   font-family: workSansBold;
-  src: url(../fonts/worksans/WorkSans-Bold.ttf);  
+  src: url('../fonts/worksans/WorkSans-Bold.ttf');
 }
 
 @font-face {
   font-family: workSansMedium;
-  src: url(../fonts/worksans/WorkSans-Medium.ttf);  
+  src: url('../fonts/worksans/WorkSans-Medium.ttf');
 }
 
 @font-face {
   font-family: workSansSemiBold;
-  src: url(../fonts/worksans/WorkSans-SemiBold.ttf);  
+  src: url('../fonts/worksans/WorkSans-SemiBold.ttf');
 }
 
 @font-face {
   font-family: workSansExtraLight;
-  src: url(../fonts/worksans/WorkSans-ExtraLight.ttf);  
+  src: url('../fonts/worksans/WorkSans-ExtraLight.ttf');
 }
 
 @font-face {
   font-family: workSansLight;
-  src: url(../fonts/worksans/WorkSans-Light.ttf);  
+  src: url('../fonts/worksans/WorkSans-Light.ttf');
 }
 
 @font-face {
   font-family: workSansRegular;
-  src: url(../fonts/worksans/WorkSans-Regular.ttf);  
+  src: url('../fonts/worksans/WorkSans-Regular.ttf');
 }
 
 @font-face {
   font-family: antonioBold;
-  src: url(../fonts/antonio/Antonio-Bold.ttf);
+  src: url('../fonts/antonio/Antonio-Bold.ttf');
 }
 
 @font-face {
   font-family: robotoCondensedBold;
-  src: url(../fonts/roboto/RobotoCondensed-Bold.ttf);
+  src: url('../fonts/roboto/RobotoCondensed-Bold.ttf');
 }
 
 @font-face {
   font-family: robotoBlack;
-  src: url(../fonts/roboto/Roboto-Black.ttf);
+  src: url('../fonts/roboto/Roboto-Black.ttf');
 }
 
 @font-face {
   font-family: robotoBold;
-  src: url(../fonts/roboto/Roboto-Bold.ttf);
+  src: url('../fonts/roboto/Roboto-Bold.ttf');
 }
 
 @font-face {
   font-family: robotoLight;
-  src: url(../fonts/roboto/Roboto-Light.ttf);
+  src: url('../fonts/roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: robotoRegular;
+  src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: robotoMedium;
+  src: url('../fonts/roboto/Roboto-Medium.ttf');
 }
