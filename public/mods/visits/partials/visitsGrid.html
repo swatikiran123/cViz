@@ -61,7 +61,8 @@
     <tbody class="data-grid-data">
       <tr ng-repeat="visit in visitsList | filter: search |orderBy:orderByField:reverseSort" ng-if="showAll" >
         <td>{{visit.title}}</td>
-        <td>{{visit.client}}</td>
+        <!-- <td>{{visit.client}}</td> -->
+        <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client"></div></td>
         <td>{{visit.agenda}}</td>
         <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:"dd MMM yyyy"}}</td>
         <td>{{visit.locations}}</td>
@@ -76,7 +77,8 @@
      <!--sorted date table-->
      <tr ng-repeat="visit in filteredDate | filter: search | orderBy:orderByField:reverseSort" ng-if="showFiltered" >
       <td>{{visit.title}}</td>
-      <td>{{visit.client}}</td>
+      <!-- <td>{{visit.client}}</td> -->
+      <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client"></div></td>
       <td>{{visit.agenda}}</td>
       <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:"dd MMM yyyy"}}</td>
       <td>{{visit.locations}}</td>
