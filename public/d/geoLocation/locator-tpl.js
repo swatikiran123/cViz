@@ -3,7 +3,7 @@ try { app = angular.module("locator"); }
 catch(err) { app = angular.module("locator", []); }
 app.run(["$templateCache", function($templateCache) {
   "use strict";
-  $templateCache.put("location-picker/location-picker.html",
+  $templateCache.put("/public/m/home/profileBar.html",
     "<ul>\n" +
     "\n" +
     "  <!-- Reverse Geocode Results -->\n" +

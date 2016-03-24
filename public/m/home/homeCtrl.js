@@ -2,11 +2,6 @@
 
 var app = angular.module('home');
 
-app.controller('homeCtrl', function($scope) {
-
-	console.log("home controller running");
-	// geolocationSvc.getCurrentPosition().then(function(loc){
-	// 	console.log("location found " + JSON.stringify(loc));
-	// });
-
-});
+app.controller('homeCtrl', ['$scope', 'location', function ($scope, location) {
+   location.get(angular.noop, angular.noop);
+}]);

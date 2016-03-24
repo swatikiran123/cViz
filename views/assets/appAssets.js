@@ -130,9 +130,6 @@ module.exports = {
 		"dev":[
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
-			"/public/d/geoLocation/scr.js",
-			"/public/d/geoLocation/locator.js",
-			"/public/d/geoLocation/locator-tpl.js"
 		],
 		"prod":[
 
@@ -142,7 +139,9 @@ module.exports = {
 	"m-main":{
 		"dev":[
 			"/public/m/home/home.js",
-			"/public/m/home/homeCtrl.js"
+			"/public/m/home/homeCtrl.js",
+			"/public/d/geoLocation/locator.js",
+			"/public/d/geoLocation/locator-tpl.js"
 		]
 	},
 
