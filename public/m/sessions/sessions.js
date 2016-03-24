@@ -26,4 +26,10 @@ angular.module('sessions', ['ngRoute'])
 		controller: 'sessionCtrl'
 	})
 
+	.when('/sessionDetails', {
+		templateUrl: '/public/m/sessions/sessionDetails.html',
+		controller: 'sessionDetailsCtrl'
+	})
+
+
 }]);
