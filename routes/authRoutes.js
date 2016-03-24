@@ -85,6 +85,9 @@ module.exports = function(app, passport) {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
+                    res.locals.pageTitle = "SignUp";
+                    res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+                    res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
             res.render('signup.ejs', {
 							layout: 'layouts/public',
 							message: req.flash('signupMessage')
