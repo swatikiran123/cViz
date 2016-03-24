@@ -135,6 +135,7 @@ module.exports = {
 		"prod":[
 
 		]
+
 	},
 
 	"m-main":{
@@ -172,6 +173,15 @@ module.exports = {
 			"/public/m/sessions/sessions.js",
 			"/public/m/sessions/sessionsCtrl.js",
 			"/public/assets/m/css/sessions.css"
+		]
+	},
+
+
+	"m-execBios":{
+		"dev":[
+			"/public/assets/m/css/execBios.css",
+		    "/public/m/execBios/execBiosCtrl.js"
+			
 		]
 	}
 

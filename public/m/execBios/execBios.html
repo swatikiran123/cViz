@@ -1,0 +1,59 @@
+
+
+<div id="exec-bios" ng-repeat="representative in representatives">
+    <div class="header">Executive Bio's</div>
+    <div class="client-rep">
+        <div class="heading">CLIENT REPRESENTATIVES</div>
+        <div class="list-group">
+            <div href="#" class="list-group-item" ng-repeat="clientRep in representative.client_representatives" ng-click="collapseDiv($index,'client')">
+                <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                    <img ng-src="{{clientRep.picture}}">
+                </div>
+                <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+                    <div class="representative-name">{{clientRep.name}}</div>
+                    <div class="representative-designation">{{clientRep.designation}}</div>
+                </div>
+                <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
+                <div class="rep-hidden-details collapse col-xs-10 col-sm-10 col-md-10" id="client{{$index}}">
+                    <div class="representative-bios">{{clientRep.bio}}</div>
+                    <div class="reach-representative">
+                        <div class="reach-representative-text">Reach him by</div>
+                        <a ng-href="tel: {{clientRep.telephone}}" class="tele-link">
+                           <i class="fa fa-phone"></i>
+                        </a>
+                        <a ng-href="mailto: {{clientRep.email}}">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="csc-india-rep">
+        <div class="heading">CSC INDIA REPRESENTATIVES</div>
+        <div class="list-group">
+            <div href="#" class="list-group-item" ng-repeat="cscRep in representative.csc_india_representatives" ng-click="collapseDiv($index,'cscRep')">
+                <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                    <img ng-src="{{cscRep.picture}}">
+                </div>
+                <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+                    <div class="representative-name">{{cscRep.name}}</div>
+                    <div class="representative-designation">{{cscRep.designation}}</div>
+                </div>
+                <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
+                <div class="rep-hidden-details collapse col-xs-10 col-sm-10 col-md-10" id="cscRep{{$index}}">
+                    <div class="representative-bios">{{cscRep.bio}}</div>
+                    <div class="reach-representative">
+                        <div class="reach-representative-text">Reach him by</div>
+                        <a ng-href="tel: {{cscRep.telephone}}" class="tele-link">
+                            <i class="fa fa-phone"></i>
+                        </a>
+                        <a ng-href="mailto: {{cscRep.email}}">
+                               <i class="fa fa-envelope-o"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
