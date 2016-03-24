@@ -40,7 +40,8 @@
       <td>
         <a class="table-btn" href="#/{{feedback._id}}/showFeedback"><span class="glyphicon glyphicon-eye-open" /></a>
         <a class="table-btn" href="#/{{feedback._id}}/editFeedback"><span class="glyphicon glyphicon-edit" /></a>
-        <a class="table-btn" ng-click="delete(feedback)"><span class="glyphicon glyphicon-trash" /></a>
+        <a class="table-btn" ng-click="delete(feedback)" confirm-dialog header-text="Delete Feedback" content="Are you sure you want to delete the feedback with feedback title <b>{{feedback.title}} ? </b>" 
+        yes-text="Ok" no-text="Cancel"><span class="glyphicon glyphicon-trash" /></a>
       </td>
     </tr>
   </tbody>

@@ -158,6 +158,20 @@ module.exports = {
 		],
 	},
 
+	"angular-dropzone":{
+		"cdn":[],
+		"dev":[
+			"/public/assets/g/css/dropzone.css",
+			"/public/assets/g/js/dropzone.js"
+		],
+	},
+
+	"angular-confirmDialog":{
+		"cdn":[],
+		"dev":[
+			"/public/assets/g/css/confirmDialog.css"
+		],
+	},
 }
 
 };

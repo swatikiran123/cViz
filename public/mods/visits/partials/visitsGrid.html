@@ -68,7 +68,8 @@
         <td>
 					<a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
 	        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
-	        <a class="table-btn" ng-click="delete(visit)"><span class="fa fa-trash" /></a>
+	        <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>" 
+          yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
 	        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
        </td>
      </tr>
@@ -82,7 +83,8 @@
       <td>
        <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
-       <a class="table-btn" ng-click="delete(visit)"><span class="fa fa-trash" /></a>
+       <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>" 
+       yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
      </td>
    </tr>

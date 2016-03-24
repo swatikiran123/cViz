@@ -69,7 +69,8 @@ module.exports = {
 			"/public/d/user/script.js",
 			"/public/d/fileUpload/script.js",
 			"/public/d/fileAttachment/script.js",
-			"/public/d/datePicker/script.js"
+			"/public/d/datePicker/script.js",
+			"/public/d/confirmDialog/script.js"
 		],
 		"prod":[
 		]

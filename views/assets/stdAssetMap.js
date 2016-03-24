@@ -5,10 +5,10 @@ module.exports = {
 		"index" : [],
 		"login": [],
 		"home": [],
-		"admin": ["angular-material"],
-		"customize": ["angular-material","angular-text","angular-forms"],
-		"visits": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog"],
-		"profile": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog"],
+		"admin": ["angular-material","angular-confirmDialog"],
+		"customize": ["angular-material","angular-text","angular-forms","angular-confirmDialog"],
+		"visits": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-confirmDialog"],
+		"profile": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-dropzone"],
 
 
 		"m-home": [],
