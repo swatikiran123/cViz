@@ -49,6 +49,15 @@ module.exports = {
 		]
 	},
 
+	"home":{
+		"dev":[
+			"/public/assets/w/styles/dashboard.css"
+		],
+		"prod":[
+			"/public/assets/w/styles/dashboard.css"
+		]
+	},
+
 	"admin":{
 		"dev":[
 			"/public/mods/admin/users/usersModule.js",

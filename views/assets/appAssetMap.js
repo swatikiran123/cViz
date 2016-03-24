@@ -4,7 +4,7 @@ module.exports = {
 		"angular" : ["utils"],
 		"index": ["index"],
 		"login": [],
-		"home": [],
+		"home": ["home"],
 		"admin": ["dir-web","admin"],
 		"customize": ["dir-web","customize"],
 		"visits": ["dir-web","clients","visits"],
