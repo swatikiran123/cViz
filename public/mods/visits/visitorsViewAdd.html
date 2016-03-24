@@ -23,7 +23,7 @@
  </tr>
  
  <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
-  <td col-span="3"> <div>
+  <td colspan="3"> <div>
     <div>{{visitorDef.influence}}</div>
     <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
       <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
