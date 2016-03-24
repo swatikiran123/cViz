@@ -88,7 +88,11 @@ module.exports = {
 
 			"/public/mods/feedback/feedbackModule.js",
 			"/public/mods/feedback/feedbackControllerMain.js",
-			"/public/mods/feedback/feedbackRouter.js"
+			"/public/mods/feedback/feedbackRouter.js",
+
+			"/public/mods/contactList/contactListModule.js",
+			"/public/mods/contactList/contactListControllerMain.js",
+			"/public/mods/contactList/contactListRouter.js"
 		],
 		"prod":[
 			"/public/mods/keynotes/keynotesModule.js",
@@ -176,14 +180,19 @@ module.exports = {
 		]
 	},
 
-
 	"m-execBios":{
 		"dev":[
 			"/public/assets/m/css/execBios.css",
 		    "/public/m/execBios/execBiosCtrl.js"
-			
-		]
-	}
+		    ]
+		 },
+
+	"m-contacts":{
+		"dev":[
+			"/public/m/contacts/contacts.js",
+			"/public/m/contacts/contactsCtrl.js",
+			]
+		}
 
 }
 

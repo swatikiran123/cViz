@@ -1,19 +1,21 @@
+<div class="container">
+	<div class="page-header">
+		Account Management - Show
+		<!-- <div class="sub-header">
+		</div> -->
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"> <b>Show client details </b></h3>
+		</div>
+		<div class = "panel-subheader pull-right">
+		</div>
+		<div class="panel-body">
+			<li><label>Account Name</label>&nbsp;&nbsp;{{clients.name}}</li>
+			<li><label>Vertical</label>&nbsp;&nbsp;{{clients.vertical}}</li>
+			<li><label>Profile</label>&nbsp;&nbsp;{{clients.profile}}</li>
+			<br>
+		</div>
+	</div>
+</div>
 
-Account Management - Show<br/>
-Show client details <br/>
-
-
-
-Account Name:	{{clients.name}}<br/>
-Vertical:	{{clients.vertical}}<br/>
-Profile:	{{clients.profile}}<br/>
-Sales Executive By: {{clients.cscPersonnel.salesExec.name.first}} {{clients.cscPersonnel.salesExec.name.last}}
-email: {{clients.cscPersonnel.salesExec.email}}<br/>
-Account General Manager By: {{clients.cscPersonnel.accountGM.name.first}} {{clients.cscPersonnel.accountGM.name.last}}&nbsp &nbsp
-email: {{clients.cscPersonnel.accountGM.email}}<br/>
-Industry Executive By: {{clients.cscPersonnel.industryExec.name.first}} {{clients.cscPersonnel.industryExec.name.last}}&nbsp &nbsp
-email: {{clients.cscPersonnel.industryExec.email}}<br/>
-Global Delivery By: {{clients.cscPersonnel.globalDelivery.name.first}} {{clients.cscPersonnel.globalDelivery.name.last}}&nbsp &nbsp
-email: {{clients.cscPersonnel.globalDelivery.email}}<br/>
-CRE By: {{clients.cscPersonnel.cre.name.first}} {{clients.cscPersonnel.cre.name.last}}&nbsp &nbsp
-email: {{clients.cscPersonnel.cre.email}}

@@ -9,12 +9,22 @@ angular.module('userDirective', [])
     $scope.showFlag = "user";
 
   $scope.getUser = function(){
-    if($scope.userEmail===""){
-      $scope.showFlag = "none";
-      return;
+    var url= "";
+    if($scope.userId!="" && $scope.userId!=undefined){
+      // $scope.showFlag = "none";
+      // return;
+      url='/api/v1/secure/admin/users/' + $scope.userId;
+    }
+    else if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
+      url='/api/v1/secure/admin/users/email/' + $scope.userEmail;
+    }
+    else{
+        message = "Invalid User Id/email";
+        return;
     }
 
-    $http.get('/api/v1/secure/admin/users/email/' + $scope.userEmail).success(function(response) {
+
+    $http.get(url).success(function(response) {
       $scope.userModel = response;
       $scope.userId = response._id;
       $scope.userEmail = response.email;

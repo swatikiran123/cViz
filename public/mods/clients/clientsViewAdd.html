@@ -15,129 +15,144 @@
 
   <div class="data-form">
     <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
-    <br>
+      <br>
 
-    <!-- Account name input-->
+      <!-- Account name input-->
       <md-input-container class="md-block">
-        <label>Account Name</label>
-        <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
-        <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The name  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">the name should contain minimum 5characters</div></div></div>
+      <label>Account Name</label>
+      <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
+      <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The name  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the name should contain minimum 5characters</div></div></div>
       </md-input-container>
-  
 
-    <!-- Profile editor-->
-    <div class="field">
-     <label ng-show="clients.profile" class="show-hide">Profile</label><br>
-    <div class="form-group">
-      <text-angular 
-      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
-    </div>                    
 
-    <!-- vertical Type input-->
-     <md-input-container class="md-block">
-        <label>Vertical</label>
-        <input md-maxlength="200" minlength="5" required name="vertical" ng-model="clients.vertical" >
-        <div ng-messages="clientsForm.vertical.$error" ng-show="clientsForm.vertical.$touched || !clientsForm.vertical.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The vertical  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">the vertical should contain minimum 5characters</div></div></div>
-      </md-input-container>
-   
-    <!-- competitors Type input-->
-    <md-input-container class="md-block">
-        <label>Competitors</label>
-        <input md-maxlength="200" minlength="5" required name="competitors" ng-model="clients.competitors">
-        <div ng-messages="clientsForm.competitors.$error" ng-show="clientsForm.competitors.$touched || !clientsForm.competitors.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The vertical  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">the vertical should contain minimum 5characters</div></div></div>
-      </md-input-container>
-    <!--{{regions}}-->
+      <!-- Profile editor-->
+      <div class="field">
+       <label ng-show="clients.profile" class="show-hide">Profile</label><br>
+       <div class="form-group">
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+        ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
+      </div>                    
 
-    <!-- regions checkboxregions:-->
-    <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
-      <label>Regions &nbsp;&nbsp; :</label>  
-  
-       <select 
-       ng-model="clients.regions" 
-       ng-options="data for data in regions">
-     </select>
-     <pre>selected: {{clients.regions}}</pre>
-   </div>
+      <!-- vertical Type input-->
+      <div class="row">
+        <div class="form-group col-xs-6">
+          <div class="form-group" ng-class="{ 'has-error': clientsForm.vertical.$touched && clientsForm.vertical.$invalid }">
+            <label>Vertical &nbsp;&nbsp; :</label>  
 
- <!-- offerings checkboxofferings:-->
- <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
-  <label>offerings &nbsp;&nbsp; :</label>  
+            <select 
+            ng-model="clients.vertical" 
+            ng-options="data for data in vertical">
+          </select>
+          <!-- <pre>selected: {{clients.regions}}</pre> -->
+        </div>
+      </div>
 
-   <select 
-   ng-model="clients.offerings" 
-   ng-options="data for data in offerings">
- </select>
- <pre>selected: {{clients.offerings}}</pre>
+
+      <!--{{regions}}-->
+
+      <!-- regions checkboxregions:-->
+
+      <div class="form-group col-xs-6">
+        <div class="form-group" ng-class="{ 'has-error': clientsForm.regions.$touched && clientsForm.regions.$invalid }">
+          <label>Regions &nbsp;&nbsp; :</label>  
+
+          <select 
+          ng-model="clients.regions" 
+          ng-options="data for data in regions">
+        </select>
+        <!-- <pre>selected: {{clients.regions}}</pre> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- offerings checkboxofferings:-->
+
+  <div class="form-group" ng-class="{ 'has-error': clientsForm.offerings.$touched && clientsForm.offerings.$invalid }">
+    <label>offerings &nbsp;&nbsp; :</label>  
+
+    <select 
+    ng-model="clients.offerings" 
+    ng-options="data for data in offerings">
+  </select>
+  <!-- <pre>selected: {{clients.offerings}}</pre> -->
 </div>
 
+<!-- competitors Type input-->
+<md-input-container class="md-block">
+<label>Competitors</label>
+<input md-maxlength="200" minlength="5" required name="competitors" ng-model="clients.competitors">
+<div ng-messages="clientsForm.competitors.$error" ng-show="clientsForm.competitors.$touched || !clientsForm.competitors.$pristine">
+ <div class="messagenotify">
+  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  <div ng-message="md-maxlength">The vertical  has to be less than 30 characters long.</div>
+  <div ng-message="minlength">the vertical should contain minimum 5characters</div></div></div>
+</md-input-container>
 
 
 <!-- CSC Personnel input--> 
 <!--salesExec-CSCPersonnel-->
-<div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
-  <label>Sales Executive &nbsp;&nbsp; :</label>  
-  <div user type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" ></div>
-  </div>
-
-
-<!--accountGM-CSCPersonnel-->
-<div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
-  <label>Account General Manager &nbsp;&nbsp; :</label>  
+<div class="row">
+  <div class="form-group col-xs-4">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
+      <label>Sales Executive &nbsp;&nbsp; :</label>  
+      <div user type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" ></div>
+    </div>
+  </md-input-container></div>
+  <!--accountGM-CSCPersonnel-->
+  <div class="form-group col-xs-4">
+  <md-input-container class="md-block">
+  <div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
+    <label>Account General Manager &nbsp;&nbsp; :</label>  
     <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" ></div>
   </div>
-
+</md-input-container></div>
 <!--industryExec-CSCPersonnel--> 
+<div class="form-group col-xs-4">
+<md-input-container class="md-block">
 <div class="form-group" ng-class="{ 'has-error': clientsForm.industryExecUser.$touched && clientsForm.industryExecUser.$invalid }">
   <label>Industry Executive &nbsp;&nbsp; :</label>  
-   <div user type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" ></div>
-  </div>
-
-
-<!--globalDelivery-CSCPersonnel--> 
+  <div user type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" ></div>
+</div>
+</md-input-container>
+</div>
+</div>
+<!--globalDelivery-CSCPersonnel-->
+<div class="row">
+  <div class="form-group col-xs-6">
+<md-input-container class="md-block"> 
 <div class="form-group" ng-class="{ 'has-error': clientsForm.globalDeliveryUser.$touched && clientsForm.globalDeliveryUser.$invalid }">
   <label >Global Delivery &nbsp;&nbsp; :</label>  
   <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" ></div>
-  </div>
-
+</div>
+</md-input-container></div>
 
 <!--cre-CSCPersonnel--> 
+<div class="form-group col-xs-6">
+<md-input-container class="md-block">
 <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
   <label>CRE &nbsp;&nbsp; :</label>  
-  
-    <div user type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" ></div>
-  </div>
+  <div user type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" ></div>
 </div>
+</div>
+</md-input-container></div></div>
 
 <!-- netPromoterScore Type input-->
-
-     <md-input-container class="md-block">
-        <label>Net Promoter Score</label>
-        <input md-maxlength="30" minlength="5" required name="Net Promoter Score" ng-model="clients.netPromoterScore">
-        <div ng-messages="clientsForm.netPromoterScore.$error" ng-show="clientsForm.netPromoterScore.$touched || !clientsForm.netPromoterScore.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The Net Promoter Score  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">the Net Promoter Score should contain minimum 5characters</div></div></div>
-      </md-input-container>
-
-
-<div class="form-group"> 
-  <input type="text" class="form-control" placeholder="Net Promoter Score" id="netPromoterScore" name="netPromoterScore" ng-model="clients.netPromoterScore" required ng-minlength="3" ng-maxlength="20" floating-validation/>
-</div>
+<md-input-container class="md-block">
+<label>Net Promoter Score</label>
+<input md-maxlength="30" minlength="5" required name="Net Promoter Score" ng-model="clients.netPromoterScore">
+<div ng-messages="clientsForm.netPromoterScore.$error" ng-show="clientsForm.netPromoterScore.$touched || !clientsForm.netPromoterScore.$pristine">
+ <div class="messagenotify">
+  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  <div ng-message="md-maxlength">The Net Promoter Score  has to be less than 30 characters long.</div>
+  <div ng-message="minlength">the Net Promoter Score should contain minimum 5characters</div></div></div>
+</md-input-container>
 
 <!-- Button -->
 <div class="form-group">
