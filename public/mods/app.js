@@ -6,7 +6,7 @@ angular.module('cviz-customize',
 	['userprofileDirective','userDirective','userdisplayDirective','datePicker','keynotes','facts','feedback','confirmDialogDirective','contactList']);
 
 angular.module('cviz-manage',
-	['userprofileDirective','userDirective','userdisplayDirective','datePicker','dropzone','fileuploadDirective','visits',"clients",'confirmDialogDirective']);
+	['userprofileDirective','userDirective','userdisplayDirective','datePicker','dropzone','fileuploadDirective','visits',"clients",'confirmDialogDirective','clientDisplayDirective']);
 
 angular.module('cviz-profile',
 	['userprofileDirective','userDirective','userdisplayDirective','datePicker','dropzone','fileuploadDirective','profile']);

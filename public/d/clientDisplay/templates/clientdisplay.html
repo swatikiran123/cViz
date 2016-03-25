@@ -1,0 +1,19 @@
+<label ng-init="getClient()" ng-minlength="1" ng-maxlength="75">
+<ANY ng-switch="showFlag">
+  <ANY ng-switch-when="client">
+      <div ng-include = "getTemplate()">
+	  </div>
+  </ANY>
+
+  <ANY ng-switch-when="noClient">
+	  	<div class="text-danger" style="width:180px;!important;">
+			Client not found!!!
+	    </div>
+  </ANY>
+
+  <ANY ng-switch-default>
+    	<div class="text-info" style="width:180px;!important;">
+			<!-- Default panel -->
+		</div>
+	</ANY>
+</ANY>
