@@ -7,7 +7,7 @@
 		<div class="container-fluid" data-spy = "scroll" data-target = ".agenga-list">
 			<ul ng-init="vm.tab=1" class="nav navbar-nav agenga-list">
 				<li ng-repeat="schedules in scheduleList">
-					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}</a>
+					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}- {{schedules.date | date : "dd MMM yyyy"}} </a>
 				</li>
 			</ul> <!-- end of tabs -->
 		</div> <!-- end of tab header -->

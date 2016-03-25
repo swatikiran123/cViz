@@ -179,7 +179,8 @@ module.exports = {
 	"m-visits":{
 		"dev":[
 			"/public/m/visits/visits.js",
-			"/public/m/visits/visitsCtrl.js"
+			"/public/m/visits/visitsCtrl.js",
+			"/public/assets/m/css/myVisitPage.css"
 		]
 	},
 
