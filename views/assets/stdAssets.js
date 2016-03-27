@@ -172,6 +172,15 @@ module.exports = {
 			"/public/assets/g/css/confirmDialog.css"
 		],
 	},
+
+	"utils":{
+		"cdn":[],
+		"dev":[
+			"/public/libs/moment/moment.js",
+			"/public/libs/moment-range/dist/moment-range.js"
+		],
+	}
+
 }
 
 };

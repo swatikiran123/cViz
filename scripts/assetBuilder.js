@@ -42,7 +42,7 @@ function getAssets(type, handles){
 
 	var script = [];
 	_.each(handles.split(','), function(handle){
-		logger.writeJson(util.formatString("%s with handle %s", type, handle),'debug',1);
+		//logger.writeJson(util.formatString("%s with handle %s", type, handle),'debug',1);
 
 		assetMap.assetMap[handle].forEach(function(map){
 
@@ -71,7 +71,7 @@ function getAssets(type, handles){
 			}
 		});
 	});
-	logger.writeLine("scripts for handle: " + handles, 'debug', 1);
-	logger.writeLine(script, 'debug', 1);
+	// logger.writeLine("scripts for handle: " + handles, 'debug', 1);
+	// logger.writeLine(script, 'debug', 1);
 	return script.join(" ");
 }

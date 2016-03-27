@@ -80,6 +80,14 @@ module.exports = {
 		]
 	},
 
+	"filters-web":{
+		"dev":[
+			"/public/f/date/script.js"
+		],
+		"prod":[
+		]
+	},
+
 	"customize":{
 		"dev":[
 			"/public/mods/keynotes/keynotesModule.js",
@@ -121,7 +129,7 @@ module.exports = {
 			"/public/mods/visits/visitsModule.js",
 			"/public/mods/visits/visitsControllerMain.js",
 			"/public/mods/visits/sessions/sessionsControllerMain.js",
-						"/public/mods/visits/visitsRouter.js"
+			"/public/mods/visits/visitsRouter.js"
 
 
 		],

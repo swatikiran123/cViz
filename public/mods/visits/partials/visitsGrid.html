@@ -63,12 +63,13 @@
         <td>{{visit.title}}</td>
         <td>{{visit.client}}</td>
         <td>{{visit.agenda}}</td>
-        <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:"dd MMM yyyy"}}</td>
+        <td>{{visit.startDate | DateFormat:"ddd, DD MMM"}} - {{visit.endDate | DateFormat:"ddd, DD MMM"}}</td>
+				<!-- <td>{{visit.startDate | DateRange:"{{visit.endDate}}, ddd, DD MMM"}}</td> -->
         <td>{{visit.locations}}</td>
         <td>
 					<a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
 	        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
-	        <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>" 
+	        <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
           yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
 	        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
        </td>
@@ -83,7 +84,7 @@
       <td>
        <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
-       <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>" 
+       <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
      </td>
