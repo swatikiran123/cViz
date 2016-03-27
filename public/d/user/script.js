@@ -23,7 +23,6 @@ angular.module('userDirective', [])
         return;
     }
 
-
     $http.get(url).success(function(response) {
       $scope.userModel = response;
       $scope.userId = response._id;
@@ -40,8 +39,9 @@ angular.module('userDirective', [])
       else
         console.log("error with user directive");
     });
-  }
+  } // end of getUser method
 
+	$scope.getUser(); // autoload data
 }])
 
 .directive('user', function() {
