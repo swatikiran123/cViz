@@ -30,7 +30,7 @@ angular.module('visits')
       })
 
 			.when('/visits/:id/sessions', {
-				templateUrl: '/public/mods/sessions/sessionsViewMain.html',
+				templateUrl: '/public/mods/visits/sessions/sessionsViewMain.html',
 				controller: 'sessionsControllerMain'
 			})
 

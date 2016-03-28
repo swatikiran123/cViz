@@ -2,8 +2,8 @@
 
    <!-- page header/subheader -->
    <div class="page-header">
-    Visit Planner - Add
-    <div class="sub-header">Add new visit
+    Visit Planner - Add New Visit
+    <div class="sub-header">Highlevel planning for the visit
     </div>
   </div>
   <div class= "page-toolbar">
@@ -20,7 +20,7 @@
   <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;"></div>
 
   <!--Basic Information TAB PAGE ONE-->
-  <md-tab label="Basic Information">
+  <md-tab label="Agenda">
   <div class="panel-group">
     <!-- <md-content class="md-padding"> -->
     <div class="data-form">
@@ -30,7 +30,7 @@
         <!--panel-one-->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"> <b>Add visit - Give the details of visit</b></h3>
+            <h3 class="panel-title"> <b>Info about the client's visit agenda...</b></h3>
           </div>
           <div class = "panel-subheader pull-right">
           </div>
@@ -77,7 +77,7 @@
   <!--panel-two-->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"> <b>Add Anchor - select the Anchor of the session </b></h3>
+      <h3 class="panel-title"> <b>Key personnel for the visit...</b></h3>
     </div>
     <div class = "panel-subheader pull-right">
     </div>
@@ -93,10 +93,10 @@
           </div>
         </md-input-container>
       </div>
-  
+
 
     <!-- visits anchor By input-->
-    
+
       <div class="form-group col-xs-5">
         <md-input-container class="md-block">
         <label>Anchor</label>
@@ -112,7 +112,7 @@
 <!--panel-three-->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <b>Add schedule - schedule the sessions </b></h3>
+    <h3 class="panel-title"> <b>Visit outline schedule with break-up...</b></h3>
   </div>
   <div class = "panel-subheader pull-right">
   </div>
@@ -127,7 +127,7 @@
 <!--panel-four-->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <b>CSC Interest - Details of type </b></h3>
+    <h3 class="panel-title"> <b>CSC's key take away from the visit...</b></h3>
   </div>
   <div class = "panel-subheader pull-right">
   </div>
@@ -137,7 +137,10 @@
     <div class="row">
       <div class="col-xs-5">
         <div class="form-group">
-          <label>Billable</label><input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide"><br/>
+          <label>Is billable?</label>&nbsp;
+					<input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
+					&nbsp;You need an active WBS code...
+					<br/>
 
           <div>
             <div class="check-element animate-show" ng-show="checked">
@@ -190,7 +193,7 @@
         <!-- visits visitType-->
         <div class="form-group col-xs-4">
           <div id="new" ng-if="visits.interest.businessType == 'new'">
-            <label>visit type-New</label>
+            <label>Say more: </label>
             <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
               <option ng-option value="dueDiligence">Due Diligence</option>
               <option ng-option value="exploratory">Exploratory</option>
@@ -217,7 +220,7 @@
         <text-angular
         ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-        ng-model="visits.interest.objective" name="objective" placeholder="Describe visit Objective" required /></text-angular>
+        ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
       </div>
     </div>
 

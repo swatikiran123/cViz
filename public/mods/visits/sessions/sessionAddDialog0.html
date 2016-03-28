@@ -1,0 +1,131 @@
+
+<div class="container"  ng-controller="sessionsControllerMain" >
+<md-dialog aria-label="Visit Scheduler"  ng-cloak>
+  <form name="sessionAddForm" id="sessionAddForm" class="form-vertical" novalidate>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="md-header">Session [{{entryDate}} @ {{entryLocation}}</div>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+       <div >
+         <!-- session start date and end date -->
+         sch:: {{schedule}} owner: {{ownerId}}, {{ownerEmail}}
+         <div class="form-group">
+
+           <div>
+             <input type="text" class="time-picker" id="startTime" name="startTime"
+              ng-model="startTime"> -
+             <input type="text" class="time-picker" id="endTime" name="endTime"
+              ng-model="endTime">
+           </div>
+           <span>{{errMessage}}</span>
+         </div>
+
+         <!-- session type -->
+         <div class="form-group">
+           <!-- <select  class="form-control"  id="type" ng-model="schedule.session.type" ng-options="t.session for t in type ">
+             <option value="">---select session type---</option>
+           </select> -->
+
+           <select id="type" ng-model="schedule.session.type">
+             <option value="">---select session type---</option>
+             <option ng-repeat="ty in prTypes">{{ty}}</option>
+           </select>
+         </div>
+
+         <!--title have to pic from User -->
+         <div class="form-group">
+           <input type="text" class="form-control" placeholder="title" id="title"
+             ng-model="schedule.session.title"  />
+         </div>
+
+         <!--location have to pic from User -->
+         <div class="form-group">
+           <!-- <select  class="form-control" ng-model="session.location" id="location" ng-options="l.session for l in location">
+             <option value="">---pick location ---</option>
+           </select> -->
+
+					 <input type="text" class="form-control" placeholder="location" id="location"
+						 ng-model="schedule.session.location"  />
+         </div>
+
+         <!--desc have to pic from User -->
+         <div class="form-group">
+           <textarea type="text" class="form-control" placeholder="description" id="desc"
+             ng-model="schedule.session.desc"  />
+         </div>
+
+		 	<!-- session speaker -->
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<md-input-container class="md-block">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.speakerModel.$touched && sessionAddForm.speakerModel.$invalid }">
+						<label >Speaker &nbsp;&nbsp; :</label>
+						<div user type="picker" user-model="ownerUser" user-id="ownerId" view-type="small" user-email="ownerEmail" ></div>
+						</div>
+					</md-input-container>
+				</div>
+
+				<div class="form-group col-xs-6">
+					<md-input-container class="md-block">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterModel.$touched && sessionAddForm.supporterModel.$invalid }">
+						<label >Supporter &nbsp;&nbsp; :</label>
+						<div user type="picker" user-model="supporterUser" user-id="supporterId" view-type="small" user-email="supporterEmail" ></div>
+						</div>
+					</md-input-container>
+				</div>
+			</div>
+
+         <!-- <h4> owner </h4>
+         <div class="form-group" ng-class="{ 'has-error': inputctrl.owner.$touched && inputctrl.owner.$invalid }">
+           <div class="col-md-4">
+             <div user type="picker" class="form-control" user-model="ownerUser" user-id="ownerId" user-email="ownerEmail" ></div>
+           </div>
+         </div>
+
+				 <h4>supporter</h4>
+         <div class="form-group" ng-class="{ 'has-error': inputctrl.supporter.$touched && inputctrl.supporter.$invalid }">
+           <div class="col-md-4">
+             <div user type="picker" class="form-control" user-model="supporterUser" user-id="supporterId" user-email="supporterEmail" ></div>
+           </div>
+         </div> -->
+         <br><br>
+         <br>
+
+          <md-dialog-actions layout="row">
+            <md-button class="btn btn-primary" ng-click="save()">
+              OK
+            </md-button>
+            <md-button class="btn btn-danger" ng-click="cancel()" >
+              Cancel
+            </md-button>
+
+
+          </md-dialog-actions>
+        </div>
+  </form>
+</md-dialog>
+</div>
+
+<style>
+
+
+  .dialogdemoBasicUsage #popupContainer {
+    position: relative;
+    padding-top: 500px; }
+  .dialogdemoBasicUsage .footer {
+    width: 100%;
+    text-align: center;
+    margin-left: 20px; }
+  .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+    font-size: 0.8em;
+    margin-top: 50px; }
+
+</style>

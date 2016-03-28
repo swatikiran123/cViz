@@ -10,10 +10,8 @@ module.exports = {
 			"/public/assets/w/styles/dataview-panels.css",
 			"/public/assets/w/styles/userpicker.css",
 
-			"/public/mods/appController.js",
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css"
-
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -23,11 +21,8 @@ module.exports = {
 			"/public/assets/w/styles/dataview-panels.min.css",
 			"/public/assets/w/styles/userpicker.min.css",
 
-			"/public/mods/appController.min.js",
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css"
-
-
 		]
 	},
 
@@ -86,6 +81,14 @@ module.exports = {
 		]
 	},
 
+	"filters-web":{
+		"dev":[
+			"/public/f/date/script.js"
+		],
+		"prod":[
+		]
+	},
+
 	"customize":{
 		"dev":[
 			"/public/mods/keynotes/keynotesModule.js",
@@ -123,9 +126,13 @@ module.exports = {
 
 	"visits":{
 		"dev":[
+
 			"/public/mods/visits/visitsModule.js",
 			"/public/mods/visits/visitsControllerMain.js",
+			"/public/mods/visits/sessions/sessionsControllerMain.js",
 			"/public/mods/visits/visitsRouter.js"
+
+
 		],
 		"prod":[
 		]

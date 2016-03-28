@@ -42,7 +42,7 @@ module.exports = function(app, passport) {
 						user : req.user
 				});
 			} else {
-				res.redirect('/m/main');
+				res.redirect('/m/main/');
 			}
 		}
 

@@ -10,5 +10,25 @@ function parse(str) {
   return str.replace(/%s/g, function() {
       return args[i++];
   });
-};
+}
 
+
+DateReplaceTime = function(date, time){
+	var dt = moment(date);
+	var ti = time.split(":");
+
+	if(ti[0] !== undefined) 		dt.hour(ti[0]);
+	if(ti[1] !== undefined) 		dt.minute(ti[1]);
+	if(ti[2] !== undefined) 		dt.second(ti[1]);
+
+	return dt.toString();
+}
+
+DateGetTime = function(date){
+	return moment(date).format("HH:mm");
+}
+
+DatesInRange = function(dt1, dt2){
+	var dayRange = moment.range(dt1, dt2);
+	return (dayRange.toArray('days'));
+}
