@@ -13,13 +13,13 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.large= "LARGE";
 		$scope.medium= "medium";
 
-		$scope.ownerId = "";
-		$scope.ownerEmail = "";
-		$scope.ownerUser = "";
-
-		$scope.supporterId = "";
-		$scope.supporterEmail = "";
-		$scope.supporterUser = "";
+		// $scope.ownerId = "";
+		// $scope.ownerEmail = "";
+		// $scope.ownerUser = "";
+		//
+		// $scope.supporterId = "";
+		// $scope.supporterEmail = "";
+		// $scope.supporterUser = "";
 
 		$scope.mode = "add";
 
@@ -93,6 +93,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	      $scope.endTime = DateGetTime($scope.schedule.session.endTime);
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
+				console.log($scope.ownerId);
+				console.log($scope.supporterId);
 				console.log("edit session...");
 				console.log($scope.schedule);
 	      $scope.showAdvanced(ev);
