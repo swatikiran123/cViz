@@ -1,4 +1,4 @@
- <div class="row"> 
+ <div class="row">
   <div class="col-sm-1"></div>
   <div class="col-md-8">
 
@@ -6,11 +6,11 @@
 
    <div class="page-header">
     Account Management - Add
-    <div class="sub-header">Add new Client Account
+    <div class="sub-header">Add new client information before scheduling a visit...
     </div>
   </div>
 
-  <!-- Client-Account pageheader input--> 
+  <!-- Client-Account pageheader input-->
 
 
   <div class="data-form">
@@ -33,20 +33,20 @@
       <div class="field">
        <label ng-show="clients.profile" class="show-hide">Profile</label><br>
        <div class="form-group">
-        <text-angular 
+        <text-angular
         ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
         ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
-      </div>                    
+      </div>
 
       <!-- vertical Type input-->
       <div class="row">
         <div class="form-group col-xs-6">
           <div class="form-group" ng-class="{ 'has-error': clientsForm.vertical.$touched && clientsForm.vertical.$invalid }">
-            <label>Vertical &nbsp;&nbsp; :</label>  
+            <label>Vertical &nbsp;&nbsp; :</label>
 
-            <select 
-            ng-model="clients.vertical" 
+            <select
+            ng-model="clients.vertical"
             ng-options="data for data in vertical">
           </select>
           <!-- <pre>selected: {{clients.regions}}</pre> -->
@@ -60,10 +60,10 @@
 
       <div class="form-group col-xs-6">
         <div class="form-group" ng-class="{ 'has-error': clientsForm.regions.$touched && clientsForm.regions.$invalid }">
-          <label>Regions &nbsp;&nbsp; :</label>  
+          <label>Regions &nbsp;&nbsp; :</label>
 
-          <select 
-          ng-model="clients.regions" 
+          <select
+          ng-model="clients.regions"
           ng-options="data for data in regions">
         </select>
         <!-- <pre>selected: {{clients.regions}}</pre> -->
@@ -74,10 +74,10 @@
   <!-- offerings checkboxofferings:-->
 
   <div class="form-group" ng-class="{ 'has-error': clientsForm.offerings.$touched && clientsForm.offerings.$invalid }">
-    <label>offerings &nbsp;&nbsp; :</label>  
+    <label>offerings &nbsp;&nbsp; :</label>
 
-    <select 
-    ng-model="clients.offerings" 
+    <select
+    ng-model="clients.offerings"
     ng-options="data for data in offerings">
   </select>
   <!-- <pre>selected: {{clients.offerings}}</pre> -->
@@ -95,13 +95,13 @@
 </md-input-container>
 
 
-<!-- CSC Personnel input--> 
+<!-- CSC Personnel input-->
 <!--salesExec-CSCPersonnel-->
 <div class="row">
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': clientsForm.salesExecUser.$touched && clientsForm.salesExecUser.$invalid }">
-      <label>Sales Executive &nbsp;&nbsp; :</label>  
+      <label>Sales Executive &nbsp;&nbsp; :</label>
       <div user type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" ></div>
     </div>
   </md-input-container></div>
@@ -109,15 +109,15 @@
   <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': clientsForm.accountGMUser.$touched && clientsForm.accountGMUser.$invalid }">
-    <label>Account General Manager &nbsp;&nbsp; :</label>  
+    <label>Account General Manager &nbsp;&nbsp; :</label>
     <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" ></div>
   </div>
 </md-input-container></div>
-<!--industryExec-CSCPersonnel--> 
+<!--industryExec-CSCPersonnel-->
 <div class="form-group col-xs-4">
 <md-input-container class="md-block">
 <div class="form-group" ng-class="{ 'has-error': clientsForm.industryExecUser.$touched && clientsForm.industryExecUser.$invalid }">
-  <label>Industry Executive &nbsp;&nbsp; :</label>  
+  <label>Industry Executive &nbsp;&nbsp; :</label>
   <div user type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" ></div>
 </div>
 </md-input-container>
@@ -126,18 +126,18 @@
 <!--globalDelivery-CSCPersonnel-->
 <div class="row">
   <div class="form-group col-xs-6">
-<md-input-container class="md-block"> 
+<md-input-container class="md-block">
 <div class="form-group" ng-class="{ 'has-error': clientsForm.globalDeliveryUser.$touched && clientsForm.globalDeliveryUser.$invalid }">
-  <label >Global Delivery &nbsp;&nbsp; :</label>  
+  <label >Global Delivery &nbsp;&nbsp; :</label>
   <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" ></div>
 </div>
 </md-input-container></div>
 
-<!--cre-CSCPersonnel--> 
+<!--cre-CSCPersonnel-->
 <div class="form-group col-xs-6">
 <md-input-container class="md-block">
 <div class="form-group" ng-class="{ 'has-error': clientsForm.creUser.$touched && clientsForm.creUser.$invalid }">
-  <label>CRE &nbsp;&nbsp; :</label>  
+  <label>CRE &nbsp;&nbsp; :</label>
   <div user type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" ></div>
 </div>
 </div>
@@ -158,7 +158,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
-    <button type="submit" class="btn btn-success" 
+    <button type="submit" class="btn btn-success"
     ng-disabled="clientsForm.$invalid" ng-click="save()">Submit</button>
     <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
   </div>

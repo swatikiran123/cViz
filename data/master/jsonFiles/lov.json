@@ -3,7 +3,7 @@
 	{
 		"_id"							: ObjectId("A09234567892345678900001"),
 		"name"						: "regions",
-		"values"					: 
+		"values"					:
 			[
 				"America",
 				"Australia",
@@ -14,12 +14,12 @@
 				"South and West Europe"
 			]
 	},
-	
-	
+
+
 	{
 		"_id"							: ObjectId("A09234567892345678900002"),
 		"name"						: "offerings",
-		"values"					: 
+		"values"					:
 			[
 				"Big Data Analytics",
 				"Aerospace & Defense",
@@ -42,12 +42,12 @@
 			]
 	},
 
-	
-	
+
+
 	{
 		"_id"							: ObjectId("A09234567892345678900003"),
 		"name"						: "influence",
-		"values"					: 
+		"values"					:
 			[
 				"Decision Maker",
 				"Influencer",
@@ -55,13 +55,13 @@
 				"Others"
 			]
 	},
-	
-	
-	
+
+
+
 	{
 		"_id"							: ObjectId("A09234567892345678900004"),
 		"name"						: "locations",
-		"values"					: 
+		"values"					:
 			[
 
 				"Chennai",
@@ -73,5 +73,23 @@
 				"Mumbai"
 
 			]
+	},
+
+
+	{
+		"_id"							: ObjectId("A09234567892345678900005"),
+		"name"						: "verticals",
+		"values"					:
+			[
+				"Automobile",
+				"Telecommunications",
+				"Finance",
+				"Media",
+				"Banking",
+				"Insurance",
+				"Manufacturing"
+			]
 	}
+
+
 ]
