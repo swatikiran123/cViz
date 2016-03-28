@@ -1,0 +1,251 @@
+[
+	{
+	
+		"_id"								:  ObjectId("A05234567892345678900001"),
+		
+		"title" 							: "CSC India",
+
+		"logoLink"            			: "\\public\\uploads\\linkPics\\CSC_Logo.jpg",
+
+		"address"            			:
+			{
+				"street"			: "Product Development Centre, No 19 Hafiz Court, Dr. M.G.R. Salai, Nungambakkam",
+				"city"			: "Chennai",
+				"country"		: "India",
+				"zip"				: "600034"
+			},
+		"strength"            			: 23000,
+
+		  "locations"           : 
+			[
+				{
+					"name"             	: "Hyderabad",
+					"city"              		: ObjectId("A07234567892345678900001"),
+					"address"           	: 
+						{
+							"street"			: "Raheja Mind Space IT Park, Madhapur, Hi-Tech City",
+							"city"			: "Hyderabad",
+							"country"		: "India",
+							"zip"				: "500081"
+						},
+					"strength"          	: 2000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Building 7",
+								"address"        	: "Raheja Mind Space IT Park",
+								"type"            	: "",
+								"strength"        	: "500"
+							},
+							
+							{
+								"name"            	: "DLF",
+								"address"        	: "Raheja Mind Space IT Park",
+								"type"            	: "",
+								"strength"        	: "500"
+							},
+							
+							{
+								"name"            	: "Building 4",
+								"address"        	: "Raheja Mind Space IT Park",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				},
+				
+				
+				{
+					"name"             	: "Bangalore",
+					"city"              		: ObjectId("A07234567892345678900002"),
+					"address"           	: 
+						{
+							"street"			: "Embassy Golf Links Biz Park",
+							"city"			: "Bangalore",
+							"country"		: "India",
+							"zip"				: "560071"
+						},
+					"strength"          	: 2000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Augusta",
+								"address"        	: "Embassy Golf Links Biz Park",
+								"type"            	: "",
+								"strength"        	: "500"
+							}
+						]
+				},
+				
+				
+				{
+					"name"             	: "Chennai",
+					"city"              		: ObjectId("A07234567892345678900003"),
+					"address"           	: 
+						{
+							"street"			: "7th Floor, Tower 1 B, DLF IT Park,",
+							"city"			: "Chennai",
+							"country"		: "India",
+							"zip"				: "600 089"
+						},
+					"strength"          	: 3000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "7th Floor, Tower 1 B, DLF IT Park.",
+								"address"        	: "1/124, Shivaji Garden, Moon Light Stop, Nandambakkam Post, Ramapuram",
+								"type"            	: "",
+								"strength"        	: "1000"
+							},
+							
+							{
+								"name"            	: "Prince Kushal Towers",
+								"address"        	: "6 & 7th Floor, 96, Anna Salai",
+								"type"            	: "",
+								"strength"        	: "1000"
+							},
+							
+							{
+								"name"            	: "MEPZ  Campus  Address",
+								"address"        	: "Unit ,13 block 2,SDF building MEPZ",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				}
+			],
+		  "editdBy"						 : ObjectId("A02234567892345678900001")
+	},
+	
+	
+	
+	
+	
+	
+	{
+	
+		"_id"								:  ObjectId("A05234567892345678900002"),
+		
+		"title" 							: "CSC Australia",
+
+		"logoLink"            			: "\\public\\uploads\\linkPics\\CSC_Logo.jpg",
+
+		"address"            			: 
+			{ 
+				"street"			: "26 Talavera Road, Macquarie Park, NSW",
+				"city"			: "New South Wales",
+				"country"		: "Australia",
+				"zip"				: "2113"	
+			},
+		"strength"            			: 2000,
+
+		  "locations"           : 
+			[
+				{
+					"name"             	: "Adelaide",
+					"city"              		: ObjectId("A07234567892345678900004"),
+					"address"           	: 
+						{
+							"street"			: "12 Brindabella Circuit",
+							"city"			: "Australia Capital Circuit",
+							"country"		: "Australia",
+							"zip"				: "2609"
+						},
+					"strength"          	: 1000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Brindabella Business Park Canberra Airport,",
+								"address"        	: "12 Brindabella Circuit, Brindabella Business Park Canberra Airport ",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				},
+				
+				{
+					"name"             	: "NSW",
+					"city"              		: ObjectId("A07234567892345678900004"),
+					"address"           	: 
+						{
+							"street"			: "26 Talavera Road",
+							"city"			: "NSW",
+							"country"		: "Australia",
+							"zip"				: "2113"
+						},
+					"strength"          	: 3000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Sydney - Head Office,",
+								"address"        	: "26 Talavera Road, Macquarie Park NSW 2113",
+								"type"            	: "",
+								"strength"        	: "1000"
+							},
+							
+							{
+								"name"            	: "Newcastle",
+								"address"        	: "11 Murray Dwyer Circuit, Mayfield West NSW 2304",
+								"type"            	: "",
+								"strength"        	: "1000"
+							},
+							
+							{
+								"name"            	: "Wollongong",
+								"address"        	: "Coniston Technology Park, Edney Lane, Mt St Thomas NSW 2500",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				},
+				
+				{
+					"name"             	: "Queensland",
+					"city"              		: ObjectId("A07234567892345678900004"),
+					"address"           	: 
+						{
+							"street"			: "555 Coronation Drive",
+							"city"			: "Brisbane",
+							"country"		: "Australia",
+							"zip"				: "4066"
+						},
+					"strength"          	: 1000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Coronation Drive",
+								"address"        	: "555 Coronation Drive, Toowong, Brisbane, QLD 4066",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				},
+				
+				{
+					"name"             	: "South Australia",
+					"city"              		: ObjectId("A07234567892345678900004"),
+					"address"           	: 
+						{
+							"street"			: "4-6 Discovery Way",
+							"city"			: "Mawson Lakes",
+							"country"		: "Australia",
+							"zip"				: "5095"
+						},
+					"strength"          	: 1000,
+					"facilities"        	:
+						[
+							{
+								"name"            	: "Technology Park",
+								"address"        	: "4-6 Discovery Way, Technology Park, Mawson Lakes SA 5095",
+								"type"            	: "",
+								"strength"        	: "1000"
+							}
+						]
+				}
+			],
+			
+		  "editdBy"						 : ObjectId("A02234567892345678900002")
+	}
+	
+	
+]

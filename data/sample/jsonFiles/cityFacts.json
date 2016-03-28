@@ -1,0 +1,278 @@
+[
+
+	{
+		
+		"_id"							: ObjectId("A07234567892345678900001"),
+		
+		"name"						: "Hyderabad",
+		"desc"						: "Hyderabad is the capital of the southern Indian state of Telangana and de jure capital of Andhra Pradesh. Occupying 650 square kilometres (250 sq mi) along the banks of the Musi River, it has a population of about 6.7 million and a metropolitan population of about 7.75 million, making it the fourth most populous city and sixth most populous urban agglomeration in India.",
+		"bannerLink"				: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Hyderabad_montage-2.png,",
+
+		"geospot"					:  [17.3700, 78.4800], 
+
+		"places"					: 
+			[
+				{
+					"name" 				: "Birla Mandir",
+					"desc" 					: "Birla Mandir is a Hindu temple, built on a 280 feet (85 m) high hillock called Naubath Pahad on a 13 acres (53,000 m2) plot. The construction took 10 years and was constructed in 1976 by Swami Ranganathananda of Ramakrishna Mission. The temple was constructed by Birla Foundation, which has also constructed several similar temples across India, all of which are known as Birla Mandir.",
+					"imageLinks"			: 
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/4/47/Birla_Temple_no_1.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/d/d8/BirlaMandir.jpg"
+						],
+					"geospot"				:  [17.4061, 78.4692],
+					"quickFacts"			: 
+						[
+							"The temple manifests a blend of Dravidian, Rajasthani and Utkala architectures.",
+							"It is constructed of 2000 tons of pure white marble. ",
+							"Apart from the main shrine, the consorts of Lord Venkateswara, Padmavati and Andal are housed in separate shrines.",
+							"The temple does not have traditional bells, as Swami Ranganathananda wished that the temple atmosphere should be conducive for meditation."
+						]
+				},
+				
+				{
+					"name" 				: "Charminar",
+					"desc" 					: "The Charminar, constructed in 1591 CE, is a monument and mosque located in Hyderabad, Telangana, India.",
+					"imageLinks"			: 
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/b/b8/Charminar_sumeet_photography_3.JPG",
+							"https://upload.wikimedia.org/wikipedia/commons/d/d1/Charminar-Pride_of_Hyderabad.jpg"
+						],
+					"geospot"				:  [17.3616, 78.4747], 
+					"quickFacts"			: 
+						[
+							"The English name is a translation and combination of the Urdu words Chār and Minar or meenar, translating to Four Towers; the eponymous towers are ornate minarets attached and supported by four grand arches.",
+							"The fifth ruler of the Qutb Shahi dynasty Sultan Muhammad Quli Qutb Shah built the Charminar in 1591",
+							"The Charminar is a square structure with each side 20 meters (approximately 66 feet) long, with four grand arches each facing a fundamental point that open into four streets",
+							"At each corner stands an exquisitely shaped minaret, 56 meters (approximately 184 feet) high, with a double balcony. Each minaret is crowned by a bulbous dome with dainty petal-like designs at the base. Unlike the Taj Mahal's, Charminar's four fluted minarets are built into the main structure"
+						]
+				}
+			],
+
+		"quickFacts": 
+			[
+				"Established in 1591 by Muhammad Quli Qutb Shah, Hyderabad remained under the rule of the Qutb Shahi dynasty for nearly a century before the Mughals captured the region",
+				"Hyderabad is one of the elite cities in India, which has a top business school like Indian School of Business and top technology institutes like  IIT,  IIIT, and BITS.",
+				"Hyderabad has one of the two official retreats for the President of India and each year the President spends time here doing his official work at Rastrapathi Nilayam during winter when Delhi becomes real cold.",
+				"World’s largest 3D IMAX screen",
+				"Buddha statue at hussain sagar lake  is the largest monolithic statue of gautam Buddha in the world.",
+				"Ramoji film city is the largest integrated film city in the world.",
+				"Hyderabad is home to some of the most beautiful artificial lakes in the world with lakes such as Hussain Sagar, Osman Sagar and Himayat Sagar being created by dams on River Musi.",
+				"The Koh-i-Noor (the “Mountain of Light”) , which was once the largest known diamond in the world was originally mined in Kollur mines of andhra and then had its way to golconda fort.",
+				"Hyderabad’s most famous meat-and-rice dish, it is said that the Nizams served some 26 varieties of biryanis for their guests any given time.  It is said that there are more than 140 varieties in the Hyderabadi biryani."
+			],
+
+		"editBy"				: ObjectId("A02234567892345678900001")
+
+	},
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+		
+		"_id"							: ObjectId("A07234567892345678900002"),
+		
+		"name"						: "Bangalore",
+		"desc"						: "Bangalore, officially known as Bengaluru, is the capital of the Indian state of Karnataka. It has a population of about 8.42 million and a metropolitan population of about 8.52 million, making it the third most populous city and fifth most populous urban agglomeration in India",
+		"bannerLink"				: "https://upload.wikimedia.org/wikipedia/commons/8/80/BangaloreMontage.png",
+
+		"geospot"					:  [12.9667, 77.5667],
+
+		"places"					: 
+			[
+				{
+					"name" 				: "Shivagange",
+					"desc" 					: "Shivagange is a hillock situated near Bangalore, famous as an adventure spot and Pilgrimage center. There is Shiva temple here and a spring nearby named ‘Ganga’, from which the place derives its name.",
+					"imageLinks"			: 
+						[
+							"http://d2847ql9t214mi.cloudfront.net/wp-content/uploads/2015/05/Shivagange.jpg",
+							"http://imgstore.blob.core.windows.net/placeimages/0d55b185-4684-42a4-b098-1b0507e29d4a_n.jpg"
+						],
+					"geospot"				:  [13.105, 77.1320], 
+					"quickFacts"			: 
+						[
+							"Shivagange is a mountain peak with a height of 1368 meters and Hindu pilgrimage center located near Dobbaspet, in Bangalore Rural district India. ",
+							"The sacred mountain is shaped as a shivalingam and a spring flows near locally called 'Ganga', thereby by giving the place its name. ",
+							"An interesting belief about this temple is that if an abhisheka is performed with ghee here, the ghee turns to butter"
+						]
+				},
+				
+				{
+					"name" 				: "Nandi hills",
+					"desc" 					: "Nandi Hills or Nandidurg is a popular weekend getaway near Bangalore. This ancient hill fortress is famous for trekking.This place derives its name from the stunning statue of Nandi (the bull) at the doorstep of Yoganandeeshwara Temple. You can view the beautiful sunrise from the hilltop and also visit other places like Muddenahalli and Amrita sarovar.",
+					"imageLinks"			: 
+						[
+							"http://d2847ql9t214mi.cloudfront.net/wp-content/uploads/2015/05/Nandi-Hills1.jpg",
+							"http://files.hostgator.co.in/hostgator248679/image/nandi-hills.jpg"
+						],
+					"geospot"				: [13.3863, 77.7009],
+					"quickFacts"			: 
+						[
+							"Tipu's Drop - the famous place from where Tippu Sultan had his condemned prisoners thrown to death.",
+							"Horse Way - A stone doorway in the fort on the North-eastern side, is believed to have been the horse way for helping soldiers to climb the wall on horse back.",
+							"Secret Escape Route - A secret passage on the west, is believed to have helped the kings to escape during unforeseen attacks",
+							"Gavi Veerbhadra Swamy temple: on top of the hill, on the way to the Sultanpet, from Tippus palace, natural formation of huge boulders has been transformed into a magnificent temple."
+						]
+				}
+			],
+
+		"quickFacts": 
+			[
+				"Bangalore is known as the Silicon Valley of India, the city houses 212 software companies in its heart",
+				"At the heart of the city is Lalbagh, which covers an area of 240-acre. Apart from more than 1000 species of flora and fauna, Lalbagh is home to The Lal Bagh Rock, one of the oldest rock formations on earth, dating back to 3,000 million years and many trees that are more than a century old.",
+				"Bangalore contributed to 33% of India’s INR1442 billion IT exports in 2006–07.Infosys and Wipro, India’s third and fourth largest software companies are headquartered in Bangalore.",
+				"Bangalore is the first city to be electrified in India",
+				"Bangalore has produced the maximum number of scientists considered for Nobel Prize nominations from India",
+				"Bangalore has the biggest statue of Lord Shiva and Hanuman in India."
+			],
+
+		"editBy"				: ObjectId("A02234567892345678900002")
+
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+		
+		"_id"							: ObjectId("A07234567892345678900003"),
+		
+		"name"						: "Chennai",
+		"desc"						: "Chennai is the capital city of the Indian state of Tamil Nadu. Located on the Coromandel Coast off the Bay of Bengal, it is a major cultural, economic and educational centre. Chennai is known as the Detroit of India for its automobile industry.It is the fourth-largest city and fourth-most populous metropolitan area in the country ",
+		"bannerLink"				: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Chennai_Montage.jpg",
+
+		"geospot"					: [13.0827, 80.2707], 
+		"places"					: 
+			[
+				{
+					"name" 				: "Mahabalipuram",
+					"desc" 					: "Declared as a world heritage site by UNESCO, the ruins of the temples boast of the rich architectural legacy of the county. The Mamallapuram Dance Festival is a remarkable event that one cannot miss",
+					"imageLinks"			: 
+						[
+							"http://www.urbantree.in/blog/wp-content/uploads/2015/04/Mahabalipuram.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/9/9f/Mahabalipuram-Krishnas-Butterball.jpg"
+						],
+					"geospot"				: [12.6165, 80.1994],
+					"quickFacts"			: 
+						[
+							"The group of monuments is a UNESCO World Heritage Site.",
+							"The sacred mountain is shaped as a shivalingam and a spring flows near locally called 'Ganga', thereby by giving the place its name. ",
+							"These temples were built by three generations of the Pallava Kings and it took 200 years to plan and create the site."
+						]
+				},
+				
+				{
+					"name" 				: "Pondicherry",
+					"desc" 					: "Union territory of India has complete urban architecture style, thus, Pondicherry is one of the most popular tourist places near Chennai. The vibe of the township is a faded colonial bohemian chic with a touch of new age international French culture.",
+					"imageLinks"			: 
+						[
+							"http://d2847ql9t214mi.cloudfront.net/wp-content/uploads/2015/07/Pondicherry-photoshoot.jpg",
+							"http://aboutfestivalsofindia.com/wp-content/uploads/2014/11/pondicherry-beach.jpg",
+							"http://tourism.pondicherry.gov.in/images/home-bg-2.jpg"
+						],
+					"geospot"				: [11.9310, 79.7852], 
+					"quickFacts"			: 
+						[
+							"Liquor rates without taxes. Beer costs lesser than a bottle of cold drink",
+							"Little French Bistros that are so cozy that you just want nothing but the Pasta",
+							"Le Cafe, the one place that serves the best French Fries EVERRRR!!!"
+						]
+				}
+			],
+
+		"quickFacts": 
+			[
+				"It has the second longest beach in the world (Marina Beach)",
+				"The Vandalur Zoo in Chennai was the first in India and one of the largest in South Asia.",
+				"It’s the automobile hub of India.",
+				"The Anna Centenary Library is the largest in Asia.",
+				"Tidal Park, an IT Park in Chennai, is one of the largest IT Parks in Asia."
+			],
+
+		"editBy"				: ObjectId("A02234567892345678900003")
+	},
+	
+	
+	
+	
+	
+	{
+		
+		"_id"							: ObjectId("A07234567892345678900004"),
+		
+		"name"						: "New South Wales",
+		"desc"						: "New South Wales (abbreviated as NSW) is a state on the east coast of Australia. It borders Queensland to the north, Victoria to the south, South Australia to the west, the Tasman Sea to the east and surrounds the whole of the Australian Capital Territory. New South Wales' capital city is Sydney, which is also the nation's most populous city. ",
+		"bannerLink"				: "http://wallcreations.com.au/blog/wp-content/uploads/2014/01/New-South-Wales-Wall-Murals.jpg",
+
+		"geospot"					: [32.1617, 147.0178],
+		"places"					: 
+			[
+				{
+					"name" 				: "The Grand Pacific Drive",
+					"desc" 					: "This 140km coastal drive from south of Sydney winds past sparkling beaches and coastal towns, crossing the dramatic Sea Cliff Bridge on its way to Wollongong. Located between Coalcliff and Clifton, the bridge is a great spot to break your journey.",
+					"imageLinks"			: 
+						[
+							"http://www.visitnsw.com/sites/default/files/DrivingSea-Cliff-Bridge.jpg",
+							"http://blog.budget.com.au/wp-content/uploads/2015/12/sea-cliff-bridge-aerial.jpg"
+						],
+					"geospot"				: [34.2539, 150.9739], 
+
+					"quickFacts"			: 
+						[
+							"This 140km coastal drive from south of Sydney winds past sparkling beaches and coastal towns, crossing the dramatic Sea Cliff Bridge on its way to Wollongong. Located between Coalcliff and Clifton, the bridge is a great spot to break your journey.",
+							"The best scenic drives take you on road trips of sheer pleasure and discovery. In New South Wales, there are tourist drives and scenic road trips that let you explore at your own pace, spend time with the whole family on a new adventure or meet new friends in a holiday park.",
+							"Other scenic drives are along the Waterfall Way on the northern tablelands of NSW, the Poacher's Way, a food and wine trail with gourmet offerings along the way and the historic Long Paddock drive that follows the old stock routes of Country NSW.",
+							"The Darling River Run takes you on a great journey into Outback NSW, travelling from Walgett in north-western NSW to Wentworth on the Victorian border.  Before you travel, find out about current road conditions across New South Wales."
+						]
+				},
+				
+				{
+					"name" 				: "Sydney Opera House",
+					"desc" 					: "The Sydney Opera House is a multi-venue performing arts centre in Sydney, Australia, identified as one of the 20th century's most distinctive buildings. Designed by Danish architect Jørn Utzon, the building was formally opened on 20 October 1973[4] after a gestation beginning with Utzon's 1957 selection as winner of an international design competition.",
+					"imageLinks"			: 
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/The_Sydney_Opera_House_at_dusk.jpg/1280px-The_Sydney_Opera_House_at_dusk.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/c/c0/Opera_House_and_ferry._Sydney.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/5/54/Sydney_Opera_House_-_Inside_2.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sydney_Opera_House%2C_botanic_gardens_1.jpg/1280px-Sydney_Opera_House%2C_botanic_gardens_1.jpg"
+						],
+					"geospot"				: [33.8587, 151.2140], 
+
+					"quickFacts"			: 
+						[
+							"The Sydney Opera House became a UNESCO World Heritage Site on 28 June 2007",
+							"The original estimate to build Sydney Opera House was $7 million. The final cost of Sydney Opera House was $102 million.",
+							"There are seven performance venues at Sydney Opera House – the Concert Hall, the Opera Theatre, Playhouse, Drama Theatre, The Studio, the Forecourt and the Utzon Room.",
+							"Sydney Opera House is open to the public 363 days a year - closed on Christmas Day and Good Friday. Staff work every day of the year, 24/7. "
+						]
+				}
+			],
+
+		"quickFacts": 
+			[
+				"New South Wales is in the south-east part of the Australian continent and is the most populous and heavily industrialised State in Australia, with a highly urbanised population.",
+				"The Blue Mountains is a mountainous region and a mountain range located in New South Wales, Australia.",
+				"New South Wales’ coastline is only 2137 km long.",
+				"Behind the Opera House is the arch of the Sydney Harbour Bridge, connecting north to south. It took 1,400 workers eight years to construct."
+			],
+
+		"editBy"				: ObjectId("A02234567892345678900004")
+	}
+
+]

@@ -1,0 +1,42 @@
+[
+
+	{
+		"_id"							: ObjectId("A20484567892345678900001"),
+
+		"name"						: "Admin Group",
+		"description"				: "Users who have privileged rights and who has access to modify the content of the application, adding, deleting users,keynotes, factsheets etc ",
+		"users"						:
+		[
+			ObjectId("A20474567892345678900001")
+		]
+	},
+
+
+	{
+		"_id"							: ObjectId("A20484567892345678900002"),
+
+		"name"						: "Exec Group",
+		"description"				: "This group consists of Sr. Executives who has access to executive dashboard, score cards & reports ",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900001"),
+			ObjectId("A02234567892345678900002"),
+			ObjectId("A02234567892345678900003")
+		]
+	},
+
+
+	{
+		"_id"							: ObjectId("A20484567892345678900003"),
+
+		"name"						: "Visit Manager Group",
+		"description"				: "This Group consists of users who can manage the entire visits like scheduling, modifying the visits",
+		"users"						:
+		[
+			ObjectId("A02234567892345678900004"),
+			ObjectId("A02234567892345678900005"),
+			ObjectId("A02234567892345678900006")
+		]
+	}
+
+]
