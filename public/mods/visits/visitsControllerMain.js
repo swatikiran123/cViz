@@ -72,6 +72,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.small= "small";
   $scope.large= "LARGE";
   $scope.medium= "medium";
+  $scope.clientnameonly= "clientnameonly";
     //filter table
     $scope.showAll = true;
     $scope.showFiltered = false;

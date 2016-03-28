@@ -26,7 +26,11 @@ angular.module('visits', ['ngRoute'])
 		templateUrl: '/public/m/visits/visit.html',
 		controller: 'visitCtrl'
 	})
-
+  
+   .when('/myVisitPage', {
+		templateUrl: '/public/m/visits/myVisitPage.html',
+		controller: 'myVisitsCtrl'
+	});
 	// if none of the above states are matched, use this as the fallback
   $routeProvider.otherwise('/visits');
 

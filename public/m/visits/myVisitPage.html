@@ -1,0 +1,80 @@
+
+<div id="my-visits-container" class="container-fluid div-padding" click-capture>
+    <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">        
+        <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+            <div class="profile-details-div">
+                <img class="img-circle visitpic" src="/public/assets/g/imgs/avatar.jpg">
+                <div class="profile-overview">
+                    <h1>Mr Vincent Chase</h1>
+                    <p>Sr Analyst, CSC India</p>
+                    <div class="button-div">
+                        <button>NEW VISIT</button>
+                        <button>DASHBOARD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchView col-xs-12 col-sm-12 col-md-12">
+            <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+                <i class="fa fa-search fonticon1"></i>
+                <input type="text" placeholder="Search" value="" name="search" id="search">
+            </div>
+            <div class="sortBy col-xs-2 col-sm-3 col-md-2 div-padding" ng-click="showSortDropDown()">
+                <div class="sort-by-wrapper">
+                    <i class="fa fa-th-large fonticon1"></i>
+                    <img src="/public/assets/m/rem/list-by-icon-down-arrow.png" class="drop-down-img" ng-if="!IsVisible">
+                    <img src="/public/assets/m/rem/list-by-icon-up-arrow.png" class="drop-down-img" ng-if="IsVisible">
+                </div>
+            </div>
+            <div class="sortByDropDown" ng-show="IsVisible">
+                <ul class="list-group">
+                    <li class="sort-by-drop-down list-group-item " ng-click="sortByCategory()">All</li>
+                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Today</li>
+                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Past Month</li>
+                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">This Month</li>
+                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Next Month</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-visit-content col-xs-12 col-sm-12 col-md-12">
+        <div ng-repeat="visit in visitList" class="visit-card">
+            <div class="col-xs-12 col-sm-12 col-md-12 div-padding">
+                <h2 class="col-xs-11 col-sm-11 col-md-11 div-padding">{{visit.title}}</h2>
+                <img src="/public/assets/m/rem/vertical-ellipsis.png" class="col-xs-1 col-sm-1 col-md-1 pull-right div-padding img-vertical-align" ng-click="showActionDropDown()">
+            </div>
+            <div class="actionDropDown data-drop-down" ng-show="IsActionVisible">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-click="performAction()">Edit</li>
+                    <li class="list-group-item" ng-click="performAction()">Schedule</li>
+                    <li class="list-group-item" ng-click="performAction()">Delete</li>                    
+                </ul>
+            </div>      
+
+            <p class="visit-title">
+             
+                <span> {{visit.agenda}}</span>
+            </p>
+            <p><span class="visit-status-confirmed">CONFIRMED</span></p>
+            <p><span class="visit-status-tentative">TENTATIVE</span></p>
+            <p class="visit-details"><i class="fa fa-calendar"></i>   {{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}</p>
+            <p class="visit-details"><i class="fa fa-map-marker"></i> {{visit.locations}}
+
+            <div class="upcoming-sessions">
+                <p>Your Upcoming Sessions</p>
+
+                <div ng-repeat="i in [1,2]">
+                    <h3>27 FEB 2016</h3>
+
+                    <p class="session-field" ng-repeat="j in [1,2]">
+                  
+                        <img src="/public/assets/m/rem/presenter-icon.png">
+                       <span class="session-time">10.30</span>
+                        <span class="session-name">Mobility</span>
+                        <i class="fa fa-angle-right pull-right"></i>                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

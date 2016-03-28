@@ -9,7 +9,7 @@ angular.module('cviz-customize',
 	'keynotes','facts','feedback','confirmDialogDirective','contactList']);
 
 angular.module('cviz-manage',
-	['userprofileDirective','userDirective','userdisplayDirective',
+	['userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective',
 	'appFilters',
 	'datePicker','dropzone','fileuploadDirective',
 	'visits',"clients",'confirmDialogDirective']);
