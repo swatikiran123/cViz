@@ -1,21 +1,22 @@
 
 
-
 <div class="agenda-parent-div">
-  <div class="container-fluid agenda-header-div">
+  <div class="agenda-header-div">
 	  
-		<div class="container-fluid" data-spy = "scroll" data-target = ".agenga-list">
-			<ul ng-init="vm.tab=1" class="nav navbar-nav agenga-list">
+		
+			<ul ng-init="vm.tab=1" class="agenda-list">
 				<li ng-repeat="schedules in scheduleList">
-					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}- {{schedules.date | date : "dd MMM yyyy"}} </a>
+					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}<br>
+					<div class="schday">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </div></a>
 				</li>
 			</ul> <!-- end of tabs -->
-		</div> <!-- end of tab header -->
+		 <!-- end of tab header -->
 	</div> <!-- end of agenda header -->
 
 	
 	<!-- begin of tab content -->
-		<div class="div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day">
+
+		<div class="div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day" >
 			<h1 class="day-agenda-header">
 			 <img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
 				{{schedules.date | date : "dd MMM yyyy"}} 
@@ -81,12 +82,16 @@
 								+{{session.invitees.length}}
 								<span class="expand-session">...</span>
 								<a class="feedback-link" href="#">Feedback</a>
+							
+		
 							</p>
 							
 						</div> <!-- end of agenda overview block -->
 					</div> <!-- end of presentation template -->
 				</div> <!-- end of agenda sub-block -->
-	    </div> <!-- end of day -->
+	       </div> <!-- end of day -->
 		</div> <!-- enf of days - sessions-->
 	</div> <!-- end of scrollable area -->
 </div> <!-- end of page container -->
+
+

@@ -51,12 +51,7 @@
     font-size: 1em;
 }
 
-h1 {
-    color: #fff;
-    margin-bottom: 0px;
-    /*text-shadow: 2px 2px #5b5b5b;*/
-    font-size: 2em;
-}
+
 .button-div {
     padding-bottom: 20px;
     text-shadow: none;

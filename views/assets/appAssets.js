@@ -188,7 +188,8 @@ module.exports = {
 		"dev":[
 			"/public/m/visits/visits.js",
 			"/public/m/visits/visitsCtrl.js",
-			"/public/assets/m/css/myVisitPage.css"
+			"/public/assets/m/css/myVisitPage.css",
+			"/public/assets/m/css/visitspoc.css"
 		]
 	},
 

@@ -1,0 +1,32 @@
+
+
+
+
+<div id="spoc-page">
+    <div class="header1">SPOC</div>
+    <div class="spoc-details-container">
+        <div class="heading1">CONTACT YOUR SPOC</div>
+        <div class="spoc-details" ng-repeat="spoc in spoc_details">
+            <div class="spoc-pic col-xs-2 col-sm-2 col-md-2">
+                <img class="img-circle spocpicture" ng-src="{{spoc.picture}}">
+            </div>
+            <div class="spoc-bios-div col-xs-10 col-sm-10 col-md-10">
+                <div class="spoc-name">{{spoc.name}}</div>
+                <div class="spoc-designation">{{spoc.designation}}</div>
+                <div class="spoc-bios">{{spoc.bio}}</div>
+                <div class="reach-spoc-phone" ng-repeat="phone in spoc.telephone">
+                    <div class="number">{{phone}}</div>
+                    <a class="col-xs-6 col-sm-6 col-md-6 call-text" ng-href="tel: {{phone}}">CALL</a>
+                    <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{phone}}">MESSAGE</a>
+                </div>
+                <div class="reach-spoc-email">
+                    <div class="email">{{spoc.email}}</div>
+                    <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
+                </div>
+                <div class="download-contact glyphicon glyphicon-paperclip">
+                    <div class="download-text">Download Contact</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

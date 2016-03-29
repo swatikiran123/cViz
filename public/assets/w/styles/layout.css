@@ -178,6 +178,21 @@ height: 30px;
 	  transform: rotate(-45deg);
 }
 
+.sidebar-nav ul {
+
+   
+
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 2px;
+}
+
+.sidebar-item
+{
+  padding-left: 30px;
+}
 /* style for left pull menu */
 @media screen and (max-width: 768px) {
   .side-collapse-container{
