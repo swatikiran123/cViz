@@ -47,5 +47,7 @@ angular.module('sessions')
                 'picture': '/public/assets/g/imgs/avatar.jpg',
                 'designation': 'Sr Analyst, EMC Inc, IL, USA'
             }]
-        }];
+        }]
+
+        
     });

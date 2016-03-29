@@ -2,9 +2,10 @@
 .agenda-parent-div {
   /*position: relative;*/
   color: #000;
-  padding-top: 25px;
+ 
   /*height: 100%;*/
   overflow-y: hidden; 
+  padding-top: 20px;
 
   }
 
@@ -13,14 +14,60 @@
   width:100%;
 }
 
+.agenda-header-div ul {
+  
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 2px;
+  
+}
+   /*.agenda-parent-div {padding-top: 30px;}
+  .agenda-list  li{
+      display: inline;
+      margin-right: 100px;
+    }
 
 
-  #agenda-scrollable-block{   
-    overflow-y: auto;
-    height: 80%;
-    position: fixed;
-    padding: none;
+  .agenda-list a {  
+    font-size: 1em;
+    font-family: workSansBold;
+    color: @futureAgendaSessionNameColor;
   }
+
+  .agenda-list a:active {  
+    font-size: 1.87em;
+  }
+   */
+
+  .chevron-div {
+            background: url(/public/assets/m/rem/down-arrow.png) no-repeat;
+            height: 20px;
+            width: 20px;
+            background-size: 18px;
+            margin-top: 30px;
+            padding: 0;
+            margin-left: 25px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        .chevron-down-arrow {
+            /*background: url('up-arrow.png') no-repeat;
+            background-size: 18px;*/
+            -webkit-transform: rotate(-180deg);
+            -moz-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+            margin-top: 15px;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+  
 
   .day-agenda-header{
     background: linear-gradient(#87075A, #9B3678);
@@ -55,6 +102,10 @@
   .expand-session {
     float: right;
   }
+  .schday{
+    font-size: 10px;
+    font-weight: normal;
+  }
 
   .agenda-session-overview {
     padding-left: 50px;
@@ -67,8 +118,9 @@
 
   .agenda-block-sub-div {
     border-left: 1px solid #000;
-    margin: 0 20px;
+    margin-left: 20px;
     padding: 20px 0;
+    border-bottom: 1px solid purple;
   }
 
   .session-status-img {
@@ -97,7 +149,125 @@
     font-family: workSansMedium;
     font-size: 20px;
   }
+@media screen and (min-width: 1000px) {
+  
+  .agenda-list  li{
+      display: inline;
+      margin-right: 100px;
+    }
+  
 
+  .agenda-list a {  
+ 
+    font-size: 1em;
+    font-family: workSansBold;
+    color: @futureAgendaSessionNameColor;
+  }
+  .schday{
+    font-size: 10px;
+    font-family:  workSansMedium;
+  }
+
+.agenda-list a:focus .schday{
+ 
+ display: none;
+
+}
+
+
+/* selected link */
+.agenda-list a:focus {
+
+  border-bottom: 3px solid purple;
+font-size: 1.6em;
+height: 35px;
+vertical-align: top;
+
+
+
+}
+
+
+   
+}
+@media screen and (max-width: 940px) {
+
+  .agenda-list  li{
+      display: inline;
+      margin-right: 50px;
+    }
+  
+
+  .agenda-list a {  
+    font-size: 1em;
+    font-family: workSansBold;
+    color: @futureAgendaSessionNameColor;
+  }
+
+.agenda-list a:focus .schday{
+ 
+ display: none;
+
+}
+ .schday{
+    font-size: 10px;
+    font-family:  workSansMedium;
+  }
+
+
+/* selected link */
+.agenda-list a:focus {
+
+  border-bottom: 3px solid purple;
+font-size: 1.6em;
+height: 35px;
+vertical-align: top;
+
+
+
+}
+   
+}
+
+@media screen and (max-width: 600px) {
+ 
+  .agenda-list  li{
+      display: inline;
+      margin-right: 30px;
+     
+    }
+  
+
+  .agenda-list a {  
+    font-size: 1em;
+    font-family: workSansBold;
+    color: @futureAgendaSessionNameColor;
+  }
+
+.agenda-list a:focus .schday{
+ 
+ display: none;
+
+}
+ .schday{
+    font-size: 10px;
+    font-family:  workSansMedium;
+  }
+
+
+/* selected link */
+.agenda-list a:focus {
+
+  border-bottom: 3px solid purple;
+font-size: 1.6em;
+height: 35px;
+vertical-align: top;
+
+
+
+}
+
+   
 }
 
 /*.affix {
@@ -113,3 +283,5 @@
  position: relative;
  top: 50px;
 }*/
+
+ 

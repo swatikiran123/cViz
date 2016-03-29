@@ -20,4 +20,11 @@ angular.module('contacts', ['ngRoute'])
 		templateUrl: '/public/m/contacts/contacts.html',
 		controller: 'contactsCtrl'
 	})
+    
+    .when('/visitspoc', {
+		templateUrl: '/public/m/contacts/visitSpoc.html',
+		controller: 'spocCtrl'
+	})
+
+
 }]);

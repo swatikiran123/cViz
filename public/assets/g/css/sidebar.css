@@ -121,6 +121,7 @@
 }
 
 
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
@@ -139,7 +140,7 @@
     }
 
     #page-content-wrapper {
-        padding: 20px;
+        padding: 10px;
         position: relative;
     }
 
