@@ -8,7 +8,7 @@
 		"name"				: "Zurich",
 		"vertical"			: "Finance",
 		"profile"			: "Zurich is a leading multi-line insurance provider with a global network of subsidiaries and offices.  With about 55,000 employees, they deliver a wide range of general insurance and life insurance products and services for individuals, small businesses, and mid-sized and large companies, including multinational corporations, in more than 170 countries.",
-		"createOn"		: ISODate("2016-02-26T10:00:00.000Z"),
+		"createOn"		: { "$date" : "2016-02-26T09:00:00.000Z"},
 		"competitors"	: 
 			[
 				"UXC",
@@ -34,7 +34,7 @@
 				"accountGM"		: ObjectId("A02234567892345678900002"),
 				"industryExec"		: ObjectId("A02234567892345678900003"),
 				"globalDelivery"	: ObjectId("A02234567892345678900004"),
-				"cre"					: ObjectId("A02234567892345678900005")
+				"cre"						: ObjectId("A02234567892345678900005")
 			},
 		
 		"netPromoterScore"	: 100
@@ -51,7 +51,7 @@
 		"name"				: "Telenor",
 		"vertical"			: "Telecommunications",
 		"profile"			: "Telenor Group is a Norwegian multinational telecommunications company headquartered at Fornebu in Bærum, close to Oslo. It is one of the world's largest mobile telecommunications companies with operations in Scandinavia, Eastern Europe and Asia.",
-		"createOn"		: ISODate("2016-02-26T10:00:00.000Z"),
+		"createOn"		: { "$date" : "2016-03-08T09:00:00.000Z"},
 		"competitors"	: 
 			[
 				"Docomo",
@@ -95,7 +95,7 @@
 		"name"				: "Motorola",
 		"vertical"			: "Telecommunications",
 		"profile"			: "Motorola, Inc. was an American multinational telecommunications company based in Schaumburg, Illinois, United States. After having lost $4.3 billion from 2007 to 2009, the company was divided into two independent public companies, Motorola Mobility and Motorola Solutions on January 4, 2011",
-		"createOn"		: ISODate("2016-02-26T10:00:00.000Z"),
+		"createOn"		: { "$date" : "2016-03-08T09:00:00.000Z"},
 		"competitors"	: 
 			[
 				"Lenovo",
@@ -138,7 +138,7 @@
 		"name"				: "Vodafone",
 		"vertical"			: "Telecommunications",
 		"profile"			: "Vodafone Group plc is a British multinational telecommunications company headquartered in London and with its registered office in Newbury, Berkshire. It is the world's second largest mobile telecommunications company measured by both subscribers and 2013 revenues (behind China Mobile), and had 434 million subscribers as of 31 March 2014.",
-		"createOn"		: ISODate("2016-02-26T10:00:00.000Z"),
+		"createOn"		: { "$date" : "2016-03-15T09:00:00.000Z"},
 		"competitors"	: 
 			[
 				"Telenor",
@@ -179,7 +179,7 @@
 		"name"				: "AOL ",
 		"vertical"			: "Media",
 		"profile"			: "AOL Inc. (previously known as America Online, written as AOL and styled as Aol.) is an American global mass media corporation based in New Jersey that develops, grows, and invests in brands and web sites such as The Huffington Post, TechCrunch and Engadget..",
-		"createOn"		: ISODate("2016-02-26T10:00:00.000Z"),
+		"createOn"		: { "$date" : "2016-03-16T09:00:00.000Z"},
 		"competitors"	: 
 			[
 				"AT&T",
