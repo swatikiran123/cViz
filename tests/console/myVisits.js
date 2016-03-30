@@ -70,17 +70,17 @@ require(constants.paths.scripts + '/database'); // load database management scri
 // 		logger.writeLine("Error creating docment");
 //   });
 
-userService.getOneById('a02234567892345678900016')
+userService.getOneById('A02234567892345678900001')
 	.then(function(thisUser){
 		if(thisUser){
 			// call service with this user
-			logger.writeLine("User: " + thisUser.name.first + ' ' + thisUser.name.last);
-			logger.writeJson("member of " + thisUser.memberOf);
+			logger.writeLine('',0,"User: " + thisUser.name.first + ' ' + thisUser.name.last);
+			logger.writeLine('',0,"member of " + thisUser.memberOf);
 			visitService.getAll(thisUser)
 				.then(function(data){
 						if (data){
 							logger.writeJson(data);
-							logger.writeLine("Docs found: " + data.length);
+							logger.writeLine('',0,"Docs found: " + data.length);
 						}else {
 								logger.writeJson("Error getting data");
 						}
