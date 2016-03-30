@@ -21,7 +21,7 @@ angular.module('contacts', ['ngRoute'])
 		controller: 'contactsCtrl'
 	})
     
-    .when('/visitspoc', {
+    .when('/contacts', {
 		templateUrl: '/public/m/contacts/visitSpoc.html',
 		controller: 'spocCtrl'
 	})
