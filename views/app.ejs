@@ -1,6 +1,7 @@
 
 <h1>Application Info</h1>
-
+<%= locals.app_info.version %>:<%= locals.app_info.gitHash %><br/>
+<%= process.env.NODE_ENV%> on <%=locals.device%></div>
 <code>
 <pre>
 <%= JSON.stringify(locals, null, 4) %>

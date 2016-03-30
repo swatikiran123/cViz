@@ -10,8 +10,8 @@ module.exports = {
 		"visits": ["clients","visits"],
 		"profile": ["profile"],
 
-		"m-home": ["m-common","m-main","m-execBios"],
-		"m-facts": ["m-common","m-facts"],
-    "m-visits": ["m-common","m-visits","m-sessions","m-contacts","dir-web"]
+		"m-home": ["m-common","m-main","dir-mobile","m-execBios"],
+		"m-facts": ["m-common","dir-mobile","m-facts"],
+    "m-visits": ["m-common","m-visits","m-sessions","m-contacts","dir-mobile","dir-web"]
 	}
 }

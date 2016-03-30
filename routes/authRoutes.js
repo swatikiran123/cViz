@@ -48,6 +48,8 @@ module.exports = function(app, passport) {
 
     app.get('/app', isLoggedIn, function(req, res) {
         res.locals.pageTitle = "App Info";
+        res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+        res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
         res.render('app.ejs', {
         });
     });

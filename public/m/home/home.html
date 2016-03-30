@@ -1,41 +1,42 @@
-<style>
-#header_nav {
-    width:100%;
-    background-color:#F8F8FF;
-    position:fixed;
-    top:0;
-    left:0;
-     height:110px;
-   -webkit-transition:0.5s linear all;
-   -moz-transition:0.5s linear all;
-   -o-transition:0.5s linear all;
-   transition:0.5s linear all;
-   z-index:10000;
-}
+<!--
+/*<style>*/
+/*#header_nav {*/
+/*    width:100%;*/
+/*    background-color:#F8F8FF;*/
+/*    position:fixed;*/
+/*    top:0;*/
+/*    left:0;*/
+/*     height:110px;*/
+/*   -webkit-transition:0.5s linear all;*/
+/*   -moz-transition:0.5s linear all;*/
+/*   -o-transition:0.5s linear all;*/
+/*   transition:0.5s linear all;*/
+/*   z-index:10000;*/
+/*}*/
 
-.big {
-  padding-top:60px;
-  font-color:white;
-    height:110px;
-    font-size: 30px;
+/*.big {*/
+/*  padding-top:60px;*/
+/*  font-color:white;*/
+/*    height:110px;*/
+/*    font-size: 30px;*/
 
-}
+/*}*/
 
-.big > .secondary{
-	display:none;
-}
+/*.big > .secondary{*/
+/*	display:none;*/
+/*}*/
 
-.small {
-   padding-top:60px;
-   font-color:white;
-   height:90px;
-    font-size: 20px;
-}
+/*.small {*/
+/*   padding-top:60px;*/
+/*   font-color:white;*/
+/*   height:90px;*/
+/*    font-size: 20px;*/
+/*}*/
 
-.small > .primary {
-	display:none;
-}
-</style>
+/*.small > .primary {*/
+/*	display:none;*/
+/*}*/
+/*</style>*/
 
 <div scroll id="header_nav" ng-class="navClass">
 	<div class="primary">
@@ -45,7 +46,7 @@
 	  Secondary
 	</div>
 </div>
-
+-->
 <div scroll id="profile-details">
         <div class="notifications"><img src="/public/assets/m/img/ic/ibox-f.png"></div>
         <div class="profile-pic"><img src="{{user.avatar}}"></div>
@@ -54,6 +55,7 @@
         <div class="profile-location">
             <img src="/public/assets/m/img/ic/loc.png">
                <location-picker ng-model="pickedLocation" limit-to="1"></location-picker>
+    
         </div>
 
         <div class="session-overview" ng-hide="!visitStartSuccess">
