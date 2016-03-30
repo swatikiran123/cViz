@@ -33,7 +33,10 @@ angular.module('visits')
 				templateUrl: '/public/mods/visits/sessions/sessionsViewMain.html',
 				controller: 'sessionsControllerMain'
 			})
-
+      .when('/visits/calendar', {
+        templateUrl: '/public/mods/visits/calendar.html',
+        controller: 'calendarCtrl'
+      })
 			.otherwise({
 				redirectTo: '/visits/list'
 			})

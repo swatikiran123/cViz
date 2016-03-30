@@ -46,7 +46,8 @@
     "ng-tags-input": "3.0.0",
     "ng-file-upload": "11.0.0",
     "ngImgCropFullExtended": "0.5.4",
-    "angular-material": "1.0.6"
+    "angular-material": "1.0.6",
+    "fullcalendar": "2.6.1"
 },
   "resolutions": {
 
