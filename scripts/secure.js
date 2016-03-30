@@ -15,12 +15,13 @@ var groups = {										// constants defining the application paths
 };
 
 function isInAnyGroups(user, grps){
-
+logger.writeLine("Is in groups " + grps,'debug',0);
 	// filter identified groups and user
 	var check = false;
 	// logger.writeLine("check ??? " + grps, 'debug', 0);
 	//return;
 	grps.split(",").forEach(function(grp){
+
 		grp = grp.trim();
 
 		if(grp.toLowerCase() == "customer" && user.association == "customer"){
@@ -34,15 +35,15 @@ function isInAnyGroups(user, grps){
 		}
 
 		// check with predefined groups
-		//logger.writeLine('predefined groups', 'debug', 0);
+		logger.writeLine('debug', 1,'predefined groups');
 		if(groups[grp] !== undefined){
-			// logger.writeLine("Checking for " + grp + " : " + groups[grp], 'debug', 1);
+			logger.writeLine('debug', 1,"Checking for " + grp + " : " + groups[grp]);
 			user.memberOf.forEach(function(member){
 				member = ""+ member;
-				// logger.writeLine("try " + member, 'debug', 1)
+				logger.writeLine('debug', 1,"try " + member)
 				// if(member.toLowerCase() == groups[grp].toLowerCase()){
 				if(member.compare(groups[grp])){
-					// logger.writeLine('yes '+grp,'debug',2);
+					logger.writeLine('debug',2,'yes '+grp);
 					check = true;
 				}
 			});

@@ -73,5 +73,37 @@
 				"Mumbai"
 
 			]
+	},
+	
+	
+	{
+		"_id"							: ObjectId("A09234567892345678900005"),
+		"name"						: "vertical",
+		"values"					: 
+			[
+				"Automobile",
+				"Telecommunications",
+				"Finance",
+				"Media",
+				"Banking",
+				"Insurance",
+				"Manufacturing"
+			]
+	},
+	
+	{
+		"_id"							: ObjectId("A09234567892345678900006"),
+		"name"						: "contactType",
+		"values"					: 
+			[
+				"Admin",
+				"Visit Manager",
+				"Creator",
+				"Anchor",
+				"Owner",
+				"Supporter"
+			]
 	}
+	
+	
 ]

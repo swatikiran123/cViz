@@ -2,12 +2,13 @@
 
 var Q               = require('q');
 var _								= require('underscore');
+var mongoose = require('mongoose')
+, Schema = mongoose.Schema;
 var moment 					= require('moment');  require('moment-range');
-
 var constants       = require('../scripts/constants');
 var util						= require(constants.paths.scripts + "/util");
-var logger					= require(constants.paths.scripts + "/logger");
-
+var logger						= require(constants.paths.scripts + "/logger");
+var secure						= require(constants.paths.scripts + "/secure");
 var model           = require(constants.paths.models +  '/visit');
 var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 
@@ -25,20 +26,198 @@ service.deleteById = deleteById;
 module.exports = service;
 
 // Method implementations
-function getAll(){
-    var deferred = Q.defer();
+function getAll(thisUser){
+	var deferred = Q.defer();
 
-    model.find(function(err, list){
-      if(err) {
-        console.log(err);
-        deferred.reject(err);
-    }
-    else
-       deferred.resolve(list);
-});
+	// by default filter not applicable for "vManager, exec"
+	var filter = {};
+	var userId = thisUser._id;
+	var visits = "";
 
+	getUserVisitsForSessions(userId)
+		.then(function(data){
+			visits = data;
+			console.log("Session wise visit list...")
+			console.log(data);
+
+
+	if( secure.isInAnyGroups(thisUser, "customer"))	{
+				logger.writeLine('' , 2,"Found customer!!!");
+				filter = {client : thisUser.orgRef};  // all visits by his company
+			}
+			else if(secure.isInAnyGroups(thisUser, "exec")){
+						logger.writeLine('', 2,"Found exec!!!");
+			}
+			else if(secure.isInAnyGroups(thisUser, "vManager")){
+						logger.writeLine('', 2,"Found vManager!!!");
+			}
+			else if( secure.isInAnyGroups(thisUser, "user")){
+				logger.writeLine('' , 2, "Found user!!!");
+				filter = {
+					$or: [
+						{createBy: userId}
+						, {agm: userId}
+						, {anchor: userId}
+						, {'client.salesExec': userId}
+						, {'client.accountGM': userId}
+						, {'client.industryExec': userId}
+						, {'client.globalDelivery': userId}
+						, {'client.cre': userId}
+						, {'_id': { $in: visits }}
+
+					]
+				};
+			} // end of secure if
+
+		logger.writeLine('',0,"Getting Data from service...\nwith filter")
+
+		logger.writeJson(filter);
+
+		var visitsByTimeline = [];
+    model
+			.find(filter)
+			.populate('client')
+			.sort('startDate')
+			.exec(function(err, list){
+		      if(err) {
+		        logger.writeLine('error', 0, err);
+		        deferred.reject(err);
+			    }
+			    else{
+						logger.writeLine(null,1,"Data retrieved :: " + list.length);
+						//logger.writeJson(list);
+						console.log("\n");
+						transform(list);
+
+		       	deferred.resolve(visitsByTimeline);
+				 	}
+			}); // end of model exec
+
+			function transform(visits){
+
+				var visitsSorted =  _.sortBy( visits, 'startDate' );
+				console.log("---- Retrieved Data -----");
+				visitsSorted.forEach(function(visit){
+					logger.dump('debug',1,visit._id, visit.title, visit.startDate, visit.endDate);
+					// console.log(visit._id + "|" + visit.title + " on " + visit.startDate.toString("dd MMM yyyy") + " - " + visit.endDate);
+				})
+
+				var today = moment();
+
+				var	thisWeekBeginsOn = moment(today).startOf('isoweek').isoWeekday(0);
+				var thisWeekEndsOn = moment(today).endOf('isoweek').isoWeekday(6);
+
+				var lastWeekEndsOn = moment(thisWeekBeginsOn).subtract(1,'days');
+				var lastWeekBeginsOn = moment(lastWeekEndsOn).subtract(7,'days');
+				var beforelastWeek = moment(lastWeekBeginsOn).subtract(1,'days');
+
+				var nextWeekBeginsOn = moment(thisWeekEndsOn).add(1,'days');
+				var nextWeekEndsOn = moment(nextWeekBeginsOn).add(7,'days');
+				var afterNextWeek = moment(nextWeekEndsOn).add(1,'days');
+
+				var pastBegin = moment(lastWeekBeginsOn).subtract(3,'years');
+				var furtherEnd = moment(afterNextWeek).add(1,'years');
+
+				var thisWeek = today.range("week");
+				var thisDay = moment.range(today, today);
+				var lastWeek = moment.range(lastWeekBeginsOn, lastWeekEndsOn);
+				var nextWeek = moment.range(nextWeekBeginsOn, nextWeekEndsOn);
+				var past = moment.range(pastBegin, beforelastWeek);
+				var further = moment.range(afterNextWeek, furtherEnd);
+
+				console.log("---- Date ranges ----")
+				console.log("today: " + today.format("ddd D-MMM-YYYY"));
+				console.log("this week:" + thisWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+					thisWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + thisWeek.toString());
+				console.log("last week:" + lastWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+					lastWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + lastWeek.toString());
+				console.log("next week:" + nextWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+					nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextWeek.toString());
+				console.log("past: " + pastBegin.format("ddd D-MMM-YYYY") + " - " +
+					beforelastWeek.format("ddd D-MMM-YYYY") + " >> " + past.toString());
+				console.log("further: "+ afterNextWeek.format("ddd D-MMM-YYYY") + " - " +
+				 	furtherEnd.format("ddd D-MMM-YYYY") + " >> " + further.toString());
+
+				visitsByTimeline.push({
+					timeline: "past",
+					start: pastBegin,
+					end: beforelastWeek,
+					visits: filterByRange(visitsSorted, past)
+				});
+
+				visitsByTimeline.push({
+					timeline: "last-week",
+					start: lastWeekBeginsOn,
+					end: lastWeekEndsOn,
+					visits: filterByRange(visitsSorted, lastWeek)
+				});
+
+				visitsByTimeline.push({
+					timeline: "this-week",
+					start: thisWeekBeginsOn,
+					end: thisWeekEndsOn,
+					visits: filterByRange(visitsSorted, thisWeek)
+				});
+
+				visitsByTimeline.push({
+					timeline: "today",
+					start: today,
+					end: today,
+					visits: filterByRange(visitsSorted, thisDay)
+				});
+
+				visitsByTimeline.push({
+					timeline: "next-week",
+					start: nextWeekBeginsOn,
+					end: nextWeekEndsOn,
+					visits: filterByRange(visitsSorted, nextWeek)
+				});
+
+				visitsByTimeline.push({
+					timeline: "further",
+					start: afterNextWeek,
+					end: furtherEnd,
+					visits: filterByRange(visitsSorted, further)
+				});
+
+			}
+
+			function filterByRange(visits, range){
+				return(
+					visits.filter(function(x){
+						// console.log(x.title);
+						// console.log(" ..." + range.toString() + " >> " +  x.startDate.toString() + " is " + range.contains(moment(x.startDate)));
+						return range.contains(moment(x.startDate))
+					})
+				);
+			}
+}); //end of getUserVisitsForSessions
     return deferred.promise;
 } // getAll method ends
+
+function getUserVisitsForSessions(userId){
+	var filter = {
+		$or: [
+			{'session.owner': userId},
+			{'session.owner': userId}
+		]
+	};
+
+	var deferred = Q.defer();
+	scheduleModel
+		.find(filter)
+		.distinct('visit', function(err, list){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			else {
+				deferred.resolve(list);
+			}
+		}) // end of scheduleModel exec
+
+	return deferred.promise;
+} // end of getUserVisitsForSessions
 
 function getOneById(id){
     var deferred = Q.defer();
@@ -49,8 +228,7 @@ function getOneById(id){
     .populate('anchor')
     .populate('createBy')
     .populate('client')
-    .populate('feedbackTmpl')
-    .populate('keynote.note')
+    //.populate('visitors.visitor')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
@@ -92,14 +270,13 @@ function getSessionsById(id){
 					} // end of if else
     }); // end of model find
 
-		//Internal method to transform visit data to session
+		// Internal method to transform visit data to session
 		function transform(visit, sessions)
 		{
-			// sort sessions by schedule startDate
 			var vistSchedule =  _.sortBy( visit.schedule, 'startDate' );
 
 			// first built list of all days with location from visit data
-			var dayCounter=1;
+			var i=1;
 			vistSchedule.forEach(function(sch){
 
 				// loop thru each of the days in the schedule
@@ -112,53 +289,17 @@ function getSessionsById(id){
 						return d.isSame(thisDay, 'day')
 					});
 
-					// sort day sessions by starttime
-					var daySessionsSorted =  _.sortBy( daySessions, 'session.startTime' );
-
-					var i = 1;
-					var daySessionsTran = [];
-					daySessionsSorted.forEach(function(sess){
-
-						logger.writeLine("Session " + i, 'verbose', 0);
-						logger.writeJson(sess);
-						//sessTrans.index = i;
-						//logger.writeLine("Start " + sess.session.startTime + " - " + sess.session.endTime, 'verbose', 1);
-						//var starts = moment(sess.session.startTime,"HH:mm");
-						var starts = moment(sess.session.startTime).hours() + ":" + moment(sess.session.startTime).minutes();
-						var duration = moment.duration(moment(sess.session.endTime).diff(moment(sess.session.startTime))).asMinutes();
-						//logger.writeLine("Duration " + duration + " - Hrs: " + hours, 'verbose', 1);
-						//sessTrans.duration = duration.asMinutes();
-						//sessTrans.type = sess.type;
-						var sessTrans = {
-							index: i,
-							duration: duration,
-							startAt: starts,
-							type: sess.session.type,
-							startTime: sess.session.startTime,
-							endTime: sess.session.endTime,
-							title: sess.session.title,
-							desc: sess.session.desc,
-							location: sess.session.location,
-							owner: sess.session.owner,
-							supporter: sess.session.supporter,
-							invitees: sess.invitees
-						};
-logger.writeJson(sessTrans,'verbose',1);
-						daySessionsTran.push(sessTrans);
-						i++;
-					});
-
 					// skip days for which sessions are not scheduled
-					if(daySessionsTran.length > 0){
+					if(daySessions.length > 0){
 					  var schedule = {
-							day : dayCounter,
+							day : i,
 							date : d,
 							location: sch.location,
-							count: daySessionsTran.length,
-							sessions: daySessionsTran
+							//count: daySessions.length,
+							sessions: daySessions
 						}; // end of schedule object
 
-						dayCounter++;
+						i++;
 					}
 
 					sessionDays.push(schedule);

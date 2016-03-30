@@ -40,7 +40,6 @@ function getAll(){
 
 function getOneById(id){
     var deferred = Q.defer();
-console.log("Find " + id);
     model
         .findOne({ _id: id })
         // .populate('memberOf')
@@ -50,7 +49,7 @@ console.log("Find " + id);
                 deferred.reject(err);
             }
             else{
-              console.log(item);
+              //console.log(item);
               deferred.resolve(item);
             }
         });

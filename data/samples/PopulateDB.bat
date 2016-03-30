@@ -9,12 +9,6 @@ mongoimport --db cViz-Test --collection users --file jsonFiles\user.json --type 
 
 
 ECHO:
-ECHO Creating Group Collection
-mongoimport --db cViz-Test --collection groups --file jsonFiles\group.json --type json --jsonArray
-
-
-
-ECHO:
 ECHO Creating Client Collection
 mongoimport --db cViz-Test --collection clients --file jsonFiles\client.json --type json --jsonArray
 
@@ -48,11 +42,6 @@ mongoimport --db cViz-Test --collection city_facts --file jsonFiles\cityFacts.js
 ECHO:
 ECHO Creating FactSheet Collection
 mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles\factSheet.json --type json --jsonArray
-
-
-ECHO:
-ECHO Creating ListOfValues Collection
-mongoimport --db cViz-Test --collection lovs --file jsonFiles\lov.json --type json --jsonArray
 
 
 
