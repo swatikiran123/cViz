@@ -62,6 +62,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     var id = $routeParams.id;
 
+  //dynamic template rendering scope value
+  $scope.activeTemplate = '/public/mods/visits/partials/visitsGrid.html';
+  
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
