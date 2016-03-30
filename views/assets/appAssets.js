@@ -76,6 +76,7 @@ module.exports = {
 			"/public/d/datePicker/script.js",
 			"/public/d/confirmDialog/script.js",
 			"/public/d/clientDisplay/script.js",
+			"/public/d/richText/script.js"
 		],
 		"prod":[
 		]
