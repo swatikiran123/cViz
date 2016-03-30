@@ -12,7 +12,7 @@ controller.getOneById = getOneById;
 controller.getSessionsById = getSessionsById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
-
+controller.getExecsById = getExecsById;
 module.exports = controller;
 
 function getAll(req,res){
@@ -47,6 +47,21 @@ function getOneById(req,res){
 
 function getSessionsById(req,res){
   dataService.getSessionsById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getExecsById(req,res){
+  dataService.getExecsById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
