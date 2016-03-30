@@ -8,11 +8,12 @@ var logger = {};
 logger.write = write;
 logger.writeLine = writeLine;
 logger.writeJson = writeJson;
+logger.dump = dump;
 
 module.exports = logger;
 
 Object.defineProperty(global, '__stack', {
-get: function() {
+	get: function() {
         var orig = Error.prepareStackTrace;
         Error.prepareStackTrace = function(_, stack) {
             return stack;
@@ -26,33 +27,33 @@ get: function() {
 });
 
 Object.defineProperty(global, '__line', {
-get: function() {
+	get: function() {
         return __stack[2].getLineNumber();
     }
 });
 
 Object.defineProperty(global, '__function', {
-get: function() {
+	get: function() {
         return __stack[2].getFunctionName();
     }
 });
 
 Object.defineProperty(global, '__file', {
-get: function() {
+	get: function() {
         return __stack[2].getFileName();
     }
 });
 
-function write(str, mode, n){
-	writeLine(str,mode,n);
+function write(mode, n, str){
+	writeLine(mode,n, str);
 }
 
 function writeJson(obj){
-	var str = JSON.stringify(obj, null, 2);
-	writeLine(str);
+	var str = JSON.stringify(obj,null,2);
+	writeLine('',0,str);
 }
 
-function writeLine(str, mode, n){
+function writeLine(mode, n, str){
 
 	if(mode !== undefined)
 		if("error".compare(mode))
@@ -68,4 +69,14 @@ function writeLine(str, mode, n){
 	else {
 		console.log(colors.green(str));
 	}
+}
+
+function dump(mode, n, args)
+{
+	var str = [];
+	for (var i = 2; i < arguments.length; i++) {
+		str.push(arguments[i])
+	}
+
+	writeLine(mode,n,str.join(' | '));
 }
