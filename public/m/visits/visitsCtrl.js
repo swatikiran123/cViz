@@ -3,7 +3,9 @@ angular.module('visits')
 .controller('visitsCtrl', function($scope, $http) {
 	console.log("Visits controller running");
 	$http.get('/api/v1/secure/visits').success(function(response) {
-		$scope.visitList = response;
+		console.log(response);
+		$scope.visitBunches = response["last-week"];
+		console.log($scope.visitBunches);
 	});
 })
 
@@ -13,11 +15,12 @@ angular.module('visits')
 	});
 })
  .controller('myVisitsCtrl', function($scope, $rootScope, $location, $http) {
-        $http.get('/api/v1/secure/visits').success(function(response) {
+      $http.get('/api/v1/secure/visits').success(function(response) {
         $scope.visitList = response;
+				console.log(response);
     });
 
-        $scope.visit_details = [{            
+        $scope.visit_details = [{
         }];
 
 
@@ -27,7 +30,7 @@ angular.module('visits')
         $scope.showSortDropDown = function() {
             console.log("Inside showSortDropDown");
             $scope.IsVisible = $scope.IsVisible ? false : true;
-            $scope.IsActionVisible = false;            
+            $scope.IsActionVisible = false;
            // if ($scope.IsVisible) {
            //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border', '1px solid #dddddd');
            //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border-bottom', 'none');
@@ -45,5 +48,5 @@ angular.module('visits')
             $scope.IsActionVisible = $scope.IsActionVisible ? false : true;
         };
 
-          
+
     });

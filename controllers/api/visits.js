@@ -16,7 +16,7 @@ controller.deleteById = deleteById;
 module.exports = controller;
 
 function getAll(req,res){
-  dataService.getAll()
+  dataService.getAll(req.user)
     .then(function(data){
         if (data){
             res.send(data);

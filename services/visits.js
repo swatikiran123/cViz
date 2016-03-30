@@ -26,8 +26,19 @@ service.deleteById = deleteById;
 module.exports = service;
 
 // Method implementations
-function getAll(thisUser){
+//ToDo:: Fix Known issues
+// 2. Date are not as per UTC, timezone is effecting the date filters
+// 3. Custo9mers are not filtered by visit. They can access any visit of the client irrective of being part of it
+
+function getAll(thisUser, timeline, limit){
 	var deferred = Q.defer();
+
+	// massage params
+	if (timeline=="" || timeline===undefined)
+		timeline = "all";
+
+	if (limit=="" || limit===undefined)
+		limit = 25;
 
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
@@ -39,7 +50,6 @@ function getAll(thisUser){
 			visits = data;
 			console.log("Session wise visit list...")
 			console.log(data);
-
 
 	if( secure.isInAnyGroups(thisUser, "customer"))	{
 				logger.writeLine('' , 2,"Found customer!!!");
@@ -73,10 +83,15 @@ function getAll(thisUser){
 
 		logger.writeJson(filter);
 
-		var visitsByTimeline = [];
+		// limit to one rec if requested for next-one
+		if("next-one".compare(timeline))
+			limit = 1;
+
+		var visitsByTimeline = new Array();
     model
 			.find(filter)
 			.populate('client')
+			.limit(limit)
 			.sort('startDate')
 			.exec(function(err, list){
 		      if(err) {
@@ -99,7 +114,6 @@ function getAll(thisUser){
 				console.log("---- Retrieved Data -----");
 				visitsSorted.forEach(function(visit){
 					logger.dump('debug',1,visit._id, visit.title, visit.startDate, visit.endDate);
-					// console.log(visit._id + "|" + visit.title + " on " + visit.startDate.toString("dd MMM yyyy") + " - " + visit.endDate);
 				})
 
 				var today = moment();
@@ -124,6 +138,7 @@ function getAll(thisUser){
 				var nextWeek = moment.range(nextWeekBeginsOn, nextWeekEndsOn);
 				var past = moment.range(pastBegin, beforelastWeek);
 				var further = moment.range(afterNextWeek, furtherEnd);
+				var nextOne = moment.range(today, nextWeekEndsOn)
 
 				console.log("---- Date ranges ----")
 				console.log("today: " + today.format("ddd D-MMM-YYYY"));
@@ -137,57 +152,122 @@ function getAll(thisUser){
 					beforelastWeek.format("ddd D-MMM-YYYY") + " >> " + past.toString());
 				console.log("further: "+ afterNextWeek.format("ddd D-MMM-YYYY") + " - " +
 				 	furtherEnd.format("ddd D-MMM-YYYY") + " >> " + further.toString());
+				console.log("next one: "+ today.format("ddd D-MMM-YYYY") + " - " +
+					nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextOne.toString());
 
-				visitsByTimeline.push({
-					timeline: "past",
-					start: pastBegin,
-					end: beforelastWeek,
-					visits: filterByRange(visitsSorted, past)
-				});
+				// visitsByTimeline["past"] = {
+				// 		start: pastBegin,
+				// 		end: beforelastWeek,
+				// 		visits: filterByRange(visitsSorted, past)
+				//
+				// 	};
+				// visitsByTimeline["past"] = "something in past";
+				// visitsByTimeline["this"] = "something this week";
+				// visitsByTimeline["further"] = "something after one month";
 
-				visitsByTimeline.push({
-					timeline: "last-week",
-					start: lastWeekBeginsOn,
-					end: lastWeekEndsOn,
-					visits: filterByRange(visitsSorted, lastWeek)
-				});
 
-				visitsByTimeline.push({
-					timeline: "this-week",
-					start: thisWeekBeginsOn,
-					end: thisWeekEndsOn,
-					visits: filterByRange(visitsSorted, thisWeek)
-				});
+				visitsByTimeline = {
+					"past":{
+							start: pastBegin,
+							end: beforelastWeek,
+							visits: ((timeline.contains('past')||timeline.contains('all'))? filterByRange(visitsSorted, past) : null)
+					},
 
-				visitsByTimeline.push({
-					timeline: "today",
-					start: today,
-					end: today,
-					visits: filterByRange(visitsSorted, thisDay)
-				});
+					"last-week" : {
+							start: lastWeekBeginsOn,
+							end: lastWeekEndsOn,
+							visits: ((timeline.contains("last-week")||timeline.contains('all'))? filterByRange(visitsSorted, lastWeek) : null)
+					},
 
-				visitsByTimeline.push({
-					timeline: "next-week",
-					start: nextWeekBeginsOn,
-					end: nextWeekEndsOn,
-					visits: filterByRange(visitsSorted, nextWeek)
-				});
+					"this-week":{
+							start: thisWeekBeginsOn,
+							end: thisWeekEndsOn,
+							visits: ((timeline.contains("this-week")||timeline.contains('all'))? filterByRange(visitsSorted, thisWeek): null)
+					},
 
-				visitsByTimeline.push({
-					timeline: "further",
-					start: afterNextWeek,
-					end: furtherEnd,
-					visits: filterByRange(visitsSorted, further)
-				});
+					"today":{
+							start: today,
+							end: today,
+							visits: ((timeline.contains("today")||timeline.contains('all'))?filterByRange(visitsSorted, thisDay): null)
+					},
+
+					"next-week":{
+							start: nextWeekBeginsOn,
+							end: nextWeekEndsOn,
+							visits: ((timeline.contains("next-week")||timeline.contains('all'))? filterByRange(visitsSorted, nextWeek): null)
+					},
+
+					"further":{
+							start: afterNextWeek,
+							end: furtherEnd,
+							visits: ((timeline.contains("next-week")||timeline.contains('all'))? filterByRange(visitsSorted, further) : null)
+					},
+
+					"next-one":{
+							start: today,
+							end: nextWeekEndsOn,
+							visits: ((timeline.contains("next-one")||timeline.contains('all'))? filterByRange(visitsSorted, nextOne) : null)
+					}
+
+				}
+
+					// visitsByTimeline.push({
+					// "last-week":{
+					// 	start: lastWeekBeginsOn,
+					// 	end: lastWeekEndsOn,
+					// 	visits: filterByRange(visitsSorted, lastWeek)
+					// }});
+
+				// visitsByTimeline.push({
+				// 	timeline: "past",
+				// 	start: pastBegin,
+				// 	end: beforelastWeek,
+				// 	visits: filterByRange(visitsSorted, past)
+				// });
+				//
+				// visitsByTimeline.push({
+				// 	timeline: "last-week",
+				// 	start: lastWeekBeginsOn,
+				// 	end: lastWeekEndsOn,
+				// 	visits: filterByRange(visitsSorted, lastWeek)
+				// });
+				//
+				// visitsByTimeline.push({
+				// 	timeline: "this-week",
+				// 	start: thisWeekBeginsOn,
+				// 	end: thisWeekEndsOn,
+				// 	visits: filterByRange(visitsSorted, thisWeek)
+				// });
+				//
+				// visitsByTimeline.push({
+				// 	timeline: "today",
+				// 	start: today,
+				// 	end: today,
+				// 	visits: filterByRange(visitsSorted, thisDay)
+				// });
+				//
+				// visitsByTimeline.push({
+				// 	timeline: "next-week",
+				// 	start: nextWeekBeginsOn,
+				// 	end: nextWeekEndsOn,
+				// 	visits: filterByRange(visitsSorted, nextWeek)
+				// });
+				//
+				// visitsByTimeline.push({
+				// 	timeline: "further",
+				// 	start: afterNextWeek,
+				// 	end: furtherEnd,
+				// 	visits: filterByRange(visitsSorted, further)
+				// });
 
 			}
 
 			function filterByRange(visits, range){
 				return(
 					visits.filter(function(x){
-						// console.log(x.title);
-						// console.log(" ..." + range.toString() + " >> " +  x.startDate.toString() + " is " + range.contains(moment(x.startDate)));
-						return range.contains(moment(x.startDate))
+						var visitRange = moment.range(x.startDate, x.endDate);
+						return range.overlaps(visitRange);
+						//return range.contains(moment(x.startDate))
 					})
 				);
 			}
@@ -199,7 +279,7 @@ function getUserVisitsForSessions(userId){
 	var filter = {
 		$or: [
 			{'session.owner': userId},
-			{'session.owner': userId}
+			{'session.supporter': userId}
 		]
 	};
 
