@@ -13,6 +13,19 @@ module.exports = {
 			"/public/libs/bootstrap/dist/css/bootstrap.min.css"
 		]
 	},
+	
+	"angular-calendar": {
+		"cdn": [
+		],
+		"dev":[
+			"/public/libs/moment/moment.js",
+			"/public/libs/fullcalendar/dist/fullcalendar.css",
+            "/public/libs/fullcalendar/dist/fullcalendar.js",
+            "/public/libs/fullcalendar/dist/gcal.js"
+		],
+		"prod":[
+		]
+	},
 
 	"font-awesome": {
 		"cdn": [

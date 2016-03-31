@@ -11,7 +11,9 @@ module.exports = {
 			"/public/assets/w/styles/userpicker.css",
 
 			"/public/assets/g/css/sidebar.css",
-			"/public/assets/m/css/font.css"
+			"/public/assets/m/css/font.css",
+			"/public/assets/g/css/rateit.css",
+			"/public/assets/g/js/rateit.js"
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -22,7 +24,9 @@ module.exports = {
 			"/public/assets/w/styles/userpicker.min.css",
 
 			"/public/assets/g/css/sidebar.css",
-			"/public/assets/m/css/font.css"
+			"/public/assets/m/css/font.css",
+			"/public/assets/g/css/rateit.css",
+			"/public/assets/g/js/rateit.js"
 		]
 	},
 
@@ -76,6 +80,8 @@ module.exports = {
 			"/public/d/datePicker/script.js",
 			"/public/d/confirmDialog/script.js",
 			"/public/d/clientDisplay/script.js",
+			"/public/d/richText/script.js",
+			"/public/d/feedbackDirective/script.js",
 		],
 		"prod":[
 		]
@@ -130,9 +136,9 @@ module.exports = {
 			"/public/mods/visits/visitsModule.js",
 			"/public/mods/visits/visitsControllerMain.js",
 			"/public/mods/visits/sessions/sessionsControllerMain.js",
-			"/public/mods/visits/visitsRouter.js"
-
-
+			"/public/mods/visits/visitsRouter.js",
+             "/public/assets/js/calendar.js",
+            "/public/mods/visits/calendarCtrl.js"
 		],
 		"prod":[
 		]

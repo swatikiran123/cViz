@@ -62,6 +62,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     var id = $routeParams.id;
 
+  //dynamic template rendering scope value
+  $scope.activeTemplate = '/public/mods/visits/partials/visitsGrid.html';
+  
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
@@ -73,6 +76,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.large= "LARGE";
   $scope.medium= "medium";
   $scope.clientnameonly= "clientnameonly";
+  $scope.nameonly= "nameonly";
+  $scope.visitid = id;
     //filter table
     $scope.showAll = true;
     $scope.showFiltered = false;
@@ -336,8 +341,69 @@ $scope.editkeynote = function(index,keynoteDef){
   $scope.editvisitor = function(index,visitorDef){
     $scope.visitorDef = visitorDef;
     $scope.visitors.splice(index, 1);
-  };
-// Visit visitor table end
+  };// Visit visitor table end
+
+  //Feedback by Person
+  $scope.feedbackbyPerson = function(visitid) {
+    console.log(visitid);
+    $http.get('/api/v1/secure/feedbacks').success(function(response1)
+    {
+      $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid });
+    });
+  }
+
+  //Feedback By Question
+  $scope.feedbackbyQuestion = function(visitid) {
+    console.log(visitid);
+    $http.get('/api/v1/secure/feedbacks').success(function(response1)
+    {
+      $scope.arrayQuery = [];
+      $scope.arrayItem = [];
+      $scope.feedbacks = $filter('filter')(response1, { visitid: visitid });
+      console.log($scope.feedbacks);
+      // $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.feedbacks[0].template).success(function(response)
+      // {
+      //   $scope.data = response;
+      //   console.log(response.item.length);
+      //   var inData =$scope.data;
+      //   for(var i =0;i<response.item.length;i++)
+      //   {
+      //     $scope.arrayQuery.push(inData.item[i].query);
+
+      //   }
+      //   console.log($scope.arrayQuery);
+
+      // });
+
+
+      var feedbackData = $scope.feedbacks;
+      
+      for(var i =0;i<feedbackData.length;i++)
+      {
+        for(var j=0;j<feedbackData[0].item.length;j++)
+        {
+          $scope.arrayItem.push(feedbackData[i].item[j]);
+        }
+      }
+     // console.log($scope.arrayQuery);
+      console.log($scope.arrayItem);
+    });
+  }
+    
+    var indexedQuestions = [];
+    
+    $scope.questionsToFilter = function() {
+        indexedQuestions = [];
+        return $scope.arrayItem;
+    }
+    
+    $scope.filterQuestions = function(item) {
+        var questionIsNew = indexedQuestions.indexOf(item.query) == -1;
+        if (questionIsNew) {
+            indexedQuestions.push(item.query);
+        }
+        return questionIsNew;
+    }
 
 //date- filter http://stackoverflow.com/questions/25719572/angularjs-next-and-previous-day-year-month
 $scope.eventDateFilter = function(column) {

@@ -11,6 +11,7 @@ var logger						= require(constants.paths.scripts + "/logger");
 var secure						= require(constants.paths.scripts + "/secure");
 var model           = require(constants.paths.models +  '/visit');
 var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
+var clientModel           = require(constants.paths.models +  '/client');
 
 // Service method definition -- Begin
 var service = {};
@@ -22,7 +23,9 @@ service.getOneById = getOneById;
 service.getSessionsById = getSessionsById;
 service.updateById = updateById;
 service.deleteById = deleteById;
+
 service.getMyVisits = getMyVisits;
+service.getExecsById = getExecsById;
 
 module.exports = service;
 
@@ -338,6 +341,104 @@ function getOneById(id){
     return deferred.promise;
 
 } // gentOneById method ends
+
+function getExecsById(id){
+    var deferred = Q.defer();
+    var cscId = [],client = [];
+    var partitions= [cscId,client];
+
+    model
+    .findOne({ _id: id })
+    .populate('agm')
+    .populate('anchor')
+    .populate('client')
+    .populate('visitors.visitor')
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else{
+                    cscId.push(transform(item.agm,'Sponsor'));
+                    cscId.push(transform(item.anchor,'Anchor'));
+
+                    //fetchnig visitors
+                      for (var i=0; i<item.visitors.length; i++){
+                        client.push(transform(item.visitors[i].visitor,'Client Visitor'));
+                      }
+
+     var clientGet=item.client._id;
+    //fectching client csc members from client schema
+    clientModel
+        .find({ _id : clientGet})
+        .populate('cscPersonnel.salesExec')
+        .populate('cscPersonnel.accountGM')
+        .populate('cscPersonnel.industryExec')
+        .populate('cscPersonnel.globalDelivery')
+        .populate('cscPersonnel.cre')
+               .select('cscPersonnel.salesExec cscPersonnel.accountGM cscPersonnel.industryExec cscPersonnel.globalDelivery cscPersonnel.cre ')
+               .exec(function (err, val){
+                  if(err){
+                    console.log(err);
+                    deferred.reject(err);
+                          }
+                 else{
+                _.each(val, function(val, i) {
+                     cscId.push(transform(val.cscPersonnel.salesExec,'Sales Executive'));
+                     cscId.push(transform(val.cscPersonnel.accountGM,'Account General Manager'));
+                     cscId.push(transform(val.cscPersonnel.industryExec,'Industry Executive'));
+                     cscId.push(transform(val.cscPersonnel.globalDelivery,'Global Delivery'));
+                     cscId.push(transform(val.cscPersonnel.cre,'CRE'));
+                     });
+
+             //fectching owner,suppporter from visitScheduler schema
+            scheduleModel
+               .find({ visit: id })
+               .populate('session.owner')
+               .populate('session.supporter')
+               .populate('invitees')
+               .select('session.supporter session.owner invitees')
+               .exec(function (err, data){
+                  if(err){
+                    console.log(err);
+                    deferred.reject(err);
+                          }
+                 else{
+                _.each(data, function(data, i) {
+                     cscId.push(transform(data.session.owner,'Owner'));
+                     cscId.push(transform(data.session.supporter,'Supporter'));
+                     for (var i=0; i<data.invitees.length; i++){
+                        cscId.push(transform(data.invitees[i],'Invitee'));
+                      }
+                });
+            deferred.resolve(partitions);
+            }
+            })//scheduleModel closing
+            }
+            })//clientModel closing
+          }
+
+    });//model find on by id ends
+    function transform(type, role)
+        {
+            var typeData={
+                name :(type.name.prefix+" "+type.name.first+" "+type.name.middle+" "+type.name.last+" "+type.name.suffix),
+                avatar :type.avatar,
+                jobTitle :type.jobTitle,
+                summary :type.summary,
+                email :type.email,
+                contactNo :type.contactNo,
+                role: role
+                }
+                console.log("******************************");
+                console.log(typeData);
+                console.log("******************************");
+                return typeData;
+        }
+
+    return deferred.promise;
+
+} // getExecsById method ends
 
 function getSessionsById(id){
     var deferred = Q.defer();

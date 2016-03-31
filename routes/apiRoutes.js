@@ -21,7 +21,7 @@ var cityFacts				= require(constants.paths.controllers + '/api/cityFacts');
 var factSheets				=	require(constants.paths.controllers + '/api/factSheets');
 var teasers					=	require(constants.paths.controllers + '/api/teasers');
 var contactList			=	require(constants.paths.controllers + '/api/contactList');
-
+var feedbacks				=	require(constants.paths.controllers + '/api/feedbacks');
 
 /*
  * Routes that can be accessed by any one
@@ -85,8 +85,11 @@ router.delete('/api/v1/secure/csclocations/:id', csclocations.deleteById);
 // List of service routes for visits
 router.get('/api/v1/secure/visits', visits.getAll);
 router.get('/api/v1/secure/visits/:id', visits.getOneById);
+
 //router.get('/api/v1/secure/visits/:id/sessions', visits.getSessionsById);
 router.get('/api/v1/secure/visits/:id/:action', visits.getWithAction);
+// router.get('/api/v1/secure/visits/:id/sessions', visits.getSessionsById);
+// router.get('/api/v1/secure/visits/:id/execs', visits.getExecsById);
 router.post('/api/v1/secure/visits', visits.create);
 router.put('/api/v1/secure/visits/:id', visits.updateById);
 router.delete('/api/v1/secure/visits/:id', visits.deleteById);
@@ -101,7 +104,7 @@ router.delete('/api/v1/secure/visitSchedules/:id', visitSchedule.deleteById);
 
 // List of service routes for feedbackDefs
 router.get('/api/v1/secure/feedbackDefs', feedbackDef.getAll);
-//router.get('/api/v1/secure/feedbackDefs/:id', feedbackDef.getOneById);
+router.get('/api/v1/secure/feedbackDefs/id/:id', feedbackDef.getOneById);
 router.post('/api/v1/secure/feedbackDefs', feedbackDef.create);
 router.put('/api/v1/secure/feedbackDefs/:id', feedbackDef.updateById);
 router.delete('/api/v1/secure/feedbackDefs/:id', feedbackDef.deleteById);
@@ -143,5 +146,12 @@ router.get('/api/v1/secure/admin/groups/:id', groups.getOneById);
 router.post('/api/v1/secure/admin/groups', groups.create);
 router.put('/api/v1/secure/admin/groups/:id', groups.updateById);
 router.delete('/api/v1/secure/admin/groups/:id', groups.deleteById);
+
+// List of service routes for feedbacks
+router.get('/api/v1/secure/feedbacks', feedbacks.getAll);
+router.get('/api/v1/secure/feedbacks/:id', feedbacks.getOneById);
+router.post('/api/v1/secure/feedbacks', feedbacks.create);
+router.put('/api/v1/secure/feedbacks/:id', feedbacks.updateById);
+router.delete('/api/v1/secure/feedbacks/:id', feedbacks.deleteById);
 
 module.exports = router;

@@ -8,7 +8,7 @@ var controller = {}
 controller.getAll     = getAll;
 controller.create     = create;
 
-//controller.getOneById = getOneById;
+controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 controller.getWithQuery = getWithQuery;

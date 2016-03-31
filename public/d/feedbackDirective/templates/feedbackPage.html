@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/public/assets/styles/feedbackPage.css" />
+  <label ng-init="getFeedback()" ng-minlength="1" ng-maxlength="75">
+    <ANY ng-switch="showFlag">
+      <ANY ng-switch-when="feedback">
+        <div id="feedback-section">
+          <div class="feedback-form">
+            <div  ng-repeat="(index,item) in feedbackModel.item">
+                <div class="query-text"><label>{{item.query}}</label></div>
+                <div class="star-ratings-div" ng-if="item.mode == 'star-rating'">           
+                  <label>
+                    <ng-rate-it ng-model="feedbackModel.item[index].answer"></ng-rate-it>
+                  </label>              
+                </div>
+
+                <div class="comments-div" ng-if="item.mode == 'freetext'">  
+                  <div class="comments-input">					
+                    <textarea placeholder="Write here..." ng-model="feedbackModel.item[index].answer"></textarea>
+                  </div>  
+                </div>
+
+                <div class="checkbox-div" ng-if="item.mode == 'single-choice'">  					
+                 <label class="radio-inline" ng-repeat="choice in item.choices">
+                   <input type="radio" name="choice" ng-model="feedbackModel.item[index].answer" value="{{choice}}"/>
+                   {{choice}}  	
+                 </label>
+               </div>
+
+               <div class="checkbox-div" ng-if="item.mode == 'multi-choice'">            					
+                <label class="checkbox-inline checkbox-input" ng-repeat="choice in item.choices">
+                  <input type="checkbox" name="choice" ng-checked="selection.indexOf(choice) > -1" ng-click="toggleSelection(choice,index)"/>
+                  {{choice}}
+                </label>      
+              </div>
+        </div>
+         <button type="submit" ng-click="submit(feedbackData)">SUBMIT</button>
+      </div>
+
+<!--       <md-button class="md-primary md-raised" ng-click="submit(feedbackData)">
+      Submit
+    </md-button> -->
+  </div>
+</ANY>
+
+  <ANY ng-switch-when="noFeedback">
+	  <div class="text-danger" style="width:180px;!important;">
+			Feedback not found!!!
+		</div>
+  </ANY>
+
+  <ANY ng-switch-default>
+    <div class="text-info" style="width:180px;!important;">
+     <!-- Default panel -->
+   </div>
+ </ANY>
+</ANY>

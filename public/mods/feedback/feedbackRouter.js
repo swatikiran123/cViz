@@ -19,7 +19,7 @@ angular.module('feedback')
         controller: 'feedbackControllerMain'
       })
 
-      .when('feedbackTmpl/:id/edit', {
+      .when('/feedbackTmpl/:id/edit', {
         templateUrl: '/public/mods/feedback/feedbackViewAdd.html',
         controller: 'feedbackControllerMain'
       });

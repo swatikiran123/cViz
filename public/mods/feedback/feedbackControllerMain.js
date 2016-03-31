@@ -2,8 +2,8 @@
 
 var feedbackApp = angular.module('feedback');
 
-feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope',
-	function($scope, $http, $routeParams, $location,growl,$rootScope) {
+feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope','$mdDialog',
+	function($scope, $http, $routeParams, $location,growl,$rootScope,$mdDialog) {
  	$scope.items=[];
  	var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -24,7 +24,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
           break;
 
         case "edit":
-          $scope.feedbackDefs = $http.get('/api/v1/secure/feedbackDefs/' + id).success(function(response){
+          $scope.feedbackDefs = $http.get('/api/v1/secure/feedbackDefs/id/' + id).success(function(response){
             var feedbackDefs = response;
             $scope.items = feedbackDefs.item;       //list of item
             $scope.feedbackDefs = feedbackDefs;     //whole form object
@@ -84,7 +84,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
 
     $http.put('/api/v1/secure/feedbackDefs/' + $scope.feedbackDefs._id,  $scope.feedbackDefs).success(function(response) {
       refresh();
-      growl.info(parse("Feedback [%s]<br/>Edited successfully", $scope.feedback.title));
+      growl.info(parse("Feedback [%s]<br/>Edited successfully", $scope.feedbackDefs.title));
     })
     .error(function(data, status){
       growl.error("Error updating feedback");
@@ -109,16 +109,74 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
     item.query='';
     item.mode='';
     item.choices='';
+    $mdDialog.hide();
   };
 
   $scope.removeItem = function(index){
     $scope.items.splice(index, 1);
   };
 
-  $scope.editItem = function(index,item){
+  $scope.editItem = function(index,item,ev){
     $scope.item = item;
     $scope.items.splice(index, 1);
+    $mdDialog.show({
+      templateUrl: '/public/mods/feedback/itemViewDialog.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:false
+    })
   };
+
+  $scope.addFeedbackItem = function(ev) {
+    $mdDialog.show({
+      templateUrl: '/public/mods/feedback/itemViewDialog.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:false
+    })
+  };
+
+  $scope.showFeedbackTemp = function(ev,id) {
+    $mdDialog.show({
+      controller: fbackDialog,
+      templateUrl: '/public/mods/feedback/feedbackViewDialog.html',
+      // scope: $scope.$new(),
+      locals: { feedbackid: id },
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:false
+    })
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.canceldialog = function(item) {
+
+    if(item === undefined || item=== '')
+    {
+      console.log('Hi');
+      $mdDialog.cancel();
+    }
+
+    if(item)
+    {
+      console.log(item);
+      $scope.items.push({
+       query: item.query,
+       mode: item.mode,
+       choices: item.choices
+     });
+
+      item.query='';
+      item.mode='';
+      item.choices='';
+      $mdDialog.cancel();
+    };
+  }
 
 }])
 
@@ -186,3 +244,19 @@ feedbackApp.directive('asyncValidator', ['$fakeValidationService', '$q', functio
         }
     }
 }])
+
+function fbackDialog($scope, $mdDialog,$http,feedbackid) {
+
+  $scope.feedback_id = feedbackid;
+  $scope.visit_id = "a01234567892345678900001";
+  $scope.hide = function() {
+//    console.log($scope.model);
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}

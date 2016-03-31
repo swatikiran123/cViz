@@ -1,8 +1,7 @@
 'use strict';
 
 var constants         = require('../../scripts/constants');
-var dataService     = require(constants.paths.services + '/visits');
-var logger     = require(constants.paths.scripts + '/logger');
+var dataService     = require(constants.paths.services + '/feedbacks');
 
 var controller = {}
 
@@ -13,12 +12,11 @@ controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 
-controller.getWithAction = getWithAction;
-controller.getSessionsById = getSessionsById;
-controller.getExecsById = getExecsById;
-
 module.exports = controller;
 
+
+
+//call  getAll() function from the Feedbacks service
 function getAll(req,res){
   dataService.getAll()
     .then(function(data){
@@ -34,6 +32,8 @@ function getAll(req,res){
     });
 }
 
+
+//call  getOneById() function from the Feedbacks service
 function getOneById(req,res){
   dataService.getOneById(req.params.id)
     .then(function(data){
@@ -49,70 +49,8 @@ function getOneById(req,res){
     });
 }
 
-function getWithAction(req, res){
-	logger.dump('debug',0, req.params.id, req.params.action);
 
-	switch(req.params.action.toLowerCase())
-	{
-		case "sessions":
-			getSessionsById(req, res);
-			break;
-		case "my":
-			getMyVisits(req, res);
-			break;
-	}
-}
-
-function getMyVisits(req,res){
-	console.log("my visits controller");
-	var timeline = (req.param('timeline')===undefined)? "all": req.param('timeline');
-	var limit = (req.param('limit')==undefined)? 25: req.param('limit');
-
-	logger.dump('debug',0,timeline,limit);
-  dataService.getMyVisits(req.user, timeline, limit)
-    .then(function(data){
-        if (data){
-            res.send(data);
-        }else {
-            res.sendStatus(404);
-        }
-    })
-    .catch(function (err){
-        console.log("exception" + err);
-        res.status(500).send(err);
-    });
-}
-
-function getSessionsById(req,res){
-  dataService.getSessionsById(req.params.id)
-    .then(function(data){
-        if (data){
-            res.send(data);
-        }else {
-            res.sendStatus(404);
-        }
-    })
-    .catch(function (err){
-        console.log("exception" + err);
-        res.status(500).send(err);
-    });
-}
-
-function getExecsById(req,res){
-  dataService.getExecsById(req.params.id)
-    .then(function(data){
-        if (data){
-            res.send(data);
-        }else {
-            res.sendStatus(404);
-        }
-    })
-    .catch(function (err){
-        console.log("exception" + err);
-        res.status(500).send(err);
-    });
-}
-
+//call  create() function from the Feedbacks service
 function create(req, res) {
   dataService.create(req.body)
     .then(function () {
@@ -124,6 +62,8 @@ function create(req, res) {
     });
 }
 
+
+//call  deleteById() function from the Feedbacks service
 function deleteById(req, res) {
   dataService.deleteById(req.params.id)
     .then(function () {
@@ -135,11 +75,13 @@ function deleteById(req, res) {
     });
 }
 
+
+//call  updateById() function from the Feedbacks service
 function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
         res.status(200).send("Doc updated successfully");
-    })
+    }) 
     .catch(function (err) {
         console.log(err);
         res.status(500).send(err);
