@@ -2,6 +2,7 @@
 
 var constants         = require('../../scripts/constants');
 var dataService     = require(constants.paths.services + '/visits');
+var logger     = require(constants.paths.scripts + '/logger');
 
 var controller = {}
 
@@ -9,14 +10,16 @@ controller.getAll     = getAll;
 controller.create     = create;
 
 controller.getOneById = getOneById;
-controller.getSessionsById = getSessionsById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
+controller.getWithAction = getWithAction;
+
+controller.getSessionsById = getSessionsById;
 
 module.exports = controller;
 
 function getAll(req,res){
-  dataService.getAll(req.user)
+  dataService.getAll()
     .then(function(data){
         if (data){
             res.send(data);
@@ -32,6 +35,40 @@ function getAll(req,res){
 
 function getOneById(req,res){
   dataService.getOneById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getWithAction(req, res){
+	logger.dump('debug',0, req.params.id, req.params.action);
+
+	switch(req.params.action.toLowerCase())
+	{
+		case "sessions":
+			getSessionsById(req, res);
+			break;
+		case "my":
+			getMyVisits(req, res);
+			break;
+	}
+}
+
+function getMyVisits(req,res){
+	console.log("my visits controller");
+	var timeline = (req.param('timeline')===undefined)? "all": req.param('timeline');
+	var limit = (req.param('limit')==undefined)? 25: req.param('limit');
+
+	logger.dump('debug',0,timeline,limit);
+  dataService.getMyVisits(req.user, timeline, limit)
     .then(function(data){
         if (data){
             res.send(data);

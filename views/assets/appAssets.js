@@ -147,13 +147,13 @@ module.exports = {
 		"prod":[
 		]
 	},
-	
-		"dir-mobile":{
+
+	"dir-mobile":{
 		"dev":[
-		
+
 			"/public/d/scroll/scroll.js",
 			"/public/d/header/header.js"
-		
+
 		],
 		"prod":[
 		]
@@ -163,6 +163,7 @@ module.exports = {
 		"dev":[
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
+			"/public/assets/m/css/header.css"
 		],
 		"prod":[
 

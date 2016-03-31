@@ -17,8 +17,8 @@
   padding-top: 45px;
 }
 .pg-content{
- 
- 
+
+
   width: 98%;
 }
 
@@ -74,13 +74,13 @@
 }
 
 .sb-menu ul {
-  
+
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 2px;
-  
+
 }
 
 .sb-menu  ul{
@@ -201,63 +201,40 @@
 					</a>
 					</li>
 					<li class="sidebar-item">
-							<a href="/m/visits/"><img class="menu-icon" src="/public/assets/m/img/ic/cals1.png">Visits</a>
+							<a href="/m/visits/#/visits/all/my"><img class="menu-icon" src="/public/assets/m/img/ic/cals1.png">Visits</a>
 					</li>
 					<li class="sidebar-item">
-            			<a href="/m/visits/#/agenda">
-            				<img class="menu-icon" src="/public/assets/m/img/ic/agenda.png">Agenda</a>
-					</li>
-					<li class="sidebar-item">
-							<a href="/m/facts/"><img  class="menu-icon" src="/public/assets/m/img/ic/facts1.png">Facts</a>
-					</li>
-					<li class="sidebar-item">
-							<a href="/m/visits/#/contacts"><img class="menu-icon" src="/public/assets/m/img/ic/contct1.png">Contacts</a>
+      			<a href="/m/visits/#/agenda">
+      				<img class="menu-icon" src="/public/assets/m/img/ic/agenda.png">Agenda
+						</a>
 					</li>
 					<li class="sidebar-item">
 							<a href="/m/main/#/execBios"><i class="menu-icon fa fa-users fonticon"></i>Executive Bios</a>
 					</li>
 					<li class="sidebar-item">
+							<a href="/m/visits/#/contacts"><img class="menu-icon" src="/public/assets/m/img/ic/contct1.png">Contacts</a>
+					</li>
+					<li class="sidebar-item">
+							<a href="/m/facts/"><img  class="menu-icon" src="/public/assets/m/img/ic/facts1.png">Facts</a>
+					</li>
+					<li class="sidebar-item">
 							<a href="/logout"><img class="menu-icon" src="/public/assets/m/img/ic/logout.png">Logout</a>
 					</li>
-					
+
 				</ul>
 			</div> <!-- sb-menu ends -->
 		</div> <!-- sb-wrapper -->
 
 		<!-- Page Content -->
 		<div id="pg-content-wrapper">
-	
-		
 			<div class="pg-content">
-            
-         <div class="well well-sm">
-        
-	    	<a id="menu-toggle" href="#menu-toggle">
-		<i class="fa fa-bars"></i>
-	</a>
-		
-			
-               		navbar
-           	</div>
-
 				<div class="ng-content">
 				<%- body%>
 				</div>
 			</div> <!-- end container -->
 		</div> <!-- page-content-wrapper -->
-
 	</div> <!-- end of page wrapper -->
 <!-- Menu Toggle Script -->
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-<script>
-
-	$("#menu-toggle").click(function(e) {
-	     alert("I am an alert box!");
-		e.preventDefault();
-		$("#page").toggleClass("toggled");
-	});
-</script>
-
 </body>
 
 </html>

@@ -85,7 +85,8 @@ router.delete('/api/v1/secure/csclocations/:id', csclocations.deleteById);
 // List of service routes for visits
 router.get('/api/v1/secure/visits', visits.getAll);
 router.get('/api/v1/secure/visits/:id', visits.getOneById);
-router.get('/api/v1/secure/visits/:id/sessions', visits.getSessionsById);
+//router.get('/api/v1/secure/visits/:id/sessions', visits.getSessionsById);
+router.get('/api/v1/secure/visits/:id/:action', visits.getWithAction);
 router.post('/api/v1/secure/visits', visits.create);
 router.put('/api/v1/secure/visits/:id', visits.updateById);
 router.delete('/api/v1/secure/visits/:id', visits.deleteById);
