@@ -33,3 +33,15 @@ String.prototype.compare = function(str){
 
 	return this.trim().toLowerCase() == str.trim().toLowerCase();
 }
+
+String.prototype.contains = function(str){
+	return (this.trim().toLowerCase().indexOf(str.trim().toLowerCase()) > -1)
+}
+
+String.prototype.containsAny = function(strValues){
+	strValues.split(",").forEach(function(str){
+		if (this.contains(str))
+			return true;
+	});
+	return false;
+}

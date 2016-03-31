@@ -2,12 +2,12 @@
 
 	{
 
-		"_id"				: ObjectId("A20474567892345678900021"),
+		"_id"								: ObjectId("A20474567892345678900021"),
 
 		 "token"		:
 			{
-				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"token"					: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
+				"dateCreated"		: { "$date" : "2016-12-20T09:00:00.000Z"}
 			},
 
 		"name":
@@ -23,7 +23,6 @@
 		"email"				: "admin@csc.com",
 
 		"avatar"			:  "\\public\\assets\\g\\imgs\\avatar.jpg",
-
 
 		"local"				:
 			{
@@ -46,13 +45,14 @@
 
 		"stats"				:
 			{
-				"dateLastLogin"	: ISODate("2016-03-08T07:00:00.000Z"),
-				"dateCreated"		: ISODate("2016-03-08T07:37:52.539Z")
+				"dateLastLogin"	: { "$date" : "2016-12-25T09:00:00.000Z"},
+				"dateCreated"		: { "$date" : "2016-12-20T09:00:00.000Z"}
 			},
+			
 		"contactNo"			:
 			[
 				{
-					"number"		: "864 643-0563",
+					"number"		: "864-643-0563",
 					"type"			: "mobile"
 				}
 			],

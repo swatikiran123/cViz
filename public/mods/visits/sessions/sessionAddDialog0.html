@@ -19,15 +19,16 @@
          sch:: {{schedule}} owner: {{ownerId}}, {{ownerEmail}}
          <div class="form-group">
 
-           <div>
+           <div class="row">
+               <div class="col-sm-8">
              <input type="text" class="time-picker" id="startTime" name="startTime"
               ng-model="startTime"> -
              <input type="text" class="time-picker" id="endTime" name="endTime"
               ng-model="endTime">
-           </div>
+           
            <span>{{errMessage}}</span>
          </div>
-
+<div class="col-sm-3">
          <!-- session type -->
          <div class="form-group">
            <!-- <select  class="form-control"  id="type" ng-model="schedule.session.type" ng-options="t.session for t in type ">
@@ -39,28 +40,61 @@
              <option ng-repeat="ty in prTypes">{{ty}}</option>
            </select>
          </div>
-
+</div>
          <!--title have to pic from User -->
-         <div class="form-group">
+         <br>
+         <br>
+         
+            <md-input-container class="md-block">
+        <label>Title</label>
+        <input md-maxlength="30" minlength="5" required name="title" ng-model="schedule.session.title">
+        <div ng-messages="sessionAddForm.title.$error" ng-show="sessionAddForm.title.$touched || !sessionAddForm.title.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+      
+      
+         <!--div class="form-group">
+             
            <input type="text" class="form-control" placeholder="title" id="title"
              ng-model="schedule.session.title"  />
-         </div>
+         </div -->
 
          <!--location have to pic from User -->
-         <div class="form-group">
+             <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+         <!--div class="form-group">
            <!-- <select  class="form-control" ng-model="session.location" id="location" ng-options="l.session for l in location">
              <option value="">---pick location ---</option>
-           </select> -->
+           </select>>
 
 					 <input type="text" class="form-control" placeholder="location" id="location"
 						 ng-model="schedule.session.location"  />
-         </div>
+         </div -->
 
          <!--desc have to pic from User -->
-         <div class="form-group">
+             <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea md-maxlength="30" minlength="5" required name="desc" ng-model="schedule.session.desc"></textarea>
+        <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+         <!-- div class="form-group">
            <textarea type="text" class="form-control" placeholder="description" id="desc"
              ng-model="schedule.session.desc"  />
-         </div>
+         </div-->
 
 		 	<!-- session speaker -->
 			<div class="row">

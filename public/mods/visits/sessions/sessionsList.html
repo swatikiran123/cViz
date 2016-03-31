@@ -1,3 +1,46 @@
+<style>
+
+  
+  .scheduledates  span{
+      display: inline;
+      margin-right: 10px;
+    }
+  
+
+  .scheduledates a {  
+    text-decoration: none;
+    font-size: 14px;
+    font-family: workSansBold;
+
+  }
+
+
+  table.table {
+    border: none;
+    border-spacing: 0px;
+    border-collapse: collapse;
+  }
+
+
+  .scheduledates a:focus {
+    padding-bottom: 11px;
+    border-bottom: 3px solid #6495ce;
+    font-size: 16px;
+
+    vertical-align: center;
+}
+  md-dialog {
+  margin-left: 300px;
+  margin-top: 60px;
+  width: 700px;
+  height: 636px;
+}
+
+md-dialog-content{
+  padding: 10px 20px;
+}
+</style>
+
 <!-- Grid filter -->
 <div class="form-inline has-feedback filter-header">
   Count: {{scheduleList.length}} --  {{entryDate}}
@@ -15,10 +58,10 @@
 
 	<!-- <select ng-model="entryDate" ng-options="dt for dt in scheduleDates">
 	</select> -->
-	<br/>
-	<a ng-click="setEntryDate(all)">All ({{scheduleList.length}})</a>&nbsp;&nbsp;
+	<br/><div class="scheduledates">
+	<a href ng-click="setEntryDate(all)">All ({{scheduleList.length}})</a>&nbsp;&nbsp;
 	<span ng-repeat="dt in scheduleDates">
-		<a ng-click="setEntryDate(dt)">{{dt | DateFormat:"ddd, DD MMM" }}</a>&nbsp;&nbsp;
+		<a href ng-click="setEntryDate(dt)">{{dt | DateFormat:"ddd, DD MMM" }}</a>&nbsp;&nbsp;
 	</span>
   <!-- <button ng-click="addSession()" class="btn btn-default">Add session</button> -->
   <!-- <modal title="Session Entry form" visible="showModal">
@@ -27,12 +70,12 @@
 	<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="myModalShower">
 		Add session
 	</button> -->
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="myModalShower" ng-click="addSchedule()">
-		Add session
-	</button>
+	<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="myModalShower" ng-click="addSchedule()">-->
+	<!--	Add session-->
+	<!--</button>-->
   <md-button class="md-primary md-raised" ng-click="addSchedule1($event)" flex="100" flex-gt-md="auto">
        add schedule
-     </md-button>
+     </md-button></div>
 <table class="table table-striped table-condensed table-responsive table-hover">
   <thead class="data-grid-header">
     <!-- table header -->

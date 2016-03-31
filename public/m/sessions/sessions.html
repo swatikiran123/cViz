@@ -1,22 +1,52 @@
+<style>body { margin: 0; }
 
+section { 
+
+  padding-top: 0px;
+ }
+
+.sticky {  background: white;}
+
+.fixed {
+  position: fixed;
+  top:0; left:0;
+  width: 100%;
+  margin-left: 250px;
+  margin-right: 50px;
+}</style>
 
 <div class="agenda-parent-div">
-  <div class="agenda-header-div">
+	  <br>
+    <br>
+    
+    
+    Indigenous peoples of the Americas, the pre-Columbian inhabitants of North and South America and their descendants
+First Nations, the various Aboriginal peoples in Canada who are neither Inuit nor Métis
+Native Americans in the United States, the indigenous people in the United States
+Native Mexicans, indigenous people of Mexico
+Plains Indians, the common name for the Native Americans who lived on the Great Plains of the United States
+Indigenous peoples in South America, peoples living in South America in the pre-Columbian era and their descendents
+West Indians, people from the Caribbean region and the Lucayan Archipelago
+Mardi Gras Indians, African-American Carnival revelers in New Orleans, Louisiana, whose suits are influenced by Native American ceremonial apparel.
+
+	 <section>
+  <div class="agenda-header-div sticky">
 	  
 		
 			<ul ng-init="vm.tab=1" class="agenda-list">
-				<li ng-repeat="schedules in scheduleList">
+				<li ng-repeat="schedules in scheduleList track by $index">
 					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}<br>
 					<div class="schday">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </div></a>
 				</li>
 			</ul> <!-- end of tabs -->
 		 <!-- end of tab header -->
+	
 	</div> <!-- end of agenda header -->
-
+</section>
 	
 	<!-- begin of tab content -->
 
-		<div class="div-padding" ng-repeat="schedules in scheduleList" ng-show="vm.tab === schedules.day" >
+		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
 			<h1 class="day-agenda-header">
 			 <img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
 				{{schedules.date | date : "dd MMM yyyy"}} 
@@ -50,7 +80,7 @@
 					</div>
 				</div>
 <!-- dummy session ends here -->
-			<div class="agenda-session-block" ng-repeat="session in schedules.sessions">
+			<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
 				<div class="agenda-block-sub-div">
 					<div>
 						<p>
@@ -92,6 +122,30 @@
 	       </div> <!-- end of day -->
 		</div> <!-- enf of days - sessions-->
 	</div> <!-- end of scrollable area -->
+	
+	
+	   <br>
+    <br>
+    
+    
+    Indigenous peoples of the Americas, the pre-Columbian inhabitants of North and South America and their descendants
+First Nations, the various Aboriginal peoples in Canada who are neither Inuit nor Métis
+Native Americans in the United States, the indigenous people in the United States
+Native Mexicans, indigenous people of Mexico
+Plains Indians, the common name for the Native Americans who lived on the Great Plains of the United States
+Indigenous peoples in South America, peoples living in South America in the pre-Columbian era and their descendents
+West Indians, people from the Caribbean region and the Lucayan Archipelago
+Mardi Gras Indians, African-American Carnival revelers in New Orleans, Louisiana, whose suits are influenced by Native American ceremonial apparel.
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>moulika
 </div> <!-- end of page container -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">$(window).scroll(function(){
+  var sticky = $('.sticky'),
+      scroll = $(window).scrollTop();
+
+  if (scroll >= 200) sticky.addClass('fixed');
+  else sticky.removeClass('fixed');
+});</script>
 
 

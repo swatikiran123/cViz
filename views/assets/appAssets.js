@@ -154,10 +154,22 @@ module.exports = {
 		]
 	},
 
+	"dir-mobile":{
+		"dev":[
+
+			"/public/d/scroll/scroll.js",
+			"/public/d/header/header.js"
+
+		],
+		"prod":[
+		]
+	},
+
 	"m-common":{
 		"dev":[
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
+			"/public/assets/m/css/header.css"
 		],
 		"prod":[
 
@@ -170,7 +182,8 @@ module.exports = {
 			"/public/m/home/home.js",
 			"/public/m/home/homeCtrl.js",
 			"/public/d/geoLocation/locator.js",
-			"/public/d/geoLocation/locator-tpl.js"
+			"/public/d/geoLocation/locator-tpl.js",
+			"/public/assets/m/css/welcome.css"
 		]
 
 	},

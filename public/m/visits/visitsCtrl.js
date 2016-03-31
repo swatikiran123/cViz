@@ -1,49 +1,39 @@
 angular.module('visits')
 
 .controller('visitsCtrl', function($scope, $http) {
-	console.log("Visits controller running");
+	console.log("All visits controller running");
 	$http.get('/api/v1/secure/visits').success(function(response) {
-		$scope.visitList = response;
+		console.log(response);
+		$scope.visitBunches = response["last-week"];
+		console.log($scope.visitBunches);
 	});
 })
 
 .controller('visitCtrl', function($scope, $routeParams, $http) {
+	console.log("single visit controller running")
 	$http.get('/api/v1/secure/visits/' + $routeParams.id).success(function(response) {
 		$scope.visit = response;
 	});
 })
- .controller('myVisitsCtrl', function($scope, $rootScope, $location, $http) {
-        $http.get('/api/v1/secure/visits').success(function(response) {
-        $scope.visitList = response;
-    });
 
-        $scope.visit_details = [{            
-        }];
+.controller('myVisitsCtrl', function($scope, $rootScope, $location, $http) {
+	console.log("my visits controller running...")
 
+	$scope.setTimeline = function(time){
+		$scope.timeline = time;
+		console.log("setting timeline to " + $scope.timeline )
+		$scope.visitBatch = $scope.allVisits[$scope.timeline];
+	}
 
-        $scope.IsVisible = false;
-        $scope.IsActionVisible = false;
+  $http.get('/api/v1/secure/visits/all/my').success(function(response) {
+	    $scope.allVisits = response;
+			if($scope.timeline=="" || $scope.timeline===undefined){
+				$scope.timeline = "this-week";
+				console.log("no timeline. Set to " + $scope.timeline);
+				$scope.visitBatch = $scope.allVisits[$scope.timeline];
+			}
 
-        $scope.showSortDropDown = function() {
-            console.log("Inside showSortDropDown");
-            $scope.IsVisible = $scope.IsVisible ? false : true;
-            $scope.IsActionVisible = false;            
-           // if ($scope.IsVisible) {
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border', '1px solid #dddddd');
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border-bottom', 'none');
-           //      // angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('box-shadow', '2px 0px 2px #9a9a9a');
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('box-shadow', 'none');
-           //  } else {
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border', '1px solid #fff');
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('border-bottom', 'none');
-           //      angular.element('#my-visits-container .searchView  .sort-by-wrapper').css('box-shadow', 'none');
-           //  }*/
-        };
-
-
-        $scope.showActionDropDown = function() {
-            $scope.IsActionVisible = $scope.IsActionVisible ? false : true;
-        };
-
-          
-    });
+			console.log($scope.visitBatch);
+		}
+	);
+})

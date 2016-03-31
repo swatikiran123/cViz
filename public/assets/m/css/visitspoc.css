@@ -1,20 +1,10 @@
 #spoc-page {
     background-color: #eeeeee;
-    padding-top: 10px;
-    padding-bottom: 20px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 20px;*/
 }
-    .header1 {
-        padding: 60px;
-        background-color: #fff;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1;
-        font-size: 1.1em;
-        box-shadow: 2px 2px 5px #676767;
-        padding-left: 40px;
-        font-family: robotoRegular;
-    }
+
+
 
     .spocpicture{
         width: 80px;

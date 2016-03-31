@@ -7,7 +7,7 @@
 		 "token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 
 		"name":
@@ -19,11 +19,8 @@
 				"suffix"		:  ""
 			},
 
-		"__v"				:	0,
 		"email"				: "admin@csc.com",
-
 		"avatar"			:  "//public//assets//g//imgs//avatar.jpg",
-
 
 		"local"				:
 			{
@@ -51,8 +48,8 @@
 
 		"stats"				:
 			{
-				"dateLastLogin"	: ISODate("2016-03-08T07:00:00.000Z"),
-				"dateCreated"		: ISODate("2016-03-08T07:37:52.539Z")
+				"dateLastLogin"	: { "$date" : "2016-03-08T07:00:00.000Z"},
+				"dateCreated"		: { "$date" : "2016-03-08T07:00:00.000Z"}
 			},
 		"contactNo"			:
 			[
@@ -76,7 +73,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -142,7 +139,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -206,7 +203,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -266,7 +263,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -326,7 +323,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 			
 			"name":
@@ -387,7 +384,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -450,7 +447,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -513,7 +510,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -575,7 +572,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -639,7 +636,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -703,7 +700,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -766,7 +763,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -830,7 +827,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -893,7 +890,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -958,7 +955,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1021,7 +1018,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1082,7 +1079,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1145,7 +1142,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1207,7 +1204,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1268,7 +1265,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1331,7 +1328,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1393,7 +1390,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1457,7 +1454,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1517,7 +1514,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1577,7 +1574,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1637,7 +1634,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1696,7 +1693,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1760,7 +1757,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1820,7 +1817,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
@@ -1880,7 +1877,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 			
 			"name":
@@ -1941,7 +1938,7 @@
 			"token"		:
 			{
 				"token"				: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
-				"dateCreated"	: ISODate("2016-03-08T07:37:52.546Z")
+				"dateCreated"	: { "$date" : "2016-03-08T09:00:00.000Z"}
 			},
 		
 			"name":
