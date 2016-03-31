@@ -21,10 +21,12 @@
               <div class="panel panel-info">
                 <div class="panel-heading pn-bodyhdr" pull-left>
                   <span>{{visit.title}}</span><div class="pull-right">
-                  <a class="table-btn" href="#/{{visit._id}}/showVisit"><span class="fa fa-eye fa-lg" /></a>
-                  <a class="table-btn" href="#/{{visit._id}}/editVisit"><span class="fa fa-edit fa-lg" /></a>
-                  <a class="table-btn" ng-click="delete(visit)"><span class="fa fa-trash fa-lg" /></a>
-                  <a class="table-btn" href="#/{{visit._id}}/editSession"><span class="fa fa-calendar fa-lg" /></a></div>
+                  <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+                  <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+                  <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
+                    yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+                    <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar fa-lg" /></a>
+                  </div>
                 </div>
 
                 <div class="panel-body">

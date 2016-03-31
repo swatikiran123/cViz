@@ -42,7 +42,9 @@ var visitSchema = new mongoose.Schema({
 	 	context 					: {type: String, enum: ['welcome', 'thankyou'], required: false},
 	 	order						: {type: Number, required: false}
 	 }],
-	 invitees						: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+	 invitees						: [{
+	 invite 						:{ type: Schema.Types.ObjectId, ref: 'User' }
+	}]
 
 });
 

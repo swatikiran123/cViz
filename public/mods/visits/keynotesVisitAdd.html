@@ -1,5 +1,5 @@
 <!-- visits keynotes input-->
-<b>Add - Keynotes</b><br>
+<b>Keynotes</b><br>
 <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
   <thead class="data-grid-header">
     <tr>
@@ -12,17 +12,35 @@
   <tbody class="data-grid-data">
     <tr>
       <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote required></td>
-     <td><input type="text" placeholder="context" ng-model="keynoteDef.context" ></td>
-     <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
-     <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add keynote</button></td>
-   </tr>
-   <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
-    <td>{{keynoteDef.note}}</td>
-    <td>{{keynoteDef.context}}</td>
-    <td>{{keynoteDef.order}}</td>
-    <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash" /></a>
-      <a class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit" /></a>
-    </td>
-  </tr>
-</tbody>
+      <td><input type="text" placeholder="context" ng-model="keynoteDef.context" ></td>
+      <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
+      <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add keynote</button></td>
+    </tr>
+    <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
+      <td>{{keynoteDef.note}}</td>
+      <td>{{keynoteDef.context}}</td>
+      <td>{{keynoteDef.order}}</td>
+      <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash fa-lg" /></a>
+        <a class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- visits keynotes input-->
+<b>Invitees</b><br>
+<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+  <tbody class="data-grid-data">
+    <tr>
+      <td><div user type="picker" user-model="specialInvite.inviteUser" user-id="specialInvite.inviteId" user-email="specialInvite.inviteEmail" view-type="small" ></div>
+</td>
+      <td><button class="btn btn-primary" ng-click="addInvitees(specialInvite)">Add invitees</button></td>
+    </tr>
+    <tr ng-repeat="specialInvite in inviteesData | filter: search |orderBy:orderByField:reverseSort">
+      <td>{{specialInvite.invitees}}</td>
+      <td><a class="table-btn" ng-click="removeInvitees($index)"><span class="fa fa-trash fa-lg" /></a>
+        <a class="table-btn" ng-click="editInvitees($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a>
+      </td>
+    </tr>
+  </tbody>
 </table>

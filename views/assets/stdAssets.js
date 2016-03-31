@@ -18,7 +18,7 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-			"/public/libs/moment/moment.js",
+			//"/public/libs/moment/moment.js",
 			"/public/libs/fullcalendar/dist/fullcalendar.css",
             "/public/libs/fullcalendar/dist/fullcalendar.js",
             "/public/libs/fullcalendar/dist/gcal.js"

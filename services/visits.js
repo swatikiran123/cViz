@@ -53,6 +53,7 @@ function getOneById(id){
     .populate('client')
     .populate('feedbackTmpl')
     .populate('keynote.note')
+    .populate('invitees.invite')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
@@ -77,6 +78,7 @@ function getExecsById(id){
     .populate('anchor')
     .populate('client')
     .populate('visitors.visitor')
+    .populate('invitees.invite')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
@@ -85,7 +87,10 @@ function getExecsById(id){
         else{
                     cscId.push(transform(item.agm,'Sponsor'));
                     cscId.push(transform(item.anchor,'Anchor'));
-                    
+                    //fetchnig invitiees 
+                      for (var i=0; i<item.invitees.length; i++){
+                        client.push(transform(item.invitees[i].invite,'Invitee'));
+                      }                    
                     //fetchnig visitors 
                       for (var i=0; i<item.visitors.length; i++){
                         client.push(transform(item.visitors[i].visitor,'Client Visitor'));

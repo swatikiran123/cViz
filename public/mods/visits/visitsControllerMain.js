@@ -70,6 +70,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.hideFilter = true;
   $scope.checked = false;
   $scope.schedules=[];
+  $scope.inviteesData=[];
   $scope.visitors=[];
   $scope.keynotes=[];
   $scope.small= "small";
@@ -109,6 +110,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
       $scope.visitsList = response;
       $scope.visits = "";
       $scope.schedules=[];
+      $scope.invitees=[];
       $scope.visitors=[];
       $scope.keynotes=[];
 
@@ -135,7 +137,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
             var visits = response;
           $scope.schedules = visits.schedule;       //List of schedules
           $scope.keynotes = visits.keynote;
-          $scope.visitors = visits.visitors;      //List of visitors
+          $scope.visitors = visits.visitors;     //List of visitors
+          $scope.invitees =visits.invitees;
           $scope.visits = visits;               //Whole form object
 
           $scope.agmUser = response.agm;
@@ -175,7 +178,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
          if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
         $scope.visits.billable=$scope.billable;}//WBS code
 
-    console.log($scope.visits.billable);
+
 
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     switch($scope.mode)    {
@@ -192,11 +195,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   } // End of save method
 
   $scope.create = function() {
-
-    var inData       = $scope.visits;
+    var inData      = $scope.visits;
     inData.schedule = $scope.schedules;
     inData.keynote = $scope.keynotes;
     inData.visitors = $scope.visitors;
+    inData.invitees = $scope.inviteesData;
+    
     inData.createBy =  $rootScope.user._id;
 
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -254,12 +258,14 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.schedules.push({
       startDate: schedule.startDate,
       endDate: schedule.endDate,
-      location: schedule.location
+      location: schedule.location,
+      meetingPlace: schedule.meetingPlace
     });
 
     schedule.startDate='';
     schedule.endDate='';
     schedule.location='';
+    schedule.meetingPlace='';
   };
 
   $scope.removeSchedule = function(index){
@@ -272,6 +278,28 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   };
 // Visit schedule table end
 
+  // Visit invitees table
+
+  $scope.addInvitees=function(specialInvite){
+console.log(specialInvite.inviteId);
+    $scope.inviteesData.push({
+      invite: specialInvite.inviteId
+    });
+ 
+    specialInvite.inviteId='';
+    specialInvite.inviteUser='';
+    specialInvite.inviteEmail='';
+    };
+
+  $scope.removeInvitees = function(index){
+    $scope.inviteesData.splice(index, 1);
+  };
+
+  $scope.editInvitees = function(index,specialInvite){
+    $scope.specialInvite= specialInvite;
+    $scope.inviteesData.splice(index, 1);
+  };
+// Visit specialInvite table end
  // Visit keynote table
 
  $scope.addkeynote=function(keynoteDef){
