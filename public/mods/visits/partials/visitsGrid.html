@@ -4,8 +4,17 @@
     <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
     <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
 
-    <a class="btn btn-default btn-sm pull-right" href="#/visits/add">Add New visit</a>
-  </div> <!-- Grid filter ends -->
+    <a class="btn btn-default btn-sm pull-right" href="#/visits/add">Add New Visit</a>&nbsp;
+    <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">View Mode
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#/visits/list">List</a></li>
+    <li><a href="#/visits/panels">Detail</a></li>
+    <li><a href="#/visits/calendar">Calander</a></li>
+  </ul>
+</div>
+  </div><!-- Grid filter ends -->
   <a href ng-click="eventDateFilter('all')">All</a>&nbsp;&nbsp;
   <a href ng-click="eventDateFilter('today')">Today</a>&nbsp;&nbsp;
   <a href ng-click="eventDateFilter('pastMonth')">Past Month</a>&nbsp;&nbsp;
@@ -68,11 +77,11 @@
 				<!-- <td>{{visit.startDate | DateRange:"{{visit.endDate}}, ddd, DD MMM"}}</td> -->
         <td>{{visit.locations}}</td>
         <td>
-					<a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
-	        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
+					<a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+	        <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
 	        <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-          yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
-	        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
+          yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+	        <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar fa-lg" /></a>
        </td>
      </tr>
      <!--sorted date table-->
@@ -84,11 +93,11 @@
       <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:"dd MMM yyyy"}}</td>
       <td>{{visit.locations}}</td>
       <td>
-       <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye" /></a>
-       <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit" /></a>
+       <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+       <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
        <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-       yes-text="Ok" no-text="Cancel"><span class="fa fa-trash" /></a>
-       <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar" /></a>
+       yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+       <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar fa-lg" /></a>
      </td>
    </tr>
  </tbody>
