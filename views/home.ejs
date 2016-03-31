@@ -321,16 +321,61 @@
 
 <div class="panel-wrapper">
   <div class="panel-controller">
-    <div class="tab-controller">
-      <span class="close">CLOSE PANEL</span>
-      <span class="show">OPEN PANEL</span>
-    </div><!-- tab-controller -->
+
+    <div class = "tab-controller">
+      <a href="#">
+      <i class="fa fa-angle-double-up fa-2x rotate"></i></a>
+    </div><!-- Tab-controller -->
+
+    <div class = "tab-controller1">
+      <a href="#">
+      <i class="fa fa-angle-double-down fa-2x rotate"></i></a>
+    </div><!-- Tab-controller -->
+
   </div><!-- panel-controller -->
 
   <div class="panel-content">
-    <br>
-    <br>
-    <center>This is for panel content</center> <br>
+    <div class = "row">
+      
+        <div class = "col-xs-4" style = "color: red;" > 
+          <i><u><b > Lunch </b></u></i>
+        </div>
+        <div class = "col-xs-4" style = "color: red;"> 
+          <i><u><b>Delayed by 1 hr </b></u></i>
+        </div>
+        <div class = "col-xs-4" style = "color: red;"> 
+           <i><u><b> 12:30 - 13:30 </b></u></i>
+        </div>
+    </div>
+
+
+
+  <div class = "row">
+  <br>
+        <div class = "col-xs-3">
+          <i><u><b> Executive lunch </b></u></i>
+        </div>
+
+        <div class = "col-xs-3">
+
+          <span> with: </span>
+          <img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+          <img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+
+        </div>
+
+        <div class = "col-xs-3">
+          <i><u><b>Start Time:</b></u></i> 13:30<br>
+          <i><u><b>End Time:</b></u></i> 14:30
+        </div>
+
+        <div class = "col-xs-3">
+          <i><u><b>Anchor:</b></u></i> Suman <br>
+          <i><u><b>Owner:</b></u></i>  Shiva <br>
+          <i><u><b>Supporter:</b></u></i> Santosh
+        </div>
+  </div> <!--row-->
+
 
   </div> <!-- panel-content-->
 </div><!-- panel-wrapper -->
@@ -338,83 +383,151 @@
 
 
 
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-
 <script type="text/javascript">
 
-  $(".rotate").click(function(){
-    $(this).toggleClass("side");
-  });
-
-
-  (function($) {
-
-    jQuery(document).ready(function() {
-
-      $(document).on('click', '.tab-controller', function() {
-        Panel.togglePanel();
+      $(".rotate").click(function(){
+        $(this).toggleClass("side");
       });
 
-    });
+
+        (function($) {
+
+          jQuery(document).ready(function() {
+
+              Panel.init();
+
+              $(document).on('click', '.tab-controller', function() {
+                   Panel.togglePanel();
+              });
+          });
+
+          var Panel = {
+              isVisible : true,
+              showMessage : null,
+              hideMessage : null,
+              animationDuration : 650,
+              animationEasing : 'linear',
+              
+              init : function() {
+                this.showHalfPanel();
+              },
+
+              hideHalfPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = false;
+                      $(".tab-controller1").show();
+                  });
+              },
+
+              showHalfPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, function() {
+                      Panel.isVisible = false;
+                      
+                  });
+              },
+
+              showFullPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : 0
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = true;
+                      $(".tab-controller1").hide();
+                  });
+              },
+
+              togglePanel : function() {
+                  ((this.isVisible) ? this.hideHalfPanel : this.showFullPanel)();
+              },
+
+              updateTabMessage : function() {
+                  if (this.isVisible) {
+                      $('.tab-controller .close').show();
+                      $('.tab-controller .show').hide();
+                  } else {
+                      $('.tab-controller .close').hide();
+                      $('.tab-controller .show').show();
+                  }
+              },
+
+              getAnimationOffset : function() {
+                  return $('.panel-content').height();
+              }
+
+          }
+
+      })(jQuery);
 
 
-    var Panel = {
-
-      isVisible: false,
-      showMessage: null,
-      hideMessage: null,
-      animationDuration: 650,
-      animationEasing: 'linear',
-
-      init: function () {
-        $('.panel-wrapper').css("bottom", -$('.panel-content').height() + 'px');
-        $(".close").css("display", "none");
-        $(".show").css("display", "inline");
-      },
-
-      hidePanel: function() {
-        $('.panel-wrapper').animate({
-          bottom: -(Panel.getAnimationOffset())
-        }, Panel.animationDuration, Panel.animationEasing, function() {
-          Panel.isVisible = false;
-          Panel.updateTabMessage();
-        });
-      },
-
-      showPanel: function() {
-        $('.panel-wrapper').animate({
-          bottom: 0
-        }, Panel.animationDuration, Panel.animationEasing, function() {
-          Panel.isVisible = true;
-          Panel.updateTabMessage();
-        });
-      },
-
-      togglePanel: function() {
-        ((this.isVisible) ? this.hidePanel : this.showPanel)();
-      },
-
-      updateTabMessage: function() {
-        if (this.isVisible) {
-          $('.tab-controller .close').show();
-          $('.tab-controller .show').hide();
-        } else {
-          $('.tab-controller .close').hide();
-          $('.tab-controller .show').show();
-        }
-      },
-
-      getAnimationOffset: function() {
-        return $('.panel-content').height();
-      }
-
-    }
-
-    Panel.init();
-
-  })(jQuery);
 
 
+      (function($) {
+
+          jQuery(document).ready(function() {
+
+              Panel.init();
+
+              $(document).on('click', '.tab-controller1', function() {
+                   Panel.togglePanel();
+              });
+          });
+
+          var Panel = {
+              isVisible : true,
+              showMessage : null,
+              hideMessage : null,
+              animationDuration : 650,
+              animationEasing : 'linear',
+              
+              init : function() {
+                
+              },
+
+              
+
+              hidePanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset())
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = false;
+                      $(".tab-controller").hide();
+                  });
+              },
+
+              
+              showPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = true;
+                      $(".tab-controller").show();
+                  });
+              },
+
+              togglePanel : function() {
+                  ((this.isVisible) ? this.hidePanel : this.showPanel)();
+              },
+
+              updateTabMessage : function() {
+                  if (this.isVisible) {
+                      $('.tab-controller1 .close').show();
+                      $('.tab-controller1 .show1').hide();
+                  } else {
+                      $('.tab-controller1 .close').hide();
+                      $('.tab-controller1 .show1').show();
+                  }
+              },
+
+              getAnimationOffset : function() {
+                  return $('.panel-content').height();
+              }
+
+          }
+
+      })(jQuery);
 </script>
 </body>
 
