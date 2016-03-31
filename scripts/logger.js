@@ -75,7 +75,10 @@ function dump(mode, n, args)
 {
 	var str = [];
 	for (var i = 2; i < arguments.length; i++) {
-		str.push(arguments[i])
+		if(arguments[i] === undefined)
+			str.push("undefined");
+		else
+			str.push(arguments[i]);
 	}
 
 	writeLine(mode,n,str.join(' | '));

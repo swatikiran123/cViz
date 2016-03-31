@@ -8,6 +8,7 @@ var constants       = require('../scripts/constants');
 var User            = require(constants.paths.models +  '/user');
 var userService     = require(constants.paths.services +  '/users');
 var emailController = require(constants.paths.scripts + '/email');
+var secure  = require(constants.paths.scripts + '/secure');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
@@ -28,6 +29,11 @@ module.exports = function(passport) {
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
+					//var newUser = user;
+					user.set('groups', secure.getGroups(user),  { strict: false });
+					//newUser.groups = "secure.getGroups(user)";
+					// console.log("User groups:" + user.groups);
+					// console.log(user);
             done(err, user);
         });
     });
@@ -64,6 +70,7 @@ module.exports = function(passport) {
 									// set last login time on successful login
 									user.stats.dateLastLogin = new Date();
 									userService.updateById(user._id, user);
+
                     return done(null, user);
 								}
             });

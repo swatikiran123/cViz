@@ -22,15 +22,32 @@ service.getOneById = getOneById;
 service.getSessionsById = getSessionsById;
 service.updateById = updateById;
 service.deleteById = deleteById;
+service.getMyVisits = getMyVisits;
 
 module.exports = service;
+
+function getAll(){
+  var deferred = Q.defer();
+
+	model.find(function(err, list){
+		if(err) {
+        console.log(err);
+        deferred.reject(err);
+      }
+		else
+			deferred.resolve(list);
+	});
+
+	return deferred.promise;
+} // getAll method ends
 
 // Method implementations
 //ToDo:: Fix Known issues
 // 2. Date are not as per UTC, timezone is effecting the date filters
 // 3. Custo9mers are not filtered by visit. They can access any visit of the client irrective of being part of it
 
-function getAll(thisUser, timeline, limit){
+function getMyVisits(thisUser, timeline, limit){
+	console.log("my visits db service");
 	var deferred = Q.defer();
 
 	// massage params
@@ -39,7 +56,7 @@ function getAll(thisUser, timeline, limit){
 
 	if (limit=="" || limit===undefined)
 		limit = 25;
-
+console.log(thisUser);
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
 	var userId = thisUser._id;
