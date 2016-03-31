@@ -1,7 +1,7 @@
 'use strict';
 
 var constants         = require('../../scripts/constants');
-var dataService     = require(constants.paths.services + '/feedbackDefs');
+var dataService     = require(constants.paths.services + '/feedbacks');
 
 var controller = {}
 
@@ -11,60 +11,46 @@ controller.create     = create;
 controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
-controller.getWithQuery = getWithQuery;
+
 module.exports = controller;
 
+
+
+//call  getAll() function from the Feedbacks service
 function getAll(req,res){
   dataService.getAll()
-    .then(function(userList){
-        if (userList){
-            res.send(userList);
-        }else {
-            res.sendStatus(404);
-        }
-    })
-    .catch(function (err){
-        console.log("exception" + err);
-        res.status(500).send(err);
-    });
-}
-
-function getOneById(req,res){
-  dataService.getOneById(req.params.id)
-    .then(function(userList){
-        if (userList){
-            res.send(userList);
-        }else {
-            res.sendStatus(404);
-        }
-    })
-    .catch(function (err){
-        console.log("exception" + err);
-        res.status(500).send(err);
-    });
-}
-
-function getWithQuery(req,res){
-    console.log(req.params);
-    var title= req.param('query');
-    var query = {title: new RegExp(title, 'i')};
-    var maxRecs = req.param('maxRecs'); 
-    var fields = req.param('fields');
-    var sort = req.param('sort');
-    dataService.getWithQuery(query,fields ,maxRecs, sort)
     .then(function(data){
         if (data){
             res.send(data);
         }else {
-            res.sendStatus(404).send("Doc dont exists");
+            res.sendStatus(404);
         }
     })
     .catch(function (err){
-        console.log("doc dont exists" + err);
+        console.log("exception" + err);
         res.status(500).send(err);
     });
 }
 
+
+//call  getOneById() function from the Feedbacks service
+function getOneById(req,res){
+  dataService.getOneById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+
+//call  create() function from the Feedbacks service
 function create(req, res) {
   dataService.create(req.body)
     .then(function () {
@@ -76,6 +62,8 @@ function create(req, res) {
     });
 }
 
+
+//call  deleteById() function from the Feedbacks service
 function deleteById(req, res) {
   dataService.deleteById(req.params.id)
     .then(function () {
@@ -87,6 +75,8 @@ function deleteById(req, res) {
     });
 }
 
+
+//call  updateById() function from the Feedbacks service
 function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
