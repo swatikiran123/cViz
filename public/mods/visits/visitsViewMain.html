@@ -8,10 +8,6 @@
     </div>
 
     <div class="table-responsive data-grid">
-        <p>
-            <a class="fa fa-table" ng-click="activeTemplate='/public/mods/visits/partials/visitsGrid.html'"></a>
-            <a class="fa fa-calendar" ng-click="activeTemplate='/public/mods/visits/calendar.html'"></a>
-        </p>
-        <div ng-include="activeTemplate"></div>
+        <div ng-include src="'/public/mods/visits/partials/visitsGrid.html'"></div>
     </div>
 </div>

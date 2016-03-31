@@ -225,7 +225,7 @@
     </div>
 
     <!-- visits status input-->
-    <md-input-container class="md-block">
+<!--     <md-input-container class="md-block">
     <label>Status</label>
     <input md-maxlength="30" minlength="3" required name="status" ng-model="visits.status">
     <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
@@ -235,7 +235,18 @@
       <div ng-message="minlength">the visit type should contain minimum 5characters</div>
     </div>
   </div>
-</md-input-container>
+</md-input-container> -->
+
+           <label>Status </label>
+          <div class="radio-inline" style="margin-left: 1cm" >
+            <input type="radio" ng-model="visits.status" value="Conform" required>
+              Conform<br/>
+          </div>
+          <div class="radio-inline">  
+             <input type="radio" ng-model="visits.status" value="Tentative">
+              Tentative<br/>
+          </div>  
+           
 
 <!--buttons-->
 <div class="form-group">
