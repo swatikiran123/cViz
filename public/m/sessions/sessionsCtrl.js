@@ -14,20 +14,29 @@ angular.module('sessions')
             $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
             $event.stopPropagation();
         };
-    
+
 })
 
 .controller('sessionCtrl', function($scope, $routeParams, $http) {
-   
+
     console.log("session controller running");
     $http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response) {
         $scope.session = response;
-});
-     $scope.hideFeeedbackDiv = true;
-   $scope.toggleFeedbackDialog = function(index, $event){
+		});
+
+		$scope.hideFeeedbackDiv = true;
+   	$scope.toggleFeedbackDialog = function(index, $event){
             $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
             $event.stopPropagation();
         };
+})
+
+.controller('agendaCtrl', function($scope, $routeParams, $http, $location) {
+    console.log("agenda controller running");
+		$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+				//console.log("next visit id " + "#/sessions/" + response.visits._id));
+				$location.path("sessions/" + response.visits._id);
+		});
 })
 
 
@@ -63,5 +72,5 @@ angular.module('sessions')
             }]
         }]
 
-        
+
     });

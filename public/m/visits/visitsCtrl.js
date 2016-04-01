@@ -3,9 +3,9 @@ angular.module('visits')
 .controller('visitsCtrl', function($scope, $http) {
 	console.log("All visits controller running");
 	$http.get('/api/v1/secure/visits').success(function(response) {
-		console.log(response);
-		$scope.visitBunches = response["last-week"];
-		console.log($scope.visitBunches);
+		//console.log(response);
+		$scope.visitList = response;
+		//console.log($scope.visitBunches);
 	});
 })
 

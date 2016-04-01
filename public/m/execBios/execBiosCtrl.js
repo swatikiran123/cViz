@@ -1,14 +1,29 @@
-var bios = angular.module('execBios', ['ngRoute'])
+var bios = angular.module('execBios', ['ngRoute']);
+
 bios.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
   .when('/execBios/:id', {
-    templateUrl: '/public/m/execBios/execBios.html',
-    controller: 'execBiosCtrl'
-})
-  
+	    templateUrl: '/public/m/execBios/execBios.html',
+	    controller: 'execBiosCtrl'
+	})
 
-}])
+	.when('/execBios', {
+		templateUrl: '/public/m/dummy.html',
+		controller: 'execBiosBlankCtrl'
+	})
+
+
+
+}]);
+
+bios.controller('execBiosBlankCtrl', function($scope, $routeParams, $http, $location) {
+    console.log("exec bios blank controller running");
+		$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+				//console.log("next visit id " + "#/sessions/" + response.visits._id));
+				$location.path("execBios/" + response.visits._id);
+		});
+});
 
 bios.controller('execBiosCtrl', function($scope, $routeParams, $http) {
 

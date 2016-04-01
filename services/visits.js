@@ -59,7 +59,7 @@ function getMyVisits(thisUser, timeline, limit){
 
 	if (limit=="" || limit===undefined)
 		limit = 25;
-console.log(thisUser);
+
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
 	var userId = thisUser._id;
@@ -102,10 +102,6 @@ console.log(thisUser);
 		logger.writeLine('',0,"Getting Data from service...\nwith filter")
 
 		logger.writeJson(filter);
-
-		// limit to one rec if requested for next-one
-		if("next-one".compare(timeline))
-			limit = 1;
 
 		var visitsByTimeline = new Array();
     model
@@ -226,7 +222,7 @@ console.log(thisUser);
 					"next-one":{
 							start: today,
 							end: nextWeekEndsOn,
-							visits: ((timeline.contains("next-one")||timeline.contains('all'))? filterByRange(visitsSorted, nextOne) : null)
+							visits: ((timeline.contains("next-one")||timeline.contains('all'))? filterByRange(visitsSorted, nextOne)[0] : null)
 					}
 
 				}
