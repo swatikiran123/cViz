@@ -417,15 +417,19 @@ function getExecsById(id){
           }
 
     });//model find on by id ends
-    function transform(type, role)
+    function transform(user, role)
         {
+        	if (user==null) {
+        		console.log("error in adding");
+        	}
+        	else{
             var typeData={
-                name :(type.name.prefix+" "+type.name.first+" "+type.name.middle+" "+type.name.last+" "+type.name.suffix),
-                avatar :type.avatar,
-                jobTitle :type.jobTitle,
-                summary :type.summary,
-                email :type.email,
-                contactNo :type.contactNo,
+                name :(user.name.prefix+" "+user.name.first+" "+user.name.middle+" "+user.name.last+" "+user.name.suffix),
+                avatar :user.avatar,
+                jobTitle :user.jobTitle,
+                summary :user.summary,
+                email :user.email,
+                contactNo :user.contactNo,
                 role: role
                 }
                 console.log("******************************");
@@ -433,6 +437,7 @@ function getExecsById(id){
                 console.log("******************************");
                 return typeData;
         }
+    }
 
     return deferred.promise;
 

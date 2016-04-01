@@ -31,7 +31,7 @@
     <div class="csc-india-rep">
         <div class="heading">CSC INDIA REPRESENTATIVES</div>
         <div class="list-group">
-            <div href="#" class="list-group-item" ng-repeat="cscRep in cscData" ng-click="collapseDiv($index,'cscRep')">
+            <div href="#" class="list-group-item" ng-repeat="cscRep in cscData track by $index" ng-click="collapseDiv($index,'cscRep')">
                 <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                     
                        <img ng-src="{{cscRep.avatar}}" class="img-circle pic" alt> 
