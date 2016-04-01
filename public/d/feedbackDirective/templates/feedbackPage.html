@@ -1,4 +1,156 @@
-<link rel="stylesheet" href="/public/assets/styles/feedbackPage.css" />
+<!-- <link rel="stylesheet" href="/public/assets/styles/feedbackPage.css" /> -->
+<style>
+#feedback-section
+{
+    background-color: #f8f8f8;
+    font-family: robotoRegular;
+    color: #888;
+    font-size: 0.76em;
+    position: relative;
+}
+
+.feedback-form {
+  padding: 25px;
+  text-align: left;
+  -webkit-box-shadow: inset 0 18px 20px -25px #c5c5c5;
+  -moz-box-shadow: inset 0 18px 20px -25px #c5c5c5;
+  box-shadow: inset 0 18px 20px -25px #c5c5c5;
+}        
+.comments-div {
+  padding-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  padding-top: 5px;
+  border: 1px solid #D6D6D6;
+  resize: none;
+}
+
+
+.checkbox-div {
+  padding-bottom: 25px;
+}
+
+.checkbox-input label{
+  font-weight: normal;
+  margin-bottom: 0px;
+  margin-right: 7px;
+}
+
+.checkbox-input input{
+  margin-right: 5px;
+  margin-top: 0px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 0px;
+  border: 1px solid #D6D6D6;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  outline: none
+}
+
+/*label {
+  font-weight: normal;
+  margin-bottom: 0px;
+  margin-right: 7px;
+}
+
+input {
+  margin-right: 5px;
+  margin-top: 0px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 0px;
+  border: 1px solid #D6D6D6;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  outline: none
+}*/
+
+input[type=checkbox]:after {
+  content: " ";
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type=checkbox]:checked:after {
+  content: "\f00c";
+  font-size: 0.75em;
+  font-family: FontAwesome;
+  vertical-align: text-top;
+}
+
+.star-ratings-div {
+  padding-bottom: 10px;
+}
+
+.star-rating-text {
+  padding-bottom: 5px;
+}
+
+.stars {
+  color: #F3C227;
+  display: inline-block;
+}
+  
+input.star {
+  display: none;
+}
+
+label.star {
+  float: right;
+  color: #F3C227;
+  font-size: 1.6em;
+  padding-right: 5px;
+}
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #F3C227;
+}
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+  font-weight: normal;
+}
+
+button {
+  height: 30px;
+  width: 125px;
+  color: white;
+  background: #B4B4B4;
+  border: none;
+  box-shadow: 0px 2px 2px #888;
+}
+
+.submit-success-text {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 225px;
+  display: none;
+}
+
+.query-text {
+  padding-bottom: 15px;
+}
+
+.query-text label{
+  font-weight: robotoRegular;
+  margin-bottom: 0px;
+  margin-right: 7px;
+}
+</style>
   <label ng-init="getFeedback()" ng-minlength="1" ng-maxlength="75">
     <ANY ng-switch="showFlag">
       <ANY ng-switch-when="feedback">
@@ -26,14 +178,15 @@
                </div>
 
                <div class="checkbox-div" ng-if="item.mode == 'multi-choice'">            					
-                <label class="checkbox-inline checkbox-input" ng-repeat="choice in item.choices">
-                  <input type="checkbox" name="choice" ng-checked="selection.indexOf(choice) > -1" ng-click="toggleSelection(choice,index)"/>
+                <label class="checkbox-inline" ng-repeat="choice in item.choices">
+                  <input type="checkbox" name="choice" class="checkbox-input" ng-checked="selection.indexOf(choice) > -1" ng-click="toggleSelection(choice,index)"/>
                   {{choice}}
                 </label>      
               </div>
         </div>
          <button type="submit" ng-click="submit(feedbackData)">SUBMIT</button>
       </div>
+          <div class="submit-success-text">Feedback submitted successfully</div>
 
 <!--       <md-button class="md-primary md-raised" ng-click="submit(feedbackData)">
       Submit

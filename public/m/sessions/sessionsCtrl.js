@@ -5,15 +5,29 @@ angular.module('sessions')
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
 			console.log(JSON.stringify(response));
         $scope.scheduleList = response;
-    });
+
+    });    $scope.feedback_id="56fd0eddabb181fc2a3466cf";
+    $scope.visit_id = "a01234567892345678900001";
+
+     $scope.hideFeeedbackDiv = true;
+   $scope.toggleFeedbackDialog = function(index, $event){
+            $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
+            $event.stopPropagation();
+        };
+    
 })
 
 .controller('sessionCtrl', function($scope, $routeParams, $http) {
+   
     console.log("session controller running");
     $http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response) {
         $scope.session = response;
-
-    });
+});
+     $scope.hideFeeedbackDiv = true;
+   $scope.toggleFeedbackDialog = function(index, $event){
+            $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
+            $event.stopPropagation();
+        };
 })
 
 
