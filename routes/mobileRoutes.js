@@ -12,8 +12,8 @@ module.exports = function(app) {
 	app.get('/m/main/', auth.isLoggedIn, function(req, res) {
 		res.locals.pageTitle = "Mobile Home";
 		res.locals.appName = "ng-app='mviz-main'"
-		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-home");
-		res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-home");
+		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-home");
+		res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-home");
 		res.render('mobile/home.ejs', {
             layout: activeLayout
 		});
@@ -23,8 +23,8 @@ module.exports = function(app) {
 	app.get('/m/facts/', auth.isLoggedIn, function(req, res) {
 		res.locals.pageTitle = "Factsheets";
 		res.locals.appName = "ng-app='mviz-facts'"
-		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-facts");
-		res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-facts");
+		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-facts");
+		res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-facts");
 		res.render('mobile/home.ejs', {
             layout: activeLayout
 		});
@@ -34,8 +34,8 @@ module.exports = function(app) {
 	app.get('/m/visits/', auth.isLoggedIn, function(req, res) {
 		res.locals.pageTitle = "Visit Agenda";
 		res.locals.appName = "ng-app='mviz-visits'"
-		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular,m-visits");
-		res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,angular,m-visits");
+		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-visits");
+		res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-visits");
 		res.render('mobile/home.ejs', {
 		    layout: activeLayout
 		});

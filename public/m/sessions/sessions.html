@@ -31,7 +31,7 @@
 	}
 
 
-/*.inactivetab{  
+/*.inactivetab{
  color:  grey;
     font-size: 0.8em;
     font-family: workSansBold;
@@ -72,7 +72,7 @@
 			&nbsp;&nbsp;AgendaOverview Page
 		</div>
 		<div class="hd-sticky">
-			
+
 				<ul ng-init="vm.tab=1" class="agenda-list">
 					<li ng-repeat="schedules in scheduleList track by $index">
 						<a href ng-click="vm.tab = schedules.day"><font class="inactivetab">Day {{schedules.day}}</font><br>
@@ -86,107 +86,62 @@
 <div class="divtop">
 	<div class="agenda-parent-div">
 
-
-		<!--section>
-			<div class="agenda-header-div sticky">
-
-
-				<ul ng-init="vm.tab=1" class="agenda-list">
-					<li ng-repeat="schedules in scheduleList track by $index">
-						<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}<br>
-							<div class="schday">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </div></a>
-						</li>
-					</ul> <!-- end of tabs -->
-					<!-- end of tab header -->
-
-				<!--/div> <!-- end of agenda header -->
-			<!--/section-->
-
 			<!-- begin of tab content -->
 
 			<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
 				<h1 class="day-agenda-header">
-					<img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
-					{{schedules.date | date : "dd MMM yyyy"}} 
-					<img src="/public/assets/m/img/ic/location-icon.png" class="day-agenda-header-img">
+					<i class="fa fa-calendar"></i>
+					{{schedules.date | date : "dd MMM yyyy"}} &nbsp;&nbsp;
+					<i class="fa fa-map-marker"></i>
 					{{schedules.location}}
 				</h1>
 				<div id="agenda-scrollable-block" class="scroll">
-					<!-- dummy session -->
-					<div id="session1" class="agenda-session-block">
-						<div class="agenda-block-sub-div">
-							<p>
-								<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
-								<a href="#/sessionDetails"<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
-
-									<span class="agenda-session-name">BREAKFAST</span></a><!-- Worksans light without any letter spacing -->
-								</p>
-								<div class="agenda-session-overview">
-									<p class="agenda-session-loc"><!--Worksans-->
-										<img src="/public/assets/m/img/ic/hourglass.png" class="session-img"> 45 min <img src="/public/assets/m/img/ic/venue-bldg.png" class="session-img"> Boardroom 2, 4th floor, EGL
-									</p>
-									<p> <!--Roboto-->
-										<span class="agenda-session-loc">with</span>
-										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-										<span class="expand-session">...</span> 
-										<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
-											<img src="/public/assets/m/rem/feedback-down-arrow.png" ng-if="hideFeeedbackDiv">
-											<img src="/public/assets/m/rem/feedback-up-arrow.png" ng-if="!hideFeeedbackDiv">                
-											<img src="/public/assets/m/rem/top-border-arrow.png" ng-if="!hideFeeedbackDiv" class="feedback-triangle">                
-										</span>
-									</p>
-					            </div>
-					     </div>
-					     <div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
-						    <div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
-                         </div>
-			         </div>
-				</div>
-						
-						<!-- dummy session ends here -->
 						<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
 							<div class="agenda-block-sub-div">
 							<div class="inactivesession">
 								<div>
 									<p>
-										<span ng-switch on="session.type">
+										<span ng-switch on="session.type.toLowerCase()">
 											<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
 											<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
 											<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
 											<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
-											<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+											<img ng-switch-when="floor-walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
 											<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
 											<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
 										</span>
 										<span class="agenda-session-time">
-											{{session.startTime | date : "HH:mm"}}
+											{{session.session.startTime | date : "HH:mm"}} -
+											{{session.session.endTime | date : "HH:mm"}}
 										</span>
 										<span class="agenda-session-name">
-											<a href="#/sessions/{{session._id}}">{{session.title}}</a>
+											<a href="#/sessions/{{session._id}}/details">{{session.session.title}}</a>
 										</span>
 									</p>
 									<div class="agenda-session-overview">
 										<p class="agenda-session-loc">
-											<img src="/public/assets/m/img/ic/hourglass.png">{{session.duration}} min <img src="/public/assets/m/img/ic/venue-bldg.png"> {{session.location}}
+											<i class="fa fa-hourglass-half"></i>
+												{{session.session.endTime | duration:session.session.startTime}} min
+											<i class="fa fa-map-marker"></i>
+												{{session.session.location}}
 										</p>
 										<p> <!--Roboto-->
 											<span class="agenda-session-loc">with</span>
-											<!--{{session.owner}}, {{session.supporter}}-->
+											<!-- <div userdisplay user-id="session.session.owner" view-mode="bulletsmallonly"></div>
+											<div userdisplay user-id="session.session.supporter" view-mode="bulletsmallonly"></div> -->
 											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
 											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
 											+{{session.invitees.length}}
 											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
 												<img src="/public/assets/m/rem/feedback-down-arrow.png" ng-if="hideFeeedbackDiv">
-												<img src="/public/assets/m/rem/feedback-up-arrow.png" ng-if="!hideFeeedbackDiv">                
-												<img src="/public/assets/m/rem/top-border-arrow.png" ng-if="!hideFeeedbackDiv" class="feedback-triangle">                
+												<img src="/public/assets/m/rem/feedback-up-arrow.png" ng-if="!hideFeeedbackDiv">
+												<img src="/public/assets/m/rem/top-border-arrow.png" ng-if="!hideFeeedbackDiv" class="feedback-triangle">
 											</span>
 										</p>
 									</div>
 								</div>
 								<div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
-									<div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
+									<!-- <div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model> -->
 
 
 									</div>
@@ -200,8 +155,8 @@
 			</div> <!-- end of day -->
 		</div> <!-- enf of days - sessions-->
 	</div> <!-- end of scrollable area -->
-	
-	
+
+
 </div> <!-- end of page container -->
 <script>
 	$("#menu-toggle").click(function(e) {
@@ -209,5 +164,3 @@
 		$("#page").toggleClass("toggled");
 	});
 </script>
-
-

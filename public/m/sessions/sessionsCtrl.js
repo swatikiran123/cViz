@@ -1,19 +1,20 @@
 angular.module('sessions')
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http) {
-	console.log("sessions controller working")
+	console.log("sessions controller working");
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
-			console.log(JSON.stringify(response));
         $scope.scheduleList = response;
+				//console.log(JSON.stringify($scope.scheduleList,null,2));
+    });
 
-    });    $scope.feedback_id="56fd0eddabb181fc2a3466cf";
+		$scope.feedback_id="56fd0eddabb181fc2a3466cf";
     $scope.visit_id = "a01234567892345678900001";
 
-     $scope.hideFeeedbackDiv = true;
-   $scope.toggleFeedbackDialog = function(index, $event){
-            $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
-            $event.stopPropagation();
-        };
+		$scope.hideFeeedbackDiv = true;
+		$scope.toggleFeedbackDialog = function(index, $event){
+			$scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
+			$event.stopPropagation();
+		};
 
 })
 

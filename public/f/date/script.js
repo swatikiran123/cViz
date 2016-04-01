@@ -28,3 +28,14 @@ angular.module('appFilters', [])
 		}
   }
 })
+
+.filter('duration', function () {
+
+  return function (toDate, fromDate) {
+			var d1 = moment(fromDate);
+			var d2 = moment(toDate);
+			var duration = moment.duration(d2.diff(d1));
+			var mins = duration.asMinutes();
+			return mins.toString();
+  };
+});

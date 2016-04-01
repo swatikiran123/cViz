@@ -291,6 +291,8 @@ function getMyVisits(thisUser, timeline, limit){
     return deferred.promise;
 } // getAll method ends
 
+
+/// For a given user Returns list of all the visitId by participating sessions
 function getUserVisitsForSessions(userId){
 	var filter = {
 		$or: [
@@ -436,16 +438,18 @@ function getExecsById(id){
 
 } // getExecsById method ends
 
+/// Retrieve list of sessions by visit Id
 function getSessionsById(id){
     var deferred = Q.defer();
 
+		logger.writeLine('debug',0,"Sessions by visit Id " + id);
 		var sessionDays = [];
 
     model
     .findOne({ _id: id })
     .exec(function (err, visit) {
         if(err) {
-            console.log(err);
+            logger.writeLine('error',0,err);
             deferred.reject(err);
         }
         else{
@@ -453,11 +457,12 @@ function getSessionsById(id){
 						.find({ visit: id })
 						.exec(function (err, sessions){
 							if(err){
-								console.log(err);
+								logger.writeLine('error',0,err);
 								deferred.reject(err);
 							}
 							else{
 								transform(visit, sessions);
+								logger.writeJson(sessionDays);
 								deferred.resolve(sessionDays);
 							}
 						}); // end of scheduleModel find
