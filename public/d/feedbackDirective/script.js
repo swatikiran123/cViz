@@ -3,8 +3,8 @@
 angular.module('feedbackDirective', ['ngRateIt'])
 .controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope', function($scope, $http, $rootScope) {
 
-  console.log($scope.feedbackId);
-  console.log($scope.visitId);
+  // console.log($scope.feedbackId);
+  // console.log($scope.visitId);
   if($scope.feedbackModel === undefined || $scope.feedbackModel === "")
     $scope.showFlag = "none";
   else
@@ -39,14 +39,14 @@ angular.module('feedbackDirective', ['ngRateIt'])
 //       sequence: "",
 //       offset: 0
 //     };
- 
+
 //   var sequence = "",
 //     str1Length = str1.length,
 //     str2Length = str2.length,
 //     num = new Array(str1Length),
 //     maxlen = 0,
 //     lastSubsBegin = 0;
- 
+
 //   for (var i = 0; i < str1Length; i++) {
 //     var subArray = new Array(str2Length);
 //     for (var j = 0; j < str2Length; j++)
@@ -66,7 +66,7 @@ angular.module('feedbackDirective', ['ngRateIt'])
 //           num[i][j] = 1;
 //         else
 //           num[i][j] = 1 + num[i - 1][j - 1];
- 
+
 //         if (num[i][j] > maxlen)
 //         {
 //           maxlen = num[i][j];
@@ -109,7 +109,7 @@ var arrayContains = Array.prototype.indexOf ?
         }
         return false;
     };
-    
+
 function arrayIntersection() {
     var val, arrayCount, firstArray, i, j, intersection = [], missing;
     var arrays = Array.prototype.slice.call(arguments); // Convert arguments into a real array
@@ -123,7 +123,7 @@ function arrayIntersection() {
             val = firstArr[j];
             missing = false;
 
-            // Check val is present in each remaining array 
+            // Check val is present in each remaining array
             i = arrayCount;
             while (!missing && i--) {
                 if ( !arrayContains(arrays[i], val) ) {
@@ -144,7 +144,7 @@ function arrayIntersection() {
     delete $scope.feedbackModel.title;
     delete $scope.feedbackModel.createOn;
  }
-    
+
   $scope.submit = function() {
 
     deleteData();
@@ -160,12 +160,12 @@ function arrayIntersection() {
       console.log(response);
     })
 
-      
+
                     var myEl = angular.element(document.getElementsByClassName('feedback-form'));
                     myEl.css('display', 'none');
                     var myEl2 = angular.element(document.getElementsByClassName('submit-success-text'));
                     myEl2.css('display', 'block');
-              
+
   };
 
   $scope.selection = [];

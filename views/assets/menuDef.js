@@ -45,13 +45,13 @@ module.exports = {
 		{
 			name: "Quick Facts",
 			link: "/m/facts/",
-			icon: "fa-facts",
+			icon: "fa-line-chart",
 			roles: "user,exec,customer,vManger"
 		},
 		{
 			name: "Logout",
 			link: "/logout",
-			icon: "fa-exit",
+			icon: "fa-sign-out",
 			roles: "user,exec,customer,vManger"
 		}
 	]

@@ -156,10 +156,18 @@ module.exports = {
 
 	"dir-mobile":{
 		"dev":[
-
+			"/public/d/userDisplay/script.js",
+			"/public/d/feedbackDirective/script.js",
 			"/public/d/scroll/scroll.js",
 			"/public/d/header/header.js"
+		],
+		"prod":[
+		]
+	},
 
+	"filters-mobile":{
+		"dev":[
+			"/public/f/date/script.js"
 		],
 		"prod":[
 		]
