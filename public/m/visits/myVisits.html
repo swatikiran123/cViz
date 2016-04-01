@@ -120,7 +120,7 @@
 	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Next Month</li>
 	                </ul>
 	            </div> -->
-
+                            
 							<div class="pull-right">
 
 								<div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
@@ -148,7 +148,7 @@
     <div class="my-visit-content col-xs-12 col-sm-12 col-md-12">
         <div ng-repeat="visit in visitBatch.visits" class="visit-card">
             <div class="col-xs-12 col-sm-12 col-md-12 div-padding">
-                <h2 class="col-xs-11 col-sm-11 col-md-11 div-padding">{{visit.title}}</h2>
+                <h2 class="col-xs-11 col-sm-11 col-md-11 div-padding"><a href="#/visits/{{visit._id}}">{{visit.title}}</a></h2>
                 <img src="/public/assets/m/rem/vertical-ellipsis.png" class="col-xs-1 col-sm-1 col-md-1 pull-right div-padding img-vertical-align" ng-click="showActionDropDown()">
             </div>
             <div class="actionDropDown data-drop-down" ng-show="IsActionVisible">

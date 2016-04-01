@@ -1,151 +1,213 @@
-<style>body { margin: 0; }
 
-section { 
+<style>
 
-  padding-top: 0px;
- }
+	.tb-big {
+		height: 150px;
 
-.sticky {  background: white;}
+		background-color: #fff;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+		font-size: 1.1em;
+		box-shadow: 2px 2px 5px #676767;
 
-.fixed {
-  position: fixed;
-  top:0; left:0;
-  width: 100%;
-  margin-left: 250px;
-  margin-right: 50px;
-}</style>
+		font-family: robotoRegular;
+	}
 
-<div class="agenda-parent-div">
-	  <br>
-    <br>
-    
-    
-    Indigenous peoples of the Americas, the pre-Columbian inhabitants of North and South America and their descendants
-First Nations, the various Aboriginal peoples in Canada who are neither Inuit nor Métis
-Native Americans in the United States, the indigenous people in the United States
-Native Mexicans, indigenous people of Mexico
-Plains Indians, the common name for the Native Americans who lived on the Great Plains of the United States
-Indigenous peoples in South America, peoples living in South America in the pre-Columbian era and their descendents
-West Indians, people from the Caribbean region and the Lucayan Archipelago
-Mardi Gras Indians, African-American Carnival revelers in New Orleans, Louisiana, whose suits are influenced by Native American ceremonial apparel.
+	.tb-small {
+		height: 65px;
+		background-color: #fff;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+		font-size: 1.1em;
+		box-shadow: 2px 2px 5px #676767;
+		font-family: robotoRegular;
+	}
+	.divtop{
+		padding-top: 100px;
+	}
 
-	 <section>
-  <div class="agenda-header-div sticky">
-	  
-		
-			<ul ng-init="vm.tab=1" class="agenda-list">
-				<li ng-repeat="schedules in scheduleList track by $index">
-					<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}<br>
-					<div class="schday">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </div></a>
-				</li>
-			</ul> <!-- end of tabs -->
-		 <!-- end of tab header -->
-	
-	</div> <!-- end of agenda header -->
-</section>
-	
-	<!-- begin of tab content -->
 
-		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
-			<h1 class="day-agenda-header">
-			 <img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
-				{{schedules.date | date : "dd MMM yyyy"}} 
-				<img src="/public/assets/m/img/ic/location-icon.png" class="day-agenda-header-img">
-				{{schedules.location}}
-			</h1>
-			<div id="agenda-scrollable-block" class="scroll">
-				<!-- dummy session -->
-				<div id="session1" class="agenda-session-block">
-					<div class="agenda-block-sub-div">
-						<p>
-							<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
-							<a href="#/sessionDetails"<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
-							    
-							<span class="agenda-session-name">BREAKFAST</span></a><!-- Worksans light without any letter spacing -->
-						</p>
-						<div class="agenda-session-overview">
-							<p class="agenda-session-loc"><!--Worksans-->
-								<img src="/public/assets/m/img/ic/hourglass.png" class="session-img"> 45 min <img src="/public/assets/m/img/ic/venue-bldg.png" class="session-img"> Boardroom 2, 4th floor, EGL
-							</p>
-							<p> <!--Roboto-->
-								<span class="agenda-session-loc">with</span>
-								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-								<span class="expand-session">...</span> 
-								<a class="feedback-link" href="#">Feedback</a>
-							</p>
-							
+/*.inactivetab{  
+ color:  grey;
+    font-size: 0.8em;
+    font-family: workSansBold;
+    color: @futureAgendaSessionNameColor;
+  }
+  .inactivesession{
+	background: #D3D3D3;
+  	}*/
+</style>
+
+
+
+<div scroll>
+
+	<div id="header_nav" ng-class="navClass">
+
+		<div class="hd-prime">
+			<div class="my-visit-header col-xs-12 col-sm-12 col-md-12">
+				<div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+					<div class="profile-details-div">
+						<span id="menu-toggle">
+							<i class="fa fa-bars"></i>
+						</span>
+						&nbsp;&nbsp;
+						<img class="img-circle visitpic" src="{{user.avatar}}">
+						<div class="profile-overview">
+							<h1>{{user.name.first}} {{user.name.last}}</h1>
+							<p>{{user.jobTitle}}, {{user.organization}}</p>
 						</div>
 					</div>
 				</div>
-<!-- dummy session ends here -->
-			<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
-				<div class="agenda-block-sub-div">
-					<div>
-						<p>
-							<span ng-switch on="session.type">
-								<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
-								<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
-								<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
-								<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
-								<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
-								<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
-								<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
-							</span>
-							<span class="agenda-session-time">
-								{{session.startTime | date : "HH:mm"}}
-							</span>
-							<span class="agenda-session-name">
-								<a href="#/sessions/{{session._id}}">{{session.title}}</a>
-							</span>
-						</p>
-						<div class="agenda-session-overview">
-							<p class="agenda-session-loc">
-									<img src="/public/assets/m/img/ic/hourglass.png">{{session.duration}} min <img src="/public/assets/m/img/ic/venue-bldg.png"> {{session.location}}
-							</p>
-							<p> <!--Roboto-->
-								<span class="agenda-session-loc">with</span>
-								<!--{{session.owner}}, {{session.supporter}}-->
-								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-								<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-								+{{session.invitees.length}}
-								<span class="expand-session">...</span>
-								<a class="feedback-link" href="#">Feedback</a>
-							
-		
-							</p>
-							
+			</div>
+		</div>
+		<div class="hd-sec">
+			<a id="menu-toggle" href="#menu-toggle">
+				<i class="fa fa-bars"></i>
+			</a>
+			&nbsp;&nbsp;AgendaOverview Page
+		</div>
+		<div class="hd-sticky">
+			
+				<ul ng-init="vm.tab=1" class="agenda-list">
+					<li ng-repeat="schedules in scheduleList track by $index">
+						<a href ng-click="vm.tab = schedules.day"><font class="inactivetab">Day {{schedules.day}}</font><br>
+							<div class="schday"><font class="inactivetab">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </font></div></a>
+						</li>
+					</ul>
+		</div>
+	</div>
+</div>
+
+<div class="divtop">
+	<div class="agenda-parent-div">
+
+
+		<!--section>
+			<div class="agenda-header-div sticky">
+
+
+				<ul ng-init="vm.tab=1" class="agenda-list">
+					<li ng-repeat="schedules in scheduleList track by $index">
+						<a href ng-click="vm.tab = schedules.day">Day {{schedules.day}}<br>
+							<div class="schday">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </div></a>
+						</li>
+					</ul> <!-- end of tabs -->
+					<!-- end of tab header -->
+
+				<!--/div> <!-- end of agenda header -->
+			<!--/section-->
+
+			<!-- begin of tab content -->
+
+			<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
+				<h1 class="day-agenda-header">
+					<img src="/public/assets/m/img/ic/7-past-visits.png" class="day-agenda-header-img">
+					{{schedules.date | date : "dd MMM yyyy"}} 
+					<img src="/public/assets/m/img/ic/location-icon.png" class="day-agenda-header-img">
+					{{schedules.location}}
+				</h1>
+				<div id="agenda-scrollable-block" class="scroll">
+					<!-- dummy session -->
+					<div id="session1" class="agenda-session-block">
+						<div class="agenda-block-sub-div">
+							<p>
+								<img src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+								<a href="#/sessionDetails"<span class="agenda-session-time">9:30 </span> <!-- Antonio bold -->
+
+									<span class="agenda-session-name">BREAKFAST</span></a><!-- Worksans light without any letter spacing -->
+								</p>
+								<div class="agenda-session-overview">
+									<p class="agenda-session-loc"><!--Worksans-->
+										<img src="/public/assets/m/img/ic/hourglass.png" class="session-img"> 45 min <img src="/public/assets/m/img/ic/venue-bldg.png" class="session-img"> Boardroom 2, 4th floor, EGL
+									</p>
+									<p> <!--Roboto-->
+										<span class="agenda-session-loc">with</span>
+										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+										<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+										<span class="expand-session">...</span> 
+										<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
+											<img src="/public/assets/m/rem/feedback-down-arrow.png" ng-if="hideFeeedbackDiv">
+											<img src="/public/assets/m/rem/feedback-up-arrow.png" ng-if="!hideFeeedbackDiv">                
+											<img src="/public/assets/m/rem/top-border-arrow.png" ng-if="!hideFeeedbackDiv" class="feedback-triangle">                
+										</span>
+									</p>
+					            </div>
+					     </div>
+					     <div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
+						    <div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
+                         </div>
+			         </div>
+				</div>
+						
+						<!-- dummy session ends here -->
+						<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
+							<div class="agenda-block-sub-div">
+							<div class="inactivesession">
+								<div>
+									<p>
+										<span ng-switch on="session.type">
+											<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
+											<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+											<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
+											<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
+											<img ng-switch-when="walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+											<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
+											<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+										</span>
+										<span class="agenda-session-time">
+											{{session.startTime | date : "HH:mm"}}
+										</span>
+										<span class="agenda-session-name">
+											<a href="#/sessions/{{session._id}}">{{session.title}}</a>
+										</span>
+									</p>
+									<div class="agenda-session-overview">
+										<p class="agenda-session-loc">
+											<img src="/public/assets/m/img/ic/hourglass.png">{{session.duration}} min <img src="/public/assets/m/img/ic/venue-bldg.png"> {{session.location}}
+										</p>
+										<p> <!--Roboto-->
+											<span class="agenda-session-loc">with</span>
+											<!--{{session.owner}}, {{session.supporter}}-->
+											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+											+{{session.invitees.length}}
+											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
+												<img src="/public/assets/m/rem/feedback-down-arrow.png" ng-if="hideFeeedbackDiv">
+												<img src="/public/assets/m/rem/feedback-up-arrow.png" ng-if="!hideFeeedbackDiv">                
+												<img src="/public/assets/m/rem/top-border-arrow.png" ng-if="!hideFeeedbackDiv" class="feedback-triangle">                
+											</span>
+										</p>
+									</div>
+								</div>
+								<div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
+									<div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
+
+
+									</div>
+								</div>
+							</div>
+</div>
+
 						</div> <!-- end of agenda overview block -->
 					</div> <!-- end of presentation template -->
 				</div> <!-- end of agenda sub-block -->
-	       </div> <!-- end of day -->
+			</div> <!-- end of day -->
 		</div> <!-- enf of days - sessions-->
 	</div> <!-- end of scrollable area -->
 	
 	
-	   <br>
-    <br>
-    
-    
-    Indigenous peoples of the Americas, the pre-Columbian inhabitants of North and South America and their descendants
-First Nations, the various Aboriginal peoples in Canada who are neither Inuit nor Métis
-Native Americans in the United States, the indigenous people in the United States
-Native Mexicans, indigenous people of Mexico
-Plains Indians, the common name for the Native Americans who lived on the Great Plains of the United States
-Indigenous peoples in South America, peoples living in South America in the pre-Columbian era and their descendents
-West Indians, people from the Caribbean region and the Lucayan Archipelago
-Mardi Gras Indians, African-American Carnival revelers in New Orleans, Louisiana, whose suits are influenced by Native American ceremonial apparel.
-    
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>moulika
 </div> <!-- end of page container -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">$(window).scroll(function(){
-  var sticky = $('.sticky'),
-      scroll = $(window).scrollTop();
-
-  if (scroll >= 200) sticky.addClass('fixed');
-  else sticky.removeClass('fixed');
-});</script>
+<script>
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#page").toggleClass("toggled");
+	});
+</script>
 
 

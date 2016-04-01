@@ -1,7 +1,7 @@
 
 
 angular.module('feedbackDirective', ['ngRateIt'])
-.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$mdDialog','$rootScope', function($scope, $http,$mdDialog,$rootScope) {
+.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope', function($scope, $http, $rootScope) {
 
   console.log($scope.feedbackId);
   console.log($scope.visitId);
@@ -160,7 +160,12 @@ function arrayIntersection() {
       console.log(response);
     })
 
-    $mdDialog.hide();
+      
+                    var myEl = angular.element(document.getElementsByClassName('feedback-form'));
+                    myEl.css('display', 'none');
+                    var myEl2 = angular.element(document.getElementsByClassName('submit-success-text'));
+                    myEl2.css('display', 'block');
+              
   };
 
   $scope.selection = [];
