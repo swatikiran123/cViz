@@ -15,10 +15,11 @@
 		"startDate"			: { "$date" : "2016-02-20T09:00:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-02-20T19:00:00.000Z"} ,
 		"locations"			: "Hyderabad",
-
+		
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-02-20T09:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-02-20T19:00:00.000Z"} ,
 					"location"			: "Hyderabad"
@@ -66,14 +67,15 @@
 		"agm"					: ObjectId("A02234567892345678900005"),
 
 		"anchor"				: ObjectId("A02234567892345678900011"),
-		
+	
 		"startDate"			: { "$date" : "2016-03-18T08:00:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-03-18T19:00:00.000Z"} ,
 		"locations"			: "Bangalore",
-
+		
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-03-18T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-18T19:00:00.000Z"} ,
 					"location"			: "Bangalore"
@@ -127,10 +129,11 @@
 		"startDate"			: { "$date" : "2016-03-18T09:00:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-03-18T20:00:00.000Z"} ,
 		"locations"			: "Chennai",
-
+		
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-03-18T09:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-18T20:00:00.000Z"} ,
 					"location"			: "Chennai"
@@ -183,16 +186,18 @@
 		"startDate"			: { "$date" : "2016-03-24T08:30:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-03-25T20:30:00.000Z"} ,
 		"locations"			: "Bangalore",
-
+		
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-03-24T08:30:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-24T20:30:00.000Z"} ,
 					"location"			: "Noida"
 				},
 
 				{
+
 					"startDate"		: { "$date" : "2016-03-25T08:30:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-25T20:30:00.000Z"} ,
 					"location"			: "Bangalore"
@@ -245,22 +250,25 @@
 		"startDate"			: { "$date" : "2016-03-21T08:00:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-03-23T20:00:00.000Z"} ,
 		"locations"			: "Mumbai,Hyderabad,Noida",
-
+		
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-03-21T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-21T18:00:00.000Z"} ,
 					"location"			: "Mumbai"
 				},
 
 				{
+
 					"startDate"		: { "$date" : "2016-03-22T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-22T20:00:00.000Z"} ,
 					"location"			: "Hyderabad"
 				},
 
 				{
+
 					"startDate"		: { "$date" : "2016-03-23T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-23T20:00:00.000Z"} ,
 					"location"			: "Noida"
@@ -301,7 +309,7 @@
 	{
 		"_id"						: ObjectId("A01234567892345678900006"),
 
-		"title"					: "Test data visit 21-25 Mar",
+		"title"					: "Test data visit 28Mar-01 Apr",
 		
 		"client" 					: ObjectId("A03234567892345678900005"),
 
@@ -311,25 +319,29 @@
 
 		"anchor"				: ObjectId("A02234567892345678900008"),
 		
-				"startDate"			: { "$date" : "2016-03-28T08:00:00.000Z"} ,
+
+		"startDate"			: { "$date" : "2016-03-28T08:00:00.000Z"} ,
 		"endDate"				: { "$date" : "2016-04-01T20:00:00.000Z"} ,
 		"locations"			: "Hyderabad,Noida,Bangalore",
 
 		"schedule"			:
 			[
 				{
+
 					"startDate"		: { "$date" : "2016-03-28T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-29T20:00:00.000Z"} ,
 					"location"			: "Hyderabad"
 				},
 				
 				{
+
 					"startDate"		: { "$date" : "2016-03-30T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-03-30T20:00:00.000Z"},
 					"location"			: "Noida"
 				},
 
 				{
+
 					"startDate"		: { "$date" : "2016-03-31T08:00:00.000Z"} ,
 					"endDate"			: { "$date" : "2016-04-01T20:00:00.000Z"},
 					"location"			: "Bangalore"
