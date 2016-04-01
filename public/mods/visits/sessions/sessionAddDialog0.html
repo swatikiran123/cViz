@@ -5,7 +5,7 @@
 
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <div class="md-header">Session [{{entryDate}} @ {{entryLocation}}</div>
+        <div class="md-header">Enter the Schedule<!--  for [{{entryDate}}]  --><!-- @ {{entryLocation}} ]--></div>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
@@ -16,15 +16,16 @@
     <md-dialog-content>
        <div >
          <!-- session start date and end date -->
-         sch:: {{schedule}} owner: {{ownerId}}, {{ownerEmail}}
+         <!-- sch:: {{schedule}} owner: {{ownerId}}, {{ownerEmail}} -->
+         <h5>Timeline</h5>
          <div class="form-group">
 
            <div class="row">
                <div class="col-sm-8">
              <input type="text" class="time-picker" id="startTime" name="startTime"
-              ng-model="startTime"> -
+              ng-model="startTime" placeholder="Start Time"> -
              <input type="text" class="time-picker" id="endTime" name="endTime"
-              ng-model="endTime">
+              ng-model="endTime" placeholder="End Time">
            
            <span>{{errMessage}}</span>
          </div>
@@ -36,7 +37,7 @@
            </select> -->
 
            <select id="type" ng-model="schedule.session.type">
-             <option value="">---select session type---</option>
+             <option value="">---Select Session Type---</option>
              <option ng-repeat="ty in prTypes">{{ty}}</option>
            </select>
          </div>
@@ -44,7 +45,8 @@
          <!--title have to pic from User -->
          <br>
          <br>
-         
+<ANY ng-switch="schedule.session.type"> 
+       <ANY ng-switch-default>         
             <md-input-container class="md-block">
         <label>Title</label>
         <input md-maxlength="30" minlength="5" required name="title" ng-model="schedule.session.title">
@@ -116,7 +118,60 @@
 					</md-input-container>
 				</div>
 			</div>
+</ANY>
+      <ANY ng-switch-when="tea">
 
+        <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+        </md-input-container>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ANY>
+
+      <ANY ng-switch-when="lunch">
+
+        <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+        </md-input-container>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ANY>
+
+</ANY>
          <!-- <h4> owner </h4>
          <div class="form-group" ng-class="{ 'has-error': inputctrl.owner.$touched && inputctrl.owner.$invalid }">
            <div class="col-md-4">
@@ -130,20 +185,18 @@
              <div user type="picker" class="form-control" user-model="supporterUser" user-id="supporterId" user-email="supporterEmail" ></div>
            </div>
          </div> -->
-         <br><br>
-         <br>
-
           <md-dialog-actions layout="row">
-            <md-button class="btn btn-primary" ng-click="save()">
+            <md-button class="md-primary md-raised" ng-click="save()">
               OK
             </md-button>
-            <md-button class="btn btn-danger" ng-click="cancel()" >
+            <md-button class="md-warn md-raised" ng-click="cancel()" >
               Cancel
             </md-button>
 
 
           </md-dialog-actions>
         </div>
+
   </form>
 </md-dialog>
 </div>
