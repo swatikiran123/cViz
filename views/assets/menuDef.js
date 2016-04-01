@@ -51,7 +51,7 @@ module.exports = {
 		{
 			name: "Logout",
 			link: "/logout",
-			icon: "fa-exit",
+			icon: "fa-sign-out",
 			roles: "user,exec,customer,vManger"
 		}
 	]

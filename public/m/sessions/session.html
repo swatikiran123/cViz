@@ -1,35 +1,74 @@
-<div>
-    <h1>Session</h1>
-    <hr/>
-    <h3>{{session.session.title}}</h3>
+<br/>
+<h1>Session details</h1>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">session type: </div>
-            <div class="col-sm-3">{{session.session.type}}</div>
-        </div>
+<div id="session-details-page">
 
-        <div class="row">
-            <div class="col-sm-2">Time: </div>
-            <div class="col-sm-3">{{session.session.startTime | date:"HH:mm"}} - {{session.session.endTime | date:"HH:mm"}}</div>
+    <div class="header">
+        <div class="time-session-name-div">
+            <div class="session-time">{{sessions.session.startTime}}</div>
+            <div class="session-name">{{session.session.title | uppercase}}</div>
         </div>
+        <br>
+        <div class="venue-feedback-div">
+            <div class="session-venue"><i class="fa fa-map-marker"></i>{{session.session.location}}</div>
+            <div class="feedback-button">Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
+        </div>
+    </div>
+    <div class="feedback-form">
+    </div>
+    <div class="session-contents">
+        <div class="session-description-div">
+            <div class="session-heading">
+                {{session.session.title | uppercase}}
+            </div>
+            <div class="session-image">
+                <img ng-src="{{session.picture}}">
+            </div>
+            <div class="session-description">{{session.session.desc}}
+            </div>
+            <div class="share">
+            <div>
+             <i class="fa fa-share-alt"></i>
+             Share</div>
+            </div>
+        </div>
+        <div class="session-presenter">
+            <div class="heading">PRESENTER</div>
+            <div class="presenter-details" ng-repeat="presenter in session.presenter">
+                <div class="presenter-pic col-xs-2 col-sm-1 col-md-1">
 
-        <div class="row">
-            <div class="col-sm-2">Location: </div>
-            <div class="col-sm-3">{{session.session.location}}</div>
+                 <img  class="img-circle prestrpic" ng-src="{{presenter.picture}}">
+                </div>
+                <div class="presenter-bios-div col-xs-10 col-sm-11 col-md-11">
+                    <div class="presenter-name">Presenter name</div>
+                    <div class="presenter-designation">presenter designation</div>
+                    <div class="presenter-bios">summary</div>
+                    <div class="reach-presenter">
+                        <div class="reach-presenter-text">Reach him by</div>
+                        <a ng-href="tel: phone" class="tele-link">
+                             <i class="fa fa-phone"></i>
+                        </a>
+                        <a ng-href="mailto: email">
+                               <i class="fa fa-envelope-o"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- <div class="session-participants">
+            <div class="heading">PARTICIPANTS</div>
+            <div class="list-group">
+                <a href="#" class="list-group-item" ng-repeat="participant in session.participants">
+                    <div class="participant-pic col-xs-2 col-sm-1 col-md-1">
 
-        <div class="row">
-            <div class="col-sm-2">Description: </div>
-            <div class="col-sm-3">{{session.session.desc}}</div>
-        </div>
-        
-        
-    
-        <br>{{session.client}}
-       <br>{{session.session.owner}} 
-        <br> {{session.session.supporter}} 
-
-        </div>
-   <!--  <br><li ng-repeat="invitee in invitees">{{session.invitee._id}}</li> -->
+                          <img  class="img-circle prtcptpic" ng-src="{{participant.picture}}">
+                    </div>
+                    <div class="participant-bios-div col-xs-10 col-sm-11 col-md-11">
+                        <div class="participant-name">{{participant.name}}</div>
+                        <div class="participant-designation">{{participant.designation}}</div>
+                    </div>
+                </a>
+            </div>
+        </div> -->
+    </div>
 </div>
