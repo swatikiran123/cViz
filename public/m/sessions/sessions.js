@@ -21,6 +21,11 @@ angular.module('sessions', ['ngRoute'])
 		controller: 'sessionsCtrl'
 	})
 
+	.when('/agenda', {
+		templateUrl: '/public/m/dummy.html',
+		controller: 'agendaCtrl'
+	})
+
 	.when('/sessions/:id/details', {
 		templateUrl: '/public/m/sessions/session.html',
 		controller: 'sessionCtrl'

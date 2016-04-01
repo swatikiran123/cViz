@@ -12,8 +12,15 @@ angular.module('sessions')
     console.log("session controller running");
     $http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response) {
         $scope.session = response;
-
     });
+})
+
+.controller('agendaCtrl', function($scope, $routeParams, $http, $location) {
+    console.log("agenda controller running");
+		$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+				//console.log("next visit id " + "#/sessions/" + response.visits._id));
+				$location.path("sessions/" + response.visits._id);
+		});
 })
 
 
@@ -49,5 +56,5 @@ angular.module('sessions')
             }]
         }]
 
-        
+
     });

@@ -57,9 +57,22 @@ function getWithAction(req, res){
 		case "sessions":
 			getSessionsById(req, res);
 			break;
+
 		case "my":
 			getMyVisits(req, res);
 			break;
+
+		case "activevisit":
+			console.log("picking active visit");
+			getActiveVisit(req, res);
+			break;
+
+		case "execs":
+			getExecsById(req, res);
+			break;
+
+		default:
+			res.send("Invalid action");
 	}
 }
 
@@ -98,13 +111,30 @@ function getSessionsById(req,res){
     });
 }
 
+function getActiveVisit(req, res){
+	dataService.getMyVisits(req.user,"next-one")
+		.then(function(data){
+				if (data){
+					logger.writeJson(data);
+					res.send(data["next-one"]);
+				}else {
+						logger.writeJson("No active visits");
+						res.status(404).send("No active visits");
+				}
+		})
+		.catch(function (err){
+				console.log("exception" + err);
+				res.status(500).send(err);
+		});
+}
+
 function getExecsById(req,res){
   dataService.getExecsById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
         }else {
-            res.sendStatus(404);
+            res.status(404).send("Executive Bios for the visit not found");
         }
     })
     .catch(function (err){
