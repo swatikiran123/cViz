@@ -29,24 +29,36 @@
 
     vertical-align: center;
 }
-  md-dialog {
+
+md-dialog {
   margin-left: 300px;
   margin-top: 60px;
-  width: 700px;
-  height: 636px;
+  width:  800px;
+  height: 600px;
+}
+md-dialog .row{
+  margin: 0;
+  padding: 0;
 }
 
 md-dialog-content{
   padding: 10px 20px;
 }
+
 </style>
+  <div class="form-inline has-feedback filter-header">
+    <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+    <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+    <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
 
+    <a class="btn btn-default btn-sm pull-right" ng-click="addSchedule1($event)">Add New Schedule</a>
+  </div>
 <!-- Grid filter -->
-<div class="form-inline has-feedback filter-header">
-  Count: {{scheduleList.length}} --  {{entryDate}}
-  <!-- <input type="text" class="form-control" placeholder="Search" ng-model="scheduleDate" />
+<!-- <div class="form-inline has-feedback filter-header"> -->
+  <!-- Count: {{scheduleList.length}} --  {{entryDate}} -->
+  <!-- <input type="text" class="form-control" placeholder="Search" ng-model="search.$" /> -->
 
-  <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button> -->
+  <!-- <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button> -->
   <!-- <input type="text" class="form-control" placeholder="Piock" ng-model="entryDate" /> -->
   <!-- <select name="entryDate" ng-model="entryDate">
     <option ng-repeat="dt in scheduleDates">{{dt | date:'dd MMM yyyy'}}</option>
@@ -58,8 +70,9 @@ md-dialog-content{
 
 	<!-- <select ng-model="entryDate" ng-options="dt for dt in scheduleDates">
 	</select> -->
-	<br/><div class="scheduledates">
-	<a href ng-click="setEntryDate(all)">All ({{scheduleList.length}})</a>&nbsp;&nbsp;
+  <!-- </div> -->
+	<div class="scheduledates">
+	<a href ng-click="showAllSchedules()">All ({{scheduleList.length}})</a>&nbsp;&nbsp;
 	<span ng-repeat="dt in scheduleDates">
 		<a href ng-click="setEntryDate(dt)">{{dt | DateFormat:"ddd, DD MMM" }}</a>&nbsp;&nbsp;
 	</span>
@@ -73,53 +86,73 @@ md-dialog-content{
 	<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="myModalShower" ng-click="addSchedule()">-->
 	<!--	Add session-->
 	<!--</button>-->
-  <md-button class="md-primary md-raised" ng-click="addSchedule1($event)" flex="100" flex-gt-md="auto">
+<!--   <md-button class="md-primary md-raised" ng-click="addSchedule1($event)" flex="100" flex-gt-md="auto">
        add schedule
-     </md-button></div>
+     </md-button> -->
+  </div>
 <table class="table table-striped table-condensed table-responsive table-hover">
   <thead class="data-grid-header">
     <!-- table header -->
     <tr>
       <th>
-        <span class="glyphicon glyphicon-th-large"></span>
-        <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Date</a>
+        <span class="fa fa-lg fa-calendar"></span>
+        <a href="" ng-click="orderByField='scheduleDate'; reverseSort = !reverseSort">Date</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
-        <a href="" ng-click="orderByField='client'; reverseSort = !reverseSort">Type</a>
+        <span class="fa fa-lg fa-archive"></span>
+        <a href="" ng-click="orderByField='type'; reverseSort = !reverseSort">Type</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
-        <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Start Time</a>
+        <span class="fa fa-lg fa fa-clock-o"></span>
+        <a href="" ng-click="orderByField='startTime'; reverseSort = !reverseSort">Start Time</a>
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
-        <a href="" ng-click="orderByField='agm'; reverseSort = !reverseSort">End Time</a>
+        <span class="fa fa-lg fa-clock-o"></span>
+        <a href="" ng-click="orderByField='endTime'; reverseSort = !reverseSort">End Time</a>
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
-        <a href="" ng-click="orderByField='anchor'; reverseSort = !reverseSort">Title</a>
+        <span class="fa fa-lg fa-th-large"></span>
+        <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
-        <a href="" ng-click="orderByField='anchor'; reverseSort = !reverseSort">Location</a>
+        <span class="fa fa-lg fa-globe"></span>
+        <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Location</a>
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
+        <span></span>
         <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort"></a>
       </th>
     </tr>
 
     <!-- table filter -->
-    <!-- <tr ng-hide="hideFilter">
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.client"></span></th>
-    </tr> -->
+    <tr ng-hide="hideFilter">
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.scheduleDate"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.type"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.startTime"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.endTime"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.title"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.location"></span></th>
+      <th><span ng-hide="hideFilter">&nbsp;</span></th>
+    </tr>
 
   </thead>
 
   <tbody class="data-grid-data">
-    <tr ng-repeat="schedule in scheduleList | filter:dayFilter">
+    <tr ng-repeat="schedule in scheduleList | filter: search | orderBy:orderByField:reverseSort" ng-if="showAll">
+      <td>{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
+      <td>{{schedule.session.type}}</td>
+      <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td>{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td>{{schedule.session.title}}</td>
+      <td>{{schedule.session.location}}</td>
+      <td>
+        <a class="table-btn" ng-click="editSession($event,schedule._id)"><span class="glyphicon glyphicon-edit" /></a>
+        <a class="table-btn" ng-click="editSession1(schedule._id)"><span class="glyphicon glyphicon-edit" /></a>
+        <a class="table-btn" ng-click="deleteSession(schedule)"><span class="glyphicon glyphicon-trash" /></a>
+      </td>
+    </tr>
+
+    <tr ng-repeat="schedule in scheduleList | filter:dayFilter | filter:search | orderBy:orderByField:reverseSort" ng-if="showFiltered">
       <td>{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
       <td>{{schedule.session.type}}</td>
       <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>

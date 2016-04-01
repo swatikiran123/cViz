@@ -12,7 +12,10 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.small= "small";
 		$scope.large= "LARGE";
 		$scope.medium= "medium";
-
+		//filter table
+		$scope.showAll = true;
+		$scope.showFiltered = false;
+		$scope.hideFilter = true;
 		// $scope.ownerId = "";
 		// $scope.ownerEmail = "";
 		// $scope.ownerUser = "";
@@ -21,7 +24,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		// $scope.supporterEmail = "";
 		// $scope.supporterUser = "";
 
-		$scope.mode = "add";
+		//$scope.mode = "add";
 
 		var init = function() {
 			console.log("init...")
@@ -50,11 +53,32 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			return DatesInRange($scope.visitStartDate, $scope.visitEndDate);
 	  }
 
+	  	$scope.showAllSchedules = function(location)
+	  	{	
+	  		$http.get('/api/v1/secure/visitSchedules/visit/' + $scope.visitId ).success(function(response) {
+	  			$scope.scheduleList = response;
+	  		});
+	  		$scope.showAll = true;
+	  		$scope.showFiltered = false;
+	  	}
+
 		$scope.setEntryDate = function(dt){
-			if(dt==="all")
-				$scope.entryDate = "";
-			else
+			//console.log($scope.visitId)
+			// if(dt==="all")
+			// {	
+			// 	//$scope.entryDate = "";
+			// 	$http.get('/api/v1/secure/visitSchedules/visit/' + $scope.visitId ).success(function(response) {
+			// 	$scope.scheduleList = response;
+			// 	$scope.showAll = true;
+			// 	$scope.showFiltered = false;				
+			// });
+			// }
+			// else
+			// {
 				$scope.entryDate = dt;
+				$scope.showFiltered = true;
+				$scope.showAll = false;
+			// }
 		}
 
 		$scope.dayFilter = function (schedule) {
@@ -68,6 +92,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			var days = duration.asDays();
 
 			return (days==0);
+
 		};
 
 		$scope.addSchedule = function(){
@@ -152,7 +177,9 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	    $http.post('/api/v1/secure/visitSchedules', $scope.schedule).success(function(response) {
 				console.log("add complete");
 	      growl.info(parse("Title: [%s]<br/>New session schedule added", $scope.schedule.session.title));
-				refresh();
+				$mdDialog.hide();
+				//refresh();
+				
 	    })
 	    .error(function(data, status) {
 	      growl.error("Error adding visitSchedule");
@@ -162,9 +189,10 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  $scope.update = function() {
 			console.log("Save update...");
 			console.log($scope.schedule);
-	    $http.put('/api/v1/secure/visitSchedules/' + $scope.schedule._id, inData).success(function(response) {
+	    $http.put('/api/v1/secure/visitSchedules/' + $scope.schedule._id, $scope.schedule).success(function(response) {
 	      growl.info(parse("Title: [%s]<br/>Session schedule updated successfully", $scope.schedule.session.title));
-				refresh();
+	           $mdDialog.hide();
+				//refresh();
 	    })
 	    .error(function(data, status) {
 	    	growl.error("Error updating visitSchedule");
@@ -202,10 +230,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				targetEvent: ev,
 				clickOutsideToClose:false
 			})
-			.then(function(answer) {
-				$scope.status = 'You said the information was "' + answer + '".';
-			}, function() {
-				$scope.status = 'You cancelled the dialog.';
+			.then(function(response) {
+				refresh();
 			});
 
 		}

@@ -14,7 +14,7 @@ angular.module('clientDisplayDirective', [])
 
     $http.get('/api/v1/secure/clients/id/' + $scope.clientId).success(function(response) {
       $scope.clientModel = response;
-      console.log(response);
+      //console.log(response);
       $scope.clientId = response._id;
       $scope.showFlag = "client";
     })
