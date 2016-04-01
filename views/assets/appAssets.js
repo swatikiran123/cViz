@@ -221,6 +221,14 @@ module.exports = {
 		]
 	},
 
+	"m-clientInfo":{
+		"dev":[
+			"/public/assets/m/css/clientInfo.css",
+		    "/public/m/clientInfo/clientInfo.js"
+		    ]
+		 },
+
+
 	"m-execBios":{
 		"dev":[
 			"/public/assets/m/css/execBios.css",
