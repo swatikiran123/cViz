@@ -248,7 +248,8 @@ module.exports = {
 	"m-contacts":{
 		"dev":[
 			"/public/m/contacts/contacts.js",
-			"/public/m/contacts/contactsCtrl.js",
+			"/public/m/contacts/contactsCtrl.js"
+			// "/public/assets/m/css/userview.css"
 			]
 		}
 	}

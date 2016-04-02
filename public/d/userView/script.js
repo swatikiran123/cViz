@@ -50,6 +50,12 @@ angular.module('userViewDirective', [])
       if(viewmode === "bullet-small"){
         return "/public/d/userView/templates/bulletSmall.html";
       }
+      if(viewmode === "brief-view"){
+        return "/public/d/userView/templates/briefView.html";
+      }
+      if(viewmode === "detial-view"){
+        return "/public/d/userView/templates/detailView.html";
+      }
 
     }
   }
