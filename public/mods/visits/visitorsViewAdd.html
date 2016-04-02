@@ -3,7 +3,7 @@
 <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
   <thead class="data-grid-header">
     <tr>
-      <th><span  class="fa fa-user"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+      <th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
       <th><span  class="glyphicon"></span>Influence</th>
       <th></th>
     </tr>
@@ -25,8 +25,8 @@
  <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
   <td colspan="3"> <div>
     <div>{{visitorDef.influence}}</div>
-    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
-      <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
+      <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a>
     </div>
   </div>
   <userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor"/></td>

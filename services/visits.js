@@ -359,7 +359,10 @@ function getExecsById(id){
         else{
                     cscId.push(transform(item.agm,'Sponsor'));
                     cscId.push(transform(item.anchor,'Anchor'));
-
+                    //fetchnig invitees
+                      for (var i=0; i<item.invitees.length; i++){
+                        cscId.push(transform(item.invitees[i].invite,'Invite'));
+                      }
                     //fetchnig visitors
                       for (var i=0; i<item.visitors.length; i++){
                         client.push(transform(item.visitors[i].visitor,'Client Visitor'));
