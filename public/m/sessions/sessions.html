@@ -127,10 +127,10 @@
 										</p>
 										<p> <!--Roboto-->
 											<span class="agenda-session-loc">with</span>
-											<!-- <div userdisplay user-id="session.session.owner" view-mode="bulletsmallonly"></div>
-											<div userdisplay user-id="session.session.supporter" view-mode="bulletsmallonly"></div> -->
-											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
-											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+											<userview user-id="session.session.owner" 
+											view-mode="bullet-small"></userview>
+											<userview user-id="session.session.supporter" 
+											view-mode="bullet-small"></userview>
 											+{{session.invitees.length}}
 											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
 												<img src="/public/assets/m/rem/feedback-down-arrow.png" ng-if="hideFeeedbackDiv">

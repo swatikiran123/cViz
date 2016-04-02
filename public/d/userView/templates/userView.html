@@ -1,0 +1,19 @@
+<label ng-init="getUser()" ng-minlength="1" ng-maxlength="75">
+<ANY ng-switch="showFlag">
+  <ANY ng-switch-when="user">
+      <div ng-include = "getTemplate()">
+	  </div>
+  </ANY>
+
+  <ANY ng-switch-when="noUser">
+	  <div class="text-danger" style="width:180px;!important;">
+			User not found!!!
+		</div>
+  </ANY>
+
+  <ANY ng-switch-default>
+    <div class="text-info" style="width:180px;!important;">
+			<!-- Default panel -->
+		</div>
+	</ANY>
+</ANY>
