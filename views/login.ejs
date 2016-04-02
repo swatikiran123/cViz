@@ -10,6 +10,10 @@ html,body {
 <div class="col-sm-6 col-sm-offset-2 pull-left">
 <br>
     <h1 class="login"><span class="fa fa-sign-in"></span>Login</h1>
+<span class="pull-right text-small login">ver:
+        <%= locals.app_info.version %>:<%= locals.app_info.gitHash %>
+        </span>
+
 
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>

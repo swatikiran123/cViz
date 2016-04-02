@@ -1,4 +1,3 @@
-
 #header_nav {
     /*width:100%;*/
     background-color:#F8F8FF;
@@ -14,7 +13,7 @@
 }
 
 .tb-big {
-    height: 180px;
+    height: 150px;
 
     background-color: #fff;
     position: fixed;
@@ -54,12 +53,51 @@
 .hd-prime{
     background-color: #ffccff;
     position:relative;
+    height:100px;
 }
 .hd-sec{
-    background-color: #ff00ff;
+    background-color: #ddd;
     position:relative;
+    padding-left: 20px;
+    height:25px;
 }
 .hd-sticky{
-    background-color: #ffe6e6;
+    background-color: #d3d3d3;
     position:relative;
+ height: 25px;
+
+}
+/*visist header  styles*/
+.my-visit-header {
+      
+    background-color: #fff;
+    /*box-shadow: 7px 7px 8px red;*/
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    z-index: 10;
+}
+.my-visit-sub-header {
+    text-align: left;
+    background: url("/public/uploads/images/hero-bg.jpg") no-repeat;
+}
+.profile-details-div {
+      
+    display: inline-flex;
+    font-family: workSansBold;
+    color: #f3f5fd;
+    text-shadow: 1px 1px #5b5b5b;
+   
+}
+.profile-overview {
+    
+    text-align: left;
+    margin-left: 20px;
+    font-size: 1em;
+}
+.visitpic{
+    width: 60px;
+    height: 55px;
+    margin-top: 15px;
+
 }

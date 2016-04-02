@@ -2,7 +2,7 @@
 <style>
 
 	.tb-big {
-		height: 150px;
+		height: 145px;
 
 		background-color: #fff;
 		position: fixed;
@@ -29,7 +29,12 @@
 	.divtop{
 		padding-top: 100px;
 	}
+.hd-sticky{
+    background-color: ;
+    position:relative;
+    height: 0px;
 
+}
 
 /*.inactivetab{
  color:  grey;
@@ -39,12 +44,25 @@
   }
   .inactivesession{
 	background: #D3D3D3;
-  	}*/
+}*/
 </style>
 
+<div header showprofile="false" icon="fa fa-line-chart" title1="CSC Facts page" title2="facts">
 
 
-<div scroll>
+	<ul ng-init="vm.tab=1" class="agenda-list">
+		<li ng-repeat="schedules in scheduleList track by $index">
+			<a href ng-click="vm.tab = schedules.day"><font class="inactivetab">Day {{schedules.day}}</font><br>
+				<div class="schday"><font class="inactivetab">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </font></div></a>
+		</li>
+	</ul>
+</div>
+	
+	<ul ng-init="vm.tab=1" class="agenda-list">
+		
+	</ul>
+
+<!--div scroll>
 
 	<div id="header_nav" ng-class="navClass">
 
@@ -81,52 +99,52 @@
 					</ul>
 		</div>
 	</div>
-</div>
+</div-->
 
 <div class="divtop">
 	<div class="agenda-parent-div">
 
-			<!-- begin of tab content -->
+		<!-- begin of tab content -->
 
-			<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
-				<h1 class="day-agenda-header">
-					<i class="fa fa-calendar"></i>
-					{{schedules.date | date : "dd MMM yyyy"}} &nbsp;&nbsp;
-					<i class="fa fa-map-marker"></i>
-					{{schedules.location}}
-				</h1>
-				<div id="agenda-scrollable-block" class="scroll">
-						<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
-							<div class="agenda-block-sub-div">
-							<div class="inactivesession">
-								<div>
-									<p>
-										<span ng-switch on="session.type.toLowerCase()">
-											<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
-											<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
-											<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
-											<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
-											<img ng-switch-when="floor-walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
-											<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
-											<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
-										</span>
-										<span class="agenda-session-time">
-											{{session.session.startTime | date : "HH:mm"}} -
-											{{session.session.endTime | date : "HH:mm"}}
-										</span>
-										<span class="agenda-session-name">
-											<a href="#/sessions/{{session._id}}/details">{{session.session.title}}</a>
-										</span>
+		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
+			<h1 class="day-agenda-header">
+				<i class="fa fa-calendar"></i>
+				{{schedules.date | date : "dd MMM yyyy"}} &nbsp;&nbsp;
+				<i class="fa fa-map-marker"></i>
+				{{schedules.location}}
+			</h1>
+			<div id="agenda-scrollable-block" class="scroll">
+				<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
+					<div class="agenda-block-sub-div">
+						<div class="inactivesession">
+							<div>
+								<p>
+									<span ng-switch on="session.type.toLowerCase()">
+										<img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
+										<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
+										<img ng-switch-when="lunch" src="/public/assets/g/imgs/ic/lunch.png" class="session-status-img">
+										<img ng-switch-when="tea-break" src="/public/assets/g/imgs/ic/tea.png" class="session-status-img">
+										<img ng-switch-when="floor-walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+										<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img">
+										<img ng-switch-default src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
+									</span>
+									<span class="agenda-session-time">
+										{{session.session.startTime | date : "HH:mm"}} -
+										{{session.session.endTime | date : "HH:mm"}}
+									</span>
+									<span class="agenda-session-name">
+										<a href="#/sessions/{{session._id}}/details">{{session.session.title}}</a>
+									</span>
+								</p>
+								<div class="agenda-session-overview">
+									<p class="agenda-session-loc">
+										<i class="fa fa-hourglass-half"></i>
+										{{session.session.endTime | duration:session.session.startTime}} min
+										<i class="fa fa-map-marker"></i>
+										{{session.session.location}}
 									</p>
-									<div class="agenda-session-overview">
-										<p class="agenda-session-loc">
-											<i class="fa fa-hourglass-half"></i>
-												{{session.session.endTime | duration:session.session.startTime}} min
-											<i class="fa fa-map-marker"></i>
-												{{session.session.location}}
-										</p>
-										<p> <!--Roboto-->
-											<span class="agenda-session-loc">with</span>
+									<p> <!--Roboto-->
+										<span class="agenda-session-loc">with</span>
 											<!-- <div userdisplay user-id="session.session.owner" view-mode="bulletsmallonly"></div>
 											<div userdisplay user-id="session.session.supporter" view-mode="bulletsmallonly"></div> -->
 											<img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
@@ -144,23 +162,18 @@
 									<!-- <div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model> -->
 
 
-									</div>
 								</div>
 							</div>
-</div>
+						</div>
+					</div>
 
-						</div> <!-- end of agenda overview block -->
-					</div> <!-- end of presentation template -->
-				</div> <!-- end of agenda sub-block -->
-			</div> <!-- end of day -->
-		</div> <!-- enf of days - sessions-->
-	</div> <!-- end of scrollable area -->
+				</div> <!-- end of agenda overview block -->
+			</div> <!-- end of presentation template -->
+		</div> <!-- end of agenda sub-block -->
+	</div> <!-- end of day -->
+</div> <!-- enf of days - sessions-->
+</div> <!-- end of scrollable area -->
 
 
 </div> <!-- end of page container -->
-<script>
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#page").toggleClass("toggled");
-	});
-</script>
+
