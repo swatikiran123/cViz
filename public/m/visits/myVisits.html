@@ -120,7 +120,7 @@
 	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Next Month</li>
 	                </ul>
 	            </div> -->
-                            
+
 							<div class="pull-right">
 
 								<div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
@@ -128,12 +128,12 @@
 									<span class="caret"></span>
 								</div>
 								<ul class="dropdown-menu">
-									<li><a href ng-click="setTimeline('past')">Past</a></li>
-									<li><a href ng-click="setTimeline('last-week')">Last Week</a></li>
-									<li><a href ng-click="setTimeline('this-week')">This Week</a></li>
-									<li><a href ng-click="setTimeline('today')">Today</a></li>
-									<li><a href ng-click="setTimeline('next-week')">Next Week</a></li>
-									<li><a href ng-click="setTimeline('further')">Future</a></li>
+									<li><a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a></li>
+									<li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>
+									<li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>
+									<li><a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a></li>
+									<li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>
+									<li><a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a></li>
 								</ul>
 							</div>
 
@@ -142,6 +142,7 @@
 	     </div>
 	    </div>
 	  </div>
+
 
 <div class="divtop">{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})</div>
 
@@ -158,15 +159,15 @@
                     <li class="list-group-item" ng-click="performAction()">Delete</li>
                 </ul>
             </div>
-
+{{visit | Json}}
             <p class="visit-title">
 
                 <span> {{visit.agenda}}</span>
             </p>
 
             <p>
-							<span ng-if="visit.status='confirmed'" class="visit-status-confirmed">CONFIRMED</span>
-							<span ng-if="visit.status='tentative'" class="visit-status-tentative">TENTATIVE</span>
+							<span ng-if="visit.status.toLowerCase() =='confirmed'" class="visit-status-confirmed">CONFIRMED</span>
+							<span ng-if="visit.status.toLowerCase() =='tentative'" class="visit-status-tentative">TENTATIVE</span>
 						</p>
             <p class="visit-details"><i class="fa fa-calendar">
 							</i>   {{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
@@ -175,7 +176,7 @@
 							<i class="fa fa-map-marker"></i> {{visit.locations}}
 
             <div class="upcoming-sessions">
-                <p>Your Upcoming Sessions</p>
+                <p>Your Participation</p>
 
                 <div ng-repeat="i in [1,2]">
                     <h3>27 FEB 2016</h3>
@@ -185,13 +186,16 @@
                         <img src="/public/assets/m/rem/presenter-icon.png">
                        <span class="session-time">10.30</span>
                         <span class="session-name">Mobility</span>
-                        <i class="fa fa-angle-right pull-right"></i>                    </p>
+                        <i class="fa fa-angle-right pull-right"></i>
+											</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<div ng-if="visitBatch.visits.length==0">
+  Oops!@! No visits available
+</div>
 <script>
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
