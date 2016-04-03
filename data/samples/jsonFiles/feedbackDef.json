@@ -1,0 +1,440 @@
+[	
+	
+	
+		{
+	
+		"_id"							: ObjectId("A10234567892345678900001"),
+	
+		"title"								: "Presentation Feedback",
+		"type"								: "Session", 
+		"item"								: 
+			[
+				{
+					"query"							: "Is the Presentation meets the visit agenda ",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Yes",
+							"no"
+						]
+				},
+				
+				{
+					"query"							: "Are the Speakers Audible",
+					"mode"							:  "multi-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"Could have been louder",
+							"No",
+							"Could have been lower"
+						]
+				},
+				
+				{
+					"query"							: "I will use the knowledge I received in this presentation at work",
+					"mode"							:  "multi-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"No",
+							"May be"
+						]
+				},
+				
+				{
+					"query"							: "The presenter effectively communicated the content of the presentation",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "The presenter was knowledgeable about the subject matter",
+					"mode"							:  "single-choice",  
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "The content is this session was relevant and useful",
+					"mode"							:  "single-choice",  
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "Comments",
+					"mode"							:  "freetext",
+					"choices"						:  [ ]
+				},
+				
+				{
+					"query"							: "Rate Us",
+					"mode"							:  "star-rating",
+					"choices"						:  [ ]
+				}
+			],
+		
+		"createBy"						:  ObjectId("A02234567892345678900001"),
+		"createOn"						: { "$date" : "2016-03-03T10:00:00.000Z"} 
+	},
+
+	
+	
+	
+	
+	{
+	
+		"_id"							: ObjectId("A10234567892345678900002"),
+	
+		"title"								: "Discussion Feedback",
+		"type"								: "Session", 
+		"item"								: 
+			[
+				{
+					"query"							: "Is the Discussion meets the visit agenda ",
+					"mode"							:  "single-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"no"
+						]
+				},
+				
+				{
+					"query"							: "Is the Board room clean & tidy",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Yes",
+							"No"							
+						]
+				},
+				
+				{
+					"query"							: "Suggestions for Board room",
+					"mode"							:  "multi-choice",
+					"choices"						: 
+						[ 
+							"Chairs required",
+							"Room temperature could have been lower",
+							"Room temperature could have been higher",
+							"Water bottles required"						
+						]
+				},
+				
+				
+				
+				{
+					"query"							: "The presenter spoke clearly and presented well",
+					"mode"							:  "multi-choice", 
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "The presenter was well-organized",
+					"mode"							:  "single-choice",
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+		
+				
+				{
+					"query"							: "The content is this session was relevant and useful",
+					"mode"							:  "single-choice",  
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "Comments",
+					"mode"							:  "freetext",	
+					"choices"						:  [ ]
+				},
+				
+				{
+					"query"							: "Rate the session",
+					"mode"							:  "star-rating",
+					"choices"						:  [ ]
+				}
+			],
+		
+		"createBy"						:  ObjectId("A02234567892345678900021"),
+		"createOn"						: { "$date" : "2016-03-03T10:00:00.000Z"} 
+	},
+
+
+	
+	
+	
+	
+	{
+	
+		"_id"							: ObjectId("A10234567892345678900003"),
+	
+		"title"								: "Discussion Feedback",
+		"type"								: "Session", 
+		"item"								: 
+			[
+				{
+					"query"							: "The presenter spoke clearly and presented well",
+					"mode"							:  "single-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"no"
+						]
+				},
+				
+				{
+					"query"							: "Is the Board room clean & tidy",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Yes",
+							"No"							
+						]
+				},
+				
+				{
+					"query"							: "Suggestions for Board room",
+					"mode"							:  "multi-choice", 
+					"choices"						: 
+						[ 
+							"Chairs required",
+							"Room temperature could have been lower",
+							"Room temperature could have been higher",
+							"Water bottles required"						
+						]
+				},
+				
+				
+				
+				{
+					"query"							: "It was worthwhile to attend this presentation",
+					"mode"							:  "multi-choice", 
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "The presenter was well-organized",
+					"mode"							:  "single-choice",
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+		
+				
+				{
+					"query"							: "The content is this session was relevant and useful",
+					"mode"							:  "single-choice",  
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "Comments",
+					"mode"							:  "freetext",
+					"choices"						:  [ ]
+				},
+				
+				{
+					"query"							: "Rate the session",
+					"mode"							:  "star-rating",
+					"choices"						:  [ ]
+				}
+			],
+		
+		"createBy"						:  ObjectId("A02234567892345678900022"),
+		"createOn"						: { "$date" : "2016-03-03T10:00:00.000Z"} 
+	},
+	
+	
+	
+	{
+	
+		"_id"							: ObjectId("A10234567892345678900004"),
+	
+		"title"								: "Visit Feedback",
+		"type"								: "Visit", 
+		"item"								: 
+			[
+				{
+					"query"							: "Purpose of visit",
+					"mode"							:  "multi-choice",
+					"choices"						: 
+						[ 
+							"To Know the Progress of CSC into Big Data Analytics ",
+							"To observe the different activities and techniques",
+							"Partnership",
+							"To observe the different activities and techniques",
+							"To know the progress of CSC into Cloud Technologies"
+							
+						]
+				},
+				
+				{
+					"query"							: "How was your visit",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Very Satisfied",
+							"Satisfied",
+							"Neutral",
+							"Unsatisfied"
+						]
+				},
+				
+				
+				
+				{
+					"query"							: "It was worthwhile to attend this visit",
+					"mode"							:  "multi-choice", 
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+				
+				{
+					"query"							: "The visit was well-organized",
+					"mode"							:  "single-choice", 
+					"choices"						: 
+						[ 
+							"Strongly Agree",
+							"Agree",
+							"Neutral",
+							"Disagree",
+							"Strongly Disagree"
+						]
+				},
+		
+				
+				{
+					"query"							: "Comments",
+					"mode"							:  "freetext",
+					"choices"						:  [ ]
+				},
+				
+				{
+					"query"							: "Rate the session",
+					"mode"							:  "star-rating",
+					"choices"						:  [ ]
+				}
+			],
+		
+		"createBy"						:  ObjectId("A02234567892345678900004"),
+		"createOn"						: { "$date" : "2016-03-03T10:00:00.000Z"} 
+	},
+	
+	
+	
+	
+	{
+	
+		"_id"							: ObjectId("A10234567892345678900005"),
+	
+		"title"								: "Lunch Feedback ",
+		"type"								: "session", 
+		"item"								: 
+			[
+				{
+					"query"							: "Is Food Court Clean and Tidy",
+					"mode"							:  "single-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"no"
+						]
+				},
+				
+				{
+					"query"							: "Are the dishes delicious",
+					"mode"							:  "multi-choice",
+					"choices"						: 
+						[ 
+							"Yes",
+							"No",
+							"Could Have been better"
+						]
+				},
+				
+				{
+					"query"							: "Comments",
+					"mode"							:  "freetext",	
+					"choices"						:  [ ]
+				},
+				
+				{
+					"query"							: "Rate Us",
+					"mode"							:  "star-rating",
+					"choices"						:  [ ]
+				}
+			],
+		
+		"createBy"						:  ObjectId("A02234567892345678900023"),
+		"createOn"						: { "$date" : "2016-03-03T10:00:00.000Z"} 
+	}
+	
+
+]
