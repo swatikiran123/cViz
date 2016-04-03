@@ -1,4 +1,3 @@
-<style>
   .list-group-item {
   	display: inline-block;
   	border: none;
@@ -61,28 +60,3 @@
   	margin-bottom: 0px;
   }
   
-</style>
-  <div class="header">CONTACT DETAILS</div>
-  <div class="client-rep">
-  	<div class="heading">LOCATION : {{contactList[0].location}}</div>
-  	<hr>
-  	<div class="list-group">
-  		<div href="#" class="list-group-item" ng-repeat="contact in contactList" ng-click="collapseDiv($index,'client')">
-
-  			<div class="row">
-  				<div class="col-xs-1">
-  					<userview user-id="contact.user" view-mode="bullet-small"></userview>
-
-  				</div>
-  				<div class="col-xs-11">
-  					<userview user-id="contact.user" view-mode="brief-view"></userview>
-  					{{contact.type}}
-  					<div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-  					<div class="rep-hidden-details collapse" id="client{{$index}}">
-  						<userview user-id="contact.user" view-mode="detial-view"></userview>
-  					</div>
-  				</div>  			
-  			</div>
-  		</div>
-  	</div>
-  </div>

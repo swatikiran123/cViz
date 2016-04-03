@@ -8,9 +8,9 @@
   </div>
   <div class= "page-toolbar">
     <div class="pull-right">
-      <a href="#"><i class="fa fa-envelope"></i></a>&nbsp;email&nbsp;
-      <a href="#"> <i class="fa fa-thumbs-o-up"></i></a>&nbsp;follow&nbsp;
-      <a href="#/session"><i class="fa fa-calendar"></i></a>&nbsp;schedule&nbsp;
+      <a href="#"><i class="fa fa-envelope fa-lg"></i></a>&nbsp;email&nbsp;
+      <a href="#"> <i class="fa fa-thumbs-o-up fa-lg"></i></a>&nbsp;follow&nbsp;
+      <a href="#/session"><i class="fa fa-calendar fa-lg"></i></a>&nbsp;schedule&nbsp;
     </div>
   </div><br>
 
@@ -225,17 +225,16 @@
     </div>
 
     <!-- visits status input-->
-    <md-input-container class="md-block">
-    <label>Status</label>
-    <input md-maxlength="30" minlength="3" required name="status" ng-model="visits.status">
-    <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
-     <div class="messagenotify">
-      <div ng-messages-include="/public/mods/partials/messages.html"></div>
-      <div ng-message="md-maxlength">The visit type has to be less than 30 characters long.</div>
-      <div ng-message="minlength">the visit type should contain minimum 5characters</div>
+    <label>Status </label>
+    <div class="radio-inline" style="margin-left: 1cm" >
+      <input type="radio" ng-model="visits.status" value="Confirm">
+      Confirm<br/>
     </div>
-  </div>
-</md-input-container>
+    <div class="radio-inline">  
+     <input type="radio" ng-model="visits.status" value="Tentative">
+     Tentative<br/>
+   </div>  
+
 
 <!--buttons-->
 <div class="form-group">
@@ -284,6 +283,8 @@
 
 <!--including keynotes template table-->
 <div ng-include src="'/public/mods/visits/keynotesVisitAdd.html'"></div>
+<!--including invitees template table-->
+<div ng-include src="'/public/mods/visits/inviteesAdd.html'"></div>
 </md-content>
 </md-tab>
 

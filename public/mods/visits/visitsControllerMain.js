@@ -63,7 +63,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     var id = $routeParams.id;
 
   //dynamic template rendering scope value
-  $scope.activeTemplate = '/public/mods/visits/partials/visitsGrid.html';
+  // $scope.activeTemplate = '/public/mods/visits/partials/visitsGrid.html';
   
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
@@ -71,6 +71,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.checked = false;
   $scope.schedules=[];
   $scope.visitors=[];
+  $scope.inviteesData=[];
   $scope.keynotes=[];
   $scope.small= "small";
   $scope.large= "LARGE";
@@ -139,6 +140,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;      //List of visitors
           $scope.visits = visits;               //Whole form object
+          $scope.inviteesData =visits.invitees;
 
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
@@ -200,6 +202,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     inData.keynote = $scope.keynotes;
     inData.visitors = $scope.visitors;
     inData.createBy =  $rootScope.user._id;
+    inData.invitees = $scope.inviteesData;
 
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
       refresh();
@@ -273,7 +276,28 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.schedules.splice(index, 1);
   };
 // Visit schedule table end
+// Visit invitees table
 
+  $scope.addInvitees=function(specialInvite){
+    console.log(specialInvite.inviteId);
+    $scope.inviteesData.push({
+      invite: specialInvite.inviteId
+    });
+
+    specialInvite.inviteId='';
+    specialInvite.inviteUser='';
+    specialInvite.inviteEmail='';
+  };
+
+  $scope.removeInvitees = function(index){
+    $scope.inviteesData.splice(index, 1);
+  };
+
+  $scope.editInvitees = function(index,specialInvite){
+    $scope.specialInvite= specialInvite;
+    $scope.inviteesData.splice(index, 1);
+  };
+// Visit specialInvite table end
  // Visit keynote table
 
  $scope.addkeynote=function(keynoteDef){

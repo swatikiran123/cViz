@@ -8,7 +8,7 @@ angular.module('mviz-main', [
 angular.module('mviz-visits', [
 	'ui.bootstrap',
 	'appFilters', 'userdisplayDirective',
-	'visits','sessions','contacts','userdisplayDirective','header','scroll','feedbackDirective'
+	'visits','sessions','contacts','userdisplayDirective','header','scroll','feedbackDirective','userViewDirective'
 ]);
 
 angular.module('mviz-facts', [

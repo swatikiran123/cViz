@@ -42,7 +42,10 @@ var visitSchema = new mongoose.Schema({
 		note   						: { type: Schema.Types.ObjectId, ref: 'keynotes', required: false },
 	 	context 					: {type: String, enum: ['welcome', 'thankyou'], required: false},
 	 	order						: {type: Number, required: false}
-	 }]
+	 }],
+	 invitees						: [{
+	 invite 						:{ type: Schema.Types.ObjectId, ref: 'User' }
+	}]
 
 });
 
