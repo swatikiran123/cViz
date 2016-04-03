@@ -46,5 +46,11 @@ mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles\factSheet.j
 
 
 ECHO:
+ECHO Creating Feedback Defs Collection
+mongoimport --db cViz-Test --collection feedbackdefs --file jsonFiles\feedbackDef.json --type json --jsonArray
+
+
+
+ECHO:
 PAUSE
 
