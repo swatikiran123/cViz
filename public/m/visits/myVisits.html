@@ -159,7 +159,6 @@
                     <li class="list-group-item" ng-click="performAction()">Delete</li>
                 </ul>
             </div>
-{{visit | Json}}
             <p class="visit-title">
 
                 <span> {{visit.agenda}}</span>
@@ -178,15 +177,24 @@
             <div class="upcoming-sessions">
                 <p>Your Participation</p>
 
-                <div ng-repeat="i in [1,2]">
-                    <h3>27 FEB 2016</h3>
+                <div ng-repeat="item in visit.involved">
+                    <h3>{{item.startTime | DateFormat:"ddd, DD MMM"}}</h3>
 
-                    <p class="session-field" ng-repeat="j in [1,2]">
+                    <p class="session-field">
 
-                        <img src="/public/assets/m/rem/presenter-icon.png">
-                       <span class="session-time">10.30</span>
-                        <span class="session-name">Mobility</span>
-                        <i class="fa fa-angle-right pull-right"></i>
+                       <img src="/public/assets/m/rem/presenter-icon.png">
+                       <span class="session-time">
+												 {{item.startTime | date : "HH:mm"}}&nbsp;
+												 {{item.endTime | duration:item.startTime}}
+											 </span>
+                       <span class="session-name">
+													{{item.role}} for {{item.type}}
+											 </span>
+											 <div class="session-name">
+
+												 {{item.title}}
+											 </div>
+<i class="fa fa-angle-right pull-right"></i>
 											</p>
                 </div>
             </div>
