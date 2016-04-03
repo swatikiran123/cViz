@@ -33,7 +33,7 @@ angular.module('visits')
 				$scope.visitBatch = $scope.allVisits[$scope.timeline];
 			}
 
-			console.log($scope.visitBatch);
+			console.log(JSON.stringify($scope.visitBatch,null,2));
 		}
 	);
 })
