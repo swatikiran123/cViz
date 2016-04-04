@@ -1,4 +1,43 @@
 
+
+<style>
+
+.tb-big {
+    height: 140px;
+
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+
+    font-family: robotoRegular;
+}
+
+.tb-small {
+    height: 65px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+    font-family: robotoRegular;
+}
+.divtop{
+    padding-top: 90px;
+}
+
+</style>
+
+
+<div header showprofile="false" icon="fa fa-line-chart" title1="client details page" title2="client details">
+clients
+    </div>
+    <div class="divtop">
 <div id="client-information" ng-repeat="representative in representatives">
     <div class="header2">Client Information</div>
     <div class="company-logo-category">
@@ -81,5 +120,5 @@
         </div>
     </div>
 </div>
-
+</div>
 

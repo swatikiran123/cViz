@@ -8,6 +8,7 @@ var logger = {};
 logger.write = write;
 logger.writeLine = writeLine;
 logger.Json = Json;
+logger.writeJson = Json;
 logger.dump = dump;
 logger.test = test;
 

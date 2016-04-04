@@ -115,10 +115,10 @@ function getActiveVisit(req, res){
 	dataService.getMyVisits(req.user,"next-one")
 		.then(function(data){
 				if (data){
-					logger.writeJson(data);
+					logger.Json(data);
 					res.send(data["next-one"]);
 				}else {
-						logger.writeJson("No active visits");
+						logger.Json("No active visits");
 						res.status(404).send("No active visits");
 				}
 		})
