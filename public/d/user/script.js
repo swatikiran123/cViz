@@ -3,6 +3,9 @@
 angular.module('userDirective', [])
 .controller('userDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
 
+  console.log($scope.switchMode);
+  // console.log($scope.userId);
+  // console.log($scope.userEmail);
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
@@ -15,13 +18,14 @@ angular.module('userDirective', [])
       // return;
       url='/api/v1/secure/admin/users/' + $scope.userId;
     }
-    else if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
+    
+    if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
       url='/api/v1/secure/admin/users/email/' + $scope.userEmail;
     }
-    else{
-        message = "Invalid User Id/email";
-        return;
-    }
+    // else{
+    //     message = "Invalid User Id/email";
+    //     return;
+    // }
 
     $http.get(url).success(function(response) {
       $scope.userModel = response;
@@ -40,8 +44,13 @@ angular.module('userDirective', [])
         console.log("error with user directive");
     });
   } // end of getUser method
-
+  
+  if($scope.switchMode == 'edit')
+  {  
 	$scope.getUser(); // autoload data
+  }
+
+  //ToDo: User Picker not working with inline editing.
 }])
 
 .directive('user', function() {
@@ -52,7 +61,8 @@ angular.module('userDirective', [])
       userModel: "=userModel",
       userId: "=userId",
       userEmail: "=userEmail",
-      viewType: "=viewType"
+      viewType: "=viewType",
+      switchMode: "=switchMode"
     },
 
     link : function(scope,element,attrs)
@@ -61,7 +71,7 @@ angular.module('userDirective', [])
 
       var viewmode = scope.viewType.toLowerCase();
 
-       if(viewmode === "small")
+       if(viewmode === "small" && scope.userEmail!="")
        {
         return "/public/d/user/templates/smallpanel.html";
       }

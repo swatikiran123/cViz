@@ -37,7 +37,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
           break;
 
         case "edit":
-          $scope.keynotes = $http.get('/api/v1/secure/keynotes/' + id).success(function(response){
+          $scope.keynotes = $http.get('/api/v1/secure/keynotes/id/' + id).success(function(response){
             $scope.keynotes = response;
 
             console.log($scope.keynotes);
