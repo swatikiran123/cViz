@@ -104,7 +104,7 @@
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.speakerModel.$touched && sessionAddForm.speakerModel.$invalid }">
 						<label >Speaker &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="ownerUser" user-id="ownerId" view-type="small" user-email="ownerEmail" ></div>
+						<div user type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode"></div>
 						</div>
 					</md-input-container>
 				</div>
@@ -113,7 +113,7 @@
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterModel.$touched && sessionAddForm.supporterModel.$invalid }">
 						<label >Supporter &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="supporterUser" user-id="supporterId" view-type="small" user-email="supporterEmail" ></div>
+						<div user type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode"></div>
 						</div>
 					</md-input-container>
 				</div>

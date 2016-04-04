@@ -46,7 +46,7 @@ router.post('/api/v1/multiupload/:entity',fileupload.create);
 
 // List of service routes for KeyNotes
 router.get('/api/v1/secure/keynotes', keynotes.getAll);
-//router.get('/api/v1/secure/keynotes/:id', keynotes.getOneById);
+router.get('/api/v1/secure/keynotes/id/:id', keynotes.getOneById);
 router.post('/api/v1/secure/keynotes', keynotes.create);
 router.put('/api/v1/secure/keynotes/:id', keynotes.updateById);
 router.delete('/api/v1/secure/keynotes/:id', keynotes.deleteById);
@@ -56,7 +56,7 @@ router.get('/api/v1/secure/keynotes/find', keynotes.getWithQuery);
 router.get('/api/v1/secure/clients', clients.getAll);
 router.get('/api/v1/secure/clients/id/:id', clients.getOneById);
 router.post('/api/v1/secure/clients', clients.create);
-router.put('/api/v1/secure/clients/:id', clients.updateById);
+router.put('/api/v1/secure/clients/id/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);
 router.get('/api/v1/secure/clients/find', clients.getWithQuery);
 
