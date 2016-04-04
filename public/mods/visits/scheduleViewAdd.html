@@ -3,9 +3,9 @@
 <table class="table boldtable table-responsive table-bordered table-hover" width="100">
   <thead class="data-grid-header">
     <tr>
-      <th><span class="fa fa-calendar"></span>&nbsp;&nbsp;Start Date</th>
-      <th><span class="fa fa-calendar"></span>&nbsp;&nbsp;End Date</th>
-      <th><span class="fa fa-globe"></span>&nbsp;&nbsp;Location</th>
+      <th><span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;Start Date</th>
+      <th><span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;End Date</th>
+      <th><span class="fa fa-globe fa-lg"></span>&nbsp;&nbsp;Location</th>
       <th></th>
     </tr>
   </thead>
@@ -26,8 +26,8 @@
   <td>{{schedule.startDate | date:"dd MMM yyyy"}}</td>
   <td>{{schedule.endDate | date:"dd MMM yyyy"}}</td>
   <td>{{schedule.location}}</td>
-  <td><a class="table-btn" ng-click="removeSchedule($index)"><span class="fa fa-trash" /></a>
-    <a class="table-btn" ng-click="editSchedule($index,schedule)"><span class="fa fa-edit" /></a>
+  <td><a class="table-btn" ng-click="removeSchedule($index)"><span class="fa fa-trash fa-lg" /></a>
+    <a class="table-btn" ng-click="editSchedule($index,schedule)"><span class="fa fa-edit fa-lg" /></a>
   </td>
 </tr>
 </tbody>

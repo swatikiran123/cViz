@@ -50,7 +50,7 @@ function getAll(){
 // 3. Custo9mers are not filtered by visit. They can access any visit of the client irrective of being part of it
 
 function getMyVisits(thisUser, timeline, limit){
-	console.log("my visits db service");
+	logger.dump('test', 0, 'Initiate getMyVisits...', thisUser._id, timeline, limit);
 	var deferred = Q.defer();
 
 	// massage params
@@ -63,26 +63,36 @@ function getMyVisits(thisUser, timeline, limit){
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
 	var userId = thisUser._id;
-	var visits = "";
+	var userSessions = "";
 
-	getUserVisitsForSessions(userId)
+	logger.dump('test', 1,'getUserSessions...');
+	getUserSessions(userId)
 		.then(function(data){
-			visits = data;
-			console.log("Session wise visit list...")
-			console.log(data);
+			userSessions = data;
+			logger.dump('test', 1,"Session wise visits", userSessions.length + " rec(s) found");
 
-	if( secure.isInAnyGroups(thisUser, "customer"))	{
-				logger.writeLine('' , 2,"Found customer!!!");
+			var projected = _(userSessions).chain().flatten().pluck('visit').unique().value();
+			logger.Json('test',projected);
+			var sessionVisits = (projected);
+			// ToDo:: Filter to unique records fails here...
+			//		implement this to improve performance
+			// var sessionVisits = arrUnique(projected);
+			// logger.writeLine('test',0, 'Unique sessionVisits');
+			// logger.Json('test',sessionVisits);
+
+			logger.dump('test', 1,"Checking user role...")
+			if( secure.isInAnyGroups(thisUser, "customer"))	{
+				logger.dump('test', 2,"Found customer!!!");
 				filter = {client : thisUser.orgRef};  // all visits by his company
 			}
 			else if(secure.isInAnyGroups(thisUser, "exec")){
-						logger.writeLine('', 2,"Found exec!!!");
+						logger.dump('test', 2,"Found exec!!!");
 			}
 			else if(secure.isInAnyGroups(thisUser, "vManager")){
-						logger.writeLine('', 2,"Found vManager!!!");
+						logger.dump('test', 2,"Found vManager!!!");
 			}
 			else if( secure.isInAnyGroups(thisUser, "user")){
-				logger.writeLine('' , 2, "Found user!!!");
+				logger.dump('test', 2, "Found user!!!");
 				filter = {
 					$or: [
 						{createBy: userId}
@@ -93,15 +103,13 @@ function getMyVisits(thisUser, timeline, limit){
 						, {'client.industryExec': userId}
 						, {'client.globalDelivery': userId}
 						, {'client.cre': userId}
-						, {'_id': { $in: visits }}
-
+						, {'_id': { $in: sessionVisits }}
 					]
 				};
 			} // end of secure if
 
-		logger.writeLine('',0,"Getting Data from service...\nwith filter")
-
-		logger.writeJson(filter);
+		logger.dump('test', 0, "Find visits with filter");
+		logger.dump('test', filter);
 
 		var visitsByTimeline = new Array();
     model
@@ -111,26 +119,130 @@ function getMyVisits(thisUser, timeline, limit){
 			.sort('startDate')
 			.exec(function(err, list){
 		      if(err) {
-		        logger.writeLine('error', 0, err);
+		        logger.error(0, 'find visits with filter', filter, err);
 		        deferred.reject(err);
 			    }
 			    else{
-						logger.writeLine(null,1,"Data retrieved :: " + list.length);
-						//logger.writeJson(list);
-						console.log("\n");
+						logger.dump('test', 1,"Visits found :: " + list.length);
 						transform(list);
-
+						logger.dump('test', 1,'------------------------------');
+						logger.dump('test', 1,'Transformed data.....');
+						logger.Json('test',visitsByTimeline)
 		       	deferred.resolve(visitsByTimeline);
 				 	}
 			}); // end of model exec
 
 			function transform(visits){
 
+				logger.dump('test', 0,"---------------------");
+				logger.dump('test', 0,'Begin data tranformation...');
+
 				var visitsSorted =  _.sortBy( visits, 'startDate' );
-				console.log("---- Retrieved Data -----");
+
 				visitsSorted.forEach(function(visit){
-					logger.dump('debug',1,visit._id, visit.title, visit.startDate, visit.endDate);
-				})
+					logger.dump('test', 0,'----- transform with visit ------')
+					logger.dump('test', 1,visit._id, visit.title, visit.startDate, visit.endDate);
+
+					var involved = [];
+
+					// add visit level participants
+					logger.dump('test', 2,'Check Sponsor',visit.anchor, thisUser._id,stringCmp(visit.anchor, thisUser._id));
+					if(stringCmp(visit.anchor,thisUser._id)){
+						var thisOne = {
+							type: "Visit",
+							title: "Full Visit participation",
+							startTime : DateReplaceTime(visit.startDate, "08:30"),
+							endTime : DateReplaceTime(visit.endDate, "18:30"),
+							role : "Sponsor"
+						};
+						involved.push(thisOne);
+					}
+
+					logger.dump('test', 2,'Check vManager',visit.agm, thisUser._id,stringCmp(visit.agm, thisUser._id));
+					if(stringCmp(visit.agm, thisUser._id)){
+						var thisOne = {
+							type: "Visit",
+							title: "Full Visit participation",
+							startTime : DateReplaceTime(visit.startDate, "08:30"),
+							endTime : DateReplaceTime(visit.endDate, "18:30"),
+							role : "Visit Manager"
+						};
+						involved.push(thisOne);
+					}
+
+					if(visit.invitees !== undefined){
+						logger.dump('test', 2,'Check Visit invitees',visit.invitees, thisUser._id, arrContains(visit.invitees, thisUser._id))
+						if(arrContains(visit.invitees, thisUser._id)){
+							var thisOne = {
+								type: "Visit",
+								title: "Full Visit participation",
+								startTime : DateReplaceTime(visit.startDate, "08:30"),
+								endTime : DateReplaceTime(visit.endDate, "18:30"),
+								role : "Special Invitee"
+							}
+							involved.push(thisOne);
+						}
+					}else {
+						logger.dump('test', 2,'visit invitees undefined');
+					}
+
+					logger.dump('test', 2,'Checking sessions...');
+					userSessions.forEach(function(thisSession){
+						logger.dump('test', 3, '--------- visit vs. session -----------');
+						logger.dump('test', 3,thisSession._id,visit._id,thisSession.visit,stringCmp(thisSession.visit, visit._id));
+						if(stringCmp(thisSession.visit, visit._id)){
+							// sesion level participants
+							logger.dump('test', 4,'session owner', thisUser._id,thisSession.session.owner, stringCmp(thisUser._id,thisSession.session.owner));
+							if(stringCmp(thisUser._id,thisSession.session.owner)){
+								var thisOne = {
+									startTime : thisSession.session.startTime,
+									endTime : thisSession.session.endTime,
+									type : thisSession.session.type,
+									title : thisSession.session.title,
+									role : thisSession.session.type == "presentation"? "Speaker" : "Owner"
+								}
+								involved.push(thisOne);
+							}
+
+							logger.dump('test', 4,'session supporter',thisUser._id,thisSession.session.supporter, stringCmp(thisUser._id, thisSession.session.supporter))
+							if(stringCmp(thisUser._id,thisSession.session.supporter)){
+								var thisOne = {
+									startTime : thisSession.session.startTime,
+									endTime : thisSession.session.endTime,
+									type : thisSession.session.type,
+									title : thisSession.session.title,
+									role : "Supporter"
+								}
+								involved.push(thisOne);
+							}
+
+							logger.dump('test', 4,'session invitees', thisSession.invitees, thisUser._id, arrContains(thisSession.invitees, thisUser._id))
+							if(thisSession.invitees !== undefined){
+								if(arrContains(thisSession.invitees, thisUser._id)){
+									var thisOne = {
+										startTime : thisSession.session.startTime,
+										endTime : thisSession.session.endTime,
+										type : thisSession.session.type,
+										title : thisSession.session.title,
+										role : "Session Invitee"
+									}
+									involved.push(thisOne);
+								}
+							}
+							else {
+								logger.dump('test', 4,'session invitees undefined');
+							}
+						}
+						logger.dump('test', 3,'-------- end of sessions');
+					}) // end of visit -> session foreach loop
+
+					logger.dump('test', 3,'-------- end of visit');
+					logger.dump('test', 3,'Involvement details....');
+					logger.Json('test', involved);
+					visit.set('involved', involved,  { strict: false });
+					logger.Json('test', visit);
+				}) // end of visit loop
+				logger.dump('test', 3,'-------- end of all visits')
 
 				var today = moment();
 
@@ -170,17 +282,6 @@ function getMyVisits(thisUser, timeline, limit){
 				 	furtherEnd.format("ddd D-MMM-YYYY") + " >> " + further.toString());
 				console.log("next one: "+ today.format("ddd D-MMM-YYYY") + " - " +
 					nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextOne.toString());
-
-				// visitsByTimeline["past"] = {
-				// 		start: pastBegin,
-				// 		end: beforelastWeek,
-				// 		visits: filterByRange(visitsSorted, past)
-				//
-				// 	};
-				// visitsByTimeline["past"] = "something in past";
-				// visitsByTimeline["this"] = "something this week";
-				// visitsByTimeline["further"] = "something after one month";
-
 
 				visitsByTimeline = {
 					"past":{
@@ -224,58 +325,9 @@ function getMyVisits(thisUser, timeline, limit){
 							end: nextWeekEndsOn,
 							visits: ((timeline.contains("next-one")||timeline.contains('all'))? filterByRange(visitsSorted, nextOne)[0] : null)
 					}
-
 				}
 
-					// visitsByTimeline.push({
-					// "last-week":{
-					// 	start: lastWeekBeginsOn,
-					// 	end: lastWeekEndsOn,
-					// 	visits: filterByRange(visitsSorted, lastWeek)
-					// }});
-
-				// visitsByTimeline.push({
-				// 	timeline: "past",
-				// 	start: pastBegin,
-				// 	end: beforelastWeek,
-				// 	visits: filterByRange(visitsSorted, past)
-				// });
-				//
-				// visitsByTimeline.push({
-				// 	timeline: "last-week",
-				// 	start: lastWeekBeginsOn,
-				// 	end: lastWeekEndsOn,
-				// 	visits: filterByRange(visitsSorted, lastWeek)
-				// });
-				//
-				// visitsByTimeline.push({
-				// 	timeline: "this-week",
-				// 	start: thisWeekBeginsOn,
-				// 	end: thisWeekEndsOn,
-				// 	visits: filterByRange(visitsSorted, thisWeek)
-				// });
-				//
-				// visitsByTimeline.push({
-				// 	timeline: "today",
-				// 	start: today,
-				// 	end: today,
-				// 	visits: filterByRange(visitsSorted, thisDay)
-				// });
-				//
-				// visitsByTimeline.push({
-				// 	timeline: "next-week",
-				// 	start: nextWeekBeginsOn,
-				// 	end: nextWeekEndsOn,
-				// 	visits: filterByRange(visitsSorted, nextWeek)
-				// });
-				//
-				// visitsByTimeline.push({
-				// 	timeline: "further",
-				// 	start: afterNextWeek,
-				// 	end: furtherEnd,
-				// 	visits: filterByRange(visitsSorted, further)
-				// });
-
+				logger.dump('test', 1,'-------- end of transformation')
 			}
 
 			function filterByRange(visits, range){
@@ -287,13 +339,12 @@ function getMyVisits(thisUser, timeline, limit){
 					})
 				);
 			}
-}); //end of getUserVisitsForSessions
+		}); //end of getUserSessions
     return deferred.promise;
 } // getAll method ends
 
-
 /// For a given user Returns list of all the visitId by participating sessions
-function getUserVisitsForSessions(userId){
+function getUserSessions(userId){
 	var filter = {
 		$or: [
 			{'session.owner': userId},
@@ -304,7 +355,7 @@ function getUserVisitsForSessions(userId){
 	var deferred = Q.defer();
 	scheduleModel
 		.find(filter)
-		.distinct('visit', function(err, list){
+		.exec(function(err, list){
 			if(err){
 				console.log(err);
 				deferred.reject(err);
@@ -315,7 +366,7 @@ function getUserVisitsForSessions(userId){
 		}) // end of scheduleModel exec
 
 	return deferred.promise;
-} // end of getUserVisitsForSessions
+} // end of getUserSessions
 
 function getOneById(id){
     var deferred = Q.defer();
@@ -359,7 +410,10 @@ function getExecsById(id){
         else{
                     cscId.push(transform(item.agm,'Sponsor'));
                     cscId.push(transform(item.anchor,'Anchor'));
-
+                    //fetchnig invitees
+                      for (var i=0; i<item.invitees.length; i++){
+                        cscId.push(transform(item.invitees[i].invite,'Invite'));
+                      }
                     //fetchnig visitors
                       for (var i=0; i<item.visitors.length; i++){
                         client.push(transform(item.visitors[i].visitor,'Client Visitor'));
@@ -467,7 +521,7 @@ function getSessionsById(id){
 							}
 							else{
 								transform(visit, sessions);
-								logger.writeJson(sessionDays);
+								logger.Json('test',sessionDays);
 								deferred.resolve(sessionDays);
 							}
 						}); // end of scheduleModel find

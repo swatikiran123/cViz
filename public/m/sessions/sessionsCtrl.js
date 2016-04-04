@@ -7,8 +7,8 @@ angular.module('sessions')
 				//console.log(JSON.stringify($scope.scheduleList,null,2));
     });
 
-		$scope.feedback_id="56fd0eddabb181fc2a3466cf";
-    $scope.visit_id = "a01234567892345678900001";
+		$scope.feedback_id="A10234567892345678900001";
+    $scope.visit_id = $routeParams.id;
 
 		$scope.hideFeeedbackDiv = true;
 		$scope.toggleFeedbackDialog = function(index, $event){

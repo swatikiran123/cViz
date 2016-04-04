@@ -5,46 +5,56 @@
     </div>
   </div>
 
-
   <div class="container">
+   <div class="row">
+    <div class="col-xs-5">
+      <input type="text" class="form-control" placeholder="Search" ng-model="search.$" /></div>
+      <div ng-include src="'/public/mods/visits/partials/sortSearch.html'"></div>
+    </div>
     <div class="pnbdr panel panel-primary">
       <!--div class="panel-heading">visits panels view</div--><div class="searchpad">
-      <div class="form-inline has-feedback filter-header">
-        <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
-        <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
-        <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button></div>
-        <div ng-repeat="visit in visitsList | filter: search |orderBy:orderByField:reverseSort">
-          <div class="row">
+      <div ng-repeat="visit in visitsList | filter: search |orderBy:orderByField:reverseSort">
+        <div class="row">
 
-            <div class="pn-bodypad">
-              <div class="col-xs-11">
-                <div class="panel panel-info">
-                  <div class="panel-heading pn-bodyhdr" pull-left>
-                    <span>Title:{{visit.title}}</span><div class="pull-right">
-                    <a class="table-btn" href="#/{{visit._id}}/showVisit"><span class="glyphicon glyphicon-eye-open" /></a>
-                    <a class="table-btn" href="#/{{visit._id}}/editVisit"><span class="glyphicon glyphicon-edit" /></a>
-                    <a class="table-btn" ng-click="delete(visit)"><span class="glyphicon glyphicon-trash" /></a>
-                    <a class="table-btn" href="#/{{visit._id}}/editSession"><span class="glyphicon glyphicon-calendar" /></a></div>
+          <div class="pn-bodypad">
+            <div class="col-xs-11">
+              <div class="panel panel-info">
+                <div class="panel-heading pn-bodyhdr" pull-left>
+                  <span>{{visit.title}}</span><div class="pull-right">
+                  <a class="table-btn" href="#/visits/{{visit._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+                  <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+                  <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
+                    yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+                    <a class="table-btn" href="#/visits/{{visit._id}}/sessions"><span class="fa fa-calendar fa-lg" /></a>
                   </div>
+                </div>
 
-                  <div class="panel-body">
+                <div class="panel-body">
 
-                    <div class="pull-left">
-                      <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
-                    </div>
-                    <div class="pn-inrbodypad">
+                  <div class="pull-left">
+                    <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
+                  </div>
+                  <div class="pn-inrbodypad">
 
-                      <div class="text-highlight">Client:&nbsp;{{visit.client.name}}</div>
-                      <div class="text-desc">Agenda:{{visit.agenda}}</div>
-                      <div class="text-xs">{{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
-
-
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <div class="text-xs" clientdisplay view-mode="clientnameonly" client-id="visit.client"></div>
                       </div>
-
+                      <div class="col-xs-4">
+                        <div class="text-xs">{{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}</div>
+                      </div>
+                      <div class="col-xs-4"><div class="text-xs">{{visit.locations}}</div>
                     </div>
                   </div>
+                  <div class="text-xs"><richtext body-text="visit.agenda"></richtext></div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

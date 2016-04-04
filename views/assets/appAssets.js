@@ -159,7 +159,8 @@ module.exports = {
 			"/public/d/userDisplay/script.js",
 			"/public/d/feedbackDirective/script.js",
 			"/public/d/scroll/scroll.js",
-			"/public/d/header/header.js"
+			"/public/d/header/header.js",
+			"/public/d/userView/script.js"
 		],
 		"prod":[
 		]
@@ -247,7 +248,8 @@ module.exports = {
 	"m-contacts":{
 		"dev":[
 			"/public/m/contacts/contacts.js",
-			"/public/m/contacts/contactsCtrl.js",
+			"/public/m/contacts/contactsCtrl.js"
+			// "/public/assets/m/css/userview.css"
 			]
 		}
 	}

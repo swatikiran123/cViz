@@ -7,8 +7,9 @@ var logger = {};
 
 logger.write = write;
 logger.writeLine = writeLine;
-logger.writeJson = writeJson;
+logger.Json = Json;
 logger.dump = dump;
+logger.test = test;
 
 module.exports = logger;
 
@@ -48,9 +49,26 @@ function write(mode, n, str){
 	writeLine(mode,n, str);
 }
 
-function writeJson(obj){
+function Json(mode, obj){
 	var str = JSON.stringify(obj,null,2);
-	writeLine('',0,str);
+	writeLine(mode,0,str);
+}
+
+function test(n, args){
+	dump('test', n, args);
+}
+
+function dump(mode, n, args)
+{
+	var str = [];
+	for (var i = 2; i < arguments.length; i++) {
+		if(arguments[i] === undefined)
+			str.push("undefined");
+		else
+			str.push(arguments[i]);
+	}
+
+	writeLine(mode,n,str.join(' | '));
 }
 
 function writeLine(mode, n, str){
@@ -69,17 +87,4 @@ function writeLine(mode, n, str){
 	else {
 		console.log(colors.green(str));
 	}
-}
-
-function dump(mode, n, args)
-{
-	var str = [];
-	for (var i = 2; i < arguments.length; i++) {
-		if(arguments[i] === undefined)
-			str.push("undefined");
-		else
-			str.push(arguments[i]);
-	}
-
-	writeLine(mode,n,str.join(' | '));
 }
