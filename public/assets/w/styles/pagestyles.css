@@ -1,0 +1,59 @@
+/* page styles */
+
+/* page header styles */
+.page-header
+{
+  font-family: verdana, arial !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  background-size: 100%;
+  width: 100% !important;
+}
+
+/* page subheader styles */
+.sub-header
+{
+  font-family: verdana, arial !important;
+  font-size: 16px !important;
+  font-weight: normal !important;
+}
+
+/* text styles */
+.text-xsmall{
+  font-size: 10px;
+  color:black;
+}
+.text-small{
+  font-size: 12px;
+  color:black;
+}
+.text-medium{
+  font-size: 14x;
+  color:black;
+}
+/*text big normal*/
+.text-big-normal{
+  font-size: 16px;
+  font-weight: normal !important;
+  color:black;
+}
+/*text big bold*/
+.text-highlight{
+  font-size: 16px;
+  font-weight: bold !important;
+  color:black;
+}
+
+.text-desc{
+  font-size: 11px;
+  font-style: italic;
+  color:black;
+}
+
+/* error message styles */
+.messagenotify{
+  font-size: 11px;
+  font-style: italic;
+  color:black;
+
+}

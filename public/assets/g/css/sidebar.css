@@ -1,0 +1,152 @@
+.paddg{
+  padding-top: 45px;
+}
+.container{
+ 
+ 
+  width: 98%;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 3px 3px 5px #888888;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+.sidebar-nav {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav  ul{
+    list-style: none;
+}
+
+.sidebar-nav  ul li {
+  border-bottom: 1px solid #ddd;
+}
+.icon-dashboard{
+  color: pink;
+}
+
+.sidebar-item {
+  position: relative;
+  font-size: 13px;
+  z-index: 1;
+  background: white;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.sidebar-item a {
+  display: block;
+  padding: 12px;
+  padding-left: 0px;
+  color: #2a2a2a;
+  font-family: robotoLight;
+  font-size: 1.1em;
+	decoration:none;
+}
+
+.menu-icon{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.menu-profile-pic,
+.menu-profile-name {
+  text-align: center;
+  padding: 10px;
+  background-color: #f3f2f7;
+  font-family: workSansRegular;
+  font-size: 1.3em;
+  color: #606060;
+}
+
+.menu-profile-pic img {
+    width: 75px;
+    height: 75px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+}
+
+.menu-profile-name {
+  padding-top: 7px;
+}
+
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 10px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}

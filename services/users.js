@@ -1,8 +1,12 @@
 var Q = require('q');
+var _ = require('underscore');
+var bcrypt = require('bcryptjs');
+var path              = require('path');
 
 var constants 				= require('../scripts/constants');
 
 var model 				    = require(constants.paths.models +  '/user')
+var config            = require(path.join(constants.paths.config, '/config'));
 
 // Service method definition -- Begin
 var service = {};
@@ -36,18 +40,18 @@ function getAll(){
 
 function getOneById(id){
     var deferred = Q.defer();
-
     model
         .findOne({ _id: id })
-        .populate('noteBy')
+        // .populate('memberOf')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
                 deferred.reject(err);
             }
-            else
-                console.log(item);
-                deferred.resolve(item);
+            else{
+              //console.log(item);
+              deferred.resolve(item);
+            }
         });
 
     return deferred.promise;
@@ -57,29 +61,37 @@ function create(userParam) {
     var deferred = Q.defer();
 
     // validation
-    usersDb.findOne(
-        { handle: userParam.handle },
+    model.findOne(
+        { email: userParam.email },
+
         function (err, user) {
             if (err) deferred.reject(err);
 
             if (user) {
                 // handle already exists
-                deferred.reject('Username "' + userParam.handle + '" is already taken');
+                deferred.reject('Email id {"' + userParam.handle + '"} is already taken');
             } else {
                 createUser();
             }
         });
 
     function createUser() {
-        // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
-        if(userParam.password == null)
-            userParam.password = "dummystring";
+      if(typeof userParam.local == "undefined")
+        userParam.local = {};
+
+      // set user object to userParam without the cleartext password
+      var user = _.omit(userParam, 'password');
+
+      if(userParam.local.email == null)
+        userParam.local.email = userParam.email;
+
+      if(userParam.local.password == null)
+          userParam.local.password = config.get('profile.default-pwd');
 
         // add hashed password to user object
-        user.pwdHash = bcrypt.hashSync(userParam.password, 10);
+        user.local.password = bcrypt.hashSync(userParam.local.password, bcrypt.genSaltSync(8), null);
 
-        usersDb.create(
+        model.create(
             user,
             function (err, doc) {
                 if (err) {
@@ -134,7 +146,6 @@ function getByEmail(email){
                 deferred.reject(err);
             }
             else
-                console.log(item);
                 deferred.resolve(item);
         });
 

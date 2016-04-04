@@ -1,0 +1,221 @@
+
+
+  body, html {
+   height: 100%;
+   margin: 0;
+   overflow-x: hidden;
+
+   background:  url(/public/assets/images/new-york.jpg) no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+ }
+
+
+ .panel-default {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0px;
+}
+
+
+.panel-heading {
+  opacity: 0.7;
+  text-align: center;
+}
+
+
+.panel-footer {
+  background-color: rgba(255, 0, 0, 0);
+  text-align: right;
+  height: 30px;
+}
+
+
+.panel-subheader{
+
+}
+
+
+.highlight {
+  position: relative;
+  top: -17px;
+  width: 40px;
+  border: solid 1px #ccc;
+  height: 40px;
+  background: #5b92d9;
+  background: -moz-linear-gradient(top, #5b92d9 0%, #5b92d9 20%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b92d9), color-stop(20%, #5b92d9));
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  font : bold 2em Impact;
+  font-family: sans-serif;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 -1px 0 #334F71;
+}
+
+
+h2, h4 {
+  color: white;
+  text-align: center;
+}
+
+
+.container{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  -webkit-transition:  right 1s ease-in-out;
+  -moz-transition:  right 1s ease-in-out;
+  -ms-transition:  right 1s ease-in-out;
+  -o-transition:  right 1s ease-in-out;
+  transition: right 1s ease-in-out;
+}
+
+
+.container.open-sidebar {
+  right: 240px;
+  position: relative;
+
+}
+
+
+#sidebar {
+  position: absolute;
+  right: -260px;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 240px;
+  height: 100%;
+}
+
+
+
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+  padding-left: 50px;
+}
+
+
+.content #sidebar-toggle {
+  background: transparent;
+  color: white;
+  opacity: 0.5;
+  border-radius: 1px;
+  display: block;
+  position: relative;
+  padding: 30px 7px;
+  float: right;
+}
+
+.col-sm-1 {
+  padding-top: 250px;
+}
+
+.padtop{
+  color: white;
+  opacity: 0.5;
+  -moz-position: fixed;
+  -webkit-position : fixed;
+  position: fixed;
+}
+
+.rotate {
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+
+
+.rotate.side{
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  transform:rotate(180deg);
+}
+
+ .panel-wrapper * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 15px 15px 0 0;
+    -moz-border-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0;
+  }
+
+
+  .panel-wrapper {
+    position: fixed;
+    left: 0;
+    bottom: -100px;
+    overflow: hidden;
+    width: 100%;
+    font-family: sans-serif;
+    padding: 0px 50px 0px 20px;
+  }
+
+
+  .panel-controller {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+
+  .tab-controller {
+    float: right;
+    padding-right: 20px;
+    
+  }
+
+
+  .tab-controller * {
+    display: block;
+
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+
+  .tab-controller .show {
+    display: none;
+  }
+
+
+
+
+
+  .tab-controller1 {
+    float: right;
+    padding-right: 20px;
+  }
+
+
+  .tab-controller1 * {
+    display: block;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+
+  .tab-controller1 .show1 {
+    display: none;
+  }
+
+
+
+
+  .panel-content {
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+  }

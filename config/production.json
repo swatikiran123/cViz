@@ -3,6 +3,10 @@
     "secret": "top secret"
   },
 
+  "profile":{
+    "default-pwd": "default"
+  },
+
   "api": {
     "cors": "true"
   },
@@ -14,6 +18,10 @@
   "sessions": {
     "secret": "session top secret"
   },
+
+	"assets":{
+		"mode": "prod"
+	},
 
   "email": {
     "smtp-options":{

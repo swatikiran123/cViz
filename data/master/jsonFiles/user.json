@@ -1,0 +1,63 @@
+[
+
+	{
+
+		"_id"								: ObjectId("A20474567892345678900021"),
+
+		 "token"		:
+			{
+				"token"					: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NjQyNDgyNzI1NDV9.pB1IYfThsxguiJTuV8si8I75mmQtuMtpNGMpNIWc36s",
+				"dateCreated"		: { "$date" : "2016-12-20T09:00:00.000Z"}
+			},
+
+		"name":
+			{
+				"prefix"		:  "Mr.",
+				"first"		:  "Admin",
+				"middle"	:  "CV",
+				"last"		:  "Portal",
+				"suffix"		:  ""
+			},
+
+		"__v"				:	0,
+		"email"				: "admin@csc.com",
+
+		"avatar"			:  "\\public\\assets\\g\\imgs\\avatar.jpg",
+
+		"local"				:
+			{
+				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
+				"email"				: "admin@csc.com"
+			},
+
+		"socialProfile"	:
+			[
+				{
+					"handle"		: "https://www.facebook.com",
+					"network"		: "facebook"
+				},
+
+				{
+					"handle"		: "https://csc.myperks.in/myperks/aboutuser/view?user.id=652752",
+					"network"		: "CSC My Perks"
+				}
+			],
+
+		"stats"				:
+			{
+				"dateLastLogin"	: { "$date" : "2016-12-25T09:00:00.000Z"},
+				"dateCreated"		: { "$date" : "2016-12-20T09:00:00.000Z"}
+			},
+			
+		"contactNo"			:
+			[
+				{
+					"number"		: "864-643-0563",
+					"type"			: "mobile"
+				}
+			],
+
+		"memberOf"			: ["A20484567892345678900001"]
+	}
+
+]

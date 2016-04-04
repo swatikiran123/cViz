@@ -1,0 +1,27 @@
+      <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">        
+                <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+        
+                     
+                    
+                    <div class="profile-details-div">
+                      
+                        <a id="menu-toggle" href="#menu-toggle">
+                           <i class="fa fa-bars"></i>
+                        </a>
+                             <img class="img-circle visitpic" src="{{user.avatar}}">
+                        <div class="profile-overview">
+                            <h1>{{user.name.first}} {{user.name.last}}</h1>
+                            <p>{{user.jobTitle}}, {{user.organization}}</p>
+                        </div>
+                    </div>
+                    
+        
+                </div>
+     </div>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#page").toggleClass("toggled");
+    });
+</script>

@@ -2,20 +2,28 @@
 <!-- activity menu being -->
 <ul class="nav navbar-nav">
   <li class="active"><a href="/home">Dashboard</a></li>
-  <li><a >Item</a></li>
-  <li><a >Item</a></li>
+  <li><a href="/manage/#/visits/list">Visit Planner</a></li>
+  <li>
+    <a href="/manage/#/visits/add">
+      <span class="change-icon">
+      <i class="fa fa-plus"></i>
+      <i class="fa fa-gear"></i>
+    </span>
+    </a>
+  </li>
 
   <!-- Additional pull down starts here -->
   <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Additional <span class="caret"></span></a>
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
+      <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
-      <li><a href="/keynotes/#/">Keynotes</a></li>
-      <li><a >Menu Item</a></li>
-      <li><a >Menu Item</a></li>
+      <li><a href="/manage/#/clients/list">Clients</a></li>
+      <li><a href="/customize/#/keynotes/list">Keynotes</a></li>
+      <li><a href="/customize/#/facts/list">Facts</a></li>
+      <li><a href="/customize/#/contactList/list">Contact list</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
-      <li><a >Menu Item</a></li>
-      <li><a >Menu Item</a></li>
+      <li><a href="/customize/#/feedbackTmpl/list">Feedback</a></li>
     </ul>
   </li>
   <!-- Additional pull down ends -->
@@ -24,12 +32,11 @@
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
-      <li><a href="/admin/groups">Groups</a></li>
-      <li><a href="/admin/users">Users</a></li>
-      <li><a >Menu Item</a></li>
+      <li><a href="/admin/#/groups/">Groups</a></li>
+      <li><a href="/admin/#/users/">Users</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
-      <li><a href="/customize/idea">Idea Templates</a></li>
+      <li><a href="/customize/idea">Settings</a></li>
       <li><a href="/customize/workflow">Workflow</a></li>
     </ul>
   </li>
@@ -42,9 +49,9 @@
   <!-- Notifications badge starts here -->
   <li class="dropdown">
     <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-bell-o"></i><span class="badge">15</span><span class="caret"></span>
+      <i class="fa fa-bell-o"></i>&nbsp;<span class="badge">15</span><span class="caret"></span>
     </a>
-    <ul class="dropdown-menu callouts--left">
+    <ul class="dropdown-menu callouts--right">
       <li><a >Action</a></li>
       <li><a >Another action</a></li>
       <li><a >Something else here</a></li>
@@ -55,30 +62,31 @@
     </ul>
   </li> <!-- notification badge ends here -->
 
+  <li><a href="/m/main/"><i class="fa fa-mobile"></i></a></li>
   <li><a href="/app"><i class="fa fa-question"></i></a></li>
-  
+
   <!-- user profile panel starts here -->
   <li class="dropdown">
     <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-user"></i>  Profile<span class="caret"></span>
+      <i class="fa fa-user"></i>&nbsp;&nbsp;Profile<span class="caret"></span>
     </a>
-    
+
     <!-- user profile pull down -->
     <ul class="dropdown-menu callouts--right" role="menu">
       <li style="width:300px !important;">
-        <div class="container" style="width:300px;!important;">
-      
-            <div class="pull-left"> 
-              <img class="avatar" height="80" width="80" src="/public/assets/images/avatar.jpg" />
+        <div class="container-fluid" style="width:300px;!important;">
+
+            <div class="pull-left">
+              <img class="avatar" height="80" width="80" src="<%= locals.user.avatar %>" />
             </div>
-            <div class="pull-right">
-            <br>
-              <div class="text-highlight"><%= locals.user.name.first %> <%= locals.user.name.last %></div>
+            <div class="pull-right profile-details">
+              <div class="text-highlight header"><%= locals.user.name.first %> <%= locals.user.name.last %></div>
               <div class="text-xsmall">Last Login: <%= locals.user.stats.dateLastLogin %></div>
-              <div class="link"><a href="profile">Profile</a></div>
+              <br/>
+              <div class="link"><a href="/profile/#/p">Edit Profile</a></div>
             </div>
 
-          <!-- profile bottom area          
+          <!-- profile bottom area
 starts -->
           <li class="divider"><!-- menu divider --> </li>
           <div class="col-md-6">
@@ -90,14 +98,15 @@ starts -->
           </div>
           <div class="col-md-5">
             <li class="link pull-right">
-              <a class="table-btn" href="logout"><span class="glyphicon glyphicon-logout" /> Logout</a>
+
+              <a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
             </li>
           </div>
         </div>
-      </li>  
+      </li>
     </ul>
   </li> <!-- user profile ends here -->
-  
+
 </ul> <!-- right menu end-->
 
  </div>

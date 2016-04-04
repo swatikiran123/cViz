@@ -1,0 +1,218 @@
+
+<div class="container"  ng-controller="sessionsControllerMain" >
+<md-dialog aria-label="Visit Scheduler"  ng-cloak>
+  <form name="sessionAddForm" id="sessionAddForm" class="form-vertical" novalidate>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="md-header">Enter the Schedule<!--  for [{{entryDate}}]  --><!-- @ {{entryLocation}} ]--></div>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+       <div >
+         <!-- session start date and end date -->
+         <!-- sch:: {{schedule}} owner: {{ownerId}}, {{ownerEmail}} -->
+         <h5>Timeline</h5>
+         <div class="form-group">
+
+           <div class="row">
+               <div class="col-sm-8">
+             <input type="text" class="time-picker" id="startTime" name="startTime"
+              ng-model="startTime" placeholder="Start Time"> -
+             <input type="text" class="time-picker" id="endTime" name="endTime"
+              ng-model="endTime" placeholder="End Time">
+           
+           <span>{{errMessage}}</span>
+         </div>
+<div class="col-sm-3">
+         <!-- session type -->
+         <div class="form-group">
+           <!-- <select  class="form-control"  id="type" ng-model="schedule.session.type" ng-options="t.session for t in type ">
+             <option value="">---select session type---</option>
+           </select> -->
+
+           <select id="type" ng-model="schedule.session.type">
+             <option value="">---Select Session Type---</option>
+             <option ng-repeat="ty in prTypes">{{ty}}</option>
+           </select>
+         </div>
+</div>
+         <!--title have to pic from User -->
+         <br>
+         <br>
+<ANY ng-switch="schedule.session.type"> 
+       <ANY ng-switch-default>         
+            <md-input-container class="md-block">
+        <label>Title</label>
+        <input md-maxlength="30" minlength="5" required name="title" ng-model="schedule.session.title">
+        <div ng-messages="sessionAddForm.title.$error" ng-show="sessionAddForm.title.$touched || !sessionAddForm.title.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+      
+      
+         <!--div class="form-group">
+             
+           <input type="text" class="form-control" placeholder="title" id="title"
+             ng-model="schedule.session.title"  />
+         </div -->
+
+         <!--location have to pic from User -->
+             <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+         <!--div class="form-group">
+           <!-- <select  class="form-control" ng-model="session.location" id="location" ng-options="l.session for l in location">
+             <option value="">---pick location ---</option>
+           </select>>
+
+					 <input type="text" class="form-control" placeholder="location" id="location"
+						 ng-model="schedule.session.location"  />
+         </div -->
+
+         <!--desc have to pic from User -->
+             <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea md-maxlength="30" minlength="5" required name="desc" ng-model="schedule.session.desc"></textarea>
+        <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+         <!-- div class="form-group">
+           <textarea type="text" class="form-control" placeholder="description" id="desc"
+             ng-model="schedule.session.desc"  />
+         </div-->
+
+		 	<!-- session speaker -->
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<md-input-container class="md-block">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.speakerModel.$touched && sessionAddForm.speakerModel.$invalid }">
+						<label >Speaker &nbsp;&nbsp; :</label>
+						<div user type="picker" user-model="ownerUser" user-id="ownerId" view-type="small" user-email="ownerEmail" ></div>
+						</div>
+					</md-input-container>
+				</div>
+
+				<div class="form-group col-xs-6">
+					<md-input-container class="md-block">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterModel.$touched && sessionAddForm.supporterModel.$invalid }">
+						<label >Supporter &nbsp;&nbsp; :</label>
+						<div user type="picker" user-model="supporterUser" user-id="supporterId" view-type="small" user-email="supporterEmail" ></div>
+						</div>
+					</md-input-container>
+				</div>
+			</div>
+</ANY>
+      <ANY ng-switch-when="tea">
+
+        <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+        </md-input-container>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ANY>
+
+      <ANY ng-switch-when="lunch">
+
+        <md-input-container class="md-block">
+        <label>Location</label>
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="schedule.session.location">
+        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+        </md-input-container>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ANY>
+
+</ANY>
+         <!-- <h4> owner </h4>
+         <div class="form-group" ng-class="{ 'has-error': inputctrl.owner.$touched && inputctrl.owner.$invalid }">
+           <div class="col-md-4">
+             <div user type="picker" class="form-control" user-model="ownerUser" user-id="ownerId" user-email="ownerEmail" ></div>
+           </div>
+         </div>
+
+				 <h4>supporter</h4>
+         <div class="form-group" ng-class="{ 'has-error': inputctrl.supporter.$touched && inputctrl.supporter.$invalid }">
+           <div class="col-md-4">
+             <div user type="picker" class="form-control" user-model="supporterUser" user-id="supporterId" user-email="supporterEmail" ></div>
+           </div>
+         </div> -->
+          <md-dialog-actions layout="row">
+            <md-button class="md-primary md-raised" ng-click="save()">
+              OK
+            </md-button>
+            <md-button class="md-warn md-raised" ng-click="cancel()" >
+              Cancel
+            </md-button>
+
+
+          </md-dialog-actions>
+        </div>
+
+  </form>
+</md-dialog>
+</div>
+
+<style>
+
+
+  .dialogdemoBasicUsage #popupContainer {
+    position: relative;
+    padding-top: 500px; }
+  .dialogdemoBasicUsage .footer {
+    width: 100%;
+    text-align: center;
+    margin-left: 20px; }
+  .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+    font-size: 0.8em;
+    margin-top: 50px; }
+
+</style>

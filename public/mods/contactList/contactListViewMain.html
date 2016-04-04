@@ -1,0 +1,79 @@
+
+<!-- List of contactList -->
+<div class="container">
+
+	<div class="page-header">
+		Contact List Management
+		<div class="sub-header">Manage application for Contact-list
+		</div>
+	</div>
+
+	<div class="form-inline has-feedback filter-header">
+		<input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+		<!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+		<button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
+		<button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add New contactList</button>
+	</div>
+
+	<table class="table table-striped table-condensed table-responsive table-hover">
+		<thead class="data-grid-header">
+			<!-- table header -->
+			<tr>
+				<th>
+					<a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Location</a>
+				</th>
+				<th>
+					<a href="" ng-click="orderByField='type'; reverseSort = !reverseSort">Contact Type</a>
+				</th>
+				<th>
+					<a href="" ng-click="orderByField='user'; reverseSort = !reverseSort">Contact User</a>
+				</th>
+				<th></th>
+			</tr>
+
+			<!-- table search filters -->
+			<tr ng-hide="hideFilter">
+				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.location"></span></th>
+				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.type"></span></th>
+				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.user"></span></th>
+			</tr>      
+
+			<!-- table input template -->
+			<tr ng-hide="hideAddRow">
+				<td><span ng-hide="hideAddRow"><!-- <input type="text" ng-model="contactList.location"> -->
+					<select 
+					ng-model="contactList.location" 
+					ng-options="data for data in location">
+				</select>
+			</span>
+		</td>
+		<td><span ng-hide="hideAddRow"><!-- <input type="text" ng-model="contactList.type"> -->
+			<select 
+			ng-model="contactList.type" 
+			ng-options="data for data in type">
+		</select>
+	</span>
+</td>
+<td><span ng-hide="hideAddRow"><div user type="picker" user-model="contactUser" view-type="medium" user-id="contactId" user-email="contactEmail" ></div></span></td>
+<td>
+	<span ng-hide="hideAddRow">
+		<a class="table-btn" ng-click="save()"><span class="glyphicon glyphicon-ok"/></a>
+		<a class="table-btn" ng-click="deselect()"><span class="glyphicon glyphicon-remove"/></a>
+	</span>
+</td>
+</tr>
+</thead>
+<!-- table output template -->
+<tbody class="data-grid-data">
+	<tr ng-repeat="contactList in contactListlist | filter: search |orderBy:orderByField:reverseSort">
+		<td>{{contactList.location}}</td>
+		<td>{{contactList.type}}</td>
+		<td><div userdisplay view-mode="nameonly" user-id="contactList.user"></td>
+		<td>
+			<a class="table-btn" ng-click="edit(contactList._id)"><span class="fa fa-pencil-square-o fa-lg" /></a>
+			<a class="table-btn" ng-click="remove(contactList)"><span class="fa fa-trash-o fa-lg" /></a>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div> <!-- end of container -->

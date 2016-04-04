@@ -1,45 +1,55 @@
 
+var constants					= require('../scripts/constants');
+var logger 						= require(constants.paths.scripts + '/logger');
+var util 							= require(constants.paths.scripts + '/util');
+var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
+
 
 module.exports = function(app, passport) {
 
-
-
 // normal routes ===============================================================
+
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        if (!req.isAuthenticated())
-            res.render('index.ejs');
-        else{
-            res.render('home.ejs', {
-                user : req.user
-            });
-        }
-    });
 
-    // Profile SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
-        });
+      if (!req.isAuthenticated()){
+				res.locals.pageTitle = "Main";
+				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
+				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
+        res.render('index.ejs',{layout: 'layouts/public'});
+			} else {
+				renderHome(req, res);
+      }
     });
 
     // Token SECTION =========================
     app.get('/token', isLoggedIn, function(req, res) {
-        res.render('token.ejs', {
-            user : req.user
-        });
+      //console.log("Auth token: " + req.user.token.token);
+      res.status(200).send(req.user);
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
-        res.locals.pageTitle = "Home Page";
-        res.render('home.ejs', {
-            user : req.user
-        });
+        renderHome(req, res);
     });
+
+		function renderHome(req, res){
+			res.locals.pageTitle = "Home";
+			res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
+			res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
+			if("desktop".compare(res.locals.device)){
+				res.render('home.ejs', {
+						user : req.user
+				});
+			} else {
+				res.redirect('/m/main/');
+			}
+		}
 
     app.get('/app', isLoggedIn, function(req, res) {
         res.locals.pageTitle = "App Info";
+        res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+        res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
         res.render('app.ejs', {
         });
     });
@@ -58,7 +68,13 @@ module.exports = function(app, passport) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+					res.locals.pageTitle = "Login";
+					res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+					res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,login");
+          res.render('login.ejs', {
+						message: req.flash('loginMessage'),
+						layout: 'layouts/public'
+					});
         });
 
         // process the login form
@@ -71,7 +87,13 @@ module.exports = function(app, passport) {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+                    res.locals.pageTitle = "SignUp";
+                    res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+                    res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
+            res.render('signup.ejs', {
+							layout: 'layouts/public',
+							message: req.flash('signupMessage')
+						});
         });
 
         // process the signup form

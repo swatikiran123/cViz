@@ -1,0 +1,111 @@
+/* page/sub header styles*/
+.page-header
+{
+  font-family: verdana, arial !important; 
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+
+.sub-header
+{
+  font-family: verdana, arial !important; 
+  font-size: 12px !important;
+  font-weight: normal !important;
+}
+
+/*form styles*/
+form {
+    padding: 15px 10px;
+}
+
+.form-control{
+    border: none;
+    padding: 0;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+   border-radius: 0;
+}
+
+
+.form-control.ng-invalid,
+.ng-submitted .form-control.ng-invalid{
+    border-bottom:1px solid #900;
+}
+
+.form-control.ng-valid{
+    border-bottom:1px solid #264;
+}
+
+.form-control.ng-pristine{
+    border-bottom: 1px solid #000;
+}
+
+.form-control.ng-pending {
+    border-bottom: 1px solid #04f;
+}
+
+form .form-group {
+    position: relative;
+    padding-top: 15px;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #333;
+}
+
+.form-control:-moz-placeholder {
+    color: #333;
+}
+
+.form-control::-moz-placeholder {
+    color: #333;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #333;
+}
+
+.form-group input[type="checkbox"]{
+    margin: 0 -20px 0 10px;
+    vertical-align: middle;
+}
+
+.form-group.spinner i {
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+@media only screen and (max-device-width: 640px){
+    .panel {
+        margin: auto;
+    }
+}
+.hasDatepicker:focus{
+    position: relative;
+    z-index: 9999;
+}
+
+/*text editor styles*/
+.ta-toolbar .btn {
+  border-radius : 0;
+  padding : 5px;
+  min-width : 30px;
+  background-color : #fff;
+  color : #333;
+}
+
+.ta-toolbar .btn-group { 
+  
+  box-shadow : 0 1px 3px rgba(0,0,0,0.2);
+}
+
+
+.test
+{
+border: 1px;
+border-color: #ddd;
+}

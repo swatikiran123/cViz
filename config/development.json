@@ -5,6 +5,10 @@
     "expires": "7"
   },
 
+  "profile":{
+    "default-pwd": "default"
+  },
+
   "api": {
     "cors": "true"
   },
@@ -16,6 +20,10 @@
   "sessions": {
     "secret": "session top secret"
   },
+
+	"assets":{
+		"mode": "dev"
+	},
 
   "email": {
     "smtp-options":{

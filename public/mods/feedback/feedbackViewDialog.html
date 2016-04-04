@@ -1,0 +1,32 @@
+
+<md-dialog ng-cloak>
+<form>
+  <md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>Feedback Template</h2>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="hide()">
+    <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+  </md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<table md-table>
+<td md-colum>&nbsp;&nbsp;&nbsp;</td>
+<td><div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
+</div></td>
+<td md-colum>&nbsp;&nbsp;&nbsp;</td>
+</table>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <!-- sending group selected values and usersid in addGroup function -->
+    <md-button class="md-primary md-raised" ng-click="hide()">
+   	ok
+    </md-button>
+<!--     <md-button class="btn btn-danger" ng-click="canceldialog()" >
+    cancel
+    </md-button> -->
+  </md-dialog-actions>
+
+</form>
+</md-dialog>

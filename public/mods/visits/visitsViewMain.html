@@ -1,0 +1,17 @@
+<!-- List of visits -->
+
+<div class="container">
+    <div class="page-header">
+        Visit Planner - List
+        <div class="sub-header">List of visits
+        </div>
+    </div>
+
+    <div class="table-responsive data-grid">
+        <p>
+            <a class="fa fa-table" ng-click="activeTemplate='/public/mods/visits/partials/visitsGrid.html'"></a>
+            <a class="fa fa-calendar" ng-click="activeTemplate='/public/mods/visits/calendar.html'"></a>
+        </p>
+        <div ng-include="activeTemplate"></div>
+    </div>
+</div>

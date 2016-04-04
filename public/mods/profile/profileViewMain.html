@@ -1,0 +1,185 @@
+<link rel="stylesheet" href="/public/assets/styles/profile-pic.css" />
+<script type="text/ng-template" id="templateId">
+
+    <div class="row" ng-controller="profileControllerMain">
+        <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+          <img-crop  image="picFile  | ngfDataUrl"
+            result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+          </img-crop>
+        </div>
+
+        <div class="pull-right">
+          <button class="btn btn-info" ngf-select ng-model="picFile" accept="image/*">
+            Select a photo from your computer
+          </button>
+          <button class="btn btn-primary" ng-click="editpicture(croppedDataUrl,id)" >Set as profile photo</button>
+          <button class="btn btn-danger" ng-click="cancel()" >Cancel</button>
+        </div>
+    </div>
+
+</script>
+<!--
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="col-md-12 lead">
+                Edit Profile
+                <hr>
+              </div>
+            </div>
+-->        
+           <br>
+           <br>
+           <div><userprofile user-model="userdata" user-id="user._id" user-email="user.email"/></userprofile></div>
+            <!--
+            <div class="row" ng-controller="profileControllerMain">                  
+                    
+                <div class="col-md-4 text-center">
+
+                  <img ng-src="{{user.avatar}}" class="img-rectangle avatar-original pic"
+                  style="background-size:cover;"/>
+                  <div ng-controller="AppCtrl">
+
+                    <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex="100" flex-gt-md="auto">
+                  
+                  <div>
+                  <md-button class="md-primary md-raised" ng-click="showAdvanced(user,$event)" flex="100" flex-gt-md="auto">
+                     change picture
+                  </md-button>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="first">First name</label>
+                      <input type="text" class="form-control" id="first" name="first"
+                      ng-model="user.name.first">
+                    </div>
+                    <div class="form-group">
+                      <label for="middle">Middle name</label>
+                      <input type="text" class="form-control" id="middle" name="middle"
+                      ng-model="user.name.middle">
+                    </div>
+                    <div class="form-group">
+                      <label for="last">Last name</label>
+                      <input type="text" class="form-control" id="last" name="last"
+                      ng-model="user.name.last">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="text" class="form-control" id="email" name="email"
+                      ng-model="user.email">
+                    </div>
+                    <div class="form-group">
+                      <label for="designation">Job Title</label>
+                      <input type="text" class="form-control" id="token" name="token"
+                      ng-model="user.jobTitle">
+                    </div>
+                    <button class="btn btn-primary pull-right" ng-click="editprofile(user._id)">
+                      <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Edit Profile
+                    </button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+<div class="container" ng-controller="profileControllerMain">
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                  <div ng-if="email == user.email">
+                    <p>
+                        <strong>id</strong>: <label>{{ user._id }}</label><br>
+                        <strong>email</strong>: {{ user.email }}<br>
+                        <strong>name</strong>:{{ user.name.first }} {{user.name.last}}
+                    </p>
+
+                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                    </div>
+                    <div ng-if="email != user.email">
+                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                  </div>
+
+
+            </div>
+        </div>
+
+        <!-- FACEBOOK INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
+
+                <!-- check if the user has this token (is the user authenticated with this social account) -->
+                <div ng-if="facebooktoken == user.facebook.token">
+                    <p>
+                        <strong>id</strong>: {{user.facebook.id }}<br>
+                        <strong>token</strong>: {{user.facebook.token}}<br>
+                        <strong>email</strong>: {{user.facebook.email}}<br>
+                        <strong>name</strong>: {{user.facebook.name }}<br>
+                    </p>
+
+                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+                </div>
+                <div ng-if="facebooktoken == '' ">
+                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- TWITTER INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
+
+               <div ng-if="twittertoken == user.twitter.token">
+                    <p>
+                        <strong>id</strong>: {{user.twitter.id}}<br>
+                        <strong>token</strong>: {{user.twitter.token}}<br>
+                        <strong>display name</strong>: {{user.twitter.displayName}}<br>
+                        <strong>username</strong>: {{user.twitter.username }}
+                    </p>
+                    <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
+               </div>
+               <div ng-if="twittertoken == '' ">
+                    <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
+               </div>
+              </div>
+          </div>
+
+
+        <!-- GOOGLE INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+
+                <div ng-if="googletoken == user.google.token">
+                    <p>
+                        <strong>id</strong>: {{user.google.id }}<br>
+                        <strong>token</strong>:{{user.google.token}}<br>
+                        <strong>email</strong>:{{user.google.email}}<br>
+                        <strong>name</strong>: {{user.google.name}}
+                    </p>
+
+                    <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+                </div>
+                <div ng-if="googletoken == '' ">
+                    <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+                </div>
+             </div>
+        </div>
+      </div>

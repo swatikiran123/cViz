@@ -1,0 +1,519 @@
+/* FOrm Action buttion */
+
+
+.btn-success	{
+
+		border:2px groove #7c93ba;
+		cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
+		padding: 5px 15px;
+		/*give the background a gradient - see cssdemos.tupence.co.uk/gradients.htm for more info*/
+		background-color:#6b6dbb; /*required for browsers that don't support gradients*/
+		background: -webkit-gradient(linear, left top, left bottom, from(#88add7), to(#6b6dbb));
+		background: -webkit-linear-gradient(top, #88add7, #6b6dbb);
+		background: -moz-linear-gradient(top, #88add7, #6b6dbb);
+		background: -o-linear-gradient(top, #88add7, #6b6dbb);
+		background: linear-gradient(top, #88add7, #6b6dbb);
+		/*style to the text inside the button*/
+		font-family:Andika, Arial, sans-serif; /*Andkia is available at http://www.google.com/webfonts/specimen/Andika*/
+		color:#fff;
+		font-size:1.1em;
+		letter-spacing:.1em;
+		font-variant:small-caps;
+		/*give the corners a small curve*/
+		-webkit-border-radius: 0 15px 15px 0;
+		-moz-border-radius: 0 15px 15px 0;
+		border-radius: 0 15px 15px 0;
+		/*add a drop shadow to the button*/
+		-webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+		-moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+		box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+}
+
+/***NOW STYLE THE BUTTON'S HOVER AND FOCUS STATES***/
+.btn-success:hover, .btn-success:focus {
+		
+		color:#edebda;
+		/*reduce the spread of the shadow to give a pushed effect*/
+		-webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+		-moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+		box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+}
+
+
+
+.btn-warning {
+		-moz-box-shadow: 0px 1px 0px -1px #fff6af;
+		-webkit-box-shadow: 0px 1px 0px -1px #fff6af;
+		box-shadow: 0px 1px 0px -1px #fff6af;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+		background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+		background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+		background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+		background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+		background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+		background-color:#ffec64;
+		-moz-border-radius:28px;
+		-webkit-border-radius:28px;
+		border-radius:28px;
+		border:1px solid #ffaa22;
+		display:inline-block;
+		cursor:pointer;
+		color:#333333;
+		font-family:Arial;
+		font-size:15px;
+		font-weight:bold;
+		font-style:italic;
+		padding:8px 24px;
+		text-decoration:none;
+		text-shadow:0px 1px 0px #ffee66;
+}
+.btn-warning:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+		background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+		background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+		background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+		background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+		background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+		background-color:#ffab23;
+}
+.btn-warning:active {
+		position:relative;
+		top:1px;
+}
+
+
+
+.btn-danger {
+		-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
+		box-shadow:inset 0px 1px 0px 0px #cf866c;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d0451b), color-stop(1, #bc3315));
+		background:-moz-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+		background:-webkit-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+		background:-o-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+		background:-ms-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+		background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d0451b', endColorstr='#bc3315',GradientType=0);
+		background-color:#d0451b;
+		-moz-border-radius:3px;
+		-webkit-border-radius:3px;
+		border-radius:3px;
+		border:1px solid #942911;
+		display:inline-block;
+		cursor:pointer;
+		color:#ffffff;
+		font-family:Arial;
+		font-size:13px;
+		padding:8px 24px;
+		text-decoration:none;
+		text-shadow:0px 1px 0px #854629;
+}
+.btn-danger:hover {
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), color-stop(1, #d0451b));
+		background:-moz-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+		background:-webkit-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+		background:-o-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+		background:-ms-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+		background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc3315', endColorstr='#d0451b',GradientType=0);
+		background-color:#bc3315;
+}
+.btn-danger:active {
+		position:relative;
+		top:1px;
+}
+
+
+/*
+.round-button {
+		width:4%;
+}
+.round-button-circle {
+		width: 100%;
+		height:0;
+		padding-bottom: 100%;
+	    border-radius: 50%;
+		border:0px solid #cfdcec;
+	    overflow:hidden;
+	    
+	    background: #4679BD; 
+	    box-shadow: 0 0 3px gray;
+}
+.round-button-circle:hover {
+		background:#30588e;
+}
+.round-button a {
+	    display:block;
+		float:left;
+		width:100%;
+		padding-top:50%;
+	    padding-bottom:50%;
+		line-height:1em;
+		margin-top:-0.5em;
+	    
+		text-align:center;
+		color:#e2eaf3;
+	    font-family:Verdana;
+	    font-size:1em;
+	    font-weight:bold;
+	    text-decoration:none;
+}
+*/
+
+
+
+.btn-round-yes	{
+		width:50px; /*same as the height*/
+		height:50px; /*same as the width*/
+		background-color:#4679BD;
+		border:1px solid #4679BD; /*same colour as the background*/
+		color:#e2eaf3;
+		font-size:1em;
+		/*set the border-radius at half the size of the width and height*/
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+		/*give the button a small drop shadow*/
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
+		box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+}
+
+/***NOW STYLE THE BUTTON'S HOVER STATE***/
+.btn-round-yes:hover{
+		background:#30588e;
+		border:1px solid #30588e;
+		/*reduce the size of the shadow to give a pushed effect*/
+		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+		-moz-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+		box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+}
+
+
+
+
+.btn-round-no	{
+		width:50px; /*same as the height*/
+		height:50px; /*same as the width*/
+		background-color:#e03f3f;
+		border:1px solid #e03f3f; /*same colour as the background*/
+		color:#e2eaf3;
+		font-size:1em;
+		/*set the border-radius at half the size of the width and height*/
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+		/*give the button a small drop shadow*/
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
+		-moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
+		box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+}
+
+/***NOW STYLE THE BUTTON'S HOVER STATE***/
+.btn-round-no:hover{
+		background:#c21919;
+		border:1px solid #c21919;
+		/*reduce the size of the shadow to give a pushed effect*/
+		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+		-moz-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+		box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+}
+
+
+
+.btn-ok	{
+
+		border:2px groove #7c93ba;
+		cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
+		padding: 5px 15px;
+		/*give the background a gradient - see cssdemos.tupence.co.uk/gradients.htm for more info*/
+		background-color:#6b6dbb; /*required for browsers that don't support gradients*/
+		background: -webkit-gradient(linear, left top, left bottom, from(#88add7), to(#6b6dbb));
+		background: -webkit-linear-gradient(top, #88add7, #6b6dbb);
+		background: -moz-linear-gradient(top, #88add7, #6b6dbb);
+		background: -o-linear-gradient(top, #88add7, #6b6dbb);
+		background: linear-gradient(top, #88add7, #6b6dbb);
+		/*style to the text inside the button*/
+		font-family:Andika, Arial, sans-serif; /*Andkia is available at http://www.google.com/webfonts/specimen/Andika*/
+		color:#fff;
+		font-size:1.1em;
+		letter-spacing:.1em;
+		font-variant:small-caps;
+		/*give the corners a small curve*/
+		-webkit-border-radius: 15px 0px 0px 15px;
+		-moz-border-radius: 15px 0px 0px 15px;
+		border-radius: 15px 0px 0px 15px;
+		/*add a drop shadow to the button*/
+		-webkit-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+		-moz-box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+		box-shadow: rgba(0, 0, 0, .75) 0 2px 6px;
+}
+
+/***NOW STYLE THE BUTTON'S HOVER AND FOCUS STATES***/
+.btn-ok:hover, .btn-success:focus {
+		
+		color:#edebda;
+		/*reduce the spread of the shadow to give a pushed effect*/
+		-webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+		-moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+		box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+}
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+input[type=checkbox]:checked + label {
+  color: blue;
+  font-style: normal;
+} 
+/*radio button styles*/
+input[type="radio"] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+input[type="radio"]:checked + label {
+  color: blue;
+  font-style: normal;
+} 
+
+
+
+
+
+ .radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+ .radio-custom-label {
+    position: relative;
+}
+
+.radio-custom + .radio-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    background: #ccc;
+    box-shadow: inset 0px 0px 0px 4px #fff;
+}
+
+
+ .radio-custom:focus + .radio-custom-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+
+
+
+/*radio button style 2*/
+
+ .radio-custom2 {
+    opacity: 0;
+    position: absolute;   
+}
+.radio-custom2, .radio-custom2-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.radio-custom2-label {
+    position: relative;
+}
+.radio-custom2 + .radio-custom2-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.radio-custom2 + .radio-custom2-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom2:checked + .radio-custom2-label:before {
+    background: #ccc;
+}
+
+
+ .radio-custom2:focus + .radio-custom2-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+
+
+
+
+/*radio button style 3*/
+
+.radio-custom3 {
+    opacity: 0;
+    position: absolute;   
+}
+
+.radio-custom3, .radio-custom3-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+ .radio-custom3-label {
+    position: relative;
+}
+
+.radio-custom3 + .radio-custom3-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+
+
+.radio-custom3 + .radio-custom3-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom3:checked + .radio-custom3-label:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    color: #bbb;
+}
+
+ .radio-custom3:focus + .radio-custom3-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+
+
+
+
+
+
+
+/*radio button styles 4*/
+label.btn span {
+  font-size: 1.5em ;
+}
+
+label input[type="radio"] ~ i.fa.fa-circle-o{
+    color: #c8c8c8;    display: inline;
+}
+label input[type="radio"] ~ i.fa.fa-check-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-check-circle-o{
+    color: #7AA3CC;    display: inline;
+}
+label:hover input[type="radio"] ~ i.fa {
+color: #7AA3CC;
+}
+
+div[data-toggle="buttons"] label.active{
+    color: #7AA3CC;
+}
+
+div[data-toggle="buttons"] label {
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: normal;
+line-height: 2em;
+text-align: left;
+white-space: nowrap;
+vertical-align: top;
+cursor: pointer;
+background-color: none;
+border: 0px solid 
+#c8c8c8;
+border-radius: 3px;
+color: #c8c8c8;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+
+div[data-toggle="buttons"] label:hover {
+color: #7AA3CC;
+}
+
+div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+
+
+
+
+
+/*radio button style 6*/
+
+.radio-custom4 {
+    display: none;
+}
+.radio-custom4  + .radio-custom4-label {
+    color: #4c4c4c;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+.radio-custom4 + .radio-custom4-label span{
+    box-shadow: 0 0 0 2px #cccccc;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: -1px 7px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.radio-custom4 + .radio-custom4-label span {
+  border: 8px solid #ffffff;
+  background-color: #ffffff;
+}
+
+.radio-custom4:checked + .radio-custom4-label span{
+  background-color: #fc521f;
+}

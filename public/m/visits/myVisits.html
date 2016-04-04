@@ -1,0 +1,242 @@
+
+<style>
+
+.tb-big {
+    height: 150px;
+
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+
+    font-family: robotoRegular;
+}
+
+.tb-small {
+    height: 65px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+    font-family: robotoRegular;
+}
+.divtop{
+	padding-top: 140px;
+}
+.hd-sticky{
+    background-color: ;
+    position:relative;
+    height: 0px;
+
+}
+
+</style>
+
+<div header showprofile="false" icon="fa fa-calendar" title1="myvisits page" title2="agenda">  
+   <div class="searchView col-xs-12">
+	         <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+	                <i class="fa fa-search fonticon1"></i>
+	                <input type="text" placeholder="Search" value="" name="search" id="search">
+
+	        
+							<div class="pull-right">
+
+								<div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+									<i class="fa fa-th-large fonticon1"></i>
+									<span class="caret"></span>
+								</div>
+								<ul class="dropdown-menu">
+									<li><a href ng-click="setTimeline('past')">Past</a></li>
+									<li><a href ng-click="setTimeline('last-week')">Last Week</a></li>
+									<li><a href ng-click="setTimeline('this-week')">This Week</a></li>
+									<li><a href ng-click="setTimeline('today')">Today</a></li>
+									<li><a href ng-click="setTimeline('next-week')">Next Week</a></li>
+									<li><a href ng-click="setTimeline('further')">Future</a></li>
+								</ul>
+							</div>
+
+	         
+	          </div>
+	</div>
+</div>
+<!-- <div id="my-visits-container" class="container-fluid div-padding" click-capture>
+    <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">
+        <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+            <div class="profile-details-div">
+                <img class="img-circle visitpic" src="/public/assets/g/imgs/avatar.jpg">
+                <div class="profile-overview">
+                    <h1>Mr Vincent Chase</h1>
+                    <p>Sr Analyst, CSC India</p>
+                    <div class="button-div">
+                        <button>NEW VISIT</button>
+                        <button>DASHBOARD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+   <div class="searchView col-xs-12 col-sm-12 col-md-12">
+		 <div>{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})</div>
+	      <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+	          <i class="fa fa-search fonticon1"></i>
+	          <input type="text" placeholder="Search" value="" name="search" id="search">
+	      </div>
+				<div>{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})</div>
+				<div class="dropdown">
+					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+						<i class="fa fa-th-large"></i>
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href ng-click="setTimeline('past')">Past</a></li>
+						<li><a href ng-click="setTimeline('last-week')">Last Week</a></li>
+						<li><a href ng-click="setTimeline('this-week')">This Week</a></li>
+						<li><a href ng-click="setTimeline('today')">Today</a></li>
+						<li><a href ng-click="setTimeline('next-week')">Next Week</a></li>
+						<li><a href ng-click="setTimeline('further')">Future</a></li>
+					</ul>
+				</div>
+    </div>
+  </div> -->
+
+	<!--div scroll>
+
+	    <div id="header_nav" ng-class="navClass">
+
+	        <div class="hd-prime">
+	            <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">
+	                <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+	                    <div class="profile-details-div">
+	                        <span id="menu-toggle">
+	                           <i class="fa fa-bars"></i>
+	                        </span>
+	                   			&nbsp;&nbsp;
+													<img class="img-circle visitpic" src="{{user.avatar}}">
+	                        <div class="profile-overview">
+	                            <h1>{{user.name.first}} {{user.name.last}}</h1>
+	                            <p>{{user.jobTitle}}, {{user.organization}}</p>
+	                        </div>
+	                    </div>
+	                </div>
+	           </div>
+	        </div>
+	        <div class="hd-sec">
+	            <a id="menu-toggle" href="#menu-toggle">
+	                <i class="fa fa-bars"></i>
+	            </a>
+	            &nbsp;&nbsp;MyVisits Page
+	        </div>
+	        <div class="hd-sticky">
+	        <div class="searchView col-xs-12">
+	         <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+	                <i class="fa fa-search fonticon1"></i>
+	                <input type="text" placeholder="Search" value="" name="search" id="search">
+
+	            <!-- <div class="sortBy col-xs-2 col-sm-3 col-md-2 div-padding pull-right" ng-click="showSortDropDown()">
+	                <div class="sort-by-wrapper">
+	                    <i class="fa fa-th-large fonticon1"></i>
+	                    <img src="/public/assets/m/rem/list-by-icon-down-arrow.png" class="drop-down-img" ng-if="!IsVisible">
+	                    <img src="/public/assets/m/rem/list-by-icon-up-arrow.png" class="drop-down-img" ng-if="IsVisible">
+	                </div>
+	            </div>
+	            <div class="sortByDropDown" ng-show="IsVisible">
+	                <ul class="list-group">
+	                    <li class="sort-by-drop-down list-group-item " ng-click="sortByCategory()">All</li>
+	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Today</li>
+	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Past Month</li>
+	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">This Month</li>
+	                    <li class="sort-by-drop-down list-group-item" ng-click="sortByCategory()">Next Month</li>
+	                </ul>
+	            </div> -->
+                            
+							<!--div class="pull-right">
+
+								<div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+									<i class="fa fa-th-large fonticon1"></i>
+									<span class="caret"></span>
+								</div>
+								<ul class="dropdown-menu">
+									<li><a href ng-click="setTimeline('past')">Past</a></li>
+									<li><a href ng-click="setTimeline('last-week')">Last Week</a></li>
+									<li><a href ng-click="setTimeline('this-week')">This Week</a></li>
+									<li><a href ng-click="setTimeline('today')">Today</a></li>
+									<li><a href ng-click="setTimeline('next-week')">Next Week</a></li>
+									<li><a href ng-click="setTimeline('further')">Future</a></li>
+								</ul>
+							</div>
+
+	         </div>
+	    </div>
+	     </div>
+	    </div>
+	  </div-->
+
+<div class="divtop">{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})</div>
+
+    <div class="my-visit-content col-xs-12 col-sm-12 col-md-12">
+        <div ng-repeat="visit in visitBatch.visits" class="visit-card">
+            <div class="col-xs-12 col-sm-12 col-md-12 div-padding">
+                <h2 class="col-xs-11 col-sm-11 col-md-11 div-padding"><a href="#/visits/{{visit._id}}">{{visit.title}}</a></h2>
+                <img src="/public/assets/m/rem/vertical-ellipsis.png" class="col-xs-1 col-sm-1 col-md-1 pull-right div-padding img-vertical-align" ng-click="showActionDropDown()">
+            </div>
+            <div class="actionDropDown data-drop-down" ng-show="IsActionVisible">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-click="performAction()">Edit</li>
+                    <li class="list-group-item" ng-click="performAction()">Schedule</li>
+                    <li class="list-group-item" ng-click="performAction()">Delete</li>
+                </ul>
+            </div>
+
+            <p class="visit-title">
+
+                <span> {{visit.agenda}}</span>
+            </p>
+
+            <p>
+							<span ng-if="visit.status='confirmed'" class="visit-status-confirmed">CONFIRMED</span>
+							<span ng-if="visit.status='tentative'" class="visit-status-tentative">TENTATIVE</span>
+						</p>
+            <p class="visit-details"><i class="fa fa-calendar">
+							</i>   {{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
+						</p>
+            <p class="visit-details">
+							<i class="fa fa-map-marker"></i> {{visit.locations}}
+
+            <div class="upcoming-sessions">
+                <p>Your Upcoming Sessions</p>
+
+                <div ng-repeat="i in [1,2]">
+                    <h3>27 FEB 2016</h3>
+
+                    <p class="session-field" ng-repeat="j in [1,2]">
+
+                        <img src="/public/assets/m/rem/presenter-icon.png">
+                       <span class="session-time">10.30</span>
+                        <span class="session-name">Mobility</span>
+                        <i class="fa fa-angle-right pull-right"></i>                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+this paragraph is added to test scrolling
+<br>Customer references (testimonials) are important as buyers frequently seek peer advice in purchasing high value products and services in both business to business and consumer environments. A well coordinated Customer Reference Program results in:
+
+•Less time spent by sales representatives searching for suitable customer references.
+
+•Avoiding overusing and under using valuable customer references.
+
+•Gaps being filled for customer references in certain industries/products/geographies.
+
+•Faster customer reference fulfillment time enabling a reduction in sales cycles.
+
+Therefore it is often essential to establish a dedicated co-ordinator (often called a CRP Manager), organizational processes and often a computer system to manage customer references.
+
+Programs often split into four main activities:

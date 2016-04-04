@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="baseApp" class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="baseApp" class="no-js"> <!--<![endif]-->
+
+<head>
+  <title><%=locals.appTitle%> <%=locals.pageTitle%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Skeleton solution for MEAN Stack">
+  <meta name="author" content="Sankar Vema">
+
+  <!-- custom style sheets-->
+  <link rel="stylesheet" href="/public/assets/w/styles/layout.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/button.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/pagestyles.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/materialform.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/dataview-table.css" />
+  <link rel="stylesheet" href="/public/assets/w/styles/dataview-panels.css" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <script type="text/javascript" src="/public/assets/w/js/textAngular.js"></script> 
+  <style>html, body{
+    padding-top: 60px;
+    padding-bottom: 100px;
+  }
+  .padleft{padding-left: 40px;}</style>
+
+  <!-- material designs -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  
+  <!-- angular-growl-->
+  <script type="text/javascript" src ="https://code.angularjs.org/1.2.1/angular-sanitize.js"></script> 
+  <script type="text/javascript" src ="https://raw.githack.com/marcorinck/angular-growl/master/build/angular-growl.js"></script> 
+  <link rel="stylesheet" href="https://raw.githack.com/marcorinck/angular-growl/master/build/angular-growl.min.css">
+</head>
+<body>
+  <!-- diving pag ein to columns -->
+  <div class="row"> 
+    <div class="col-sm-2">
+
+      <!-- index items -->
+      <div class="padleft">
+
+        <h2>Index</h2>
+        <ol>
+         <li><a href="#pageheader">PageHeader</a></li>
+         <li><a href="#subheader">SubHeader</a></li>
+         <li><a href="#textstyles">TextStyles</a></li>
+         <li><a href="#toolbar">ToolBar</a></li>
+         <li><a href="#formstyles">FormStyles</a></li>
+         <li><a href="#buttons">Buttons</a></li>
+         <li><a href="#checkbox">Checkbox</a></li>
+         <li><a href="#radio">RadioButton</a></li>
+         <li><a href="#growl">GrowlNotification</a></li>
+         <li><a href="#dropdown">DropDown</a></li>
+         <li><a href="#dialogbox">DialogBox</a></li>
+         <li><a href="#tabelsview">TabelsView</a></li>
+         <li><a href="#panelsview">PanelsView</a></li>
+       </ol>
+
+     </div>
+
+
+   </div>
+   <div class="col-md-9">
+    <div ng-controller="BasicDemoCtrl as ctrl" layout="column" ng-cloak>
+      <br>
+      <br>
+      <ol>
+        <li>
+          <div class="text-big-normal"><u>Page header style: styles follwed by page-header class</u></div>
+          <a name="pagehaeder"></a>
+          <div class="page-header">lorem ipsum dolor sit amet</div>
+          
+        </li> 
+        
+        <li>
+         <div class="text-big-normal"><u>Sub  header style: styles follwed by sub-header class</u></div>
+         <a name="subheader"></a>
+         
+         <div class="sub-header">lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+       </li>
+       <hr>
+       <li>
+         <div class="text-big-normal"><u>Text styles: styles follwed by text classes</u></div>
+         <a name="textstyles"></a>
+         <h5><u> Extra Small font text style:</u></h5>
+         <div class="text-xsmall">lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+         <h5><u> Small font text style: </u></h5>
+         <div class="text-small"> lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+         <h5><u>  Medium font text style:</u></h5>
+         <div class="text-medium">lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat. </div>
+
+         <h5><u> Big-normal font text style:</u></h5>
+         <div class="text-big-noraml"> lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+         <h5><u>Big-bold(Highlight) font text style:</u></h5>
+         <div class="text-highlight">lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+         <h5><u> Text styles for description: </u></h5>
+         <div class="text-desc">lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+         <h5><u> Text styles for error messages: </u></h5>
+         <div class="messagenotify"> lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet consequat.</div>
+
+       </li><hr>
+       <li>
+        <div class="text-big-normal">ToolBar--This by material design and styles are follwed by tag md-toolbar 
+        </div>
+        <a name="toolbar"></a>
+
+        <br>
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings">
+          <i class="fa fa-bars"></i>
+        </md-button>
+        <h2>
+          <span>Entry components styles</span>
+        </h2>
+        <span flex></span>
+
+        <md-button class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon=""></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+</li>
+<hr>
+<li>
+  <div class="text-big-normal">Form styles --This is by material design styles followed by md-input-container
+    and floating labels other than material design are with styles class field in materialform.css and tags are with tag md-chips</div>
+    <a name="formstyles"></a>
+
+    <form name="projectForm">
+
+
+      <md-input-container class="md-block">
+      <label>Title</label>
+      <input md-maxlength="30" minlength="5" required name="title" ng-model="project.title">
+      <div ng-messages="projectForm.title.$error" ng-show="projectForm.title.$touched || !projectForm.title.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+      <label>Description</label>
+      <input md-maxlength="30" minlength="5" required name="description" ng-model="project.description">
+      <div ng-messages="projectForm.description.$error" ng-show="projectForm.description.$touched || !projectForm.description.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">the title should contain minimum 5characters</div></div>
+        </div>
+      </md-input-container>
+
+      <div class="field">
+        <label ng-show="project.noteText" class="show-hide">note</label><br>
+        <text-angular 
+        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
+        ng-model="project.noteText" name="note"/>
+      </text-angular></div>
+
+
+      <div class="field">
+        <label>tags(md-chisp)</label><br>
+        <md-chips
+        ng-model="tags"
+        readonly="ctrl.readonly"
+        placeholder="Enter a tag"
+        delete-button-label="Remove Tag"
+        delete-hint="Press delete to remove tag"
+        secondary-placeholder="enter a tag"></md-chips>
+        <br/>
+      </form>
+    </div><hr>
+    <li>
+      <div class="text-big-normal">button styles are in button.css file with different classes and different specifications</div>
+      <a name="buttons"></a>
+      <div class="form-group">
+
+
+        <div class="row">
+          <div class="col-xs-3">
+            <button class="btn-ok" type="submit">okay!</button>
+            <button class="btn-success" type="submit">Submit</button>
+            <br>
+            <button type="submit" class="btn btn-success" 
+            ng-click="save()" ng-disabled="ProjectForm.$invalid">ok
+          </button>
+        </div>
+
+        <div class="col-xs-3">
+          <button class="btn-warning" type = "reset">Clear</button>
+        </div>
+
+        <div class="col-xs-3">  
+          <button class="btn-danger" type="reset"> Cancel</button>
+        </div>
+
+        <div class="col-xs-3">
+          <button class="btn-round-yes" type="submit"> yes! </button>
+          <button class="btn-round-no" type="submit"> No! </button>
+        </div>
+      </div>
+      
+    </div>
+  </a></li>
+
+  <hr>
+  <li>
+    <div class="text-big-normal">CheckBox styles are in button.css file with different classes and different specifications</div>
+    <a name="checkbox"></a>
+    <input type="checkbox" id="check" name="check"> 
+    <label for="check">CSS is Awesome</label> 
+    <input type="checkbox" id="check1" name="check1"> 
+    <label for="check1">CSC is best</label> 
+  </li><hr>
+
+  <li><div class="text-big-normal">Radio buttons styles are in button.css file with different classes and different specifications</div><a name="radio"></a><div>
+    <input type="radio" id="radio01" name="radio" />
+    <label for="radio01"><span></span>Radio Button 1</label>
+  </div>
+
+  <div>
+   <input type="radio" id="radio02" name="radio" />
+   <label for="radio02"><span></span>Radio Button 2</label>
+ </div>
+
+
+ <br><br>
+ <h3>Radio Button Styles in a Form </h3>
+
+ <div class="container">
+  <div class="row">
+
+    <div class="col-xs-4">
+      <h3>Style 1</h3>
+      <input id="radio-1" class="radio-custom" name="radio-group" type="radio" checked>
+      <label for="radio-1" class="radio-custom-label">First Choice</label><br><br>
+
+      <input id="radio-2" class="radio-custom"name="radio-group" type="radio">
+      <label for="radio-2" class="radio-custom-label">Second Choice</label>
+    </div>
+
+    <div class="col-xs-4">
+      <h3>Style 2</h3>
+      <input id="radio-3" class="radio-custom2" name="radio-group" type="radio" checked>
+      <label for="radio-3" class="radio-custom2-label">First Choice</label><br><br>
+
+      <input id="radio-4" class="radio-custom2"name="radio-group" type="radio">
+      <label for="radio-4" class="radio-custom2-label">Second Choice</label>
+    </div>
+
+    <div class="col-xs-4">
+     <h3>Style 2</h3>
+     <input id="radio-5" class="radio-custom3" name="radio-group" type="radio" checked>
+     <label for="radio-5" class="radio-custom3-label">First Choice</label><br><br>
+
+     <input id="radio-6" class="radio-custom3"name="radio-group" type="radio">
+     <label for="radio-6" class="radio-custom3-label">Second Choice</label>
+   </div>
+
+ </div>
+
+
+         <!-- <div class="row">
+
+            <div class="col-xs-4">
+              <form id="radio-demo">
+                <input type="radio" name="radio-group" id="first-choice" value="First Choice" />
+                <label for="first-choice">First Choice</label>
+                <br/><br>
+                <input type="radio" name="radio-group" id="second-choice" value="Second Choice" />
+                <label for="second-choice">Second Choice</label>
+              </form>
+            </div>-->
+
+
+            <div class="col-xs-4">
+              <br>
+              <h3>Style 4</h3>
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn active">
+                  <input type="radio" name='gender2' checked>
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-check-circle-o fa-2x"></i>
+                  <span> Male</span>
+                </label>
+                <br><br>
+
+                <label class="btn">
+                  <input type="radio" name='gender2'>
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-check-circle-o fa-2x"></i>
+                  <span> Female</span>
+                </label>
+              </div>
+            </div>
+
+
+
+            <div class="col-xs-4">
+              <br><br>
+              <div>
+                <h3>Style 6</h3>
+                <input class="radio-custom4" type="radio" id="radio03" name="radio03" checked/>
+                <label class="radio-custom4-label" for="radio03">
+                  <span></span>
+                  Yes
+                </label>
+              </div>
+
+              <div>
+               <input class="radio-custom4" type="radio" id="radio04" name="radio04"  />
+               <label class="radio-custom4-label" for="radio04">
+                 <span></span>
+                 No
+               </label>
+             </div>
+           </div>
+
+
+         </div>
+
+       </li><hr>
+       <li>
+
+        <div class="text-big-normal">Growl Notifications</div>
+        <a name="growl"></a>
+
+
+        <button class="btn btn-success btn-sm" ng-click="showSuccess()">Show Success!</button>
+      </li><hr><li>
+      <div class="text-big-normal">dropdown  styles are of general bootstrap styles</div>
+      <a name="dropdown"></a>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">select the view
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Grid</a></li>
+            <li><a href="#">Panels</a></li>  
+            <li><a href="#">List</a></li>
+
+          </ul>
+        </div>
+
+
+      </li><hr>
+
+      <li>
+        <div class="text-big-normal">Dialog styles are of material design this styles are followed by md-dialog tag</div>
+        <a name="dialogbox"></a>
+
+        <div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak>
+
+          <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex="100" flex-gt-md="auto">
+          Custom Dialog
+        </md-button>
+      </div>
+
+    </li>
+    <hr>
+
+    <li>
+      <div class="text-big-normal">Tabels View data view in data view-tables.css </div>
+      <a name="tabelsview"></a>
+
+      <div class="form-inline has-feedback filter-header">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+        <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+        <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
+        <a class="btn btn-default btn-sm pull-right" href="/keynotes/#/add">Add New Keynote</a>
+      </div> <!-- Grid filter ends -->
+
+      <table class="table table-striped table-condensed table-responsive table-hover">
+        <thead class="data-grid-header">
+          <!-- table header -->
+          <tr>
+            <th>
+              <span class="glyphicon glyphicon-th-large"></span>
+              <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
+            </th>
+            <th>
+              <span class="glyphicon glyphicon-calendar"></span>
+              <a href="" ng-click="orderByField='speaker'; reverseSort = !reverseSort">Speaker</a>
+            </th>
+            <th>
+              <span class="glyphicon glyphicon-calendar"></span>
+              <a href="" ng-click="orderByField='Desc'; reverseSort = !reverseSort">Desc</a>
+            </th>
+            <th class="hidden-xs">
+              <span class="glyphicon glyphicon-user"></span>
+              <a href="" ng-click="orderByField='Tags'; reverseSort = !reverseSort">Tags</a>
+            </th>
+            <th class="hidden-xs">
+              <span class="glyphicon glyphicon-list-alt"></span>
+              <a href="" ng-click="orderByField='Created'; reverseSort = !reverseSort">Created</a>
+            </th>
+            <th class="hidden-xs">
+              <span class="glyphicon glyphicon-dashboard"></span>
+              <a href="" ng-click="orderByField='link'; reverseSort = !reverseSort">Link</a>
+            </th>
+            <th>&nbsp;</th>
+          </tr>
+
+          <!-- table filter -->
+          <tr ng-hide="hideFilter">
+            <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
+            <th><span ng-hide="hideFilter"><input type="text" ng-model="search.speaker"></span></th>
+            <th><span ng-hide="hideFilter"><input type="text" ng-model="search.desc"></span></th>
+            <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th>
+            <th><span ng-hide="hideFilter">&nbsp;</span></th>
+            <th><span ng-hide="hideFilter">&nbsp;</span></th>
+            <th><span ng-hide="hideFilter">&nbsp;</span></th>
+          </tr>      
+
+        </thead>
+
+        <tbody class="data-grid-data">
+          <!--tr ng-repeat="keynote in keynotesList | filter: search |orderBy:orderByField:reverseSort"-->
+          <tr>
+            <td>visit mangemnet</td>
+            <td>sankar</td>
+            <td>client visit mangement </td>
+            <td class="hidden-xs">client,viist,mangement</td>
+            <td class="hidden-xs">09-02-2016</td>
+            <td class="hidden-xs">ToBeDefined</td>
+            <td>
+              <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
+              <a class="table-btn" href="#/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+              <a class="table-btn" ng-click="delete(keynote)"><span class="glyphicon glyphicon-trash" /></a>
+            </td>
+          </tr>
+          <tr>
+            <td>visit mangemnet</td>
+            <td>suja</td>
+            <td>client visit mangement </td>
+            <td class="hidden-xs">client,viist,mangement</td>
+            <td class="hidden-xs">09-02-2016</td>
+            <td class="hidden-xs">ToBeDefined</td>
+            <td>
+              <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
+              <a class="table-btn" href="#/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+              <a class="table-btn" ng-click="delete(keynote)"><span class="glyphicon glyphicon-trash" /></a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td><td></td><td>&nbsp;&nbsp;keynotes grid view</td><td></td><td></td><td></td><td>&nbsp;</td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </li><hr>
+    <li>
+
+      <div class="text-big-normal">Data view in data-panels-view.css</div>
+      <a name="panelsview"></a>
+
+      <div class="container">
+        <div class="pnbdr panel panel-primary">
+          <!--div class="panel-heading">keynotes panels view</div-->
+          <div class="searchpad">
+
+            <div class="form-inline has-feedback filter-header">
+              <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+              <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+              <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
+              <a class="btn btn-default btn-sm pull-right" href="/keynotes/#/add">Add New Keynote</a>
+            </div>
+
+
+
+            <div class="row">
+              <div class="pn-bodypad">
+                <div class="col-xs-12">
+                  <div class="panel panel-info">
+                    <div class="panel-heading pn-bodyhdr" pull-left>
+                      <span>Title:Welcome</span>
+                      <div class="pull-right">
+                        <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
+                        <a class="table-btn" href="#/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+                        <a class="table-btn" ng-click="delete(keynote)"><span class="glyphicon glyphicon-trash" /></a>
+                      </div>
+                    </div>
+
+                    <div class="panel-body">
+                      <div class="pull-left">
+                        <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
+                      </div>
+
+                      <div class="pn-inrbodypad">
+                        <div class="row">
+                          <div class="col-sm-4 text-big-normal">speaker:Some One</div>
+                          <div class="col-sm-4 text-medium">created on:26-06-2016</div>
+                          <div class="col-sm-4 text-small">link:to view details</div>
+                          <div class="col-sm-5 text-small">welcome to csc</div>
+                          <div class="col-sm-5 text-xsmall">tags:some, one, someone</div>
+                          <div class="col-sm-11">
+                            <div class="text-desc">desc: lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet </div></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+
+                <div class="row">
+                  <div class="pn-bodypad">
+                    <div class="col-xs-12">
+                      <div class="panel panel-info">
+                        <div class="panel-heading pn-bodyhdr" pull-left>
+                          <span>Title:Welcome</span>
+                          <div class="pull-right">
+                            <a class="table-btn" href="#/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
+                            <a class="table-btn" href="#/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+                            <a class="table-btn" ng-click="delete(keynote)"><span class="glyphicon glyphicon-trash" /></a>
+                          </div>
+                        </div>
+
+                        <div class="panel-body">
+                          <div class="pull-left">
+                            <img src="/public/assets/images/avatar.jpg" class="img-circle" width="65" height="60">
+                          </div>
+
+                          <div class="pn-inrbodypad">
+                            <div class="row">
+                              <div class="col-sm-4 text-big-normal">speaker:Some One</div>
+                              <div class="col-sm-4 text-medium">created on:26-06-2016</div>
+                              <div class="col-sm-4 text-small">link:to view details</div>
+                              <div class="col-sm-5 text-small">welcome to csc</div>
+                              <div class="col-sm-5 text-xsmall">tags:some, one, someone</div>
+                              <div class="col-sm-11">
+                                <div class="text-desc">desc: lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nulla quis nulla laoreet </div></div></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div></div></div></li><hr>
+
+                </div></div></div>
+
+
+
+
+                <!-- Angular Material requires Angular.js Libraries -->
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+                <!-- Angular Material Library -->
+                <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+                <!-- Your application bootstrap  -->
+                <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+     
+     'use strict';
+     var projectApp = angular.module('baseApp', ['ngMaterial', 'textAngular', 'ngMessages', 'angular-growl']);
+
+     projectApp.controller('BasicDemoCtrl', ['$scope', 'growl',
+      function($scope, growl) {
+        var self = this;
+        self.readonly = false;
+    // Lists of fruit names and Vegetable objects
+    
+    $scope.tags = [];
+    $scope.project = "";
+    
+    $scope.showSuccess = function () {
+      growl.addSuccessMessage('<b>Yay!</b> Something worked.');
+    };
+    
+  }])
+
+     projectApp.controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+      $scope.status = '  '; 
+
+      $scope.showAdvanced = function(ev) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: '/dialog',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true
+          
+        })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+        
+      };
+
+    });
+
+     function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+    }
+
+
+  </script>
+  
+</body>
+</html>

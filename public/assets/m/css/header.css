@@ -1,0 +1,103 @@
+#header_nav {
+    /*width:100%;*/
+    background-color:#F8F8FF;
+    position:fixed;
+    /*top:0;*/
+    /*left:0;*/
+   /*  height:110px;*/
+   -webkit-transition:0.5s linear all;
+   -moz-transition:0.5s linear all;
+   -o-transition:0.5s linear all;
+   transition:0.5s linear all;
+   z-index:10000;
+}
+
+.tb-big {
+    height: 150px;
+
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+
+    font-family: robotoRegular;
+}
+
+.tb-small {
+    height: 65px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 5px #676767;
+    font-family: robotoRegular;
+}
+.tb-big > .hd-sec{
+    display:none;
+}
+.tb-small > .hd-prime{
+    height: 0;
+    overflow: hidden;
+    background: red;
+   -prefix-animation: slide 1s ease 3.5s forwards;
+}
+@-prefix-keyframes slide {
+  from {height: 300;}
+  to {height: 0px;}
+}
+.hd-prime{
+    background-color: #ffccff;
+    position:relative;
+    height:100px;
+}
+.hd-sec{
+    background-color: #ddd;
+    position:relative;
+    padding-left: 20px;
+    height:25px;
+}
+.hd-sticky{
+    background-color: #d3d3d3;
+    position:relative;
+ height: 25px;
+
+}
+/*visist header  styles*/
+.my-visit-header {
+      
+    background-color: #fff;
+    /*box-shadow: 7px 7px 8px red;*/
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    z-index: 10;
+}
+.my-visit-sub-header {
+    text-align: left;
+    background: url("/public/uploads/images/hero-bg.jpg") no-repeat;
+}
+.profile-details-div {
+      
+    display: inline-flex;
+    font-family: workSansBold;
+    color: #f3f5fd;
+    text-shadow: 1px 1px #5b5b5b;
+   
+}
+.profile-overview {
+    
+    text-align: left;
+    margin-left: 20px;
+    font-size: 1em;
+}
+.visitpic{
+    width: 60px;
+    height: 55px;
+    margin-top: 15px;
+
+}

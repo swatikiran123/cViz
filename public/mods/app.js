@@ -1,10 +1,21 @@
 'use strict';
 
-angular.module('baseApp', ['keynotes', 'userDirective'])
+angular.module('cviz-admin', ['users','confirmDialogDirective']);
 
-.config(['growlProvider', function(growlProvider) {
-	growlProvider.globalReversedOrder(true);
-	growlProvider.globalTimeToLive({success: 1000, error: 2000, warning: 3000, info: 4000});
-	growlProvider.globalDisableCountDown(true);
-	growlProvider.globalPosition('top-center');
-}]);
+angular.module('cviz-customize',
+	['userprofileDirective','userDirective','userdisplayDirective',
+	'appFilters',
+	'datePicker',
+	'keynotes','facts','feedback','confirmDialogDirective','contactList','richTextDirective','ngRateIt','feedbackDirective']);
+
+angular.module('cviz-manage',
+	['userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective',
+	'appFilters',
+	'datePicker','dropzone','fileuploadDirective',
+	'visits',"clients",'confirmDialogDirective','richTextDirective','ngRateIt']);
+
+angular.module('cviz-profile',
+	['userprofileDirective','userDirective','userdisplayDirective',
+	'appFilters',
+	'datePicker','dropzone','fileuploadDirective',
+	'profile']);

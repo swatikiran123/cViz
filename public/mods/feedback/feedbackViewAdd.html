@@ -1,0 +1,101 @@
+ <div class="row"> 
+    <div class="col-sm-1"></div>
+    <div class="col-md-8">
+
+       <!-- page header/subheader -->
+
+       <div class="page-header">
+          Feedback Template
+          <div class="sub-header">Add new Feedback Template
+          </div>
+      </div>
+
+      <!--Feedback pageheader input--> 
+      <div class="data-form">
+          <form name="feedbackForm" id="feedbackForm" class="form-vertical" novalidate
+          ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+
+          <!--Feedback Title-->
+          <md-input-container class="md-block">
+          <label>Feedback Title</label>
+          <input md-maxlength="30" minlength="5" required name="title" ng-model="feedbackDefs.title">
+          <div ng-messages="feedbackForm.title.$error" ng-show="feedbackForm.title.$touched || !feedbackForm.title.$pristine">
+           <div class="messagenotify">
+            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+            <div ng-message="md-maxlength">The feedback title  has to be less than 30 characters long.</div>
+            <div ng-message="minlength">the feedback title should contain minimum 5 characters</div>
+          </div>
+        </div>
+      </md-input-container>            
+
+         <!-- Feedback Type input-->
+          <div class="form-group" > 
+          Feedback Type
+          <div class="radio-inline" style="margin-left: 1cm" >
+            <label>
+            <input type="radio" ng-model="feedbackDefs.type" value="Session" required>
+              Session
+            </label><br/>
+          </div>
+          <div class="radio-inline">  
+            <label>
+            <input type="radio" ng-model="feedbackDefs.type" value="Visit">
+              Visit
+            </label><br/>
+          </div>  
+          </div>   
+          <hr>
+          <!-- Feedback Item-->   
+           <!-- <div ng-include src="'/public/mods/feedback/itemViewAdd.html'"></div> -->
+           <button class="btn btn-default btn-md"
+           ng-click="addFeedbackItem($event)">
+           Add Feedback Item
+         </button>
+            
+         <!-- createBy
+          <div class="form-group"> 
+            <input type="text" class="form-control" placeholder="createBy" id="createBy" name="createBy" 
+            ng-model="feedbackDefs.createBy" required ng-list floating-validation/>
+          </div>
+          -->
+        <!-- createOn
+          <div class="form-group"> 
+             <input type="text" class="form-control" placeholder="createOn" id="createOn" name="createOn" 
+             ng-model="feedbackDefs.createOn" required ng-minlength="3" ng-maxlength="200" ng-list floating-validation/>
+          </div>
+        -->
+        <!-- Button -->
+        <hr>
+        <table class="table boldtable table-responsive table-bordered table-hover">
+
+          <thead class="data-grid-header" >
+            <tr>
+              <th><span class="glyphicon"></span>Query</th>
+              <th><span class="glyphicon"></span>Mode</th>
+              <th><span class="glyphicon"></span>Choices</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody class="data-grid-data">
+           <tr ng-repeat="item in items | filter: search |orderBy:orderByField:reverseSort">
+            <td>{{item.query}}</td>
+            <td>{{item.mode}}</td>
+            <td>{{item.choices}}</td>
+            <td><a class="table-btn" ng-click="removeItem($index)"><span class="glyphicon glyphicon-trash" /></a>
+              <a class="table-btn" ng-click="editItem($index,item,$event)"><span class="glyphicon glyphicon-edit" /></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+          <div class="form-group">              
+              <div>
+                <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="feedbackForm.$invalid">Submit</button>
+                <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+              </div>
+          </div>
+          </form>
+      </div>
+</div>
+</div>

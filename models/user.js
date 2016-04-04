@@ -1,9 +1,10 @@
 var path            = require('path');
-var mongoose        = require('mongoose');
+var mongoose        = require('mongoose'), Schema = mongoose.Schema;
 var bcrypt          = require('bcrypt-nodejs');
 var jwt             = require('jwt-simple');
 var constants       = require('../scripts/constants');
 var config          = require(path.join(constants.paths.config, '/config'));
+var groupSchema     = require('./group');
 
 var Token = mongoose.Schema({
     token           : {type: String},
@@ -30,6 +31,18 @@ var userSchema = mongoose.Schema({
     email            : String,
     avatar           : String,
     summary          : String,
+    jobTitle         : String,
+    organization     : String,
+		orgRef					 : { type: Schema.Types.ObjectId, ref: 'client' },
+		association			 : {type: String, enum: ['employee', 'partner', 'customer', 'contractor']},
+    socialProfile    : [{
+      handle         : String,
+      network        : String
+    }],
+    contactNo        : [{
+      number         : String,
+      type           : String
+    }],
     stats            : {
       dateCreated    : Date,
       dateLastLogin  : Date
@@ -60,7 +73,8 @@ var userSchema = mongoose.Schema({
         name         : String
     },
     token            : {type: Object},
-    status           : String
+    status           : {type: String, default: 'Active'},
+    memberOf         : [{ type: Schema.Types.ObjectId, ref: 'group' }]
 
 });
 
@@ -84,6 +98,12 @@ userSchema.pre('save', function(callback) {
       callback();
     });
   });*/
+});
+
+userSchema.post('init', function(doc) {
+  if(doc.avatar === undefined){
+    doc.avatar = "/public/assets/g/imgs/avatar.jpg";
+  }
 });
 
 userSchema.post('find', function(result) {
@@ -110,13 +130,13 @@ function genToken() {
   var token = jwt.encode({
     exp: expires
   }, config.get('auth.secret'));
- 
+
   return {
     token: token,
     dateCreated: new Date()
   };
 }
- 
+
 function expiresIn(numDays) {
   var dateObj = new Date();
   return dateObj.setDate(dateObj.getDate() + numDays);

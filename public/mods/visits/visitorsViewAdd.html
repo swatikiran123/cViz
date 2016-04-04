@@ -1,0 +1,43 @@
+<!--visitors-->
+<b>Add - Visitor</b><br>
+<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+  <thead class="data-grid-header">
+    <tr>
+      <th><span  class="fa fa-user"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+      <th><span  class="glyphicon"></span>Influence</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="data-grid-data">
+    <tr>
+      <td>    
+        <input type="email" ng-model="visitorDef.visitorId">
+      </td>
+      <td><select 
+       ng-model="visitorDef.influence" 
+       ng-options="data for data in influence">
+     </select>
+     <!-- <pre>selected: {{visitorDef.influence}}</pre> -->
+   </td>
+   <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)">Add visitor</button></td>
+ </tr>
+ 
+ <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
+  <td colspan="3"> <div>
+    <div>{{visitorDef.influence}}</div>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash" /></a>
+      <a class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit" /></a>
+    </div>
+  </div>
+  <userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor"/></td>
+</td>
+</tr>
+
+<td ng-if="showFlag == 'noUser'">
+
+ {{message}}
+
+</td>
+
+</tbody>
+</table>

@@ -2,19 +2,33 @@ var express 			= require('express');
 var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
 var appInfoServ   = require(constants.paths.services + '/appService');
+var menuBuilder   = require(constants.paths.scripts + '/menuBuilder');
+var device = require('express-device');
 
 module.exports = function(app, passport) {
 
+		app.use(device.capture());
+		
 	app.use(function (req, res, next) {
-	  //console.log('Req @ Time:', Date.now());
 
-    res.locals={ 
-      appTitle: "mSkeleton",
+		// build side menu if user is logged in
+		var sideMenu = "";
+		if(req.user !== undefined){
+			sideMenu = menuBuilder.getMenu(req.user,"side");
+		}
+
+    res.locals={
+      appTitle: "Visit Portal",
       pageTitle: "main",
       author: "Sankar Vema",
-      description: "Reusable MEAN stack template with MicroService architecture patterns",
+      description: "Customer Visit Management Portal",
       user: req.user,
-      app_info: appInfoServ.info()
+      app_info: appInfoServ.info(),
+			appAssets: '',
+			stdAssets: '',
+			appName: '',
+			device: req.device.type,
+			menu: sideMenu			//ToDo: Can be effect performance & menu usage, improve this
   	};
 
 	  next();
@@ -36,18 +50,20 @@ module.exports = function(app, passport) {
 	// Auth Middleware - This will check if the token is valid
 	// Only the requests that start with /api/v1/* will be checked for the token.
 	// Any URL's that do not follow the below pattern would be avoided
-	
-	app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
+
+	// ToDo:: Api security supressed for dev - to be activated later
+	//app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
 
 	// include routes here
 	app.use('/', require('./apiRoutes')); // load api endpoint routes
 	require('./authRoutes.js')(app, passport); // load authentication routes, fully configured with passport
+	require('./publicRoutes.js')(app);
 	require('./pageRoutes.js')(app);
 	require('./mobileRoutes.js')(app);
 	//ToDo:: Tighten security for public assets
 	app.use('/public', express.static('public')); // folder to render public assets. Can be improved for security tightening
 	app.use('/app', express.static('public/app'));
-
+	app.use('/profile', express.static('profile'));//folder to render user profile assets.
 	// If no route is matched by now, it must be a 404
 	app.use(function(req, res, next) {
 	  var err = new Error('Not Found');

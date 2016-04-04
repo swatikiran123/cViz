@@ -1,12 +1,533 @@
 
+<head>
 
-Home page content...<br/>
-<p/><p/><p/>
-Heading should be visible<br/>
-User Email: <%= user.local.email %><br/>
-<br/>
-<h1>Locals start here</h1><br/>
-App: <%= locals.appTitle %><br/>
-Page: <%= locals.pageTitle %><br/>
-App Info:<br/>
-<%= JSON.stringify(locals, null, 4) %><br/>
+  <script type="text/javascript"> 
+     $(window).load(function(){
+      $("[data-toggle]").click(function() {
+        var toggle_el = $(this).data("toggle");
+        $(toggle_el).toggleClass("open-sidebar");
+      });
+    });
+  </script>
+
+</head>
+
+
+<body>
+
+  <div class="container">
+   
+    <div class="row">
+      
+      <div id="sidebar">
+      
+        
+      <!-- Side Bar Content Goes here  -->
+      </div>
+
+      <div class="col-sm-11">
+        <div class="content">
+          <h2>Static Content</h2>
+
+          <div class="row">
+
+            <div class="col-sm-9">
+              <div class="panel panel-default">
+
+                <div class="panel-heading">
+                  <div class="pull-left">
+                    <p class="highlight">03</p>
+                  </div>
+                  <h3 class="panel-title"> <b>Visits This Week</b></h3>
+                </div>
+
+                <div class = "panel-subheader">
+                 <center> Mar, 2016</center>
+                </div>
+
+                <div class="panel-body">
+                  Zurich Visit on 2nd-Mar<br>
+                  Hyderabad
+                  <br><br>
+                  AOL Visit on 4th-Mar<br>
+                  Bangalore
+                </div>
+
+                <div class="panel-footer">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">03</p>
+                </div>
+                <h3 class="panel-title"><b> Visits Score </b></h3>  
+              </div>
+
+              <div class="panel-body">
+                <p>
+                  <font size="30">
+                    <center> 
+                      <b>02</b>
+                    </center>
+                  </font>
+                </p>
+              </div>
+
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+        <br>
+        <div class="row">
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight"> 02 </p>
+                </div>
+                <h3 class="panel-title"><b> Visits Score </b></h3>
+              </div>
+
+              <div class="panel-body"> 
+                <p>
+                  <font size="30">
+                    <center> 
+                      <b>03</b>
+                    </center>
+                  </font>
+                </p>
+              </div>
+
+              <div class="panel-footer">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-9">
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">02</p>
+                </div>
+                <h3 class="panel-title"> <b> Visits Last Week </b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                <center> Feb, 2016</center>
+              </div>
+
+              <div class="panel-body">
+                Motorola Visit on 12nd-Feb<br>
+                Noida
+                <br><br>
+                Telenor Visit on 16th-Feb <br>
+                Indore
+                <br><br>
+                Vodafone Visit on 6th-Mar<br>
+                Chennai
+              </div>
+
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+        <br>
+        <div class="row">
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight"> 03 </p>
+                </div>
+                <h3 class="panel-title"> <b> Hyderabad</b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i><b>Zurich </b></i><br>
+                Start-Time: 2016-02-02, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i><b> Vodafone</b> </i><br>
+                Start-Time: 2016-02-04, 09:00:00<br>
+                End-Time: 2016-02-04, 20:00:00
+                <br><br>
+                <i> <b> Telenor </b> </i><br>
+                Start-Time: 2016-02-06, 09:00:00<br>
+                End-Time: 2016-02-06, 20:00:00
+              </div>
+
+              <div class="panel-footer">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">02</p>
+                </div>
+                <h3 class="panel-title"> <b>  Bangalore</b> </h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i> <b> Aol </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i> <b> Motorola </b></i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> NASA </b> </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">03</p>
+                </div>
+                <h3 class="panel-title"><b> Chennai</b> </h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits
+              </div>
+
+              <div class="panel-body">
+                <i><b> SRA </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i><b> HCL </b> </i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> Fruition </b> </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <p class="highlight">04</p>
+                </div>
+                <h3 class="panel-title"><b> Noida </b></h3>
+              </div>
+
+              <div class = "panel-subheader">
+                Visits 
+              </div>
+
+              <div class="panel-body">
+                <i> <b> SRA </b></i><br>
+                Start-Time: 2016-02-12, 09:00:00<br>
+                End-Time: 2016-02-02T20:00:00
+                <br><br>
+                <i> <b> UXC </b></i><br>
+                Start-Time: 2016-02-14, 09:00:00<br>
+                End-Time: 2016-02-14, 20:00:00
+                <br><br>
+                <i> <b> Xchanging</b>  </i><br>
+                Start-Time: 2016-02-16, 09:00:00<br>
+                End-Time: 2016-02-16, 20:00:00
+              </div>
+
+              <div class="panel-footer">
+                <p></p>  
+              </div>
+            </div>
+          </div> <!-- Column 3-->
+
+
+        </div> <!-- row-->
+
+      </div> <!--content-->
+
+
+    </div> <!--column 11-->
+
+
+    <div class="col-sm-1">
+      <a href="#" data-toggle=".container" id="sidebar-toggle">
+      <i class="fa fa-angle-double-left fa-5x padtop rotate"></i></a>
+    </div>
+
+  </div> <!--row-->
+
+  
+</div> <!--container-->
+
+
+
+
+<div class="panel-wrapper">
+  <div class="panel-controller">
+
+    <div class = "tab-controller">
+      <a href="#">
+      <i class="fa fa-angle-double-up fa-2x rotate"></i></a>
+    </div><!-- Tab-controller -->
+
+    <div class = "tab-controller1">
+      <a href="#">
+      <i class="fa fa-angle-double-down fa-2x rotate"></i></a>
+    </div><!-- Tab-controller -->
+
+  </div><!-- panel-controller -->
+
+  <div class="panel-content">
+    <div class = "row">
+      
+        <div class = "col-xs-4" style = "color: red;" > 
+          <i><u><b > Lunch </b></u></i>
+        </div>
+        <div class = "col-xs-4" style = "color: red;"> 
+          <i><u><b>Delayed by 1 hr </b></u></i>
+        </div>
+        <div class = "col-xs-4" style = "color: red;"> 
+           <i><u><b> 12:30 - 13:30 </b></u></i>
+        </div>
+    </div>
+
+
+
+  <div class = "row">
+  <br>
+        <div class = "col-xs-3">
+          <i><u><b> Executive lunch </b></u></i>
+        </div>
+
+        <div class = "col-xs-3">
+
+          <span> with: </span>
+          <img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+          <img src="/public/assets/g/imgs/avatar.jpg" class="img-circle userpic">
+
+        </div>
+
+        <div class = "col-xs-3">
+          <i><u><b>Start Time:</b></u></i> 13:30<br>
+          <i><u><b>End Time:</b></u></i> 14:30
+        </div>
+
+        <div class = "col-xs-3">
+          <i><u><b>Anchor:</b></u></i> Suman <br>
+          <i><u><b>Owner:</b></u></i>  Shiva <br>
+          <i><u><b>Supporter:</b></u></i> Santosh
+        </div>
+  </div> <!--row-->
+
+
+  </div> <!-- panel-content-->
+</div><!-- panel-wrapper -->
+
+
+
+
+<script type="text/javascript">
+
+      $(".rotate").click(function(){
+        $(this).toggleClass("side");
+      });
+
+
+        (function($) {
+
+          jQuery(document).ready(function() {
+
+              Panel.init();
+
+              $(document).on('click', '.tab-controller', function() {
+                   Panel.togglePanel();
+              });
+          });
+
+          var Panel = {
+              isVisible : true,
+              showMessage : null,
+              hideMessage : null,
+              animationDuration : 650,
+              animationEasing : 'linear',
+              
+              init : function() {
+                this.showHalfPanel();
+              },
+
+              hideHalfPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = false;
+                      $(".tab-controller1").show();
+                  });
+              },
+
+              showHalfPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, function() {
+                      Panel.isVisible = false;
+                      
+                  });
+              },
+
+              showFullPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : 0
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = true;
+                      $(".tab-controller1").hide();
+                  });
+              },
+
+              togglePanel : function() {
+                  ((this.isVisible) ? this.hideHalfPanel : this.showFullPanel)();
+              },
+
+              updateTabMessage : function() {
+                  if (this.isVisible) {
+                      $('.tab-controller .close').show();
+                      $('.tab-controller .show').hide();
+                  } else {
+                      $('.tab-controller .close').hide();
+                      $('.tab-controller .show').show();
+                  }
+              },
+
+              getAnimationOffset : function() {
+                  return $('.panel-content').height();
+              }
+
+          }
+
+      })(jQuery);
+
+
+
+
+      (function($) {
+
+          jQuery(document).ready(function() {
+
+              Panel.init();
+
+              $(document).on('click', '.tab-controller1', function() {
+                   Panel.togglePanel();
+              });
+          });
+
+          var Panel = {
+              isVisible : true,
+              showMessage : null,
+              hideMessage : null,
+              animationDuration : 650,
+              animationEasing : 'linear',
+              
+              init : function() {
+                
+              },
+
+              
+
+              hidePanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset())
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = false;
+                      $(".tab-controller").hide();
+                  });
+              },
+
+              
+              showPanel : function() {
+                  $('.panel-wrapper').animate({
+                      bottom : -(Panel.getAnimationOffset() - 25)
+                  }, Panel.animationDuration, Panel.animationEasing, function() {
+                      Panel.isVisible = true;
+                      $(".tab-controller").show();
+                  });
+              },
+
+              togglePanel : function() {
+                  ((this.isVisible) ? this.hidePanel : this.showPanel)();
+              },
+
+              updateTabMessage : function() {
+                  if (this.isVisible) {
+                      $('.tab-controller1 .close').show();
+                      $('.tab-controller1 .show1').hide();
+                  } else {
+                      $('.tab-controller1 .close').hide();
+                      $('.tab-controller1 .show1').show();
+                  }
+              },
+
+              getAnimationOffset : function() {
+                  return $('.panel-content').height();
+              }
+
+          }
+
+      })(jQuery);
+</script>
+</body>
+

@@ -12,7 +12,7 @@ logs
 results
 
 public/libs
+public/uploads/profilePics
 
 npm-debug.log
 node_modules
-

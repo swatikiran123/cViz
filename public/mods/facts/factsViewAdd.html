@@ -1,0 +1,58 @@
+
+
+<div class="row"> 
+  <div class="col-sm-1"></div>
+  <div class="col-md-8">
+
+   <!-- page header/subheader -->
+
+   <div class="page-header">
+    Facts - Add
+    <div class="sub-header">Add new fact
+    </div>
+  </div>
+
+  <!-- facts pageheader input--> 
+  <div class="data-form">
+    <form name="factsForm" id="factsForm" class="form-vertical" novalidate>
+    
+
+
+    <!-- facts title input-->
+    <form name="factsForm">
+      <md-input-container class="md-block">
+        <label>Title</label>
+        <input md-maxlength="30" minlength="5" required name="title"   ng-model="facts.title">
+        <div ng-messages="factsForm.title.$error" ng-show="factsForm.title.$touched || !factsForm.title.$pristine">
+             <div class="messagenotify">
+              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+         <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container>
+
+
+    <!-- facts description -->
+
+       
+    <div class="field">
+                  <label ng-show="facts.description" class="show-hide">note</label>
+
+      <text-angular 
+      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+      ng-model="facts.description" name="note" placeholder="Description the fact." required /></text-angular>
+    </div>
+
+
+    <!--buttons-->
+    <div class="form-group">
+      <div class="pull-left">
+        <button type="submit" class="btn btn-success" 
+        ng-click="save()" ng-disabled="factsForm.$invalid">Submit
+      </button>
+      <button type="reset" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>
+</div>
