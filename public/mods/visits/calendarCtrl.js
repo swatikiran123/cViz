@@ -11,7 +11,7 @@ angular.module('visits').controller('calendarCtrl',
                 editable: false,
                 header: {
                     left: 'title',
-                    center: 'type',
+                    center: '',
                     right: 'today prev,next'
                 },
                 dayClick: $scope.alertEventOnClick,
@@ -42,7 +42,7 @@ angular.module('visits').controller('calendarCtrl',
             $timeout(function() {
                 $scope.visits.forEach(function(data) {
                     $scope.events.push({
-                        title: data.locations,
+                        title: data.title,
                         start: data.startDate,
                         end: data.endDate
                     });
