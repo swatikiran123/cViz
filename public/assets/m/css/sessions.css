@@ -94,13 +94,13 @@
 
   .agenda-session-time {
     font-family: antonioBold;
-    font-size: 36px;
+    font-size: 16px;
     color: #87075A;
   }
 
   .agenda-session-name {
     font-family: workSansLight;
-    font-size: 36px;
+    font-size: 26px;
     color: #87075A;
   }
   .agenda-session-loc {

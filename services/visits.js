@@ -149,6 +149,7 @@ function getMyVisits(thisUser, timeline, limit){
 					logger.dump('test', 2,'Check Sponsor',visit.anchor, thisUser._id,stringCmp(visit.anchor, thisUser._id));
 					if(stringCmp(visit.anchor,thisUser._id)){
 						var thisOne = {
+							id : visit._id,
 							type: "Visit",
 							title: "Full Visit participation",
 							startTime : DateReplaceTime(visit.startDate, "08:30"),
@@ -161,6 +162,7 @@ function getMyVisits(thisUser, timeline, limit){
 					logger.dump('test', 2,'Check vManager',visit.agm, thisUser._id,stringCmp(visit.agm, thisUser._id));
 					if(stringCmp(visit.agm, thisUser._id)){
 						var thisOne = {
+						    id : visit._id,
 							type: "Visit",
 							title: "Full Visit participation",
 							startTime : DateReplaceTime(visit.startDate, "08:30"),
@@ -174,6 +176,7 @@ function getMyVisits(thisUser, timeline, limit){
 						logger.dump('test', 2,'Check Visit invitees',visit.invitees, thisUser._id, arrContains(visit.invitees, thisUser._id))
 						if(arrContains(visit.invitees, thisUser._id)){
 							var thisOne = {
+							    id : visit._id,
 								type: "Visit",
 								title: "Full Visit participation",
 								startTime : DateReplaceTime(visit.startDate, "08:30"),
@@ -195,6 +198,7 @@ function getMyVisits(thisUser, timeline, limit){
 							logger.dump('test', 4,'session owner', thisUser._id,thisSession.session.owner, stringCmp(thisUser._id,thisSession.session.owner));
 							if(stringCmp(thisUser._id,thisSession.session.owner)){
 								var thisOne = {
+									id : thisSession._id,
 									startTime : thisSession.session.startTime,
 									endTime : thisSession.session.endTime,
 									type : thisSession.session.type,
@@ -207,6 +211,7 @@ function getMyVisits(thisUser, timeline, limit){
 							logger.dump('test', 4,'session supporter',thisUser._id,thisSession.session.supporter, stringCmp(thisUser._id, thisSession.session.supporter))
 							if(stringCmp(thisUser._id,thisSession.session.supporter)){
 								var thisOne = {
+									id : thisSession._id,
 									startTime : thisSession.session.startTime,
 									endTime : thisSession.session.endTime,
 									type : thisSession.session.type,
@@ -220,6 +225,7 @@ function getMyVisits(thisUser, timeline, limit){
 							if(thisSession.invitees !== undefined){
 								if(arrContains(thisSession.invitees, thisUser._id)){
 									var thisOne = {
+										id : thisSession._id,
 										startTime : thisSession.session.startTime,
 										endTime : thisSession.session.endTime,
 										type : thisSession.session.type,

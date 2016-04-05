@@ -14,7 +14,7 @@
 	<!-- application assets  -->
 	<%-locals.appAssets%>
 <style>.sb-profile{
-  padding-top: 45px;
+  padding-top: 0px;
 }
 .pg-content{
 
@@ -175,6 +175,10 @@
         margin-right: 0;
     }
 }
+#sb-wrapper h1{
+  color: #006699;
+  padding-left: 30px;
+}
 
 </style>
 </head>
@@ -183,7 +187,7 @@
 	<div id="page">
 
 		<!-- Sidebar -->
-		<div id="sb-wrapper">
+		<div id="sb-wrapper"><h1>Visit Portal</h1>
 		    <div class="sb-profile">
 				<%if (locals.user !== undefined) { %>
 				<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>

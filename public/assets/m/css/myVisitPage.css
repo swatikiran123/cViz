@@ -197,6 +197,7 @@ ul {
                     color: #ef2525;
                     font-size: 1.5em;
                 }
+                
                 .session-field {
                     border-bottom: #d0d0d0 solid 0.5px;
                     margin: 0;
@@ -205,7 +206,46 @@ ul {
                         /* margin-top: -5px;*/
                     }
                     .sessionprimg{
-                    }                    }
+                    }                    
+                    .session-field {
+                    border-bottom: 0 solid 0.5px;
+                    margin: 0;
+                    padding: 0px 0;}
+                                  
+                
+                .session-time {
+                    color: 0;
+                    font-size: 0em;
+                }
+                .session-name {
+                    font-family: robotoRegular;
+                    color: 0;
+                    font-size: 0em;
+                }
+.sessiondiv{
+    padding-top:2px;
+    padding-bottom: 20px;
+   
+    border-bottom: #D3D3D3 solid 0.5px;
+}
+.sessiontitle{
+    color: red;
+   font-size: 20px;
+  
+}
+.sessionday{
+    color: blue;
+
+}
+.sessionrole{
+    font-family: robotoRegular;
+}
+.sessiontime{
+font-family: robotoRegular;
+}
+.yp{
+font-family: robotoRegular;
+}
                 
                 .session-time {
                     color: #777777;
