@@ -73,12 +73,10 @@ function getMyVisits(thisUser, timeline, limit){
 
 			var projected = _(userSessions).chain().flatten().pluck('visit').unique().value();
 			logger.Json('test',projected);
-			var sessionVisits = (projected);
-			// ToDo:: Filter to unique records fails here...
-			//		implement this to improve performance
-			// var sessionVisits = arrUnique(projected);
-			// logger.writeLine('test',0, 'Unique sessionVisits');
-			// logger.Json('test',sessionVisits);
+
+			var sessionVisits = arrUnique(projected);
+			logger.writeLine('test',0, 'Unique sessionVisits');
+			logger.Json('test',sessionVisits);
 
 			logger.dump('test', 1,"Checking user role...")
 			if( secure.isInAnyGroups(thisUser, "customer"))	{
@@ -104,6 +102,7 @@ function getMyVisits(thisUser, timeline, limit){
 						, {'client.globalDelivery': userId}
 						, {'client.cre': userId}
 						, {'_id': { $in: sessionVisits }}
+						, {'invitees': userId }
 					]
 				};
 			} // end of secure if
@@ -130,7 +129,11 @@ function getMyVisits(thisUser, timeline, limit){
 						logger.Json('test',visitsByTimeline)
 		       	deferred.resolve(visitsByTimeline);
 				 	}
-			}); // end of model exec
+			}) // end of model exec
+			// .catch(function (err) {
+			// 	logger.writeLine("Error " + err);
+			// 	console.log(err.stack)
+			// });
 
 			function transform(visits){
 
@@ -345,7 +348,11 @@ function getMyVisits(thisUser, timeline, limit){
 					})
 				);
 			}
-		}); //end of getUserSessions
+		}) //end of getUserSessions
+		.catch(function (err) {
+			logger.writeLine("Error " + err);
+			console.log(err.stack)
+		});
     return deferred.promise;
 } // getAll method ends
 
@@ -353,8 +360,9 @@ function getMyVisits(thisUser, timeline, limit){
 function getUserSessions(userId){
 	var filter = {
 		$or: [
-			{'session.owner': userId},
-			{'session.supporter': userId}
+			{'session.owner': userId}
+			, {'session.supporter': userId}
+			, {'invitees': userId }
 		]
 	};
 
