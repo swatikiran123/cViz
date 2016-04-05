@@ -402,6 +402,7 @@ function getExecsById(id){
     .populate('anchor')
     .populate('client')
     .populate('visitors.visitor')
+    .populate('invitees.invite')
     .exec(function (err, item) {
         if(err) {
             console.log(err);

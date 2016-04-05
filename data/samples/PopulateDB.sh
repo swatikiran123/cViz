@@ -40,9 +40,12 @@ mongoimport --db cViz-Test --collection city_facts --file jsonFiles/cityFacts.js
 
 echo
 echo Creating FactSheets Collection
-mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles/factSheets.json --type json --jsonArray
+mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles/factSheet.json --type json --jsonArray
 
 
+echo
+echo Creating Feedback-Defs Collection
+mongoimport --db cViz-Test --collection feedbackdefs --file jsonFiles/feedbackDef.json --type json --jsonArray
 
 echo
 sleep

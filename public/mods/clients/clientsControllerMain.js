@@ -18,7 +18,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     $scope.offerings=response.values;
   });
 
-  $http.get('/api/v1/secure/lov/verticals').success(function(response) {
+  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
     $scope.vertical=response.values;
   });
 
