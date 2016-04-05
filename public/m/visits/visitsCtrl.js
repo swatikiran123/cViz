@@ -24,6 +24,15 @@ angular.module('visits')
 		console.log("setting timeline to " + $scope.timeline )
 		$scope.visitBatch = $scope.allVisits[$scope.timeline];
 	}
+	  $scope.getSession = function(item1){
+	  	console.log('helow'+item1);
+	  	console.log('helow'+item1.type);
+	  	 if(item1.type=== "visit"){
+       $location.path("/sessions/" +item1.id);}
+       else{
+   $location.path("sessions/" +item1.id+"/details");
+    }
+  }
 
   $http.get('/api/v1/secure/visits/all/my').success(function(response) {
 	    $scope.allVisits = response;

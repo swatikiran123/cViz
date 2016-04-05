@@ -26,7 +26,10 @@ angular.module('visits', ['ngRoute'])
 		templateUrl: '/public/m/visits/visit.html',
 		controller: 'visitCtrl'
 	})
-
+	.when('/visitSessions/:id/details', {
+		templateUrl: '/public/m/sessions/session.html',
+		controller: 'sessionCtrl'
+	})
    .when('/visits/all/my', {
 		templateUrl: '/public/m/visits/myVisits.html',
 		controller: 'myVisitsCtrl'
