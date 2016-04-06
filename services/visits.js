@@ -391,7 +391,8 @@ function getOneById(id){
     .populate('anchor')
     .populate('createBy')
     .populate('client')
-    //.populate('visitors.visitor')
+    .populate('feedbackTmpl')
+    .populate('sessionTmpl')
     .exec(function (err, item) {
         if(err) {
             console.log(err);
