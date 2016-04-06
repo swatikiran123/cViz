@@ -218,7 +218,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     var inData       = $scope.visits;
     inData.schedule = $scope.schedules;
-    console.log("schedulesdata******************:   "+$scope.schedules);
     inData.keynote = $scope.keynotes;
     inData.visitors = $scope.visitors;
     inData.createBy =  $rootScope.user._id;
