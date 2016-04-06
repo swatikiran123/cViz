@@ -36,6 +36,12 @@ String.prototype.compare = function(str){
 }
 
 stringCmp = function(str1, str2){
+	if(str1 === undefined && str2 == undefined)
+		return true;
+
+	if(str1 == undefined || str2 == undefined)
+		return false;
+
 	str1 = JSON.stringify(str1);
 	str2 = JSON.stringify(str2);
 
@@ -54,19 +60,23 @@ String.prototype.containsAny = function(strValues){
 	return false;
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 // Array extension methods
 
 arrContains = function(arr, element){
 	var e = JSON.stringify(element);
-  return arr.indexOf(e) > -1;
+	e = e.replaceAll('"','').trim().toLowerCase();
+  return arr.join(',').indexOf(e) > -1;
 }
 
 arrUnique = function(arr) {
-	logger.writeLine('test',0,'Unique arry...');
     var uarr = [];
     for(var i = 0; i < arr.length; i++) {
-			logger.dump('test',0,arr[i], uarr.contains(arr[i]));
-        if(!uarr.contains(arr[i])) {
+        if(!arrContains(uarr, arr[i])) {
             uarr.push(arr[i]);
         }
     }

@@ -80,13 +80,21 @@ userService.getOneById('A02234567892345678900001')
 			visitService.getMyVisits(thisUser)
 				.then(function(data){
 						if (data){
-							logger.writeJson(data);
-							logger.writeLine('',0,"Docs found: " + data.length);
+							logger.Json(data);
+							logger.writeLine('',0,"Proces complete!!! ");
 						}else {
-								logger.writeJson("Error getting data");
+								logger.Json("Error getting data");
 						}
 				})
+				.catch(function (err) {
+					logger.writeLine("Error " + err);
+					console.log(err.stack)
+				});
 			}
 })
+  .catch(function (err) {
+		logger.writeLine("Error " + err);
+		console.log(err.stack)
+  });
 
 logger.writeLine("Process completed");
