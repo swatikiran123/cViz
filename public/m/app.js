@@ -2,7 +2,7 @@
 
 angular.module('mviz-main', [
 	'appFilters',
-	'home','locator','execBios','header','scroll',"clientInfo"
+	'home','locator','execBios','header','scroll',"clientInfo",'userViewDirective'
 ]);
 
 angular.module('mviz-visits', [
