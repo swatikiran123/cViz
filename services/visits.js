@@ -426,6 +426,7 @@ function getExecsById(id){
         else{
                     cscId.push(transform(item.agm,'Sponsor'));
                     cscId.push(transform(item.anchor,'Anchor'));
+
                     //fetchnig invitees
                       for (var i=0; i<item.invitees.length; i++){
                         cscId.push(transform(item.invitees[i].invite,'Invite'));
@@ -444,7 +445,7 @@ function getExecsById(id){
         .populate('cscPersonnel.industryExec')
         .populate('cscPersonnel.globalDelivery')
         .populate('cscPersonnel.cre')
-               .select('cscPersonnel.salesExec cscPersonnel.accountGM cscPersonnel.industryExec cscPersonnel.globalDelivery cscPersonnel.cre ')
+               .select('name cscPersonnel.salesExec cscPersonnel.accountGM cscPersonnel.industryExec cscPersonnel.globalDelivery cscPersonnel.cre')
                .exec(function (err, val){
                   if(err){
                     console.log(err);
@@ -457,6 +458,7 @@ function getExecsById(id){
                      cscId.push(transform(val.cscPersonnel.industryExec,'Industry Executive'));
                      cscId.push(transform(val.cscPersonnel.globalDelivery,'Global Delivery'));
                      cscId.push(transform(val.cscPersonnel.cre,'CRE'));
+                     client.push({clientName:val.name});
                      });
 
              //fectching owner,suppporter from visitScheduler schema
@@ -494,7 +496,7 @@ function getExecsById(id){
         	}
         	else{
             var typeData={
-                name :(user.name.prefix+" "+user.name.first+" "+user.name.middle+" "+user.name.last+" "+user.name.suffix),
+                name :(user.name),
                 avatar :user.avatar,
                 jobTitle :user.jobTitle,
                 summary :user.summary,
