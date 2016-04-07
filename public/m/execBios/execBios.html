@@ -51,7 +51,7 @@
         <div class="heading">CLIENT REPRESENTATIVES:   
             <b ng-repeat="client in clientData">{{client.clientName}}</b></div>
             <div class="list-group">
-                <div href="#" class="list-group-item" ng-repeat="clientRep in clientData" ng-click="collapseDiv($index,'client')">
+                <div href="#" class="list-group-item" ng-repeat="clientRep in clientData | filter:query" ng-click="collapseDiv($index,'client')">
                     <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                      <userview user-model="clientRep" view-mode="bullet-small"></userview>
                  </div>
@@ -69,7 +69,7 @@
 <div class="csc-india-rep">
     <div class="heading">CSC INDIA REPRESENTATIVES</div>
     <div class="list-group">
-        <div href="#" class="list-group-item" ng-repeat="cscRep in cscData | filter:query" ng-click="collapseDiv($index,'cscRep')">
+        <div href="#" class="list-group-item" ng-repeat="cscRep in cscData track by $index" ng-click="collapseDiv($index,'cscRep')">
             <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                 <userview user-model="cscRep" view-mode="bullet-small"></userview>
             </div>
