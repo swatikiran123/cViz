@@ -29,11 +29,162 @@
     font-family: robotoRegular;
 }
 .divtop{
-    padding-top: 0px;
+    padding-top: 10px;
+    font-size: 1em;
 }
-.header{margin-top: 80px;
+.header{margin-top: 50px;
 position: relative;}
 
+
+
+
+
+.session-description-div{
+    margin-top: 0px;
+}
+.session-contents{
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.session-presenter{
+    width: 98%;
+}
+    .list-group-item {
+        display: inline-block;
+        border: none;
+        border-bottom: 1px solid #dddddd;
+        padding: 0px;
+        border-radius: 0px;
+        width: 100%;}
+
+        .representative-pic {
+            padding: 0px;
+            padding-top: 10px;
+            padding-bottom: 10px;}
+
+            img {
+                width: 60px;
+            }
+        
+        .representative-bios-div {
+            padding-left: 30px;
+            padding-top: 20px;
+        }
+        .representative-name {
+            font-family: workSansLight;;
+            color: #676767;
+        }
+        .representative-designation {
+            font-family: workSansLight;;
+            color: #8a8a8a;
+            font-size: 0.6em;
+            margin-bottom: 12px;
+        }
+        .representative-bios {
+            font-family: robotoRegular;
+            font-size: 0.7em;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        .reach-representative {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+            padding-top: 5px;}
+
+            .reach-representative-text {
+                align-self: center;
+                display: inline-block;
+                font-size: 0.8em;
+                margin-bottom: 12px;
+                color: #8a8a8a;
+            }
+            .tele-link {
+                margin-left: 5px;
+                margin-right: 10px;
+            }
+            .phone {
+                background-image: url(/public/assets/m/rem/phone-icon-20px.png);
+              
+                width: 5px;
+                height: 5px;
+            }
+            .email {
+                background-image: url(asset.png);
+                background-position: -633px -429px;
+                width: 20px;
+                height: 20px;
+            }
+            .rep-hidden-details{
+              padding-left: 100px;
+              padding-right: 0px;
+              margin-right: 0px;
+            }
+        
+        .chevron-div {
+            background: url(/public/assets/m/rem/down-arrow.png) no-repeat;
+            height: 20px;
+            width: 20px;
+            background-size: 18px;
+            margin-top: 30px;
+            padding: 0;
+            margin-left: 25px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        .chevron-down-arrow {
+            /*background: url('up-arrow.png') no-repeat;
+            background-size: 18px;*/
+            -webkit-transform: rotate(-180deg);
+            -moz-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+            margin-top: 15px;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+    
+    .list-group-item:first-child {
+        margin-top: -10px;
+    }
+    .heading {
+        color: #ef2525;
+        font-family: workSansLight;
+        font-size: 1.0em;
+        padding-bottom: 5px;
+    }
+    .csc-india-rep,
+    .client-rep {
+        margin: 10px;
+        background-color: #fff;
+        display: inline-block;
+        padding: 10px;
+        box-shadow: 2px 2px 2px #c1c1c1;
+    }
+    .client-rep {
+        margin-top: 55px;
+        margin-bottom: 0px;
+    }
+      
+
+
+@media (min-width: 992px) {
+    #exec-bios {}
+        .csc-india-rep,
+        .client-rep {
+            display: block;
+        }
+    }
+}
 </style>
 
 
@@ -41,14 +192,11 @@ position: relative;}
 session details page
     </div>
 <div class="divtop">
-
-<h1>Session details</h1>
-
 <div id="session-details-page">
 
     <div class="header">
         <div class="time-session-name-div">
-            <div class="session-time">{{sessions.session.startTime}}</div>
+            <div class="session-time">{{session.session.startTime | date : "dd MMM yyyy"}}</div>
             <div class="session-name">{{session.session.title | uppercase}}</div>
         </div>
         <br>
@@ -57,8 +205,7 @@ session details page
             <div class="feedback-button">Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
         </div>
     </div>
-    <div class="feedback-form">
-    </div>
+   
     <div class="session-contents">
         <div class="session-description-div">
             <div class="session-heading">
@@ -75,44 +222,43 @@ session details page
              Share</div>
             </div>
         </div>
+
         <div class="session-presenter">
             <div class="heading">PRESENTER</div>
-            <div class="presenter-details" ng-repeat="presenter in session.presenter">
-                <div class="presenter-pic col-xs-2 col-sm-1 col-md-1">
-
-                 <img  class="img-circle prestrpic" ng-src="{{presenter.picture}}">
-                </div>
-                <div class="presenter-bios-div col-xs-10 col-sm-11 col-md-11">
-                    <div class="presenter-name">Presenter name</div>
-                    <div class="presenter-designation">presenter designation</div>
-                    <div class="presenter-bios">summary</div>
-                    <div class="reach-presenter">
-                        <div class="reach-presenter-text">Reach him by</div>
-                        <a ng-href="tel: phone" class="tele-link">
-                             <i class="fa fa-phone"></i>
-                        </a>
-                        <a ng-href="mailto: email">
-                               <i class="fa fa-envelope-o"></i>
-                        </a>
-                    </div>
-                </div>
+            <div  ng-repeat="owner in arrayData" ng-click="collapseDiv($index,'client')">
+                  <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                    <userview user-id="owner" view-mode="bullet-small"></userview>
+                  </div>
+                   <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+                    <userview user-id="owner" view-mode="brief-view"></userview>
+              {{owner.type}}
             </div>
-        </div>
-        <!-- <div class="session-participants">
+             <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
+                <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
+             <userview user-id="owner" view-mode="detial-view"></userview>
+                </div>
+
+          <br>
+            </div>
+            </div>
+     
+        <div class="session-participants">
             <div class="heading">PARTICIPANTS</div>
             <div class="list-group">
-                <a href="#" class="list-group-item" ng-repeat="participant in session.participants">
-                    <div class="participant-pic col-xs-2 col-sm-1 col-md-1">
-
-                          <img  class="img-circle prtcptpic" ng-src="{{participant.picture}}">
-                    </div>
-                    <div class="participant-bios-div col-xs-10 col-sm-11 col-md-11">
-                        <div class="participant-name">{{participant.name}}</div>
-                        <div class="participant-designation">{{participant.designation}}</div>
-                    </div>
-                </a>
+                <div  href="#" class="list-group-item" ng-repeat="invite in session.invitees" ng-click="collapseDiv($index,'client1')">
+                  <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                    <userview user-id="invite" view-mode="bullet-small"></userview>
+                  </div>
+                   <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+                    <userview user-id="invite" view-mode="brief-view"></userview>
+            
             </div>
-        </div> -->
+             <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
+                <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client1{{$index}}">
+             <userview user-id="invite" view-mode="detial-view"></userview>
+                </div>
+                
+            </div>
+        </div>
     </div>
-</div>
-</div>
+

@@ -12,14 +12,14 @@
 .heading{
     color: #ef2525;
     font-family: workSansLight;
-    font-size: 1.4em;
+    font-size: 1.0em;
     padding-bottom: 5px;
 }
 .session-heading {
 
     color: #ef2525;
     font-family: workSansLight;
-    font-size: 1.4em;
+    font-size: 1.0em;
     padding-bottom: 5px;
 }
 .reach-presenter {
@@ -111,12 +111,13 @@
 .time-session-name-div {
 
     color: #850057;
-    font-size: 1.4em;
+    font-size: 0.8em;
     display: inline-block;
     width: 100%;
     padding-top: 50px;}
 
     .session-time {
+            color: #850057;
        float: left;
        text-align: right;
        width: 40%;
@@ -125,6 +126,7 @@
    }
 
    .session-name {
+        color: #850057;
        float: left;
        text-align: left;
        font-family: workSansBold;
@@ -340,7 +342,7 @@
                         width: 49.5%;
                     }
                     .session-description-div {
-                        margin-top: 45px;
+                        margin-top: 0px;
                     }
 
                 }

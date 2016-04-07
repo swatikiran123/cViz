@@ -47,12 +47,20 @@
 	</div>
 </div>
 -->
+
+
+
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div scroll id="profile-details">
         <div class="notifications">
-         <div type="button" data-toggle="modal" data-target="#myModal"><img src="/public/assets/m/img/ic/ibox-f.png"></div></div>
+         <!--a type="button" data-toggle="modal" data-target="#myModal"><img src="/public/assets/m/img/ic/ibox-f.png"></a-->
+
+            <div type="button"  data-toggle="modal" data-target="#videoModal"><img src="/public/assets/m/img/ic/ibox-f.png"></div>
+
+<div ng-include src="'/public/m/home/welcome.html'"></div></div>
 
   <!-- Modal -->
-   <div ng-include src="'/public/m/home/welcome.html'"></div>
+ 
 
 
         <div class="profile-pic"><img src="{{user.avatar}}"></div>
@@ -153,3 +161,4 @@
         </div>
     </div>
     </div>
+   
