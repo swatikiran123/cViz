@@ -34,8 +34,13 @@
 </style>
 
 
-<div header showprofile="false" icon="fa fa-line-chart" title1="Executive Bios" title2="visit title">
-    Executive Bios
+<div header showprofile="false" icon="fa fa-line-chart" title1="Executive Bios" title2="visit title" query='query'>
+   <div class="searchView col-xs-12">
+        <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+            <i class="fa fa-search fonticon1"></i>
+            <input type="text" placeholder="Search" ng-model="$parent.query.$" />
+    </div>
+    </div> 
 </div>
 
 <div class="divtop"> 
@@ -64,7 +69,7 @@
 <div class="csc-india-rep">
     <div class="heading">CSC INDIA REPRESENTATIVES</div>
     <div class="list-group">
-        <div href="#" class="list-group-item" ng-repeat="cscRep in cscData track by $index" ng-click="collapseDiv($index,'cscRep')">
+        <div href="#" class="list-group-item" ng-repeat="cscRep in cscData | filter:query" ng-click="collapseDiv($index,'cscRep')">
             <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                 <userview user-model="cscRep" view-mode="bullet-small"></userview>
             </div>
