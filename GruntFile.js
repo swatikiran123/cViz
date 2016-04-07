@@ -121,12 +121,14 @@ copy: {
       src: ['*.js'],
       dest: 'dist/services/'
   },
+   
    views: {
       expand:true,
       cwd: 'views/',
-      src: ['*.ejs', '**/*.ejs', '**/**/*.ejs'],
+      src: ['*.ejs', '**/*.ejs', '**/**/*.ejs','**/*.js'],
       dest: 'dist/views/'
-  }
+  },
+   server: {src: ['server.js'], dest: 'dist/server.js'}
 },
 cssmin: {
   build:{
