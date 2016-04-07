@@ -55,16 +55,16 @@ clients
      
             <div href="#" class="list-group-item"  ng-repeat="client in clientList.cscPersonnel" ng-click="collapseDiv($index,'client')">
             <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <userview user-id="client._id" view-mode="bullet-small"></userview>
+                    <userview user-id="client._id" user-model view-mode="bullet-small"></userview>
 
                 </div>
                <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
-                    <userview user-id="client._id" view-mode="brief-view"></userview>
+                    <userview user-id="client._id" user-model view-mode="brief-view"></userview>
               {{contact.type}}
             </div>
                   <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
                 <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
-             <userview user-id="client._id" view-mode="detial-view"></userview>
+             <userview user-id="client._id" user-model  view-mode="detial-view"></userview>
                 </div>
             </div>
         </div>

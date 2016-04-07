@@ -227,15 +227,15 @@ session details page
             <div class="heading">PRESENTER</div>
             <div  ng-repeat="owner in arrayData" ng-click="collapseDiv($index,'client')">
                   <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <userview user-id="owner" view-mode="bullet-small"></userview>
+                    <userview user-id="owner" user-model view-mode="bullet-small"></userview>
                   </div>
                    <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
-                    <userview user-id="owner" view-mode="brief-view"></userview>
+                    <userview user-id="owner" user-model view-mode="brief-view"></userview>
               {{owner.type}}
             </div>
              <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
                 <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
-             <userview user-id="owner" view-mode="detial-view"></userview>
+             <userview user-id="owner" user-model view-mode="detial-view"></userview>
                 </div>
 
           <br>
@@ -247,15 +247,15 @@ session details page
             <div class="list-group">
                 <div  href="#" class="list-group-item" ng-repeat="invite in session.invitees" ng-click="collapseDiv($index,'client1')">
                   <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <userview user-id="invite" view-mode="bullet-small"></userview>
+                    <userview user-id="invite" user-model  view-mode="bullet-small"></userview>
                   </div>
                    <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
-                    <userview user-id="invite" view-mode="brief-view"></userview>
+                    <userview user-id="invite" user-model view-mode="brief-view"></userview>
             
             </div>
              <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
                 <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client1{{$index}}">
-             <userview user-id="invite" view-mode="detial-view"></userview>
+             <userview user-id="invite" user-model  view-mode="detial-view"></userview>
                 </div>
                 
             </div>
