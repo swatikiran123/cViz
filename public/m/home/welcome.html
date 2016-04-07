@@ -9,11 +9,8 @@
                     <img src="/public/assets/g/imgs/csclogo.png" class="logo">
                     <p>welcomes you !</p>
                 </div>
-                <div class="well well-sm welltext"><i class="fa fa-map-marker"></i> CSC Banglore India &nbsp;&ngsp;&nbsp; <i class="fa fa-sun-o"></i> 34 C/23 C</div>
 
                 <div class="details">
-
-                    <h5>15 dec 2015</h5>
                  <video id="welcome"  controls  autoplay muted>
                         <source src="/public/uploads/video/message.mp4" type="video/mp4">
 
@@ -54,6 +51,6 @@
 $('#videoModal').on('hide.bs.modal', function(e) {    
     var $if = $(e.delegateTarget).find('video');
     var src = $if.attr("src");
-    $if.attr("src", '/empty.html');
+    $if.attr("src", '/public/uploads/video/message.mp4');
     $if.attr("src", src);
 });</script>
