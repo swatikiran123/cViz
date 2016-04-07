@@ -2,14 +2,28 @@ var client=angular.module('clientInfo', ['ngRoute'])
 client.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
-  .when('/clientInfo', {
+ /* .when('/clientInfo', {
+    templateUrl: '/public/m/clientInfo/clientInfo1.html',
+    controller: 'clientInformationCtrl'
+})*/
+
+  .when('/clientInfo/id/:id', {
     templateUrl: '/public/m/clientInfo/clientInfo.html',
     controller: 'clientInformationCtrl'
 })
-  
-
 }])
-client.controller('clientInformationCtrl', function($scope) {
+client.controller('clientInformationCtrl', function($scope, $routeParams, $http) {
+    //$scope.id="a02234567892345678900001";
+    $http.get('/api/v1/secure/clients').success(function(response) {
+        $scope.clientList1 = response;
+    });
+       $http.get('/api/v1/secure/clients/id/' + $routeParams.id).success(function(response) {
+        $scope.clientList = response;
+        console.log($scope.clientList);
+        console.log($scope.clientList.name);
+        console.log($scope.clientList.cscPersonnel.salesExec._id)
+
+    });
 
         angular.element('#hamburger-menu').css('display', 'none');
 
