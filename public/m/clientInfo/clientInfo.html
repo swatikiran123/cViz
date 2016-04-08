@@ -1,4 +1,6 @@
+ 
 
+  <link rel="stylesheet" href="/public/assets/m/css/userview.css">
 
 <style>
 
@@ -32,6 +34,10 @@
 .divtop{
     padding-top: 90px;
 }
+.client-rep {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
 </style>
 
@@ -62,7 +68,6 @@ clients
                 </div>
                <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                     <userview user-id="client._id" user-model view-mode="brief-view"></userview>
-              {{contact.type}}
             </div>
                   <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
                 <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">

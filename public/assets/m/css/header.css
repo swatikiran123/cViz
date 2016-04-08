@@ -51,7 +51,7 @@
   to {height: 0px;}
 }
 .hd-prime{
-    background-color: #ffccff;
+    background-color: #fff;
     position:relative;
     height:100px;
 }
@@ -79,7 +79,9 @@
 }
 .my-visit-sub-header {
     text-align: left;
+    /*background-color: blue;*/
     background: url("/public/uploads/images/hero-bg.jpg") no-repeat;
+    background-size: 100%;
 }
 .profile-details-div {
       
