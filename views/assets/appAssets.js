@@ -231,7 +231,7 @@ module.exports = {
 			"/public/m/sessions/sessions.js",
 			"/public/m/sessions/sessionsCtrl.js",
 			"/public/assets/m/css/sessions.css",
-			"/public/assets/m/css/sessionDetail.css"
+			//"/public/assets/m/css/sessionDetail.css"
 		]
 	},
 

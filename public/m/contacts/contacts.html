@@ -1,3 +1,4 @@
+
 <style>
 .header {
         padding: 10px;
@@ -22,14 +23,15 @@
         .representative-pic {
             padding: 0px;
             padding-top: 10px;
-            padding-bottom: 10px;}
+            padding-bottom: 10px;
+            padding-left: 20px;}
 
             img {
                 width: 60px;
             }
         
         .representative-bios-div {
-            padding-left: 30px;
+            padding-left: 0px;
             padding-top: 20px;
         }
         .representative-name {
@@ -176,40 +178,11 @@
     font-family: robotoRegular;
 }
 .divtop{
-    padding-top: 100px;
+    padding-top: 60px;
 }
 </style>
 
-  <!--div class="header">contactDetails</div>
-    <div class="client-rep">
-        <div class="heading">LOCATION : {{contactList[0].location}}</div>
-        <div class="list-group">
-            <div href="#" class="list-group-item"  ng-repeat="contact in contactList" ng-click="collapseDiv($index,'client')">
-                <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <img  class="img-circle pic" ng-src="{{userModel.avatar}}">
-                   
-                </div>
-                <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
-                    <div class="representative-name">{{userModel.name.first}} {{userModel.name.last}}</div>
-                    <div class="representative-jobTitle">{{userModel.jobTitle}}</div>
-                </div>
-                <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-                <div class="rep-hidden-details collapse col-xs-10 col-sm-10 col-md-10" id="client{{$index}}">
-                    <div class="representative-bios">{{userModel.summary}}</div>
-                    <div class="reach-representative">
-                        <div class="reach-representative-text">Reach him by</div>
-                        <a ng-href="tel: {{clientRep.contactNo}}" class="tele-link">
-                           <i class="fa fa-phone"></i>
-                        </a>
-                        <a ng-href="mailto: {{clientRep.email}}">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div-->
-
+ 
 <div header showprofile="false" icon="fa fa-line-chart" title1="Contact Details" title2="visit title">
 
      <div class="pull-right">
@@ -237,11 +210,11 @@
   	<div class="list-group">
   		<div href="#" class="list-group-item" ng-repeat="contact in contactList" ng-click="collapseDiv($index,'client')">
 
-  			  <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+  			  <div class="representative-pic col-xs-1 col-sm-1 col-md-1">
   					<userview user-id="contact.user" user-model view-mode="bullet-small"></userview>
 
   				</div>
-  			   <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+  			   <div class="representative-bios-div col-xs-10 col-sm-10 col-md-10">
   					<userview user-id="contact.user" user-model view-mode="brief-view"></userview>
               {{contact.type}}
             </div>

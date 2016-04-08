@@ -122,7 +122,7 @@ div#profile-details .profile-location img {
   position: absolute;
 }
 
-#profile-details .notifications img {
+#profile-details .notifications .image{
   width: 30px;
   padding-right: 5px;
 }
@@ -256,9 +256,10 @@ span.menuName {
   .session-overview .row .next-session {
     font-size: 1.1em;
   }
+ 
 
   .session-overview .row {
-    padding-top: 20px;
+    padding-top: 15px;
     padding-bottom: 10px;
   }
 
@@ -279,9 +280,12 @@ span.menuName {
   }
 
   .menu-circle-icon {
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
   }
+  #menu .row {
+    padding-top: 0px;
+}
 
   .factsheets,
   .spoc,
@@ -293,8 +297,30 @@ span.menuName {
   }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 424px) {
+/*media querries */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 480px) {
   .session-overview .row .current-session,
+  .session-overview .row .next-session {
+    font-size: 0.75em;
+  }
+
+  .menu-circle-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .factsheets,
+  .spoc,
+  .account-info,
+  .feedback,
+  .exec-bio,
+  .past-visits {
+    background-size: 36px;
+  }
+}
+@media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
+    .session-overview .row .current-session,
   .session-overview .row .next-session {
     font-size: 0.75em;
   }
@@ -312,58 +338,11 @@ span.menuName {
   .past-visits {
     background-size: 36px;
   }
-}
-@media only screen and (min-device-width: 425px) and (max-device-width: 767px) {
-}
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-  .session-overview .row .next-session div {
-    margin-left: 30px;
-  }
-
-  .session-overview .row .current-session div {
-    margin-right: 88px;
-  }
-
-  .clocksDisplay {
-    padding-bottom: 60px;
-  }
-}
-
-@media only screen and (min-device-width: 768px) {
-  .clock {
+   .clock {
     width: 80px;
     height: 80px;
   }
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-  .session-overview .row .next-session div {
-    margin-left: 88px;
-  }
-
-  .session-overview .row .current-session div {
-    margin-right: 200px;
-  }
-
-  .clocksDisplay {
-    padding-top: 30px;
-    padding-bottom: 70px;
-  }
-  
-  div#profile-details .profile-location img {
-    width: 18px;
-  }
-}
-
-
-
-/*navbar Styles*/
-
-
-
-/* style for left pull menu */
-@media screen and (max-width: 768px) {
-  .side-collapse-container{
+    .side-collapse-container{
       width:100%;
       position:relative;
       left:0;
@@ -386,3 +365,65 @@ span.menuName {
       width:0;
   }
 }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .clock-container{
+    height: 40px;
+    padding-top: 10px;
+   
+  }
+  .profile-details{
+    padding-top: 400px;
+  }
+  .session-overview .row .next-session div {
+    margin-left: 30px;
+
+  }
+
+  .session-overview .row .current-session div {
+    margin-right: 88px;
+  }
+
+  .clocksDisplay {
+    padding-bottom: 10px;
+  }
+  #menu{
+    margin-top: 30px;}
+#menu .row div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 0.85em;
+    letter-spacing: 2px;
+}
+.clocksDisplay {
+    padding-top: 30px;
+    padding-bottom: 70px;
+  }
+  
+
+}
+
+
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+  
+  .session-overview .row .next-session div {
+    margin-left: 88px;
+  }
+
+  .session-overview .row .current-session div {
+    margin-right: 200px;
+  }
+
+  .clocksDisplay {
+    padding-top: 30px;
+    padding-bottom: 70px;
+  }
+  
+
+  div#profile-details .profile-location img {
+    width: 18px;
+  }
+}
+
+
+
