@@ -1,4 +1,4 @@
-<link href="/public/assets/m/css/execBios.css">
+<!--link href="/public/assets/m/css/execBios.css"-->
 
 <style>
 
@@ -27,13 +27,19 @@
     }
     
     .divtop {
-        padding-top: 140px;
+        padding-top: 60px;
     }
     
 
-.divtop{
-    padding-top: 60px;
+@media (min-width: 992px) {
+    #exec-bios {}
+        .csc-india-rep,
+        .client-rep {
+            display: block;
+        }
+    }
 }
+
  .hd-sticky {
         background-color: ;
         position: relative;
@@ -53,6 +59,9 @@
 
 <div class="divtop"> 
 
+
+
+
     <div class="header">Executive Bio's</div>
     <br><br><br>
     <div class="client-rep">
@@ -60,15 +69,15 @@
             <b ng-repeat="client in clientData">{{client.clientName}}</b></div>
             <div class="list-group">
                 <div href="#" class="list-group-item" ng-repeat="clientRep in clientData | filter:query" ng-click="collapseDiv($index,'client')">
-                    <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                    <div class="representative-pic col-xs-1 col-sm-1 col-md-1">
                      <userview user-model="clientRep" view-mode="bullet-small"></userview>
                  </div>
                  <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                    <userview user-model="clientRep" view-mode="brief-view"></userview>
-                   <div class="representative-role">{{clientRep.role}}</div>
+                   {{clientRep.role}}
                </div>
                <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-               <div class="rep-hidden-details collapse col-xs-10 col-sm-10 col-md-10" id="client{{$index}}">
+               <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
                 <userview user-model="clientRep" view-mode="detial-view"></userview>
             </div>
             </div>
@@ -83,10 +92,10 @@
             </div>
             <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                 <userview user-model="cscRep" view-mode="brief-view"></userview>
-                <div class="representative-role">{{cscRep.role}}</div>
+             {{cscRep.role}}
             </div>
-            <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-            <div class="rep-hidden-details collapse col-xs-10 col-sm-10 col-md-10" id="cscRep{{$index}}">
+            <div class="chevron-div col-xs-1 col-sm-1 col-md-1"></div>
+            <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="cscRep{{$index}}">
                 <userview user-model="cscRep" view-mode="detial-view"></userview>
          </div>
          </div>
