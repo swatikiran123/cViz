@@ -183,7 +183,8 @@ module.exports = {
 		"dev":[
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
-			"/public/assets/m/css/header.css"
+			"/public/assets/m/css/header.css",
+			//"/public/assets/m/css/userview.css"
 		],
 		"prod":[
 
@@ -231,7 +232,7 @@ module.exports = {
 			"/public/m/sessions/sessions.js",
 			"/public/m/sessions/sessionsCtrl.js",
 			"/public/assets/m/css/sessions.css",
-			//"/public/assets/m/css/sessionDetail.css"
+			"/public/assets/m/css/sessionDetail.css"
 		]
 	},
 
@@ -254,7 +255,6 @@ module.exports = {
 		"dev":[
 			"/public/m/contacts/contacts.js",
 			"/public/m/contacts/contactsCtrl.js"
-			// "/public/assets/m/css/userview.css"
 			]
 		}
 	}
