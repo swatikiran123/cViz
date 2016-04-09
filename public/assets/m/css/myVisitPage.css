@@ -205,23 +205,7 @@ img {
                         img {
                             /* margin-top: -5px;*/
                         }
-                        .sessionprimg{
-                        }                    
-                        .session-field {
-                            border-bottom: 0 solid 0.5px;
-                            margin: 0;
-                            padding: 0px 0;}
-
-
-                            .session-time {
-                                color: 0;
-                                font-size: 0em;
-                            }
-                            .session-name {
-                                font-family: robotoRegular;
-                                color: 0;
-                                font-size: 0em;
-                            }
+                      
                             .sessiondiv{
                                 padding-top:2px;
                                 padding-bottom: 20px;
@@ -230,32 +214,28 @@ img {
                             }
                             .sessiontitle{
                                 color: red;
-                                font-size: 20px;
+                                font-size: 16px;
 
                             }
                             .sessionday{
                                 color: blue;
+                                font-size: 12px;
 
                             }
                             .sessionrole{
                                 font-family: robotoRegular;
+                                font-size: 14px;
+                                padding-right: 30px;
                             }
                             .sessiontime{
                                 font-family: robotoRegular;
+                                font-size: 12px;
                             }
                             .yp{
                                 font-family: robotoRegular;
                             }
 
-                            .session-time {
-                                color: #777777;
-                                font-size: 1.2em;
-                            }
-                            .session-name {
-                                font-family: robotoRegular;
-                                color: #444444;
-                                font-size: 1.2em;
-                            }
+                        
 
                             .img-vertical-align {
                                 position: absolute;
@@ -278,3 +258,125 @@ img {
                                         margin-left: 0px;
                                     }
                                 }
+
+
+            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                   .sessiondiv{
+                                padding-top:2px;
+                                padding-bottom: 20px;
+
+                                border-bottom: #D3D3D3 solid 0.5px;
+                            }
+                            .sessiontitle{
+                                color: red;
+                                font-size: 14px;
+
+                            }
+                            .sessionday{
+                                color: blue;
+                                font-size: 10px;
+
+                            }
+                            .sessionrole{
+                                font-family: robotoRegular;
+                                font-size: 12px;
+                                padding-right: 0px;
+                            }
+                            .sessiontime{
+                                font-family: robotoRegular;
+                                font-size: 10px;
+                            }
+                            .yp{
+                                font-family: robotoRegular;
+                            }
+                            .presenterimg{
+                              width:10px;
+                              height:10px;
+                            }
+ .upcoming-sessions {
+                    border-top: #b5b5b5 solid 1px;
+                    padding: 10px 0;
+                    margin-top: 10px;
+                    font-family: robotoBold;
+                    color: #888888;
+                    /*font-size: 1.14em;*/
+                    font-size: 1em;}
+                    h3 {
+                        font-family: workSansLight;
+                        color: #ef2525;
+                        font-size: 1.5em;
+                    }
+
+                    .session-field {
+                        border-bottom: #d0d0d0 solid 0.5px;
+                        margin: 0;
+                        padding: 10px 0;}
+                        img {
+                            /* margin-top: -5px;*/
+                        }
+}
+@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+    .sessiondiv{
+                                padding-top:2px;
+                                padding-bottom: 20px;
+
+                                border-bottom: #D3D3D3 solid 0.5px;
+                            }
+                            .sessiontitle{
+                                color: red;
+                                font-size: 14px;
+
+                            }
+                            .sessionday{
+                                color: blue;
+                                font-size: 10px;
+
+                            }
+                            .sessionrole{
+                                font-family: robotoRegular;
+                                font-size: 12px;
+                                padding-right: 0px;
+                            }
+                            .sessiontime{
+                                font-family: robotoRegular;
+                                font-size: 10px;
+                            }
+                            .yp{
+                                font-family: robotoRegular;
+                            }
+                            .presenterimg{
+                              width:10px;
+                              height:10px;
+                            }
+ .upcoming-sessions {
+                    border-top: #b5b5b5 solid 1px;
+                    padding: 10px 0;
+                    margin-top: 10px;
+                    font-family: robotoBold;
+                    color: #888888;
+                    /*font-size: 1.14em;*/
+                    font-size: 1em;}
+                    h3 {
+                        font-family: workSansLight;
+                        color: #ef2525;
+                        font-size: 1.5em;
+                    }
+
+                    .session-field {
+                        border-bottom: #d0d0d0 solid 0.5px;
+                        margin: 0;
+                        padding: 10px 0;}
+                        img {
+                            /* margin-top: -5px;*/
+                        }
+
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+}
+
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+  
+
+}
