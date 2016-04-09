@@ -34,11 +34,11 @@
     }
 </style>
 <div header showprofile="false" icon="fa fa-calendar" title1="myvisits page" title2="agenda" query='query'>
-    <div class="searchView col-xs-12">
-        <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+    <div class="searchViewHead col-xs-12">
+        <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
+    
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" ng-model="$parent.query" />
-
 
             <div class="pull-right">{{visitBatch.start | date:"dd MMM"}} - {{visitBatch.end | date:"dd MMM"}} ({{visitBatch.visits.length}})
 
@@ -58,7 +58,7 @@
 
             </div>
 
-
+</div>
         </div>
     </div>
 </div>
@@ -101,28 +101,26 @@
                     <div ng-repeat="item in visit.involved">
 
                         <div ng-click="getSession(item)">
+                       
 
                             <p class="sessiondiv">
 
-                                <div> <span class="sessionday">{{item.startTime | DateFormat:"ddd, DD MMM"}}</span>
+                                <div > <span class="sessionday">{{item.startTime | DateFormat:"ddd, DD MMM"}}</span>
                                     <span class="sessiontitle">  &nbsp;&nbsp;{{item.title}}</span>
 
                                 </div>
 
                                 <span class="sessiontime pull-left">
-                       {{item.startTime | date : "HH:mm"}}&nbsp;
-                        {{item.endTime | duration:item.startTime}}
-                       </span>
+                               {{item.startTime | date : "HH:mm"}}&nbsp;
+                                {{item.endTime | duration:item.startTime}}
+                               </span>
 
                                 <span class="pull-right">
-                       <span class="sessionrole">
-                         <img src="/public/assets/m/rem/presenter-icon.png">
-                          {{item.role}} for {{item.type}}</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                                </span>
-
-
-
+                               <span class="sessionrole">
+                                 <img class="presenterimg" src="/public/assets/m/rem/presenter-icon.png">
+                                  {{item.role}} for {{item.type}}</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                        </span>
                             </p>
                         </div>
                     </div>

@@ -2,16 +2,29 @@ var client=angular.module('clientInfo', ['ngRoute'])
 client.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
- /* .when('/clientInfo', {
-    templateUrl: '/public/m/clientInfo/clientInfo1.html',
+ .when('/clientInfo', {
+    templateUrl: '/public/m/clientInfo/staticClientInfo.html',
     controller: 'clientInformationCtrl'
-})*/
+})
 
   .when('/clientInfo/id/:id', {
     templateUrl: '/public/m/clientInfo/clientInfo.html',
     controller: 'clientInformationCtrl'
 })
+  .when('/clientInfo/id', {
+        templateUrl: '/public/m/dummy.html',
+        controller: 'clientBlankCtrl'
+    })
 }])
+
+client.controller('clientBlankCtrl', function($scope, $routeParams, $http, $location) {
+    console.log("client  blank controller running");
+        $http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+                //console.log("next visit id " + "#/sessions/" + response.visits._id));
+        console.log(response.visits._id);
+                $location.path("clientInfo/id/" + response.visits._id);
+        });
+})
 client.controller('clientInformationCtrl', function($scope, $routeParams, $http) {
     //$scope.id="a02234567892345678900001";
     $http.get('/api/v1/secure/clients').success(function(response) {
