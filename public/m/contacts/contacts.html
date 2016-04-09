@@ -1,89 +1,54 @@
-
-<br><link rel="stylesheet" href="/public/assets/m/css/userview.css">
-<style>
-
-/*header styles*/
-
-.tb-big {
-    height: 125px;
-
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    font-size: 1.1em;
-    box-shadow: 2px 2px 5px #676767;
-
-    font-family: robotoRegular;
-}
-
-.tb-small {
-    height: 48px;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    font-size: 1.1em;
-    box-shadow: 2px 2px 5px #676767;
-    font-family: robotoRegular;
-}
-.divtop{
-    padding-top: 60px;
-}
- .client-rep {
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-
 </style>
-
- 
-<div header showprofile="false" icon="fa fa-line-chart" title1="Contact Details" title2="visit title">
-
-     <div class="pull-right">
-
-                <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                    <i class="fa fa-th-large fonticon1"></i>
-                    <span class="caret"></span>
-                </div>
-
-                <ul class="dropdown-menu">
-                    <li><a href"#">Hyderabad</a></li>
-                    <li><a href"#">Banglore</a></li>
-                    <li><a href"#">Noida</a></li>
-                </ul>
-
-            </div>
-
-
+<div header showprofile="false" icon="fa fa-phone" title1="mycontacts page" title2="contacts">  
+ <div class="searchView col-xs-12">
+   <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+    <i class="fa fa-search fonticon1"></i>
+    <input type="text" placeholder="Search" value="" name="search" id="search">
+    <div class="pull-right">
+        <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+            LOCATION
+            <span class="caret"></span>
+        </div>
+        <ul class="dropdown-menu">
+            <div ng-repeat="city in cities">
+                <li><a href="#/contacts/{{city}}">{{city}}</li></div>
+            </ul>
+        </div>
     </div>
-<div class="divtop">
-  <div class="header">CONTACT DETAILS</div>
-  <div class="client-rep">
-  	<div class="heading">LOCATION : {{contactList[0].location}}</div>
-  	
-  	<div class="list-group">
-  		<div href="#" class="list-group-item" ng-repeat="contact in contactList" ng-click="collapseDiv($index,'client')">
+</div>
+</div>
 
-  			  <div class="representative-pic col-xs-1 col-sm-1 col-md-1">
-  					<userview user-id="contact.user" user-model view-mode="bullet-small"></userview>
-
-  				</div>
-  			   <div class="representative-bios-div col-xs-10 col-sm-10 col-md-10">
-  					<userview user-id="contact.user" user-model view-mode="brief-view"></userview>
-              {{contact.type}}
+<div class="divtop">Contacts - {{contactList[0].location}}</div>
+<div id="spoc-page">
+    <div class="spoc-details-container">
+        <div class="heading1">CONTACT YOUR SPOC</div>
+        <div class="spoc-details" ng-repeat="spoc in contactList">
+            <div class="spoc-pic col-xs-2 col-sm-2 col-md-2">
+                <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
-  				  <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-                <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
-             <userview user-id="contact.user" user-model view-mode="detial-view"></userview>
+            <div class="spoc-bios-div col-xs-10 col-sm-10 col-md-10">
+                <div class="spoc-name">{{spoc.name}}</div>
+                <div class="spoc-designation">{{spoc.jobTitle}}</div>
+                <div class="spoc-bios">{{spoc.summary}}</div>
+                <div class="reach-spoc-phone">
+                    <div class="number">{{spoc.contactNo}}</div>
+                    <a class="col-xs-6 col-sm-6 col-md-6 call-text" ng-href="tel: {{spoc.contactNo}}">CALL</a>
+                    <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{spoc.contactNo}}">MESSAGE</a>
                 </div>
-
-
-  				 
-  				</div>  			
-  			</div>
-  		</div>
-  	</div>
-  </div>
+                <div class="reach-spoc-email">
+                    <div class="email">{{spoc.email}}</div>
+                    <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
+                </div>
+                <div class="download-contact glyphicon glyphicon-paperclip">
+                    <div class="download-text">Download Contact</div>
+                </div>
+            </div>
+            Role: {{spoc.type}}
+        </div>
+    </div>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#page").toggleClass("toggled");
+    });
+    </script>
