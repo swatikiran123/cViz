@@ -198,7 +198,8 @@ module.exports = {
 			"/public/m/home/homeCtrl.js",
 			"/public/d/geoLocation/locator.js",
 			"/public/d/geoLocation/locator-tpl.js",
-			"/public/assets/m/css/welcome.css"
+			"/public/assets/m/css/welcome.css",
+			"/public/assets/m/css/thankyou.css"
 		]
 
 	},
@@ -250,6 +251,14 @@ module.exports = {
 		    "/public/m/execBios/execBiosCtrl.js"
 		    ]
 		 },
+
+   "m-feedback":{
+		"dev":[
+			"/public/assets/m/css/overallFeedback.css",
+		    "/public/m/overallFeedback/overallFeedback.js"
+		    ]
+		 },
+		 
 
 	"m-contacts":{
 		"dev":[
