@@ -1,54 +1,46 @@
- 
-
-  <link rel="stylesheet" href="/public/assets/m/css/userview.css">
-
-<style>
 
 
+<link rel="stylesheet" href="/public/assets/m/css/userview.css">
 
-.tb-big {
-    height: 140px;
+<style> 
 
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    font-size: 1.1em;
-    box-shadow: 2px 2px 5px #676767;
+    .tb-big {
+        height: 140px;
 
-    font-family: robotoRegular;
-}
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
 
-.tb-small {
-    height: 65px;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    font-size: 1.1em;
-    box-shadow: 2px 2px 5px #676767;
-    font-family: robotoRegular;
-}
-.divtop{
-    padding-top: 90px;
-}
-.client-rep {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
+        font-family: robotoRegular;
+    }
 
+    .tb-small {
+        height: 65px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+    .divtop{
+        padding-top: 90px;
+    }
 
 </style>
 
 
-<div header showprofile="false" icon="fa fa-line-chart" title1="client details page" title2="client details">
-clients
-    </div>
-    <div class="divtop">
-  <div id="client-information">
-    <div class="header2">Client Information</div>
+<div header showprofile="false" icon="fa fa-line-chart" title1="client details page " title2="client details"></div>
+
+<div class="divtop">
+  <!-- <div id="client-information">
+    <div class="heading">CLIENT INFORMATION</div>
     <div class="company-logo-category">
         <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1 company-logo">
             <img src="/public/uploads/images/industry/diversified.png">
@@ -57,68 +49,80 @@ clients
             <div class="client-category">{{clientList.name}}</div>
             <div class="team-size">Team Size <span class="size-figure">355</span></div>
         </div>
-    </div></div>
-    <div class="client-rep">
-        <div class="heading">CLIENT REPRESENTATIVES</div>
-        <div class="list-group">
-     
-            <div href="#" class="list-group-item"  ng-repeat="client in clientList.cscPersonnel" ng-click="collapseDiv($index,'client')">
-            <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
-                    <userview user-id="client._id" user-model view-mode="bullet-small"></userview>
+    </div>
+</div> -->
 
-                </div>
-               <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
-                    <userview user-id="client._id" user-model view-mode="brief-view"></userview>
+<div class="client-info">
+<div class="heading"> CLIENT INFORMATION </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1 company-logo">
+            <img src="/public/uploads/images/industry/diversified.png">
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10 col-lg-11">
+            <div class="client-category">{{clientList.name}}</div>
+            <div class="team-size">Team Size <span class="size-figure">355</span></div>
+        </div>
+    </div> 
+</div>
+
+<div class="client-rep">
+    <div class="heading">CLIENT REPRESENTATIVES</div>
+
+        <div href="#" class="list-group-item"  ng-repeat="client in clientList.cscPersonnel" ng-click="collapseDiv($index,'client')">
+            <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+                <userview user-id="client._id" user-model view-mode="bullet-small"></userview>
+
             </div>
-                  <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
-                <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
-             <userview user-id="client._id" user-model  view-mode="detial-view"></userview>
+            <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
+                <userview user-id="client._id" user-model view-mode="brief-view"></userview>
+            </div>
+            <div class="chevron-div col-xs-2 col-sm-1 col-md-1 " ></div>
+            <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
+               <userview user-id="client._id" user-model  view-mode="detial-view"></userview>
+           </div>
+       </div>
+</div>
+<div class="past-events">
+    <div class="heading">PAST EVENTS</div>
+    
+        <div href="#" class="list-group-item" ng-repeat="pastEve in past_events" ng-click="collapseDiv($index,'past')">
+            <div class="past-visit-date col-xs-4 col-sm-2 col-md-1">
+                {{pastEve.visit_date}}
+            </div>
+            <div class="past-visit-name col-xs-6 col-sm-9 col-md-10">
+                {{pastEve.visit_name}}
+            </div>
+            <div class="chevron-div col-xs-2 col-sm-1 col-md-1 "></div>
+            <div class="past-visit-details col-xs-12 col-sm-12 col-md-12" id="past{{$index}}">
+                {{pastEve.visit_details}}
+                <div class="past-visits-links">
+                    <a href="#/agendaOverview" ng-click="$event.stopPropagation()">VIEW AGENDA</a>
+                    <a href="#" ng-click="$event.stopPropagation()">VIEW FEEDBACK</a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="past-events">
-        <div class="heading">PAST EVENTS</div>
-        <div class="list-group">
-            <div href="#" class="list-group-item" ng-repeat="pastEve in past_events" ng-click="collapseDiv($index,'past')">
-                <div class="past-visit-date col-xs-4 col-sm-2 col-md-1">
-                    {{pastEve.visit_date}}
-                </div>
-                <div class="past-visit-name col-xs-6 col-sm-9 col-md-10">
-                    {{pastEve.visit_name}}
-                </div>
-                <div class="chevron-div1 col-xs-2 col-sm-1 col-md-1 glyphicon glyphicon-menu-down"></div>
-                <div class="past-visit-details col-xs-12 col-sm-12 col-md-12" id="past{{$index}}">
-                    {{pastEve.visit_details}}
-                    <div class="past-visits-links">
-                        <a href="#/agendaOverview" ng-click="$event.stopPropagation()">VIEW AGENDA</a>
-                        <a href="#" ng-click="$event.stopPropagation()">VIEW FEEDBACK</a>
-                    </div>
-                </div>
+    
+</div>
+<div class="current-engagement">
+    <div class="heading">CURRENT ENGAGEMENT</div>
+    
+        <div href="#" class="list-group-item" ng-repeat="curPrjt in current_engagement" ng-click="collapseDiv($index,'project')">
+            <div class="cur-project-name col-xs-10 col-sm-11 col-md-11">
+                {{curPrjt.project_name}}
+            </div>
+            <div class="chevron-div col-xs-2 col-sm-1 col-md-1 "></div>
+            <div class="cur-project-details col-xs-12 col-sm-12 col-md-12" id="project{{$index}}">
+                {{curPrjt.project_details}}
             </div>
         </div>
-    </div>
-    <div class="current-engagement">
-        <div class="heading">CURRENT ENGAGEMENT</div>
-        <div class="list-group">
-            <div href="#" class="list-group-item" ng-repeat="curPrjt in current_engagement" ng-click="collapseDiv($index,'project')">
-                <div class="cur-project-name col-xs-10 col-sm-11 col-md-11">
-                    {{curPrjt.project_name}}
-                </div>
-                <div class="chevron-div1 col-xs-2 col-sm-1 col-md-1 glyphicon glyphicon-menu-down"></div>
-                <div class="cur-project-details col-xs-12 col-sm-12 col-md-12" id="project{{$index}}">
-                    {{curPrjt.project_details}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="prime-competitors">
-        <div class="heading">PRIME COMPETITORS</div>
-        <div class="competitors-list">
-            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-1 img-div" ng-repeat="competitor in clientList.competitors">
-                <img ng-src="{{competitor.image}}">
-                {{competitor}}
-            </div>
+    
+</div>
+<div class="prime-competitors">
+    <div class="heading">PRIME COMPETITORS</div>
+    <div class="competitors-list">
+        <div class="competitor col-xs-4 col-sm-3 col-md-3 col-lg-1 img-div" ng-repeat="competitor in clientList.competitors">
+            <img ng-src="{{competitor.image}}">
+            {{competitor}}
         </div>
     </div>
 </div>

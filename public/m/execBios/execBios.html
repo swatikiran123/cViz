@@ -3,7 +3,7 @@
 <style>
 
  .tb-big {
-        height: 150px;
+        height: 160px;
         background-color: #fff;
         position: fixed;
         top: 0;
@@ -30,33 +30,534 @@
         padding-top: 60px;
     }
     
+     .hd-sticky {
+        background-color:;
+        position: relative;
+        height: 0px;
+        padding-top: 0px;
+    }
 
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
     #exec-bios {}
         .csc-india-rep,
         .client-rep {
             display: block;
         }
     }
+}*/
 
 
- .hd-sticky {
-        background-color:;
-        position: relative;
-        height: 0px;
-        padding-top: 0px;
+
+
+@media only screen and (max-device-width: 320px){
+    
+    .tb-big {
+        height: 170px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
     }
+
+    .searchView{
+        padding: 0px;
+    }
+
+    .heading {
+        font-size: 1em;
+    }
+
+    .client-rep {
+        margin-top: 50px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-name {
+        font-family: robotoBold;
+        font-size: 0.8em;
+        color: #676767;
+    }
+
+    .representative-designation {
+            font-family: robotoBold;
+            color: #8a8a8a;
+            font-size: 0.6em;
+            margin-bottom: 12px;
+        }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 40px;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 0.8em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  0.8em;
+        color: blue;
+    }
+
+    .img-circle {
+            width: 50px;
+            height: 50px;
+        }
+}
+
+@media only screen and (min-device-width: 321px) and (max-device-width: 374px) {
+    
+    .tb-big {
+        height: 130px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+
+    .heading {
+        font-size: 1em;
+    }
+
+    .client-rep {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 40px;
+    }
+
+    .representative-name {  
+        font-size: 0.9em;        
+    }
+
+    .representative-designation {
+        font-size: 0.7em;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 0.8em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  0.8em;
+        color: blue;
+    }
+
+    .img-circle {
+            width: 50px;
+            height: 50px;
+        }
+}
+
+/*Media queries form 375px - 480px*/
+@media only screen and (min-device-width: 375px) and (max-device-width: 480px) {
+
+    .tb-big {
+        height: 130px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+
+    .heading {
+        font-size: 1em;
+    }
+
+    .client-rep {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 40px;
+    }
+
+    .representative-name {  
+        font-size: 1em;        
+    }
+
+    .representative-designation {
+        font-size: 0.8em;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 0.8em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  0.8em;
+        color: blue;
+    }
+
+    .img-circle {
+            width: 50px;
+            height: 50px;
+        }
+}
+
+/*media queries from 485 - 768*/
+@media only screen and (min-device-width: 485px) and (max-device-width: 767px) {
+    
+    .tb-big {
+        height: 150px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+
+    .heading {
+        font-size: 1.4em;
+    }
+
+    .client-rep {
+        margin-top: 30px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .img-circle {
+        width: 70px;
+        height: 70px;
+    }
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 40px;
+    }
+
+    .representative-bios {
+        font-size: 1em;
+    }
+
+    .representative-name {  
+        font-size: 1.5em;        
+    }
+
+    .representative-designation {
+        font-size: 1.2em;
+    }
+
+    .reach-representative-text {
+        align-self: center;
+        display: inline-block;
+        font-size: 1.2em;
+        margin-bottom: 1px;
+        color: #8a8a8a;
+    }
+
+    .tele-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.5em;
+    }
+    
+    .email-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.5em;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 1.2em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  1.2em;
+        color: blue;
+    }
+
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .heading {
+        font-size: 1.8em;
+    }
+
+    .client-rep {
+        margin-top: 30px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .img-circle {
+        width: 90px;
+        height: 90px;
+    }
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 60px;
+    }
+
+    .representative-bios {
+        font-size: 1.4em;
+    }
+
+    .representative-name {  
+        font-size: 1.7em;        
+    }
+
+    .representative-designation {
+        font-size: 1.4em;
+    }
+
+    .reach-representative-text {
+        align-self: center;
+        display: inline-block;
+        font-size: 1.5em;
+        margin-bottom: 1px;
+        color: #8a8a8a;
+    }
+
+    .tele-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.8em;
+    }
+    
+    .email-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.8em;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 1.5em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  1.5em;
+        color: blue;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+  
+  .heading {
+        font-size: 2em;
+    }
+
+    .client-rep {
+        margin-top: 30px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+
+    .img-circle {
+        width: 110px;
+        height: 110px;
+    }
+    .representative-pic{
+        padding-left: 0px;
+    }
+
+    .representative-bios-div {
+        padding-right: 0px;
+        padding-left: 60px;
+    }
+
+    .representative-bios {
+        font-size: 1.4em;
+    }
+
+    .representative-name {  
+        font-size: 1.7em;        
+    }
+
+    .representative-designation {
+        font-size: 1.4em;
+    }
+
+    .reach-representative-text {
+        align-self: center;
+        display: inline-block;
+        font-size: 1.5em;
+        margin-bottom: 1px;
+        color: #8a8a8a;
+    }
+
+    .tele-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.8em;
+    }
+    
+    .email-link {
+        margin-left: 10px;
+        margin-right: 10px; 
+        font-size: 1.8em;
+    }
+
+    .client-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        color: blue;
+        font-size: 1.5em;
+    }
+
+    .reach-representative{
+        padding-right: 10px;
+    }
+
+    .csc-india-rep {
+        margin-right: 0px;
+    }
+
+    .csc-rep-role {
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-top: 0px;
+        font-size:  1.5em;
+        color: blue;
+    }
+
+}
 </style>
 
 
 <div header showprofile="false" icon="fa fa-line-chart" title1="Executive Bios" title2="visit title" query='query'>
+<!-- <<<<<<< a2aef6e3c45e00fcdc060ad4669c6a2ea66bc38a -->
      <div class="searchViewHead col-xs-12">
         <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
     
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" ng-model="$parent.query" />
-</div>
+        </div>
     </div> 
+ 
+<!-- ======= -->
+   <!-- <div class="searchView col-xs-12">
+        <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+            <i class="fa fa-search fonticon1"></i>
+            <input type="text" placeholder="Search" ng-model="$parent.query.$" />
+    </div>
+    </div>  -->
+<!-- >>>>>>> Media queries for exe-bios, session-details & client-info -->
 </div>
 
 <div class="divtop"> 
@@ -76,7 +577,7 @@
                  </div>
                  <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                    <userview user-model="clientRep" view-mode="brief-view"></userview>
-                   {{clientRep.role}}
+                   <div class = "client-rep-role">{{clientRep.role}} </div>
                </div>
                <div class="chevron-div col-xs-2 col-sm-1 col-md-1"></div>
                <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="client{{$index}}">
@@ -89,12 +590,12 @@
     <div class="heading">CSC INDIA REPRESENTATIVES</div>
     <div class="list-group">
         <div href="#" class="list-group-item" ng-repeat="cscRep in cscData track by $index" ng-click="collapseDiv($index,'cscRep')">
-            <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
+            <div class="representative-pic col-xs-1 col-sm-1 col-md-1">
                 <userview user-model="cscRep" view-mode="bullet-small"></userview>
             </div>
             <div class="representative-bios-div col-xs-8 col-sm-10 col-md-10">
                 <userview user-model="cscRep" view-mode="brief-view"></userview>
-             {{cscRep.role}}
+             <div class="csc-rep-role">{{cscRep.role}}</div>
             </div>
             <div class="chevron-div col-xs-1 col-sm-1 col-md-1"></div>
             <div class="rep-hidden-details collapse col-xs-12 col-sm-12 col-md-12" id="cscRep{{$index}}">

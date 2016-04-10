@@ -4,23 +4,23 @@
   <link rel="stylesheet" href="/public/assets/m/css/sessionDetail.css">
   <link rel="stylesheet" href="/public/assets/m/css/userview.css">
 <style>
-#session-details-page {
-    background-color: #eeeeee;
-}
+  #session-details-page {
+      background-color: #eeeeee;
+  }
 
-.tb-big {
-    height: 125px;
+  .tb-big {
+      height: 125px;
 
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    font-size: 1.1em;
-    box-shadow: 2px 2px 5px #676767;
+      background-color: #fff;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      font-size: 1.1em;
+      box-shadow: 2px 2px 5px #676767;
 
-    font-family: robotoRegular;
-}
+      font-family: robotoRegular;
+  }
 
 .tb-small {
     height: 48px;
@@ -32,25 +32,330 @@
     font-size: 1.1em;
     box-shadow: 2px 2px 5px #676767;
     font-family: robotoRegular;
-}
+  }
+
 .divtop{
     padding-top: 10px;
     font-size: 1em;
-}
+  }
+
 .header{margin-top: 50px;
-position: relative;}
+    position: relative;
+  }
+    
+.client-rep {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 
- .client-rep {
-        margin-top: 0px;
-        margin-bottom: 0px;
+  .representative-bios-div {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+      /*Media Queries 320px*/
+  @media only screen and (max-device-width: 320px){
+    .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .representative-bios {
+    font-size: 0.7em;
+  }
+
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 0.8em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
+
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+  }
+
+
+
+}
+
+@media only screen and (min-device-width: 321px) and (max-device-width: 374px) {
+    .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .representative-bios {
+    font-size: 0.8em;
+  }
+
+  .representative-name {  
+        font-size: 0.9em;        
     }
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 0.8em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
 
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+  }
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 480px) {
+    .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .session-heading {
+    font-size: 1.5em;
+  }
+
+  .representative-bios {
+    font-size: 0.8em;
+  }
+
+  .heading {
+    font-size: 1.5em;
+  }
+
+  .representative-name {  
+        font-size: 1.2em;        
+    }
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 1em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
+
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+    font-size: 1em;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+  }
+
+}
+
+
+/*media queries from 485 - 768*/
+@media only screen and (min-device-width: 485px) and (max-device-width: 767px) {
+   .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .time-session-name-div{
+    padding-top: 60px;
+  }
+
+  .session-heading {
+    font-size: 1.5em;
+  }
+
+  .representative-bios {
+    font-size: 0.8em;
+  }
+
+  .heading {
+    font-size: 1.5em;
+  }
+
+  .representative-name {  
+        font-size: 1.3em;        
+  }
+
+  .representative-designation {
+        font-size: 1.2em;
+ }
+
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 1.2em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
+
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+    font-size: 1.5em;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+   .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .time-session-name-div{
+    padding-top: 60px;
+    font-size: 1.3em;
+  }
+
+  .session-heading {
+    font-size: 1.5em;
+  }
+
+  .representative-bios-div {
+    padding-left: 60px;
+    padding-top: 10px;
+  }
+
+  .representative-bios {
+    font-size: 0.8em;
+  }
+
+  .heading {
+    font-size: 2em;
+  }
+
+  .representative-name {  
+        font-size: 1.5em;        
+  }
+
+  .representative-designation {
+        font-size: 1.3em;
+ }
+
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 1.5em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
+
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+    font-size: 1.8em;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+    font-size: 1.2em;
+  }
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+   .client-rep {
+      padding: 5px; 
+      width: 97%;
+  }
+
+  .time-session-name-div{
+    padding-top: 60px;
+    font-size: 20em;
+  }
+
+  .session-heading {
+    font-size: 2em;
+  }
+
+  .representative-bios-div {
+      padding-left: 20px;
+      padding-top: 10px;
+  }
+
+  .representative-bios {
+    font-size: 0.8em;
+  }
+
+  .heading {
+    font-size: 2em;
+  }
+
+  .representative-name {  
+        font-size: 1.6em;        
+  }
+
+  .representative-designation {
+        font-size: 1.4em;
+ }
+
+  .session-description-div {
+    padding-left: 5px;
+    font-size: 1.5em;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-right: 10px
+  }
+
+  .session-presenter {
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+  }
+
+  .rep-hidden-details {
+    padding-right: 5px;
+    font-size: 1.8em;
+  }
+
+  .venue-feedback-div{
+    padding-right: 70px;
+    font-size: 1.2em;
+  }
+
+}
 </style>
 
 
-<div header showprofile="false" icon="fa fa-line-chart" title1="session details page" title2="session details page">
-session details page
-    </div>
+<div header showprofile="false" icon="fa fa-line-chart" title1="session details page" title2="session details page"> </div>
 <div class="divtop">
 <div id="session-details-page">
 
@@ -62,7 +367,7 @@ session details page
         <br>
         <div class="venue-feedback-div">
             <div class="session-venue"><i class="fa fa-map-marker"></i>{{session.session.location}}</div>
-            <div class="feedback-button">Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
+            <!-- <div class="feedback-button">Feedback&nbsp;<i class="fa fa-chevron-down"></i></div> -->
         </div>
     </div>
    
@@ -88,7 +393,7 @@ session details page
  
   <div class="client-rep">
  <div class="heading">PRESENTER</div>
-            <div class="list-group">
+            
             <div  ng-repeat="owner in arrayData" class="list-group-item" ng-click="collapseDiv($index,'client')">
                   <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                     <userview user-id="owner" user-model view-mode="bullet-small"></userview>
@@ -104,7 +409,7 @@ session details page
 
           <br>
             </div>
-            </div>
+            
             </div>
           
       
