@@ -11,6 +11,13 @@ app.controller('welcomeCtrl', ['$scope', 'location', function ($scope, location)
 
 }]);
 
+app.controller('thankyouCtrl', ['$scope', 'location', function ($scope, location) {
+
+}]);
+
+
+
+
 // app.directive("scroll", function ($window) {
 //     return function(scope, element, attrs) {
 // 			console.log("scrolling...");

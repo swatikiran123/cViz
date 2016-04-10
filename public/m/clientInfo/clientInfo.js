@@ -2,10 +2,7 @@ var client=angular.module('clientInfo', ['ngRoute'])
 client.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
- .when('/clientInfo', {
-    templateUrl: '/public/m/clientInfo/staticClientInfo.html',
-    controller: 'clientInformationCtrl'
-})
+
 
   .when('/clientInfo/id/:id', {
     templateUrl: '/public/m/clientInfo/clientInfo.html',

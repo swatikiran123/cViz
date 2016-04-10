@@ -4,6 +4,7 @@ angular.module('sessions')
 	console.log("sessions controller working");
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
+          console.log($scope.scheduleList);
 				//console.log(JSON.stringify($scope.scheduleList,null,2));
     });
 

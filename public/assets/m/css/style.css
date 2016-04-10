@@ -188,7 +188,11 @@ span.menuName {
   background: url("../img/ic/group.png") #003F60 no-repeat 50% 50%;
   background-size: 45px;
 }
-
+.agendaicon{
+    padding-top: 28%;
+    color: white;
+font-size: 30px;
+background-color: #40AABF;}
 .exec-bio-text {
   color: #1F3F50;
   padding-top: 13px;
@@ -199,7 +203,10 @@ span.menuName {
   background: url("../img/ic/cals.png") #588BA3 no-repeat 50% 50%;
   background-size: 45px;
 }
-
+.agenda{
+  background: url("/public/assets/m/img/ic/agenda2.png") #A2915D no-repeat 50% 50%;
+  background-size: 45px;
+}
 .past-visits-text {
   color: #204353;
   padding-top: 13px;
@@ -295,6 +302,12 @@ span.menuName {
   .past-visits {
     background-size: 36px;
   }
+
+  .agendaicon{
+    padding-top: 20%;
+    color: white;
+font-size: 30px;
+background-color: #40AABF;}
 }
 
 /*media querries */
@@ -318,6 +331,11 @@ span.menuName {
   .past-visits {
     background-size: 36px;
   }
+  .agendaicon{
+    padding-top: 21%;
+    color: white;
+font-size: 30px;
+background-color: #40AABF;}
 }
 @media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
     .session-overview .row .current-session,
@@ -364,6 +382,11 @@ span.menuName {
   .side-collapse.in {
       width:0;
   }
+  .agendaicon{
+    padding-top: 25%;
+    color: white;
+font-size: 30px;
+background-color: #40AABF;}
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .clock-container{
