@@ -238,13 +238,13 @@ background-color: #40AABF;}
 .day,
 .loc {
     color: #fff;
-    font-size: 0.68em;
+    font-size: 0.75em;
     display: block;
-    font-family: robotoCondensedBold;
+    font-family: antonioLight;
 }
 
 .day {
-    color: #EAEDF2;
+    color: #2E86C1;
 }
 
 .sessionOverview.clocksDisplay .row {

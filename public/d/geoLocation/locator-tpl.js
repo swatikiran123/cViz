@@ -7,10 +7,9 @@ app.run(["$templateCache", function($templateCache) {
     "<ul>\n" +
     "\n" +
     "  <!-- Reverse Geocode Results -->\n" +
-    "   <span class=\"glyphicon glyphicon-map-marker\"/>"+
     "  <li ng-repeat=\"option in options | limitTo:limitTo\"\n" +
     "    ng-click=\"pickLocation(option)\"\n" +
-    "    item=\"option\">{{option.address_components[0].short_name}},&nbsp{{option.address_components[1].short_name}}</li>\n" +
+    "    item=\"option\">{{option.address_components[0].short_name}},&nbsp{{option.address_components[1].short_name}}&nbsp &nbsp  <span class=\"glyphicon glyphicon-map-marker\"</li>\n" +
     "\n" +
     "  <!-- Loading -->\n" +
     "  <li ng-if=\"!options\">Loading &hellip;</li>\n" +
