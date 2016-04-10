@@ -13,41 +13,73 @@
 /*   transition:0.5s linear all;*/
 /*   z-index:10000;*/
 /*}*/
-
 /*.big {*/
 /*  padding-top:40px;*/
 /*  font-color:white;*/
 /*    height:110px;*/
 /*    font-size: 30px;*/
-
 /*}*/
-
 /*.big > .secondary{*/
-/*	display:none;*/
+/*  display:none;*/
 /*}*/
-
 /*.small {*/
 /*   padding-top:60px;*/
 /*   font-color:white;*/
 /*   height:90px;*/
 /*    font-size: 20px;*/
 /*}*/
-
 /*.small > .primary {*/
-/*	display:none;*/
+/*  display:none;*/
 /*}*/
 /*</style>*/
-
 <div scroll id="header_nav" ng-class="navClass">
-	<div class="primary">
+    <div class="primary">
     Primary
-	</div>
-		<div class="secondary">
-	  Secondary
-	</div>
+    </div>
+        <div class="secondary">
+      Secondary
+    </div>
 </div>
 -->
-
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+  .date{
+  color: #fff;
+  font-size: 0.75em;
+  display: block;
+  font-family: workSansMedium; 
+  }
+  .time{
+  color: #fff;
+  font-size: 0.75em;
+  display: block;
+  font-family: workSansMedium;
+  }
+  .temp{
+  color: #fff;
+  font-size:13px;
+  display: block;
+  font-family: workSansMedium;
+  }
+  #scrollBox {
+  overflow-x: relative;
+  overflow-y: hidden;
+  -ms-overflow-x: relative;
+  -ms-overflow-y: hidden;
+  white-space: nowrap;
+  }
+  #scrollBox > div {
+  display: inline-block;
+  margin-right: 5px;
+  }
+  #scrollBox > div fieldset {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  text-align: center;
+  height: 240px;
+  width: 150px;
+  }
+</style>
 
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div scroll id="profile-details">
@@ -88,31 +120,20 @@
             </div>
             <div class="agenda"><a href="#/agendaOverview">VIEW AGENDA</a></div>
         </div>
-        <div class="session-overview clocksDisplay" ng-hide="visitStartSuccess">
-            <div class="row">
-                <div class="clock-container col-xs-4 col-sm-4 col-md-4">
-                    <a href="#/agendaOverview">
-                        <label class="day">DAY 1</label>
-                        <clock-svg degree="progressDegree"></clock-svg>
-                        <label class="loc">BANGALORE</label>
-                    </a>
-                </div>
-                <div class="clock-container col-xs-4 col-sm-4 col-md-4">
-                    <a href="#/agendaOverview">
-                        <label class="day">DAY 2</label>
-                        <clock-svg degree="progressDegree"></clock-svg>
-                        <label class="loc">HYDERABAD</label>
-                    </a>
-                </div>
-                <div class="clock-container col-xs-4 col-sm-4 col-md-4">
-                    <a href="#/agendaOverview">
-                        <label class="day">DAY 3</label>
-                        <clock-svg degree="progressDegree"></clock-svg>
-                        <label class="loc">NOIDA</label>
-                    </a>
-                </div>
-            </div>
-        </div>
+       <form id="form1">
+    <div id="scrollBox">
+      <div ng-repeat="objs in dayHighlighter">
+        <fieldset class="firstPanel">
+          <h4><label class="day">Day {{objs.day}}</label></h4>
+          <label class="date"> {{objs.date}}</label>
+          <i class="fa fa-sun-o" style="font-size:50px;color:#F8C471;"></i><br>
+          <label class="like" style="font-size:15px;color:#fff;">{{objs.climate.dayLike}}</label>
+          <label class="temp">{{objs.climate.temp}}</label>
+          <h4> <label class="loc">{{objs.location}}</label></h4>
+        </fieldset>
+      </div>
+    </div>
+  </form>
         </div>
 
 
@@ -167,4 +188,3 @@
         </div>
     </div>
     </div>
-   
