@@ -7,9 +7,9 @@ position: relative;}
 .header {
     background-color: #fff;
     position: relative;
-    width: 100%;
+    width: 98%;
     top: 0;
-   
+
     text-align: center;
     box-shadow: 2px 2px 5px #676767;
     z-index: 1;
@@ -20,14 +20,15 @@ position: relative;}
     font-size: 10px;
     display: inline-block;
     width: 100%;
-    padding-top: 50px;}
+  }
 
     .session-time {
-      color: #850057;
+            color: #850057;
        float: left;
        text-align: right;
        width: 40%;
        padding-right: 5px;
+       font-size: 15px;
        font-family: workSansRegular;
    }
 
@@ -36,6 +37,7 @@ position: relative;}
        float: left;
        text-align: left;
        font-family: workSansBold;
+        font-size: 15px;
        letter-spacing: 2px;
    }
 
@@ -46,13 +48,13 @@ position: relative;}
        display: inline-block;
        width: 100%;
        text-align: center;
-       padding-right: 150px;
    }
    .session-venue {
-    /*float: left;*/
-    text-align: center;
-    width: auto;
-    /*padding-right: 15px;*/
+    float: left;
+    text-align:right;
+    width: 65%;
+    font-size: 15px;
+    padding-right: 15px;
 }
 .feedback-button {
     float: left;
@@ -70,12 +72,14 @@ position: relative;}
 .session-description-div,
 .session-presenter,
 .session-participants {
- margin: 10px;
+padding: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-right: 20px;
  background-color: #fff;
  display: inline-block;
-  width: 99%;
+width: 99%;
  box-shadow: 2px 2px 2px #c1c1c1;
- padding-left: 20px;
 }
 .session-description {
     padding-top: 5px;
@@ -92,8 +96,3 @@ position: relative;}
 }
 
 
-@media only screen and (max-device-width: 320px){
-  .client-rep {
-    padding: 5px; 
-  }
-}
