@@ -3,104 +3,80 @@
 angular.module('inviteesDirective', [])
 .controller('inviteesDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
 
-  // console.log($scope.switchMode);
-  // console.log($scope.userType);
-
-  if($scope.userModel === undefined || $scope.userModel === "")
-    $scope.showFlag = "none";
-  else
-    $scope.showFlag = "user";
-
-  $scope.getUser = function(){
-    var url= "";
-    if($scope.userId!="" && $scope.userId!=undefined){
-      // $scope.showFlag = "none";
-      // return;
-      url='/api/v1/secure/admin/users/' + $scope.userId;
-    }
-    
-    if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
-      url='/api/v1/secure/admin/users/email/' + $scope.userEmail;
-    }
-    // else{
-    //     message = "Invalid User Id/email";
-    //     return;
-    // }
-
-    $http.get(url).success(function(response) {
-
-      if($scope.userType == response.association){
-        $scope.userModel = response;
-        $scope.userId = response._id;
-        $scope.userEmail = response.email;
-        $scope.showFlag = "user";
-      }
-
-      else{
-        $scope.showFlag = "noUser";
-        message = "User not found";
-      }
-
-    })
-    .error(function(response, status){
-      $scope.showFlag = "noUser";
-      if(status===404)
-      {
-        message = "User not found";
-      }
-      else
-        console.log("error with user directive");
-    });
-  } // end of getUser method
+  console.log($scope.switchMode);
   
-  if($scope.switchMode == 'edit')
-  {  
-   if($scope.userId)
-   { 
-	 $scope.getUser(); // autoload data
- }
- $scope.showFlag = "user";
-}
+  $scope.small= "small";
+  $scope.large= "LARGE";
+  $scope.medium= "medium";
+  $scope.array = [];
+  $scope.arraydata=[];
+  
+  var j=[];
 
-  //ToDo: User Picker not working with inline editing.
+  $scope.addInvitees=function(invite){
+    console.log("12"+invite);
+//email there r not
+$http.get('/api/v1/secure/admin/users/email/' + invite).success(function(response) {
+ if($scope.userType ==response.association)
+ { 
+   $scope.userId = response._id;
 
-// Visit invitees table
-$scope.small= "small";
-$scope.large= "LARGE";
-$scope.medium= "medium";
-
-$scope.addInvitees=function(specialInvite){
-  console.log(specialInvite.inviteId);
-  $scope.inviteesData.push({
-    invite: specialInvite.inviteId
+   $scope.array.push({
+    invite: $scope.userId,
   });
 
-  specialInvite.inviteId='';
-  specialInvite.inviteUser='';
-  specialInvite.inviteEmail='';
+$scope.checked = false;
+console.log("length"+$scope.array.length);
+for (var i =0 ;i<$scope.array.length;  i++) {
+ j =$scope.array[i].invite; 
+
 };
 
-$scope.removeInvitees = function(index){
-  $scope.inviteesData.splice(index, 1);
-};
+$scope.arraydata.push(j);
+console.log($scope.arraydata);
 
-$scope.editInvitees = function(index,specialInvite){
-  $scope.specialInvite= specialInvite;
-  $scope.inviteesData.splice(index, 1);
-};
-// Visit specialInvite table end
+ }
+
+  else {
+    $scope.checked = true;
+  $scope.message = "not an organization employee";
+}
+
+ })
+
+
+
+.error(function(response, status){
+  if(status===404)
+  {
+    $scope.message = "User not found";
+  }
+  else
+    console.log("error with user directive");
+});
+//email there r not
+$scope.invite='';
+  };//end of addInvitees
+
+  $scope.removeInvitees = function(index){
+    console.log(index);
+    $scope.array.splice(index, 1);
+  };
+
+  $scope.removeInviteesdata = function(index){
+    console.log(index);
+    $scope.arraydata.splice(index, 1);
+  };
 
 }])
 
 .directive('invitees', function() {
   return {
-    controller: 'userDirectiveControllerMain',
-    templateUrl: '/public/d/invitees/templates/user-picker.html',
+    controller: 'inviteesDirectiveControllerMain',
+    templateUrl: '/public/d/invitees/templates/invitee.html',
     scope: {
-      userModel: "=userModel",
-      userId: "=userId",
-      userEmail: "=userEmail",
-      viewType: "=viewType",
+      // array: "=array",
+      arraydata: "=arraydata",
       switchMode: "=switchMode",
       userType: "@userType"
     },
@@ -109,17 +85,11 @@ $scope.editInvitees = function(index,specialInvite){
     {
       scope.getTemplate = function(){
 
-        var viewmode = scope.viewType.toLowerCase();
+        var viewmode = scope.viewType;//.toLowerCase();
 
         if(viewmode === "small" && scope.userEmail!="")
         {
           return "/public/d/invitees/templates/smallpanel.html";
-        }
-        if(viewmode === "large"){
-          return "/public/d/invitees/templates/largepanel.html";
-        }
-        if(viewmode === "medium"){
-          return "/public/d/invitees/templates/mediumpanel.html";
         }
 
       }

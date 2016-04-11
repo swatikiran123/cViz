@@ -79,14 +79,13 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   function($scope, $http, $routeParams, $rootScope, $location, growl, $mdDialog , $mdMedia , Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
-  
+
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
   $scope.checked = false;
   $scope.schedules=[];
   $scope.visitors=[];
-  $scope.inviteesData=[];
   $scope.keynotes=[];
   $scope.small= "small";
   $scope.large= "LARGE";
@@ -95,7 +94,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.nameonly= "nameonly";
   $scope.visitid = id;
   $scope.showAvatar = false;
- 
+  $scope.arraydata = [];
+
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
     $scope.location=response.values;
@@ -158,8 +158,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;      //List of visitors
           $scope.visits = visits;               //Whole form object
-          $scope.inviteesData =visits.invitees;
-
+          // $scope.inviteesData =visits.invitees;
+          $scope.arraydata=response.invitees;
+          
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
@@ -188,7 +189,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.anchor = $scope.anchorId;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
-
+    $scope.visits.invitees = $scope.arraydata;
+    console.log("invitees:  " + $scope.arraydata);
+    console.log("invitees:  " + $scope.array);
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
       if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
@@ -222,8 +225,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     inData.keynote = $scope.keynotes;
     inData.visitors = $scope.visitors;
     inData.createBy =  $rootScope.user._id;
-    inData.invitees = $scope.inviteesData;
-
+    
     $http.post('/api/v1/secure/visits', inData).success(function(response) {
       refresh();
       growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
@@ -345,7 +347,7 @@ $scope.editkeynote = function(index,keynoteDef){
   $scope.keynotes.splice(index, 1);
 };
 // Visit keynote table end
-  
+
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   {
@@ -357,7 +359,7 @@ $scope.editkeynote = function(index,keynoteDef){
     }  
     if(avatar != '' || avatar !=undefined)
     {  
-    userdata.avatar = avatar;
+      userdata.avatar = avatar;
     }
     userdata.email = emailId;
     userdata.association = 'customer';
@@ -377,7 +379,7 @@ $scope.editkeynote = function(index,keynoteDef){
     });
    });
   });
-  $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
+    $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
   }
 
   // Visit visitor table
@@ -394,19 +396,19 @@ $scope.editkeynote = function(index,keynoteDef){
      if(response.association == 'customer')
      { 
        $scope.userId = response._id;
-        $scope.showFlag = "user";
-        $scope.visitors.push({
-          visitor: $scope.userId,
-          influence: influence
+       $scope.showFlag = "user";
+       $scope.visitors.push({
+        visitor: $scope.userId,
+        influence: influence
       });
-    }
+     }
 
-    else if(response.association !='customer')
-    {
+     else if(response.association !='customer')
+     {
       $scope.showFlag = "noUser";
       $scope.message = "User not found";
     }
-   })
+  })
 
     .error(function(response, status){
       console.log(emailid);
@@ -416,12 +418,12 @@ $scope.editkeynote = function(index,keynoteDef){
         console.log(influencedata);
         $scope.emailId = emailid;
         $scope.influencedata = influencedata;
-      console.log($scope.emailId); 
-       $scope.message = "User not found plz register";
-     }
-     else
-      console.log("error with user directive");
-  });
+        console.log($scope.emailId); 
+        $scope.message = "User not found plz register";
+      }
+      else
+        console.log("error with user directive");
+    });
 
 
     //if not found add visitor-post that and get id
@@ -503,21 +505,21 @@ $scope.editkeynote = function(index,keynoteDef){
 
 // Show Profile Dialog for non-registered users
 $scope.showProfileButton = function(ev) {
-    $mdDialog.show({
-      templateUrl: '/public/mods/visits/profilePictureDialog.html',
-      scope: $scope.$new(),
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true
+  $mdDialog.show({
+    templateUrl: '/public/mods/visits/profilePictureDialog.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
 
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
+  })
+  .then(function(answer) {
+    $scope.status = 'You said the information was "' + answer + '".';
+  }, function() {
+    $scope.status = 'You cancelled the dialog.';
+  });
 
-  };
+};
 
 $scope.addpicture = function (dataUrl) {
     //$scope.userdata ='';
