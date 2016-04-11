@@ -23,7 +23,7 @@ position: relative;}
     padding-top: 50px;}
 
     .session-time {
-            color: #850057;
+      color: #850057;
        float: left;
        text-align: right;
        width: 40%;
@@ -46,12 +46,13 @@ position: relative;}
        display: inline-block;
        width: 100%;
        text-align: center;
+       padding-right: 150px;
    }
    .session-venue {
-    float: left;
-    text-align:right;
-    width: 65%;
-    padding-right: 15px;
+    /*float: left;*/
+    text-align: center;
+    width: auto;
+    /*padding-right: 15px;*/
 }
 .feedback-button {
     float: left;
@@ -72,8 +73,9 @@ position: relative;}
  margin: 10px;
  background-color: #fff;
  display: inline-block;
-width: 98%;
+  width: 99%;
  box-shadow: 2px 2px 2px #c1c1c1;
+ padding-left: 20px;
 }
 .session-description {
     padding-top: 5px;
@@ -90,3 +92,8 @@ width: 98%;
 }
 
 
+@media only screen and (max-device-width: 320px){
+  .client-rep {
+    padding: 5px; 
+  }
+}

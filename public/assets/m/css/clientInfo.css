@@ -175,7 +175,7 @@
         }
            .competitors-list .img-div {
                 border-left: 1px solid #d0d0d0;
-                text-align: center;
+                /*text-align: center;*/
                 padding-left: 10px;
             }
             .competitors-list .img-div img {
