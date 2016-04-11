@@ -75,8 +75,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl','$mdDialog', '$mdMedia','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, $mdDialog , $mdMedia , Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
   
@@ -94,6 +94,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.clientnameonly= "clientnameonly";
   $scope.nameonly= "nameonly";
   $scope.visitid = id;
+  $scope.showAvatar = false;
  
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
@@ -344,28 +345,78 @@ $scope.editkeynote = function(index,keynoteDef){
   $scope.keynotes.splice(index, 1);
 };
 // Visit keynote table end
-
-
-  // Visit visitor table
-
-  $scope.addvisitor=function(visitorDef){
-    $scope.showFlag='';
-    $scope.message='';
-    var influence= visitorDef.influence;
-    $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitorId).success(function(response) {
+  
+  //adding visitor data if not registered user
+  $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
+  {
+    //console.log(userdata);
+    console.log(emailId);
+    if(avatar == '' || avatar == undefined)
+    {
+      userdata.avatar = '/public/assets/g/imgs/avatar.jpg';
+    }  
+    if(avatar != '' || avatar !=undefined)
+    {  
+    userdata.avatar = avatar;
+    }
+    userdata.email = emailId;
+    userdata.association = 'customer';
+    console.log(userdata);
+    $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
+      console.log('POST');
+      console.log(response);
+    }).then(function() {
+    // "complete" code here
+    $http.get('/api/v1/secure/admin/users/email/' + userdata.email).success(function(response) {
+     console.log('GET') ;
      $scope.userId = response._id;
      $scope.showFlag = "user";
      $scope.visitors.push({
       visitor: $scope.userId,
-      influence: influence
+      influence: influencedata
     });
+   });
+  });
+  $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
+  }
 
+  // Visit visitor table
+
+  $scope.addvisitor=function(visitorDef){
+    $scope.showAvatar = false;
+    $scope.showFlag='';
+    $scope.message='';
+    $scope.emailId = '';
+    var influence= visitorDef.influence;
+    var emailid = visitorDef.visitorId;
+    var influencedata = visitorDef.influence;
+    $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitorId).success(function(response) {
+     if(response.association == 'customer')
+     { 
+       $scope.userId = response._id;
+        $scope.showFlag = "user";
+        $scope.visitors.push({
+          visitor: $scope.userId,
+          influence: influence
+      });
+    }
+
+    else if(response.association !='customer')
+    {
+      $scope.showFlag = "noUser";
+      $scope.message = "User not found";
+    }
    })
 
     .error(function(response, status){
-      $scope.showFlag = "noUser";
+      console.log(emailid);
+      $scope.showFlag = "notRegisteredUser";
       if(status===404)
-      {
+      { 
+        console.log(influencedata);
+        $scope.emailId = emailid;
+        $scope.influencedata = influencedata;
+      console.log($scope.emailId); 
        $scope.message = "User not found plz register";
      }
      else
@@ -449,6 +500,56 @@ $scope.editkeynote = function(index,keynoteDef){
     }
     return questionIsNew;
   }
+
+// Show Profile Dialog for non-registered users
+$scope.showProfileButton = function(ev) {
+    $mdDialog.show({
+      templateUrl: '/public/mods/visits/profilePictureDialog.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+
+  };
+
+$scope.addpicture = function (dataUrl) {
+    //$scope.userdata ='';
+    Upload.upload({
+      url: '/api/v1/upload/profilePics',
+      data: {
+        file: Upload.dataUrltoBlob(dataUrl),
+      },
+    }).then(function (response) {
+      $scope.userdata ='';
+      console.log('adding');
+      $scope.result = response.data;
+      var filepath = response.data.file.path;
+      var imagepath = '/'+ filepath.replace(/\\/g , "/");
+      console.log(imagepath);
+      $scope.avatar = imagepath;
+      console.log($scope.avatar);
+      $scope.showAvatar = true;
+      $mdDialog.hide();
+    });
+
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.canceldialog = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
 
 //date filter
 // $scope.setTimeline = function(time){
