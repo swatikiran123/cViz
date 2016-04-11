@@ -1,7 +1,56 @@
+<style>
+.tb-big {
+        height: 160px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+    
+    .tb-small {
+        height: 65px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+    
+    .divtop {
+        padding-top: 60px;
+    }
+    
+     .hd-sticky {
+        background-color:;
+        position: relative;
+        height: 0px;
+        padding-top: 0px;
+    }
+@media only screen and (min-device-width: 320px) and (max-device-width: 484px) {
+    
+    .tb-big {
+        height: 180px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 5px #676767;
+        font-family: robotoRegular;
+    }
+}
 </style>
 <div header showprofile="false" icon="fa fa-phone" title1="mycontacts page" title2="contacts">  
- <div class="searchView col-xs-12">
-   <div class="searchDiv col-xs-10 col-sm-9 col-md-10 div-padding">
+ <div class="searchViewHead  col-xs-12">
+   <div class="searchDivHead col-xs-12 col-sm-8 col-md-12 div-padding">
     <i class="fa fa-search fonticon1"></i>
     <input type="text" placeholder="Search" value="" name="search" id="search">
     <div class="pull-right">
@@ -11,24 +60,26 @@
         </div>
         <ul class="dropdown-menu">
             <div ng-repeat="city in cities">
-                <li><a href="#/contacts/{{city}}">{{city}}</li></div>
-            </ul>
-        </div>
+                <li><a href="#/contacts/{{city}}">{{city}}</a></li>
+            </div>
+        </ul>
+     </div>
     </div>
-</div>
+  </div>
 </div>
 
 <div class="divtop">Contacts - {{contactList[0].location}}</div>
 <div id="spoc-page">
     <div class="spoc-details-container">
         <div class="heading1">CONTACT YOUR SPOC</div>
-        <div class="spoc-details" ng-repeat="spoc in contactList">
-            <div class="spoc-pic col-xs-2 col-sm-2 col-md-2">
+        <div class="list-group">
+         <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList">
+            <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
-            <div class="spoc-bios-div col-xs-10 col-sm-10 col-md-10">
+            <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11">
                 <div class="spoc-name">{{spoc.name}}</div>
-                <div class="spoc-designation">{{spoc.jobTitle}}</div>
+                <div class="spoc-designation">{{spoc.jobTitle}}</div>{{spoc.type}}
                 <div class="spoc-bios">{{spoc.summary}}</div>
                 <div class="reach-spoc-phone">
                     <div class="number">{{spoc.contactNo}}</div>
@@ -42,13 +93,10 @@
                 <div class="download-contact glyphicon glyphicon-paperclip">
                     <div class="download-text">Download Contact</div>
                 </div>
+
             </div>
-            Role: {{spoc.type}}
+         
+         </div>
         </div>
     </div>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#page").toggleClass("toggled");
-    });
-    </script>
+</div>
