@@ -185,7 +185,7 @@ module.exports = {
 			"/public/assets/m/css/font.css",
 			"/public/assets/m/css/style.css",
 			"/public/assets/m/css/header.css",
-			//"/public/assets/m/css/userview.css"
+			"/public/assets/m/css/userview.css"
 		],
 		"prod":[
 
@@ -241,7 +241,8 @@ module.exports = {
 	"m-clientInfo":{
 		"dev":[
 			"/public/assets/m/css/clientInfo.css",
-		    "/public/m/clientInfo/clientInfo.js"
+		    "/public/m/clientInfo/clientInfo.js",
+		    "/public/assets/m/css/userview.css"
 		    ]
 		 },
 

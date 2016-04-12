@@ -32,9 +32,21 @@
         position: relative;
         height: 0px;
     }
+    .dropdown-menu{
+       background-color: white;
+    }
+    .hd-sec{
+    background-color:#F8F8FF;
+    position:relative;
+    padding-left: 20px;
+    height:25px;
+}
+.searchViewHead{
+    padding-left: 20px;
+}
 </style>
-<div header showprofile="false" icon="fa fa-calendar" title1="myvisits page" title2="agenda" query='query'>
-    <div class="searchViewHead col-xs-12">
+<div header showprofile="false" icon="fa fa-calendar" title1="My Visits" query='query'>
+  <div class="searchViewHead col-xs-12">
         <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
     
             <i class="fa fa-search fonticon1"></i>
@@ -49,10 +61,15 @@
 
                 <ul class="dropdown-menu">
                     <li><a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a></li>
-                    <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>
-                    <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>
+                    <li class="divider"></li>
+                    <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>    
+                    <li class="divider"></li>
+                    <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>    
+                    <li class="divider"></li>
                     <li><a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a></li>
-                    <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>
+                    <li class="divider"></li>
+                    <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>  
+                    <li class="divider"></li>
                     <li><a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a></li>
                 </ul>
 
@@ -76,7 +93,8 @@
                         <img src="/public/assets/m/rem/vertical-ellipsis.png"></div>
                     <ul class="dropdown-menu">
                         <li><a href="#">View Visit</a></li>
-                        <li><a href="#">View visit Agenda</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#/sessions/{{visit._id}}">View Agenda</a></li>
                     </ul>
                 </div>
 

@@ -26,6 +26,9 @@
     .divtop {
         padding-top: 60px;
     }
+    .dropdown-menu{
+       background-color: white;
+    }
     
      .hd-sticky {
         background-color:;
@@ -48,7 +51,7 @@
     }
 }
 </style>
-<div header showprofile="false" icon="fa fa-phone" title1="mycontacts page" title2="contacts">  
+<div header showprofile="false" icon="fa fa-phone" title1="Key Contacts" title2={{title}}>  
  <div class="searchViewHead  col-xs-12">
    <div class="searchDivHead col-xs-12 col-sm-8 col-md-12 div-padding">
     <i class="fa fa-search fonticon1"></i>
@@ -61,6 +64,7 @@
         <ul class="dropdown-menu">
             <div ng-repeat="city in cities">
                 <li><a href="#/contacts/{{city}}">{{city}}</a></li>
+                <li class="divider"></li>
             </div>
         </ul>
      </div>
