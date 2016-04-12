@@ -45,16 +45,32 @@
   .inactivesession{
 	background: #D3D3D3;
 }*/
+	.scroll-outer {
+		overflow-x:hidden;
+	}
+
+	.scroll-inner{
+		overflow-x: scroll;
+		white-space: nowrap;
+		margin-bottom: -9px;
+		padding-bottom: 6px;
+	}
+	 ul {
+
+	    -webkit-padding-start: 10px;
+	}
+
 </style>
 
-<div header showprofile="false" icon="fa fa-line-chart" title1="agenda page" title2="fedback">
+<div header showprofile="false" icon="fa fa-line-chart" title1="agenda page" title2="feedback" >
 
-
-	<ul ng-init="vm.tab=1" class="agenda-list">
-		<li ng-repeat="schedules in scheduleList track by $index">
-			<a href ng-click="vm.tab = schedules.day"><font class="inactivetab">Day {{schedules.day}}</font><br>
-				<div class="schday"><font class="inactivetab">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </font></div></a>
-		</li>
+	 <ul class="scroll-outer"> 
+		<ul ng-init="vm.tab=1" class="agenda-list scroll-inner">
+			<li ng-repeat="schedules in scheduleList track by $index">
+				<a href ng-click="vm.tab = schedules.day"><font class="inactivetab">Day {{schedules.day}}</font><br>
+					<div class="schday"><font class="inactivetab">&nbsp;&nbsp;{{schedules.date | date : "EEE"}} </font></div></a>
+			</li>
+		</ul>
 	</ul>
 </div>
 
