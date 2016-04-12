@@ -18,6 +18,7 @@ angular.module('contacts')
     var str= String(response.visits.locations);
     $scope.cities = str.split(/[ ,]+/);
     console.log($scope.cities)
+    $scope.title=response.visits.title;
    })
 
   $scope.collapseDiv = function(index, text){
