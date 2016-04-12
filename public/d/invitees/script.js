@@ -8,7 +8,11 @@ angular.module('inviteesDirective', [])
   $scope.small= "small";
   $scope.large= "LARGE";
   $scope.medium= "medium";
+  if($scope.switchMode == 'add')
+  {  
   $scope.arraydata=[];
+  }
+
   $scope.array=[];
   $scope.invite='';
   var j=[];
