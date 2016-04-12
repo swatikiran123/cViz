@@ -429,7 +429,7 @@ function getExecsById(id){
 
                     //fetchnig invitees
                       for (var i=0; i<item.invitees.length; i++){
-                        cscId.push(transform(item.invitees[i].invite,'Invite'));
+                        cscId.push(transform(item.invitees[i],'Invite'));
                       }
                     //fetchnig visitors
                       for (var i=0; i<item.visitors.length; i++){

@@ -288,11 +288,11 @@
       </div>
     </div>
   </md-input-container>
-
-  <!--including keynotes template table-->
   <div ng-include src="'/public/mods/visits/keynotesVisitAdd.html'"></div>
-  <!--including invitees template table-->
-  <div ng-include src="'/public/mods/visits/inviteesAdd.html'"></div>
+
+<br><label>Invitees</label><br>
+<invitees arraydata="arraydata" switch-mode="mode" user-type="employee"></invitees>
+
 </div>
 </div>
 
