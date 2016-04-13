@@ -1,12 +1,12 @@
 <md-dialog ng-cloak>
-<form>
+<form name="itemAddForm">
   <md-toolbar>
   <div class="md-toolbar-tools">
     <h2>Add Feedback Items</h2>
     <span flex></span>
-<!--     <md-button class="md-icon-button" ng-click="canceldialog(item)">
+    <md-button class="md-icon-button" ng-click="canceldialog(item)">
     <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
-  </md-button> -->
+  </md-button>
 </div>
 </md-toolbar>
 <md-dialog-content>
@@ -16,7 +16,7 @@
           <td>
             Query
             <div>
-              <textarea ng-model="item.query" rows="5" cols="60"></textarea>
+              <textarea ng-model="item.query" required rows="5" cols="60"></textarea>
             </div>
           </td>
         </tr>
@@ -24,7 +24,7 @@
           <td>          
             Mode
             <div>
-              <select name="type" ng-model="item.mode" ng-dropdown>
+              <select name="type" ng-model="item.mode" required ng-dropdown>
                 <option ng-option value="freetext">Freetext</option>
                 <option ng-option value="single-choice">Single Choice</option>
                 <option ng-option value="multi-choice">Multiple Choice</option> 
@@ -51,14 +51,21 @@
       </tbody>
     </table>
   </md-dialog-content>  
-  <md-dialog-actions layout="row">
-    <!-- sending group selected values and usersid in addGroup function -->
+<!--   <md-dialog-actions layout="row">
+    
     <md-button class="md-primary md-raised" ng-click="addItem(item)">
     add items
     </md-button>
-<!--     <md-button class="btn btn-danger" ng-click="canceldialog()" >
+    <md-button class="btn btn-danger" ng-click="canceldialog(item)" >
     cancel
-    </md-button> -->
-  </md-dialog-actions>
+    </md-button>
+  </md-dialog-actions> -->
+  <md-dialog-actions layout="row" class="pull-left">
+  <div class="pull-left">
+    <button type="submit" class="btn btn-success"
+     ng-click="addItem(item)" ng-disabled="itemAddForm.$invalid">Add Items</button>
+    <button type="reset" class="btn btn-warning" ng-click="canceldialog(item)">Cancel</button>
+  </div>
+</md-dialog-actions>
 </form>
 </md-dialog>
