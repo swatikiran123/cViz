@@ -200,7 +200,8 @@ module.exports = {
 			"/public/d/geoLocation/locator.js",
 			"/public/d/geoLocation/locator-tpl.js",
 			"/public/assets/m/css/welcome.css",
-			"/public/assets/m/css/thankyou.css"
+			"/public/assets/m/css/thankyou.css",
+			"/public/assets/m/css/splash.css"
 		]
 
 	},

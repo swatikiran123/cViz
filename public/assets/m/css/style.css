@@ -1,3 +1,9 @@
+.noty-icon{
+  font-size: 24px;
+  
+
+}
+
 a,
 a:focus,
 a:hover {
@@ -165,10 +171,12 @@ div#profile-details .profile-location img {
   top: 7px;
   right: 35px;
   position: absolute;
+  padding-right: 14px;
+  padding-top: 8px;
 }
 
 #profile-details .notifications a {
-  position: absolute;
+  position: ;
 }
 
 #profile-details .notifications .image{

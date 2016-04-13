@@ -29,6 +29,11 @@ angular.module('home', ['ngRoute'])
     templateUrl: '/public/m/home/thankyou.html',
     controller: 'thankyouCtrl'
   })
+.when('/splash', {
+    templateUrl: '/public/m/home/splash.html',
+    controller: 'splashCtrl'
+  })
+
 
 	// if none of the above states are matched, use this as the fallback
   $routeProvider.otherwise('/home');
