@@ -18,8 +18,8 @@ angular.module('visits')
         templateUrl: '/public/mods/visits/visitsViewAdd.html',
         controller: 'visitsControllerMain'
       })
-      .when('/visits/try', {
-        templateUrl: '/public/mods/visits/try.html',
+      .when('/visits/tabs', {
+        templateUrl: '/public/mods/visits/tabs.html',
         controller: 'visitsControllerMain'
       })
 
