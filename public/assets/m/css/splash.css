@@ -1,0 +1,104 @@
+#splash-screen {
+    width: 100%;
+    height: 100%;  }  
+    .carousel-indicators {
+       /* bottom: 70px;
+        left: initial;
+        margin-left: 0;
+        position: fixed;
+        top: inherit;
+        width: 100%;
+        z-index: 2;
+        li.active {
+            background-color: #4B4B4B;
+            margin: 1px 5px 1px 1px;
+        }
+        li {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            text-indent: -999px;
+            cursor: pointer;
+            border: 1px solid #4B4B4B;
+            border-radius: 10px;
+        }*/
+    }
+    .right.carousel-control,
+    .left.carousel-control {
+        display: none;
+    }
+    .carousel-inner {
+        overflow-y: auto;
+        margin-bottom: 120px;}
+        .slide-layout {
+            padding: 15px;
+            text-align: left;
+            color: #777777;
+            font-family: robotoRegular;}
+            .section1 {
+                border-bottom: #EBEBEB solid 1px;
+                padding-bottom: 15px;
+            }
+            p,
+            li {
+                font-size: 0.8em;
+            }
+          .section1 img {
+                width: 100%;
+                text-align: center;
+                padding-bottom: 25px;
+                padding-top: 15px;
+            }
+            h1 {
+                font-size: 1.72em;
+                color: #ef2525;
+                font-family: workSansLight;
+                margin-top: 15px;
+            }
+            .section2 img {
+                height: auto;
+                margin-right: 10px;
+                padding-bottom: 18px;
+                width: 12px;
+            }
+            ul {
+                padding-left: 25px;
+                list-style-image: url('/public/assets/m/rem/feedback-next-arrow-small.png');                
+            }
+            li.arrow-list {
+                margin-top: 15px;
+                padding-left: 10px;                
+            }
+        
+   
+    .floater {
+        position: fixed;
+        bottom: 0;
+        text-align: center;     }   
+        button {
+            background-color: #fff;
+            border: none;
+            /*box-shadow: 2px 2px 5px #888888;*/
+            box-shadow: 0 0 5px #888888;
+            margin: 20px;
+            padding: 10px 30px;
+            z-index: 1;
+            color: #6B6B6B;
+        }
+    
+
+
+@media only screen and (min-width: 600px) {
+    #splash-screen {
+        font-size: 22px;
+        .carousel-inner .slide-layout ul{
+            list-style-image: url('feedback-next-arrow-16x16.png');  
+        }
+    }
+
+@media only screen and (min-width: 1200px) {
+    #splash-screen {
+        font-size: 32px;
+    }
+}
