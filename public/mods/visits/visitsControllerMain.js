@@ -95,6 +95,53 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.visitid = id;
   $scope.showAvatar = false;
   $scope.arraydata = [];
+  $scope.tab=false;
+
+  // $scope.tabs = [{
+  //   title: 'Agenda',
+  //   url: 'one.tpl.html'
+  // }, {
+  //   title: 'Add Visitors',
+  //   url: 'two.tpl.html'
+  // }, {
+  //   title: 'Finalize',
+  //   url: 'three.tpl.html'
+  // }];
+
+  // $scope.currentTab = 'one.tpl.html';
+
+  // $scope.onClickTab = function (tab) {
+  //   $scope.currentTab = tab.url;
+        //return tabUrl == $scope.currentTab;
+        //return $scope.currentTab;
+      // }
+
+      // $scope.callData = function(tabUrl) {
+      //   return tabUrl == $scope.currentTab;
+      // }
+
+      var user= $rootScope.user._id; 
+      var group = $rootScope.user.memberOf;
+
+      $http.get('/api/v1/secure/admin/users/' + user).success(function(response){
+        if("employee" ==response.association)
+        {
+          $http.get('/api/v1/secure/admin/groups/' + group).success(function(response){
+            if ("Visit Manager Group"==response.name) {
+              console.log("true Visit Manager Group");
+              $scope.tab= true;
+            }
+            else
+            {
+              $scope.tab= false ;
+                // console.log($scope.showTab)
+              }
+            })
+        }
+        // console.log($scope.showTab);
+
+
+      })
 
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
