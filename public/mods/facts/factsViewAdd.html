@@ -5,9 +5,15 @@
   <div class="col-md-8">
 
    <!-- page header/subheader -->
-   <div class="page-header">
+   <div ng-if="mode=='add'" class="page-header">
     Facts - Add new fact
     <div class="sub-header">Managing quick facts
+    </div>
+  </div>
+
+  <div ng-if="mode=='edit'" class="page-header">
+    Facts - Edit fact
+    <div class="sub-header">Edit fact {{facts.title}}
     </div>
   </div>
 
