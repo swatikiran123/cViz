@@ -198,7 +198,7 @@
 			<div class="row">
 				<div class="form-group col-xs-6">
 					<md-input-container class="md-block">
-						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.speakerModel.$touched && sessionAddForm.speakerModel.$invalid }">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.ownerUser.$touched && sessionAddForm.ownerUser.$invalid }">
 						<label >Speaker &nbsp;&nbsp; :</label>
 						<div user type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee"></div>
 						</div>
@@ -207,7 +207,7 @@
 
 				<div class="form-group col-xs-6">
 					<md-input-container class="md-block">
-						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterModel.$touched && sessionAddForm.supporterModel.$invalid }">
+						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterUser.$touched && sessionAddForm.supporterUser.$invalid }">
 						<label >Supporter &nbsp;&nbsp; :</label>
 						<div user type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee"></div>
 						</div>
@@ -270,29 +270,13 @@
       </ANY>
 
 </ANY>
-         <!-- <h4> owner </h4>
-         <div class="form-group" ng-class="{ 'has-error': inputctrl.owner.$touched && inputctrl.owner.$invalid }">
-           <div class="col-md-4">
-             <div user type="picker" class="form-control" user-model="ownerUser" user-id="ownerId" user-email="ownerEmail" ></div>
-           </div>
-         </div>
-
-				 <h4>supporter</h4>
-         <div class="form-group" ng-class="{ 'has-error': inputctrl.supporter.$touched && inputctrl.supporter.$invalid }">
-           <div class="col-md-4">
-             <div user type="picker" class="form-control" user-model="supporterUser" user-id="supporterId" user-email="supporterEmail" ></div>
-           </div>
-         </div> -->
           <md-dialog-actions layout="row">
-            <md-button class="md-primary md-raised" ng-click="save()">
-              OK
-            </md-button>
-            <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">
-              Cancel
-            </md-button>
-
-
+            <div>
+              <button type="submit" class="btn btn-success"
+              ng-disabled="sessionAddForm.$invalid" ng-click="save()">Submit</button>
+              <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+              yes-text="Ok" no-text="Cancel">Cancel</button>
+            </div>
           </md-dialog-actions>
         </div>
 
