@@ -1,3 +1,0 @@
-    <div growl></div>
-
-    <div ng-view></div>
