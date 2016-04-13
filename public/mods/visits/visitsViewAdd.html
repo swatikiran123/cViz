@@ -223,17 +223,21 @@
         ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
       </div>
     </div>
-
-    <!-- visits status input-->
-    <label>Status </label>
-    <div class="radio-inline" style="margin-left: 1cm" >
-      <input type="radio" ng-model="visits.status" value="Confirm">
-      Confirm<br/>
+<!-- $scope.statuses = ['Confirm', 'Tentative']; -->
+      <!-- visits status input-->
+    <label><h4><b>Status</b></h4></label>
+    <md-input-container class="md-block">
+    <md-radio-group name="status" id="status" ng-model="visits.status" ng-required="true" class="">
+    <div class="row">
+    <div class ="col-xs-2"><md-radio-button value="Confirm"> Confirm</md-radio-button></div>
+    <div class ="col-xs-2"><md-radio-button value="Tentative"> Tentative</md-radio-button></div>
+  </md-radio-group></div>
+  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+    <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
     </div>
-    <div class="radio-inline">  
-     <input type="radio" ng-model="visits.status" value="Tentative">
-     Tentative<br/>
-   </div>  
+  </div>
+</md-input-container>
 
 
    <!--buttons-->
