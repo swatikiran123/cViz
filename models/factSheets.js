@@ -1,14 +1,14 @@
 'use strict';
 
 var mongoose             = require('mongoose')
-	, Schema               = mongoose.Schema;
+  , Schema               = mongoose.Schema;
 
 var userSchema           = require('./user');
 var cityFactSchema       = require('./cityFacts');
 
 var factSheetSchema = new mongoose.Schema({
 
-  title 							: { type: String },
+  title               : { type: String },
   logoLink            : { type: String },
   address             : { type: Object },
   strength            : { type: Number },
@@ -26,8 +26,8 @@ var factSheetSchema = new mongoose.Schema({
     }],
   }],
 
-  editdBy						 : { type: Schema.Types.ObjectId, ref: 'User' },
-  editeOn						 : { type: Date, default: Date.now },
+  editdBy            : { type: Schema.Types.ObjectId, ref: 'User' },
+  editeOn            : { type: Date, default: Date.now },
 
 });
 
