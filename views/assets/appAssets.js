@@ -9,6 +9,7 @@ module.exports = {
 			"/public/assets/w/styles/dataview-table.css",
 			"/public/assets/w/styles/dataview-panels.css",
 			"/public/assets/w/styles/userpicker.css",
+			"/public/assets/w/styles/dialogButton.css",
 
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css",
