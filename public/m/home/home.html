@@ -1,5 +1,6 @@
 <style></style>
 
+
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <div scroll id="profile-details">
@@ -23,7 +24,7 @@
                <location-picker ng-model="pickedLocation" limit-to="1"></location-picker>
     
         </div>
-
+<!-- 
         <div class="session-overview" ng-hide="!visitStartSuccess">
             <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4 currentSession">
@@ -41,21 +42,20 @@
                 </div>
             </div>
             <div class="agenda"><a href="#/agendaOverview">VIEW AGENDA</a></div>
-        </div>
-       <form id="form1">
-    <div id="scrollBox">
+        </div> -->
+    <div id="scrollBox" ng-model="eventSources">
       <div ng-repeat="objs in dayHighlighter">
-        <fieldset class="firstPanel">
-          <h4><label class="day">Day {{objs.day}}</label></h4>
-          <label class="date"> {{objs.date}}</label>
-          <i class="fa fa-sun-o" style="font-size:30px;color:#F8C471;"></i><br>
-          <label class="dayLike" >{{objs.climate.dayLike}}</label>
-          <label class="temp">{{objs.climate.temp}}</label>
-          <h4> <label class="loc">{{objs.location}}</label></h4>
+        <fieldset>
+        <div>
+          <span class="day">Day {{objs.day}}</span>
+          <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
+        <img class="weathericon" ng-src="{{objs.climate.icon}}"/></span>
+          <span class="dayLike">{{objs.climate.daylike}}</br></span></span>
+          <span class="temp" >{{objs.climate.temperature}}&deg;C</span>
+          <h4> <span class="loc">{{objs.location}}</span></h4>
         </fieldset>
       </div>
     </div>
-  </form>
         </div>
 
 

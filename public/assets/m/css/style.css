@@ -13,7 +13,7 @@ a:hover {
 }
 
 #menu .row div,
-.session-overview .row div,
+/*.session-overview .row div,*/
 #menu .row div a div {
   display: block;
   text-align: center;
@@ -76,9 +76,9 @@ div#profile-details .profile-location img {
   display: inline-block;
 }
 
-.session-overview {
+/*.session-overview {
   background: rgba(0, 0, 0, 0.5);
-}
+}*/
 
 .on-time {
   font-family: robotoCondensedBold;
@@ -260,10 +260,10 @@ background-color: #40AABF;}
   background: url("../img/ic/cals.png") #588BA3 no-repeat 50% 50%;
   background-size: 45px;
 }
-.agenda{
+/*.agenda{
   background: url("/public/assets/m/img/ic/agenda2.png") #A2915D no-repeat 50% 50%;
   background-size: 45px;
-}
+}*/
 .past-visits-text {
   color: #204353;
   padding-top: 13px;
@@ -304,10 +304,10 @@ background-color: #40AABF;}
 }
 
 @media only screen and (min-device-width: 321px) and (max-device-width: 374px) {
-  .session-overview .row .currentSession,
+ /* .session-overview .row .currentSession,
   .session-overview .row .next-session {
     font-size: 1.1em;
-  }
+  }*/
  #scrollBox > div fieldset {
   background: rgba(0, 0, 0, 0.5);
   padding: 5px;
@@ -321,10 +321,10 @@ background-color: #40AABF;}
   background-size: 150%;
 }
 
-  .session-overview .row {
+  /*.session-overview .row {
     padding-top: 15px;
     padding-bottom: 10px;
-  }
+  }*/
 
   div#profile-details .profile-name {
     font-size: 1.125em;
@@ -365,10 +365,10 @@ background-color: #40AABF;}
 /*media querries */
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 484px) {
-  .session-overview .row .current-session,
+  /*.session-overview .row .current-session,
   .session-overview .row .next-session {
     font-size: 0.75em;
-  }
+  }*/
 #scrollBox > div fieldset {
   background: rgba(0, 0, 0, 0.5);
   padding: 5px;
@@ -401,11 +401,11 @@ font-size: 30px;
 background-color: #40AABF;}
 }
 @media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
-    .session-overview .row .current-session,
+   /* .session-overview .row .current-session,
   .session-overview .row .next-session {
     font-size: 0.75em;
   }
-
+*/
 #scrollBox > div fieldset {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
@@ -474,18 +474,18 @@ background-color: #40AABF;}
   .profile-details{
     padding-top: 400px;
   }
-  .session-overview .row .next-session div {
+ /* .session-overview .row .next-session div {
     margin-left: 30px;
 
   }
 
   .session-overview .row .current-session div {
     margin-right: 88px;
-  }
+  }*/
 
-  .clocksDisplay {
+ /* .clocksDisplay {
     padding-bottom: 10px;
-  }
+  }*/
   #menu{
     margin-top: 30px;}
 #menu .row div {
@@ -507,13 +507,13 @@ background-color: #40AABF;}
   height: 280px;
   width:250px;
   }
-  .session-overview .row .next-session div {
+  /*.session-overview .row .next-session div {
     margin-left: 88px;
   }
 
   .session-overview .row .current-session div {
     margin-right: 200px;
-  }
+  }*/
 
   div#profile-details .profile-location img {
     width: 18px;
