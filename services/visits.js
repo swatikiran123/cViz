@@ -666,7 +666,7 @@ function getSchedulesById(id){
 							date : d,
 							location: sch.location,
 							climate:{
-								daylike:request.weather[0].description,
+								daylike:request.weather[0].main,
 								temperature:request.main.temp,
 								minTemp:request.main.temp_min,
 								maxTemp:request.main.temp_max,

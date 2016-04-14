@@ -231,7 +231,7 @@ vertical-align: top;
 @media screen and (max-width: 320px){
     .agenda-list  li{
       display: inline;
-      margin-right: 25px;
+      margin-right: 45px;
     }
 
 }
@@ -273,7 +273,7 @@ vertical-align: top;
   }
 }
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
 
   .agenda-session-name {
     font-family: workSansMedium;
@@ -294,6 +294,7 @@ vertical-align: top;
     .agenda-list  li{
       display: inline;
       margin-right: 35px;
+      
     }
 
 }

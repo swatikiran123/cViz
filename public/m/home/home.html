@@ -43,71 +43,71 @@
             </div>
             <div class="agenda"><a href="#/agendaOverview">VIEW AGENDA</a></div>
         </div> -->
-    <div id="scrollBox" ng-model="eventSources">
-      <div ng-repeat="objs in dayHighlighter">
-        <fieldset>
-        <div>
-          <span class="day">Day {{objs.day}}</span>
-          <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
-        <img class="weathericon" ng-src="{{objs.climate.icon}}"/></span>
-          <span class="dayLike">{{objs.climate.daylike}}</br></span></span>
-          <span class="temp" >{{objs.climate.temperature}}&deg;C</span>
-          <h4> <span class="loc">{{objs.location}}</span></h4>
-        </fieldset>
-      </div>
-    </div>
+
+
+        <div class="scroll-outer">
+            <div id="scrollBox" class="scroll-inner">
+                <div ng-repeat="objs in dayHighlighter">
+                    <fieldset>
+                            <span class="day">Day {{objs.day}}</span>
+                            <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
+                                <img class="weathericon" ng-src="{{objs.climate.icon}}"/></span>
+                            <span class="dayLike">{{objs.climate.daylike}}</span><br>
+                            <span class="temp" >{{objs.climate.temperature}}&deg;C</span>
+                            <h4> <span class="loc">{{objs.location}}</span></h4>
+                    </fieldset>
+                </div>
+            </div>
         </div>
 
-
+</div>
 
 
     <div class="container" id="menu">
         <div class="container" id="menu">
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/#/agenda">
-                <i class="menu-circle-icon fa fa-list agendaicon"></i>
-                    <div class="account-info-text">AGENDA</div>
-                </a>
-         
-            </div>
-              <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/main/#/execBios">
-                    <div class="menu-circle-icon exec-bio"></div>
-                    <div class="exec-bio-text">EXECUTIVE BIO'S</div>
-                </a>
-            </div>
-             <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/main/#/feedback">
-                    <div class="menu-circle-icon feedback"></div>
-                    <div class="feedback-text">FEEDBACK</div>
-                </a>
-            </div>
-          
-           
-            </div>
             <div class="row">
-              
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/#/contacts">
-                    <div class="menu-circle-icon spoc"></div>
-                    <div class="spoc-text">CONTACT SPOC</div>
-                </a>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/visits/#/agenda">
+                    <i class="menu-circle-icon fa fa-list agendaicon"></i>
+                        <div class="account-info-text">AGENDA</div>
+                    </a>
+             
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/main/#/execBios">
+                        <div class="menu-circle-icon exec-bio"></div>
+                        <div class="exec-bio-text">EXECUTIVE BIO'S</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/main/#/feedback">
+                        <div class="menu-circle-icon feedback"></div>
+                        <div class="feedback-text">FEEDBACK</div>
+                    </a>
+                </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/facts/">
-                    <div class="menu-circle-icon factsheets"></div>
-                    <div class="factsheets-text">FACTSHEETS</div>
-                </a>
+
+            <div class="row">      
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/visits/#/contacts">
+                        <div class="menu-circle-icon spoc"></div>
+                        <div class="spoc-text">CONTACT SPOC</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/facts/">
+                        <div class="menu-circle-icon factsheets"></div>
+                        <div class="factsheets-text">FACTSHEETS</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <a href="/m/visits/">
+                        <div class="menu-circle-icon past-visits"></div>
+                        <div class="past-visits-text">PAST VISITS</div>
+                    </a>
+                </div> 
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/">
-                    <div class="menu-circle-icon past-visits"></div>
-                    <div class="past-visits-text">PAST VISITS</div>
-                </a>
-            </div>
-           
+
         </div>
-    </div>
     </div>
     

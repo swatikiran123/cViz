@@ -1,6 +1,6 @@
-#session-details-page {
+/*#session-details-page {
     background-color: #eeeeee;
-}
+}*/
 .header{margin-top: 50px;
 position: relative;}
 
@@ -69,18 +69,19 @@ position: relative;}
 
 
 
-.session-description-div,
-.session-presenter,
-.session-participants {
-padding: 10px;
-margin-top: 5px;
-margin-bottom: 5px;
-margin-right: 20px;
- background-color: #fff;
- display: inline-block;
-width: 99%;
- box-shadow: 2px 2px 2px #c1c1c1;
+.session-description-div, .session-participants, .session-presenter
+ {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    background-color: #fff;
+    display: inline-block;
+    width: 99%;
+    box-shadow: 2px 2px 2px 1px #c1c1c1;
+    margin-left: 20px;
 }
+
 .session-description {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -95,4 +96,36 @@ width: 99%;
     padding-bottom: 5px;
 }
 
+@media screen and (max-width: 320px){
+  .divtop{
+    padding-top: 150px;
+  }
 
+  .session-description-div, .session-presenter,.session-presenter
+  {
+    margin-left: 5px;
+  }
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .session-description-div, .session-presenter,.session-presenter
+  {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
+  .session-description-div, .session-presenter,.session-presenter
+  {
+    margin-left: 7px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .session-description-div, .session-presenter,.session-presenter
+  {
+    margin-left: 10px;
+  }
+
+}
