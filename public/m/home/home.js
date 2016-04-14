@@ -15,8 +15,12 @@ angular.module('home', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
-
-  .when('/home', {
+.when('/home',{
+    templateUrl: '/public/m/dummy1.html',
+    controller: 'homeBlankCtrl'
+  })
+  
+  .when('/home/:id', {
     templateUrl: '/public/m/home/home.html',
     controller: 'homeCtrl'
   })

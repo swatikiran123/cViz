@@ -15,6 +15,7 @@ controller.deleteById = deleteById;
 
 controller.getWithAction = getWithAction;
 controller.getSessionsById = getSessionsById;
+controller.getSchedulesById=getSchedulesById;
 controller.getExecsById = getExecsById;
 
 module.exports = controller;
@@ -54,6 +55,10 @@ function getWithAction(req, res){
 
 	switch(req.params.action.toLowerCase())
 	{
+        case "schedules":
+            getSchedulesById(req,res);
+            break; 
+
 		case "sessions":
 			getSessionsById(req, res);
 			break;
@@ -95,9 +100,23 @@ function getMyVisits(req,res){
         res.status(500).send(err);
     });
 }
-
 function getSessionsById(req,res){
   dataService.getSessionsById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getSchedulesById(req,res){
+  dataService.getSchedulesById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
