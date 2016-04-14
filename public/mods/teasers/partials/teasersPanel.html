@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="page-header">
+    Teasers - List
+    <div class="sub-header">Manage the list of teasers in the panels
+    </div>
+  </div>
+
+  <div class="container">
+   <div class="row">
+    <div class="col-xs-5">
+      <input type="text" class="form-control" placeholder="Search" ng-model="search.$" /></div>
+      <div ng-include src="'/public/mods/teasers/partials/sortSearch.html'"></div>
+    </div>
+
+    <div class="pnbdr panel panel-primary">
+      <!--div class="panel-heading">teasers panels view</div--><div class="searchpad">
+      <div ng-repeat="teasers in teasersList | filter: search |orderBy:orderByField:reverseSort">
+        <div class="row">
+
+          <div class="pn-bodypad">
+            <div class="col-xs-11">
+              <div class="panel panel-info">
+                <div class="panel-heading pn-bodyhdr" pull-left>
+                  <span>{{teasers.title}}</span><div class="pull-right">
+                  <a class="table-btn" href="#/teasers/{{teasers._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+                  <a class="table-btn" href="#/teasers/{{teasers._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+                  <a class="table-btn" ng-click="delete(teasers)" confirm-dialog header-text="Delete teasers" content="Are you sure you want to delete the teasers with teasers title <b>{{teasers.title}} ? </b>" 
+                    yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+
+                  <div class="pull-left">
+                    {{teasers.type}}<!--  class="img-circle" width="65" height="60"> -->
+                    <div class="text-xs">{{teasers.createOn | date:"dd MMM yyyy"}}</div>
+                  </div>
+                  <div class="pn-inrbodypad">
+
+                    <div class="row">
+                      <div class="col-xs-4">
+                       <richtext body-text="teasers.teaser"></richtext> <!-- {{teasers.teaser}} -->
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+                      <!-- <div class="text-xs">{{teasers.createOn | date:"dd MMM yyyy"}}</div> -->
+                    </div>
+                    <div class="col-xs-4"><div userdisplay view-mode="nameonly" user-id="teasers.createdBy"></div>
+                     <!--{{teasers.externalLink}} -->
+                    {{teasers.tags}}
+                  </div>
+                </div>
+                <div class="text-xs"><richtext body-text="teasers.teasersText"></richtext></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>   

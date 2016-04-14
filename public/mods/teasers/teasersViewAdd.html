@@ -1,0 +1,100 @@
+
+
+<div class="row"> 
+  <div class="col-sm-1"></div>
+  <div class="col-md-8">
+
+   <!-- page header/subheader -->
+   <div class="page-header">
+    teasers - Add new teasers
+    <div class="sub-header">Managing quick teasers
+    </div>
+  </div>
+
+  <!-- teasers pageheader input--> 
+  <div class="data-form">
+    <form name="teasersForm" id="teasersForm" class="form-vertical" novalidate>
+
+
+
+      <!-- teasers title input-->
+      <form name="teasersForm">
+        <md-input-container class="md-block">
+        <label>Title</label>
+        <input md-maxlength="30" minlength="5" required name="title"   ng-model="teasers.title">
+        <div ng-messages="teasersForm.title.$error" ng-show="teasersForm.title.$touched || !teasersForm.title.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+        </md-input-container>
+
+
+        <!-- teasers teaser -->
+
+
+        <div class="field">
+          <label ng-show="teasers.teaser" class="show-hide">teaser</label>
+
+          <text-angular 
+          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+          ng-model="teasers.teaser" name="teaser" placeholder="teaser the teasers." required /></text-angular>
+        </div>
+
+        <div class="field">
+          <label ng-show="teasers.teaserText" class="show-hide">teaserText</label>
+
+          <text-angular 
+          ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+          ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+          ng-model="teasers.teaserText" name="teaserText" placeholder="teaserText" required /></text-angular>
+        </div>
+
+
+        <div class="form-group">
+          <label>Type</label>
+          <select name="type" ng-model="teasers.type" ng-dropdown>
+            <option ng-option value="audio">audio</option>
+            <option ng-option value="video">video</option>
+            <option ng-option value="text">text</option>
+          </select>
+        </div>
+      </div>
+
+<!--       <md-input-container class="md-block">
+      <label>externalLink</label>
+      <input md-maxlength="30" minlength="5" required name="externalLink"   ng-model="teasers.externalLink">
+      <div ng-messages="teasersForm.externalLink.$error" ng-show="teasersForm.externalLink.$touched || !teasersForm.externalLink.$pristine">
+       <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The externalLink  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">the externalLink should contain minimum 5characters</div></div></div>
+      </md-input-container> -->
+
+
+     <!--  <md-chips 
+      name="tags"
+      ng-model="teasers.tags"
+      readonly="ctrl.readonly"
+      placeholder="Enter a tag"
+      delete-button-label="Remove Tag"
+      delete-hint="Press delete to remove tag"
+      secondary-placeholder="+Tag"></md-chips> -->
+
+      <div fileattachment folder-type="keynotes" file-size="25" file-allowed="5" array="array"></div>
+
+
+      <!--buttons-->
+      <div class="form-group">
+        <div class="pull-left">
+          <button type="submit" class="btn btn-success" 
+          ng-click="save()" ng-disabled="teasersForm.$invalid">Submit
+        </button>
+        <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+        yes-text="Ok" no-text="Cancel">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>
