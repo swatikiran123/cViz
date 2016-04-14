@@ -26,6 +26,7 @@ teasersApp.controller('teasersControllerMain', ['$scope', '$http', '$routeParams
         $scope.teasers = $http.get('/api/v1/secure/teasers/' + id).success(function(response){
           $scope.teasers = response;
           $scope.array = response.externalLink;
+          console.log($scope.array)
           $scope.teasers.startDate = new Date($scope.teasers.createdOn);
 
         });

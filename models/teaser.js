@@ -11,7 +11,7 @@ var teaserSchema = new mongoose.Schema({
 	teaser				: { type: String },
 	type                : { type: String }, // video/audio/text
 	teaserText          : { type: String },
-	externalLink        : { type: String },
+	externalLink        : [{ type: String }],
 	tags				: [],
 	createdBy			: { type: Schema.Types.ObjectId, ref: 'User' },
 	createOn			: { type: Date, default: Date.now },
