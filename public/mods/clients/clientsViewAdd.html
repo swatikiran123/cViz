@@ -4,9 +4,15 @@
 
    <!-- page header/subheader -->
 
-   <div class="page-header">
+   <div ng-if="mode=='add'" class="page-header">
     Account Management - Add
     <div class="sub-header">Add new client information before scheduling a visit...
+    </div>
+  </div>
+
+  <div ng-if="mode=='edit'" class="page-header">
+    Account Management - Edit
+    <div class="sub-header">Edit {{clients.name}} information
     </div>
   </div>
 

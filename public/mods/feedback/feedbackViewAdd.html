@@ -4,10 +4,16 @@
 
        <!-- page header/subheader -->
 
-       <div class="page-header">
-          Feedback Template
-          <div class="sub-header">Add new Feedback Template
-          </div>
+       <div ng-if="mode=='add'" class="page-header">
+        Feedback Template - Add
+        <div class="sub-header">Add new Feedback Template
+        </div>
+      </div>
+
+      <div ng-if="mode=='edit'" class="page-header">
+        Feedback Template - Edit
+        <div class="sub-header">Edit {{feedbackDefs.title}} Template
+        </div>
       </div>
 
       <!--Feedback pageheader input--> 

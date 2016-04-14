@@ -6,13 +6,17 @@
 
  <!-- page header/subheader -->
 
-    <div class="page-header">
+    <div ng-if="mode=='add'" class="page-header">
       Keynotes Management - Add
       <div class="sub-header">Add new keynote
       </div>
     </div>
 
-
+    <div ng-if="mode=='edit'" class="page-header">
+      Keynotes Management - Edit
+      <div class="sub-header">Edit keynote {{keynotes.title}}
+      </div>
+    </div>
 
    <!-- keynotes pageheader input--> 
 
