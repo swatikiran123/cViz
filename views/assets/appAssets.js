@@ -114,6 +114,10 @@ module.exports = {
 			"/public/mods/feedback/feedbackControllerMain.js",
 			"/public/mods/feedback/feedbackRouter.js",
 
+			"/public/mods/teasers/teasersModule.js",
+			"/public/mods/teasers/teasersControllerMain.js",
+			"/public/mods/teasers/teasersRouter.js",
+
 			"/public/mods/contactList/contactListModule.js",
 			"/public/mods/contactList/contactListControllerMain.js",
 			"/public/mods/contactList/contactListRouter.js"

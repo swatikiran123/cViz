@@ -1,0 +1,64 @@
+<!-- Grid filter -->
+<div class="form-inline has-feedback filter-header">
+  <div class="row">
+    <div class="col-xs-5">
+      <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
+      <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
+      <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
+    </div>
+    <div class="col-xs-4">
+      <a class="btn btn-default btn-sm pull-right" href="#/teasers/add">Add New teasers</a>
+    </div>
+    <div ng-include src="'/public/mods/teasers/partials/sortSearch.html'"></div>
+  </div> 
+</div><!-- Grid filter ends -->
+
+<table class="table table-striped table-condensed table-responsive table-hover">
+  <thead class="data-grid-header">
+    <!-- table header -->
+    <tr>
+      <th>
+        <span class="fa fa-th-large fa-lg"></span>
+        <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
+      </th>
+      <th>
+        <span class="fa fa-th fa-lg"></span>
+        <a href="" ng-click="orderByField='teaser'; reverseSort = !reverseSort">Teaser</a>
+      </th>
+      <th class="hidden-xs">
+        <span class="fa fa-user fa-lg"></span>
+        <a href="" ng-click="orderByField='createdBy'; reverseSort = !reverseSort">Created</a>
+      </th>
+<!--       <th class="hidden-xs">
+        <span class="fa fa-link fa-lg"></span>
+        <a href="" ng-click="orderByField='externalLink'; reverseSort = !reverseSort">Link</a>
+      </th> -->
+      <th>&nbsp;</th>
+    </tr>
+
+    <!-- table filter -->
+    <tr ng-hide="hideFilter">
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.teaser"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createdBy"></span></th>
+      <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.externalLink"></span></th> -->
+    </tr>
+
+  </thead>
+
+  <tbody class="data-grid-data">
+    <tr ng-repeat="teasers in teasersList | filter: search |orderBy:orderByField:reverseSort">
+      <td>{{teasers.title}}</td>
+      <!-- <td>{{teasers.teaser}}</td> -->
+      <td><richtext body-text="teasers.teaser"></richtext></td>
+      <td><div userdisplay view-mode="nameonly" user-id="teasers.createdBy"></div></td>
+      <!-- <td>{{teasers.externalLink}}</td> -->
+      <td>
+        <a class="table-btn" href="#/teasers/{{teasers._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+        <a class="table-btn" href="#/teasers/{{teasers._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+        <a class="table-btn" ng-click="delete(teasers)" confirm-dialog header-text="Delete teasers" content="Are you sure you want to delete the teasers with teasers title <b>{{teasers.title}} ? </b>" 
+          yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>

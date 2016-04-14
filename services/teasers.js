@@ -39,6 +39,7 @@ function getOneById(id){
 
     model
         .findOne({ _id: id })
+        .populate('createdBy')
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
