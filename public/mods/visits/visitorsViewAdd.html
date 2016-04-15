@@ -1,4 +1,6 @@
 <!--visitors-->
+<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
+
 <b>Add - Visitor</b><br>
 <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
   <thead class="data-grid-header">
@@ -17,20 +19,20 @@
         <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>
       </td> -->
       <td>
-        <form name="myForm">
-          <input type="email" name="email" ng-model="visitorDef.visitorId" required>
+        <!-- <form name="visitorForm"> -->
+          <input type="email" name="email" ng-model="visitorDef.visitorId" class="form-control" required>
           <br>
-            <span class="error text-danger" ng-show="myForm.email.$error.email">
+            <span class="error text-danger" ng-show="visitorForm.email.$error.email">
               Not valid email!</span>
             <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>  
       </td>
       <td><select 
        ng-model="visitorDef.influence" 
-       ng-options="data for data in influence">
+       ng-options="data for data in influence" class="form-control" required>
      </select>
      <!-- <pre>selected: {{visitorDef.influence}}</pre> -->
    </td>
-   <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="myForm.$invalid">Add visitor</button></td>
+   <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
    </form>
  </tr>
  
@@ -186,3 +188,4 @@
 
 </tbody>
 </table>
+</form>

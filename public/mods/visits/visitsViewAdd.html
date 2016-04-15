@@ -51,7 +51,7 @@
            <div class="messagenotify">
             <div ng-messages-include="/public/mods/partials/messages.html"></div>
             <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-            <div ng-message="minlength">the title should contain minimum 5 characters</div>
+            <div ng-message="minlength">The title should contain minimum 5 characters</div>
           </div>
         </div>
       </md-input-container>
@@ -68,23 +68,18 @@
     </md-input-container>
 
     <!-- visits agenda-->
-<!--     <div class="field">
-      <label ng-show="visits.agenda" class="show-hide">Agenda</label>
-      <div class="form-group"> -->
-        <md-input-container class="md-block">
-        <label ng-show="visits.agenda" class="show-hide">Agenda</label>
-        <text-angular
-        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-        ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
-        <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
-          <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          </div>
-        </div>
-      </md-input-container>
-<!--       </div>
-</div> -->
+    <md-input-container class="md-block">
+    <label ng-show="visits.agenda" class="show-hide">Agenda</label>
+    <text-angular
+    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+    ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+    <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
+      <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      </div>
+    </div>
+  </md-input-container>
 
 </div>
 </div>
@@ -159,31 +154,31 @@
           <br/>
 
           <div>
-            <div class="check-element animate-show" ng-show="checked">
+            <div class="check-element animate-show"  ng-if="checked">
               <!-- visits wbsCode input-->
               <md-input-container class="md-block">
               <label>WBS Code</label>
-              <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode">
+              <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
               <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                <div class="messagenotify">
                 <div ng-messages-include="/public/mods/partials/messages.html"></div>
                 <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">the wbsCode should contain minimum 5 characters</div></div></div>
+                <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
               </md-input-container>
             </div>
           </div>
 
           <div>
-            <div class="check-element animate-show" ng-hide="checked">
+            <div class="check-element animate-show" ng-if="!checked">
              <!-- visits chargeCode input-->
              <md-input-container class="md-block">
              <label>Charge Code</label>
-             <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode">
+             <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
              <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
                <div class="messagenotify">
                 <div ng-messages-include="/public/mods/partials/messages.html"></div>
                 <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">the chargeCode should contain minimum 5 characters</div></div></div>
+                <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
               </md-input-container>
             </div>
           </div>
@@ -230,15 +225,6 @@
     </div>
 
     <!-- visits objective -->
-    <!-- <div class="field"> -->
-      <!-- <label ng-show="visits.objective" class="show-hide" <label>Visits Objective</label>
- <!--      <div class="form-group">
-        <text-angular
-        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-        ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
-      </div>
-    </div> -->
 
     <md-input-container class="md-block">
     <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
@@ -253,11 +239,10 @@
     </div>
   </md-input-container>
 
-  <!-- $scope.statuses = ['Confirm', 'Tentative']; -->
   <!-- visits status input-->
   <label><h4><b>Status</b></h4></label>
   <md-input-container class="md-block">
-  <md-radio-group name="status" id="status" ng-model="visits.status" ng-required="true" class="">
+  <md-radio-group name="status" id="status" ng-model="visits.status" required class="">
   <div class="row">
     <div class ="col-xs-2"><md-radio-button value="Confirm"> Confirm</md-radio-button></div>
     <div class ="col-xs-2"><md-radio-button value="Tentative"> Tentative</md-radio-button></div>
