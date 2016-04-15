@@ -1,7 +1,7 @@
 
 
 angular.module('userDirective', [])
-.controller('userDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
+.controller('userDirectiveControllerMain', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
   // console.log($scope.switchMode);
   // console.log($scope.userType);
@@ -29,24 +29,28 @@ angular.module('userDirective', [])
 
     $http.get(url).success(function(response) {
 
-    if($scope.userType == response.association){
-      $scope.userModel = response;
-      $scope.userId = response._id;
-      $scope.userEmail = response.email;
-      $scope.showFlag = "user";
-    }
+      if($scope.userType == response.association){
+        $scope.userModel = response;
+        $scope.userId = response._id;
+        $scope.userEmail = response.email;
+        $scope.showFlag = "user";
+      }
 
-    else{
-      $scope.showFlag = "noUser";
-      message = "User not found";
-    }
+      else{
+        $scope.showFlag = "noUser";
+        $scope.message = "User not found!!!";
+        $timeout(function () { $scope.message = ''; }, 3000);
+
+      }
 
     })
     .error(function(response, status){
       $scope.showFlag = "noUser";
       if(status===404)
       {
-        message = "User not found";
+        $scope.message = "User not found!!!";
+        $timeout(function () { $scope.message = ''; }, 3000);
+
       }
       else
         console.log("error with user directive");
@@ -58,9 +62,9 @@ angular.module('userDirective', [])
    if($scope.userId)
    { 
 	 $scope.getUser(); // autoload data
-   }
-   $scope.showFlag = "user";
-  }
+ }
+ $scope.showFlag = "user";
+}
 
   //ToDo: User Picker not working with inline editing.
 }])
@@ -82,22 +86,22 @@ angular.module('userDirective', [])
     {
       scope.getTemplate = function(){
 
-      var viewmode = scope.viewType.toLowerCase();
+        var viewmode = scope.viewType.toLowerCase();
 
-       if(viewmode === "small" && scope.userEmail!="")
-       {
-        return "/public/d/user/templates/smallpanel.html";
-      }
-      if(viewmode === "large"){
-        return "/public/d/user/templates/largepanel.html";
-      }
-      if(viewmode === "medium"){
-        return "/public/d/user/templates/mediumpanel.html";
-      }
+        if(viewmode === "small" && scope.userEmail!="")
+        {
+          return "/public/d/user/templates/smallpanel.html";
+        }
+        if(viewmode === "large"){
+          return "/public/d/user/templates/largepanel.html";
+        }
+        if(viewmode === "medium"){
+          return "/public/d/user/templates/mediumpanel.html";
+        }
 
+      }
     }
-  }
 
 
-};
+  };
 });
