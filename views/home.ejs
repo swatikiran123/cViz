@@ -1,315 +1,43 @@
 
-<head>
-
-  <script type="text/javascript"> 
-     $(window).load(function(){
-      $("[data-toggle]").click(function() {
-        var toggle_el = $(this).data("toggle");
-        $(toggle_el).toggleClass("open-sidebar");
-      });
-    });
-  </script>
-
-</head>
+  <link rel="stylesheet" href="/public/assets/w/styles/dashBoardUI.css">
 
 
-<body>
+<body ng-app="dashBoard" ng-controller="dashBoardCtrl">
 
-  <div class="container">
+  
    
     <div class="row">
       
       <div id="sidebar">
-      
-        
-      <!-- Side Bar Content Goes here  -->
+          <!-- Side Bar Content Goes here  -->
       </div>
 
-      <div class="col-sm-11">
-        <div class="content">
-          <h2>Static Content</h2>
 
-          <div class="row">
 
-            <div class="col-sm-9">
-              <div class="panel panel-default">
-
-                <div class="panel-heading">
-                  <div class="pull-left">
-                    <p class="highlight">03</p>
-                  </div>
-                  <h3 class="panel-title"> <b>Visits This Week</b></h3>
+      <div class="col-sm-11 col-md-11 col-lg-11 col-pad">
+        <div id="dashboard-page">
+        <div class="header">Dashboard</div>
+        <div class="scrollable-content">
+        <div ng-repeat="tile in dashBoard_tiles" id= "tile{{$index}}" class="tiles" ng-class="{'tile-small': tile.tile_content.length == 0, 'tile-big': tile.tile_content.length >= 1 }">
+            <div>
+                <div class="tile-image" ng-class="{'display-block': tile.tile_img.length != '', 'display-none': tile.tile_img.length == '' }">
+                  <img ng-src="{{tile.tile_img}}">
                 </div>
-
-                <div class = "panel-subheader">
-                 <center> Mar, 2016</center>
+                <div class="tile-contents">
+                    {{tile.tile_content}}
                 </div>
-
-                <div class="panel-body">
-                  Zurich Visit on 2nd-Mar<br>
-                  Hyderabad
-                  <br><br>
-                  AOL Visit on 4th-Mar<br>
-                  Bangalore
-                </div>
-
-                <div class="panel-footer">
-                  <p></p>
-                </div>
-              </div>
+                <div class="tile-name">{{tile.tile_name}}</div>
             </div>
-
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight">03</p>
-                </div>
-                <h3 class="panel-title"><b> Visits Score </b></h3>  
-              </div>
-
-              <div class="panel-body">
-                <p>
-                  <font size="30">
-                    <center> 
-                      <b>02</b>
-                    </center>
-                  </font>
-                </p>
-              </div>
-
-              <div class="panel-footer">
-                <p></p>  
-              </div>
-            </div>
-          </div>
-
-
         </div>
+      </div>
+      </div>
+      </div> <!--column 11-->
 
 
-
-        <br>
-        <div class="row">
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight"> 02 </p>
-                </div>
-                <h3 class="panel-title"><b> Visits Score </b></h3>
-              </div>
-
-              <div class="panel-body"> 
-                <p>
-                  <font size="30">
-                    <center> 
-                      <b>03</b>
-                    </center>
-                  </font>
-                </p>
-              </div>
-
-              <div class="panel-footer">
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-sm-9">
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight">02</p>
-                </div>
-                <h3 class="panel-title"> <b> Visits Last Week </b></h3>
-              </div>
-
-              <div class = "panel-subheader">
-                <center> Feb, 2016</center>
-              </div>
-
-              <div class="panel-body">
-                Motorola Visit on 12nd-Feb<br>
-                Noida
-                <br><br>
-                Telenor Visit on 16th-Feb <br>
-                Indore
-                <br><br>
-                Vodafone Visit on 6th-Mar<br>
-                Chennai
-              </div>
-
-              <div class="panel-footer">
-                <p></p>  
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-
-
-
-        <br>
-        <div class="row">
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight"> 03 </p>
-                </div>
-                <h3 class="panel-title"> <b> Hyderabad</b></h3>
-              </div>
-
-              <div class = "panel-subheader">
-                Visits
-              </div>
-
-              <div class="panel-body">
-                <i><b>Zurich </b></i><br>
-                Start-Time: 2016-02-02, 09:00:00<br>
-                End-Time: 2016-02-02T20:00:00
-                <br><br>
-                <i><b> Vodafone</b> </i><br>
-                Start-Time: 2016-02-04, 09:00:00<br>
-                End-Time: 2016-02-04, 20:00:00
-                <br><br>
-                <i> <b> Telenor </b> </i><br>
-                Start-Time: 2016-02-06, 09:00:00<br>
-                End-Time: 2016-02-06, 20:00:00
-              </div>
-
-              <div class="panel-footer">
-                <p></p>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight">02</p>
-                </div>
-                <h3 class="panel-title"> <b>  Bangalore</b> </h3>
-              </div>
-
-              <div class = "panel-subheader">
-                Visits
-              </div>
-
-              <div class="panel-body">
-                <i> <b> Aol </b></i><br>
-                Start-Time: 2016-02-12, 09:00:00<br>
-                End-Time: 2016-02-02T20:00:00
-                <br><br>
-                <i> <b> Motorola </b></i><br>
-                Start-Time: 2016-02-14, 09:00:00<br>
-                End-Time: 2016-02-14, 20:00:00
-                <br><br>
-                <i> <b> NASA </b> </i><br>
-                Start-Time: 2016-02-16, 09:00:00<br>
-                End-Time: 2016-02-16, 20:00:00
-              </div>
-              <div class="panel-footer">
-                <p></p>  
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight">03</p>
-                </div>
-                <h3 class="panel-title"><b> Chennai</b> </h3>
-              </div>
-
-              <div class = "panel-subheader">
-                Visits
-              </div>
-
-              <div class="panel-body">
-                <i><b> SRA </b></i><br>
-                Start-Time: 2016-02-12, 09:00:00<br>
-                End-Time: 2016-02-02T20:00:00
-                <br><br>
-                <i><b> HCL </b> </i><br>
-                Start-Time: 2016-02-14, 09:00:00<br>
-                End-Time: 2016-02-14, 20:00:00
-                <br><br>
-                <i> <b> Fruition </b> </i><br>
-                Start-Time: 2016-02-16, 09:00:00<br>
-                End-Time: 2016-02-16, 20:00:00
-              </div>
-              <div class="panel-footer">
-                <p></p>  
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <p class="highlight">04</p>
-                </div>
-                <h3 class="panel-title"><b> Noida </b></h3>
-              </div>
-
-              <div class = "panel-subheader">
-                Visits 
-              </div>
-
-              <div class="panel-body">
-                <i> <b> SRA </b></i><br>
-                Start-Time: 2016-02-12, 09:00:00<br>
-                End-Time: 2016-02-02T20:00:00
-                <br><br>
-                <i> <b> UXC </b></i><br>
-                Start-Time: 2016-02-14, 09:00:00<br>
-                End-Time: 2016-02-14, 20:00:00
-                <br><br>
-                <i> <b> Xchanging</b>  </i><br>
-                Start-Time: 2016-02-16, 09:00:00<br>
-                End-Time: 2016-02-16, 20:00:00
-              </div>
-
-              <div class="panel-footer">
-                <p></p>  
-              </div>
-            </div>
-          </div> <!-- Column 3-->
-
-
-        </div> <!-- row-->
-
-      </div> <!--content-->
-
-
-    </div> <!--column 11-->
-
-
-    <div class="col-sm-1">
-      <a href="#" data-toggle=".container" id="sidebar-toggle">
-      <i class="fa fa-angle-double-left fa-5x padtop rotate"></i></a>
-    </div>
+      <div class="col-sm-1 col-md-1 col-lg-1">
+        <a href="#" data-toggle=".container" id="sidebar-toggle">
+        <i class="fa fa-angle-double-left fa-5x padtop rotate"></i></a>
+      </div>
 
   </div> <!--row-->
 
@@ -384,7 +112,98 @@
 
 
 <script type="text/javascript">
+angular.module('dashBoard', [])
+.controller('dashBoardCtrl', function($scope) {
 
+
+        $scope.dashBoard_tiles = [{
+            'tile_name': 'Home',
+            'tile_img': '/public/uploads/images/location/chennai-thumb-1.jpg',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Session',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Exec Bios',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Client',
+            'tile_img': '/public/uploads/images/clients.png',
+            'tile_content': ''
+        }, {
+            'tile_name': 'SPOC',
+            'tile_img': '/public/uploads/images/journeypics/1-foundation.png',
+            'tile_content': ''
+        }, {
+            'tile_name': 'People',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Calendar',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'News',
+            'tile_img': '/public/uploads/images/industry/diversified.png',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Outlook',
+            'tile_img': '/public/uploads/images/location/chennai-thumb-4.jpg',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Skype',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Pictures',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Documents',
+            'tile_img': '/public/uploads/images/professionals.png',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Assets',
+            'tile_img': '/public/uploads/images/location/chennai-thumb-4.jpg',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Drive',
+            'tile_img': '/public/assets/m/img/ic/india-map.png',
+            'tile_content': ''
+        }, {
+            'tile_name': 'Pictures',
+            'tile_img': '',
+            'tile_content': 'CSC journey begins with the world biggest customers'
+        }, {
+            'tile_name': 'Google',
+            'tile_img': '/public/assets/m/img/ic/grp.png',
+            'tile_content': ''
+        }];
+
+        var myColors = [
+            '#EF2525', '#88ba41', '#850057', '#003f60', '#588ba3'
+        ];
+        var i = 0;
+        setTimeout(function() {
+            $('div.tiles').each(function() {
+                $(this).css('background-color', myColors[i]);
+                i = (i + 1) % myColors.length;
+            });
+        }, 10);
+
+    });
+
+
+
+/*toggle function*/
+   $(window).load(function(){
+      $("[data-toggle]").click(function() {
+        var toggle_el = $(this).data("toggle");
+        $(toggle_el).toggleClass("open-sidebar");
+      });
+    });
       $(".rotate").click(function(){
         $(this).toggleClass("side");
       });
