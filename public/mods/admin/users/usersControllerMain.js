@@ -212,12 +212,24 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
     //updating group details
     $scope.updateGroupDetail = function() {
-      $http.put('/api/v1/secure/admin/groups/' + $scope.group._id, $scope.group).success(function(response) {
-        refresh();
-        $scope.action = "none";
-        $scope.hideAddRow = true;
-      });
+      if($scope.group.name != '' && $scope.group.description != ''){
+        $http.put('/api/v1/secure/admin/groups/' + $scope.group._id, $scope.group).success(function(response) {
+          refresh();
+          $scope.action = "none";
+          $scope.hideAddRow = true;
+        });
+      }
     };
+
+   //delete group
+    $scope.removeGroup = function(group) {
+     var groupName = group.name;
+     $http.delete('/api/v1/secure/admin/groups/' + group._id).success(function(response) {
+      refresh();
+      growl.info(parse("Group <b>%s</b> deleted successfully.",groupName));
+    });
+   };
+
     //method for adding new group record dynamically start
 
   }]);

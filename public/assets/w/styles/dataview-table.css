@@ -80,3 +80,9 @@ tfoot{
   color: #ecf2f9;
 
 }
+
+/* cvm issue 110 - Group mgmt*/
+/* need to move in custome css in future */
+.groupdesc_textbox{
+  width:55%;
+}
