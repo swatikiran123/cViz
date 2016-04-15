@@ -4,10 +4,6 @@
   <!--link rel="stylesheet" href="/public/assets/m/css/sessionDetail.css">
   <link rel="stylesheet" href="/public/assets/m/css/userview.css"-->
 <style>
-/*#session-details-page {
-    background-color: #eeeeee;
-}*/
-
 .tb-big {
     height: 150px;
 
@@ -22,7 +18,8 @@
     font-family: robotoRegular;
 }
 
-  .header{margin-top: 20px;
+  .header{
+    margin-top: 20px;
     position: relative;
   } 
 
@@ -41,20 +38,15 @@
     padding-top: 140px;
    
 }
-
-
- .client-rep {
+.client-rep {
         margin-top: 0px;
         margin-bottom: 0px;
-    }
+}
  .hd-sticky {
         background-color: ;
         position: relative;
         height: 0px;
-    }
-
-
-  
+}
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
     .tb-big {
@@ -100,23 +92,17 @@ session details page
             <div class="session-heading">
                 {{session.session.title | uppercase}}
             </div>
-            <!--div class="session-image">
-                <img ng-src="{{session.picture}}">
-            </div-->
+           
             <div class="session-description">{{session.session.desc}}
             </div>
-            <!--div class="share">
-             <div>
-             <i class="fa fa-share-alt"></i>
-              Share</div>
-            </div-->
+          
         </div>
     </div>
 
 
  
-    <div class="session-presenter">
- <div class="heading">PRESENTER</div>
+<div class="session-presenter">
+       <div class="heading">PRESENTER</div>
             <div class="list-group">
             <div  ng-repeat="owner in arrayData" class="list-group-item" ng-click="collapseDiv($index,'client')">
                   <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
@@ -131,10 +117,10 @@ session details page
              <userview user-id="owner" user-model view-mode="detial-view"></userview>
                 </div>
 
-          <br>
+              <br>
             </div>
-            </div>
-            </div>
+    </div>
+</div>
           
       
      
