@@ -5,11 +5,11 @@
    margin: 0;
    overflow-x: hidden;
 
-   background:  url(/public/assets/images/new-york.jpg) no-repeat center center fixed;
+  /* background:  url(/public/assets/images/new-york.jpg) no-repeat center center fixed;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
-   background-size: cover;
+   background-size: cover;*/
  }
 
 
@@ -119,11 +119,16 @@ h2, h4 {
 }
 
 .padtop{
-  color: white;
+  /*color: white;*/
   opacity: 0.5;
   -moz-position: fixed;
   -webkit-position : fixed;
   position: fixed;
+}
+
+.col-pad {
+    padding-right: 0px;
+    margin-right: 0px;
 }
 
 .rotate {
@@ -177,7 +182,7 @@ h2, h4 {
   .tab-controller * {
     display: block;
 
-    color: white;
+    /*color: white;*/
     cursor: pointer;
     opacity: 0.7;
   }
@@ -199,7 +204,7 @@ h2, h4 {
 
   .tab-controller1 * {
     display: block;
-    color: white;
+    /*color: white;*/
     cursor: pointer;
     opacity: 0.7;
   }
