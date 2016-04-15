@@ -75,8 +75,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl','$mdDialog', '$mdMedia','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, $mdDialog , $mdMedia , Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, $mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -432,6 +432,7 @@ $scope.editkeynote = function(index,keynoteDef){
      {
       $scope.showFlag = "noUser";
       $scope.message = "User not found";
+      $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
 

@@ -20,7 +20,7 @@
      </select>
    </td>
    <td ng-if="tab"><input type="text" placeholder="Meeting Place" ng-model="schedule.meetingPlace"></td>
-   <td><button class="btn btn-primary" ng-click="addSchedule(schedule)">Add Schedule</button></td>
+   <td><a class="btn btn-primary" ng-click="addSchedule(schedule)">Add Schedule</a></td>
 
  </tr>
  <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">
@@ -29,7 +29,7 @@
   <td>{{schedule.location}}</td>
   <td ng-if="tab">{{schedule.meetingPlace}}</td>
   <td><a class="table-btn" ng-click="removeSchedule($index)"><span class="fa fa-trash fa-lg" /></a>
-    <a class="table-btn" ng-click="editSchedule($index,schedule)"><span class="fa fa-edit fa-lg" /></a>
+    <a ng-if="mode=='edit'" class="table-btn" ng-click="editSchedule($index,schedule)"><span class="fa fa-edit fa-lg" /></a>
   </td>
 </tr>
 </tbody>

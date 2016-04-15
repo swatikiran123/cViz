@@ -1,7 +1,7 @@
 
 
 angular.module('inviteesDirective', [])
-.controller('inviteesDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
+.controller('inviteesDirectiveControllerMain', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
   console.log($scope.switchMode);
   
@@ -44,6 +44,7 @@ angular.module('inviteesDirective', [])
      else {
       $scope.checked = true;
       $scope.message = "User is not an organization employee!!";
+      $timeout(function () { $scope.message = ''; }, 3000);
     }
     
         $scope.invite='';
@@ -55,6 +56,7 @@ angular.module('inviteesDirective', [])
       {
         $scope.checked = true;
         $scope.message = "User not found !!!";
+        $timeout(function () { $scope.message = ''; }, 3000);
       }
       else
         console.log("error with user directive");

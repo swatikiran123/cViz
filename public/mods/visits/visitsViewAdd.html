@@ -51,7 +51,7 @@
            <div class="messagenotify">
             <div ng-messages-include="/public/mods/partials/messages.html"></div>
             <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-            <div ng-message="minlength">the title should contain minimum 5characters</div>
+            <div ng-message="minlength">the title should contain minimum 5 characters</div>
           </div>
         </div>
       </md-input-container>
@@ -68,16 +68,25 @@
     </md-input-container>
 
     <!-- visits agenda-->
-    <div class="field">
+<!--     <div class="field">
       <label ng-show="visits.agenda" class="show-hide">Agenda</label>
-      <div class="form-group">
+      <div class="form-group"> -->
+        <md-input-container class="md-block">
+        <label ng-show="visits.agenda" class="show-hide">Agenda</label>
         <text-angular
         ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
         ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
-      </div>
-    </div>
-  </div>
+        <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
+          <div class="messagenotify">
+            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          </div>
+        </div>
+      </md-input-container>
+<!--       </div>
+</div> -->
+
+</div>
 </div>
 
 
@@ -159,7 +168,7 @@
                <div class="messagenotify">
                 <div ng-messages-include="/public/mods/partials/messages.html"></div>
                 <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">the wbsCode should contain minimum 5characters</div></div></div>
+                <div ng-message="minlength">the wbsCode should contain minimum 5 characters</div></div></div>
               </md-input-container>
             </div>
           </div>
@@ -174,7 +183,7 @@
                <div class="messagenotify">
                 <div ng-messages-include="/public/mods/partials/messages.html"></div>
                 <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">the chargeCode should contain minimum 5characters</div></div></div>
+                <div ng-message="minlength">the chargeCode should contain minimum 5 characters</div></div></div>
               </md-input-container>
             </div>
           </div>
@@ -221,41 +230,55 @@
     </div>
 
     <!-- visits objective -->
-    <div class="field">
-      <label ng-show="visits.objective" class="show-hide">Visits Objective</label>
-      <div class="form-group">
+    <!-- <div class="field"> -->
+      <!-- <label ng-show="visits.objective" class="show-hide" <label>Visits Objective</label>
+ <!--      <div class="form-group">
         <text-angular
         ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
         ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
       </div>
-    </div>
-    <!-- $scope.statuses = ['Confirm', 'Tentative']; -->
-    <!-- visits status input-->
-    <label><h4><b>Status</b></h4></label>
+    </div> -->
+
     <md-input-container class="md-block">
-    <md-radio-group name="status" id="status" ng-model="visits.status" ng-required="true" class="">
-    <div class="row">
-      <div class ="col-xs-2"><md-radio-button value="Confirm"> Confirm</md-radio-button></div>
-      <div class ="col-xs-2"><md-radio-button value="Tentative"> Tentative</md-radio-button></div>
-    </md-radio-group></div>
-    <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+    <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
+    <text-angular
+    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+    ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
+    <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
       <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
       </div>
     </div>
   </md-input-container>
 
-
-  <!--buttons-->
-  <div class="form-group">
-    <div class="pull-left">
-      <button type="submit" class="btn btn-success"
-      ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
-    </button>
-    <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-    yes-text="Ok" no-text="Cancel">Cancel</button>
+  <!-- $scope.statuses = ['Confirm', 'Tentative']; -->
+  <!-- visits status input-->
+  <label><h4><b>Status</b></h4></label>
+  <md-input-container class="md-block">
+  <md-radio-group name="status" id="status" ng-model="visits.status" ng-required="true" class="">
+  <div class="row">
+    <div class ="col-xs-2"><md-radio-button value="Confirm"> Confirm</md-radio-button></div>
+    <div class ="col-xs-2"><md-radio-button value="Tentative"> Tentative</md-radio-button></div>
+  </md-radio-group></div>
+  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+    <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+    </div>
   </div>
+</md-input-container>
+
+
+<!--buttons-->
+<div class="form-group">
+  <div class="pull-left">
+    <button type="submit" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
+  </button>
+  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+  yes-text="Ok" no-text="Cancel">Cancel</button>
+</div>
 </div>
 </form>
 </div></div></div>

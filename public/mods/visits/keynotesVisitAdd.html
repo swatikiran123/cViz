@@ -12,17 +12,23 @@
   <tbody class="data-grid-data">
     <tr>
       <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote required></td>
-     <td><input type="text" placeholder="context" ng-model="keynoteDef.context" ></td>
-     <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
-     <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add Keynote</button></td>
-   </tr>
-   <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
-    <td>{{keynoteDef.note}}</td>
-    <td>{{keynoteDef.context}}</td>
-    <td>{{keynoteDef.order}}</td>
-    <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash fa-lg" /></a>
-      <a class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a>
-    </td>
-  </tr>
-</tbody>
+      <td><!-- <input type="text" placeholder="context" ng-model="keynoteDef.context" > -->
+        <select name="type" ng-model="keynoteDef.context" ng-dropdown>
+          <option ng-option value="welcome">Welcome</option>
+          <option ng-option value="thankyou">Thankyou</option>
+        </select>
+        
+      </td>
+      <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
+      <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add Keynote</button></td>
+    </tr>
+    <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
+      <td>{{keynoteDef.note}}</td>
+      <td>{{keynoteDef.context}}</td>
+      <td>{{keynoteDef.order}}</td>
+      <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash fa-lg" /></a>
+        <a ng-if="mode=='edit'" class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a>
+      </td>
+    </tr>
+  </tbody>
 </table>
