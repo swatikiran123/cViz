@@ -29,10 +29,17 @@
         <th>Action</th>
       </tr>
 
+      <!-- table filter -->
+      <tr ng-hide="hideFilter">
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.name"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.description" class="groupdesc_textbox"></span></th>
+        <th><span ng-hide="hideFilter">&nbsp;</span></th>
+      </tr>
+
       <!-- table add new record template start-->
       <tr ng-hide="hideAddRow">
         <td><span ng-hide="hideAddRow"><input type="text" ng-model="group.name"></span></td>
-        <td><span ng-hide="hideAddRow"><input type="text" ng-model="group.description"></span></td>
+        <td><span ng-hide="hideAddRow"><input type="text" ng-model="group.description" class="groupdesc_textbox"></span></td>
         <td>
           <span ng-hide="hideAddRow">
             <a class="table-btn" ng-click="saveGroup()"><span class="glyphicon glyphicon-ok"/></a>
@@ -49,6 +56,8 @@
         <td>{{group.description}}</td>
          <td>
           <a class="table-btn" ng-click="editGroup(group._id)"><span class="fa fa-pencil-square-o fa-lg" /></a>
+
+          <a class="table-btn" ng-click="removeGroup(group)" confirm-dialog header-text="Delete Group" content="Are you sure you want to delete <b>{{group.name}}?</b>" yes-text="Ok" no-text="Cancel"><span class="fa fa-trash-o fa-lg" /></a>
         </td>
       </tr>
     </tbody>
