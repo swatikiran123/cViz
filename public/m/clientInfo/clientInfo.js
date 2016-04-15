@@ -37,31 +37,6 @@ client.controller('clientInformationCtrl', function($scope, $routeParams, $http)
 
         angular.element('#hamburger-menu').css('display', 'none');
 
-        $scope.representatives = [{
-            'client_representatives': [{
-                'name': 'Harry John',
-                'picture': '/public/assets/g/imgs/avatar.jpg',
-                'designation': 'Sr Analyst, EMC Inc, IL, USA',
-                'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
-                'email': 'vincent@csc.com',
-                'telephone': '+555 555 555'
-            }, {
-                'name': 'Jayne Smith',
-                'picture': '/public/assets/g/imgs/avatar.jpg',
-                'designation': 'Sr Analyst, EMC Inc, IL, USA',
-                'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
-                'email': 'vincent@csc.com',
-                'telephone': '+555 555 555'
-            }, {
-                'name': 'Rossy Hall',
-                'picture': '/public/assets/g/imgs/avatar.jpg',
-                'designation': 'Sr Analyst, EMC Inc, IL, USA',
-                'bio': 'Met my aggressive timeline requirement with very good quality. Worked with me to come up with a viable solution to meet the timeline. Easy to work with and have the customers best interest in mind. You can find less expensive alternatives but the quality and responsiveness is well worth the price',
-                'email': 'vincent@csc.com',
-                'telephone': '+555 555 555'
-            }]
-        }];
-
         $scope.past_events = [{
             'visit_date': '13/09/2015',
             'visit_name': 'Moto - Mobility Visit',
@@ -78,14 +53,6 @@ client.controller('clientInformationCtrl', function($scope, $routeParams, $http)
         }, {
             'project_name': 'Payment Project',
             'project_details': 'Met my aggressive timeline requirement with very good quality'
-        }];
-
-        $scope.prime_competitors = [{
-            'image': '/public/uploads/images/industry/diversified.png'
-        }, {
-            'image': '/public/uploads/images/industry/healthcare.png'
-        }, {
-            'image': '/public/uploads/images/industry/insurance.png'
         }];
 
         $scope.collapseDiv = function(index, text) {
