@@ -3,7 +3,6 @@
     height: 100%;
     display: block;
     position: absolute;
-    /*height:auto;*/
     bottom: 0;
     top: 0;
     left: 0;
@@ -14,43 +13,24 @@
     width: 60px;
     height: 55px;
     margin-top: 15px;
-
 }
-
+.visitlinks a{
+    color: purple;
+    font-weight: bold;
+}
 .fonticon1{
   font-size:20px;
-  color: red;
-
+  color: purple;
 }
-/*background-color: #eeeeee;*/
+
 .my-visit-header {
 
     background-color: #fff;
-    /*box-shadow: 7px 7px 8px red;*/
     display: block;
     padding-left: 0;
     padding-right: 0;
     z-index: 10;
 }
-/*.my-visit-sub-header {
-    text-align: left;
-    background: url("/public/uploads/images/hero-bg.jpg") no-repeat;
-}
-.profile-details-div {
-
-    display: inline-flex;
-    font-family: workSansBold;
-    color: #f3f5fd;
-    text-shadow: 1px 1px #5b5b5b;
-
-}
-.profile-overview {
-
-    text-align: left;
-    margin-left: 20px;
-    font-size: 1em;
-}
-*/
 
 .button-div {
     padding-bottom: 20px;
@@ -81,11 +61,10 @@ button {
 }
 
 .sortBy {
-    /*padding: 0 5px 3px 0;*/
+
     text-align: right;
 
-    /*background-color: #fff;*/
-/*box-shadow: 2px 1px 2px #9a9a9a;*/}
+}
 .sort-by-wrapper {
     float: right;
     width: 50px;
@@ -108,7 +87,7 @@ img {
     position: relative;
     z-index: 2;
     color: #777777;
-    /*box-shadow: 2px 2px 2px #9a9a9a;*/
+
     font-family: robotoRegular;
     font-size: 0.8em;
     margin-top: -1px;}
@@ -116,259 +95,268 @@ img {
         margin-bottom: 0px;
     }
 
-    .my-visit-content {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        /*height: 100%;*/
-        background-color: #eeeeee;}
-        .visit-card {
-            padding: 10px;
-            background-color: #fff;
-            font-family: robotoRegular;
-            box-shadow: 2px 4px 4px #c1c1c1;
-            font-size: 0.85em;
-            margin-bottom: 15px;}
-            .dots {
-                width: 15px;
-                height: 15px;
-                right: 0;
-            }
-            h2 {
-                font-family: workSansLight;
-                color: #ef2525;
-                margin: 10px 0;
-                font-size: 2.14em;
-            }
-            .actionDropDown {
-                position: absolute;
-                z-index: 1;
-                right: 20px;
-                color: #777777;
-                box-shadow: 2px 2px 2px #9a9a9a;
-                font-family: robotoRegular;
-                font-size: 0.8em;
-            }
-            .actionDropDown ul {
-                margin-bottom: 0px;
-            }
-            .visit-title {
-                color: #888888;}
-                span {
-                    font-family: robotoBold;
-                    color: #777777;
-                    font-size: 1.35em;
-                }
+.my-visit-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
 
-                .visit-details {
-                    color: #777777;
-                }
-                .separator {
-                    color: #a1a1a1;
-                    padding: 0 10px;
-                }
-                .visit-status-confirmed {
-                    background: url("/public/assets/m/rem/confirmed-bg.png") no-repeat;
-                    background-size: contain;
-                    padding: 0px 5px 5px 20px;
-                    font-family: robotoBold;
-                    color: #6b7a56;
-                    font-size: 0.78em;
-                    vertical-align: middle;
-                }
-                .visit-status-tentative {
-                    background: url("/public/assets/m/rem/tentative-bg.png") no-repeat;
-                    background-size: contain;
-                    padding: 0px 5px 5px 20px;
-                    font-family: robotoBold;
-                    color: #817e2e;
-                    font-size: 0.78em;
-                    vertical-align: middle;
-                }
-                .upcoming-sessions {
-                    border-top: #b5b5b5 solid 1px;
-                    padding: 20px 0;
-                    margin-top: 20px;
-                    font-family: robotoBold;
-                    color: #888888;
-                    /*font-size: 1.14em;*/
-                    font-size: 1em;}
-                    h3 {
-                        font-family: workSansLight;
-                        color: #ef2525;
-                        font-size: 1.5em;
-                    }
+    background-color: #eeeeee;
+}
+.visit-card {
+    padding: 10px;
+    background-color: #fff;
+    font-family: robotoRegular;
+    box-shadow: 2px 4px 4px #c1c1c1;
+    font-size: 0.85em;
+    margin-bottom: 15px;
+}
+.dots {
+    width: 15px;
+    height: 15px;
+    right: 0;
+}
+h2 {
+    font-family: workSansLight;
+    color: #ef2525;
+    margin: 10px 0;
+    font-size: 2.14em;
+}
+.actionDropDown {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    color: #777777;
+    box-shadow: 2px 2px 2px #9a9a9a;
+    font-family: robotoRegular;
+    font-size: 0.8em;
+}
+.actionDropDown ul {
+    margin-bottom: 0px;
+}
+.visit-title {
+    color: #888888;
+}
+span {
+    font-family: robotoBold;
+    color: #777777;
+    font-size: 1.35em;
+}
 
-                    .session-field {
-                        border-bottom: #d0d0d0 solid 0.5px;
-                        margin: 0;
-                        padding: 10px 0;}
-                        img {
-                            /* margin-top: -5px;*/
-                        }
-                      
-                            .sessiondiv{
-                                padding-top:2px;
-                                padding-bottom: 20px;
+.visit-details {
+    color: #777777;
+}
+.separator {
+    color: #a1a1a1;
+    padding: 0 10px;
+}
+.visit-status-confirmed {
+    background: url("/public/assets/m/rem/confirmed-bg.png") no-repeat;
+    background-size: contain;
+    padding: 0px 5px 5px 20px;
+    font-family: robotoBold;
+    color: #6b7a56;
+    font-size: 0.78em;
+    vertical-align: middle;
+}
+.visit-status-tentative {
+    background: url("/public/assets/m/rem/tentative-bg.png") no-repeat;
+    background-size: contain;
+    padding: 0px 5px 5px 20px;
+    font-family: robotoBold;
+    color: #817e2e;
+    font-size: 0.78em;
+    vertical-align: middle;
+}
+.upcoming-sessions {
+    border-top: #b5b5b5 solid 1px;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-family: robotoBold;
+    color: #888888;
+    /*font-size: 1.14em;*/
+    font-size: 1em;
+}
+h3 {
+    font-family: workSansLight;
+    color: #ef2525;
+    font-size: 1.5em;
+}
 
-                                border-bottom: #D3D3D3 solid 0.5px;
-                            }
-                            .sessiontitle{
-                                color: red;
-                                font-size: 16px;
+.session-field {
+    border-bottom: #d0d0d0 solid 0.5px;
+    margin: 0;
+    padding: 10px 0;
+}
+img {
 
-                            }
-                            .sessionday{
-                                color: blue;
-                                font-size: 12px;
+}
 
-                            }
-                            .sessionrole{
-                                font-family: robotoRegular;
-                                font-size: 14px;
-                                padding-right: 30px;
-                            }
-                            .sessiontime{
-                                font-family: robotoRegular;
-                                font-size: 12px;
-                            }
-                            .yp{
-                                font-family: robotoRegular;
-                            }
+.sessiondiv{
+    padding-top:2px;
+    padding-bottom: 20px;
 
-                        
+    border-bottom: #D3D3D3 solid 0.5px;
+}
+.sessiontitle{
+    color: purple;
+    font-size: 16px;
 
-                            .img-vertical-align {
-                                position: absolute;
-                                top: 50%;
-                                transform: translateY(-50%);
-                            }
+}
+.sessionday{
+    color: blue;
+    font-size: 12px;
+
+}
+.sessionrole{
+    font-family: robotoRegular;
+    font-size: 14px;
+    padding-right: 30px;
+}
+.sessiontime{
+    font-family: robotoRegular;
+    font-size: 12px;
+}
+.yp{
+ font-family: robotoRegular;
+}
 
 
-                            @media only screen and (max-width: 530px) {
-                                #my-visits-container {
-                                    font-size: 15px;
-                                }
-                            }
 
-                            @media only screen and (max-width: 470px) {
-                                #my-visits-container {
-                                    font-size: 12px;}
-                                    .searchView {}
-                                    .searchDiv input {
-                                        margin-left: 0px;
-                                    }
-                                }
+.img-vertical-align {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 
-            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                   .sessiondiv{
-                                padding-top:2px;
-                                padding-bottom: 20px;
+@media only screen and (max-width: 530px) {
+#my-visits-container {
+  font-size: 15px;
+  }
+}
 
-                                border-bottom: #D3D3D3 solid 0.5px;
-                            }
-                            .sessiontitle{
-                                color: red;
-                                font-size: 14px;
+@media only screen and (max-width: 470px) {
+#my-visits-container {
+font-size: 12px;
+}
+.searchView {}
+.searchDiv input {
+margin-left: 0px;
+}
+}
 
-                            }
-                            .sessionday{
-                                color: blue;
-                                font-size: 10px;
 
-                            }
-                            .sessionrole{
-                                font-family: robotoRegular;
-                                font-size: 12px;
-                                padding-right: 0px;
-                            }
-                            .sessiontime{
-                                font-family: robotoRegular;
-                                font-size: 10px;
-                            }
-                            .yp{
-                                font-family: robotoRegular;
-                            }
-                            .presenterimg{
-                              width:10px;
-                              height:10px;
-                            }
- .upcoming-sessions {
-                    border-top: #b5b5b5 solid 1px;
-                    padding: 10px 0;
-                    margin-top: 10px;
-                    font-family: robotoBold;
-                    color: #888888;
-                    /*font-size: 1.14em;*/
-                    font-size: 1em;}
-                    h3 {
-                        font-family: workSansLight;
-                        color: #ef2525;
-                        font-size: 1.5em;
-                    }
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+.sessiondiv{
+    padding-top:2px;
+    padding-bottom: 20px;
 
-                    .session-field {
-                        border-bottom: #d0d0d0 solid 0.5px;
-                        margin: 0;
-                        padding: 10px 0;}
-                        img {
-                            /* margin-top: -5px;*/
-                        }
+    border-bottom: #D3D3D3 solid 0.5px;
+}
+.sessiontitle{
+    color: red;
+    font-size: 14px;
+
+}
+.sessionday{
+    color: blue;
+    font-size: 10px;
+
+}
+.sessionrole{
+    font-family: robotoRegular;
+    font-size: 12px;
+    padding-right: 0px;
+}
+.sessiontime{
+    font-family: robotoRegular;
+    font-size: 10px;
+}
+.yp{
+ font-family: robotoRegular;
+}
+.presenterimg{
+    width:10px;
+    height:10px;
+}
+.upcoming-sessions {
+    border-top: #b5b5b5 solid 1px;
+    padding: 10px 0;
+    margin-top: 10px;
+    font-family: robotoBold;
+    color: #888888;
+    /*font-size: 1.14em;*/
+    font-size: 1em;
+}
+h3 {
+    font-family: workSansLight;
+    color: #ef2525;
+    font-size: 1.5em;
+}
+
+.session-field {
+    border-bottom: #d0d0d0 solid 0.5px;
+    margin: 0;
+    padding: 10px 0;
+}
+img {
+    /* margin-top: -5px;*/
+}
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
-    .sessiondiv{
-                                padding-top:2px;
-                                padding-bottom: 20px;
+.sessiondiv{
+    padding-top:2px;
+    padding-bottom: 20px;
 
-                                border-bottom: #D3D3D3 solid 0.5px;
-                            }
-                            .sessiontitle{
-                                color: red;
-                                font-size: 14px;
+    border-bottom: #D3D3D3 solid 0.5px;
+}
+.sessiontitle{
+    color: red;
+    font-size: 14px;
 
-                            }
-                            .sessionday{
-                                color: blue;
-                                font-size: 10px;
+}
+.sessionday{
+    color: blue;
+    font-size: 10px;
 
-                            }
-                            .sessionrole{
-                                font-family: robotoRegular;
-                                font-size: 12px;
-                                padding-right: 0px;
-                            }
-                            .sessiontime{
-                                font-family: robotoRegular;
-                                font-size: 10px;
-                            }
-                            .yp{
-                                font-family: robotoRegular;
-                            }
-                            .presenterimg{
-                              width:10px;
-                              height:10px;
-                            }
- .upcoming-sessions {
-                    border-top: #b5b5b5 solid 1px;
-                    padding: 10px 0;
-                    margin-top: 10px;
-                    font-family: robotoBold;
-                    color: #888888;
-                    /*font-size: 1.14em;*/
-                    font-size: 1em;}
-                    h3 {
-                        font-family: workSansLight;
-                        color: #ef2525;
-                        font-size: 1.5em;
-                    }
+}
+.sessionrole{
+    font-family: robotoRegular;
+    font-size: 12px;
+    padding-right: 0px;
+}
+.sessiontime{
+    font-family: robotoRegular;
+    font-size: 10px;
+}
+.yp{
+    font-family: robotoRegular;
+}
+.presenterimg{
+  width:10px;
+  height:10px;
+}
+.upcoming-sessions {
+    border-top: #b5b5b5 solid 1px;
+    padding: 10px 0;
+    margin-top: 10px;
+    font-family: robotoBold;
+    color: #888888;
+    /*font-size: 1.14em;*/
+    font-size: 1em;
+}
+h3 {
+    font-family: workSansLight;
+    color: #ef2525;
+    font-size: 1.5em;
+}
 
-                    .session-field {
-                        border-bottom: #d0d0d0 solid 0.5px;
-                        margin: 0;
-                        padding: 10px 0;}
-                        img {
-                            /* margin-top: -5px;*/
-                        }
+.session-field {
+    border-bottom: #d0d0d0 solid 0.5px;
+    margin: 0;
+    padding: 10px 0;}
+    img {
+        /* margin-top: -5px;*/
+    }
 
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -377,6 +365,6 @@ img {
 
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-  
+
 
 }

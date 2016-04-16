@@ -1,18 +1,20 @@
 /*#session-details-page {
     background-color: #eeeeee;
 }*/
-.header{margin-top: 50px;
-position: relative;}
+.header{
+margin-top: 50px;
+position: relative;
+}
 
 .header {
-    background-color: #fff;
-    position: relative;
-    width: 98%;
-    top: 0;
+  background-color: #fff;
+  position: relative;
+  width: 98%;
+  top: 0;
 
-    text-align: center;
-    box-shadow: 2px 2px 5px #676767;
-    z-index: 1;
+  text-align: center;
+  box-shadow: 2px 2px 5px #676767;
+  z-index: 1;
 }
 .time-session-name-div {
 
@@ -20,41 +22,41 @@ position: relative;}
     font-size: 10px;
     display: inline-block;
     width: 100%;
-  }
+}
 
-    .session-time {
-            color: #850057;
-       float: left;
-       text-align: right;
-       width: 40%;
-       padding-right: 5px;
-       font-size: 15px;
-       font-family: workSansRegular;
-   }
+.session-time {
+     color: #850057;
+     float: left;
+     text-align: right;
+     width: 40%;
+     padding-right: 5px;
+     font-size: 15px;
+     font-family: workSansRegular;
+}
 
-   .session-name {
-        color: #850057;
-       float: left;
-       text-align: left;
-       font-family: workSansBold;
-        font-size: 15px;
-       letter-spacing: 2px;
-   }
-
-   .venue-feedback-div {
-       font-size: 0.8em;
-       color: #777;
-       font-family: robotoMedium;
-       display: inline-block;
-       width: 100%;
-       text-align: center;
-   }
-   .session-venue {
-    float: left;
-    text-align:right;
-    width: 65%;
+.session-name {
+    color: #850057;
+   float: left;
+   text-align: left;
+   font-family: workSansBold;
     font-size: 15px;
-    padding-right: 15px;
+   letter-spacing: 2px;
+}
+
+.venue-feedback-div {
+   font-size: 0.8em;
+   color: #777;
+   font-family: robotoMedium;
+   display: inline-block;
+   width: 100%;
+   text-align: center;
+}
+ .session-venue {
+  float: left;
+  text-align:right;
+  width: 65%;
+  font-size: 15px;
+  padding-right: 15px;
 }
 .feedback-button {
     float: left;
@@ -90,9 +92,10 @@ position: relative;}
 }
 .session-heading {
 
-    color: #ef2525;
+    color: purple;
     font-family: workSansLight;
-    font-size: 1.0em;
+    font-size: 1.4em;
+    font-weight: bold;
     padding-bottom: 5px;
 }
 

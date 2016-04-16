@@ -36,14 +36,14 @@
        background-color: white;
     }
     .hd-sec{
-    background-color:;
-    position:relative;
-    padding-left: 20px;
-    height:25px;
-}
-.searchViewHead{
-    padding-left: 20px;
-}
+        background-color:;
+        position:relative;
+        padding-left: 20px;
+        height:25px;
+    }
+   .searchViewHead{
+       padding-left: 20px;
+    }
 </style>
 <div header showprofile="false" icon="fa fa-calendar" title1="My Visits" title2="List of Vists" query='query'>
   <div class="searchViewHead col-xs-12">
@@ -73,24 +73,23 @@
                     <li><a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a></li>
                 </ul>
 
-            </div>
+             </div>
 
-</div>
-        </div>
+          </div>
     </div>
 </div>
 <div class="divtop">
-    <!-- <input type="text" placeholder="Search" ng-model="search" /> -->
+ 
     <div class="my-visit-content col-xs-12 col-sm-12 col-md-12">
         <div ng-repeat="visit in visitBatch.visits | filter: query" class="visit-card">
 
-            <div>
+            <div> <div class="visitlinks">
                 <h3><a href="#/sessions/{{visit._id}}" >{{visit.title}}</a><br>
                 <a href="/m/main/#/clientInfo/id/{{visit.client._id}}">{{visit.client.name}}</a></h3>
-
+                </div>
                 <div class="dropdown pull-right">
                     <div class="dropdown-toggle" type="button" data-toggle="dropdown">
-                        <img src="/public/assets/m/rem/vertical-ellipsis.png"></div>
+                        <i class="fa fa-ellipsis-v fonticon1" aria-hidden="true"></i></div>
                     <ul class="dropdown-menu">
                         <li><a href="#">View Visit</a></li>
                         <li class="divider"></li>
@@ -137,18 +136,17 @@
                                <span class="sessionrole">
                                  <img class="presenterimg" src="/public/assets/m/rem/presenter-icon.png">
                                   {{item.role}} for {{item.type}}</span>
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                  <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                             </p>
                         </div>
                     </div>
-                </div>
+                 </div>   
             </p>
-        </div>
-
+    </div>
+</div>
         <div ng-if="visitBatch.visits.length==0">
             Oops!@! No visits available
         </div>
 
-    </div>
 </div>

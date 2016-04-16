@@ -5,7 +5,6 @@ angular.module('sessions')
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
           console.log($scope.scheduleList);
-				//console.log(JSON.stringify($scope.scheduleList,null,2));
     });
 
 		$scope.feedback_id="A10234567892345678900001";
@@ -30,7 +29,7 @@ angular.module('sessions')
     console.log($scope.session.session.owner);
        console.log($scope.owner);
        $scope.arrayData.push($scope.owner)
-       //$scope.arrayData.push($scope.supporter);
+     
 
 		});
 
