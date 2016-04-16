@@ -11,6 +11,6 @@ var groupSchema = new mongoose.Schema({
 	description						: { type: String, trim: true, required: true },
 	users 							: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }]
 	
-	});
+});
 
 module.exports = mongoose.model('group', groupSchema);
