@@ -1,4 +1,6 @@
 <!-- visits keynotes input-->
+<form name="keynoteForm" id="keynoteForm" class="form-vertical" novalidate>
+
 <b>Add - Keynotes</b><br>
 <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
   <thead class="data-grid-header">
@@ -11,16 +13,16 @@
   </thead>
   <tbody class="data-grid-data">
     <tr>
-      <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote required></td>
+      <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote class="form-control" required></td>
       <td><!-- <input type="text" placeholder="context" ng-model="keynoteDef.context" > -->
-        <select name="type" ng-model="keynoteDef.context" ng-dropdown>
+        <select name="type" ng-model="keynoteDef.context" ng-dropdown class="form-control" required>
           <option ng-option value="welcome">Welcome</option>
           <option ng-option value="thankyou">Thankyou</option>
         </select>
         
       </td>
-      <td><input type="text" placeholder="order" ng-model="keynoteDef.order" ></td>
-      <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)">Add Keynote</button></td>
+      <td><input type="text" placeholder="order" ng-model="keynoteDef.order" class="form-control" required ></td>
+      <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid">Add Keynote</button></td>
     </tr>
     <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
       <td>{{keynoteDef.note}}</td>
@@ -32,3 +34,4 @@
     </tr>
   </tbody>
 </table>
+</form>

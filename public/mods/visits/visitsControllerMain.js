@@ -75,8 +75,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, $mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -96,48 +96,50 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.showAvatar = false;
   $scope.arraydata = [];
   $scope.tab=false;
+  // $scope.errMessage = '';
+  
 //tabs
-  $scope.tabs = [{
-    title: 'Agenda',
-    url: 'one.tpl.html'
-  }, {
-    title: 'Add Visitors',
-    url: 'two.tpl.html'
-  }, {
-    title: 'Finalize',
-    url: 'three.tpl.html'
-  }];
+$scope.tabs = [{
+  title: 'Agenda',
+  url: 'one.tpl.html'
+}, {
+  title: 'Add Visitors',
+  url: 'two.tpl.html'
+}, {
+  title: 'Finalize',
+  url: 'three.tpl.html'
+}];
 
-  $scope.currentTab = 'one.tpl.html';
+$scope.currentTab = 'one.tpl.html';
 
-  $scope.onClickTab = function (tab) {
-    $scope.currentTab = tab.url;
-        return tabUrl == $scope.currentTab;
-        return $scope.currentTab;
-      }
+$scope.onClickTab = function (tab) {
+  $scope.currentTab = tab.url;
+  return tabUrl == $scope.currentTab;
+  return $scope.currentTab;
+}
 
-      $scope.callData = function(tabUrl) {
-        return tabUrl == $scope.currentTab;
-      }
+$scope.callData = function(tabUrl) {
+  return tabUrl == $scope.currentTab;
+}
 //tabs
-      var user= $rootScope.user._id; 
-      var group = $rootScope.user.memberOf;
+var user= $rootScope.user._id; 
+var group = $rootScope.user.memberOf;
 
-      $http.get('/api/v1/secure/admin/users/' + user).success(function(response){
-        if("employee" ==response.association)
-        {
-          $http.get('/api/v1/secure/admin/groups/' + group).success(function(response){
-            if ("Visit Manager Group"==response.name) {
-              console.log("true Visit Manager Group");
-              $scope.tab= true;
-            }
-            else
-            {
-              $scope.tab= false ;
+$http.get('/api/v1/secure/admin/users/' + user).success(function(response){
+  if("employee" ==response.association)
+  {
+    $http.get('/api/v1/secure/admin/groups/' + group).success(function(response){
+      if ("Visit Manager Group"==response.name) {
+        console.log("true Visit Manager Group");
+        $scope.tab= true;
+      }
+      else
+      {
+        $scope.tab= false ;
                 // console.log($scope.showTab)
               }
             })
-        }
+  }
         // console.log($scope.showTab);
 
 
@@ -579,25 +581,30 @@ $scope.addpicture = function (dataUrl) {
     $mdDialog.hide(answer);
   };
 
-//date filter
-// $scope.setTimeline = function(time){
-//   $scope.timeline = time;
-//   console.log("setting timeline to " + $scope.timeline )
-//   $scope.visitBatch = $scope.allVisits[$scope.timeline];
-// }
+  $scope.checkErr = function(startDate,endDate) {
+    var curDate = new Date();
+    $scope.errMessage ='';
+    if (startDate==null||endDate==null) {return true;}
+    if(new Date(startDate).getTime() > new Date(endDate).getTime()){
+      $scope.errMessage =  'End Date should be greater than start date';
+          // var err=function() {
+          // $window.alert('End Date should be greater than start date');};
+          // err();
+          return true;
+        }
 
-// $http.get('/api/v1/secure/visits/all/my').success(function(response) {
-//   $scope.allVisits = response;
-//   if($scope.timeline=="" || $scope.timeline===undefined){
-//     $scope.timeline = "this-week";
-//     console.log("no timeline. Set to " + $scope.timeline);
-//     $scope.visitBatch = $scope.allVisits[$scope.timeline];
-//   }
-//   console.log(JSON.stringify($scope.visitBatch,null,2));
-// }
-// );
+        else if(new Date(startDate).getTime() >= curDate.getTime()){
+         $scope.errMessage = 'Start date should not be before today.';
+          //  var err=function() {
+          // $window.alert('Start date should not be before today.');};
+          // err();
+          return true;
+        }
+        else return false;
 
-}])
+      };
+
+    }])
 
 //Autocompleate - Directive
 visitsApp.directive("autocomplete", ["AutoCompleteService", function (AutoCompleteService) {
