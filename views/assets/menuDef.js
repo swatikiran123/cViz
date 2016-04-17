@@ -20,9 +20,9 @@ module.exports = {
 		},
 		{
 			name: "Add Visit",
-			link: "dummy",
+			link: "/m/visit/add/#/add",
 			icon: "fa-plus",
-			roles: "user,vManger"
+			roles: "user,vManger,employee"
 		},
 		{
 			name: "Agenda",

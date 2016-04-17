@@ -14,6 +14,7 @@ module.exports = {
 		"m-angular" : ["utils","filters-mobile","dir-mobile"],
 		"m-home": ["m-common","m-main","dir-mobile","m-execBios","m-clientInfo","m-feedback"],
 		"m-facts": ["m-common","dir-mobile","m-facts"],
-       "m-visits": ["m-common","m-visits","m-sessions","m-contacts","dir-mobile","m-feedback"]
+       "m-visits": ["m-common","m-visits","m-sessions","m-contacts","dir-mobile","m-feedback"],
+       "m-visitAdd":["m-visitAdd"]
 	}
 }

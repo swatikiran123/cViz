@@ -14,19 +14,17 @@
     </thead>
     <tbody class="data-grid-data">
       <tr>
-       <td><input type="text" placeholder="Start Date" ng-model="schedule.startDate" class="form-control" ui-date novalidate required></td>
-       <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate ng-change='checkErr(schedule.startDate,schedule.endDate)' 
-        required><!-- {{errMessage}} -->
-        
+       <td><input type="text" placeholder="Start Date" ng-model="schedule.startDate" class="form-control" ui-date novalidate ></td>
+       <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate >
         
         </td>
         <td><select
          ng-model="schedule.location"
-         ng-options="data for data in location" class="form-control" required>
+         ng-options="data for data in location" class="form-control">
        </select>
      </td>
      <td ng-if="tab"><input type="text" placeholder="Meeting Place" class="form-control" ng-model="schedule.meetingPlace"></td>
-     <td><a class="btn btn-primary" ng-click="addSchedule(schedule)" >Add Schedule</a></td><!--ng-disabled="errMessage!='' || scheduleForm.$invalid"-->
+     <td><a class="btn btn-primary" ng-click="addSchedule(schedule)" >Add Schedule</a></td>
 
    </tr>
    <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">

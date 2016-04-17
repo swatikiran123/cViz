@@ -586,7 +586,7 @@ $scope.addpicture = function (dataUrl) {
     $scope.errMessage ='';
     if (startDate==null||endDate==null) {return true;}
     if(new Date(startDate).getTime() > new Date(endDate).getTime()){
-      $scope.errMessage =  'End Date should be greater than start date';
+      // $scope.errMessage =  'End Date should be greater than start date';
           // var err=function() {
           // $window.alert('End Date should be greater than start date');};
           // err();
@@ -594,7 +594,7 @@ $scope.addpicture = function (dataUrl) {
         }
 
         else if(new Date(startDate).getTime() >= curDate.getTime()){
-         $scope.errMessage = 'Start date should not be before today.';
+         // $scope.errMessage = 'Start date should not be before today.';
           //  var err=function() {
           // $window.alert('Start date should not be before today.');};
           // err();
