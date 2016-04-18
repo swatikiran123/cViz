@@ -146,6 +146,7 @@ router.get('/api/v1/secure/admin/groups/:id', groups.getOneById);
 router.post('/api/v1/secure/admin/groups', groups.create);
 router.put('/api/v1/secure/admin/groups/:id', groups.updateById);
 router.delete('/api/v1/secure/admin/groups/:id', groups.deleteById);
+router.get('/api/v1/secure/admin/groups/:name/users', groups.getUsersByGroup);
 
 // List of service routes for feedbacks
 router.get('/api/v1/secure/feedbacks', feedbacks.getAll);

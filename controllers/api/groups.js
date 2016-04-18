@@ -11,6 +11,7 @@ controller.create     = create;
 controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
+controller.getUsersByGroup = getUsersByGroup;
 
 module.exports = controller;
 
@@ -70,9 +71,24 @@ function updateById(req, res) {
   dataService.updateById(req.params.id, req.body)
     .then(function () {
         res.status(200).send("Doc updated successfully");
-    }) 
+    })
     .catch(function (err) {
         console.log(err);
         res.status(500).send(err);
     });
+}
+
+function getUsersByGroup(req,res){
+	dataService.getUsersById(req.params.name)
+		.then(function(userList){
+				if (userList){
+						res.send(userList);
+				}else {
+						res.status(404).send(req.params.name + " does not exists");
+				}
+		})
+		.catch(function (err){
+				console.log("exception" + err);
+				res.status(500).send(err);
+		});
 }

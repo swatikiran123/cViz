@@ -17,4 +17,10 @@ module.exports = {
         'api'											: __dirname + '/api'
     },
 
+		'groups' : {										// constants defining the application paths
+		    'admin'										: 'A20484567892345678900001',
+		    'exec'										: 'A20484567892345678900002',
+		    'vManager'								: 'A20484567892345678900003'
+		}
+
 };

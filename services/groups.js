@@ -15,6 +15,8 @@ service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
 
+service.getUsersByGroup = getUsersByGroup;
+
 module.exports = service;
 
 // Method implementations
@@ -37,7 +39,7 @@ function getOneById(id){
     var deferred = Q.defer();
 
     model
-        .findOne({ _id: id })        
+        .findOne({ _id: id })
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
@@ -99,3 +101,27 @@ function deleteById(id) {
 
     return deferred.promise;
 }
+
+function getUsersByGroup(name){
+
+	var id = constants.groups[name];
+	console.log("getUsersByGroup " + name + " with id " + id);
+
+  var deferred = Q.defer();
+
+  model
+    .findOne({ _id: id })
+		.populate('users')
+    .exec(function (err, item) {
+        if(err) {
+          console.log(err);
+          deferred.reject(err);
+        }
+        else{
+					//console.log(item)
+          deferred.resolve(item.users);
+				}
+    });
+
+    return deferred.promise;
+} // getUsersByGroup method ends
