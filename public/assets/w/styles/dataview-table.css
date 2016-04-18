@@ -36,7 +36,7 @@ table.table tr td
   font-weight: normal !important;
 }
 
-/* table body  stripped colors  styles */
+/* table body  stripped colors  styles 
 
 .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
    background-color: #ecf2f8;
@@ -86,3 +86,4 @@ tfoot{
 .groupdesc_textbox{
   width:55%;
 }
+

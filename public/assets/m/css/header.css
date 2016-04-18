@@ -56,10 +56,10 @@
     height:100px;
 }
 .hd-sec{
-    background-color: #ddd;
+    background-color: black;
     position:relative;
     padding-left: 20px;
-    height:25px;
+    height: 40px;
 }
 .hd-sticky{
     background-color: #d3d3d3;
@@ -80,8 +80,8 @@
 .my-visit-sub-header {
     text-align: left;
     /*background-color: blue;*/
-    background: url("/public/uploads/images/hero-bg.jpg") no-repeat;
-    background-size: 100%;
+    background: url("/public/uploads/images/d.png") no-repeat;
+    background-size: 98% 100%;
 }
 .profile-details-div {
       
