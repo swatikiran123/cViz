@@ -1,6 +1,8 @@
 var constants       = require('../scripts/constants');
 var util						= require(constants.paths.scripts + "/util");
 var logger					= require(constants.paths.scripts + "/logger");
+var groupService					= require(constants.paths.services + "/groups");
+var Q               = require('q');
 
 var secure = {};
 
@@ -8,12 +10,6 @@ secure.isInAnyGroups = isInAnyGroups;
 secure.getGroups = getGroups;
 
 module.exports = secure;
-
-var groups = {										// constants defining the application paths
-    'admin'										: 'A20484567892345678900001',
-    'exec'										: 'A20484567892345678900002',
-    'vManager'								: 'A20484567892345678900003'
-};
 
 function isInAnyGroups(user, grps){
 //logger.writeLine("Is in groups " + grps,'debug',0);
