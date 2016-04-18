@@ -256,7 +256,10 @@ module.exports = {
 			"/public/d/richText/script.js",
 			"/public/d/feedbackDirective/script.js",
 			"/public/assets/g/js/rateit.js",
-			"/public/assets/g/js/toaster.js"
+			"/public/assets/g/js/toaster.js",
+			"/public/d/scroll/scroll.js",
+			"/public/d/header/header.js"
+
 			]
 		},
 

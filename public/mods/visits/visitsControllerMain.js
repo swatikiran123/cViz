@@ -263,7 +263,8 @@ $http.get('/api/v1/secure/admin/users/' + user).success(function(response){
           break;
       } // End of switch scope.mode ends
 
-      $location.path("visits/list");
+      // $location.path("visits/list");
+      window.history.back();
   } // End of save method
 
   $scope.create = function() {
@@ -308,7 +309,8 @@ $http.get('/api/v1/secure/admin/users/' + user).success(function(response){
   $scope.cancel = function() {
 
     $scope.visits="";
-    $location.path("visits/list");
+    // $location.path("visits/list");
+    window.history.back();
   }
 
   $scope.getUser = function(){

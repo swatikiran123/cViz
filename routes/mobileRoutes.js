@@ -46,7 +46,7 @@ module.exports = function(app) {
         res.locals.appName = "ng-app='mviz-add'"
         res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-visitAdd");
         res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-visitAdd");
-        res.render('mobile/home.ejs', {
+        res.render('mobile/visitAdd.ejs', {
             layout: activeLayout
         });
     });
