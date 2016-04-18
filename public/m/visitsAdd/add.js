@@ -1,5 +1,5 @@
 
-angular.module('visitAdd', ['ngRoute','ui.calendar','angular-growl','textAngular','ngMaterial','ngMessages','ngImgCrop','ngFileUpload'])
+angular.module('visitAdd', ['ngRoute','header','scroll','ui.calendar','angular-growl','textAngular','ngMaterial','ngMessages','ngImgCrop','ngFileUpload'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
