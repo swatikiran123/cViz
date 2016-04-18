@@ -50,7 +50,7 @@
                 padding-bottom: 25px;
                 padding-top: 15px;
             }
-            h1 {
+         #splash-screen  h1 {
                 font-size: 1.72em;
                 color: #ef2525;
                 font-family: workSansLight;
@@ -62,11 +62,11 @@
                 padding-bottom: 18px;
                 width: 12px;
             }
-            ul {
+           #splash-screen ul {
                 padding-left: 25px;
                 list-style-image: url('/public/assets/m/rem/feedback-next-arrow-small.png');                
             }
-            li.arrow-list {
+           #splash-screen li.arrow-list {
                 margin-top: 15px;
                 padding-left: 10px;                
             }

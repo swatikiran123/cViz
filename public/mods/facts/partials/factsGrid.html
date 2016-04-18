@@ -1,3 +1,41 @@
+<style>
+
+
+.testClass{
+  
+    
+    animation: background-fade 10s forwards;
+    -webkit-animation: background-fade 10s forwards;
+    -moz-animation: background-fade 10s forwards;
+}
+
+@-webkit-keyframes background-fade {
+    80% {
+        background:#66d9ff;
+    }
+    100% {
+        background:;
+    }
+}
+@-moz-keyframes background-fade {
+    80% {
+        background:#66d9ff;
+    }
+    100% {
+        background:;
+    }
+}
+@keyframes background-fade {
+  
+    80% {
+        background:#66d9ff;
+    }
+    100% {
+        background:;
+    }
+}
+</style>
+
 <!-- Grid filter -->
 <div class="form-inline has-feedback filter-header">
   <div class="row">
@@ -44,7 +82,7 @@
   </thead>
 
   <tbody class="data-grid-data">
-    <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort">
+    <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort"  ng-class="{ testClass: $last }">
       <td>{{fact.title}}</td>
       <td><div userdisplay view-mode="nameonly" user-id="fact.editedBy"></div></td>
       <td><p ng-bind-html="fact.description"></p></td>
