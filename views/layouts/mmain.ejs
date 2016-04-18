@@ -21,62 +21,60 @@
 
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
-		    <div class="paddg">
-			<%if (locals.user !== undefined) { %>
-			<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
-			<div class="menu-profile-name header"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
-			<% } %></div>
-			<div class="sidebar-nav">
-				<ul>
-            <li class="sidebar-item">
-							 <a  href="/m/main/"><img  class="menu-icon" src="/public/assets/m/img/ic/home.png">Welcome</a>
+			<div class="paddg">
+				<%if (locals.user !== undefined) { %>
+				<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
+				<div class="menu-profile-name header"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
+				<% } %></div>
+				<div class="sidebar-nav">
+					<ul>
+						<li class="sidebar-item">
+							<a  href="/m/main/"><i class="menu-icon fa fa-home fonticon"></i>Welcome</a>
 						</li>
 						<li class="sidebar-brand sidebar-item">
-								<a href="/"><i class="menu-icon fa fa-tachometer fonticon"></i>
-										Dashboard
-								</a>
+							<a href="/"><i class="menu-icon fa fa-tachometer fonticon"></i>Dashboard</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/visits/"><img class="menu-icon" src="/public/assets/m/img/ic/cals1.png">Visits</a>
+							<a href="/m/visits/"><i class="menu-icon fa fa-calendar fonticon"></i>Visits</a>
 						</li>
 						<li class="sidebar-item">
-                <a href="/m/visits/#/agenda"><img class="menu-icon" src="/public/assets/m/img/ic/agenda.png">Agenda</a>
+							<a href="/m/visits/#/agenda"><i class="menu-icon fa fa-list fonticon"></i>Agenda</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/facts/"><img  class="menu-icon" src="/public/assets/m/img/ic/facts1.png">Facts</a>
+							<a href="/m/facts/"><i class="menu-icon fa fa-line-chart fonticon"></i>Facts</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/visits/#/contacts"><img class="menu-icon" src="/public/assets/m/img/ic/contct1.png">Contacts</a>
+							<a href="/m/visits/#/contacts"><i class="menu-icon fa fa-phone fonticon"></i>Contacts</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/main/#/execBios"><i class="menu-icon fa fa-users fonticon"></i>Executive Bios</a>
+							<a href="/m/main/#/execBios"><i class="menu-icon fa fa-users fonticon"></i>Executive Bios</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/m/main/#/feedback"><i class="menu-icon fa fa-comments fonticon"></i>Feedback</a>
+							<a href="/m/main/#/feedback"><i class="menu-icon fa fa-comments fonticon"></i>Feedback</a>
 						</li>
 						<li class="sidebar-item">
-								<a href="/logout"><img class="menu-icon" src="/public/assets/m/img/ic/logout.png">Logout</a>
+							<a href="/logout"><i class="menu-icon fa fa-sign-out fonticon"></i>Logout</a>
 						</li>
 
-				</ul>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<!-- /#sidebar-wrapper -->
+			<!-- /#sidebar-wrapper -->
 
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
 				<div class="container">
 
-						<!-- Fixed navbar :: Start-->
-						<nav class="navbar navbar-custom navbar-fixed-top">
+					<!-- Fixed navbar :: Start-->
+					<nav class="navbar navbar-custom navbar-fixed-top">
 
-							<div class="navbar-header">
+						<div class="navbar-header">
 
-								<a id="menu-toggle" href="#menu-toggle" class="navbar-brand">
-									<i class="fa fa-bars"></i>
-								</a>
-								<a  href="/" class="navbar-brand">
-									Visit Portal</a>
+							<a id="menu-toggle" href="#menu-toggle" class="navbar-brand">
+								<i class="fa fa-bars"></i>
+							</a>
+							<a  href="/" class="navbar-brand">
+								Visit Portal</a>
 							</div>
 							<div id="navbar" class="navbar-inverse side-collapse in">
 								<%if (locals.user != null) { %>
@@ -97,20 +95,20 @@
 						<div class="starter-template">
 							<%- body%>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-		</div>
-		<!-- /#page-content-wrapper -->
-	</div> <!-- end of page wrapper -->
+	<!-- /#page-content-wrapper -->
+</div> <!-- end of page wrapper -->
 
 <!-- Menu Toggle Script -->
 <script>
-$("#menu-toggle").click(function(e) {
+	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
-});
+	});
 </script>
 
 </body>
