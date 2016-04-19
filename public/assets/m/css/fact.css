@@ -4,6 +4,9 @@
   background-color: #f7f9fb;
 }
 
+.divtop{
+  padding-top: 70px;
+}
 .factsheet-scrollable-block {
   height: auto;
   width: auto;
@@ -190,7 +193,7 @@
 .map-title {
   width: 100%;
   text-align: left;
-  padding: 30px 20px;
+  padding: 20px 20px;
   font-size: 22px;
   font-family: workSansMedium;
   color: #555555;

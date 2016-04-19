@@ -4,7 +4,10 @@
     /*padding-bottom: 20px;*/
 }
 
-
+ 
+    .dropdown-menu{
+       background-color: white;
+    }
 
     .spocpicture{
         width: 75px;

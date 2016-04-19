@@ -31,6 +31,25 @@
   height: 50px;
   overflow: hidden;
 }
+/* pace with bg color*/
+/*.pace-running{
+   opacity: .67;
+  background-color: #2E2E2E;
+}*/
+
+/* pace to display none*/
+/*.pace-running > *:not(.pace) {
+  display: none;
+
+}*/
+
+.pace-running > *:not(.pace) {
+
+  -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);}
 
 .pace .pace-progress {
   -webkit-box-sizing: border-box;

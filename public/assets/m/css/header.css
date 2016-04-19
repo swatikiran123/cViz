@@ -13,7 +13,7 @@
 }
 
 .tb-big {
-    height: 150px;
+    height: 136px;
 
     background-color: #fff;
     position: fixed;
@@ -27,7 +27,7 @@
 }
 
 .tb-small {
-    height: 65px;
+    height: 73px;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -53,19 +53,34 @@
 .hd-prime{
     background-color: #F8F8FF;
     position:relative;
-    height:100px;
+    height:97px;
 }
 .hd-sec{
     background-color: black;
     position:relative;
     padding-left: 20px;
-    height: 40px;
+    height: 35px;
 }
 .hd-sticky{
     background-color: #d3d3d3;
     position:relative;
- height: 25px;
+    height: 38px;
 
+}
+.hdp-icon{
+    padding-top: 5px;
+    font-size: 26px;
+}
+.hds-icon{
+    padding-top: 5px;
+    font-size: 20px;
+}
+a {
+    color: silver;
+}
+
+.divtop {
+    padding-top: 115px;
 }
 /*visist header  styles*/
 .my-visit-header {
@@ -104,11 +119,11 @@
 
 }
 .searchViewHead {
-    padding: 10px 15px;
+    padding: 6px 15px;
     font-family: robotoRegular;
     font-size: 1em;
     color: #a4a4a4;
-    height: 42px;
+    height: 35px;
 
     }
 
@@ -117,86 +132,130 @@
     margin-left: 10px;
 }
 
-   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+.title-icon{
+margin-top: 30px;
+font-size: 30px;
+color: black;
+width: 52px;
+height:52px;
+        background: #ddd;
+    padding: 11px;
+    border-radius: 50%;
+       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+     }
+    
+
+ @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 .searchViewHead {
-    padding: 10px 0px;
+    padding: 5px 0px;
     font-family: robotoRegular;
     font-size: 14px;
     color: #a4a4a4;
-    height: 42px;
+    height: 32px;
 
     }
 
-.searchDivHead input {
-    border: none;
 
-}
-
+    .title-icon{
+      margin-top: 30px;
+      font-size: 20px;
+      color: black;
+    width: 40px;
+height:40px;
+        background: #ddd;
+    padding: 11px;
+    border-radius: 50%;
+       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+     }
+     h1{font-size: 26px;}
 }
 @media only screen and (max-device-width: 320px){
     .searchViewHead {
-    padding: 10px 0px;
+    padding: 5px 0px;
     font-family: robotoRegular;
     font-size: 9px;
     color: #a4a4a4;
-    height: 42px;
+    height: 32px;
 
     }
-
-.searchDivHead input {
-    border: none;
-
+.hd-prime{
+    background-color: #F8F8FF;
+    position:relative;
+    height:92px;
 }
+.title-icon{
+      margin-top: 30px;
+      font-size: 20px;
+      color: black;
+    width: 40px;
+height:40px;
+        background: #ddd;
+    padding: 11px;
+    border-radius: 50%;
+       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+     }
+     h1{font-size: 26px;}
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
   .searchViewHead {
-    padding: 10px 0px;
+    padding: 5px 0px;
     font-family: robotoRegular;
     font-size: 9px;
     color: #a4a4a4;
-    height: 42px;
+    height: 32px;
 
     }
 
-.searchDivHead input {
-    border: none;
 
-}
 }
 
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
       .searchViewHead {
-    padding: 10px 0px;
+    padding: 5px 0px;
     font-family: robotoRegular;
     font-size: 14px;
     color: #a4a4a4;
-    height: 42px;
+    height: 32px;
     
 
     }
 
-.searchDivHead input {
-    border: none;
 
-}
+.title-icon{
+      margin-top: 30px;
+      font-size: 28px;
+      color: black;
+    width: 48px;
+height:48px;
+        background: #ddd;
+    padding: 11px;
+    border-radius: 50%;
+       box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+     }
+       h1{font-size: 28px;}
 
 }
 @media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
     .searchViewHead {
-    padding: 10px 0px;
+    padding: 5px 0px;
     font-family: robotoRegular;
     font-size: 14px;
     color: #a4a4a4;
-    height: 42px;
+    height: 32px;
     padding-right: 90px;
     
 
     }
 
-.searchDivHead input {
-    border: none;
 
-}
 
 }
 
