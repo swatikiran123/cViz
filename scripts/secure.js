@@ -11,6 +11,12 @@ secure.getGroups = getGroups;
 
 module.exports = secure;
 
+var groups = {										// constants defining the application paths
+    'admin'										: 'A20484567892345678900001',
+    'exec'										: 'A20484567892345678900002',
+    'vManager'								: 'A20484567892345678900003'
+};
+
 function isInAnyGroups(user, grps){
 //logger.writeLine("Is in groups " + grps,'debug',0);
 	// filter identified groups and user
