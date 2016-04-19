@@ -19,14 +19,14 @@ angular.module('dropzone', [])
      //'addRemoveLinks': true,
      'uploadMultiple': false,
      'maxFiles': files,
-      acceptedFiles: ".jpg,.jpeg,.png,.gif,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.pdf"
+      acceptedFiles: ".jpg,.jpeg,.png,.gif,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.pdf,.mp4,.mkv,.avi,.wmv,.mp3,.wav,.aac"
    },
    'eventHandlers': {
     'sending': function (file, xhr, formData) {
     },
     //event handler for checking the file type and based on file type showing the thumbnail.
     'addedfile': function(file) {
-      //console.log(file.type);
+      console.log(file.type);
       if (file.type ==='application/msword' || file.type ==='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.type ==='application/vnd.ms-excel.sheet.macroEnabled.12')
         {
           // This is not an image, so Dropzone doesn't create a thumbnail.
@@ -47,11 +47,30 @@ angular.module('dropzone', [])
         else if (file.type ==='application/pdf'){
           this.emit("thumbnail", file, "/public/assets/g/imgs/pdf.jpg");
         }
+
+        else if (file.type === 'video/mp4' || file.type === 'video/mkv' || file.type === 'video/avi' || file.type === 'video/wmv')
+        {
+          this.emit("thumbnail", file, "/public/assets/g/imgs/video.png");
+        }
+
+        else if (file.type === 'audio/mp3' || file.type === 'audio/wav' || file.type === 'audio/aac')
+        {
+          this.emit("thumbnail", file, "/public/assets/g/imgs/audio.png");
+        }
     },
     'success': function (file, responseText) {
       var filepath = responseText.file.path;
       var imagepath = '/'+ filepath.replace(/\\/g , "/");
+      if($scope.fileType == 'singleFile')
+      {
+      $scope.array.splice(0,1);  
       $scope.array.push(imagepath);
+      }
+
+      if($scope.fileType == 'multiFile')
+      {
+        $scope.array.push(imagepath);
+      }
       //console.log($scope.array);
       //$scope.showPanel =true;
     },
@@ -125,7 +144,8 @@ $scope.delete = function(index){
       folderType:"@folderType",
       fileSize:"@fileSize",
       fileAllowed:"@fileAllowed",
-      array: "=array"
+      array: "=array",
+      fileType: "@fileType"
     }
 }
 })

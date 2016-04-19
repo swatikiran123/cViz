@@ -27,6 +27,7 @@ service.deleteById = deleteById;
 
 service.getMyVisits = getMyVisits;
 service.getExecsById = getExecsById;
+service.getKeynotesById = getKeynotesById;
 
 module.exports = service;
 
@@ -675,6 +676,77 @@ function getSchedulesById(id){
 		return deferred.promise;
 }  // getSchedulesById method ends
 
+function getKeynotesById(id){
+
+	var deferred = Q.defer();
+	var keynotesWelcome = [],keynotesThankyou = [];
+	var keynotes= [keynotesWelcome,keynotesThankyou];
+	// var keynotes = [];
+	model
+	.findOne({ _id:id})
+	.populate('keynote.note')
+	.exec(function (err, item) {
+		if(err) {
+			console.log(item.keynote.context);
+			console.log(err);
+			deferred.reject(err);
+		}
+		else
+			//fetching keynotes
+			for (var i=0; i<item.keynote.length; i++){
+				if(item.keynote[i].context == 'welcome')
+				{	
+				keynotesWelcome.push(transform(item.keynote[i]));
+				}
+
+				if(item.keynote[i].context == 'thankyou')
+				{	
+				keynotesThankyou.push(transform(item.keynote[i]));
+				}
+			}
+
+			keynotesWelcome.sort(sortOn("order"));
+			keynotesThankyou.sort(sortOn("order"));
+			console.log(keynotes);
+			deferred.resolve(keynotes);
+	});
+
+	function transform(keynote)
+	{
+		if (keynote==null) {
+			console.log("error in adding");
+		}
+		else{
+			var keynoteData={
+				order :keynote.order,
+				context :keynote.context,
+				title : keynote.note.title,
+				noteText :keynote.note.noteText,
+				noteBy :keynote.note.noteBy,
+				createOn :keynote.note.createOn,
+				desc: keynote.note.desc,
+				attachment: keynote.note.attachment 
+			}
+			console.log("******************************");
+			console.log(keynoteData);
+			console.log("******************************");
+			return keynoteData;
+		}
+	}
+
+	function sortOn(property){
+		return function(a, b){
+			if(a[property] < b[property]){
+				return -1;
+			}else if(a[property] > b[property]){
+				return 1;
+			}else{
+				return 0;   
+			}
+		}
+	}	
+	return deferred.promise;
+}  
 
 function create(data) {
 	var deferred = Q.defer();

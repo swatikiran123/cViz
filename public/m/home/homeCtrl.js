@@ -13,8 +13,42 @@ app.controller('homeCtrl', function ($scope, location, $routeParams, $http) {
     })
 });
 
-app.controller('welcomeCtrl', ['$scope', 'location', function ($scope, location) {
+app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams', function ($scope, location,$http,$routeParams) {
+	console.log("Welcome Controller Running");
+	$scope.order = 0;
+	$scope.showContinue = true;
+	$scope.medium = "medium";
+	$scope.arrayData=[];
+	// $scope.user_id = "a02234567892345678900029";
+	$http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
+		console.log(response[0]);
+		$scope.welcomeResponse = response[0];
+		$scope.length = $scope.welcomeResponse.length - 1;
+		$scope.user_id = $scope.welcomeResponse[$scope.order].noteBy;
+		$http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response) {
+			$scope.user = response;
+		})
+	})
 
+
+	$scope.orderIncrement = function()
+	{	
+		$scope.order = $scope.order + 1;
+		$scope.user_id = $scope.welcomeResponse[$scope.order].noteBy;
+		$http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response) {
+			$scope.user = response;
+		})
+		if($scope.order == $scope.length)
+		{
+			$scope.showContinue = false;
+			// $scope.order = 0;
+		}
+
+		if($scope.order < $scope.length)
+		{
+			$scope.showContinue = true;
+		}
+	}
 }]);
 
 app.controller('thankyouCtrl', ['$scope', 'location', function ($scope, location) {

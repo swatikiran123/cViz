@@ -13,17 +13,15 @@
 	<!-- {{fileExt}} -->
 	<div class="row">
 		&nbsp;
-		<img ng-if="fileExt=='jpg'" ng-src="{{x}}" height="50" width="50" />
-		<img ng-if="fileExt=='png'" ng-src="{{x}}" height="50" width="50" />
-		<img ng-if="fileExt=='gif'" ng-src="{{x}}" height="50" width="50" />
-		<img ng-if="fileExt=='jpeg'" ng-src="{{x}}" height="50" width="50" />
+		<img ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'" ng-src="{{x}}" height="50" width="50" />
 		<img ng-if="fileExt=='pdf'" ng-src="/public/assets/g/imgs/pdf.jpg" height="50" width="50" />
-		<img ng-if="fileExt=='docx'" ng-src="/public/assets/g/imgs/word.png" height="50" width="50" />
-		<img ng-if="fileExt=='doc'" ng-src="/public/assets/g/imgs/word.png" height="50" width="50" />
-		<img ng-if="fileExt=='xlsx'" ng-src="/public/assets/g/imgs/excel.jpg" height="50" width="50" />
-		<img ng-if="fileExt=='xls'" ng-src="/public/assets/g/imgs/excel.jpg" height="50" width="50" />	
-		<img ng-if="fileExt=='pptx'" ng-src="/public/assets/g/imgs/ppt.png" height="50" width="50" />
-		<img ng-if="fileExt=='ppt'" ng-src="/public/assets/g/imgs/ppt.png" height="50" width="50" />
+		<img ng-if="fileExt=='docx' || fileExt=='doc'" ng-src="/public/assets/g/imgs/word.png" height="50" width="50" />
+		<img ng-if="fileExt=='xlsx' || fileExt=='xls'" ng-src="/public/assets/g/imgs/excel.jpg" height="50" width="50" />
+		<img ng-if="fileExt=='pptx' || fileExt=='ppt'" ng-src="/public/assets/g/imgs/ppt.png" height="50" width="50" />
+		<img ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'" 
+		ng-src="/public/assets/g/imgs/video.png" height="50" width="50" />
+		<img ng-if="fileExt == 'mp3' || fileExt == 'wav' || fileExt == 'aac'"
+		ng-src="/public/assets/g/imgs/audio.png" height="50" width="50" />
 		&nbsp;
 		&nbsp;
 		{{x.split('\\').pop().split('/').pop()}}
