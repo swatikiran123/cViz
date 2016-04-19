@@ -14,7 +14,8 @@ module.exports = {
 		"m-angular" : ["jquery","angular-core","angular-growl"],
 		"m-home": [],
 		"m-facts": ["angular-bootstrap"],
-		"m-visits": ["angular-bootstrap","angular-animate"]
+		"m-visits": ["angular-bootstrap","angular-animate"],
+		"m-visitAdd":["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-confirmDialog","angular-calendar","angular-bootstrap","jquery"],
 
 	}
 }

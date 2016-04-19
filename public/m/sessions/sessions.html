@@ -4,7 +4,7 @@
 .tb-big {
 	height: 145px;
 
-	background-color: #fff;
+	background-color: #545454;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -30,12 +30,19 @@
 	padding-top: 100px;
 }
 .hd-sticky{
-    background-color:  ;
+    background-color:;
     position:relative;
-    height: 0px;
+    height: 42px;
  }
 
-
+/*
+.hd-sticky{
+    background-color: #545454;
+    position:relative;
+    height: 0px;
+ }.agenda-list{
+	background-color: #545454;
+}*/
 .scroll-outer {
 	overflow-x:hidden;
 }
@@ -109,7 +116,7 @@
 									<div class="agenda-session-overview">
 										<p class="agenda-session-loc">
 											<i class="fa fa-hourglass-half"></i>
-												{{session.session.endTime | duration:session.session.startTime}} min
+												{{session.session.endTime | duration:session.session.startTime}}&nbsp;&nbsp;
 											<i class="fa fa-map-marker"></i>
 												{{session.session.location}}
 										</p>
@@ -119,6 +126,7 @@
 											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
 											+{{session.invitees.length}}
+         
 											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
 												<i class="fa fa-angle-down" aria-hidden="true" ng-if="hideFeeedbackDiv"></i>
 												<i class="fa fa-angle-up" aria-hidden="true" ng-if="!hideFeeedbackDiv"></i>

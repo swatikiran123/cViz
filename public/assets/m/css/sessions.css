@@ -24,7 +24,7 @@
   
 }
 .day-agenda-header{
-    background: linear-gradient(#87075A, #9B3678);
+    background: linear-gradient(#545454, #939393);
     color: #fff;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -77,7 +77,7 @@
   }
 
   .session-status-img {
-    color: #87075A;
+    color: black;
     width: 28px;
     height: 28px;
     margin-left: -10px;
@@ -90,7 +90,7 @@
   .agenda-session-time {
     font-family: workSansMedium;
     font-size: 14px;
-    color: #87075A;
+    color: black;
   }
 
   .agenda-session-name a {
@@ -139,6 +139,49 @@
       width: 21px;
 
   }
+
+  .feedback-link {
+        text-decoration: underline;
+        margin-left: 50px;
+        color: #969696;
+        -moz-text-decoration-color: #d6d6d6;
+        /* Code for Firefox */
+        text-decoration-color: #d6d6d6;
+        display: inline-block;
+        cursor: pointer;
+        position: relative;}
+        .glyphicon-triangle-bottom {
+            font-size: 0.7em;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        .rotate-arrow {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            top: -1px;
+        }
+        .feedback-triangle {
+            bottom: -22px;
+            height: 10.5px;
+            position: absolute;
+            right: 50%;
+            width: 21px;
+            z-index: 2;
+            display: none;
+        }
+    
 @media screen and (min-width: 1000px) {
   
   .agenda-list  li{
@@ -147,7 +190,7 @@
     }
 
   .agenda-list a {  
-    color:  #87075A;
+    color:  #545454;
     font-size: 1em;
     font-family: workSansBold;
     color: @futureAgendaSessionNameColor;

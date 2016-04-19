@@ -1,9 +1,16 @@
 .noty-icon{
   font-size: 24px;
   
-
 }
 
+.ajax-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px; /* -1 * image width / 2 */
+  margin-top: -32px;  /* -1 * image height / 2 */
+  display: block;     
+}
 a,
 a:focus,
 a:hover {
@@ -18,27 +25,10 @@ a:hover {
   display: block;
   text-align: center;
 }
-
-.agenda {
-  padding-bottom: 8px;
-  color: #fff;
-  top: 9px;
-  padding-top: 0;
-  font-family: workSansBold;
-  font-size: 0.75em;
-}
-
-.agenda a,
-.agenda a:hover {
-  color: #fff;
-  letter-spacing: 2px;
-  font-family: workSansBold;
-}
-
 div#profile-details {
   padding-top: 60px;
-  background: url("../img/bg/header.jpg") no-repeat;
-  background-size: 113%;
+  background: url("/public/uploads/images/e.png") no-repeat;
+  background-size: 100% 100%;
 }
 
 div#profile-details .profile-pic,
@@ -75,11 +65,6 @@ div#profile-details .profile-location img {
   padding-right: 5px;
   display: inline-block;
 }
-
-/*.session-overview {
-  background: rgba(0, 0, 0, 0.5);
-}*/
-
 .on-time {
   font-family: robotoCondensedBold;
   color: #9ed352;
@@ -109,62 +94,62 @@ div#profile-details .profile-location img {
 }
 .day,
 .loc {
-    color: #fff;
-    font-size: 0.75em;
-    display: block;
-    font-family: antonioLight;
+  color: #fff;
+  font-size: 0.75em;
+  display: block;
+  font-family: antonioLight;
 }
 
 .day {
-    color: #8FBC8F;
+  color: #8FBC8F;
 }
- .date{
+.date{
   color: #fff;
   font-size: 0.75em;
   display: block;
   font-family: workSansMedium; 
-  }
-  .time{
+}
+.time{
   color: #fff;
   font-size: 0.75em;
   display: block;
   font-family: workSansMedium;
-  }
-  .temp{
+}
+.temp{
   color: #fff;
   font-size:13px;
   display: block;
   font-family: workSansMedium;
-  }
-  #scrollBox {
+}
+#scrollBox {
   overflow-x: relative;
   overflow-y: hidden;
   -ms-overflow-x: relative;
   -ms-overflow-y: hidden;
   white-space: nowrap;
-  }
-  #scrollBox > div {
+}
+#scrollBox > div {
   display: inline-block;
   margin-right: 5px;
-  }
-  #scrollBox > div fieldset {
+}
+#scrollBox > div fieldset {
   background: rgba(0, 0, 0, 0.5);
   padding: 5px;
   text-align: center;
   height: 180px;
   width: 300px;
-  }
+}
 
 .profile-pic img {
-    width: 75px;
-    height: 75px;
-    border-radius: 150px;
-    -webkit-border-radius: 150px;
-    -moz-border-radius: 150px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  
+  width: 75px;
+  height: 75px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
 }
 
 #profile-details .notifications {
@@ -185,43 +170,56 @@ div#profile-details .profile-location img {
 }
 
 #menu .row div {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 0.85em;
-    letter-spacing: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 0.85em;
+  letter-spacing: 2px;
 }
 
 #menu .row {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 span.menuName {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 .menu-circle-icon {
   width: 75px;
   height: 75px;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
   border-radius: 50px;
   margin: 0 auto;
 }
 
-.factsheets {
-  background: url("../img/ic/facts.png") #96859F no-repeat 50% 50%;
+.factsheet {
+  background: url("") #96859F no-repeat 50% 50%;
   background-size: 45px;
 }
+.factsheet-icon:before{
+ font-family: FontAwesome;
+ content:"\f201";
+ color: white;
+ font-size: 40px;
 
-.factsheets-text {
+}
+
+.factsheet-text {
   color: #54475A;
   padding-top: 13px;
   font-family: workSansBold;
 }
 
 .spoc {
-  background: url("../img/ic/contact.png") #850057 no-repeat 50% 50%;
+  background: url("") #850057 no-repeat 50% 50%;
   background-size: 45px;
+}
+.spoc-icon:before{
+  font-family:FontAwesome;
+  content:"\f095";
+  color: white;
+  font-size: 40px;
 }
 
 .spoc-text {
@@ -231,8 +229,15 @@ span.menuName {
 }
 
 .feedback {
-    background: url("../img/ic/feedbk.png") #C4BB5B no-repeat 50% 50%;
-    background-size: 45px;
+  background: url("") #C4BB5B no-repeat 50% 50%;
+  background-size: 45px;
+}
+.feedback-icon:before{
+  font-family: FontAwesome;
+  content:"\f0e6";
+  color: white;
+  font-size: 40px;
+
 }
 
 .feedback-text {
@@ -242,14 +247,15 @@ span.menuName {
 }
 
 .exec-bio {
-  background: url("../img/ic/group.png") #003F60 no-repeat 50% 50%;
+  background: url('') #003F60 no-repeat 50% 50%;
   background-size: 45px;
 }
-.agendaicon{
-    padding-top: 28%;
-    color: white;
-font-size: 30px;
-background-color: #40AABF;}
+.exec-icon:before{
+  font-family: FontAwesome;
+  content:"\f0c0";
+  color: white;
+  font-size: 40px;
+}
 .exec-bio-text {
   color: #1F3F50;
   padding-top: 13px;
@@ -257,30 +263,37 @@ background-color: #40AABF;}
 }
 
 .past-visits {
-  background: url("../img/ic/cals.png") #588BA3 no-repeat 50% 50%;
+  background: url("") #588BA3 no-repeat 50% 50%;
   background-size: 45px;
 }
-/*.agenda{
-  background: url("/public/assets/m/img/ic/agenda2.png") #A2915D no-repeat 50% 50%;
+.visit-icon:before{
+  font-family: FontAwesome;
+  content:"\f073";
+  color: white;
+  font-size: 40px;
+}
+.agenda{
+  background: url("") #A2915D no-repeat 50% 50%;
   background-size: 45px;
-}*/
+}
+.agenda-icon:before{
+  font-family: FontAwesome;
+  content:"\f03a";
+  color: white;
+  font-size: 40px;
+}
 .past-visits-text {
   color: #204353;
   padding-top: 13px;
   font-family: workSansBold;
 }
 
-.account-info {
-  background: url("../img/ic/acinfo.png") #A2915D no-repeat 50% 50%;
-  background-size: 45px;
+.load {  
+  text-align: center;
+  overflow:hidden;
+  height: 58px; 
+  margin-bottom:32px;
 }
-
-.account-info-text {
-  color: #4D452e;
-  padding-top: 13px;
-  font-family: workSansBold;
-}
-
 
 .profile-location u {
   text-decoration: inherit;
@@ -289,31 +302,52 @@ background-color: #40AABF;}
 }
 
 .scroll-outer {
-    overflow-x:hidden;
-  }
+  overflow-x:hidden;
+  margin-left: auto ;
+  margin-right: auto ;
+}
 
-  .scroll-inner{
-    overflow-x: scroll;
-    white-space: nowrap;
-    margin-bottom: -40px;
-    padding-bottom: 6px;
-  }
+.scroll-inner{
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin-bottom: -40px;
+  padding-bottom: 6px;
+  margin-left: auto ;
+  margin-right: auto ;
+}
 
 
 @media only screen and (min-device-width: 290px)and (max-device-width: 320px){
   div#profile-details {
-  padding-top: 60px;
-  background: url("../img/bg/header.jpg") no-repeat;
-  background-size: 150%;
-}
-  #scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  text-align: center;
-  height: 180px;
-  width:95px;
+    padding-top: 60px;
+    background: url("../img/bg/header.jpg") no-repeat;
+    background-size: 150%;
   }
-
+  #scrollBox > div fieldset {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    text-align: center;
+    height: 180px;
+    width:95px;
+  }
+  .exec-icon:before{
+    font-size: 25px;
+  }
+  .feedback-icon:before{
+    font-size: 25px;
+  }
+  .factsheet-icon:before{
+    font-size: 25px;
+  }
+  .spoc-icon:before{
+    font-size: 25px;
+  }
+  .visit-icon:before{
+    font-size: 25px;
+  }
+  .agenda-icon:before{
+    font-size: 25px;
+  }
   .scroll-inner{
     overflow-x: scroll;
     white-space: nowrap;
@@ -322,28 +356,37 @@ background-color: #40AABF;}
   }
 }
 
-@media only screen and (min-device-width: 321px) and (max-device-width: 374px) {
- /* .session-overview .row .currentSession,
-  .session-overview .row .next-session {
-    font-size: 1.1em;
-  }*/
- #scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  text-align: center;
-  height: 180px;
-  width:100px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  #scrollBox > div fieldset {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    text-align: center;
+    height: 180px;
+    width:110px;
   }
   div#profile-details {
-  padding-top: 60px;
-  background: url("../img/bg/header.jpg") no-repeat;
-  background-size: 150%;
-}
-
-  /*.session-overview .row {
-    padding-top: 15px;
-    padding-bottom: 10px;
-  }*/
+    padding-top: 60px;
+    background: url("../img/bg/header.jpg") no-repeat;
+    background-size: 150%;
+  }
+  .exec-icon:before{
+    font-size: 27px;
+  }
+  .feedback-icon:before{
+    font-size: 27px;
+  }
+  .factsheet-icon:before{
+    font-size: 27px;
+  }
+  .spoc-icon:before{
+    font-size: 27px;
+  }
+  .visit-icon:before{
+    font-size: 27px;
+  }
+  .agenda-icon:before{
+    font-size: 27px;
+  }
 
   div#profile-details .profile-name {
     font-size: 1.125em;
@@ -363,22 +406,16 @@ background-color: #40AABF;}
   }
   #menu .row {
     padding-top: 0px;
-}
+  }
 
-  .factsheets,
+  .factsheet,
   .spoc,
-  .account-info,
+  .agenda,
   .feedback,
   .exec-bio,
   .past-visits {
     background-size: 36px;
   }
-
-  .agendaicon{
-    padding-top: 20%;
-    color: white;
-font-size: 30px;
-background-color: #40AABF;}
 
   .scroll-inner {
     overflow-x: scroll;
@@ -391,42 +428,50 @@ background-color: #40AABF;}
 /*media querries */
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 484px) {
-  /*.session-overview .row .current-session,
-  .session-overview .row .next-session {
-    font-size: 0.75em;
-  }*/
-#scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  text-align: center;
-  height: 180px;
-  width:130px;
-  margin-right: 15px;
+  #scrollBox > div fieldset {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    text-align: center;
+    height: 180px;
+    width:130px;
+    margin-right: 15px;
   }
   div#profile-details {
-  padding-top: 60px;
-  background: url("../img/bg/header.jpg") no-repeat;
-  background-size: 130%;
-}
+    padding-top: 60px;
+    background: url("../img/bg/header.jpg") no-repeat;
+    background-size: 130%;
+  }
+  .exec-icon:before{
+    font-size: 29px;
+  }
+  .feedback-icon:before{
+    font-size: 29px;
+  }
+  .factsheet-icon:before{
+    font-size: 29px;
+  }
+  .spoc-icon:before{
+    font-size: 29px;
+  }
+  .visit-icon:before{
+    font-size: 29px;
+  }
+  .agenda-icon:before{
+    font-size: 29px;
+  }
   .menu-circle-icon {
     width: 55px;
     height: 55px;
   }
 
-  .factsheets,
+  .factsheet,
   .spoc,
-  .account-info,
+  .agenda,
   .feedback,
   .exec-bio,
   .past-visits {
     background-size: 36px;
   }
-  .agendaicon{
-    padding-top: 21%;
-    color: white;
-font-size: 30px;
-background-color: #40AABF;}
-
   .scroll-inner{
     overflow-x: scroll;
     white-space: nowrap;
@@ -436,69 +481,51 @@ background-color: #40AABF;}
 }
 
 @media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
-   /* .session-overview .row .current-session,
-  .session-overview .row .next-session {
-    font-size: 0.75em;
-  }
-*/
-#scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  text-align: center;
-  height: 180px;
-  width: 130px;
+  #scrollBox > div fieldset {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-align: center;
+    height: 180px;
+    width: 200px;
   }
   .menu-circle-icon {
     width: 65px;
     height: 65px;
   }
 
-  .factsheets,
+  .factsheet,
   .spoc,
-  .account-info,
+  .agenda,
   .feedback,
   .exec-bio,
   .past-visits {
     background-size: 36px;
   }
-   .clock {
-    width: 80px;
-    height: 80px;
-  }
-    .side-collapse-container{
-      width:100%;
-      position:relative;
-      left:0;
-      transition:left .4s;
-  }
-  .side-collapse-container.out{
-      left:200px;
-  }
-  .side-collapse {
-      top:50px;
-      background-color:#006699;
-      bottom:0;
-      left:0;
-      width:200px;
-      position:fixed;
-      overflow:hidden;
-      transition:width .4s;
-  }
-  .side-collapse.in {
-      width:0;
-  }
-  .agendaicon{
-    padding-top: 25%;
-    color: white;
+  .exec-icon:before{
     font-size: 30px;
-    background-color: #40AABF;}
+  }
+  .feedback-icon:before{
+    font-size: 30px;
+  }
+  .factsheet-icon:before{
+    font-size: 30px;
+  }
+  .spoc-icon:before{
+    font-size: 30px;
+  }
+  .visit-icon:before{
+    font-size: 30px;
+  }
+  .agenda-icon:before{
+    font-size: 30px;
+  }
 
-    .scroll-inner {
+  .scroll-inner {
     overflow-x: scroll;
     white-space: nowrap;
     margin-bottom: -13px;
     padding-bottom: 6px;
-}
+  }
 }
 
 
@@ -506,80 +533,80 @@ background-color: #40AABF;}
   .clock-container{
     height: 40px;
     padding-top: 10px;
-   
+
   }
   #scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  text-align: center;
-  height: 180px;
-  width:250px;
-  margin-right: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    text-align: center;
+    height: 180px;
+    width:250px;
+    margin-right: 25px;
   }
   .profile-details{
     padding-top: 400px;
   }
- /* .session-overview .row .next-session div {
-    margin-left: 30px;
-
+  .exec-icon:before{
+    font-size: 29px;
   }
-
-  .session-overview .row .current-session div {
-    margin-right: 88px;
-  }*/
-
- /* .clocksDisplay {
-    padding-bottom: 10px;
-  }*/
+  .feedback-icon:before{
+    font-size: 29px;
+  }
+  .factsheet-icon:before{
+    font-size: 29px;
+  }
+  .spoc-icon:before{
+    font-size: 29px;
+  }
+  .visit-icon:before{
+    font-size: 29px;
+  }
+  .agenda-icon:before{
+    font-size: 29px;
+  }
   #menu{
     margin-top: 30px;}
-#menu .row div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 0.85em;
-    letter-spacing: 2px;
-}
+    #menu .row div {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 0.85em;
+      letter-spacing: 2px;
+    }
+    .menu-circle-icon {
+      width: 80px;
+      height: 80px;
+    }
+    .scroll-inner{
+      overflow-x: scroll;
+      white-space: nowrap;
+      margin-bottom: -15px;
+      padding-bottom: 5px;
+    }
 
-  .scroll-inner{
-    overflow-x: scroll;
-    white-space: nowrap;
-    margin-bottom: -15px;
-    padding-bottom: 5px;
+
   }
 
 
-}
 
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+    #scrollBox > div fieldset {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      text-align: center;
+      height: 250px;
+      width: 450px;
+      margin-right: 50px;
+      font-size: 40px;
+    }
 
+    div#profile-details .profile-location img {
+      width: 18px;
+    }
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-  #scrollBox > div fieldset {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  text-align: center;
-/*  height: 280px;
-  width:250px;*/
-    height: 200px;
-    width: 350px;
-    margin-right: 50px;
-  }
-  /*.session-overview .row .next-session div {
-    margin-left: 88px;
-  }
-
-  .session-overview .row .current-session div {
-    margin-right: 200px;
-  }*/
-
-  div#profile-details .profile-location img {
-    width: 18px;
-  }
-
-  .scroll-inner{
-
+    .scroll-inner{
       margin-bottom: -50px;
+    }
   }
-}
 
 
 

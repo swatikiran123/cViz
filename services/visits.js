@@ -642,25 +642,9 @@ function getSchedulesById(id){
 					request = JSON.parse(request.responseText);
 
 					// skip days for which sessions are not scheduled
-					if(daySessions.length > 0){
+					if(daySessions.length > 0){		
 						//retriving icons based on the description
-						if (request.weather[0].description == "clear sky" || request.weather[0].description == "clear") {
-							var icon = "/public/assets/m/img/ic/01d.png";
-						} else if (request.weather[0].description == "few clouds") {
-							var icon = "/public/assets/m/img/ic/02d.png";
-						} else if (request.weather[0].description == "scattered clouds" || request.weather[0].description == "broken clouds" || request.weather[0].description == "clouds") {
-							var icon = "/public/assets/m/img/ic/03d.png";
-						} else if (request.weather[0].description == "rain" || request.weather[0].description == "light rain" || request.weather[0].description == "shower rain") {
-							var icon = "/public/assets/m/img/ic/10d.png";
-						} else if (request.weather[0].description == "thunderstorm") {
-							var icon = "/public/assets/m/img/ic/11d.png";
-						} else if (request.weather[0].description == "snow") {
-							var icon = "/public/assets/m/img/ic/13d.png";
-						} else if (request.weather[0].description == "mist" || request.weather[0].description == "haze" ) {
-							var icon = "/public/assets/m/img/ic/50d.png";
-						} else {
-							var icon = "/public/assets/m/img/ic/01d.png";
-						}
+						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
 						var schedule = {
 							day : i,
 							date : d,

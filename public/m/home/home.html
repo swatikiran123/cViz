@@ -1,113 +1,92 @@
 <style></style>
 
 
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <div scroll id="profile-details">
-  
-        <div class="notifications">
-         <!--a type="button" data-toggle="modal" data-target="#myModal"><img src="/public/assets/m/img/ic/ibox-f.png"></a-->
- <a href="#/splash"><i class="fa fa-play-circle noty-icon splashicon"></i></a>
-            <span type="button"  data-toggle="modal" data-target="#videoModal"><i class="fa fa-envelope noty-icon" aria-hidden="true"></i></span>
 
-<span ng-include src="'/public/m/home/welcome.html'"></span>
-</div>
+    <div class="notifications">
+       <!--a type="button" data-toggle="modal" data-target="#myModal"><img src="/public/assets/m/img/ic/ibox-f.png"></a-->
+       <a href="#/splash"><i class="fa fa-play-circle noty-icon splashicon"></i></a>
+       <span type="button"  data-toggle="modal" data-target="#videoModal"><i class="fa fa-envelope noty-icon" aria-hidden="true"></i></span>
 
-  <!-- Modal -->
- 
-  
+       <span ng-include src="'/public/m/home/welcome.html'"></span>
+   </div>
 
-        <div class="profile-pic"><img src="{{user.avatar}}"></div>
-        <div class="profile-name">{{user.name.first}} {{user.name.last}}</div>
-        <div class="profile-desc">{{user.jobTitle}} {{user.organization}}</div>
-        <div class="profile-location">
-               <location-picker ng-model="pickedLocation" limit-to="1"></location-picker>
-    
-        </div>
-<!-- 
-        <div class="session-overview" ng-hide="!visitStartSuccess">
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4 currentSession">
-                    <div class="on-time">ON TIME</div>
-                    <div class="second-span">Cloud Computing</div>
-                    <div class="third-span">11:00 AM to 12:15 PM</div>
-                </div>
-                <div class="clock-container col-xs-4 col-sm-4 col-md-4">
-                    <clock-svg degree="progressDegree"></clock-svg>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 next-session">
-                    <div class="next">NEXT</div>
-                    <div class="second-span">Big Data</div>
-                    <div class="third-span">12:30 PM to 1:15 PM</div>
-                </div>
+   <!-- Modal -->
+
+
+
+   <div class="profile-pic"><img src="{{user.avatar}}"></div>
+   <div class="profile-name">{{user.name.first}} {{user.name.last}}</div>
+   <div class="profile-desc">{{user.jobTitle}} {{user.organization}}</div>
+   <div class="profile-location">
+     <location-picker ng-model="pickedLocation" limit-to="1"></location-picker>
+
+ </div>
+ <div class="scroll-outer">
+    <div class="load" ng-show="loading"><img src="/public/assets/m/img/bg/ajax-loading.gif"/></div>
+    <div id="scrollBox" align="center" class="scroll-inner">
+        <div ng-repeat="objs in dayHighlighter">
+            <fieldset>
+                <span class="day">Day {{objs.day}}</span>
+                <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
+                    <img ng-src="{{objs.climate.icon}}"/></span>
+                    <span class="dayLike">{{objs.climate.daylike}}</span><br>
+                    <span class="temp" >{{objs.climate.temperature}}&deg;C</span>
+                    <h4> <span class="loc">{{objs.location}}</span></h4>
+                </fieldset>
             </div>
-            <div class="agenda"><a href="#/agendaOverview">VIEW AGENDA</a></div>
-        </div> -->
-
-
-        <div class="scroll-outer">
-            <div id="scrollBox" class="scroll-inner">
-                <div ng-repeat="objs in dayHighlighter">
-                    <fieldset>
-                            <span class="day">Day {{objs.day}}</span>
-                            <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
-                                <img class="weathericon" ng-src="{{objs.climate.icon}}"/></span>
-                            <span class="dayLike">{{objs.climate.daylike}}</span><br>
-                            <span class="temp" >{{objs.climate.temperature}}&deg;C</span>
-                            <h4> <span class="loc">{{objs.location}}</span></h4>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-
-</div>
-
-
-    <div class="container" id="menu">
-        <div class="container" id="menu">
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/visits/#/agenda">
-                    <i class="menu-circle-icon fa fa-list agendaicon"></i>
-                        <div class="account-info-text">AGENDA</div>
-                    </a>
-             
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/main/#/execBios">
-                        <div class="menu-circle-icon exec-bio"></div>
-                        <div class="exec-bio-text">EXECUTIVE BIO'S</div>
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/main/#/feedback">
-                        <div class="menu-circle-icon feedback"></div>
-                        <div class="feedback-text">FEEDBACK</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="row">      
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/visits/#/contacts">
-                        <div class="menu-circle-icon spoc"></div>
-                        <div class="spoc-text">CONTACT SPOC</div>
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/facts/">
-                        <div class="menu-circle-icon factsheets"></div>
-                        <div class="factsheets-text">FACTSHEETS</div>
-                    </a>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    <a href="/m/visits/">
-                        <div class="menu-circle-icon past-visits"></div>
-                        <div class="past-visits-text">PAST VISITS</div>
-                    </a>
-                </div> 
-            </div>
-
         </div>
     </div>
     
+</div>
+
+
+<div class="container" id="menu">
+    <div class="container" id="menu">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/visits/#/agenda">
+                    <div class="menu-circle-icon agenda agenda-icon"></div>
+                    <div class="account-info-text">AGENDA</div>
+                </a>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/main/#/execBios">
+                    <div class="menu-circle-icon exec-bio exec-icon"></div>
+                    <div class="exec-bio-text">EXECUTIVE BIO'S</div>
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/main/#/feedback">
+                    <div class="menu-circle-icon feedback feedback-icon"></div>
+                    <div class="feedback-text">FEEDBACK</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">      
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/visits/#/contacts">
+                    <div class="menu-circle-icon spoc spoc-icon"></div>
+                    <div class="spoc-text">CONTACT SPOC</div>
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/facts/">
+                    <div class="menu-circle-icon factsheet factsheet-icon"></div>
+                    <div class="factsheets-text">FACTSHEETS</div>
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="/m/visits/">
+                    <div class="menu-circle-icon past-visits visit-icon"></div>
+                    <div class="past-visits-text">PAST VISITS</div>
+                </a>
+            </div> 
+        </div>
+
+    </div>
+</div>
