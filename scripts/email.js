@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
 var constants         = require('../scripts/constants');
 var config            = require(path.join(constants.paths.config, '/config'));
 var logger      = require(constants.paths.scripts +  '/logger');
+var weather			      = require(constants.paths.scripts +  '/weather');
 var groupService      = require(constants.paths.services +  '/groups');
 var modelVisit           = require(constants.paths.models +  '/visit');
 
@@ -171,18 +172,17 @@ function welcomeClient(visitId) {
 				console.log(err);
 			}
 			else{
-				//logger.writeJson(visit);
-				//console.log(JSON.stringify(visit,null,2));
-
+				console.log("Visit details...");
+				console.log(JSON.stringify(visit,null,2));
+				var weatherSch = weather.getWeatherForSchedule(visit.schedule);
 				visit.visitors.forEach(function(participant){
-					//console.log(JSON.stringify(participant.visitor.name,null,2));
 					var visitor = {
 						name: participant.visitor.name,
 						email: participant.visitor.email,
-						schedule: visit.schedule,
+						schedule: weatherSch,
 						spoc: visit.anchor
 					};
-
+					console.log("Visitor data...");
 					console.log(JSON.stringify(visitor,null,2));
 
 					mailTemplate.render(visitor, function (err, results) {

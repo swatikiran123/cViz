@@ -18,6 +18,7 @@
 	<font face="calibri" size="8px" color="maroon">
 	<table border="1">
 		<tr>
+			<td>#</td>
 			<td>Date</td>
 			<td>City</td>
 			<td>Weather</td>
@@ -25,9 +26,10 @@
 
 		{% for sch in schedule %}
 		<tr>
-			<td>{{ sch.startDate|date('jS \o\f F, Y') }} - {{ sch.endDate|date('jS \o\f F, Y')}}</td>
+			<td>{{ sch.day}}</td>
+			<td>{{ sch.date|date('jS \o\f F, Y') }}</td>
 			<td>{{ sch.location }}</td>
-			<td>ToDo:: Weather</td>
+			<td>{{ sch.climate.daylike}} with {{ sch.climate.temperature}}&deg;C</td>
 		</tr>
 		{% endfor %}
 	</table>
