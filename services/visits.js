@@ -328,7 +328,7 @@ visitsByTimeline = {
 	"further":{
 		start: afterNextWeek,
 		end: furtherEnd,
-		visits: ((timeline.contains("next-week")||timeline.contains('all'))? filterByRange(visitsSorted, further) : null)
+		visits: ((timeline.contains("further")||timeline.contains('all'))? filterByRange(visitsSorted, further) : null)
 	},
 
 	"next-one":{
