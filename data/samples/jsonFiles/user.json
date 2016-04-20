@@ -19,13 +19,13 @@
 				"suffix"		:  ""
 			},
 
-		"email"				: "admin@csc.com",
+		"email"				: "admin@gmail.com",
 		"avatar"			:  "/public/assets/g/imgs/avatar.jpg",
 
 		"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "admin@csc.com"
+				"email"				: "admin@gmail.com"
 			},
 		
 		"summary"		: "Ar. Admin is the admin for this application.",
@@ -84,14 +84,14 @@
 					"last"		:  "Goud",
 					"suffix"		:  ""
 				},
-			"email"				: "sgoud@csc.com",
+			"email"				: "sgoud0099@gmail.com",
 
 			"avatar"			:  "/public/uploads/profilePics/shiva.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "sgoud@csc.com"
+				"email"				: "sgoud0099@gmail.com"
 			},
 
 			"summary"		: "Dr. Shiva Kumar is a partner in CSC’s Big Data and Analytics practice. He is a results-oriented data scientist with 15 years as an analytics subject matter expert. He is experienced in the design and execution of data-driven business strategy using analytics to drive results.",
@@ -150,14 +150,14 @@
 					"last"		:  "Pediripati",
 					"suffix"		:  ""
 				},
-			"email"				: "spediripatti@csc.com",
+			"email"				: "spediripatti@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/spediripatti.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "spediripatti@csc.com"
+				"email"				: "spediripatti@gmail.com"
 			},
 
 			"summary"		: " Proven ability in Building and leading teams, Engineering Program Management, Agile product development",
@@ -214,14 +214,14 @@
 					"last"		:  "Pediri",
 					"suffix"		:  ""
 				},
-			"email"				: "spediri@csc.com",
+			"email"				: "spediri0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/spediri.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "spediri@csc.com"
+				"email"				: "spediri0099@gmail.com"
 			},
 
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
@@ -274,14 +274,14 @@
 					"last"		:  "Williams",
 					"suffix"		:  ""
 				},
-			"email"				: "rwilliams@csc.com",
+			"email"				: "rwilliams00991@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/rwilliams.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "rwilliams@csc.com"
+				"email"				: "rwilliams00991@gmail.com"
 			},
 
 			"summary"		: " 10+ years of experience in the field of HR with exposure to Learning & Development, Induction/Orientation, Data Management, HRIS, Employee Engagement, Joining formalities and Campus Recruitment",
@@ -334,14 +334,14 @@
 					"last"		:  "Kurapati",
 					"suffix"		:  ""
 				},
-			"email"				: "kbhagya@csc.com",
+			"email"				: "kbhagya0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/kbhgya.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "kbhagya@csc.com"
+				"email"				: "kbhagya0099@gmail.com"
 			},
 
 			"summary"		: " 8+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
@@ -395,14 +395,14 @@
 					"last"		:  "Kumar",
 					"suffix"		:  ""
 				},
-			"email"				: "akumar@csc.com",
+			"email"				: "akumar@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/akumar.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "akumar@csc.com"
+				"email"				: "akumar@gmail.com"
 			},
 
 			"summary"		: " Possess excellent leadership and people management skills and subject matter expertise on Learning and Development function. Have been instrumental in setting up the L&D function in my curent assignment",
@@ -458,14 +458,14 @@
 					"last"		:  "Gundala",
 					"suffix"		:  ""
 				},
-			"email"				: "rgundala@csc.com",
+			"email"				: "rgundala@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/rgundala.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "rgundala@csc.com"
+				"email"				: "rgundala@gmail.com"
 			},
 
 			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
@@ -521,14 +521,14 @@
 					"last"		:  "Yapa",
 					"suffix"		:  ""
 				},
-			"email"				: "ayapa@csc.com",
+			"email"				: "ayapa@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/ayapa.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "ayapa@csc.com"
+				"email"				: "ayapa@gmail.com"
 			},
 
 			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
@@ -583,14 +583,14 @@
 					"last"		:  "Jyothi",
 					"suffix"		:  ""
 				},
-			"email"				: "ksigamani@csc.com",
+			"email"				: "ksigamani@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/ksigamani.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "ksigamani@csc.com"
+				"email"				: "ksigamani@gmail.com"
 			},
 
 			"summary"		: " Sigamani is a technology enthusiast, futurist, researcher and author who is an expert in artificial intelligence (AI) and other disruptive technologies.",
@@ -647,14 +647,14 @@
 					"last"		:  "Kamutam",
 					"suffix"		:  ""
 				},
-			"email"				: "dkammutam@csc.com",
+			"email"				: "dkammutam@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/dkammutam.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "dkammutam@csc.com"
+				"email"				: "dkammutam@gmail.com"
 			},
 
 			"summary"		: " Calling himself the “Everything Else Guy,” Heis a performance engineer whose wide-ranging technical expertise ensures that systems perform, are secure, fail over, and are easy to operate and troubleshoot.",
@@ -711,14 +711,14 @@
 					"last"		:  "Chris",
 					"suffix"		:  ""
 				},
-			"email"				: "lchris@csc.com",
+			"email"				: "lchris0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/lchris.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "lchris@csc.com"
+				"email"				: "lchris0099@gmail.com"
 			},
 
 			"summary"		: "He is a lead architect with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
@@ -774,14 +774,14 @@
 					"last"		:  "Jhonson",
 					"suffix"		:  ""
 				},
-			"email"				: "mjohnson@csc.com",
+			"email"				: "mjohnson00991@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/mjohnson.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "mjohnson@csc.com"
+				"email"				: "mjohnson00991@gmail.com"
 			},
 
 			"summary"		: "He is a lead architect with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
@@ -838,14 +838,14 @@
 					"last"		:  "Wayne",
 					"suffix"		:  ""
 				},
-			"email"				: "bwayne@csc.com",
+			"email"				: "bwayne0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/bwayne.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "bwayne@csc.com"
+				"email"				: "bwayne0099@gmail.com"
 			},
 
 			"summary"		: "He is a lead architect with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
@@ -901,14 +901,14 @@
 					"last"		:  "Andresson",
 					"suffix"		:  ""
 				},
-			"email"				: "randresson@csc.com",
+			"email"				: "randresson0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/randresson.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "randresson@csc.com"
+				"email"				: "randresson0099@gmail.com"
 			},
 
 			"summary"		: "He is an Associate systems engineer with experience leveraging technology and architectural solutions to solve problems for such diverse clients as Kroger, NY Health Exchange, Fannie Mae, Federal Reserve",
@@ -1215,14 +1215,14 @@
 					"last"		:  "Sharma",
 					"suffix"		:  ""
 				},
-			"email"				: "nsharma@aol.com",
+			"email"				: "nsharma00991@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/nsharma.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "nsharma@aol.com"
+				"email"				: "nsharma00991@gmail.com"
 			},
 
 			"summary"		: " 4+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
@@ -1276,14 +1276,14 @@
 					"last"		:  "Watney",
 					"suffix"		:  ""
 				},
-			"email"				: "mwatney@aol.com",
+			"email"				: "mwatney0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/mwatney.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "mwatney@aol.com"
+				"email"				: "mwatney0099@gmail.com"
 			},
 
 			"summary"		: "5 yrs of exp in Telecom/ISP(Technical Support/Network Administration ) and have got an opportunity to work on different skill sets like DSL,IPMPLS,ISDN ,ATM,Frame relay issues.",
@@ -1339,14 +1339,14 @@
 					"last"		:  "Copper",
 					"suffix"		:  ""
 				},
-			"email"				: "fcopper@aol.com",
+			"email"				: "fcopper0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/fcopper.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "fcopper@aol.com"
+				"email"				: "fcopper0099@gmail.com"
 			},
 
 			"summary"		: " Information Technology, Strategy & Operations Executive with over 20 years of experience in Strategy, Governance, Innovative Business Process, Operations & Technology",
@@ -1401,14 +1401,14 @@
 					"last"		:  "Berg",
 					"suffix"		:  ""
 				},
-			"email"				: "jberg@aol.com",
+			"email"				: "jberg@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/jberg.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "jberg@aol.com"
+				"email"				: "jberg@gmail.com"
 			},
 
 			"summary"		: " Is an infrastructure and data domain expert with experience in data center optimization, consolidation, transformation and migration across multiple client accounts in a variety of industries ranging from financial services and healthcare to high-tech manufacturing",
@@ -1465,14 +1465,14 @@
 					"last"		:  "Jumde",
 					"suffix"		:  ""
 				},
-			"email"				: "mjumde@aol.com",
+			"email"				: "mjumde@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/mjumde.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "mjumde@aol.com"
+				"email"				: "mjumde@gmail.com"
 			},
 
 			"summary"		: " Minal works with AOL which is a vibrant industry association with ambitions of representing the entire gamut of digital businesses in India. ",
@@ -1645,14 +1645,14 @@
 					"last"		:  "Warner",
 					"suffix"		:  ""
 				},
-			"email"				: "dwarner@csc.com",
+			"email"				: "dwarner@gmail.com",
 
 			"avatar"			:  "/public/uploads/profilePics/dwarner.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "dwarner@csc.com"
+				"email"				: "dwarner@gmail.com"
 			},
 
 			"summary"		: "David is a partner in CSC’s Big Data and Analytics practice. He is a results-oriented data scientist with 15 years as an analytics subject matter expert. He is experienced in the design and execution of data-driven business strategy using analytics to drive results.",
@@ -1704,14 +1704,14 @@
 					"last"		:  "Michael",
 					"suffix"		:  ""
 				},
-			"email"				: "jmichael@csc.com",
+			"email"				: "jmichael@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/jmichael.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "jmichael@csc.com"
+				"email"				: "jmichael@gmail.com"
 			},
 
 			"summary"		: " Proven ability in Building and leading teams, Engineering Program Management, Agile product development",
@@ -1768,14 +1768,14 @@
 					"last"		:  "Kapoor",
 					"suffix"		:  ""
 				},
-			"email"				: "jkapoor@csc.com",
+			"email"				: "jkapoor@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/jkapoor.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "jkapoor@csc.com"
+				"email"				: "jkapoor@gmail.com"
 			},
 
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
@@ -1828,14 +1828,14 @@
 					"last"		:  "Watson",
 					"suffix"		:  ""
 				},
-			"email"				: "jwatson@csc.com",
+			"email"				: "jwatson0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/jwatson.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "jwatson@csc.com"
+				"email"				: "jwatson0099@gmail.com"
 			},
 
 			"summary"		: " 10+ years of experience in the field of HR with exposure to Learning & Development, Induction/Orientation, Data Management, HRIS, Employee Engagement, Joining formalities and Campus Recruitment",
@@ -1888,14 +1888,14 @@
 					"last"		:  "Lawrie",
 					"suffix"		:  ""
 				},
-			"email"				: "mlawrie@csc.com",
+			"email"				: "mlawrie0099@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/mlawrie.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "mlawrie@csc.com"
+				"email"				: "mlawrie0099@gmail.com"
 			},
 
 			"summary"		: " 15+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
@@ -1949,14 +1949,14 @@
 					"last"		:  "Smith",
 					"suffix"		:  ""
 				},
-			"email"				: "msmith@csc.com",
+			"email"				: "msmith00991@gmail.com",
 
 			"avatar"			: "/public/uploads/profilePics/msmith.jpg",
 			
 			"local"				:
 			{
 				"password"		: "$2a$08$hahH9uqzbcv3iCtKQYhoUOIBrfrQZyhKyo93jJoZ1HDlCt4WmAE9q",
-				"email"				: "msmith@csc.com"
+				"email"				: "msmith00991@gmail.com"
 			},
 
 			"summary"		: " Possess excellent leadership and people management skills and subject matter expertise on Learning and Development function. Have been instrumental in setting up the L&D function in my curent assignment",
