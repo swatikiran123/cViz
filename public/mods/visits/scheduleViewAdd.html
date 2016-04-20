@@ -24,7 +24,7 @@
        </select>
      </td>
      <td ng-if="tab"><input type="text" placeholder="Meeting Place" class="form-control" ng-model="schedule.meetingPlace"></td>
-     <td><a class="btn btn-primary" ng-click="addSchedule(schedule)" >Add Schedule</a></td>
+     <td><a class="table-btn" ng-click="addSchedule(schedule)"><span class="fa fa-plus fa-lg" /></a></td>
 
    </tr>
    <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">

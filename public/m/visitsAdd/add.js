@@ -16,7 +16,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','ui.calendar','angular-g
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
   .when('/add',{
-    templateUrl: '/public/mods/visits/visitsViewAdd.html',
+    templateUrl: '/public/mods/visits/visitAdd.html',
     controller: 'visitsControllerMain'
   })
 
