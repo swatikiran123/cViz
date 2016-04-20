@@ -3,6 +3,7 @@ angular.module('userViewDirective', [])
 
   //console.log ($scope.userId);
   // console.log($scope.userModel);
+  $scope.loading= true;
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
@@ -15,40 +16,25 @@ angular.module('userViewDirective', [])
     }
 
     if($scope.userId!="" && $scope.userId!=undefined){
-      // $scope.showFlag = "none";
-      // return;
       url='/api/v1/secure/admin/users/' + $scope.userId;
-          $http.get(url).success(function(response) {
-      $scope.userModel = response;
-      $scope.userId = response._id;
-      $scope.showFlag = "user";
-    })
-    .error(function(response, status){
-      $scope.showFlag = "noUser";
-      if(status===404)
-      {
-        message = "User not found";
-      }
-      else
-        console.log("error with userView directive");
-    });
-    // }
+      $http.get(url).success(function(response) {
+        $scope.userModel = response;
+        $scope.userId = response._id;
+        $scope.showFlag = "user";
+      })
+      .error(function(response, status){
+        $scope.showFlag = "noUser";
+        if(status===404)
+        {
+          message = "User not found";
+        }
+        else
+          console.log("error with userView directive");
+      });
+
     }
-    // $http.get(url).success(function(response) {
-    //   $scope.userModel = response;
-    //   $scope.userId = response._id;
-    //   $scope.showFlag = "user";
-    // })
-    // .error(function(response, status){
-    //   $scope.showFlag = "noUser";
-    //   if(status===404)
-    //   {
-    //     message = "User not found";
-    //   }
-    //   else
-    //     console.log("error with userView directive");
-    // });
-    // // }
+
+    $scope.loading= false;
   }
 
 }])

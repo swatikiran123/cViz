@@ -97,31 +97,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.arraydata = [];
   $scope.tab=false;
   // $scope.errMessage = '';
-  
-//tabs
-$scope.tabs = [{
-  title: 'Agenda',
-  url: 'one.tpl.html'
-}, {
-  title: 'Add Visitors',
-  url: 'two.tpl.html'
-}, {
-  title: 'Finalize',
-  url: 'three.tpl.html'
-}];
 
-$scope.currentTab = 'one.tpl.html';
-
-$scope.onClickTab = function (tab) {
-  $scope.currentTab = tab.url;
-  return tabUrl == $scope.currentTab;
-  return $scope.currentTab;
-}
-
-$scope.callData = function(tabUrl) {
-  return tabUrl == $scope.currentTab;
-}
-//tabs
 var user= $rootScope.user._id; 
 var group = $rootScope.user.memberOf;
 

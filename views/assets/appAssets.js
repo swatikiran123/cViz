@@ -171,7 +171,8 @@ module.exports = {
 			"/public/d/header/header.js",
 			"/public/d/userView/script.js",
 			"/public/assets/g/js/rateit.js",
-			"/public/assets/g/js/toaster.js"
+			"/public/assets/g/js/toaster.js",
+			"/public/d/richText/script.js"
 		],
 		"prod":[
 		]
@@ -258,7 +259,8 @@ module.exports = {
 			"/public/assets/g/js/rateit.js",
 			"/public/assets/g/js/toaster.js",
 			"/public/d/scroll/scroll.js",
-			"/public/d/header/header.js"
+			"/public/d/header/header.js",
+			"/public/assets/m/css/header.css"
 
 			]
 		},

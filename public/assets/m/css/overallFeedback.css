@@ -10,6 +10,42 @@
     overflow-y: hidden;
     height: 100%;
 }
+
+  input.star {
+       display: none;
+   }
+   label.star {
+    float: right;
+    color: #F3C227;
+    font-size: 1.6em;
+    padding-right: 5px;
+}
+input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #F3C227;
+}
+.checkbox-input input {
+    margin-right: 5px;
+    margin-top: 0px;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 19px;
+    cursor: pointer;
+    outline: none;
+    background: url('/public/assets/m/img/ic/checkbox-sprite.png') no-repeat;
+    background-position: 0px 0px;
+    background-size: 36px;
+}
+input[type=checkbox]:checked {
+    background: url('/public/assets/m/img/ic/checkbox-sprite.png') no-repeat;
+    background-position: -18px 0px;
+    background-size: 36px;
+}
+
+
     .header {
         padding-left: 40px;
     }

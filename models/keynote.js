@@ -15,8 +15,8 @@ var keynoteSchema = new mongoose.Schema({
 	createby                    :  { type: Schema.Types.ObjectId, ref: 'User' },
 	createOn					: { type: Date, default: Date.now },
 	desc						: { type: String, trim: true, required: true },
-	externalLink				: { type: String, trim: true, required: true },
-	attachment					: [{ type: String, trim: true, required: true }]
+	// externalLink				: { type: String, trim: true, required: true },
+	attachment					: { type: String, trim: true, required: true }
 
 });
 

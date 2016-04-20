@@ -9,6 +9,13 @@
     right: 0;
 }
 
+.searchViewHead{
+   padding-left: 20px;
+}
+
+.dropdown-menu{
+   background-color: white;
+}
 .visitpic{
     width: 60px;
     height: 55px;
