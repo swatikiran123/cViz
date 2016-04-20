@@ -1,5 +1,5 @@
 angular.module('lctnGalry', ['ui.bootstrap.carousel'])
-    .controller('lctnGalryCtrl', function ($scope,  $rootScope, $modalInstance, $filter , cscLocation , $http) {
+    .controller('lctnGalryCtrl', function ($scope,  $rootScope, $uibModalInstance, $filter , cscLocation , $http) {
 			console.log("location gallery controller running");
         $scope.cscLocation = cscLocation;
         $scope.weatherData = [];
@@ -58,7 +58,7 @@ angular.module('lctnGalry', ['ui.bootstrap.carousel'])
         };
 
         $scope.loadThumbnailImages = function () {
-            _.each($scope.thumbnailImages, function (n) {
+            angular.forEach($scope.thumbnailImages, function (n) {
                 imageName = 'url(' + n.image + ')';
                 console.log(imageName);
                 $('.carousel-indicators li:nth-child(' + n.id + ')').css('background-image', imageName);
@@ -66,7 +66,7 @@ angular.module('lctnGalry', ['ui.bootstrap.carousel'])
         };
 
         $scope.close = function () {
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
         };
 
         $scope.searchWeather();

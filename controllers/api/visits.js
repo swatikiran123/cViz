@@ -17,6 +17,7 @@ controller.getWithAction = getWithAction;
 controller.getSessionsById = getSessionsById;
 controller.getSchedulesById=getSchedulesById;
 controller.getExecsById = getExecsById;
+controller.getKeynotesById = getKeynotesById;
 
 module.exports = controller;
 
@@ -75,6 +76,10 @@ function getWithAction(req, res){
 		case "execs":
 			getExecsById(req, res);
 			break;
+
+        case "keynotes":
+            getKeynotesById(req,res);
+            break;
 
 		default:
 			res.send("Invalid action");
@@ -160,6 +165,43 @@ function getExecsById(req,res){
         console.log("exception" + err);
         res.status(500).send(err);
     });
+}
+
+function getKeynotesById(req,res){
+    var visitid;
+    console.log(req.params.action);
+    dataService.getMyVisits(req.user,"next-one")
+    .then(function(data){
+        if (data){
+            console.log(data["next-one"].visits._id);
+            if(req.params.id != "current")
+                visitid = req.params.id;
+            else     
+                visitid = data["next-one"].visits._id;           
+  
+              dataService.getKeynotesById(visitid)
+                .then(function(data){
+                    if (data){
+                        res.send(data);
+                    }else {
+                        res.status(404).send("Keynotes for the visit not found");
+                    }
+                })
+                .catch(function (err){
+                    console.log("exception" + err);
+                    res.status(500).send(err);
+                });    
+        }
+
+        else {
+            logger.Json("No active visits");
+            res.status(404).send("No active visits");
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });   
 }
 
 function create(req, res) {

@@ -44,7 +44,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
             $scope.noteByUser = response.noteBy;
             $scope.noteByEmail = response.noteBy.email;
             $scope.noteById = response.noteBy._id;
-            $scope.array = response.attachment;
+            $scope.array.push(response.attachment);
 
 
             // reformat date fields to avoid type compability issues with <input type=date on ng-model
@@ -60,7 +60,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   $scope.save = function(){
     // set noteBy based on the user picker value
     $scope.keynotes.noteBy = $scope.noteById;
-    $scope.keynotes.attachment = $scope.array;
+    $scope.keynotes.attachment = $scope.array.toString();
     console.log($scope.keynotes.noteBy);
     $scope.keynotes.createby = $rootScope.user._id;
 
