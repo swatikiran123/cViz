@@ -5,9 +5,23 @@
  
   /*height: 100%;*/
   overflow-y: hidden; 
-  padding-top: 20px;
+  padding-top: 2px;
 
   }
+  .scroll-outer {
+  overflow-x:hidden;
+}
+
+.scroll-inner{
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: -15px;
+  padding-bottom: 10px;
+}
+ ul {
+
+    -webkit-padding-start: 10px;
+}
 
 .scroll
 {
@@ -107,7 +121,7 @@
 .agenda-session-feedback-div {
     background-color: #f8f8f8;
     margin-left: 0px;
-    padding: 0 38px;
+    padding: 0 0px;
     margin-top: -8px;
     /*box-shadow: 0 18px 20px -5px #c5c5c5 inset;   */
     box-shadow: 0 8px 3px -8px #c5c5c5 inset, 0 8px 3px -8px #c5c5c5 inset;
