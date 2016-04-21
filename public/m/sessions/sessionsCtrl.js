@@ -8,16 +8,24 @@ angular.module('sessions')
 console.log($location.search()["day"]);
 
     $scope.visit_id = $routeParams.id;
-
+    $scope.vmtab = $location.search()["day"];
+  
 		$scope.setTab = function(){
-			//angular.element('day1').addClass("sel-tab");
-			angular.element('day3').triggerHandler('a:focus');
+		
+			 if($scope.vmtab === undefined){
+                 angular.element(document.getElementById('day1')).focus();
+			 }
+			 else{
 
+                angular.element(document.getElementById('day'+ $scope.vmtab)).focus();
+            }
 			if($location.search()["day"] === undefined)
 				return 1;
 			else
 				return $location.search()["day"]-0;
 		}
+
+
 
 		$scope.hideFeeedbackDiv = true;
 		$scope.toggleFeedbackDialog = function(index, $event){

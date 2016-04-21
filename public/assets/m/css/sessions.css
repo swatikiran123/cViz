@@ -230,7 +230,7 @@
 
 
 .agenda-list a:focus {
-
+    outline: none;
     border-bottom: 3px solid purple;
     font-size: 1.6em;
     height: 35px;
