@@ -1,4 +1,4 @@
-<font face="calibri" size="8px" color="black">
+<font face="calibri" size="8pt" color="black">
 	Dear <b>{{name.prefix}} {{name.first}} {{name.last}},</b>
 
 	<p>
@@ -7,15 +7,16 @@
 
 	<p>
 		We would like to invite you Visit Portal application, CSC visit agenda management tool...<br/>
-		Please click here {{link}} (or copy paste the below link in your browser address bar) to open the visit agenda.<br/>
-		{{link}}
+		Please <a href="{{loginPath}}" title="CSC Visit Portal">click here</a>
+	  (or copy paste the below link in your browser address bar) to open the visit agenda.<br/>
+		{{loginPath}}
 	</p>
 
-	<font face="calibri" size="8px" color="maroon">
+	<font face="calibri" size="8pt" color="maroon">
 		Here is your visit schedule:<br/>
 	</font>
 
-	<font face="calibri" size="8px" color="maroon">
+	<font face="calibri" size="8pt" color="maroon">
 	<table border="1">
 		<tr>
 			<td>#</td>
@@ -40,8 +41,8 @@
 		For any further details please feel free to contact the visit manager:<br/>
 	</font>
 
-	<font size="8px" color="gray">
-			<img src='{{spoc.avatar}}'/> {{spoc.name.prefix}} {{spoc.name.first}} {{spoc.name.last}}<br/>
+	<font size="8pt" color="gray">
+			<img src='{{hostPath}}{{spoc.avatar}}'/> {{spoc.name.prefix}} {{spoc.name.first}} {{spoc.name.last}}<br/>
 			Email: {{spoc.email}}<br/>
 			Contact: {{spoc.contactNo[0].contactNumber}}
 	</font>
@@ -52,7 +53,7 @@
 	</p>
 
 	<hr/>
-	<font size="8px" color="gray">
+	<font size="8pt" color="gray">
 	Note: This is an auto generated mail from Visit Portal. Please do not reply.
 	</font>
 </font>
