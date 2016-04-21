@@ -7,6 +7,7 @@ var constants         = require('../scripts/constants');
 var config            = require(path.join(constants.paths.config, '/config'));
 var logger      = require(constants.paths.scripts +  '/logger');
 var weather			      = require(constants.paths.scripts +  '/weather');
+var pathBuilder			      = require(constants.paths.scripts +  '/pathBuilder');
 var groupService      = require(constants.paths.services +  '/groups');
 var modelVisit           = require(constants.paths.models +  '/visit');
 
@@ -82,7 +83,6 @@ function notifyNewVisit(visit) {
 				});
 				// console.log('emails found')
 				console.log(emailIds);
-				emailIds = "svema@csc.com";
 				var mailOptions = {
 						from: config.get('email.from'),
 						to: emailIds, // list of receivers
@@ -129,7 +129,6 @@ function notifyVisitOwnerChange(visit) {
 				});
 				console.log('emails found')
 				console.log(emailIds);
-				emailIds = "svema@csc.com";
 				var mailOptions = {
 						from: config.get('email.from'),
 						to: emailIds, // list of receivers
@@ -152,7 +151,7 @@ function notifyVisitOwnerChange(visit) {
 	}); // end of register mail render
 } // end of sendMailOnRegistration
 
-function welcomeClient(visitId) {
+function welcomeClient(visitId, basePath) {
 	console.log("welcomeCient mail")
 	console.log("send mail? " + config.get('email.send-mails'));
 	if(config.get('email.send-mails')!="true") return;
@@ -180,7 +179,9 @@ function welcomeClient(visitId) {
 						name: participant.visitor.name,
 						email: participant.visitor.email,
 						schedule: weatherSch,
-						spoc: visit.anchor
+						spoc: visit.anchor,
+						hostPath: basePath,
+						loginPath: pathBuilder.getPath(basePath, "loginPage")
 					};
 					console.log("Visitor data...");
 					console.log(JSON.stringify(visitor,null,2));
@@ -193,8 +194,7 @@ function welcomeClient(visitId) {
 
 						var mailOptions = {
 								from: config.get('email.from'),
-								//to: visitor.email, // list of receivers
-								to: 'svema@csc.com',
+								to: visitor.email, // list of receivers
 								subject: 'Welcome to CSC', // Subject line
 								text: results.text, // plaintext body
 								html: results.html // html body

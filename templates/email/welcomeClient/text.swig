@@ -4,13 +4,12 @@ CSC Welcomes you to India.
 
 We would like to invite you Visit Portal application, CSC visit agenda management tool...
 Please click here {{link}} (or copy paste the below link in your browser address bar) to open the visit agenda.
-{{link}}
+{{appPath}}
 
 Here is your visit schedule:
 
-
 		{% for sch in schedule %}
-			{{ sch.startDate|date('jS \o\f F, Y') }} - {{ sch.endDate|date('jS \o\f F, Y')}}  | {{ sch.location }}  |  ToDo:: Weather
+			{{ sch.day }} | {{ sch.date|date('jS \o\f F, Y')}}  | {{ sch.location }}  |  {{ sch.climate.daylike}} with {{ sch.climate.temperature}}&deg;C
 		{% endfor %}
 
 For any further details please feel free to contact the visit manager:
