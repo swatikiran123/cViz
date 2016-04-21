@@ -11,6 +11,7 @@ var feedbackDefSchema = require('./feedbackDef');
 var feedbackSchema = new mongoose.Schema({
 
 	visitid						: { type: Schema.Types.ObjectId, ref: 'Visits', required:true },
+	sessionid					: { type: Schema.Types.ObjectId, ref: 'visit_schedules'},
 	template					: { type: Schema.Types.ObjectId, ref: 'FeedbacDefs', required:true },
 	providedBy					: { type: Schema.Types.ObjectId, ref: 'User', required:true },
 	providedOn					: { type: Date, default: Date.now },

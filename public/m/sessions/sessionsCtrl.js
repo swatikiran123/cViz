@@ -4,8 +4,9 @@ angular.module('sessions')
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
     });
+
 console.log($location.search()["day"]);
-		$scope.feedback_id="A10234567892345678900001";
+
     $scope.visit_id = $routeParams.id;
 
 		$scope.setTab = function(){
