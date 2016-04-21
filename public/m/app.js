@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mviz-main', [
-	'appFilters', 'home','locator','execBios','header','scroll', 'sessions', 'clientInfo','userViewDirective','overallFeedback','richTextDirective','ngRateIt'
+'appFilters', 'home','locator','execBios','header','scroll', 'sessions', 'clientInfo','userViewDirective','overallFeedback','richTextDirective','ngRateIt'
 ]);
 
 angular.module('mviz-visits', [

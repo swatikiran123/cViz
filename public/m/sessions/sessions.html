@@ -1,10 +1,21 @@
-
+<style>.tabactive{
+background-color: red;
+}
+.alllign{
+	vertical-align : middle;
+	font-size : 17px;
+	background-color: blue;
+}
+h6 {
+    visibility: hidden;
+}
+</style>
 <div header showprofile="false" icon="fa fa-list" title1="Visit Agenda" title2="feedback" >
 
 	 <ul class="scroll-outer">
-		<ul ng-init="vm.tab=setTab()" class="agenda-list scroll-inner">
+		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
 			<li ng-repeat="schedules in scheduleList track by $index">
-				<a href ng-click="vm.tab = schedules.day" ng-attr-id="{{ 'day' + schedules.day }}">
+				<a href ng-click="vm.tab = setTab()"  ng-attr-id="{{ 'day' + schedules.day }}">
 					Day {{schedules.day}}
 					<br>
 					<div class="schday">
@@ -13,6 +24,7 @@
 				</a>
 			</li>
 		</ul>
+		<h6>{{setTab()}}</h6>
 	</ul>
 </div>
 
@@ -81,7 +93,7 @@
 									</div>
 								</div>
 								<div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
-									<div feedback feedback-id="feedback_id" visit-id="visit_id" feedback-model>
+									<div feedback feedback-id="session.feedbackTemplate" visit-id="visit_id" session-id="session._id" feedback-model>
 
 
 								</div>
