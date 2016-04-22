@@ -1,0 +1,48 @@
+<!--     <h1>{{name}}</h1>
+    City facts will start here -->
+
+<style>
+.image1{
+    height:300px;
+    width: 800px;
+}
+</style>    
+
+    <div class="cvm-gallery-header">
+    	<h1 class="headerTitle">{{name | uppercase}}</h1>
+
+    	<div class="header-temp-div">
+    		<!-- <img src="/public/assets/m/img/ic/sunny-icon.png" class="sec1"> -->
+    		<img ng-src="{{icon}}"class="sec1">
+    		<span class="sec2">{{weatherData.main.temp}}</span>
+    		<span class="sec6">&deg;C</span>
+    	</div>
+
+    	<div class="header-precipitation-div">
+    		<div class="sec1">
+    			<span class="col-xs-6 col-sm-6 col-md-6 div-padding">AVERAGE</span>
+    			<span class="col-xs-6 col-sm-6 col-md-6 div-padding">HUMIDITY</span>
+    		</div>
+
+    		<div class="sec2">
+    			<div class="col-xs-6 col-sm-6 col-md-6 div-padding">
+    				<span class="text1">{{weatherData.main.temp_max}}&deg;</span>
+    				<span class="text2">/</span>
+    				<span class="text1">{{weatherData.main.temp_min}}&deg;</span>
+    			</div>
+
+    			<span class="col-xs-6 col-sm-6 col-md-6 div-padding">{{weatherData.main.humidity}}%</span>
+    		</div>
+    	</div>
+    </div>
+
+    <div>
+   	<img ng-src="{{bannerLink}}" class="image1" /> 	
+    </div>
+    <h6><i>{{description}}</i></h6>
+    
+    <h1 align="center">Quick Facts About the City</h1>	
+    <div ng-repeat="facts in quickFacts">
+    <li>{{facts}}</li>
+    </div>
+
