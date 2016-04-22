@@ -54,17 +54,17 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $
 
         $scope.openqFacts = function()
         {
-            $location.path("/segments/qFacts");
+            $location.path("/qFacts");
         }
 
         $scope.openindiaLocs = function()
         {
-            $location.path("/segments/indiaLocs");
+            $location.path("/indiaLocs");
         }
 
         $scope.opencerts = function()
         {
-            $location.path("/segments/certs");
+            $location.path("/rewards");
         }
 
         $scope.goBack = function () {

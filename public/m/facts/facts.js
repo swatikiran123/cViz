@@ -27,22 +27,22 @@ angular.module('facts', ['ngRoute'])
     controller: 'cityCtrl'
   })	
 
-  .when('/segments/qFacts', {
+  .when('/qFacts', {
     templateUrl: '/public/m/facts/segments/qFacts.html',
     controller: 'factsCtrl'
   })	
 
-  .when('/segments/indiaLocs', {
+  .when('/indiaLocs', {
     templateUrl: '/public/m/facts/segments/indiaLocs.html',
     controller: 'factsCtrl'
   })  
 
-  .when('/segments/certs', {
+  .when('/rewards', {
     templateUrl: '/public/m/facts/segments/certs.html',
     controller: 'factsCtrl'
   })  
 
 	// if none of the above states are matched, use this as the fallback
-  // $routeProvider.otherwise('/main');
+  $routeProvider.otherwise('/main');
 
 }]);
