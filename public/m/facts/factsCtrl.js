@@ -52,6 +52,20 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $
             $location.path("/city/" +cityName);
         };
 
+        $scope.openqFacts = function()
+        {
+            $location.path("/segments/qFacts");
+        }
+
+        $scope.openindiaLocs = function()
+        {
+            $location.path("/segments/indiaLocs");
+        }
+
+        $scope.opencerts = function()
+        {
+            $location.path("/segments/certs");
+        }
 
         $scope.goBack = function () {
             $state.go('cvmHome');
