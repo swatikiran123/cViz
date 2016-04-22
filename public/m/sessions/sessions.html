@@ -1,21 +1,15 @@
-<style>.tabactive{
-background-color: red;
+<style> .agendatab{
+  background-color: #bdbdbd;
+  font-size: 1.4em !important;
 }
-.alllign{
-	vertical-align : middle;
-	font-size : 17px;
-	background-color: blue;
-}
-h6 {
-    visibility: hidden;
-}
-</style>
+
+    </style>
 <div header showprofile="false" icon="fa fa-list" title1="Visit Agenda" title2="feedback" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
 			<li ng-repeat="schedules in scheduleList track by $index">
-				<a href ng-click="vm.tab = setTab()"  ng-attr-id="{{ 'day' + schedules.day }}">
+				<a href ng-click="vm.tab = schedules.day" ng-attr-id="{{ 'day' + schedules.day }}">
 					Day {{schedules.day}}
 					<br>
 					<div class="schday">

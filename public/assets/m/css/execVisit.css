@@ -1,0 +1,204 @@
+#view-visit-agenda {
+    height: 100%;
+    display: block;
+
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #eeeeee;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column;
+    flex-flow: column;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    overflow-y: hidden;
+    height: 100%;
+}
+.visitor-details img{
+    width: 50px;
+    height: 50px;
+    }
+    .visit-agenda-content {
+        padding-top: 0px;
+        background-color: #eeeeee;
+        margin-bottom: 55px;
+    }
+
+
+      
+        .visit-card {
+            padding: 10px;
+            background-color: #fff;
+            font-family: robotoRegular;
+            box-shadow: 2px 4px 4px #c1c1c1;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+            .visit-agenda-title {
+                color: #ef2525;
+}
+            img {
+                width: 15px;
+                height: 15px;
+                right: 0;
+            }
+            .cal {
+                height: 13px;
+                margin-top: -3px;
+                width: 14px;
+            }
+            .location {
+                height: 15px;
+                width: 13px;
+                margin-top: -2px;
+            }
+            h1 {
+                font-family: workSansLight;
+                color: #ef2525;
+                margin: 10px 0;
+                font-size: 2.14em;
+            }
+            .visit-title {
+                color: #888888;}
+                span {
+                    font-family: robotoBold;
+                    color: #777777;
+                    font-size: 1.35em;
+                }
+            
+            .badge-details {
+                color: #C5B548;
+                font-family: robotoBold;}
+                img {
+                    height: 15px;
+                    width: 12px;
+                    margin-top: -5px;
+                }
+            
+            .visit-details {
+                color: #777777;
+            }
+            .separator {
+                color: #a1a1a1;
+                padding: 0 10px;
+            }
+            .imp-visitors {
+                border-top: #d0d0d0 solid 2px;
+                border-bottom: #d0d0d0 solid 2px;
+                padding: 15px 0 0 0;
+                margin-top: 15px;
+                font-family: robotoBold;
+                color: #888888;
+                font-size: 1em;
+
+            }
+                .visitor-details-div {
+                    padding: 10px 0px 10px 0;
+                }
+                .visitor-details-div:nth-child(n) {
+                    border-bottom: #EBEBEB solid 1px;
+                }
+                .visitor-details-div:last-child {
+                    border-bottom: none;
+                }
+                .visitor-details {
+                    display: inline-flex;}
+                    p {
+                        margin-bottom: 0px;
+                        margin-left: 10px;
+                    }
+                
+                
+                .visitor-desig {
+                    font-family: robotoRegular;
+                    color: #444444;
+                    font-size: 1em;
+                    margin-top: 5px;
+                }
+            
+            .visit-type {
+                margin: 10px 0;}
+                .session-field {
+                    margin: 0;
+                    padding: 10px 0;
+                    color: #444444;
+                }
+            
+        
+        h2 {
+            color: #ef2525;
+            font-family: workSansLight;
+            font-size: 1.4em;
+            margin: 0 0 0 10px;
+        }
+        
+            .section-heading {
+                font-family: robotoBold;
+                color: #888888;
+                font-size: 1em;
+            }
+            h2 {
+                margin: 0;
+            }
+        
+        .img-vertical-align {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            font-size: 1.4em;
+            cursor: pointer;
+        }
+    
+    .floater {
+        bottom: 0;
+        text-align: center;
+        background-color: #eeeeee;}
+        button {
+            background-color: #fff;
+            border: none;
+            box-shadow: 2px 2px 5px #888888;
+            margin: 0px;
+            padding: 0px 0px;
+            z-index: 1;
+            color: #6B6B6B;
+            width: 200px;
+        }
+ 
+
+@media only screen and (min-width: 531px) {
+    #view-visit-agenda {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    #view-visit-agenda {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    #view-visit-agenda {
+        font-size: 13px;}
+        .visit-agenda-content .visit-card {
+            .location {
+                height: 12px;
+                margin-top: -2px;
+                width: 11px;
+            }}
+            .cal {
+                height: 11px;
+                margin-top: -3px;
+                width: 12px;
+            }
+    
+}
+
+@media only screen and (max-width: 360px) {
+    #view-visit-agenda {
+        font-size: 14px;
+    }
+}
