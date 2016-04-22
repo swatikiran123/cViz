@@ -117,6 +117,7 @@ router.get('/api/v1/secure/cityFacts/:id', cityFacts.getOneById);
 router.post('/api/v1/secure/cityFacts', cityFacts.create);
 router.put('/api/v1/secure/cityFacts/:id', cityFacts.updateById);
 router.delete('/api/v1/secure/cityFacts/:id', cityFacts.deleteById);
+router.get('/api/v1/secure/cityFacts/get/:name', cityFacts.getOneByName);
 
 
 //list of service routes for factSheets
@@ -125,6 +126,7 @@ router.get('/api/v1/secure/factSheets/:id', factSheets.getOneById);
 router.post('/api/v1/secure/factSheets', factSheets.create);
 router.put('/api/v1/secure/factSheets/:id', factSheets.updateById);
 router.delete('/api/v1/secure/factSheets/:id', factSheets.deleteById);
+
 
 //list of service routes for teasers
 router.get('/api/v1/secure/teasers', teasers.getAll);

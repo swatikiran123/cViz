@@ -220,7 +220,8 @@ module.exports = {
 
 			"/public/m/facts/facts.js",
 			"/public/m/facts/factsCtrl.js",
-			"/public/m/facts/lctnGalry/lctnGalryCtrl.js"
+			"/public/m/facts/lctnGalry/lctnGalryCtrl.js",
+			"/public/m/city/cityCtrl.js"
 		],
 		"prod":[
 
