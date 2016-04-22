@@ -44,7 +44,7 @@ module.exports = {
 		},
 		{
 			name: "Quick Facts",
-			link: "/m/facts/",
+			link: "/m/facts/#/main",
 			icon: "fa-line-chart",
 			roles: "user,exec,customer,vManger"
 		},

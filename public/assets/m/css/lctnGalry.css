@@ -1,104 +1,18 @@
-.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.modal-dialog-cscLocationGallery {
-  height: 100%;
-}
-
-.modal-dialog-cscLocationGallery .modal-dialog {
-  height: 94%;
-  width: 94%;
-  margin: auto;
-  top: 3%;
-}
-
-.modal-dialog-cscLocationGallery .modal-dialog .modal-content {
-  height: 100%;
-  border-radius: 0;
-}
-
-.carousel-parent-div {
-  background: linear-gradient(#003f60, #588ba3);
-  color: #fff;
-  height: 100%;
-  width: 100%;
-  opacity: 0.8;
-}
-
-.closeDiv {
-  position: fixed;
-  padding: 0;
-}
-
-.closeBut {
-  width: 20px;
-  height: 20px;
-  float: right;
-  margin: 20px;
-}
 
 .cvm-gallery-header {
   /*opacity: 0.8;*/
+  
+  text-align: center;
+  padding-top: 80px;
+}
+.cvm-gallery-header .headerTitle {
+  margin: 0;
   height: 33%;
-  text-align: center;
-  padding: 20px;
-}
+  font-family: workSansSemiBold;
+  letter-spacing: 5px;
+  padding-top: 10px;
 
-.carousel-indicators {
-  top: 100%;
-  display: block;
-  padding: 20px;
-  width: 100%;
-  left: 0;
-  padding-left: auto;
-  padding-right: auto;
-  margin-left: 0;
-  text-align: center;
 }
-
-.carousel-indicators li {
-  width: 100px;
-  height: 100px;
-  border-radius: 0;
-  text-indent: 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  margin-right: 20px;
-}
-
-.carousel-indicators li:last-child {
-  margin-right: 0;
-}
-
-.carousel-indicators li:nth-child(n) {
-  /*background-image: url('../assets/Chennai_Central_Station_panorama.jpg');*/
-  /*background-image: url(../assets/chennai-thumb-1.jpg);*/
-}
-
-.carousel-indicators .active {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
-}
-
-.carousel {
-  height: 33% !important;
-}
-
-.carousel-inner {
-  height: 100% !important;
-  margin: auto;
-  width: 100%;
-}
-
-.carousel img {
-  height: 100% !important;
-  width: 100%;
-}
-
 .cvm-gallery-footer {
   margin-top: 140px;
   padding: 0 20px 20px 20px;
@@ -109,27 +23,6 @@
     font-size: 30px;
   }
 }
-
-.locDesc {
-  height: 50%;
-  padding-bottom: 20px;
-}
-
-.locDesc p {
-  height: 100%;
-  overflow-y: scroll;
-  font-size: 20px;
-}
-
-.cvm-gallery-header .headerTitle {
-  margin: 0;
-  height: 33%;
-  font-family: workSansSemiBold;
-  letter-spacing: 5px;
-  padding-top: 10px;
-
-}
-
 .header-temp-div {
   height: 33%;
   font-family: workSansExtraLight;
@@ -172,6 +65,36 @@
   .sec2 .text2 {
     color: #7c96a7;
   }
+}
+h4{
+  padding-top: 0px;
+}
+.desc{
+  font-family:robotoRegular ;
+  font-size: 12px;
+  padding: 0px 20px;
+  text-decoration: justify;
+}
+.quickfacts{
+  font-family: robotoRegular ;
+  font-size: 14px;
+  padding: 0px 20px;
+}
+
+.banner img {
+  padding: 0px 40px;
+width:100%;
+height: 350px;
+}
+
+.factheader{
+   
+  text-align: center;
+   margin: 0;
+  height: 33%;
+  font-family: workSansSemiBold;
+  letter-spacing: 5px;
+  padding-top: 0px;
 }
 
 @media only screen and (max-width: 570px) {
