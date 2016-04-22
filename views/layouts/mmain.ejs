@@ -24,7 +24,11 @@
 			<div class="paddg">
 				<%if (locals.user !== undefined) { %>
 				<div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
-				<div class="menu-profile-name header"><%=locals.user.name.first%> <%=locals.user.name.last%></div>
+				<div class="menu-profile-name header">
+					<%=locals.user.name.first%> <%=locals.user.name.last%><br/>
+					<span style="font-size: 80%;"><%=locals.user.jobTitle%></span><br/>
+					<span style="font-size: 70%;"><%=locals.user.get('groups')%></span>
+				</div>
 				<% } %></div>
 				<div class="sidebar-nav">
 					<ul>

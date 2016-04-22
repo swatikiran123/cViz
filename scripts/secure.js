@@ -59,16 +59,19 @@ function isInAnyGroups(user, grps){
 }
 
 function getGroups(user){
-	//console.log(user.memberOf);
-	if(user.memberOf === "")
+	if(user.memberOf == "" || user.memberOf === undefined){
 		return "user";
+	}
 
 	var grps = [];
-	//if(user.memberOf.indexOf(groups["admin"]) > -1)
+	if (arrContains(user.memberOf, groups["admin"]))
 		grps.push("admin");
 
-	//if(user.memberOf.indexOf(groups["vManager"]) > -1)
+	if(arrContains(user.memberOf, groups["vManager"]))
 		grps.push("vManager");
-		// console.log(grps);
+
+	if(arrContains(user.memberOf, groups["exec"]))
+		grps.push("exec");
+
 	return grps.join(',');
 }

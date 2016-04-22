@@ -81,9 +81,13 @@
               <img class="avatar" height="80" width="80" src="<%= locals.user.avatar %>" />
             </div>
             <div class="pull-right profile-details">
-              <div class="text-highlight header"><%= locals.user.name.first %> <%= locals.user.name.last %></div>
-              <div class="text-xsmall">Last Login: <%= locals.user.stats.dateLastLogin %></div>
-              <br/>
+              <div class="text-highlight header">
+								<%= locals.user.name.first %> <%= locals.user.name.last %>
+							</div>
+              <div class="text-xsmall">
+								<span>Member Of: <%=locals.user.get('groups')%></span><br/>
+								Last Login: <%= locals.user.stats.dateLastLogin %>
+							</div>
               <div class="link"><a href="/profile/#/p">Edit Profile</a></div>
             </div>
 
