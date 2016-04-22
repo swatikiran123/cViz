@@ -1,12 +1,9 @@
-<!--     <h1>{{name}}</h1>
-    City facts will start here -->
+   
 
-<style>
-.image1{
-    height:300px;
-    width: 800px;
-}
-</style>    
+<div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="location fact  sheet">
+location factshhet
+    </div>
+<div class="divtop">   
 
     <div class="cvm-gallery-header">
     	<h1 class="headerTitle">{{name | uppercase}}</h1>
@@ -36,13 +33,16 @@
     	</div>
     </div>
 
-    <div>
-   	<img ng-src="{{bannerLink}}" class="image1" /> 	
+    <div class="banner">
+   	<img ng-src="{{bannerLink}}" /> 	
     </div>
-    <h6><i>{{description}}</i></h6>
-    
-    <h1 align="center">Quick Facts About the City</h1>	
-    <div ng-repeat="facts in quickFacts">
+    <span class="desc"><i>{{description}}</i></span>
+    <br>
+    <hr>
+    <h4 class="factheader">Quick Facts</h4>
+    <br>
+    <div ng-repeat="facts in quickFacts" class="quickfacts">
     <li>{{facts}}</li>
     </div>
+    
 
