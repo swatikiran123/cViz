@@ -104,7 +104,7 @@ function notifyNewVisit(visitId) {
 							if(error){
 									return console.log(error);
 							}
-							console.log('Send mail:: New Visit Initiayted - Status: ' + info.response);
+							console.log('Send mail:: New Visit Initiated - Status: ' + info.response);
 							console.log('Notifications sent to ' + emailIds);
 						}); // end of transporter.sendMail
 
@@ -113,50 +113,61 @@ function notifyNewVisit(visitId) {
 		} // end of sendmail
 } // end of sendMailOnRegistration
 
-function notifyVisitOwnerChange(visit) {
-	console.log("sendMailOnNewVisit")
-	console.log("send mail? " + config.get('email.send-mails'));
+function notifyVisitOwnerChange(visitId) {
 	if(config.get('email.send-mails')!="true") return;
 
-	var templateDir = path.join(constants.paths.templates, 'email', 'newVisit');
-	var mailTemplate = new emailTemplate(templateDir);
+	modelVisit
+		.findOne({ _id: visitId })
+		.populate('client')
+		.populate('createBy')
+		.populate('anchor')
+		.populate('secondaryVmanager')
+		.exec(function (err, visit) {
+			if(err) {
+				console.log(err);
+			}
+			else{
+				sendMail(visit)
+			}
+		})
 
-	mailTemplate.render(visit, function (err, results) {
+		function sendMail(visit){
+			var templateDir = path.join(constants.paths.templates, 'email', 'notifyVisitOwnerChange');
+			var mailTemplate = new emailTemplate(templateDir);
 
-		if(err){
-			return console.log(err);
-		}
+			mailTemplate.render(visit, function (err, results) {
 
-		var emailIds = [];
-		groupService.getUsersByGroup("vManager")
-			.then(function(users){
-				console.log("retrieved users");
-				console.log(users);
-				users.forEach(function(user){
-					emailIds.push(user.email);
-				});
-				console.log('emails found')
-				console.log(emailIds);
-				var mailOptions = {
-						from: config.get('email.from'),
-						to: emailIds, // list of receivers
-						subject: 'New Visit Agenda Submitted', // Subject line
-						text: results.text, // plaintext body
-						html: results.html // html body
-				};
+				if(err){
+					return console.log(err);
+				}
 
-				console.log(mailOptions);
+				var emailIds = [];
+				groupService.getUsersByGroup("vManager")
+					.then(function(users){
+						users.forEach(function(user){
+							emailIds.push(user.email);
+						});
 
-				// send mail with defined transport object
-				transporter.sendMail(mailOptions, function(error, info){
-					if(error){
-							return console.log(error);
-					}
-					console.log('Message sent: ' + info.response);
-				}); // end of transporter.sendMail
+						var mailOptions = {
+								from: config.get('email.from'),
+								to: emailIds, // list of receivers
+								subject: 'Change in Primary / Secondary Visit Manager', // Subject line
+								text: results.text, // plaintext body
+								html: results.html // html body
+						};
 
-			}); // end of getUsersByGroup service call
-	}); // end of register mail render
+						// send mail with defined transport object
+						transporter.sendMail(mailOptions, function(error, info){
+							if(error){
+									return console.log(error);
+							}
+							console.log('Send mail:: Notify Visit Manager change - Status: ' + info.response);
+							console.log('Notifications sent to ' + emailIds);
+						}); // end of transporter.sendMail
+
+					}); // end of getUsersByGroup service call
+			}); // end of register mail render
+		} // end of sendMail
 } // end of sendMailOnRegistration
 
 function welcomeClient(visitId, basePath) {
