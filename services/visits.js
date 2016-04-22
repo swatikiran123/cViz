@@ -759,7 +759,7 @@ function create(data) {
 		}
 		else
 		{
-			deferred.resolve();
+			deferred.resolve(doc);
 		}
 	});
 
