@@ -14,6 +14,7 @@ service.create = create;
 service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
+service.getOneByName = getOneByName;
 
 module.exports = service;
 
@@ -104,3 +105,20 @@ function deleteById(id) {
 
     return deferred.promise;
 }
+
+function getOneByName(name){
+    var deferred = Q.defer();
+    model
+    .findOne({ name: name })
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+            console.log(item);
+        deferred.resolve(item);
+    });
+
+    return deferred.promise;
+} // gentOneByName method ends
