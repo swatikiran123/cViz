@@ -1,6 +1,6 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $location) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $timeout) {
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
     });
@@ -9,15 +9,22 @@ console.log($location.search()["day"]);
 
     $scope.visit_id = $routeParams.id;
     $scope.vmtab = $location.search()["day"];
-  
+
 		$scope.setTab = function(){
 		
 			 if($scope.vmtab === undefined){
-                 angular.element(document.getElementById('day1')).focus();
+                   // angular.element(document.getElementsByClassName('sel-tab')).removeClass('sel-tab');
+               //angular.element('day2').addClass('sel-tab');
+                    
+               //angular.element(document.getElementById('day1')).addClass('sel-tab');
+               
 			 }
 			 else{
+         
+               
+                angular.element(document.getElementById('day'+ $scope.vmtab)).addClass('sel-tab');
 
-                angular.element(document.getElementById('day'+ $scope.vmtab)).focus();
+                  
             }
 			if($location.search()["day"] === undefined)
 				return 1;
