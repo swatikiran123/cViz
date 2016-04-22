@@ -197,12 +197,13 @@
             display: none;
         }
 
-.sel-tab !important {
-	border-bottom: 3px solid purple;
-	font-size: 1.6em;
-	height: 35px;
-	vertical-align: top;
-	color:red;
+.sel-tab{
+  
+	font-size: 1.6em !important;
+   border-bottom: 3px solid purple !important;
+   
+    height: 35px !important;
+    vertical-align: top;
 }
 
 @media screen and (min-width: 1000px) {
@@ -228,6 +229,9 @@
 
   }
 
+h6 {
+    visibility: hidden;
+}
 
 .agenda-list a:focus {
     outline: none;

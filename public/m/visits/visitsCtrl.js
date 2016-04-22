@@ -49,3 +49,13 @@ angular.module('visits')
 
  
 })
+.controller('execvistCtrl', function($scope,$location) {
+
+      
+        $scope.goBack = function () {
+            $location.path("/visits/all/my");
+        };
+        $scope.goToAgenda = function(){
+           // $location.path("/sessions/" +.id);
+        };
+    });
