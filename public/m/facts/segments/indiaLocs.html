@@ -1,0 +1,75 @@
+<div header showprofile="false" icon="fa fa-info-circle" title1="Factsheet" title2="fact page">
+  <div class="searchViewHead col-xs-12">
+        <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
+    
+            <i class="fa fa-search fonticon1"></i>
+            <input type="text" placeholder="Search" ng-model="$parent.query" />
+
+            <div class="pull-right">
+
+                <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="fa fa-th-large fonticon1"></i>
+                    <span class="caret"></span>
+                </div>
+
+                <ul class="dropdown-menu">
+                    <li><a href ng-click="openqFacts()">Quick Facts</a></li>
+                    <li class="divider"></li>
+                    <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>    
+                    <li class="divider"></li>
+                    <li><a href ng-click="opencerts()">Certifications</a></li>    
+                </ul>
+
+             </div>
+
+          </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<div align="center" class="factsheet-second-block">
+            <h1 class="map-title">CSC India Delivery Centers</h1>
+
+            <div class="indiaMapBlock">
+
+                <img src="/public/assets/m/img/ic/india-map.png" alt="India Map" usemap="#indiaMap" class="indiaMap">
+
+                <div class="loc1" ng-click="openGallery(cscIndiaLocations[0].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText1" class="">{{cscIndiaLocations[0].cityName}}</span>
+                </div>
+
+                <div class="loc2" ng-click="openGallery(cscIndiaLocations[1].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText2">{{cscIndiaLocations[1].cityName}}</span>
+                </div>
+
+                <div class="loc3" ng-click="openGallery(cscIndiaLocations[2].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText3">{{cscIndiaLocations[2].cityName}}</span>
+                </div>
+
+                <div class="loc4" ng-click="openGallery(cscIndiaLocations[3].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText4">{{cscIndiaLocations[3].cityName}}</span>
+                </div>
+
+                <div class="loc5" ng-click="openGallery(cscIndiaLocations[4].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText5">{{cscIndiaLocations[4].cityName}}</span>
+                </div>
+
+                <div class="loc6" ng-click="openGallery(cscIndiaLocations[5].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText6">{{cscIndiaLocations[5].cityName}}</span>
+                </div>
+
+                <div class="loc7" ng-click="openGallery(cscIndiaLocations[6].cityName)">
+                    <i class="marker fa fa-map-marker"></i>
+                    <span class="markerText7">{{cscIndiaLocations[6].cityName}}</span>
+                </div>
+            </div>
+        </div>
