@@ -22,7 +22,12 @@ angular.module('facts', ['ngRoute'])
     controller: 'factsCtrl'
   })
 
+  .when('/city/:name', {
+    templateUrl: '/public/m/city/city.html',
+    controller: 'cityCtrl'
+  })		
+
 	// if none of the above states are matched, use this as the fallback
-  $routeProvider.otherwise('/main');
+  // $routeProvider.otherwise('/main');
 
 }]);

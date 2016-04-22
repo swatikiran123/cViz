@@ -38,20 +38,19 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $
 
         $scope.openGallery = function (cityName) {
             console.log(cityName);
-            var modalView = $uibModal.open({
-                templateUrl: '/public/m/facts/lctnGalry/lctnGalry.html',
-                controller: 'lctnGalryCtrl',
-                backdrop: 'static',
-                windowClass: 'modal-dialog-cscLocationGallery',
-                resolve: {
-                    cscLocation: function () {
-                        return cityName;
-                    }
-                }
-            });
+            // var modalView = $uibModal.open({
+            //     templateUrl: '/public/m/facts/lctnGalry/lctnGalry.html',
+            //     controller: 'lctnGalryCtrl',
+            //     backdrop: 'static',
+            //     windowClass: 'modal-dialog-cscLocationGallery',
+            //     resolve: {
+            //         cscLocation: function () {
+            //             return cityName;
+            //         }
+            //     }
+            // });
+            $location.path("/city/" +cityName);
         };
-
-
 
 
         $scope.goBack = function () {
