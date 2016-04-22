@@ -18,14 +18,29 @@ angular.module('facts', ['ngRoute'])
   $routeProvider
 
 	.when('/main', {
-    templateUrl: '/public/m/facts/facts.html',
+    templateUrl: '/public/m/facts/main.html',
     controller: 'factsCtrl'
   })
 
   .when('/city/:name', {
     templateUrl: '/public/m/city/city.html',
     controller: 'cityCtrl'
-  })		
+  })	
+
+  .when('/segments/qFacts', {
+    templateUrl: '/public/m/facts/segments/qFacts.html',
+    controller: 'factsCtrl'
+  })	
+
+  .when('/segments/indiaLocs', {
+    templateUrl: '/public/m/facts/segments/indiaLocs.html',
+    controller: 'factsCtrl'
+  })  
+
+  .when('/segments/certs', {
+    templateUrl: '/public/m/facts/segments/certs.html',
+    controller: 'factsCtrl'
+  })  
 
 	// if none of the above states are matched, use this as the fallback
   // $routeProvider.otherwise('/main');
