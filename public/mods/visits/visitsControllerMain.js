@@ -75,8 +75,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $route, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -100,12 +100,18 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.secondaryVmanager='';
   
   $scope.visitGrid=false;
+  $scope.navVisit ='';
+  $scope.agendaEdit= false;
 
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
   $scope.finalizeTab=false;
   $scope.notifyTab=false;
-  // $scope.errMessage = '';
+
+  $scope.nextTab = function(data) {
+    $location.path('/visits/'+data+'/edit');
+    $route.reload();
+  };
 
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
@@ -141,24 +147,24 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     $scope.setTimeline = function(time){
       $scope.timeline = time;
-      console.log("setting timeline to " + $scope.timeline )
+      // console.log("setting timeline to " + $scope.timeline )
       $scope.visitBatch = $scope.allVisits[$scope.timeline];
     }
     
     $http.get('/api/v1/secure/visits/all/my').success(function(response) {
       $scope.allVisits = response;
-      console.log("after delete :"+$scope.allVisits)
+      // console.log("after delete :"+$scope.allVisits)
       if($scope.timeline=="" || $scope.timeline===undefined){
         $scope.timeline = "this-week";
-        console.log("no timeline. Set to " + $scope.timeline);
+        // console.log("no timeline. Set to " + $scope.timeline);
         $scope.visitBatch = $scope.allVisits[$scope.timeline];
       }
       else{
        $scope.timeline = "this-week";
-       console.log("no timeline. Set to " + $scope.timeline);
+       // console.log("no timeline. Set to " + $scope.timeline);
        $scope.visitBatch = $scope.allVisits[$scope.timeline];
      }
-     console.log(JSON.stringify($scope.visitBatch,null,2));
+     // console.log(JSON.stringify($scope.visitBatch,null,2));
 
      $scope.visits = "";
      $scope.schedules=[];
@@ -221,27 +227,27 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
        }
        break;
 
-       case "close": 
-       if ($rootScope.user.groups.indexOf("vManager") > -1) {
-        $scope.finalizeTab= true;
-        $scope.agendaTab=true;
-        $scope.visitorsTab=true;
-        $scope.notifyTab=true;
-      }
-      else{
-       $scope.agendaTab= true;
-       $scope.visitorsTab= true;
-       $scope.finalizeTab= false;
-       $scope.notifyTab= false;
-     }
-     break;
+     //   case "close": 
+     //   if ($rootScope.user.groups.indexOf("vManager") > -1) {
+     //    $scope.finalizeTab= true;
+     //    $scope.agendaTab=true;
+     //    $scope.visitorsTab=true;
+     //    $scope.notifyTab=true;
+     //  }
+     //  else{
+     //   $scope.agendaTab= true;
+     //   $scope.visitorsTab= true;
+     //   $scope.finalizeTab= false;
+     //   $scope.notifyTab= false;
+     // }
+     // break;
 
    };
 
-          $scope.schedules = visits.schedule;       //List of schedules
+          $scope.schedules = visits.schedule;//List of schedules
           $scope.keynotes = visits.keynote;
-          $scope.visitors = visits.visitors;      //List of visitors
-          $scope.visits = visits;     //Whole form object
+          $scope.visitors = visits.visitors;//List of visitors
+          $scope.visits = visits;//Whole form object
 
           $scope.arraydata=response.invitees;
 
@@ -252,9 +258,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           $scope.clientName= response.client.name;//auto fill with reff client db
           $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
           $scope.session= response.sessionTmpl.title;//auto fill with reff feedback db
-          
-          // $scope.anchorEmail = response.anchor.email;
-          // $scope.anchorId = response.anchor._id;
 
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
@@ -273,8 +276,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.agm = $scope.agmId;
     $scope.visits.status =$scope.status;
     $scope.visits.createBy= $rootScope.user._id;
-    $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
+    $scope.check= true;
     console.log($scope.visits);
     
     if ($scope.checked == false){
@@ -288,39 +291,65 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
         $scope.visits.feedbackTmpl = $scope.feedbackId;
         $scope.visits.sessionTmpl = $scope.sessionId;
-        switch($scope.mode)    {
-          case "add":
-          $scope.create();
-          break;
 
-          case "edit":
-          $scope.update();
-          break;
-      } // End of switch scope.mode ends
-       $location.path("visits/list"); 
-     // window.history.back();
-  } // End of save method
+        if ($scope.clientId!= null) {
+          $scope.visits.client = $scope.clientId;
 
-  $scope.create = function() {
+          switch($scope.mode){
+            case "add":
+            $scope.create();
+            break;
 
-    var inData       = $scope.visits;
-    inData.schedule = $scope.schedules;
-    inData.keynote = $scope.keynotes;
-    inData.visitors = $scope.visitors;
-    inData.createBy =  $rootScope.user._id;
-    
-    $http.post('/api/v1/secure/visits', inData).success(function(response) {
+            case "edit":
+            $scope.update();
+            break;
 
-    $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-     console.log(response);
-   })
-      refresh();
+          }
+        }
+        else
+        {
+          $http.get('/api/v1/secure/clients/find/name/'+$scope.clientName).success(function(response) {
+           console.log(response._id);
+           $scope.clientVist=response._id;
+           console.log($scope.clientVist)
+           $scope.visits.client = $scope.clientVist;
+           console.log($scope.visits.client);
+           switch($scope.mode){
+            case "add":
+            $scope.create();
+            break;
 
-      growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
-    })
-    .error(function(data, status){
-      growl.error("Error adding visit");
+            case "edit":
+            $scope.update();
+            break;
+
+          }
+        })
+        }
+
+        } // End of save method
+
+        $scope.create = function() {
+
+          var inData       = $scope.visits;
+          inData.schedule = $scope.schedules;
+          inData.keynote = $scope.keynotes;
+          inData.visitors = $scope.visitors;
+          inData.createBy =  $rootScope.user._id;
+
+          $http.post('/api/v1/secure/visits', inData).success(function(response) {
+
+            $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+             console.log(response);
+           })
+            $scope.nextTab(response._id);
+
+            growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
+          })
+          .error(function(data, status){
+            growl.error("Error adding visit");
     }); // Http post visit ends
+          
   }; //End of create method
 
   $scope.delete = function(visits) {
@@ -337,9 +366,21 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.update = function() {
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  $scope.visits).success(function(response) {
-      refresh();
-      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
-    })
+     refresh();
+     growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
+     
+     if($scope.agendaTab == true && $scope.agendaEdit == false) {
+      if($scope.visitorsTab == true && $scope.check == true)
+      {
+        $location.path("visits/list");
+      }else
+      $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+
+
+
+
+  })
     .error(function(data, status){
       growl.error("Error updating visit");
     }); // Http put visit ends
@@ -348,15 +389,15 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.cancel = function() {
 
     $scope.visits="";
-     $location.path("visits/list");
+    $location.path("visits/list");
    // window.history.back();
-  }
+ }
 
-  $scope.getUser = function(){
-    $http.get('/api/v1/secure/admin/users/' + inData.agm).success(function(response) {
-      var user = response;
-      $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
-  }
+ $scope.getUser = function(){
+  $http.get('/api/v1/secure/admin/users/' + inData.agm).success(function(response) {
+    var user = response;
+    $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
+}
 
    //add vmanager
    $scope.AddVmanager=function(){
@@ -369,11 +410,20 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
+    // if ($scope.visits.feedbackId!=undefined||$scope.visits.sessionId!=undefined) {
+    //   $scope.visits.feedbackTmpl = $scope.feedbackId;
+    //   $scope.visits.sessionId = $scope.sessionId;
+    // }
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.sessionTmpl = $scope.sessionId;
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
      growl.info(parse("Visit Manager Edited successfully"));
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
-
+     $scope.nextTab($scope.visits._id);
+     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
+      console.log(response);
+      growl.info(parse("Email sent on change of visit managers successfully"));
+    }) 
    })
   };
 
@@ -395,25 +445,30 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.sessionTmpl = $scope.sessionId;
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
-     growl.info(parse("Visit Manager Edited successfully"));
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
+      growl.info(parse("Planning stage compleated successfully"));
+     $scope.nextTab($scope.visits._id);
    })
 
   }
-  $scope.next= function(){
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
-    // $scope.visitorsTab=true;
-  }
   $scope.sendAnchor= function(anchor,status){
     $scope.anchorman = anchor;
-
-    $scope.status = status;
-    $scope.status="wip";
+    if ($scope.notifyTab== true) {
+      $scope.status = status;
+    }
+    else{
+      $scope.status = status;
+      $scope.status="wip";
+    }
   }
   $scope.sendSecVman= function(secondaryVmanager,status){
     $scope.vman = secondaryVmanager;
-    $scope.status = status;
-    $scope.status="wip";
+    if ($scope.notifyTab== true) {
+      $scope.status = status;
+    }
+    else{
+      $scope.status = status;
+      $scope.status="wip";
+    }
   }
   $scope.clientEmail=function(){
     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/welcomeclient').success(function(response) {
@@ -426,9 +481,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
    })
   }
 
-  $scope.close=function(){
-       $location.path("visits/list"); 
-     }
+  $scope.closeNotification=function(){
+   $location.path("visits/list"); 
+ }
   // Visit schedule table
   $scope.addSchedule=function(schedule){
 
@@ -698,117 +753,148 @@ $scope.checkErr = function(startDate,endDate) {
 
     }])
 
-//Autocompleate - Directive
-visitsApp.directive("autocomplete", ["AutoCompleteService", function (AutoCompleteService) {
+//Autocompleate - Directive '$timeout', function($timeout)
+visitsApp.directive("autocomplete", ["AutoCompleteService", "$timeout", function (AutoCompleteService,$timeout) {
   return {
     restrict: "A",              //Taking attribute value
     link: function (scope, elem, attr, ctrl) {
       elem.autocomplete({
         source: function (searchTerm, response) {
           AutoCompleteService.search(searchTerm.term).then(function (autocompleteResults) {
-            response($.map(autocompleteResults, function (autocompleteResult) {
-              return {
-                label: autocompleteResult.name,
-                value: autocompleteResult.name,
-                id: autocompleteResult._id
-              }
-            }))
+            if(autocompleteResults == undefined || autocompleteResults == ''){
+              console.log("im here: "+autocompleteResults);
+              scope.autoFail=true;
+              scope.clientNotFound="Client not found!!!"
+              // $timeout(function () { scope.clientNotFound = ''; }, 5000);
+            }
+            else{
+              response($.map(autocompleteResults, function (autocompleteResult) {
+                return {
+                  label: autocompleteResult.name,
+                  value: autocompleteResult.name,
+                  id: autocompleteResult._id
+                }
+              }))
+            }
           });
         },
-        minLength: 4,
+        minLength: 3,
         select: function (event, selectedItem) {
           scope.clientName= selectedItem.item.value;
           scope.clientId= selectedItem.item.id;
+          scope.autoFail=false;
           scope.$apply();
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //Autocompleate - Directive
-visitsApp.directive("feedback", ["FeedbackService", function (FeedbackService) {
+visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (FeedbackService,$timeout) {
   return {
     restrict: "A",              //Taking attribute value
     link: function (scope, elem, attr, ctrl) {
       elem.autocomplete({
         source: function (searchTerm, response) {
           FeedbackService.search(searchTerm.term).then(function (autocompleteResults) {
-            response($.map(autocompleteResults, function (autocompleteResult) {
-              return {
-                label: autocompleteResult.title,
-                value: autocompleteResult.title,
-                id: autocompleteResult._id
-              }
-            }))
+            if(autocompleteResults == undefined || autocompleteResults == ''){
+              console.log("im here: "+autocompleteResults);
+              scope.autoFailfed=true;
+              scope.feedbackNotFound="Feedback Template not found!!!"
+              // $timeout(function () { scope.feedbackNotFound = ''; }, 5000);
+            }else{
+              response($.map(autocompleteResults, function (autocompleteResult) {
+                return {
+                  label: autocompleteResult.title,
+                  value: autocompleteResult.title,
+                  id: autocompleteResult._id
+                }
+              }))
+            }
           });
         },
         minLength: 4,
         select: function (event, selectedItem) {
           scope.feedback= selectedItem.item.value;
           scope.feedbackId= selectedItem.item.id;
+          scope.autoFailfed=false;
           scope.$apply();
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //Autocompleate - Directive
-visitsApp.directive("session", ["SessionService", function (SessionService) {
+visitsApp.directive("session", ["SessionService", "$timeout", function (SessionService,$timeout) {
   return {
     restrict: "A",              //Taking attribute value
     link: function (scope, elem, attr, ctrl) {
       elem.autocomplete({
         source: function (searchTerm, response) {
           SessionService.search(searchTerm.term).then(function (autocompleteResults) {
-            response($.map(autocompleteResults, function (autocompleteResult) {
-              return {
-                label: autocompleteResult.title,
-                value: autocompleteResult.title,
-                id: autocompleteResult._id
-              }
-            }))
+            if(autocompleteResults == undefined || autocompleteResults == ''){
+              console.log("im here: "+autocompleteResults);
+              scope.autoFailsec=true;
+              scope.sessionNotFound="Session Template not found!!!"
+            }else{
+              response($.map(autocompleteResults, function (autocompleteResult) {
+                return {
+                  label: autocompleteResult.title,
+                  value: autocompleteResult.title,
+                  id: autocompleteResult._id
+                }
+              }))
+            }
           });
         },
         minLength: 4,
         select: function (event, selectedItem) {
           scope.session= selectedItem.item.value;
           scope.sessionId= selectedItem.item.id;
+          scope.autoFailsec=false;
           scope.$apply();
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //Autocompleate - Directive
-visitsApp.directive("keynote", ["KeynoteService", function (KeynoteService) {
+visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteService,$timeout) {
   return {
     restrict: "A",              //Taking attribute value
     link: function (scope, elem, attr, ctrl) {
       elem.autocomplete({
         source: function (searchTerm, response) {
           KeynoteService.search(searchTerm.term).then(function (autocompleteResults) {
-            response($.map(autocompleteResults, function (autocompleteResult) {
-              return {
-                label: autocompleteResult.title,
-                value: autocompleteResult._id,
+            if(autocompleteResults == undefined || autocompleteResults == ''){
+              console.log("im here: "+autocompleteResults);
+              scope.autoFailkey=true;
+              scope.keynoteNotFound="keynote not found!!!"
+            }else{
+              response($.map(autocompleteResults, function (autocompleteResult) {
+                return {
+                  label: autocompleteResult.title,
+                  value: autocompleteResult._id,
                 //id: autocompleteResult._id
               }
             }))
+            }
           });
         },
         minLength: 4,
         select: function (event, selectedItem) {
           scope.keynoteDef.note= selectedItem.item.value;
          // scope.keynoteId= selectedItem.item.id;
+         scope.autoFailkey=false;
          scope.$apply();
          event.preventDefault();
        }
      });
-    }
-  };
+}
+};
 }]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
