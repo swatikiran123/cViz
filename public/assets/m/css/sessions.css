@@ -27,6 +27,38 @@
 {
   width:100%;
 }
+.agendatab{
+  background-color: #bdbdbd;
+  font-size: 1.4em !important;
+}
+.agenda-list a.active{
+    border-bottom: 3px solid purple;
+    font-size: 1.6em;
+    height: 35px;
+    vertical-align: top;
+}
+.agenda-list a.active .schday{
+
+ display: none;
+
+}
+.agenda-list a:focus .schday{
+
+ display: none;
+
+}
+ .schday{
+    font-size: 10px;
+    font-family:  workSansMedium;
+  }
+
+.agenda-list a:focus {
+
+  border-bottom: 3px solid purple;
+    font-size: 1.6em;
+    height: 35px;
+    vertical-align: top;
+  }
 
 .agenda-header-div ul {
 
@@ -294,7 +326,7 @@ h6 {
     color: @futureAgendaSessionNameColor;
   }
 
-.agenda-list a:focus .schday{
+/*.agenda-list a:focus .schday{
 
  display: none;
 
@@ -304,8 +336,6 @@ h6 {
     font-family:  workSansMedium;
   }
 
-
-/* selected link */
 .agenda-list a:focus {
 
   border-bottom: 3px solid purple;
@@ -313,7 +343,7 @@ h6 {
     height: 35px;
     vertical-align: top;
   }
-}
+}*/
 
   @media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
 

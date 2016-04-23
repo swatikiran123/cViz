@@ -1,15 +1,10 @@
-<style> .agendatab{
-  background-color: #bdbdbd;
-  font-size: 1.4em !important;
-}
 
-    </style>
 <div header showprofile="false" icon="fa fa-list" title1="Visit Agenda" title2="feedback" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
 			<li ng-repeat="schedules in scheduleList track by $index">
-				<a href ng-click="vm.tab = schedules.day" ng-attr-id="{{ 'day' + schedules.day }}">
+				<a href ng-click="itemClicked($index);vm.tab = schedules.day"  ng-class="{'active' : $index == selectedIndex}" ng-attr-id="{{ 'day' + schedules.day }}">
 					Day {{schedules.day}}
 					<br>
 					<div class="schday">
@@ -21,7 +16,6 @@
 		<h6>{{setTab()}}</h6>
 	</ul>
 </div>
-
 
 	<ul ng-init="vm.tab=1" class="agenda-list">
 
