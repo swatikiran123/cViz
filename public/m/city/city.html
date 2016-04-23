@@ -31,6 +31,32 @@ location factshhet
     			<span class="col-xs-6 col-sm-6 col-md-6 div-padding">{{weatherData.main.humidity}}%</span>
     		</div>
     	</div>
+
+        <div align="center" class="header-precipitation-div">
+            <div class="sec1">
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day1Day | limitTo:3 }}</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day2Day | limitTo:3 }}</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day3Day | limitTo:3 }}</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day4Day | limitTo:3 }}</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day5Day | limitTo:3 }}</span>
+            </div>
+
+            <div class="sec2">
+                <img ng-src="{{day1icon}}" >
+                <img ng-src="{{day2icon}}">
+                <img ng-src="{{day3icon}}">
+                <img ng-src="{{day4icon}}">
+                <img ng-src="{{day5icon}}">
+            </div>
+
+            <div class="sec3">
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day2.temp.max}}&deg;C/{{ day2.temp.min}}&deg;C</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day3.temp.max}}&deg;C/{{ day3.temp.min}}&deg;C</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day4.temp.max}}&deg;C/{{ day4.temp.min}}&deg;C</span>
+                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day5.temp.max}}&deg;C/{{ day5.temp.min}}&deg;C</span>
+            </div>
+        </div>
     </div>
 
     <div class="banner">

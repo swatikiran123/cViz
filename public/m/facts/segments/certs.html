@@ -1,39 +1,27 @@
 <div header showprofile="false" icon="fa fa-info-circle" title1="Factsheet" title2="fact page">
-  <div class="searchViewHead col-xs-12">
-        <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
-    
-            <i class="fa fa-search fonticon1"></i>
-            <input type="text" placeholder="Search" ng-model="$parent.query" />
+    <div>       
+        &nbsp;Rewards and Recognition
+        <div class="pull-right">
 
-            <div class="pull-right">
+            <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <i class="fa fa-th-large fonticon1"></i>
+                <span class="caret"></span>
+            </div>
 
-                <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                    <i class="fa fa-th-large fonticon1"></i>
-                    <span class="caret"></span>
-                </div>
+            <ul class="dropdown-menu">
+                <li><a href ng-click="openqFacts()">Quick Facts</a></li>
+                <li class="divider"></li>
+                <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>    
+                <li class="divider"></li>
+                <li><a href ng-click="opencerts()">Rewards & Recognition</a></li>    
+            </ul>
 
-                <ul class="dropdown-menu">
-                    <li><a href ng-click="openqFacts()">Quick Facts</a></li>
-                    <li class="divider"></li>
-                    <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>    
-                    <li class="divider"></li>
-                    <li><a href ng-click="opencerts()">Certifications</a></li>    
-                </ul>
+        </div>
 
-             </div>
-
-          </div>
     </div>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <div id="rewards-recognition" class="factsheet-fifth-block">
-            <h1 class="heading">Rewards and Recognition</h1>
+            <h1 class="heading"><!-- Rewards and Recognition --></h1>
 
             <div class="row">
                 <div class="col-xs-4 col-sm-3 col-md-3 reward-badge-container">
