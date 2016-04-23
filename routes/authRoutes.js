@@ -3,7 +3,7 @@ var constants					= require('../scripts/constants');
 var logger 						= require(constants.paths.scripts + '/logger');
 var util 							= require(constants.paths.scripts + '/util');
 var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
-
+var menuBuilder 			= require(constants.paths.scripts + '/menuBuilder');
 
 module.exports = function(app, passport) {
 
@@ -38,11 +38,9 @@ module.exports = function(app, passport) {
 			res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
 			res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
 			if("desktop".compare(res.locals.device)){
-				res.render('home.ejs', {
-						user : req.user
-				});
+				res.redirect(menuBuilder.getDefaultPage(req.user, 'web'));
 			} else {
-				res.redirect('/m/main/');
+				res.redirect(menuBuilder.getDefaultPage(req.user, 'mobile'));
 			}
 		}
 

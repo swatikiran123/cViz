@@ -27,14 +27,14 @@
 
   "email": {
     "smtp-options":{
-      "service": "yahoo",
+      "service": "gmail",
 
       "auth": {
-          "user": "a.mstack@yahoo.in",
-          "pass": "awsDevOps"
+          "user": "sgoud0099@gmail.com",
+          "pass": "admin0099"
       }
     },
-		"from": "a.mstack@yahoo.in",
+		"from": "sgoud0099@gmail.com",
     "send-mails": "true"
   }
 
