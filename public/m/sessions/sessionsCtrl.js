@@ -4,28 +4,27 @@ angular.module('sessions')
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
     });
+  
 
 console.log($location.search()["day"]);
 
     $scope.visit_id = $routeParams.id;
     $scope.vmtab = $location.search()["day"];
+    if($scope.vmtab === undefined)
+    {  $scope.selectedIndex = 0;
 
+     $scope.itemClicked = function ($index) {
+    $scope.selectedIndex = $index;
+  }}
+  else{
+  $scope.selectedIndex = $scope.vmtab-1;
+
+     $scope.itemClicked = function ($index) {
+    $scope.selectedIndex = $index;
+  }
+}
 		$scope.setTab = function(){
-		
-			 if($scope.vmtab === undefined){
-                   // angular.element(document.getElementsByClassName('sel-tab')).removeClass('sel-tab');
-               //angular.element('day2').addClass('sel-tab');
-                    
-               //angular.element(document.getElementById('day1')).addClass('sel-tab');
-               
-			 }
-			 else{
-         
-               
-                angular.element(document.getElementById('day'+ $scope.vmtab)).addClass('sel-tab');
-
-                  
-            }
+	
 			if($location.search()["day"] === undefined)
 				return 1;
 			else
