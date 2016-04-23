@@ -1,37 +1,25 @@
 <div header showprofile="false" icon="fa fa-info-circle" title1="Factsheet" title2="fact page">
-  <div class="searchViewHead col-xs-12">
-        <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
-    
-            <i class="fa fa-search fonticon1"></i>
-            <input type="text" placeholder="Search" ng-model="$parent.query" />
+    <div>       
+        &nbsp;CSC India Delivery Centers
+        <div class="pull-right">
 
-            <div class="pull-right">
+            <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <i class="fa fa-th-large fonticon1"></i>
+                <span class="caret"></span>
+            </div>
 
-                <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                    <i class="fa fa-th-large fonticon1"></i>
-                    <span class="caret"></span>
-                </div>
+            <ul class="dropdown-menu">
+                <li><a href ng-click="openqFacts()">Quick Facts</a></li>
+                <li class="divider"></li>
+                <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>    
+                <li class="divider"></li>
+                <li><a href ng-click="opencerts()">Rewards & Recognition</a></li>    
+            </ul>
 
-                <ul class="dropdown-menu">
-                    <li><a href ng-click="openqFacts()">Quick Facts</a></li>
-                    <li class="divider"></li>
-                    <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>    
-                    <li class="divider"></li>
-                    <li><a href ng-click="opencerts()">Certifications</a></li>    
-                </ul>
-
-             </div>
-
-          </div>
+        </div>
     </div>
-</div>
-
-<br>
-<br>
-<br>
-<br>
 <div align="center" class="factsheet-second-block">
-            <h1 class="map-title">CSC India Delivery Centers</h1>
+            <h1 class="map-title"><!-- CSC India Delivery Centers --></h1>
 
             <div class="indiaMapBlock">
 

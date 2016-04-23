@@ -17,7 +17,38 @@ app.controller('cityCtrl', function ($scope, $location, $routeParams, $http) {
         	});
         };
 
+        $scope.searchForecast = function () {   
+          var searchTerm = $scope.name;   
+          $http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + searchTerm + '&units=metric&cnt=5&&appid=73136fa514890c15bc4534e7b8a1c0c4')
+          .success(function (data) {
+           $scope.today = new Date();
+           $scope.day1 = data.list[0];
+           $scope.day2 = data.list[1];
+           $scope.day3 = data.list[2];
+           $scope.day4 = data.list[3];
+           $scope.day5 = data.list[4];
+           $scope.day1icon = "/public/assets/m/img/ic/"+ $scope.day1.weather[0].icon +".png";
+           $scope.day2icon = "/public/assets/m/img/ic/"+ $scope.day2.weather[0].icon +".png";
+           $scope.day3icon = "/public/assets/m/img/ic/"+ $scope.day3.weather[0].icon +".png";
+           $scope.day4icon = "/public/assets/m/img/ic/"+ $scope.day4.weather[0].icon +".png";
+           $scope.day5icon = "/public/assets/m/img/ic/"+ $scope.day5.weather[0].icon +".png";
+
+           var day1 = moment.unix($scope.day1.dt);
+           var day2 = moment.unix($scope.day2.dt);
+           var day3 = moment.unix($scope.day3.dt);
+           var day4 = moment.unix($scope.day4.dt);
+           var day5 = moment.unix($scope.day5.dt);
+
+           $scope.day1Day = day1._d.toString();
+           $scope.day2Day = day2._d.toString();
+           $scope.day3Day = day3._d.toString();
+           $scope.day4Day = day4._d.toString();
+           $scope.day5Day = day5._d.toString();
+         });
+        }; 
+
         $scope.searchWeather();
+        $scope.searchForecast();
 
         $scope.findquickFactsForCity = function() {
         	$http.get('/api/v1/secure/cityFacts/get/' + $scope.name)

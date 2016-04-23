@@ -1,6 +1,6 @@
 var app=angular.module('facts');
 
-app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $http) {
+app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $http,$routeParams) {
 			console.log("fact controller running");
 
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
@@ -54,16 +54,16 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $
 
         $scope.openqFacts = function()
         {
-            $location.path("/qFacts");
+            $location.path("/main");
         }
 
         $scope.openindiaLocs = function()
-        {
+        {   
             $location.path("/indiaLocs");
         }
 
         $scope.opencerts = function()
-        {
+        {   
             $location.path("/rewards");
         }
 
