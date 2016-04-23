@@ -12,6 +12,7 @@ var secure						= require(constants.paths.scripts + "/secure");
 var model           = require(constants.paths.models +  '/visit');
 var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 var clientModel           = require(constants.paths.models +  '/client');
+var userModel           = require(constants.paths.models +  '/user');
 
 // Service method definition -- Begin
 var service = {};
@@ -28,6 +29,7 @@ service.deleteById = deleteById;
 service.getMyVisits = getMyVisits;
 service.getExecsById = getExecsById;
 service.getKeynotesById = getKeynotesById;
+service.getParticipantsById = getParticipantsById;
 
 module.exports = service;
 
@@ -644,7 +646,7 @@ function getSchedulesById(id){
 					request = JSON.parse(request.responseText);
 
 					// skip days for which sessions are not scheduled
-					if(daySessions.length > 0){		
+					if(daySessions.length > 0){
 						//retriving icons based on the description
 						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
 						var schedule = {
@@ -666,14 +668,14 @@ function getSchedulesById(id){
 						i++;
 					}
 					sessionDays.push(schedule);
-					
+
 				}); // end of date range loop
 
 			}); // end of visit vistSchedule loop
 
 
 		}
-		
+
 		return deferred.promise;
 }  // getSchedulesById method ends
 
@@ -696,12 +698,12 @@ function getKeynotesById(id){
 			//fetching keynotes
 			for (var i=0; i<item.keynote.length; i++){
 				if(item.keynote[i].context == 'welcome')
-				{	
+				{
 				keynotesWelcome.push(transform(item.keynote[i]));
 				}
 
 				if(item.keynote[i].context == 'thankyou')
-				{	
+				{
 				keynotesThankyou.push(transform(item.keynote[i]));
 				}
 			}
@@ -726,7 +728,7 @@ function getKeynotesById(id){
 				noteBy :keynote.note.noteBy,
 				createOn :keynote.note.createOn,
 				desc: keynote.note.desc,
-				attachment: keynote.note.attachment 
+				attachment: keynote.note.attachment
 			}
 			console.log("******************************");
 			console.log(keynoteData);
@@ -742,12 +744,12 @@ function getKeynotesById(id){
 			}else if(a[property] > b[property]){
 				return 1;
 			}else{
-				return 0;   
+				return 0;
 			}
 		}
-	}	
+	}
 	return deferred.promise;
-}  
+}
 
 function create(data) {
 	var deferred = Q.defer();
@@ -791,6 +793,85 @@ function deleteById(id) {
 			deferred.resolve(doc);
 		}
 	});
+
+	return deferred.promise;
+}
+
+function getParticipantsById(id){
+	var deferred = Q.defer();
+
+	var emp = [];
+	var client = [];
+
+	model
+	.findOne({ _id: id })
+	.populate('client')
+	.exec(function (err, visit) {
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else{
+			// push all client executives
+			arrAddItem(emp, client.salesExec);
+			arrAddItem(emp, client.accountGM);
+			arrAddItem(emp, client.industryExec);
+			arrAddItem(emp, client.globalDelivery);
+			arrAddItem(emp, client.cre);
+
+			// push all client side visitors
+			visit.visitors.forEach(function(v){
+				arrAddItem(client, v.visitor);
+			})
+
+			// push key visit personnel
+			arrAddItem(emp, visit.agm);
+			arrAddItem(emp, visit.anchor);
+			arrAddItem(emp, visit.secondaryVmanager);
+			arrAddArray(emp, visit.invitees);
+
+			// push participants from visit schedules
+			scheduleModel
+			.find({visit: id})
+			.exec(function(err, schedules){
+				if(err)
+					console.log(err);
+				else {
+					schedules.forEach(function(sch){
+						arrAddItem(emp, sch.session.owner);
+						arrAddItem(emp, sch.session.supporter);
+						arrAddArray(emp, sch.invitees);
+					})
+				}
+			})
+			var uEmp = arrUnique(emp);
+			var uClient = arrUnique(client);
+
+			userModel
+			.find({'_id': { $in: uEmp }})
+			.select('_id name email avatar summary jobTitle organization')
+			.exec(function(err, empsData){
+				if(err)
+					console.log(err);
+
+				userModel
+				.find({'_id': { $in: uClient }})
+				.select('_id name email avatar summary jobTitle organization')
+				.exec(function(err, clientsData){
+					if(err)
+						console.log(err);
+
+						// console.log("Client reps ::", uClient);
+						// console.log("Emp reps ::", uEmp);
+						deferred.resolve({
+							"clients": clientsData,
+							"employees": empsData
+						});
+
+					}) // end of user model for clients
+			}) // end of user model for emp
+		}
+	}); // end of visit model
 
 	return deferred.promise;
 }
