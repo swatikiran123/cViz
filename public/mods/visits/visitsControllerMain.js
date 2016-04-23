@@ -75,8 +75,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
+  function($scope, $http, $route, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
 
     var id = $routeParams.id;
 
@@ -100,12 +100,26 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.secondaryVmanager='';
   
   $scope.visitGrid=false;
+  $scope.navVisit ='';
+  $scope.agendaEdit= false;
 
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
   $scope.finalizeTab=false;
   $scope.notifyTab=false;
   // $scope.errMessage = '';
+
+  // $scope.max = 2;
+  // $scope.selectedIndex = 0;
+  $scope.nextTab = function(data) {
+    console.log("im in next tab");
+    // $scope.visitorsTab=true;
+    // var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+    // $scope.selectedIndex = index;
+    $location.path('/visits/'+data+'/edit');
+    $route.reload();
+
+  };
 
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
@@ -141,24 +155,24 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     $scope.setTimeline = function(time){
       $scope.timeline = time;
-      console.log("setting timeline to " + $scope.timeline )
+      // console.log("setting timeline to " + $scope.timeline )
       $scope.visitBatch = $scope.allVisits[$scope.timeline];
     }
     
     $http.get('/api/v1/secure/visits/all/my').success(function(response) {
       $scope.allVisits = response;
-      console.log("after delete :"+$scope.allVisits)
+      // console.log("after delete :"+$scope.allVisits)
       if($scope.timeline=="" || $scope.timeline===undefined){
         $scope.timeline = "this-week";
-        console.log("no timeline. Set to " + $scope.timeline);
+        // console.log("no timeline. Set to " + $scope.timeline);
         $scope.visitBatch = $scope.allVisits[$scope.timeline];
       }
       else{
        $scope.timeline = "this-week";
-       console.log("no timeline. Set to " + $scope.timeline);
+       // console.log("no timeline. Set to " + $scope.timeline);
        $scope.visitBatch = $scope.allVisits[$scope.timeline];
      }
-     console.log(JSON.stringify($scope.visitBatch,null,2));
+     // console.log(JSON.stringify($scope.visitBatch,null,2));
 
      $scope.visits = "";
      $scope.schedules=[];
@@ -275,6 +289,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
+    $scope.check= true;
     console.log($scope.visits);
     
     if ($scope.checked == false){
@@ -288,7 +303,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
         $scope.visits.feedbackTmpl = $scope.feedbackId;
         $scope.visits.sessionTmpl = $scope.sessionId;
-        switch($scope.mode)    {
+
+        switch($scope.mode){
           case "add":
           $scope.create();
           break;
@@ -296,31 +312,40 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
           case "edit":
           $scope.update();
           break;
+
       } // End of switch scope.mode ends
-       $location.path("visits/list"); 
-     // window.history.back();
-  } // End of save method
+        // window.history.back();
+        // if ($scope.check) {
+        //   $scope.nextTab(data);
+        // }else{
+        //   $location.path("visits/list");} 
+        // $location.path("visits/list");
+        } // End of save method
 
-  $scope.create = function() {
+        $scope.create = function() {
 
-    var inData       = $scope.visits;
-    inData.schedule = $scope.schedules;
-    inData.keynote = $scope.keynotes;
-    inData.visitors = $scope.visitors;
-    inData.createBy =  $rootScope.user._id;
-    
-    $http.post('/api/v1/secure/visits', inData).success(function(response) {
+          var inData       = $scope.visits;
+          inData.schedule = $scope.schedules;
+          inData.keynote = $scope.keynotes;
+          inData.visitors = $scope.visitors;
+          inData.createBy =  $rootScope.user._id;
 
-    $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-     console.log(response);
-   })
-      refresh();
+          $http.post('/api/v1/secure/visits', inData).success(function(response) {
+
+            $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+             console.log(response);
+           })
+      // refresh();
+      $scope.navVisit=response._id;
+      // return $scope.navVisit;
+      $scope.nextTab($scope.navVisit);
 
       growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
     })
-    .error(function(data, status){
-      growl.error("Error adding visit");
+          .error(function(data, status){
+            growl.error("Error adding visit");
     }); // Http post visit ends
+          // console.log($scope.navVisit);
   }; //End of create method
 
   $scope.delete = function(visits) {
@@ -337,9 +362,21 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.update = function() {
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  $scope.visits).success(function(response) {
-      refresh();
-      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
-    })
+     refresh();
+     growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
+     
+    if($scope.agendaTab == true && $scope.agendaEdit == false) {
+      if($scope.visitorsTab == true && $scope.check == true)
+      {
+        $location.path("visits/list");
+      }else
+      $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+
+
+
+
+  })
     .error(function(data, status){
       growl.error("Error updating visit");
     }); // Http put visit ends
@@ -348,15 +385,15 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   $scope.cancel = function() {
 
     $scope.visits="";
-     $location.path("visits/list");
+    $location.path("visits/list");
    // window.history.back();
-  }
+ }
 
-  $scope.getUser = function(){
-    $http.get('/api/v1/secure/admin/users/' + inData.agm).success(function(response) {
-      var user = response;
-      $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
-  }
+ $scope.getUser = function(){
+  $http.get('/api/v1/secure/admin/users/' + inData.agm).success(function(response) {
+    var user = response;
+    $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
+}
 
    //add vmanager
    $scope.AddVmanager=function(){
@@ -372,9 +409,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
      growl.info(parse("Visit Manager Edited successfully"));
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
+     // $location.path("/visits/"+$scope.visits._id+"/finalize");
+     // $scope.navVisit=;
+      // return $scope.navVisit;
+      $scope.nextTab($scope.visits._id); 
 
-   })
+    })
   };
 
   $scope.showNotifie= function(status){
@@ -396,12 +436,15 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
      growl.info(parse("Visit Manager Edited successfully"));
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
-   })
+     // $location.path("/visits/"+$scope.visits._id+"/finalize");
+     // $scope.navVisit=$scope.visits._id;
+      // return $scope.navVisit;
+      $scope.nextTab($scope.visits._id); 
+    })
 
   }
   $scope.next= function(){
-     $location.path("/visits/"+$scope.visits._id+"/finalize"); 
+   $location.path("/visits/"+$scope.visits._id+"/finalize"); 
     // $scope.visitorsTab=true;
   }
   $scope.sendAnchor= function(anchor,status){
@@ -427,8 +470,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$routeParams',
   }
 
   $scope.close=function(){
-       $location.path("visits/list"); 
-     }
+   $location.path("visits/list"); 
+ }
   // Visit schedule table
   $scope.addSchedule=function(schedule){
 
