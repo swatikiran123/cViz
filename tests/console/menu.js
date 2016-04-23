@@ -12,7 +12,7 @@ require(constants.paths.scripts + '/database');
 // var userId = "A02234567892345678900031"; //vManager
 // var userId = "A02234567892345678900025"; //client
 // var userId = "A02234567892345678900026"; //exec
-var userId = "A02234567892345678900003"; 
+var userId = "A02234567892345678900003";
 
 userService.getOneById(userId)
 	.then(function(thisUser){
@@ -35,11 +35,13 @@ userService.getOneById(userId)
 			// 			logger.writeLine('' , 2, "Found user!!!");
 			// 		}
 
-			var script =  menuBuilder.getMenu(thisUser, "side");
+			//var script =  menuBuilder.getMenu(thisUser, "side");
+			var script = menuBuilder.getDefaultPage(thisUser, 'web');
 			console.log(script)
 		}
 		console.log("execution complete");
 })
 .catch(function (err){
 		console.log("exception" + err);
+		console.log("exception" + err.stack);
 });
