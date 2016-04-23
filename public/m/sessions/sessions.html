@@ -33,10 +33,10 @@
 				{{schedules.location}}
 			</h1>
 			<div id="agenda-scrollable-block" class="scroll">
-				<div class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
-					<div class="agenda-block-sub-div">
+				<div id="{{session._id}}" class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
+					<div  class="agenda-block-sub-div">
 						<div class="inactivesession">
-							<div>
+							<div >
 								<p>
 									<span ng-switch on="session.type.toLowerCase()">
 										<!--img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
@@ -96,5 +96,5 @@
 </div> <!-- enf of days - sessions-->
 </div> <!-- end of scrollable area -->
 
-
+<div id="bottom">Bottom</div>
 </div> <!-- end of page container -->

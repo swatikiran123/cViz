@@ -83,6 +83,16 @@ arrUnique = function(arr) {
     return uarr;
 }
 
+arrAddItem = function(arr, item){
+	if (item!== undefined)
+		arr.push(item);
+}
+
+arrAddArray = function(arr, arr2){
+	arr2.forEach(function(item){
+		arrAddItem(arr, item);
+	})
+}
 // Date functions
 
 DateReplaceTime = function(date, time){

@@ -1,30 +1,34 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $timeout) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout) {
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
     });
-  
+
 
 console.log($location.search()["day"]);
+console.log($location.search()["s"]);
 
     $scope.visit_id = $routeParams.id;
     $scope.vmtab = $location.search()["day"];
     if($scope.vmtab === undefined)
-    {  $scope.selectedIndex = 0;
+    {
+			$scope.selectedIndex = 0;
 
-     $scope.itemClicked = function ($index) {
-    $scope.selectedIndex = $index;
-  }}
-  else{
-  $scope.selectedIndex = $scope.vmtab-1;
+				$scope.itemClicked = function ($index) {
+					$scope.selectedIndex = $index;
+				}
+		}
+	  else{
+	  $scope.selectedIndex = $scope.vmtab-1;
 
-     $scope.itemClicked = function ($index) {
-    $scope.selectedIndex = $index;
-  }
-}
+	     $scope.itemClicked = function ($index) {
+				 $scope.selectedIndex = $index;
+			}
+		}
+
+
 		$scope.setTab = function(){
-	
 			if($location.search()["day"] === undefined)
 				return 1;
 			else
@@ -32,12 +36,36 @@ console.log($location.search()["day"]);
 		}
 
 
+		// if ($location.hash() !== newHash) {
+		// 	// set the $location.hash to `newHash` and
+		// 	// $anchorScroll will automatically scroll to it
+		// 	$location.hash(newHash);
+		// } else {
+		// 	// call $anchorScroll() explicitly,
+		// 	// since $location.hash hasn't changed
+		// 	$anchorScroll();
+		// }
 
 		$scope.hideFeeedbackDiv = true;
 		$scope.toggleFeedbackDialog = function(index, $event){
 			$scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
 			$event.stopPropagation();
 		};
+
+		console.log("tab setting done");
+
+		// var newHash = $location.search()["s"];
+		// if ($location.hash() !== newHash) {
+    //   // set the $location.hash to `newHash` and
+    //   // $anchorScroll will automatically scroll to it
+    //   $location.hash(newHash);
+		// 	console.log("pushed");
+    // } else {
+    //   // call $anchorScroll() explicitly,
+    //   // since $location.hash hasn't changed
+    //   $anchorScroll();
+    // }
+		// console.log("hash set to " + newHash);
 
 })
 

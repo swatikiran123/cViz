@@ -58,7 +58,7 @@ function getWithAction(req, res){
 	{
         case "schedules":
             getSchedulesById(req,res);
-            break; 
+            break;
 
 		case "sessions":
 			getSessionsById(req, res);
@@ -153,7 +153,7 @@ function getActiveVisit(req, res){
 }
 
 function getExecsById(req,res){
-  dataService.getExecsById(req.params.id)
+  dataService.getParticipantsById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
@@ -176,9 +176,9 @@ function getKeynotesById(req,res){
             console.log(data["next-one"].visits._id);
             if(req.params.id != "current")
                 visitid = req.params.id;
-            else     
-                visitid = data["next-one"].visits._id;           
-  
+            else
+                visitid = data["next-one"].visits._id;
+
               dataService.getKeynotesById(visitid)
                 .then(function(data){
                     if (data){
@@ -190,7 +190,7 @@ function getKeynotesById(req,res){
                 .catch(function (err){
                     console.log("exception" + err);
                     res.status(500).send(err);
-                });    
+                });
         }
 
         else {
@@ -201,7 +201,7 @@ function getKeynotesById(req,res){
     .catch(function (err){
         console.log("exception" + err);
         res.status(500).send(err);
-    });   
+    });
 }
 
 function create(req, res) {
