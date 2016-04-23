@@ -205,9 +205,13 @@ function getKeynotesById(req,res){
 }
 
 function create(req, res) {
-  dataService.create(req.body)
-    .then(function () {
-        res.status(200).send("Doc added successfully");
+  dataService.create(req.body,res)
+    .then(function (data) {
+        if (data){
+            res.send(data);
+        }else {
+            res.status(404).send("Doc not added");
+        }
     })
     .catch(function (err) {
         console.log("cntrl create: err - " + err);

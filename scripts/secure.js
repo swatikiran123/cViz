@@ -1,4 +1,5 @@
 var constants       = require('../scripts/constants');
+var _ = require('underscore');
 var util						= require(constants.paths.scripts + "/util");
 var logger					= require(constants.paths.scripts + "/logger");
 var groupService					= require(constants.paths.services + "/groups");
@@ -18,57 +19,40 @@ var groups = {										// constants defining the application paths
 };
 
 function isInAnyGroups(user, grps){
-//logger.writeLine("Is in groups " + grps,'debug',0);
-	// filter identified groups and user
-	var check = false;
-	// logger.writeLine("check ??? " + grps, 'debug', 0);
-	//return;
-	grps.split(",").forEach(function(grp){
+	var memberGrps = getGroups(user);
 
-		grp = grp.trim();
-
-		if(grp.toLowerCase() == "customer" && user.association == "customer"){
-			// logger.writeLine('yes customer','debug',2);
-			check = true;
-		}
-
-		if (grp.toLowerCase() == "user"){
-			// logger.writeLine('yes user','debug',2);
-			check = true;
-		}
-
-		// check with predefined groups
-		//logger.writeLine('debug', 1,'predefined groups');
-		if(groups[grp] !== undefined){
-			//logger.writeLine('debug', 1,"Checking for " + grp + " : " + groups[grp]);
-			user.memberOf.forEach(function(member){
-				member = ""+ member;
-				//logger.writeLine('debug', 1,"try " + member)
-				// if(member.toLowerCase() == groups[grp].toLowerCase()){
-				if(member.compare(groups[grp])){
-					//logger.writeLine('debug',2,'yes '+grp);
-					check = true;
-				}
-			});
-		}
+	var inset = [];
+	grps.split(',').filter(function(n) {
+	    //return memberGrps.indexOf(n) != -1;
+			if(memberGrps.indexOf(n) != -1)
+				inset.push(n);
 	});
-
-	// extend further for new groups
-	//logger.writeLine("unknown group", 'debug', 0);
-	return check;
+	
+	return (inset.length > 0)
 }
 
 function getGroups(user){
-	//console.log(user.memberOf);
-	if(user.memberOf === "")
-		return "user";
 
+	// first check for customer
+	if(user.association == "customer"){
+		return "customer";
+	}
+
+	// not a member of any group, then user
+	if(user.memberOf == "" || user.memberOf === undefined){
+		return "user";
+	}
+
+	// else go by memberOf
 	var grps = [];
-	//if(user.memberOf.indexOf(groups["admin"]) > -1)
+	if (arrContains(user.memberOf, groups["admin"]))
 		grps.push("admin");
 
-	//if(user.memberOf.indexOf(groups["vManager"]) > -1)
+	if(arrContains(user.memberOf, groups["vManager"]))
 		grps.push("vManager");
-		// console.log(grps);
+
+	if(arrContains(user.memberOf, groups["exec"]))
+		grps.push("exec");
+
 	return grps.join(',');
 }

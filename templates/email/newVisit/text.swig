@@ -9,9 +9,7 @@ Start Date: {{startDate}}
 End Date: {{endDate}}
 Locations: {{locations}}
 
-Please click here {{link}} (or copy paste the below link in your browser address bar) to open the visit agenda. You can pick it by clicking on assign to myself link on the page.
-
-{{link}}
+Please goto visit planner to validate the agenda and initiate visit planning workflow
 
 Best Regards,
 Visit Portal Team

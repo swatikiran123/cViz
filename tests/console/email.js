@@ -18,7 +18,7 @@ var emails = [];
 var visitId = "a01234567892345678900004";
 console.log("Running with visit id " + visitId);
 try{
-	emailController.notifyNewVisit(visitId, 'http://localhost:8080');
+	emailController.notifyVisitOwnerChange(visitId, 'http://localhost:8080');
 }
 catch(err){
 	console.log(err);

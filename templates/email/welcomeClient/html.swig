@@ -1,4 +1,4 @@
-<font face="calibri" size="8pt" color="black">
+<font face="calibri" color="black">
 	Dear <b>{{name.prefix}} {{name.first}} {{name.last}},</b>
 
 	<p>
@@ -12,11 +12,11 @@
 		{{loginPath}}
 	</p>
 
-	<font face="calibri" size="8pt" color="maroon">
+	<font face="calibri" color="maroon">
 		Here is your visit schedule:<br/>
 	</font>
 
-	<font face="calibri" size="8pt" color="maroon">
+	<font face="calibri" color="maroon">
 	<table border="1">
 		<tr>
 			<td>#</td>
@@ -41,7 +41,7 @@
 		For any further details please feel free to contact the visit manager:<br/>
 	</font>
 
-	<font size="8pt" color="gray">
+	<font color="gray">
 			<img src='{{hostPath}}{{spoc.avatar}}'/> {{spoc.name.prefix}} {{spoc.name.first}} {{spoc.name.last}}<br/>
 			Email: {{spoc.email}}<br/>
 			Contact: {{spoc.contactNo[0].contactNumber}}
@@ -53,7 +53,7 @@
 	</p>
 
 	<hr/>
-	<font size="8pt" color="gray">
+	<font color="gray">
 	Note: This is an auto generated mail from Visit Portal. Please do not reply.
 	</font>
 </font>
