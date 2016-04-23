@@ -212,22 +212,24 @@
   </md-input-container>
 
   <!-- visits status input-->
-  <label><h4><b>Status</b></h4></label>
-  <md-input-container class="md-block">
-  <md-radio-group name="status" id="status" ng-model="status" required class="">
-  <div class="row">
-    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
-    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
-    <!-- <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="wip"> wip</md-radio-button></div> -->
-  </md-radio-group></div>
-  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
-    <div class="messagenotify">
-      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  <div ng-show="!finalizeTab">
+    <label><h4><b>Status</b></h4></label>
+    <md-input-container class="md-block">
+    <md-radio-group name="status" id="status" ng-model="status" required class="">
+    <div class="row">
+      <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
+      <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
+    </md-radio-group></div>
+    <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+      <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      </div>
     </div>
-  </div>
-</md-input-container>
+  </md-input-container>
+</div>
 
-
+<div ng-show="finalizeTab || notifyTab"><label><h4><b>Current Status: {{visits.status}} </b></h4></label></div>
+{{check=true;""}}
 <!--buttons-->
 <div class="form-group">
   <div class="pull-left">
