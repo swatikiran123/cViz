@@ -13,6 +13,7 @@
       <md-input-container class="md-block">
       <label>Feedback Template</label>
       <input name="feedback" ng-model="feedback" feedback required>
+      <div ng-show="autoFailfed" class="error text-danger" >{{feedbackNotFound}}</div>  
       <div ng-messages="visitsForm.feedback.$error" ng-show="visitsForm.feedback.$touched || !visitsForm.feedback.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -33,8 +34,10 @@
       </thead>
       <tbody class="data-grid-data">
         <tr>
-          <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote class="form-control" required></td>
-          <td><!-- <input type="text" placeholder="context" ng-model="keynoteDef.context" > -->
+          <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote class="form-control" required>
+            <div ng-show="autoFailkey" class="error text-danger" >{{keynoteNotFound}}</div>  
+          </td>
+          <td>
             <select name="type" ng-model="keynoteDef.context" ng-dropdown class="form-control" required>
               <option ng-option value="welcome">Welcome</option>
               <option ng-option value="thankyou">Thankyou</option>
@@ -50,7 +53,7 @@
               <option ng-option value="5">5</option>
             </select>
           </td>
-          <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid">Add Keynote</button></td>
+          <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid || autoFailkey">Add Keynote</button></td>
         </tr>
         <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
           <td>{{keynoteDef.note}}</td>
@@ -81,6 +84,7 @@
     <md-input-container class="md-block">
     <label>Session Template</label>
     <input name="session" ng-model="session" session required>
+    <div ng-show="autoFailsec" class="error text-danger" >{{sessionNotFound}}</div>  
     <div ng-messages="visitsForm.session.$error" ng-show="visitsForm.session.$touched || !visitsForm.session.$pristine">
       <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -94,7 +98,7 @@
   <div class="pull-left">
 
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid">Submit</button>
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFailfed || autoFailsec">Submit</button>
 
     <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
     yes-text="Ok" no-text="Cancel">Cancel</button>
@@ -109,9 +113,9 @@
   <div class = "panel-subheader pull-right">
   </div>
   <div class="panel-body">
-   If you are done with the completion of all data required, please click <b>finalize</b> to initiate notifications. <br>
+   If you completed providing of all data required, please click <b>finalize</b> to initiate notifications for clients and invitees. <br>
    <div class="pull-right"> <button type="reset" class="btn btn-danger" ng-click="showNotifie(status)" pull-right>Finalize</button></div>
-  </div>
+ </div>
 </div>
 
 </div>

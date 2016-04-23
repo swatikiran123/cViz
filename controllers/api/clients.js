@@ -12,6 +12,7 @@ controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 controller.getWithQuery = getWithQuery;
+controller.getWithName = getWithName;
 
 module.exports = controller;
 
@@ -31,7 +32,6 @@ function getAll(req,res){
 }
 
 function getOneById(req,res){
-    console.log("im in here get by id")
     dataService.getOneById(req.params.id)
     .then(function(data){
         if (data){
@@ -63,6 +63,21 @@ function getWithQuery(req,res){
     })
     .catch(function (err){
         console.log("doc dont exists" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getWithName(req,res){
+    dataService.getWithName(req.params.name)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
         res.status(500).send(err);
     });
 }

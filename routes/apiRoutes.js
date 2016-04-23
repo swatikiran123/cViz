@@ -60,6 +60,8 @@ router.post('/api/v1/secure/clients', clients.create);
 router.put('/api/v1/secure/clients/id/:id', clients.updateById);
 router.delete('/api/v1/secure/clients/:id', clients.deleteById);
 router.get('/api/v1/secure/clients/find', clients.getWithQuery);
+router.get('/api/v1/secure/clients/find/name/:name', clients.getWithName);
+
 
 
 // List of service routes for lov
