@@ -15,6 +15,7 @@ service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
 service.getWithQuery = getWithQuery;
+service.getWithName = getWithName;
 
 module.exports = service;
 
@@ -22,16 +23,16 @@ module.exports = service;
 function getAll(){
     var deferred = Q.defer();
 
-	model.find(function(err, list){
-		if(err) {
+    model.find(function(err, list){
+        if(err) {
             console.log(err);
             deferred.reject(err);
         }
-		else
-			deferred.resolve(list);
-	});
+        else
+            deferred.resolve(list);
+    });
 
-	return deferred.promise;
+    return deferred.promise;
 } // getAll method ends
 
 function getOneById(id){
@@ -79,6 +80,23 @@ function getWithQuery(query, fields, maxRecs, sortEx){
 
     return deferred.promise;
 } // getWithQuery method ends
+
+function getWithName(name){
+    var deferred = Q.defer();
+    model
+    .findOne({ name: name })
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+            console.log(item);
+        deferred.resolve(item);
+    });
+
+    return deferred.promise;
+} // gentOneByName method ends
 
 function create(data) {
     var deferred = Q.defer();

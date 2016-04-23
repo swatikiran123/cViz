@@ -31,8 +31,9 @@
         <!-- visits client input-->
         <md-input-container class="md-block">
         <label>Client Name</label>
-        <input  required name="clientname" ng-model="clientName" autocomplete required>
-        <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine">
+        <input required name="clientname" ng-model="clientName" autocomplete required>
+        <div ng-show="autoFail" class="error text-danger" >{{clientNotFound}}</div>  
+        <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine || autoFail">
           <div class="messagenotify">
             <div ng-messages-include="/public/mods/partials/messages.html"></div>
           </div>
@@ -76,19 +77,9 @@
         </div>
       </md-input-container>
     </div>
-
-
-    <!-- visits anchor By input-->
-
     <div class="form-group col-xs-5">
-<!--       <md-input-container class="md-block">
-      <label>Anchor</label>
-      <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.anchorUser.$invalid }">
-        <div user type="picker" user-model="anchorUser" user-id="anchorId" user-email="anchorEmail" view-type="small" switch-mode="mode" user-type="employee"></div>
-      </div>
-    </md-input-container> -->
+    </div>
   </div>
-</div>
 </div>
 </div>
 
@@ -234,7 +225,7 @@
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save();" ng-disabled="visitsForm.$invalid">Save &amp; Continue 
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail">Save &amp; Continue 
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
