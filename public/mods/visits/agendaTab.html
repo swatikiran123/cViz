@@ -109,18 +109,18 @@
 
     <!--billable-->
     <div class="row">
-      <div class="col-xs-5">
+      <div class="col-xs-6">
         <div class="form-group">
-          <label>Is billable?</label>&nbsp;
-          <input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
-          &nbsp;You need an active WBS code...
+          <label>Is billable/ non-billable?</label>&nbsp;
+          <h6><input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
+          &nbsp;You need an active WBS code/ Charge Code...</h6>
           <br/>
 
           <div>
             <div class="check-element animate-show"  ng-if="checked">
               <!-- visits wbsCode input-->
               <md-input-container class="md-block">
-              <label>WBS Code</label>
+              <label><h5>WBS Code</h5></label>
               <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
               <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                <div class="messagenotify">
@@ -204,6 +204,7 @@
 
   <!-- visits status input-->
   <div ng-show="!finalizeTab">
+  <div ng-if="status =='confirm'|| status =='tentative'">
     <label><h4><b>Status</b></h4></label>
     <md-input-container class="md-block">
     <md-radio-group name="status" id="status" ng-model="status" required class="">
@@ -217,9 +218,9 @@
       </div>
     </div>
   </md-input-container>
-</div>
+</div></div>
 
-<div ng-show="finalizeTab || notifyTab"><label><h4><b>Current Status: {{visits.status}} </b></h4></label></div>
+<div ng-show="finalizeTab || notifyTab"><label><h4><b>Current Status: {{status}} </b></h4></label></div>
 {{agendaEdit=true;""}}
 <!--buttons-->
 <div class="form-group">

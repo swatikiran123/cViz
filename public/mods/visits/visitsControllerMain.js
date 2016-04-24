@@ -247,6 +247,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
           $scope.schedules = visits.schedule;//List of schedules
           $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;//List of visitors
+          $scope.status= visits.status;
+          if (visits.billable == "billable") {
+            $scope.checked=true;
+          };
           $scope.visits = visits;//Whole form object
 
           $scope.arraydata=response.invitees;
@@ -369,7 +373,18 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
-     if($scope.agendaTab == true && $scope.agendaEdit == false) {
+     if ($rootScope.user.groups.indexOf("vManager") > -1) {
+      if($scope.status == "confirm" || $scope.status == "tentative"){
+        $location.path("visits/list");
+      }
+      else if($scope.finalizeTab == true && $scope.finall == true)
+      {
+        $location.path("visits/list");
+      }
+      else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+
+    else if($scope.agendaTab == true && $scope.agendaEdit == false) {
       if($scope.visitorsTab == true && $scope.check == true)
       {
         $location.path("visits/list");
@@ -446,8 +461,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
-     $scope.nextTab($scope.visits._id);
-   })
+      $scope.nextTab($scope.visits._id);
+    })
 
   }
   $scope.sendAnchor= function(anchor,status){
