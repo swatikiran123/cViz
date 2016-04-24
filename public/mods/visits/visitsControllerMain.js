@@ -374,8 +374,20 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
      if ($rootScope.user.groups.indexOf("vManager") > -1) {
-      if($scope.status == "confirm" || $scope.status == "tentative"){
-        $location.path("visits/list");
+      //  if($scope.status == "confirm" || $scope.status == "tentative"){
+      //   if ($scope.agendaEdit == true) {
+      //   console.log("im hete noe")
+      //   $location.path("/visits/"+$scope.visits._id+"/edit"); 
+      //   }else
+      //   console.log("im hete")
+      //   $location.path("visits/list");
+      // }
+      if($scope.agendaTab == true && $scope.agendaEdit == false) {
+        if($scope.visitorsTab == true && $scope.check == true)
+        {
+          $location.path("visits/list");
+        }else
+        $location.path("/visits/"+$scope.visits._id+"/edit"); 
       }
       else if($scope.finalizeTab == true && $scope.finall == true)
       {
@@ -396,8 +408,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
 
   })
-    .error(function(data, status){
-      growl.error("Error updating visit");
+.error(function(data, status){
+  growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
