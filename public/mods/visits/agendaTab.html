@@ -203,8 +203,7 @@
     </md-input-container>
 
     <!-- visits status input-->
-    <div ng-show="!finalizeTab">
-      <div ng-show="status !='wip'|| status !='finalize' || status == ''">
+    <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
         <label><h4><b>Status</b></h4></label>
         <md-input-container class="md-block">
         <md-radio-group name="status" id="status" ng-model="status" required class="">
@@ -219,9 +218,8 @@
         </div>
       </md-input-container>
     </div>
-  </div>
 
-  <div ng-show="finalizeTab || notifyTab"><label><h4><b>Current Status: {{status}} </b></h4></label></div>
+  <div ng-show="status == 'wip'|| status == 'finalize'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
   {{agendaEdit=true;""}}
   <!--buttons-->
   <div class="form-group">

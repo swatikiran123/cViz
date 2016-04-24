@@ -266,6 +266,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
           });
+break;
 
       } // Switch scope.mode ends
     }); // Get visit call back ends
@@ -306,6 +307,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
             case "edit":
             $scope.update();
+            $route.reload();
             break;
 
           }
@@ -313,22 +315,19 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
         else
         {
           $http.get('/api/v1/secure/clients/find/name/'+$scope.clientName).success(function(response) {
-           console.log(response._id);
-           $scope.clientVist=response._id;
-           console.log($scope.clientVist)
-           $scope.visits.client = $scope.clientVist;
-           console.log($scope.visits.client);
-           switch($scope.mode){
-            case "add":
-            $scope.create();
-            break;
+            $scope.clientVist=response._id;$scope.visits.client = $scope.clientVist;
+            switch($scope.mode){
+              case "add":
+              $scope.create();
+              break;
 
-            case "edit":
-            $scope.update();
-            break;
+              case "edit":
+              $scope.update();
+              $route.reload();
+              break;
 
-          }
-        })
+            }
+          })
         }
 
         } // End of save method
@@ -368,23 +367,17 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   }; // Delete method ends
 
   $scope.update = function() {
-
+    
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  $scope.visits).success(function(response) {
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
      if ($rootScope.user.groups.indexOf("vManager") > -1) {
-      //  if($scope.status == "confirm" || $scope.status == "tentative"){
-      //   if ($scope.agendaEdit == true) {
-      //   console.log("im hete noe")
-      //   $location.path("/visits/"+$scope.visits._id+"/edit"); 
-      //   }else
-      //   console.log("im hete")
-      //   $location.path("visits/list");
-      // }
       if($scope.agendaTab == true && $scope.agendaEdit == false) {
-        if($scope.visitorsTab == true && $scope.check == true)
+        console.log("im here")
+        if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
         {
+          console.log("im here");
           $location.path("visits/list");
         }else
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
