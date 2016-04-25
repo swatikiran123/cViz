@@ -1,31 +1,31 @@
+      <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">
+        <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
+          <div class="profile-details-div">
+						<div ng-if="$root.canBack()==false" class="icon" id="menu">
+	            <a id="menu-toggle">
+	                <i class="fa fa-bars hds-icon"></i>
+	            </a>
+	          </div>
+						<div ng-if="$root.canBack()==true" class="icon">
+							<a id="arrow-toggle" ng-click="$root.back()">
+								<i class="fa fa-arrow-left hds-icon"></i>
+							</a>
+						</div>
+           	&nbsp;&nbsp;
+						<i  class="img-circle title-icon" ng-class="icon"></i>
 
-      <div class="my-visit-header col-xs-12 col-sm-12 col-md-12">        
-                <div class="my-visit-sub-header col-xs-12 col-sm-12 col-md-12">
-        
-                     
-                    
-                    <div class="profile-details-div">
-                      
-                        <a id="menu-toggle" href="#menu-toggle">
-                           <i class="fa fa-bars hdp-icon"></i>
-                        </a>
-                   &nbsp;&nbsp;       <i  class="img-circle title-icon" ng-class="icon"></i>
-         
-                        <div class="profile-overview">
-                            <!-- <h2>{{icon}}</h2> -->
-                              
-                            <h1>{{title1}}</h1>
-                            <p><a href="#">{{title2}}</a></p>
-                        </div>
-                    </div>
-                    
-        
-                </div>
-           </div>
+            <div class="profile-overview">
+                <h1>{{title1}}</h1>
+                <p><a href="#">{{title2}}</a></p>
+            </div>
+        	</div>
+        </div>
+   	</div>
 
 <script>
-    $("#menu-toggle").click(function(e) {
+    $(document).on("click", "#menu-toggle", function(e) {
         e.preventDefault();
         $("#page").toggleClass("toggled");
+				e.stopImmediatePropagation();
     });
 </script>
