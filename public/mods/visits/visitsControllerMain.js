@@ -506,10 +506,11 @@ break;
  }
   // Visit schedule table
   $scope.addSchedule=function(schedule){
-
+    var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+    var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     $scope.schedules.push({
-      startDate: schedule.startDate,
-      endDate: schedule.endDate,
+      startDate: startDate,
+      endDate: endDate,
       location: schedule.location,
       meetingPlace: schedule.meetingPlace
     });
@@ -525,6 +526,7 @@ break;
   };
 
   $scope.editSchedule = function(index,schedule){
+    console.log(schedule);
     $scope.schedule= schedule;
     $scope.schedules.splice(index, 1);
   };
