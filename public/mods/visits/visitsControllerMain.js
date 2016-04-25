@@ -102,6 +102,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   $scope.visitGrid=false;
   $scope.navVisit ='';
   $scope.agendaEdit= false;
+  $scope.showKey=false;
+
 
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
@@ -245,7 +247,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
    };
 
           $scope.schedules = visits.schedule;//List of schedules
-          $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;//List of visitors
           $scope.status= visits.status;
           if (visits.billable == "billable") {
@@ -260,8 +261,21 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
           $scope.agmId = response.agm._id;
 
           $scope.clientName= response.client.name;//auto fill with reff client db
-          $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
+          if (response.feedbackTmpl!=undefined) {
+            $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
+          }
+          if(response.sessionTmpl!=undefined) {
           $scope.session= response.sessionTmpl.title;//auto fill with reff feedback db
+        }
+
+        for (var i =0; i<visits.keynote.length;i++) {
+          $scope.keynotes.push({
+            note: visits.keynote[i].note._id,
+            noteName: visits.keynote[i].note.title, 
+            context: visits.keynote[i].context,
+            order: visits.keynote[i].order
+          });
+        };
 
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
@@ -367,17 +381,16 @@ break;
   }; // Delete method ends
 
   $scope.update = function() {
-    
-    $http.put('/api/v1/secure/visits/' + $scope.visits._id,  $scope.visits).success(function(response) {
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
      if ($rootScope.user.groups.indexOf("vManager") > -1) {
       if($scope.agendaTab == true && $scope.agendaEdit == false) {
-        console.log("im here")
         if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
         {
-          console.log("im here");
           $location.path("visits/list");
         }else
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
@@ -430,10 +443,6 @@ break;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
-    // if ($scope.visits.feedbackId!=undefined||$scope.visits.sessionId!=undefined) {
-    //   $scope.visits.feedbackTmpl = $scope.feedbackId;
-    //   $scope.visits.sessionId = $scope.sessionId;
-    // }
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
 
@@ -537,12 +546,13 @@ break;
  $scope.addkeynote=function(keynoteDef){
 
   $scope.keynotes.push({
-    note: keynoteDef.note,
+    note: $scope.keynoteId,
+    noteName: keynoteDef.noteName, 
     context: keynoteDef.context,
     order: keynoteDef.order
   });
 
-  keynoteDef.note='';
+  keynoteDef.noteName='';
   keynoteDef.context='';
   keynoteDef.order='';
 };
@@ -551,10 +561,12 @@ $scope.removekeynote = function(index){
   $scope.keynotes.splice(index, 1);
 };
 
-$scope.editkeynote = function(index,keynoteDef){
- $scope.keynoteDef= keynoteDef;
- $scope.keynotes.splice(index, 1);
-};
+// $scope.editkeynote = function(index,keynoteDef){
+//   $scope.showKey=true;
+//   console.log(keynoteDef);
+//   $scope.keynoteDef= keynoteDef;
+//   $scope.keynotes.splice(index, 1);
+// };
 // Visit keynote table end
 
   //adding visitor data if not registered user
@@ -784,7 +796,6 @@ visitsApp.directive("autocomplete", ["AutoCompleteService", "$timeout", function
         source: function (searchTerm, response) {
           AutoCompleteService.search(searchTerm.term).then(function (autocompleteResults) {
             if(autocompleteResults == undefined || autocompleteResults == ''){
-              console.log("im here: "+autocompleteResults);
               scope.autoFail=true;
               scope.clientNotFound="Client not found!!!"
               // $timeout(function () { scope.clientNotFound = ''; }, 5000);
@@ -821,7 +832,6 @@ visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (Feedba
         source: function (searchTerm, response) {
           FeedbackService.search(searchTerm.term).then(function (autocompleteResults) {
             if(autocompleteResults == undefined || autocompleteResults == ''){
-              console.log("im here: "+autocompleteResults);
               scope.autoFailfed=true;
               scope.feedbackNotFound="Feedback Template not found!!!"
               // $timeout(function () { scope.feedbackNotFound = ''; }, 5000);
@@ -857,7 +867,6 @@ visitsApp.directive("session", ["SessionService", "$timeout", function (SessionS
         source: function (searchTerm, response) {
           SessionService.search(searchTerm.term).then(function (autocompleteResults) {
             if(autocompleteResults == undefined || autocompleteResults == ''){
-              console.log("im here: "+autocompleteResults);
               scope.autoFailsec=true;
               scope.sessionNotFound="Session Template not found!!!"
             }else{
@@ -892,7 +901,6 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
         source: function (searchTerm, response) {
           KeynoteService.search(searchTerm.term).then(function (autocompleteResults) {
             if(autocompleteResults == undefined || autocompleteResults == ''){
-              console.log("im here: "+autocompleteResults);
               scope.autoFailkey=true;
               scope.keynoteNotFound="keynote not found!!!"
             }else{
@@ -900,21 +908,22 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
                 return {
                   label: autocompleteResult.title,
                   value: autocompleteResult._id,
-                //id: autocompleteResult._id
-              }
-            }))
+                  id: autocompleteResult._id
+                }
+              }))
             }
           });
         },
         minLength: 4,
         select: function (event, selectedItem) {
-          scope.keynoteDef.note= selectedItem.item.value;
-         // scope.keynoteId= selectedItem.item.id;
-         scope.autoFailkey=false;
-         scope.$apply();
-         event.preventDefault();
-       }
-     });
+          // scope.keynoteDef.note= selectedItem.item.label;
+          scope.keynoteDef.noteName= selectedItem.item.label;
+          scope.keynoteId= selectedItem.item.id;
+          scope.autoFailkey=false;
+          scope.$apply();
+          event.preventDefault();
+        }
+      });
 }
 };
 }]);

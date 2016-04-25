@@ -393,6 +393,7 @@ function getOneById(id){
 	.findOne({ _id: id })
 	.populate('agm')
 	.populate('anchor')
+	.populate('keynote.note')
 	.populate('secondaryVmanager')
 	.populate('createBy')
 	.populate('client')
