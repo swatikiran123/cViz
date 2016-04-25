@@ -46,7 +46,7 @@
 				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
 			},
 
-		"status"					:  "tentaive",
+		"status"					:  "closed",
 		"createBy"			: ObjectId("A02234567892345678900009"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900001"),
@@ -108,7 +108,7 @@
 				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
 			},
 
-		"status"					:  "confrimed",
+		"status"					:  "closed",
 		"createBy"			: ObjectId("A02234567892345678900008"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900002"),
@@ -172,7 +172,7 @@
 				"objective"				: "To Know the Progress of CSC into DevOps"
 			},
 
-		"status"					:  "closed",
+		"status"					:  "tentative",
 		"createBy"			: ObjectId("A02234567892345678900007"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900003"),
@@ -242,7 +242,7 @@
 				"objective"				: "Partnership"
 			},
 
-		"status"					:  "closed",
+		"status"					:  "confirm",
 		"createBy"			: ObjectId("A02234567892345678900004"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900004"),
@@ -321,7 +321,7 @@
 				"objective"				: "To observe the different activities and techniques"
 			},
 
-		"status"					:  "confrimed",
+		"status"					:  "finalize",
 		"createBy"			: ObjectId("A02234567892345678900010"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900005"),
@@ -408,7 +408,7 @@
 				"objective"				: "To observe the different activities and techniques"
 			},
 
-		"status"					:  "Confirmed",
+		"status"					:  "wip",
 		"createBy"			: ObjectId("A02234567892345678900011"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900003"),
