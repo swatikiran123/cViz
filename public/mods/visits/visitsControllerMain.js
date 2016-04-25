@@ -247,6 +247,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
           $scope.schedules = visits.schedule;//List of schedules
           $scope.keynotes = visits.keynote;
           $scope.visitors = visits.visitors;//List of visitors
+          $scope.status= visits.status;
+          if (visits.billable == "billable") {
+            $scope.checked=true;
+          };
           $scope.visits = visits;//Whole form object
 
           $scope.arraydata=response.invitees;
@@ -262,6 +266,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
           });
+break;
 
       } // Switch scope.mode ends
     }); // Get visit call back ends
@@ -302,6 +307,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
             case "edit":
             $scope.update();
+            $route.reload();
             break;
 
           }
@@ -309,22 +315,19 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
         else
         {
           $http.get('/api/v1/secure/clients/find/name/'+$scope.clientName).success(function(response) {
-           console.log(response._id);
-           $scope.clientVist=response._id;
-           console.log($scope.clientVist)
-           $scope.visits.client = $scope.clientVist;
-           console.log($scope.visits.client);
-           switch($scope.mode){
-            case "add":
-            $scope.create();
-            break;
+            $scope.clientVist=response._id;$scope.visits.client = $scope.clientVist;
+            switch($scope.mode){
+              case "add":
+              $scope.create();
+              break;
 
-            case "edit":
-            $scope.update();
-            break;
+              case "edit":
+              $scope.update();
+              $route.reload();
+              break;
 
-          }
-        })
+            }
+          })
         }
 
         } // End of save method
@@ -364,12 +367,29 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   }; // Delete method ends
 
   $scope.update = function() {
-
+    
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  $scope.visits).success(function(response) {
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
-     if($scope.agendaTab == true && $scope.agendaEdit == false) {
+     if ($rootScope.user.groups.indexOf("vManager") > -1) {
+      if($scope.agendaTab == true && $scope.agendaEdit == false) {
+        console.log("im here")
+        if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
+        {
+          console.log("im here");
+          $location.path("visits/list");
+        }else
+        $location.path("/visits/"+$scope.visits._id+"/edit"); 
+      }
+      else if($scope.finalizeTab == true && $scope.finall == true)
+      {
+        $location.path("visits/list");
+      }
+      else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+
+    else if($scope.agendaTab == true && $scope.agendaEdit == false) {
       if($scope.visitorsTab == true && $scope.check == true)
       {
         $location.path("visits/list");
@@ -381,8 +401,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
 
   })
-    .error(function(data, status){
-      growl.error("Error updating visit");
+.error(function(data, status){
+  growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
@@ -446,8 +466,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
-     $scope.nextTab($scope.visits._id);
-   })
+      $scope.nextTab($scope.visits._id);
+    })
 
   }
   $scope.sendAnchor= function(anchor,status){
