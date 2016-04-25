@@ -6,7 +6,7 @@
 
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <div class="md-header">Enter the Schedule<!--  for [{{entryDate}}]  --><!-- @ {{entryLocation}} ]--></div>
+        <div class="md-header">Enter the Schedule  for {{entryDate | DateFormat:"ddd, DD MMM" }}<!-- @ {{entryLocation}} ]--></div>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
@@ -24,7 +24,7 @@
          <div class="form-group">
 
            <div class="row">
-            <h5><i>&nbsp;&nbsp;Select Start Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select End Time</i></h5>
+            <h5><i>&nbsp;&nbsp;Select Start Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select End Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select Session Type</i></h5>
                <div class="col-sm-8">
                 <select ng-model="startHourTime" ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
@@ -115,7 +115,7 @@
            </select> -->
 
            <select id="type" ng-model="schedule.session.type">
-             <option value="">---Select Session Type---</option>
+             <option value=""></option>
              <option ng-repeat="ty in prTypes">{{ty}}</option>
            </select>
          </div>
@@ -221,7 +221,7 @@
         <!-- </div>   -->
      
     </ANY>
-      <ANY ng-switch-when="tea">
+      <ANY ng-switch-when="Tea">
 
         <md-input-container class="md-block">
         <label>Location</label>
@@ -245,7 +245,7 @@
         <br>
       </ANY>
 
-      <ANY ng-switch-when="lunch">
+      <ANY ng-switch-when="Lunch">
 
         <md-input-container class="md-block">
         <label>Location</label>
