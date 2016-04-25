@@ -1,8 +1,6 @@
-   
-
 <div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="location fact  sheet">
-location factshhet
-    </div>
+    location factshhet
+</div>
 <div class="divtop">   
 
     <div class="cvm-gallery-header">
@@ -60,15 +58,31 @@ location factshhet
     </div>
 
     <div class="banner">
-   	<img ng-src="{{bannerLink}}" /> 	
+        <img ng-src="{{bannerLink}}" /> 	
     </div>
     <span class="desc"><i>{{description}}</i></span>
     <br>
     <hr>
     <h4 class="factheader">Quick Facts</h4>
     <br>
-    <div ng-repeat="facts in quickFacts" class="quickfacts">
-    <li>{{facts}}</li>
-    </div>
-    
+    <map default-style="true" zoom="12" center="17.451, 78.37699999999995">
+        <!--content of information windows for the places-->
+        <info-window id="InfoWindow" style="width: 50px;">
+        <div class=map ng-non-bindable>
+            <h5>
+              <p>{{selectedCity.name}}</p>
+          </h5>
+          <h7>{{selectedCity.info}}</h7><br>
+          <h7><a target="_blank" href="{{selectedCity.url}}">more...</a></h7>
+      </div>
+  </info-window>
+
+  <!--Markers for custom identified places-->
+
+  <marker ng-repeat="c in cities"
+  position="{{c.pos}}" title="{{c.name}}" info="{{c.info}}" id="{{c.id}}" url="{{c.url}}" on-click="showCity(event, c)">
+</marker>
+</map>
+
+
 

@@ -1,77 +1,77 @@
 module.exports = {
 
- assets : {
-	"bootstrap": {
-		"cdn": [
+	assets : {
+		"bootstrap": {
+			"cdn": [
 			"//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css"
-		],
-		"dev":[
+			],
+			"dev":[
 			"/public/libs/bootstrap/dist/css/bootstrap.css",
 			"/public/libs/bootstrap/dist/js/bootstrap.js"
-		],
-		"prod":[
+			],
+			"prod":[
 			"/public/libs/bootstrap/dist/css/bootstrap.min.css"
-		]
-	},
-	
-	"angular-calendar": {
-		"cdn": [
-		],
-		"dev":[
+			]
+		},
+		
+		"angular-calendar": {
+			"cdn": [
+			],
+			"dev":[
 			"/public/libs/fullcalendar/dist/fullcalendar.css",
-            "/public/libs/fullcalendar/dist/fullcalendar.js",
-            "/public/libs/fullcalendar/dist/gcal.js"
-		],
-		"prod":[
-		]
-	},
+			"/public/libs/fullcalendar/dist/fullcalendar.js",
+			"/public/libs/fullcalendar/dist/gcal.js"
+			],
+			"prod":[
+			]
+		},
 
-	"font-awesome": {
-		"cdn": [
+		"font-awesome": {
+			"cdn": [
 			"//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
-		],
-		"dev":[
+			],
+			"dev":[
 			"/public/libs/font-awesome/css/font-awesome.css"
-		],
-		"prod":[
+			],
+			"prod":[
 			"/public/libs/font-awesome/css/font-awesome.min.css"
-		]
-	},
+			]
+		},
 
-	"jquery": {
-		"cdn": [
-		],
-		"dev":[
+		"jquery": {
+			"cdn": [
+			],
+			"dev":[
 			"/public/libs/jquery/dist/jquery.js",
 			"/public/libs/jquery-ui/jquery-ui.js",
 			"/public/libs/jquery-ui/themes/smoothness/jquery-ui.css"
-		],
-		"prod":[
-		]
-	},
+			],
+			"prod":[
+			]
+		},
 
-	"jquery-ui": {
-		"cdn": [
-		],
-		"dev":[
+		"jquery-ui": {
+			"cdn": [
+			],
+			"dev":[
 			"/public/libs/jquery-ui/jquery-ui.js",
 			"/public/libs/jquery-ui/themes/smoothness/jquery-ui.css"
-		],
-		"prod":[
-		]
-	},
+			],
+			"prod":[
+			]
+		},
 
-	"angular-core": {
-		"cdn": [
-		],
-		"dev":[
+		"angular-core": {
+			"cdn": [
+			],
+			"dev":[
 			"/public/libs/angular/angular.js",
 			"/public/libs/angular-route/angular-route.js",
 			"/public/libs/angular-cookies/angular-cookies.js"
-		],
-		"prod":[
-		]
-	},
+			],
+			"prod":[
+			]
+		},
 
 // Heavy donot use this, use angular bootstrap instead
 	// "angular-ui":{
@@ -88,7 +88,7 @@ module.exports = {
 	"angular-forms":{
 		"cdn":[],
 		"dev":[
-			"/public/libs/angular-messages/angular-messages.min.js"
+		"/public/libs/angular-messages/angular-messages.min.js"
 		],
 		"prod":[]
 	},
@@ -96,7 +96,15 @@ module.exports = {
 	"angular-bootstrap":{
 		"cdn":[],
 		"dev":[
-			"/public/libs/angular-bootstrap/ui-bootstrap-tpls.js"
+		"/public/libs/angular-bootstrap/ui-bootstrap-tpls.js"
+		],
+		"prod":[]
+	},
+
+	"angular-map":{
+		"cdn":[],
+		"dev":[
+		"/public/assets/js/ng-map.min.js"
 		],
 		"prod":[]
 	},
@@ -105,7 +113,7 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-			"/public/libs/angular-animate/angular-animate.js"
+		"/public/libs/angular-animate/angular-animate.js"
 		],
 		"prod":[
 		]
@@ -115,10 +123,10 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-			"/public/libs/angular-animate/angular-animate.js",
-			"/public/libs/angular-aria/angular-aria.js",
-			"/public/libs/angular-material/angular-material.js",
-			"/public/libs/angular-material/angular-material.css"
+		"/public/libs/angular-animate/angular-animate.js",
+		"/public/libs/angular-aria/angular-aria.js",
+		"/public/libs/angular-material/angular-material.js",
+		"/public/libs/angular-material/angular-material.css"
 		],
 		"prod":[
 		]
@@ -128,7 +136,7 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-			"/public/assets/w/js/textAngular.js"
+		"/public/assets/w/js/textAngular.js"
 		],
 		"prod":[
 		]
@@ -138,8 +146,8 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-			"/public/libs/angular-growl-v2/build/angular-growl.css",
-			"/public/libs/angular-growl-v2/build/angular-growl.js"
+		"/public/libs/angular-growl-v2/build/angular-growl.css",
+		"/public/libs/angular-growl-v2/build/angular-growl.js"
 		],
 		"prod":[
 		]
@@ -148,48 +156,48 @@ module.exports = {
 	"angular-fileupload":{
 		"cdn":[],
 		"dev":[
-			"/public/libs/ng-file-upload/ng-file-upload.js",
-			"/public/libs/ng-file-upload/ng-file-upload-shim.js"
+		"/public/libs/ng-file-upload/ng-file-upload.js",
+		"/public/libs/ng-file-upload/ng-file-upload-shim.js"
 		],
 	},
 
 	"angular-image":{
 		"cdn":[],
 		"dev":[
-			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
-			"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
+		"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
+		"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
 		],
 	},
 
 	"angular-dialog":{
 		"cdn":[],
 		"dev":[
-			"/public/assets/styles/ngDialog-theme-default.css",
-			"/public/assets/styles/ngDialog.css",
-			"/public/assets/js/ngDialog.min.js"
+		"/public/assets/styles/ngDialog-theme-default.css",
+		"/public/assets/styles/ngDialog.css",
+		"/public/assets/js/ngDialog.min.js"
 		],
 	},
 
 	"angular-dropzone":{
 		"cdn":[],
 		"dev":[
-			"/public/assets/g/css/dropzone.css",
-			"/public/assets/g/js/dropzone.js"
+		"/public/assets/g/css/dropzone.css",
+		"/public/assets/g/js/dropzone.js"
 		],
 	},
 
 	"angular-confirmDialog":{
 		"cdn":[],
 		"dev":[
-			"/public/assets/g/css/confirmDialog.css"
+		"/public/assets/g/css/confirmDialog.css"
 		],
 	},
 
 	"utils":{
 		"cdn":[],
 		"dev":[
-			"/public/libs/moment/moment.js",
-			"/public/libs/moment-range/dist/moment-range.js"
+		"/public/libs/moment/moment.js",
+		"/public/libs/moment-range/dist/moment-range.js"
 		],
 	}
 

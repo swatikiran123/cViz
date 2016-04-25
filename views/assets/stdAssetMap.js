@@ -13,7 +13,7 @@ module.exports = {
 		"m-general" : ["jquery","bootstrap","font-awesome","utils"],
 		"m-angular" : ["jquery","angular-core","angular-growl"],
 		"m-home": [],
-		"m-facts": ["angular-bootstrap"],
+		"m-facts": ["angular-bootstrap","angular-map"],
 		"m-visits": ["angular-bootstrap","angular-animate"],
 		"m-visitAdd":["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-confirmDialog","angular-calendar","angular-bootstrap","jquery"],
 
