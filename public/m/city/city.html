@@ -1,8 +1,42 @@
+<style>
+
+
+</style>
 <div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="location fact  sheet">
-    location factshhet
+    <div>       
+            &nbsp;Location Factsheet
+
+            <div class="pull-right">
+
+                <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="fa fa-th-large fonticon1"></i>
+                    <span class="caret"></span>
+                </div>
+
+                <ul class="dropdown-menu">
+                    <li><a href="#/city/banglore">Banglore</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Chennai">Chennai</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Hyderabad">Hyderabad</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Indore">Indore</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Mumbai">Mumbai</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Noida">Noida</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/city/Vadodara">Vadodara</a></li>
+                    <li class="divider"></li>
+                    
+                </ul>
+
+             </div>
+
+          </div>
 </div>
 <div class="divtop">   
-
+<div class="my-city-content">
     <div class="cvm-gallery-header">
     	<h1 class="headerTitle">{{name | uppercase}}</h1>
 
@@ -30,34 +64,27 @@
     		</div>
     	</div>
 
-        <div align="center" class="header-precipitation-div">
-            <div class="sec1">
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day1Day | limitTo:3 }}</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day2Day | limitTo:3 }}</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day3Day | limitTo:3 }}</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day4Day | limitTo:3 }}</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day5Day | limitTo:3 }}</span>
-            </div>
+    
 
-            <div class="sec2">
-                <img ng-src="{{day1icon}}" >
-                <img ng-src="{{day2icon}}">
-                <img ng-src="{{day3icon}}">
-                <img ng-src="{{day4icon}}">
-                <img ng-src="{{day5icon}}">
-            </div>
-
-            <div class="sec3">
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day2.temp.max}}&deg;C/{{ day2.temp.min}}&deg;C</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day3.temp.max}}&deg;C/{{ day3.temp.min}}&deg;C</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day4.temp.max}}&deg;C/{{ day4.temp.min}}&deg;C</span>
-                <span class="col-xs-2 col-sm-2 col-md-2 div-padding">{{ day5.temp.max}}&deg;C/{{ day5.temp.min}}&deg;C</span>
+        <div class="comb">
+        <div class="hsc">
+         <div id="long">
+            <fieldset>{{ day1Day | limitTo:3 }} <br> <img ng-src="{{day1icon}}" ><br> &nbsp;&nbsp;{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</fieldset> 
+            <fieldset> {{ day2Day | limitTo:3 }} <br> <img ng-src="{{day2icon}}"><br> &nbsp;&nbsp;{{ day2.temp.max}}&deg;C/{{ day2.temp.min}}&deg;C</fieldset>
+            <fieldset>{{ day3Day | limitTo:3 }} <br>  <img ng-src="{{day3icon}}"><br>&nbsp;&nbsp;{{ day3.temp.max}}&deg;C/{{ day3.temp.min}}&deg;C</fieldset>
+            <fieldset>{{ day4Day | limitTo:3 }}<br><img ng-src="{{day4icon}}"><br>&nbsp;&nbsp;{{ day4.temp.max}}&deg;C/{{ day4.temp.min}}&deg;C</fieldset>
+            <fieldset>{{ day5Day | limitTo:3 }} <br>  <img ng-src="{{day5icon}}"><br>&nbsp;&nbsp;{{ day5.temp.max}}&deg;C/{{ day5.temp.min}}&deg;C</fieldset>
             </div>
         </div>
     </div>
+    
 
-    <div class="banner">
+
+   
+
+       </div>
+
+    <div class="banner city-card">
         <img ng-src="{{bannerLink}}" /> 	
     </div>
     <span class="desc"><i>{{description}}</i></span>
@@ -90,6 +117,8 @@
   position="{{c.pos}}" title="{{c.name}}" info="{{c.info}}" id="{{c.id}}" url="{{c.url}}" on-click="showCity(event, c)">
 </marker>
 </map>
+</div>
+
 </div>
 
 

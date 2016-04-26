@@ -6,8 +6,8 @@ angular.module('sessions')
     });
 
 
-console.log($location.search()["day"]);
-console.log($location.search()["s"]);
+   console.log($location.search()["day"]);
+   console.log($location.search()["s"]);
 
     $scope.visit_id = $routeParams.id;
     $scope.vmtab = $location.search()["day"];
