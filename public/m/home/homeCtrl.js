@@ -41,7 +41,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams', func
 
 		else
 		{
-			// console.log("No keynotes Defined");
+			console.log("No keynotes Defined");
 		}
 	})
 
