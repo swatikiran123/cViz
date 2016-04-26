@@ -9,6 +9,7 @@ var logger      			= require(constants.paths.scripts +  '/logger');
 var weather			      = require(constants.paths.scripts +  '/weather');
 var pathBuilder			  = require(constants.paths.scripts +  '/pathBuilder');
 var groupService      = require(constants.paths.services +  '/groups');
+var visitService     = require(constants.paths.services + '/visits');
 var modelVisit        = require(constants.paths.models +  '/visit');
 
 var smptOptions       = config.get("email.smtp-options");
@@ -226,5 +227,56 @@ function welcomeClient(visitId, basePath) {
 
 
 function inviteAttendees(visitId, basePath){
-	//ToDo:: To be implemented
-}
+
+	if(config.get('email.send-mails')!="true") return;
+
+	var templateDir = path.join(constants.paths.templates, 'email', 'inviteAttendees');
+	var mailTemplate = new emailTemplate(templateDir);
+
+	modelVisit
+		.findOne({ _id: visitId })
+		.populate('client')
+		.exec(function (err, visit) {
+			if(err) {
+				console.log(err);
+			}
+			else{
+				console.log(visit);
+
+				visitService.getParticipantsById(visitId)
+			    .then(function(participants){
+							var emailIds = [];
+		          participants["employees"].forEach(function(p){
+								emailIds.push(p.email);
+							});
+
+							console.log(emailIds);
+
+							mailTemplate.render(visit, function (err, results) {
+
+								if(err){
+									return console.log(err);
+								}
+
+								var mailOptions = {
+										from: config.get('email.from'),
+										to: emailIds, // list of receivers
+										subject: 'Save your day', // Subject line
+										text: results.text, // plaintext body
+										html: results.html // html body
+								};
+
+								console.log(mailOptions);
+								// send mail with defined transport object
+								transporter.sendMail(mailOptions, function(error, info){
+									if(error){
+											return console.log(error);
+									}
+									console.log("Send Mail:: inviteAttendees  -- Status: "+ info.response);
+									console.log('Notifications sent to ' + emailIds);
+								}); // end of transporter.sendMail
+							}); // end of register mail render
+						}); // end of visitService.getParticipantsById
+				} //end of else
+		}) // end of modelVisit
+} // end of inviteAttendees
