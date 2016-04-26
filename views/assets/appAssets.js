@@ -237,34 +237,34 @@ module.exports = {
 		]
 	},
 
-			"m-visitAdd":{
-			"dev":[
-			"/public/m/visitsAdd/add.js",
-			"/public/mods/visits/visitsModule.js",
-			"/public/mods/visits/visitsControllerMain.js",
-			"/public/mods/visits/sessions/sessionsControllerMain.js",
-			// "/public/mods/visits/visitsRouter.js",
-			"/public/assets/js/calendar.js",
-			"/public/mods/visits/calendarCtrl.js",
-			"/public/d/userProfile/script.js",
-			"/public/d/userDisplay/script.js",
-			"/public/d/user/script.js",
-			"/public/d/invitees/script.js",
-			"/public/d/fileUpload/script.js",
-			"/public/d/fileAttachment/script.js",
-			"/public/d/datePicker/script.js",
-			"/public/d/confirmDialog/script.js",
-			"/public/d/clientDisplay/script.js",
-			"/public/d/richText/script.js",
-			"/public/d/feedbackDirective/script.js",
-			"/public/assets/g/js/rateit.js",
-			"/public/assets/g/js/toaster.js",
-			"/public/d/scroll/scroll.js",
-			"/public/d/header/header.js",
-			"/public/assets/m/css/header.css"
+		// 	"m-visitAdd":{
+		// 	"dev":[
+		// 	"/public/m/visitsAdd/add.js",
+		// 	"/public/mods/visits/visitsModule.js",
+		// 	"/public/mods/visits/visitsControllerMain.js",
+		// 	"/public/mods/visits/sessions/sessionsControllerMain.js",
+		// 	// "/public/mods/visits/visitsRouter.js",
+		// 	"/public/assets/js/calendar.js",
+		// 	"/public/mods/visits/calendarCtrl.js",
+		// 	"/public/d/userProfile/script.js",
+		// 	"/public/d/userDisplay/script.js",
+		// 	"/public/d/user/script.js",
+		// 	"/public/d/invitees/script.js",
+		// 	"/public/d/fileUpload/script.js",
+		// 	"/public/d/fileAttachment/script.js",
+		// 	"/public/d/datePicker/script.js",
+		// 	"/public/d/confirmDialog/script.js",
+		// 	"/public/d/clientDisplay/script.js",
+		// 	"/public/d/richText/script.js",
+		// 	"/public/d/feedbackDirective/script.js",
+		// 	"/public/assets/g/js/rateit.js",
+		// 	"/public/assets/g/js/toaster.js",
+		// 	"/public/d/scroll/scroll.js",
+		// 	"/public/d/header/header.js",
+		// 	"/public/assets/m/css/header.css"
 
-			]
-		},
+		// 	]
+		// },
 
 	"m-sessions":{
 		"dev":[
