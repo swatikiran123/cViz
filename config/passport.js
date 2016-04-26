@@ -122,7 +122,7 @@ module.exports = function(passport) {
                             if (err)
                                 return done(err);
 
-                            emailController.sendMailOnRegistration(newUser);
+                            emailController.newUserAdd(newUser);
 
                             return done(null, newUser);
                         });
