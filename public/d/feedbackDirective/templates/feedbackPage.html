@@ -165,9 +165,8 @@ input[type=submit] {
               </div>
               </form>
         </div>
-         <input type="submit" ng-click="submit()"></input>
+         <input type="submit" ng-click="submit();showSuccessMessage();"></input>
       </div>
-      <toaster-container toaster-options="{'time-out': 3000, 'close-button':false, 'animation-class': 'toast-center'}"></toaster-container>
       </form>
       <div class="submit-success-text">Feedback submitted successfully</div>
 
@@ -188,3 +187,4 @@ input[type=submit] {
  </ANY>
 </ANY>
 
+<toaster-container toaster-options="{'time-out': 3000, 'close-button':false, 'animation-class': 'toast-center'}"></toaster-container>
