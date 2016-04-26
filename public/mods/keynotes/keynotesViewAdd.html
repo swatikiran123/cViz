@@ -47,15 +47,12 @@
                          ng-model="keynotes.noteText" name="note"/>
          </text-angular></div>
  
-
-     <!-- keynotes speaker input-->
-       
-          <div class="form-group" ng-class="{ 'has-error': inputctrl.speaker.$touched && inputctrl.speaker.$invalid }">
-               <div class="col=md-4">
-
-           <div user type="picker" user-model="noteByUser" view-type="large" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee"></div>
-      </div>
-            </div>
+              <md-input-container class="form-group md-block">
+              <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser.$touched && keynotesForm.noteByUser.$invalid }">
+                <label>Speaker &nbsp;&nbsp; :</label>
+                <div user type="picker" user-model="noteByUser" view-type="large" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee"></div>
+              </div>
+            </md-input-container>
 
           <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div>
 

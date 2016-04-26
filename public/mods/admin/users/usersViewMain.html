@@ -25,43 +25,54 @@
       <!-- table header -->
       <tr>
         <th>
-          <a href="" ng-click="orderByField='handle'; reverseSort = !reverseSort">Email</a>
+          <a href="" ng-click="orderByField='email'; reverseSort = !reverseSort">Email</a>
         </th>
         <th>
-          <a href="" ng-click="orderByField='firstName'; reverseSort = !reverseSort">First Name</a>
+          <a href="" ng-click="orderByField='first'; reverseSort = !reverseSort">First Name</a>
         </th>
         <th>
-          <a href="" ng-click="orderByField='lastName'; reverseSort = !reverseSort">Last Name</a>
+          <a href="" ng-click="orderByField='last'; reverseSort = !reverseSort">Last Name</a>
         </th>
         <th class="hidden-xs">
-          <a href="" ng-click="orderByField='contactNo'; reverseSort = !reverseSort">Organization</a>
+          <a href="" ng-click="orderByField='org'; reverseSort = !reverseSort">Organization</a>
         </th>
         <th class="hidden-xs">
-          <a href="" ng-click="orderByField='contactNo'; reverseSort = !reverseSort">Status</a>
+          <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</a>
         </th>
+        <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
 
       <!-- table filter -->
       <tr ng-hide="hideFilter">
-        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.handle"></span></th>
-        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.firstName"></span></th>
-        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.lastName"></span></th>
-        <th  class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.contactNo"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.email"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.name.first"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.name.last"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.organization"></span></th>
+        <th><span ng-hide="hideFilter"><input type="text" ng-model="search.status"></span></th>
         <th><span ng-hide="hideFilter">&nbsp;</span></th>
       </tr>      
 
       <!-- table add new record template -->
       <tr ng-hide="hideAddRow">
-        <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.email"></span></td>
+        <!-- <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.email"></span></td> -->
+      <td>
+      <span ng-hide="hideAddRow">
+      <form name="form">
+      <input type="email" ng-model="user.email" name="email" required/>
+      </form>
+      </span>
+            <span class="error text-danger" ng-show="form.email.$error.email">
+          Not valid email!</span>
+      </td>
         <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.name.first"></span></td>
         <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.name.last"></span></td>
         <td  class="hidden-xs"><span ng-hide="hideAddRow"><input type="text" ng-model="user.organization"></span></td>
         <td></td>
         <td>
           <span ng-hide="hideAddRow">
-            <a class="table-btn" ng-click="save()"><span class="glyphicon glyphicon-ok"/></a>
-            <a class="table-btn" ng-click="deselect()"><span class="glyphicon glyphicon-remove"/></a>
+            <a class="btn" ng-click="save()" ng-disabled="form.$invalid"><span class="fa fa-check fa-lg"/></a>
+            <a class="table-btn" ng-click="deselect()"><span class="fa fa-times fa-lg"/></a>
           </span>
         </td>
       </tr>

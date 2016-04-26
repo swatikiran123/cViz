@@ -36,6 +36,16 @@
       <th>&nbsp;<a href=""> Action</a></th>
     </tr>
 
+    <!-- table filter -->
+    <tr ng-hide="hideFilter">
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.type"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.userCreateBy"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createOn"></span></th>
+      <th><span ng-hide="hideFilter">&nbsp;</span></th>
+      <th><span ng-hide="hideFilter">&nbsp;</span></th>
+      <th><span ng-hide="hideFilter">&nbsp;</span></th>
+    </tr>
    </thead>
 
   <tbody class="data-grid-data">

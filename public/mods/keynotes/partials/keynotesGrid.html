@@ -47,7 +47,7 @@
     <!-- table filter -->
     <tr ng-hide="hideFilter">
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.speaker"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.noteBy"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.desc"></span></th>
       <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
@@ -63,7 +63,7 @@
       <td><div userdisplay view-mode="nameonly" user-id="keynote.noteBy"></div></td>
       <td><p ng-bind-html="keynote.desc"></p></td>
       <td class="hidden-xs"><div ng-repeat="tags in keynote.tags track by $index"--> {{tags}}</div></td>
-      <td class="hidden-xs">{{keynote.createOn | date:'dd-MM-yyyy'}}</td>
+      <td class="hidden-xs">{{keynote.createOn | DateFormat:"ddd, DD MMM YYYY" }}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>
         <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
