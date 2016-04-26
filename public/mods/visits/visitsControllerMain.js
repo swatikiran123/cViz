@@ -103,12 +103,15 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   $scope.navVisit ='';
   $scope.agendaEdit= false;
   $scope.showKey=false;
-
+  $scope.subdis= true;
+  $scope.stdate= true;
 
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
   $scope.finalizeTab=false;
   $scope.notifyTab=false;
+  $scope.visitGrid= false;
+
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -118,8 +121,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
 
-  if ($rootScope.user.groups.indexOf("vManager") > -1) {
+  if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
     $scope.visitGrid= true;
+  }
+
+  if ($rootScope.user.groups.indexOf("admin") > -1) {
+    $scope.adminInitVman= true;
   }
 
   //visit manager group- HTTP get for drop-down
@@ -183,28 +190,44 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
       case "edit":
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
         var visits = response;
-        if (visits.anchor!=undefined||visits.secondaryVmanager!=undefined) {
-          $scope.anchor = visits.anchor._id;
-          $scope.secondaryVmanager = visits.secondaryVmanager._id;
-        };
-        
-        switch(visits.status){
-          case "confirm": 
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          break;
+        if (visits.anchor!=undefined){
+          $scope.anchor = visits.anchor._id;}
+          if(visits.secondaryVmanager!=undefined) {
+            $scope.secondaryVmanager = visits.secondaryVmanager._id;
+          };
 
-          case "tentative": 
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          break;
+          switch(visits.status){
+            case "confirm": 
+            $scope.agendaTab=true;
+            $scope.visitorsTab=true;
+            break;
 
-          case "wip":
-          if ($rootScope.user.groups.indexOf("vManager") > -1) {
+            case "tentative": 
+            $scope.agendaTab=true;
+            $scope.visitorsTab=true;
+            break;
+
+            case "wip":
+            if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+              $scope.finalizeTab= true;
+              $scope.agendaTab=true;
+              $scope.visitorsTab=true;
+              $scope.notifyTab=false;
+            }
+            else{
+             $scope.agendaTab= true;
+             $scope.visitorsTab= true;
+             $scope.finalizeTab= false;
+             $scope.notifyTab= false;
+           }
+           break;
+
+           case "finalize": 
+           if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
             $scope.finalizeTab= true;
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
-            $scope.notifyTab=false;
+            $scope.notifyTab=true;
           }
           else{
            $scope.agendaTab= true;
@@ -214,23 +237,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
          }
          break;
 
-         case "finalize": 
-         if ($rootScope.user.groups.indexOf("vManager") > -1) {
-          $scope.finalizeTab= true;
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          $scope.notifyTab=true;
-        }
-        else{
-         $scope.agendaTab= true;
-         $scope.visitorsTab= true;
-         $scope.finalizeTab= false;
-         $scope.notifyTab= false;
-       }
-       break;
-
      //   case "close": 
-     //   if ($rootScope.user.groups.indexOf("vManager") > -1) {
+     //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
      //    $scope.finalizeTab= true;
      //    $scope.agendaTab=true;
      //    $scope.visitorsTab=true;
@@ -247,6 +255,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
    };
 
           $scope.schedules = visits.schedule;//List of schedules
+          if ($scope.schedules != undefined || $scope.schedules == "")
+          {
+            $scope.subdis= false;
+          }else{
+            $scope.subdis= true;}
           $scope.visitors = visits.visitors;//List of visitors
           $scope.status= visits.status;
           if (visits.billable == "billable") {
@@ -387,7 +400,7 @@ break;
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
      
-     if ($rootScope.user.groups.indexOf("vManager") > -1) {
+     if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
       if($scope.agendaTab == true && $scope.agendaEdit == false) {
         if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
         {
@@ -515,14 +528,18 @@ break;
  }
   // Visit schedule table
   $scope.addSchedule=function(schedule){
-    var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-    var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-    $scope.schedules.push({
-      startDate: startDate,
-      endDate: endDate,
-      location: schedule.location,
-      meetingPlace: schedule.meetingPlace
-    });
+    $scope.subdis= false;
+    if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined){
+      $scope.stdate= false;
+      var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+      var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+      $scope.schedules.push({
+        startDate: startDate,
+        endDate: endDate,
+        location: schedule.location,
+        meetingPlace: schedule.meetingPlace
+      });
+    } else {$scope.stdate= true;}
 
     schedule.startDate='';
     schedule.endDate='';
@@ -530,15 +547,20 @@ break;
     schedule.meetingPlace='';
   };
 
-  $scope.removeSchedule = function(index){
-    $scope.schedules.splice(index, 1);
-  };
+  $scope.removeSchedule = function(index,schedules){
 
-  $scope.editSchedule = function(index,schedule){
-    console.log(schedule);
-    $scope.schedule= schedule;
     $scope.schedules.splice(index, 1);
-  };
+    if (schedules.length == 0)
+    {
+      $scope.subdis= true;
+    }else{
+      $scope.subdis= false;}
+    };
+
+    $scope.editSchedule = function(index,schedule){
+      $scope.schedule= schedule;
+      $scope.schedules.splice(index, 1);
+    };
 // Visit schedule table end
 
  // Visit keynote table
@@ -889,8 +911,8 @@ visitsApp.directive("session", ["SessionService", "$timeout", function (SessionS
           event.preventDefault();
         }
       });
-}
-};
+    }
+  };
 }]);
 //Autocompleate - Directive
 visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteService,$timeout) {
@@ -956,6 +978,38 @@ visitsApp.directive('uiDate', function() {
         };
       }
       return element.datepicker($scope.uiDate);
+    }
+  };
+});
+
+visitsApp.directive('uiDatest', function() {
+  return {
+    require: '?ngModel',
+    link: function($scope, element, attrs, controller) {
+      var originalRender, updateModel, usersOnSelectHandler;
+      if ($scope.uiDatest == null) $scope.uiDatest = {};
+      if (controller != null) {
+        updateModel = function(value, picker) {
+          return $scope.$apply(function() {
+            return controller.$setViewValue(element.datepicker("getDate"));
+          });
+        };
+        if ($scope.uiDatest.onSelect != null) {
+          usersOnSelectHandler = $scope.uiDatest.onSelect;
+          $scope.uiDatest.onSelect = function(value, picker) {
+            updateModel(value);
+            return usersOnSelectHandler(value, picker);
+          };
+        } else {
+          $scope.uiDatest.onSelect = updateModel;
+        }
+        originalRender = controller.$render;
+        controller.$render = function() {
+          originalRender();
+          return element.datepicker("setDate", controller.$viewValue);
+        };
+      }
+      return element.datepicker($scope.uiDatest);
     }
   };
 });

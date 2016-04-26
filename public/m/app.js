@@ -16,9 +16,9 @@ angular.module('mviz-facts', [
 	'facts','lctnGalry','header','scroll'
 ]);
 
-angular.module('mviz-add', [ 'visitAdd','userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective', 'inviteesDirective',
-	'appFilters',
-	'datePicker','dropzone','fileuploadDirective',
-	'visits','confirmDialogDirective','richTextDirective','ngRateIt']);
+// angular.module('mviz-add', [ 'visitAdd','userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective', 'inviteesDirective',
+// 	'appFilters',
+// 	'datePicker','dropzone','fileuploadDirective',
+// 	'visits','confirmDialogDirective','richTextDirective','ngRateIt']);
 
 angular.module('mviz-emp', []);

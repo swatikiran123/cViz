@@ -41,13 +41,13 @@ module.exports = function(app) {
 		});
 	});
 
-    app.get('/m/visit/add', auth.isLoggedIn, function(req, res) {
-        res.locals.pageTitle = "Visit Add";
-        res.locals.appName = "ng-app='mviz-add'"
-        res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-visitAdd");
-        res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-visitAdd");
-        res.render('mobile/visitAdd.ejs', {
-            layout: activeLayout
-        });
-    });
+    // app.get('/m/visit/add', auth.isLoggedIn, function(req, res) {
+    //     res.locals.pageTitle = "Visit Add";
+    //     res.locals.appName = "ng-app='mviz-add'"
+    //     res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-visitAdd");
+    //     res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-visitAdd");
+    //     res.render('mobile/visitAdd.ejs', {
+    //         layout: activeLayout
+    //     });
+    // });
 }

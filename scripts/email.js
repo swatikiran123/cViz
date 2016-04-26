@@ -86,7 +86,7 @@ function notifyNewVisit(visitId) {
 				}
 
 				var emailIds = [];
-				groupService.getUsersByGroup("vManager")
+				groupService.getUsersByGroup("admin")
 					.then(function(users){
 						users.forEach(function(user){
 							emailIds.push(user.email);
