@@ -20,40 +20,40 @@ module.exports = service;
 function getAll(){
     var deferred = Q.defer();
 
-	model.find(function(err, list){
-		if(err) {
-            console.log(err);
-            deferred.reject(err);
-        }
-		else
-			deferred.resolve(list);
-	});
+    model.find(function(err, list){
+      if(err) {
+        console.log(err);
+        deferred.reject(err);
+    }
+    else
+     deferred.resolve(list);
+});
 
-	return deferred.promise;
+    return deferred.promise;
 } // getAll method ends
 
 function getOneById(id){
     var deferred = Q.defer();
 
     model
-        .findOne({ _id: id })
-        .populate('noteBy')
-        .exec(function (err, item) {
-            if(err) {
-                console.log(err);
-                deferred.reject(err);
-            }
-            else
-                console.log(item);
-                deferred.resolve(item);
-        });
+    .findOne({ _id: id })
+    .populate('noteBy')
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+            console.log(item);
+        deferred.resolve(item);
+    });
 
     return deferred.promise;
 } // gentOneById method ends
 
-function getWithQuery(query, fields, maxRecs, sortEx){
+function getWithQuery(query, fields, maxRecs, sortEx,type){
     var deferred = Q.defer();
-    
+    var feedbackType = [];
     model
     .find(query)
     .limit(maxRecs)
@@ -64,13 +64,18 @@ function getWithQuery(query, fields, maxRecs, sortEx){
             console.log(err);
             deferred.reject(err);
         }
-        else
-        {
-            console.log(item);
-            deferred.resolve(item);
+        else {
+            for(var i=0;i<item.length;i++)
+            {
+                if(item[i].type == type)
+                {
+                    feedbackType.push(item[i]);
+                }
+            }
+            deferred.resolve(feedbackType);
         }
-    });
 
+    });
     return deferred.promise;
 } // getWithQuery method ends
 

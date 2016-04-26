@@ -26,12 +26,13 @@ visitsApp.factory('FeedbackService', ["$http", function ($http) {
     search: function (term) {
       //var client = {title: new RegExp(term, 'i')};
       var maxRecs = 10;
-      var fields = ('title _id');
+      var fields = ('title _id type');
       var sort = ({title:'ascending'});
+      var type = "visit";
       return $http({
         method: 'GET',
         url: '/api/v1/secure/feedbackDefs/find',
-        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort, type: type }
       }).then(function (response) {
         return response.data;
       });
@@ -44,12 +45,13 @@ visitsApp.factory('SessionService', ["$http", function ($http) {
     search: function (term) {
       //var client = {title: new RegExp(term, 'i')};
       var maxRecs = 10;
-      var fields = ('title _id');
+      var fields = ('title _id type');
       var sort = ({title:'ascending'});
+      var type ="session";
       return $http({
         method: 'GET',
         url: '/api/v1/secure/feedbackDefs/find',
-        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort, type: type }
       }).then(function (response) {
         return response.data;
       });
@@ -978,38 +980,6 @@ visitsApp.directive('uiDate', function() {
         };
       }
       return element.datepicker($scope.uiDate);
-    }
-  };
-});
-
-visitsApp.directive('uiDatest', function() {
-  return {
-    require: '?ngModel',
-    link: function($scope, element, attrs, controller) {
-      var originalRender, updateModel, usersOnSelectHandler;
-      if ($scope.uiDatest == null) $scope.uiDatest = {};
-      if (controller != null) {
-        updateModel = function(value, picker) {
-          return $scope.$apply(function() {
-            return controller.$setViewValue(element.datepicker("getDate"));
-          });
-        };
-        if ($scope.uiDatest.onSelect != null) {
-          usersOnSelectHandler = $scope.uiDatest.onSelect;
-          $scope.uiDatest.onSelect = function(value, picker) {
-            updateModel(value);
-            return usersOnSelectHandler(value, picker);
-          };
-        } else {
-          $scope.uiDatest.onSelect = updateModel;
-        }
-        originalRender = controller.$render;
-        controller.$render = function() {
-          originalRender();
-          return element.datepicker("setDate", controller.$viewValue);
-        };
-      }
-      return element.datepicker($scope.uiDatest);
     }
   };
 });
