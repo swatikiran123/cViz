@@ -7,10 +7,17 @@
            </div>
         </div>
         <div class="hd-sec" id="hd-sech">
-            <a id="menu-toggle" href="#menu-toggle">
-                <i class="fa fa-bars hds-icon"></i>
-            </a>
-            
+
+					<!-- <div ng-if="$root.canBack()==false" class="icon" id="menu"> -->
+						<a id="menu-toggle">
+								<i class="fa fa-bars hds-icon"></i>
+						</a>
+					<!-- </div>
+					<div ng-if="$root.canBack()==true" class="icon">
+						<a id="arrow-toggle" ng-click="$root.back()">
+							<i class="fa fa-arrow-left hds-icon"></i>
+						</a>
+					</div> -->
             &nbsp;&nbsp;<a href="#">{{title2}}</a>
         </div>
         <div class="hd-sticky">
@@ -20,8 +27,9 @@
 </div>
 
 <script>
-    $("#menu-toggle").click(function(e) {
+    $(document).on("click", "#menu-toggle", function(e) {
         e.preventDefault();
         $("#page").toggleClass("toggled");
+				e.stopImmediatePropagation();
     });
 </script>
