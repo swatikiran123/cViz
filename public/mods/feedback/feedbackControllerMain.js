@@ -9,6 +9,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.nameonly= "nameonly";
+  $scope.hideFilter = true;
   var refresh = function() {
 
     $http.get('/api/v1/secure/feedbackDefs').success(function(response) {

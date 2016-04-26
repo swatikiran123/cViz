@@ -138,6 +138,39 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     // add user to the group which admin has selected
     $scope.addGroup = function(selection,usersid) {
 
+      for (var i=0;i<selection.length;i++)
+      {
+
+        $http.get('/api/v1/secure/admin/groups/' + selection[i]).success(function(response){
+          // console.log(response);
+          $scope.groupData = response;
+          $scope.groupId = response._id;
+          $scope.existingUsers = response.users;
+          $scope.goNext = true;
+          // if groups already exists in users data,don't include groups in users data.
+          var usersFound = $scope.existingUsers.reduce(function(previous, i){
+            if (usersid === i) return true;
+            return previous;
+          }, false);
+          if (usersFound){
+            // alert('The selected user is already a part of this group.' + usersid);
+          }
+            //else add group to users data one by one
+            else{
+              $scope.existingUsers.push(usersid);
+            }
+
+            $scope.groupData.users = $scope.existingUsers;
+            $http.put('/api/v1/secure/admin/groups/' + $scope.groupId,$scope.groupData).success(function(response){
+            });
+
+            $scope.groupId = "";
+            $scope.groupData = "";
+            $scope.existingUsers = "";
+
+          });
+        }
+
       $http.get('/api/v1/secure/admin/users/' + usersid).success(function(response) {
         $scope.users=response;
 
@@ -238,6 +271,21 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 function Dialog($scope, $mdDialog,$http,usersid) {
 
   $scope.usersid = usersid;
+  $scope.name = [];
+  $scope.groupid = [];
+
+  $http.get('/api/v1/secure/admin/users/' +  $scope.usersid).success(function(response) {
+        $scope.users=response;
+        for (var i=0;i<$scope.users.memberOf.length;i++)
+        {
+          $http.get('/api/v1/secure/admin/groups/' + $scope.users.memberOf[i]).success(function(response){
+            $scope.name.push(response.name).toString();
+            $scope.groupid.push(response._id);
+            $scope.groupNames = $scope.name.toString();
+          });
+        }
+  });
+
 
   $scope.hide = function() {
     $mdDialog.hide();
