@@ -4,23 +4,23 @@ module.exports = function(grunt){
 //initconfig Method defining Tasks 
 grunt.initConfig(  {
 
-pkg: grunt.file.readJSON('package.json'),
+  pkg: grunt.file.readJSON('package.json'),
 
-    uglify:{
-       build: {
-         options: {
-              removeComments: true,
-              collapseWhitespace: true
-               },
-       expand: true,
-       cwd: 'public/',
-       src: ['**/*.js','**/**/*.js','**/**/**/*.js','!libs/**/*.js','!libs/*.js','!libs/**/**/*.js'],
-       dest: 'dist/public/'
-      }
+  uglify:{
+   build: {
+     options: {
+      removeComments: true,
+      collapseWhitespace: true
     },
+    expand: true,
+    cwd: 'public/',
+    src: ['**/*.js','**/**/*.js','**/**/**/*.js','!libs/**/*.js','!libs/*.js','!libs/**/**/*.js'],
+    dest: 'dist/public/'
+  }
+},
  //html files minification
-  minifyHtml: {
-    build: {
+ minifyHtml: {
+  build: {
     options: {
       removeComments: true,
       collapseWhitespace: true
@@ -75,71 +75,89 @@ copy: {
       {src: ['public/libs/moment/moment.js'], dest: 'dist/public/libs/moment/moment.js'},
       {src: ['public/libs/moment-range/dist/moment-range.min.js'], dest: 'dist/public/libs/moment-range/dist/moment-range.min.js'},
 
-    ],
-  },
-  images: {
-    files: [{
-      expand: true,
-      cwd: 'public/',
-      src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg','**/*.png', '**/**/*.png','**/**/**/*.png','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
-      dest: 'dist/public/'
-    }]
-  },
-  config: {
+      {src: ['public/assets/w/styles/materialform.css'], dest: 'dist/public/assets/w/styles/materialform.css'},
+      ],
+    },
+    images: {
+      files: [{
+        expand: true,
+        cwd: 'public/',
+        src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg', '**/**/**/*.gif','**/*.png', '**/**/*.png','**/**/**/*.png','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
+        dest: 'dist/public/'
+      }]
+    },
+    config: {
       expand:true,
       cwd: 'config/',
       src: ['*.js','*.json'],
       dest: 'dist/config/'
-  },
-  controllers: {
+    },
+    controllers: {
       expand:true,
       cwd: 'controllers/',
       src: ['**/*.js','*.js'],
       dest: 'dist/controllers/'
-  },
-  models: {
+    },
+    models: {
       expand:true,
       cwd: 'models/',
       src: ['*.js'],
       dest: 'dist/models/'
-  },
-  routes: {
+    },
+    routes: {
       expand:true,
       cwd: 'routes/',
       src: ['*.js'],
       dest: 'dist/routes/'
-  },
-   scripts: {
+    },
+    scripts: {
       expand:true,
       cwd: 'scripts/',
       src: ['*.js'],
       dest: 'dist/scripts/'
-  },
-   services: {
+    },
+    services: {
       expand:true,
       cwd: 'services/',
       src: ['*.js'],
       dest: 'dist/services/'
-  },
-   
-   views: {
+    },
+    templates: {
+      expand:true,
+      cwd: 'templates/',
+      src: ['**/*.swig', '**/**/*.swig','**/**/**/*.swig'],
+      dest: 'dist/templates/'
+    },
+
+    views: {
       expand:true,
       cwd: 'views/',
       src: ['*.ejs', '**/*.ejs', '**/**/*.ejs','**/*.js'],
       dest: 'dist/views/'
+    },
+    server: {src: ['server.js'], dest: 'dist/server.js'},
+    package: {src: ['package.json'], dest: 'dist/package.json'},
+    fav: {src: ['public/favicon.ico'], dest: 'dist/public/favicon.ico'},
+    disc: {src: ['public/discovery.json'], dest: 'dist/public/discovery.json'},
+    node_modules: {
+      expand:true,
+      cwd: 'node_modules/',
+      src: ['**'],
+      dest: 'dist/node_modules/'
+    }
   },
-   server: {src: ['server.js'], dest: 'dist/server.js'}
-},
-cssmin: {
-  build:{
+  cssmin: {
+    options: {
+      keepSpecialComments: 0
+    },
+    build:{
       expand: true,
       cwd: 'public/',
-      src: ['**/*.css', '**/**/*.css','**/**/**/*.css','!libs/**/*.css','!libs/*.css','!libs/**/**/*.css'],
-      dest: 'dist/public/',
-      ext: '.min.css'
+      src: ['**/*.css', '**/**/*.css','**/**/**/*.css','!assets/w/styles/materialform.css','!libs/**/*.css','!libs/*.css','!libs/**/**/*.css'],
+      dest: 'dist/public/'
     }
-     
-}
+
+  }
 
 	});  //initconfig closed
 grunt.loadNpmTasks('grunt-minify-html');
