@@ -27,7 +27,6 @@ service.updateById = updateById;
 service.deleteById = deleteById;
 
 service.getMyVisits = getMyVisits;
-service.getExecsById = getExecsById;
 service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
 
@@ -411,115 +410,6 @@ function getOneById(id){
 
 } // gentOneById method ends
 
-function getExecsById(id){
-	var deferred = Q.defer();
-	var cscId = [],client = [];
-	var partitions= [cscId,client];
-
-	model
-	.findOne({ _id: id })
-	.populate('agm')
-	.populate('anchor')
-	.populate('client')
-	.populate('visitors.visitor')
-	.populate('invitees.invite')
-	.exec(function (err, item) {
-		if(err) {
-			console.log(err);
-			deferred.reject(err);
-		}
-		else{
-			cscId.push(transform(item.agm,'Sponsor'));
-			cscId.push(transform(item.anchor,'Anchor'));
-
-                    //fetchnig invitees
-                    for (var i=0; i<item.invitees.length; i++){
-                    	cscId.push(transform(item.invitees[i],'Invite'));
-                    }
-                    //fetchnig visitors
-                    for (var i=0; i<item.visitors.length; i++){
-                    	client.push(transform(item.visitors[i].visitor,'Client Visitor'));
-                    }
-
-                    var clientGet=item.client._id;
-    //fectching client csc members from client schema
-    clientModel
-    .find({ _id : clientGet})
-    .populate('cscPersonnel.salesExec')
-    .populate('cscPersonnel.accountGM')
-    .populate('cscPersonnel.industryExec')
-    .populate('cscPersonnel.globalDelivery')
-    .populate('cscPersonnel.cre')
-    .select('name cscPersonnel.salesExec cscPersonnel.accountGM cscPersonnel.industryExec cscPersonnel.globalDelivery cscPersonnel.cre')
-    .exec(function (err, val){
-    	if(err){
-    		console.log(err);
-    		deferred.reject(err);
-    	}
-    	else{
-    		_.each(val, function(val, i) {
-    			cscId.push(transform(val.cscPersonnel.salesExec,'Sales Executive'));
-    			cscId.push(transform(val.cscPersonnel.accountGM,'Account General Manager'));
-    			cscId.push(transform(val.cscPersonnel.industryExec,'Industry Executive'));
-    			cscId.push(transform(val.cscPersonnel.globalDelivery,'Global Delivery'));
-    			cscId.push(transform(val.cscPersonnel.cre,'CRE'));
-    			// client.push({clientName:val.name});
-    		});
-
-             //fectching owner,suppporter from visitScheduler schema
-             scheduleModel
-             .find({ visit: id })
-             .populate('session.owner')
-             .populate('session.supporter')
-             .populate('invitees')
-             .select('session.supporter session.owner invitees')
-             .exec(function (err, data){
-             	if(err){
-             		console.log(err);
-             		deferred.reject(err);
-             	}
-             	else{
-             		_.each(data, function(data, i) {
-             			cscId.push(transform(data.session.owner,'Owner'));
-             			cscId.push(transform(data.session.supporter,'Supporter'));
-             			for (var i=0; i<data.invitees.length; i++){
-             				cscId.push(transform(data.invitees[i],'Invitee'));
-             			}
-             		});
-             		deferred.resolve(partitions);
-             	}
-            })//scheduleModel closing
-         }
-            })//clientModel closing
-}
-
-    });//model find on by id ends
-	function transform(user, role)
-	{
-		if (user==null) {
-			console.log("error in adding");
-		}
-		else{
-			var typeData={
-				name :(user.name),
-				avatar :user.avatar,
-				jobTitle :user.jobTitle,
-				summary :user.summary,
-				email :user.email,
-				contactNo :user.contactNo,
-				role: role
-			}
-			console.log("******************************");
-			console.log(typeData);
-			console.log("******************************");
-			return typeData;
-		}
-	}
-
-	return deferred.promise;
-
-} // getExecsById method ends
-
 /// Retrieve list of sessions by visit Id
 function getSessionsById(id){
 	var deferred = Q.defer();
@@ -590,6 +480,7 @@ function getSessionsById(id){
 
 		return deferred.promise;
 } // getSessionsById method ends
+
 function getSchedulesById(id){
 	var deferred = Q.defer();
 
@@ -639,43 +530,40 @@ function getSchedulesById(id){
 						return d.isSame(thisDay, 'day')
 					});
 					//weather api to get climate details
+					var climate = {};
 					var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 					var request = new XMLHttpRequest();
 					request.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + sch.location + "&units=metric&date="+ d + "&APPID=73136fa514890c15bc4534e7b8a1c0c4", false);
 					request.send();
-					request = JSON.parse(request.responseText);
-
+					if(request.responseText !== undefined){
+						request = JSON.parse(request.responseText);
+						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
+						climate = {
+							daylike:request.weather[0].main,
+							temperature:request.main.temp + "&deg;C",
+							minTemp:request.main.temp_min + "&deg;C",
+							maxTemp:request.main.temp_max + "&deg;C",
+							icon: icon
+						}
+					}
 					// skip days for which sessions are not scheduled
 					if(daySessions.length > 0){
-						//retriving icons based on the description
-						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
 						var schedule = {
 							day : i,
 							date : d,
 							location: sch.location,
-							climate:{
-								daylike:request.weather[0].main,
-								temperature:request.main.temp,
-								minTemp:request.main.temp_min,
-								maxTemp:request.main.temp_max,
-								icon: icon
-
-								// icon:request.weather[0].icon
-							}
-
+							climate: climate
 						}; // end of schedule object
 
 						i++;
 					}
+
 					sessionDays.push(schedule);
 
 				}); // end of date range loop
 
 			}); // end of visit vistSchedule loop
-
-
 		}
-
 		return deferred.promise;
 }  // getSchedulesById method ends
 
@@ -849,14 +737,14 @@ function getParticipantsById(id){
 
 			userModel
 			.find({'_id': { $in: uEmp }})
-			.select('_id name email avatar summary jobTitle organization')
+			.select('_id name email avatar summary jobTitle organization contactNo')
 			.exec(function(err, empsData){
 				if(err)
 					console.log(err);
 
 				userModel
 				.find({'_id': { $in: uClient }})
-				.select('_id name email avatar summary jobTitle organization')
+				.select('_id name email avatar summary jobTitle organization contactNo')
 				.exec(function(err, clientsData){
 					if(err)
 						console.log(err);

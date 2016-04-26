@@ -14,29 +14,29 @@ angular.module('visits', ['ngRoute'])
 	});
 })
 
-.run(function ($rootScope, $location) {
-
-	var history = [];
-
-	$rootScope.$on('$routeChangeSuccess', function() {
-
-		if($location.$$path != "/"){
-			if(history.indexOf($location.$$path) < 0){
-				history.push($location.$$path);
-			}
-		}
-	});
-
-	$rootScope.canBack = function(){
-		return (history.length > 1);
-	};
-
-	$rootScope.back = function () {
-			var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
-			$location.path(prevUrl);
-	};
-
-})
+// .run(function ($rootScope, $location) {
+//
+// 	var history = [];
+//
+// 	$rootScope.$on('$routeChangeSuccess', function() {
+//
+// 		if($location.$$path != "/"){
+// 			if(history.indexOf($location.$$path) < 0){
+// 				history.push($location.$$path);
+// 			}
+// 		}
+// 	});
+//
+// 	$rootScope.canBack = function(){
+// 		return (history.length > 1);
+// 	};
+//
+// 	$rootScope.back = function () {
+// 			var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
+// 			$location.path(prevUrl);
+// 	};
+//
+// })
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
