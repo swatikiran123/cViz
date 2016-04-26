@@ -1,6 +1,6 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout ,$window) {
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
     });
@@ -67,6 +67,12 @@ console.log($location.search()["s"]);
     // }
 		// console.log("hash set to " + newHash);
 
+		$scope.giveFeedback = function(fTmpl,sId,vId)
+		{
+			var path = "/sessionFeedback/" + (fTmpl || "") + "/" + (sId || "") + "/" + (vId || "");
+			$window.location.reload();
+			$location.path(path);
+		}
 })
 
 .controller('sessionCtrl', function($scope, $routeParams, $http) {
@@ -112,3 +118,10 @@ console.log($location.search()["s"]);
 				$location.path("sessions/" + response.visits._id);
 		});
 })
+
+
+.controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {
+	$scope.fbackTemp = $routeParams.fTmpl;
+	$scope.sessionId = $routeParams.sId;
+	$scope.visitId = $routeParams.vId;
+});

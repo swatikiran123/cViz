@@ -81,7 +81,10 @@
 									</div>
 								</div>
 								<div class="agenda-session-feedback-div" ng-class="{'agenda-session-feedback--visible' : !hideFeeedbackDiv}" >
-									<div feedback feedback-id="session.feedbackTemplate" visit-id="visit_id" session-id="session._id" feedback-model>
+									<!-- <div feedback feedback-id="session.feedbackTemplate" visit-id="visit_id" session-id="session._id" feedback-model> -->
+									<!-- <a ng-click="giveFeedback(session.feedbackTemplate,session._id,visit_id)">Give Feedback</a> -->
+
+									<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
 
 
 								</div>

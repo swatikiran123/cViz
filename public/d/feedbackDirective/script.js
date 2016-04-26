@@ -93,7 +93,7 @@ function arrayIntersection() {
     $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel).success(function(response) {
     })
 
-    showSuccessMessage();
+    // showSuccessMessage();
   };
 
   $scope.selection = [];
@@ -116,9 +116,16 @@ function arrayIntersection() {
       $scope.feedbackModel.item[index].answer = answerChoice.toString();
     };
 
-function showSuccessMessage()
+$scope.showSuccessMessage= function()
 {
   toaster.pop({title: "Thank You Note", body:"Thank you for your valuable feedback."});
+  $timeout(callSubmit,5000);
+ 
+}
+
+
+function callSubmit() {
+    window.history.back();
 }
 }])
 
