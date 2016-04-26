@@ -103,6 +103,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   $scope.navVisit ='';
   $scope.agendaEdit= false;
   $scope.showKey=false;
+  $scope.subdis= true;
 
 
   $scope.agendaTab=true;
@@ -515,6 +516,7 @@ break;
  }
   // Visit schedule table
   $scope.addSchedule=function(schedule){
+    $scope.subdis= false;
     var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     $scope.schedules.push({
