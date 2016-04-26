@@ -89,16 +89,17 @@ function getMyVisits(thisUser, timeline, limit){
 			else if(secure.isInAnyGroups(thisUser, "exec")){
 				logger.dump('test', 2,"Found exec!!!");
 			}
-			else if(secure.isInAnyGroups(thisUser, "vManager")){
+			else if(secure.isInAnyGroups(thisUser, "admin")){
 				logger.dump('test', 2,"Found vManager!!!");
 			}
-			else if( secure.isInAnyGroups(thisUser, "user")){
+			else if( secure.isInAnyGroups(thisUser, "user,vManager")){
 				logger.dump('test', 2, "Found user!!!");
 				filter = {
 					$or: [
 					{createBy: userId}
 					, {agm: userId}
 					, {anchor: userId}
+					, {secondaryVmanager: userId}
 					, {'client.salesExec': userId}
 					, {'client.accountGM': userId}
 					, {'client.industryExec': userId}

@@ -1,4 +1,4 @@
-Dear Visit Manager,
+Dear Admin,
 
 New Visit Agenda submitted by {{submittedBy}} on {{submittedOn}}.
 

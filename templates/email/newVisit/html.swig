@@ -1,4 +1,4 @@
-Dear Visit Manager,
+Dear Admin,
 
 <p>
 New Visit Agenda submitted by {{createBy.name.first}} {{createBy.name.last}} on {{createOn|date('jS \o\f F, Y')}}<br/>
