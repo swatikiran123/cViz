@@ -1,5 +1,5 @@
 <div ng-controller="visitsControllerMain">
-{{finall=true;""}}
+  {{finall=true;""}}
   <!--panel-three-->
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -22,54 +22,56 @@
     </md-input-container>
     
     <!-- <div ng-include src="'/public/mods/visits/keynotesVisitAdd.html'"></div> -->
-    <b>Add - Keynotes</b><br>
-    <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
-      <thead class="data-grid-header">
-        <tr>
-          <th>Keynote</th>
-          <th>Context</th>
-          <th>Order</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="data-grid-data">
-        <tr>
-          <td><input type="text" placeholder="note" ng-model="keynoteDef.note" keynote class="form-control" required>
-            <div ng-show="autoFailkey" class="error text-danger" >{{keynoteNotFound}}</div>  
-          </td>
-          <td>
-            <select name="type" ng-model="keynoteDef.context" ng-dropdown class="form-control" required>
-              <option ng-option value="welcome">Welcome</option>
-              <option ng-option value="thankyou">Thankyou</option>
-            </select>
+    <form name="keynoteForm" id="keynoteForm" class="form-vertical" >
 
-          </td>
-          <td>
-            <select name="type" ng-model="keynoteDef.order" ng-dropdown class="form-control" required>
-              <option ng-option value="1">1</option>
-              <option ng-option value="2">2</option>
-              <option ng-option value="3">3</option>
-              <option ng-option value="4">4</option>
-              <option ng-option value="5">5</option>
-            </select>
-          </td>
-          <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid || autoFailkey">Add Keynote</button></td>
-        </tr>
-        <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
-          <td>{{keynoteDef.note}}</td>
-          <td>{{keynoteDef.context}}</td>
-          <td>{{keynoteDef.order}}</td>
-          <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash fa-lg" /></a>
-            <a ng-if="mode=='edit'" class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a>
+      <b>Add - Keynotes</b><br>
+      <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+        <thead class="data-grid-header">
+          <tr>
+            <th>Keynote</th>
+            <th>Context</th>
+            <th>Order</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="data-grid-data">
+          <tr>
+            <td><input type="text" placeholder="note" ng-model="keynoteDef.noteName" keynote class="form-control" required>
+              <div ng-show="autoFailkey" class="error text-danger" >{{keynoteNotFound}}</div>  
+            </td>
+            <td>
+              <select name="type" ng-model="keynoteDef.context" ng-dropdown class="form-control" required>
+                <option ng-option value="welcome">Welcome</option>
+                <option ng-option value="thankyou">Thankyou</option>
+              </select>
+
+            </td>
+            <td>
+              <select name="type" ng-model="keynoteDef.order" ng-dropdown class="form-control" required>
+                <option ng-option value="1">1</option>
+                <option ng-option value="2">2</option>
+                <option ng-option value="3">3</option>
+                <option ng-option value="4">4</option>
+                <option ng-option value="5">5</option>
+              </select>
+            </td>
+            <td><button class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid || autoFailkey">Add Keynote</button></td>
+          </tr>
+          <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
+           <td >{{keynoteDef.noteName}}</td>
+           <td>{{keynoteDef.context}}</td>
+           <td>{{keynoteDef.order}}</td>
+           <td><a class="table-btn" ng-click="removekeynote($index)"><span class="fa fa-trash fa-lg" /></a>
+            <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editkeynote($index,keynoteDef)"><span class="fa fa-edit fa-lg" /></a> -->
           </td>
         </tr>
       </tbody>
     </table>
+  </form>
+  <br>
+  <invitees arraydata="arraydata" switch-mode="mode" user-type="employee"></invitees>
 
-    <br>
-    <invitees arraydata="arraydata" switch-mode="mode" user-type="employee"></invitees>
-
-  </div>
+</div>
 </div>
 
 <!--panel-three-->
