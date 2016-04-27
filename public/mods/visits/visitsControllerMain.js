@@ -487,8 +487,10 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
 
-    $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
       $scope.nextTab($scope.visits._id);
     })
