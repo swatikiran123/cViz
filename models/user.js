@@ -4,6 +4,7 @@ var bcrypt          = require('bcrypt-nodejs');
 var jwt             = require('jwt-simple');
 var constants       = require('../scripts/constants');
 var config          = require(path.join(constants.paths.config, '/config'));
+var secure          = require(path.join(constants.paths.scripts, '/secure'));
 var groupSchema     = require('./group');
 
 var Token = mongoose.Schema({
@@ -104,14 +105,17 @@ userSchema.post('init', function(doc) {
   if(doc.avatar === undefined){
     doc.avatar = "/public/assets/g/imgs/avatar.jpg";
   }
+	doc.set('groups', secure.getGroups(doc),  { strict: false });
 });
 
 userSchema.post('find', function(result) {
   //console.log(this instanceof mongoose.Query); // true
   // prints returned documents
-  console.log('find() returned ' + JSON.stringify(result));
+  //console.log('find() returned ' + JSON.stringify(result));
+	// console.log(result);
+	// result.set('groups', secure.getGroups(result),  { strict: false });
   // prints number of milliseconds the query took
-  console.log('find() took ' + (Date.now() - this.start) + ' millis');
+  //console.log('find() took ' + (Date.now() - this.start) + ' millis');
 });
 
 // generating a hash
