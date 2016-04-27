@@ -164,8 +164,8 @@ module.exports = {
 	"angular-image":{
 		"cdn":[],
 		"dev":[
-		"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.js",
-		"/public/libs/ngImgCropFullExtended/compile/unminified/ng-img-crop.css"
+		"/public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.js",
+		"/public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.css"
 		],
 	},
 

@@ -10,7 +10,8 @@ grunt.initConfig(  {
    build: {
      options: {
       removeComments: true,
-      collapseWhitespace: true
+      collapseWhitespace: true,
+      mangle:false
     },
     expand: true,
     cwd: 'public/',
@@ -23,7 +24,8 @@ grunt.initConfig(  {
   build: {
     options: {
       removeComments: true,
-      collapseWhitespace: true
+      collapseWhitespace: true,
+      mangle   : false
     },
     expand: true,
     cwd: 'public/',
@@ -33,49 +35,67 @@ grunt.initConfig(  {
 },
 //copy
 copy: {
+  options: {,
+      mangle   : false
+    },
   libs: {
     files: [
       // bootstrap
-      {src: ['public/libs/bootstrap/dist/css/bootstrap.min.css'], dest: 'dist/public/libs/bootstrap/dist/css/bootstrap.min.css'},
-      {src: ['public/libs/bootstrap/dist/js/bootstrap.min.js'], dest: 'dist/public/libs/bootstrap/dist/js/bootstrap.min.js'},
+      {src: ['public/libs/bootstrap/dist/css/bootstrap.min.css'], dest: 'dist/public/libs/bootstrap/dist/css/bootstrap.css'},
+      {src: ['public/libs/bootstrap/dist/js/bootstrap.min.js'], dest: 'dist/public/libs/bootstrap/dist/js/bootstrap.js'},
       //angular-calendar
-      {src: ['public/libs/fullcalendar/dist/fullcalendar.min.css'], dest: 'dist/public/libs/fullcalendar/dist/fullcalendar.min.css'},
-      {src: ['public/libs/fullcalendar/dist/fullcalendar.min.js'], dest: 'dist/public/libs/fullcalendar/dist/fullcalendar.min.js'},
+      {src: ['public/libs/fullcalendar/dist/fullcalendar.min.css'], dest: 'dist/public/libs/fullcalendar/dist/fullcalendar.css'},
+      {src: ['public/libs/fullcalendar/dist/fullcalendar.min.js'], dest: 'dist/public/libs/fullcalendar/dist/fullcalendar.js'},
       {src: ['public/libs/fullcalendar/dist/gcal.js'], dest: 'dist/public/libs/fullcalendar/dist/gcal.js'},
       //font-awesome
-      {src: ['public/libs/font-awesome/css/font-awesome.min.css'], dest: 'dist/public/libs/font-awesome/css/font-awesome.min.css'},
+      {src: ['public/libs/font-awesome/css/font-awesome.min.css'], dest: 'dist/public/libs/font-awesome/css/font-awesome.css'},
       //jquery
-      {src: ['public/libs/jquery/dist/jquery.min.js'], dest: 'dist/public/libs/jquery/dist/jquery.min.js'},
-      {src: ['public/libs/jquery-ui/jquery-ui.min.js'], dest: 'dist/public/libs/jquery-ui/jquery-ui.min.js'},
-      {src: ['public/libs/jquery-ui/themes/smoothness/jquery-ui.min.css'], dest: 'dist/public/libs/jquery-ui/themes/smoothness/jquery-ui.min.css'},
+      {src: ['public/libs/jquery/dist/jquery.min.js'], dest: 'dist/public/libs/jquery/dist/jquery.js'},
+      {src: ['public/libs/jquery-ui/jquery-ui.min.js'], dest: 'dist/public/libs/jquery-ui/jquery-ui.js'},
+      {src: ['public/libs/jquery-ui/themes/smoothness/jquery-ui.min.css'], dest: 'dist/public/libs/jquery-ui/themes/smoothness/jquery-ui.css'},
       //angular-core
-      {src: ['public/libs/angular/angular.min.js'], dest: 'dist/public/libs/angular/angular.min.js'},
-      {src: ['public/libs/angular-route/angular-route.min.js'], dest: 'dist/public/libs/angular-route/angular-route.min.js'},
-      {src: ['public/libs/angular-cookies/angular-cookies.min.js'], dest: 'dist/public/libs/angular-cookies/angular-cookies.min.js'},
+      {src: ['public/libs/angular/angular.min.js'], dest: 'dist/public/libs/angular/angular.js'},
+      {src: ['public/libs/angular-route/angular-route.min.js'], dest: 'dist/public/libs/angular-route/angular-route.js'},
+      {src: ['public/libs/angular-cookies/angular-cookies.min.js'], dest: 'dist/public/libs/angular-cookies/angular-cookies.js'},
       //angular-forms
       {src: ['public/libs/angular-messages/angular-messages.min.js'], dest: 'dist/public/libs/angular-messages/angular-messages.min.js'},
+      {src: ['public/libs/angular-messages/angular-messages.min.js.map'], dest: 'dist/public/libs/angular-messages/angular-messages.min.js.map'},
+     
       //angular-bootstrap
-      {src: ['public/libs/angular-bootstrap/ui-bootstrap-tpls.min.js'], dest: 'dist/public/libs/angular-bootstrap/ui-bootstrap-tpls.min.js'},
+      {src: ['public/libs/angular-bootstrap/ui-bootstrap-tpls.min.js'], dest: 'dist/public/libs/angular-bootstrap/ui-bootstrap-tpls.js'},
       //angular-animate
-      {src: ['public/libs/angular-animate/angular-animate.min.js'], dest: 'dist/public/libs/angular-animate/angular-animate.min.js'},
+      {src: ['public/libs/angular-animate/angular-animate.min.js'], dest: 'dist/public/libs/angular-animate/angular-animate.js'},
+      {src: ['public/libs/angular-animate/angular-animate.min.js.map'], dest: 'dist/public/libs/angular-animate/angular-animate.min.js.map'},
       //angular-material
-      {src: ['public/libs/angular-aria/angular-aria.min.js'], dest: 'dist/public/libs/angular-aria/angular-aria.min.js'},
-      {src: ['public/libs/angular-material/angular-material.min.js'], dest: 'dist/public/libs/angular-material/angular-material.min.js'},
-      {src: ['public/libs/angular-material/angular-material.min.css'], dest: 'dist/public/libs/angular-material/angular-material.min.css'},
+      {src: ['public/libs/angular-aria/angular-aria.min.js'], dest: 'dist/public/libs/angular-aria/angular-aria.js'},
+       {src: ['public/libs/angular-aria/angular-aria.min.js.map'], dest: 'dist/public/libs/angular-aria/angular-aria.min.js.map'},
+      {src: ['public/libs/angular-material/angular-material.min.js'], dest: 'dist/public/libs/angular-material/angular-material.js'},
+      {src: ['public/libs/angular-material/angular-material.min.css'], dest: 'dist/public/libs/angular-material/angular-material.css'},
       //angular-growl
-      {src: ['public/libs/angular-growl-v2/build/angular-growl.min.css'], dest: 'dist/public/libs/angular-growl-v2/build/angular-growl.min.css'},
-      {src: ['public/libs/angular-growl-v2/build/angular-growl.min.js'], dest: 'dist/public/libs/angular-growl-v2/build/angular-growl.min.js'},
+      {src: ['public/libs/angular-growl-v2/build/angular-growl.min.css'], dest: 'dist/public/libs/angular-growl-v2/build/angular-growl.css'},
+      {src: ['public/libs/angular-growl-v2/build/angular-growl.min.js'], dest: 'dist/public/libs/angular-growl-v2/build/angular-growl.js'},
       //angular-fileupload
-      {src: ['public/libs/ng-file-upload/ng-file-upload.min.js'], dest: 'dist/public/libs/ng-file-upload/ng-file-upload.min.js'},
-      {src: ['public/libs/ng-file-upload/ng-file-upload-shim.min.js'], dest: 'dist/public/libs/ng-file-upload/ng-file-upload-shim.min.js'},
+      {src: ['public/libs/ng-file-upload/ng-file-upload.min.js'], dest: 'dist/public/libs/ng-file-upload/ng-file-upload.js'},
+      {src: ['public/libs/ng-file-upload/ng-file-upload-shim.min.js'], dest: 'dist/public/libs/ng-file-upload/ng-file-upload-shim.js'},
       //angular-image
       {src: ['public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.js'], dest: 'dist/public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.js'},
       {src: ['public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.css'], dest: 'dist/public/libs/ngImgCropFullExtended/compile/minified/ng-img-crop.css'},
       //utils
       {src: ['public/libs/moment/moment.js'], dest: 'dist/public/libs/moment/moment.js'},
-      {src: ['public/libs/moment-range/dist/moment-range.min.js'], dest: 'dist/public/libs/moment-range/dist/moment-range.min.js'},
+      {src: ['public/libs/moment-range/dist/moment-range.min.js'], dest: 'dist/public/libs/moment-range/dist/moment-range.js'},
 
+      {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.woff2'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.woff2'},
       {src: ['public/assets/w/styles/materialform.css'], dest: 'dist/public/assets/w/styles/materialform.css'},
+      {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.woff'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.woff'},
+      {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.ttf'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.ttf'},
+      {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.svg'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.svg'},
+
+      {src: ['public/libs/angular-route/angular-route.min.js.map'], dest: 'dist/public/libs/angular-route/angular-route.min.js.map'},
+      {src: ['public/libs/bootstrap/dist/css/bootstrap.min.css.map'], dest: 'dist/public/libs/bootstrap/dist/css/bootstrap.min.css.map'},
+      {src: ['public/libs/angular/angular.min.js.map'], dest: 'dist/public/libs/angular/angular.min.js.map'},
+      {src: ['public/libs/angular-cookies/angular-cookies.min.js.map'], dest: 'dist/public/libs/angular-cookies/angular-cookies.min.js.map'},
+      {src: ['public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'], dest: 'dist/public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'},
+      {src: ['public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'], dest: 'dist/public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'},
       ],
     },
     images: {
@@ -128,6 +148,12 @@ copy: {
       src: ['**/*.swig', '**/**/*.swig','**/**/**/*.swig'],
       dest: 'dist/templates/'
     },
+    fonts: {
+      expand:true,
+      cwd: 'public/',
+      src: ['**/*.ttf', '**/**/*.ttf','**/**/**/*.ttf'],
+      dest: 'dist/public/'
+    },
 
     views: {
       expand:true,
@@ -148,7 +174,7 @@ copy: {
   },
   cssmin: {
     options: {
-      keepSpecialComments: 0
+      mangle   : false
     },
     build:{
       expand: true,

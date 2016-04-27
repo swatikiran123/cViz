@@ -542,9 +542,9 @@ function getSchedulesById(id){
 						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
 						climate = {
 							daylike:request.weather[0].main,
-							temperature:request.main.temp + "&deg;C",
-							minTemp:request.main.temp_min + "&deg;C",
-							maxTemp:request.main.temp_max + "&deg;C",
+							temperature:request.main.temp + "\u00B0C",
+							minTemp:request.main.temp_min + "\u00B0C",
+							maxTemp:request.main.temp_max + "\u00B0C",
 							icon: icon
 						}
 					}
