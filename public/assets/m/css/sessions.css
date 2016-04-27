@@ -8,11 +8,20 @@
   padding-top: 2px;
 
   }
-  .scroll-outer {
+.scroll-outer {
   overflow-x:hidden;
+}
+.circle { 
+   width: 50px;
+   height: 50px;
+   background:  #eeeeee; 
+   -moz-border-radius: 50px; 
+   -webkit-border-radius: 50px; 
+   border-radius: 50px;
 }
 
 .scroll-inner{
+ 
   overflow-x: auto;
   white-space: nowrap;
   margin-bottom: -15px;
@@ -21,6 +30,9 @@
  ul {
 
     -webkit-padding-start: 10px;
+}
+.sessionfeedback{
+  background-color: #eeeeee;
 }
 
 .scroll
@@ -125,8 +137,9 @@
 
   .session-status-img {
     color: black;
-    width: 28px;
-    height: 28px;
+    width: 48px;
+    height: 48px;
+    font-size: 26px;
     margin-left: -10px;
   }
   #session1 {
@@ -143,7 +156,7 @@
   .agenda-session-name a {
     font-family: workSansMedium;
     font-size: 16px;
-    color: purple;
+    color: black;
     font-weight: bold;
   }
   .agenda-session-loc {
@@ -238,70 +251,6 @@
     vertical-align: top;
 }
 
-@media screen and (min-width: 1000px) {
-
-  .agenda-list  li{
-      display: inline;
-      margin-right: 100px;
-    }
-
-  .agenda-list a {
-    color:  #545454;
-    font-size: 1em;
-    font-family: workSansBold;
-    color: @futureAgendaSessionNameColor;
-  }
-  .schday{
-    font-size: 10px;
-    font-family:  workSansMedium;
-  }
-
-.agenda-list a:focus .schday{
-    display: none;
-
-  }
-
-h6 {
-    visibility: hidden;
-}
-
-.agenda-list a:focus {
-    outline: none;
-    border-bottom: 3px solid purple;
-    font-size: 1.6em;
-    height: 35px;
-    vertical-align: top;
-
-}
-
-
-
-}
-@media screen and (max-width: 940px) {
-  .agenda-list a {
-    font-size: 1em;
-    font-family: workSansBold;
-    color: @futureAgendaSessionNameColor;
-  }
-
-.agenda-list a:focus .schday{
-   display: none;
-}
- .schday{
-    font-size: 10px;
-    font-family:  workSansMedium;
-  }
-
-.agenda-list a:focus {
-
-    border-bottom: 3px solid purple;
-    font-size: 1.6em;
-    height: 35px;
-    vertical-align: top;
-}
-
-}
-
 @media screen and (max-width: 320px){
     .agenda-list  li{
       display: inline;
@@ -309,43 +258,7 @@ h6 {
     }
 
 }
-
-
-
-@media screen and (max-width: 600px) {
-
-  /*.agenda-list  li{
-      display: inline;
-      margin-right: 25px;
-    }
-  */
-
-  .agenda-list a {
-    font-size: 1em;
-    font-family: workSansBold;
-    color: @futureAgendaSessionNameColor;
-  }
-
-/*.agenda-list a:focus .schday{
-
- display: none;
-
-}
- .schday{
-    font-size: 10px;
-    font-family:  workSansMedium;
-  }
-
-.agenda-list a:focus {
-
-  border-bottom: 3px solid purple;
-    font-size: 1.6em;
-    height: 35px;
-    vertical-align: top;
-  }
-}*/
-
-  @media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
 
   .agenda-session-name a {
     font-family: workSansMedium;
@@ -371,6 +284,7 @@ h6 {
     }
 
 }
+
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
 
         .agenda-list  li{
@@ -384,8 +298,6 @@ h6 {
       margin-right: 60px;
     }
 }
-
-
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
 
         .agenda-list  li{
@@ -393,3 +305,11 @@ h6 {
       margin-right: 70px;
     }
 }
+@media only screen and (min-device-width: 1440px) and (max-device-width: 1600px) {
+
+        .agenda-list  li{
+      display: inline;
+      margin-right: 70px;
+    }
+}
+

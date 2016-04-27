@@ -3,6 +3,8 @@ angular.module('sessions')
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout ,$window) {
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
+        console.log(JSON.stringify($scope.scheduleList,null,2));
+        //console.log($scope.scheduleList.day);
     });
 
 
@@ -26,7 +28,9 @@ angular.module('sessions')
 				 $scope.selectedIndex = $index;
 			}
 		}
+           
 
+     
 
 		$scope.setTab = function(){
 			if($location.search()["day"] === undefined)
@@ -124,4 +128,8 @@ angular.module('sessions')
 	$scope.fbackTemp = $routeParams.fTmpl;
 	$scope.sessionId = $routeParams.sId;
 	$scope.visitId = $routeParams.vId;
+	$http.get('/api/v1/secure/visitSchedules/' + $scope.sessionId).success(function(response){
+		console.log(response.session.title);
+		$scope.sessionTitle = response.session.title;
+	} );
 });

@@ -293,8 +293,9 @@ span.menuName {
   overflow:hidden;
   height: 58px; 
   margin-bottom:32px;
-}
-
+}img {
+                width: 60px;
+            }
 .profile-location u {
   text-decoration: inherit;
   border-bottom: dotted 1px #fff;

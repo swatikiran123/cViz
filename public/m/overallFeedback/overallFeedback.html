@@ -64,26 +64,37 @@ input[type=checkbox]:checked {
     background-size: 36px;
 }
 
+progress{
+    width: 100%;
+    height: 5px;
+    margin: 2px;
 
+}
+progress {background-color: #8fa6c8 !important;}
 
+progress::-moz-progress-bar {background-color: #8fa6c8 !important;}
+
+progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
 
 </style>
 
 
-<div header showprofile="false" icon="fa fa-line-chart" title1="Feedback page" title2="feedback for visit">
+<div header showprofile="false" icon="fa fa-line-chart" title1="Visit Feedback" title2="feedback for visit">
     factsheet
 </div>
 <div class="divtop">  
     <div id="overall-feedback-page">
-        <div class="header">Overall Feedback</div>
+   
         <div class="scrollable-content">
 
             <div class="corousel">
                 <div class="corousel-inner" style="width: 1496px;">
+                <br>
+                <br>
                 <!-- {{url=form-{{order}};""}} -->
                 {{form_id}}
                 form-{{order}}
-                    <form  id="form-{{order}}" class="form-div active">
+                    <form  id="form-order" class="form-div active" value="Increase Progress">
 <!--                         {{items[order]}}
                         {{items[order].choices}} -->
                         <div ng-if="items[order].mode == 'multi-choice'" class="checkbox-div">
@@ -130,6 +141,7 @@ input[type=checkbox]:checked {
 
                                     </form>
                                     <form id="form-2" class="form-div">
+                                    hellow
                                         <!-- <div class="star-ratings-div">
                                             <div class="star-rating-text">How would you rate your hospitality in and outside Bangalore ?</div>
                                             <div class="stars">
@@ -199,13 +211,16 @@ input[type=checkbox]:checked {
                                                 </div>
                                             </div>
                                         </div>
+
+                                
                                         <div class="save-and-progress">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
+                                            
+                                            <progress id="progress" value="{{counter}}" max="{{max}}">
+              
+                                                </progress>
+                                            
                                             <div class="prev-and-save-buttons">
-                                                <div class="prev-button disabled" ng-click="prev();orderDecrement();">
+                                                <div class="prev-button disabled" ng-click="prev(order);orderDecrement();">
                                                     <div class="prev-icon"></div>PREV</div>
                                                     <div ng-if="showSaveNext == true" class="save-next-button" type="submit" ng-click="next(order);">SAVE & NEXT
                                                         <div class="next-icon"></div>

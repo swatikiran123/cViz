@@ -6,6 +6,28 @@
   padding-top: 80px;
 }
 
+ul{
+    list-style: none;
+
+  
+    -webkit-padding-start: 2px;
+
+}
+ .quickfacts .divider {
+
+    height: 0.5px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #bdbdbd;
+}
+ .block{
+  padding: 15px 5px;
+    background-color: #fff;
+    font-family: robotoRegular;
+    box-shadow: 2px 4px 4px #c1c1c1;
+    font-size: 0.85em;
+
+}
 
 .my-city-content {
     padding-top: 15px;
@@ -117,12 +139,20 @@ height: 350px;
   font-family: workSansSemiBold;
   letter-spacing: 5px;
   padding-top: 0px;
-}
-
+}/*
+.circle { 
+   width: 50px;
+   height: 50px;
+   background:  #eeeeee; 
+   -moz-border-radius: 50px; 
+   -webkit-border-radius: 50px; 
+   border-radius: 50px;
+}*/
 .comb {
     width:100%;
+    padding-top: 10px;
     height:auto;
-    min-height:100px;
+ 
     overflow-x:auto;
  white-space: nowrap;
   margin-bottom: -1px;
@@ -136,7 +166,7 @@ height: 350px;
 fieldset{
     float: left;
     width: 180px;
-    height: 130px;
+    height: 100px;
     text-align: center;
   
 }

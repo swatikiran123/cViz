@@ -1,4 +1,7 @@
-
+<style>h6{
+	visibility: hidden;
+}
+</style>
 <div header showprofile="false" icon="fa fa-list" title1="Visit Agenda" title2="feedback" >
 
 	 <ul class="scroll-outer">
@@ -54,8 +57,16 @@
 										{{session.session.endTime | date : "HH:mm"}} -->
 									</span>
 									<span class="agenda-session-name">
-										<a href="#/sessions/{{session._id}}/details">{{session.session.title}}</a>
+									<span ng-switch on="session.session.type.toLowerCase()">
+									<a ng-switch-when="presentation" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
+									<a ng-switch-when="discussion" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
+									<a  ng-switch-when="floor-walk" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
+									<a ng-switch-when="dinner" href="#/sessions/{{session._id}}/details" >Dinner</a>
+									<a ng-switch-when="lunch" href="#/sessions/{{session._id}}/details" >Lunch</a>
+									<a  ng-switch-when="tea-break" href="#/sessions/{{session._id}}/details" >Tea-Break</a>
+									
 									</span>
+						
 								</p>
 
 									<div class="agenda-session-overview">
@@ -99,5 +110,4 @@
 </div> <!-- enf of days - sessions-->
 </div> <!-- end of scrollable area -->
 
-<div id="bottom">Bottom</div>
-</div> <!-- end of page container -->
+ <!-- end of page container -->
