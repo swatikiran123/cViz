@@ -35,7 +35,7 @@ grunt.initConfig(  {
 },
 //copy
 copy: {
-  options: {,
+  options: {
       mangle   : false
     },
   libs: {

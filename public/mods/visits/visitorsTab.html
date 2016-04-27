@@ -126,7 +126,7 @@
             <md-input-container class="md-block" flex-gt-sm>
             <label>Password</label>
             <input type="password" md-maxlength="255" minlength="8" required name="password" 
-            ng-model="userdata.password">
+            ng-model="userdata.local.password">
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
              <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
