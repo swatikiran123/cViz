@@ -612,6 +612,7 @@ $scope.removekeynote = function(index){
       userdata.avatar = avatar;
     }
     userdata.email = emailId;
+    userdata.local.email = emailId;
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
     console.log(userdata);
@@ -657,6 +658,17 @@ $scope.removekeynote = function(index){
         visitor: $scope.userId,
         influence: influence
       });
+
+       for(var i=0;i<$scope.visitors.length - 1;i++)
+       {
+          if($scope.userId == $scope.visitors[i].visitor)
+          {
+            $scope.showFlag = "noUser";
+            $scope.message = "Visitor Already Exists , Add Unique Visitor";
+            $timeout(function () { $scope.message = ''; }, 3000);
+            $scope.visitors.splice($scope.visitors.length - 1, 1);
+          }
+       }
      }
 
      else if(response.association !='customer')
