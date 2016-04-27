@@ -10,6 +10,8 @@ feedback.config(['$routeProvider', function ($routeProvider) {
 }])
    feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $location, $routeParams,$http,$rootScope) {
     $scope.order = 0;
+     $scope.counter = 0;
+    
     $scope.showSaveNext = true;
     $scope.form_id = "form-" +  $scope.order;
     //$scope.feedbackModel = '';
@@ -21,6 +23,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
                     $scope.items = response.item;
                     $scope.length = response.item.length - 1;
                     $scope.feedbackModel = response;
+                    $scope.max = $scope.length + 1;
                 });
     });
 
@@ -106,7 +109,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             delete $scope.feedbackModel.createOn;
         }
 
-        $scope.next = function() {
+        $scope.next = function(order) {
             deleteData();
             var providedById = $rootScope.user._id;
             $scope.feedbackModel.visitid = $scope.visitId;
@@ -119,8 +122,11 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             $http.put('/api/v1/secure/feedbacks/'+ $scope.overallFeedbackTmpl , $scope.feedbackModel).success(function(response) {
               // console.log(response);
             })    
+   $scope.counter++;
+       
 
             $scope.orderIncrement();
+             
 
             // if (!(angular.element('.form-div').last().hasClass('active'))) {
             //     var cur_active = angular.element('.form-div.active');
@@ -132,15 +138,16 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             // }
         };
 
-        $scope.prev = function() {
-            if (!(angular.element('.form-div').first().hasClass('active'))) {
+        $scope.prev = function(order) {
+            /*if (!(angular.element('.form-div').first().hasClass('active'))) {
                 var cur_active = angular.element('.form-div.active');
                 count--;
                 cur_active.prev().addClass('active');
                 cur_active.removeClass('active');
                 angular.element('.progress-bar').css('width', $scope.progress_percentage * count + "%");
                 angular.element(".corousel-inner").css("transform", "translateX(" + (count - 1) * minusWidth + "px)");
-            }
+            }*/
+             $scope.counter--;
         };
 
         $scope.submitAndExitForm = function() {

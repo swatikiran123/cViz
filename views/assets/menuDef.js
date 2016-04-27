@@ -36,6 +36,7 @@ module.exports = {
 			icon: "fa-list",
 			roles: "user,customer,exec,vManager"
 		},
+		
 		{
 			name: "Exec Bios",
 			link: "/m/main/#/execBios",
@@ -57,7 +58,7 @@ module.exports = {
 		{
 			name: "Feedback",
 			link: "/m/main/#/feedback",
-			icon: "fa fa-comments",
+			icon: "fa-comments",
 			roles: "exec,customer"
 		},
 		{
