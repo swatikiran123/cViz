@@ -29,6 +29,7 @@ service.deleteById = deleteById;
 service.getMyVisits = getMyVisits;
 service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
+service.pushSession = pushSession;
 
 module.exports = service;
 
@@ -762,6 +763,67 @@ function getParticipantsById(id){
 			}) // end of user model for emp
 		}
 	}); // end of visit model
+
+	return deferred.promise;
+}
+
+function getVisitSessionsByDate(visitId, thisDate){
+	var deferred = Q.defer();
+
+	var  filter = {
+		$and: [
+				{'visit': visitId}
+		  , {'scheduleDate': thisDate }
+		]
+	};
+
+	scheduleModel
+		.find(filter)
+		.sort('session.startTime')
+		//.select('_id name email avatar summary jobTitle organization contactNo')
+		.exec(function(err, sessions){
+			if(err){
+				console.log(err);
+				deferred.reject(err)
+			}
+			else {
+				deferred.resolve(sessions);
+			}
+		});
+		return deferred.promise;
+}
+
+function pushSession(sessionId, time){
+	var deferred = Q.defer();
+
+	scheduleModel
+		.findOne({'_id': sessionId})
+		.exec(function(err, session){
+			if(err){
+				console.log(err);
+				deferred.reject(err);
+			}
+			else {
+				getVisitSessionsByDate(session.visit, session.scheduleDate)
+				.then(function(allSessions){
+
+					allSessions.forEach(function(sess){
+						if(sess.session.startTime >= session.session.startTime){
+							sess.session.startTime = DateAddTime(sess.session.startTime, time);
+							sess.session.endTime = DateAddTime(sess.session.endTime, time)
+							scheduleModel.findByIdAndUpdate(sess._id, sess, function (err, doc) {
+								if (err) {
+									console.log("error updating session");
+									console.log(err.stack);
+								}
+							}); // end of schedule Update
+						} // end of if
+
+					}); // end of sess forEach
+				});
+			} // end of if err
+			deferred.resolve("Done");
+		}); // end of find schedule
 
 	return deferred.promise;
 }

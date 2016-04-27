@@ -1,6 +1,7 @@
 module.exports = {
 
     'web'					: {
+			'customer'	: '/m/main/',
 			'admin'			: '/manage/',
 			'vManager'	: '/manage/',
 			'user'			: '/manage/',
@@ -11,6 +12,7 @@ module.exports = {
 			'customer'	: '/m/main/',
 			'exec'			: '/m/visits/',
 			'user'			: '/m/visits/',
-			'vManager'	: '/m/visits/'
+			'vManager'	: '/m/visits/',
+			'admin'			: '/m/visits/'
 		}
 }

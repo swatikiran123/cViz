@@ -114,3 +114,9 @@ DatesInRange = function(dt1, dt2){
 	var dayRange = moment.range(dt1, dt2);
 	return (dayRange.toArray('days'));
 }
+
+DateAddTime = function(dt1, mins){
+	var parsedDate = new Date(Date.parse(dt1))
+	var newDate = new Date(parsedDate.getTime() + (1000 * mins * 60));
+	return newDate;
+}
