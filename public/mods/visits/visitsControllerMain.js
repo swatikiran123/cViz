@@ -617,6 +617,7 @@ $scope.removekeynote = function(index){
     userdata.local.email = emailId;
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
+    userdata.orgRef = $scope.visits.client._id;
     console.log(userdata);
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
       console.log('POST');
@@ -651,8 +652,9 @@ $scope.removekeynote = function(index){
     var influence= visitorDef.influence;
     var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
+
     $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitorId).success(function(response) {
-     if(response.association == 'customer')
+     if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
      { 
        $scope.userId = response._id;
        $scope.showFlag = "user";
@@ -677,6 +679,14 @@ $scope.removekeynote = function(index){
      {
       $scope.showFlag = "noUser";
       $scope.message = "User not found";
+      $timeout(function () { $scope.message = ''; }, 3000);
+    }
+
+    else if(response.orgRef != $scope.visits.client._id)
+    {
+      console.log($scope.visits.client.name);
+      $scope.showFlag = "noUser";
+      $scope.message = "User does not belongs to " + $scope.visits.client.name;
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
