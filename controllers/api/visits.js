@@ -14,10 +14,11 @@ controller.updateById = updateById;
 controller.deleteById = deleteById;
 
 controller.getWithAction = getWithAction;
-controller.getSessionsById = getSessionsById;
-controller.getSchedulesById=getSchedulesById;
-controller.getExecsById = getExecsById;
-controller.getKeynotesById = getKeynotesById;
+// controller.getSessionsById = getSessionsById;
+// controller.getSchedulesById=getSchedulesById;
+// controller.getExecsById = getExecsById;
+// controller.getKeynotesById = getKeynotesById;
+// controller.pushSession = pushSession;
 
 module.exports = controller;
 
@@ -77,9 +78,13 @@ function getWithAction(req, res){
 			getExecsById(req, res);
 			break;
 
-        case "keynotes":
-            getKeynotesById(req,res);
-            break;
+    case "keynotes":
+        getKeynotesById(req,res);
+        break;
+
+		case "pushsession":
+				pushSession(req,res);
+				break;
 
 		default:
 			res.send("Invalid action");
@@ -87,7 +92,6 @@ function getWithAction(req, res){
 }
 
 function getMyVisits(req,res){
-	console.log("my visits controller");
 	var timeline = (req.param('timeline')===undefined)? "all": req.param('timeline');
 	var limit = (req.param('limit')==undefined)? 25: req.param('limit');
 
@@ -169,11 +173,11 @@ function getExecsById(req,res){
 
 function getKeynotesById(req,res){
     var visitid;
-    console.log(req.params.action);
+
     dataService.getMyVisits(req.user,"next-one")
     .then(function(data){
         if (data){
-            console.log(data["next-one"].visits._id);
+
             if(req.params.id != "current")
                 visitid = req.params.id;
             else
@@ -197,6 +201,21 @@ function getKeynotesById(req,res){
             logger.Json("No active visits");
             res.status(404).send("No active visits");
         }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function pushSession(req,res){
+	var visitId = req.params.id;
+	var sessionId = req.param('sessionId');
+	var time = req.param('time');
+
+  dataService.pushSession(sessionId, time)
+    .then(function(data){
+        res.status(404).send("Session moved successfully");
     })
     .catch(function (err){
         console.log("exception" + err);
