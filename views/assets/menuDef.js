@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: "My Visits",
 			link: "/m/visits/#/visits/all/my",
-			icon: "fa-calendar",
+			icon: "fa-plane",
 			roles: "user,vManager"
 		},
 		{
@@ -33,7 +33,7 @@ module.exports = {
 		{
 			name: "Agenda",
 			link: "/m/visits/#/agenda",
-			icon: "fa-list",
+			icon: "fa-calendar",
 			roles: "user,customer,exec,vManager"
 		},
 		

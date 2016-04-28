@@ -18,8 +18,10 @@ app.controller('homeCtrl', function ($scope, location, $routeParams, $http) {
     })
 });
 
-app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams', function ($scope, location,$http,$routeParams) {
+app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope', function ($scope, location,$http,$routeParams,$rootScope) {
 	$scope.order = 0;
+	console.log($rootScope.user.groups);
+	$scope.group=$rootScope.user.groups;
 	$scope.showContinue = true;
 	$scope.medium = "medium";
 	$scope.arrayData=[];
@@ -66,7 +68,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams', func
 	}
 }]);
 
-app.controller('thankyouCtrl', ['$scope', 'location', '$http', function ($scope, location, $http) {
+app.controller('thankyouCtrl', ['$scope', 'location', '$http',  function ($scope, location, $http) {
 	console.log("Thank You Controller Running");
 	$scope.order = 0;
 	$http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
