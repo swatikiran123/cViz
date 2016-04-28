@@ -24,12 +24,12 @@ module.exports = {
 			icon: "fa-calendar",
 			roles: "exec,vManager"
 		},
-		// {
-		// 	name: "Add Visit",
-		// 	link: "/m/visit/add/#/add",
-		// 	icon: "fa-plus",
-		// 	roles: "user,vManager"
-		// },
+		{
+			name: "Add Visit",
+			link: "/m/visit/add/#/add",
+			icon: "fa-plus",
+			roles: "user,vManager"
+		},
 		{
 			name: "Agenda",
 			link: "/m/visits/#/agenda",
