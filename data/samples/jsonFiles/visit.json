@@ -41,8 +41,8 @@
 
 		"interest"				:
 			{
-				"businessType"			: "repeat",
-				"visitType"				: "operational",
+				"businessType"			: "Existing",
+				"visitType"				: "Operations Review",
 				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
 			},
 
@@ -103,8 +103,8 @@
 
 		"interest"				:
 			{
-				"businessType"			: "new",
-				"visitType"				: "operational",
+				"businessType"			: "New",
+				"visitType"				: "Due Diligence",
 				"objective"				: "To Know the Progress of CSC into Big Data Analytics "
 			},
 
@@ -167,8 +167,8 @@
 
 		"interest"				:
 			{
-				"businessType"			: "new",
-				"visitType"				: "strategic",
+				"businessType"			: "New",
+				"visitType"				: "Exploratory",
 				"objective"				: "To Know the Progress of CSC into DevOps"
 			},
 
@@ -237,8 +237,8 @@
 
 		"interest"				:
 			{
-				"businessType"			: "repeat",
-				"visitType"				: "operational",
+				"businessType"			: "Existing",
+				"visitType"				: "Renewals",
 				"objective"				: "Partnership"
 			},
 
@@ -316,12 +316,12 @@
 
 		"interest"				:
 			{
-				"businessType"			: "new",
-				"visitType"				: "stratagic",
+				"businessType"			: "New",
+				"visitType"				: "Planning",
 				"objective"				: "To observe the different activities and techniques"
 			},
 
-		"status"					:  "finalize",
+		"status"					:  "confirm",
 		"createBy"			: ObjectId("A02234567892345678900010"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900005"),
@@ -344,7 +344,7 @@
 	{
 		"_id"						: ObjectId("A01234567892345678900006"),
 
-		"title"					: "Test data visit 11 Apr-15 Apr",
+		"title"					: "AOL Visit (5 days)",
 
 		"client" 					: ObjectId("A03234567892345678900005"),
 
@@ -403,12 +403,12 @@
 
 		"interest"				:
 			{
-				"businessType"			: "new",
-				"visitType"				: "stratagic",
+				"businessType"			: "Existing",
+				"visitType"				: "Strategic",
 				"objective"				: "To observe the different activities and techniques"
 			},
 
-		"status"					:  "wip",
+		"status"					:  "confirm",
 		"createBy"			: ObjectId("A02234567892345678900011"),
 
 		"feedbackTmpl"				    : ObjectId("A10234567892345678900003"),
