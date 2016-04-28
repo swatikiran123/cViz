@@ -533,8 +533,9 @@ break;
   // Visit schedule table
   $scope.addSchedule=function(schedule){
     $scope.subdis= false;
-    if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined){
+    if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
       $scope.stdate= false;
+      $scope.err= false;
       var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
       var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
       $scope.schedules.push({
@@ -543,28 +544,32 @@ break;
         location: schedule.location,
         meetingPlace: schedule.meetingPlace
       });
-    } else {$scope.stdate= true;}
+    }
+    else {
+      $scope.stdate= true;
+      $scope.err=true;
+      $timeout(function () { $scope.err = ''; }, 5000);}
 
-    schedule.startDate='';
-    schedule.endDate='';
-    schedule.location='';
-    schedule.meetingPlace='';
-  };
-
-  $scope.removeSchedule = function(index,schedules){
-
-    $scope.schedules.splice(index, 1);
-    if (schedules.length == 0)
-    {
-      $scope.subdis= true;
-    }else{
-      $scope.subdis= false;}
+      schedule.startDate='';
+      schedule.endDate='';
+      schedule.location='';
+      schedule.meetingPlace='';
     };
 
-    $scope.editSchedule = function(index,schedule){
-      $scope.schedule= schedule;
+    $scope.removeSchedule = function(index,schedules){
+
       $scope.schedules.splice(index, 1);
-    };
+      if (schedules.length == 0)
+      {
+        $scope.subdis= true;
+      }else{
+        $scope.subdis= false;}
+      };
+
+    // $scope.editSchedule = function(index,schedule){
+    //   $scope.schedule= schedule;
+    //   $scope.schedules.splice(index, 1);
+    // };
 // Visit schedule table end
 
  // Visit keynote table
@@ -665,18 +670,18 @@ $scope.removekeynote = function(index){
 
        for(var i=0;i<$scope.visitors.length - 1;i++)
        {
-          if($scope.userId == $scope.visitors[i].visitor)
-          {
-            $scope.showFlag = "noUser";
-            $scope.message = "Visitor Already Exists , Add Unique Visitor";
-            $timeout(function () { $scope.message = ''; }, 3000);
-            $scope.visitors.splice($scope.visitors.length - 1, 1);
-          }
-       }
-     }
+        if($scope.userId == $scope.visitors[i].visitor)
+        {
+          $scope.showFlag = "noUser";
+          $scope.message = "Visitor Already Exists , Add Unique Visitor";
+          $timeout(function () { $scope.message = ''; }, 3000);
+          $scope.visitors.splice($scope.visitors.length - 1, 1);
+        }
+      }
+    }
 
-     else if(response.association !='customer')
-     {
+    else if(response.association !='customer')
+    {
       $scope.showFlag = "noUser";
       $scope.message = "User not found";
       $timeout(function () { $scope.message = ''; }, 3000);
@@ -809,31 +814,7 @@ $scope.canceldialog = function() {
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
 };
-
-$scope.checkErr = function(startDate,endDate) {
-  var curDate = new Date();
-  $scope.errMessage ='';
-  if (startDate==null||endDate==null) {return true;}
-  if(new Date(startDate).getTime() > new Date(endDate).getTime()){
-      // $scope.errMessage =  'End Date should be greater than start date';
-          // var err=function() {
-          // $window.alert('End Date should be greater than start date');};
-          // err();
-          return true;
-        }
-
-        else if(new Date(startDate).getTime() >= curDate.getTime()){
-         // $scope.errMessage = 'Start date should not be before today.';
-          //  var err=function() {
-          // $window.alert('Start date should not be before today.');};
-          // err();
-          return true;
-        }
-        else return false;
-
-      };
-
-    }])
+}])
 
 //Autocompleate - Directive '$timeout', function($timeout)
 visitsApp.directive("autocomplete", ["AutoCompleteService", "$timeout", function (AutoCompleteService,$timeout) {
