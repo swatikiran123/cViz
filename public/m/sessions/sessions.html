@@ -1,8 +1,12 @@
-<style>h6{
-	visibility: hidden;
-}
+
+<style>
+
+
 </style>
-<div header showprofile="false" icon="fa fa-list" title1="Visit Agenda" title2="feedback" >
+
+
+
+<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="feedback" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
@@ -26,6 +30,7 @@
 
 
 <div class="divtop">
+	               
 	<div class="agenda-parent-div">
 
 		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
@@ -39,8 +44,8 @@
 				<div id="{{session._id}}" class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
 					<div  class="agenda-block-sub-div">
 						<div class="inactivesession">
-							<div >
-								<p>
+							<div>
+							
 									<span ng-switch on="session.type.toLowerCase()">
 										<!--img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
 										<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
@@ -49,7 +54,6 @@
 										<img ng-switch-when="floor-walk" src="/public/assets/g/imgs/ic/handshake.png" class="session-status-img">
 										<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img"-->
 										<i ng-switch-default  class="fa fa-circle fa-lg session-status-img" aria-hidden="true"></i>
-
 									</span>
 									<span class="agenda-session-time">
 										{{session.session.startTime | date : "HH:mm"}}
@@ -64,15 +68,14 @@
 									<a ng-switch-when="dinner" href="#/sessions/{{session._id}}/details" >Dinner</a>
 									<a ng-switch-when="lunch" href="#/sessions/{{session._id}}/details" >Lunch</a>
 									<a  ng-switch-when="tea-break" href="#/sessions/{{session._id}}/details" >Tea-Break</a>
-									
-									</span>
+								</span></span>
 						
-								</p>
+								
 
 									<div class="agenda-session-overview">
 										<p class="agenda-session-loc">
 											<i class="fa fa-hourglass-half"></i>
-												{{session.session.endTime | duration:session.session.startTime}}&nbsp;&nbsp;
+												{{session.session.endTime | duration:session.session.startTime}}&nbsp;&nbsp;&nbsp;
 											<i class="fa fa-map-marker"></i>
 												{{session.session.location}}
 										</p>
@@ -82,12 +85,47 @@
 											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
 											+{{session.invitees.length}}
-
+                                            <div ng-if="group=='customer' || group=='exec'">
 											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
 												<i class="fa fa-angle-down" aria-hidden="true" ng-if="hideFeeedbackDiv"></i>
 												<i class="fa fa-angle-up" aria-hidden="true" ng-if="!hideFeeedbackDiv"></i>
 												<i class="fa fa-caret-up feedback-triangle" aria-hidden="true" ng-if="!hideFeeedbackDiv"></i>
 											</span>
+											</div>
+
+                                             <div ng-if="group=='admin' || group=='vManager'">
+                                             <span  data-toggle="modal" data-target="#myModal" class="feedback-link">Move Session</span>
+<!-- Modal -->
+											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="vertical-alignment-helper">
+											    <div class="modal-dialog   mwidth vertical-align-center">
+											        <div class="modal-content">
+											            <div class="modal-header">
+											           
+                                                            <i class="fa fa-times pull-right" aria-hidden="true" class="close" data-dismiss="modal"></i>
+											                </button>
+											                 <h4 class="modal-title" id="myModalLabel">Push/Drop session </h4>
+
+											            </div>
+											           <div class="modal-body">
+											     
+				                                 <form oninput="amount.value=rangeInput.value" align="center">
+				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" oninput="this.form.amountInput.value=this.value">&nbsp;45m  &nbsp;&nbsp;
+												<!--input type="number" name="amountInput" min="-45" max="40" value="0" placeholder="mins" oninput="this.form.amountRange.value=this.value"/-->	
+											    <output name="amount" align="center" for="rangeInput">0</output>
+				                                 </form>
+                                                       </div>
+											            <div class="modal-footer">
+											             <button type="button" class="btn btn-success xsbutn">Push</button>
+											                <button type="button" class="btn btn-warning xsbutn" >Drop</button>
+
+											               
+											            </div>
+											        </div>
+											    </div>
+											</div>
+											</div>
+                                           </div>
 										</p>
 									</div>
 								</div>
@@ -110,4 +148,3 @@
 </div> <!-- enf of days - sessions-->
 </div> <!-- end of scrollable area -->
 
- <!-- end of page container -->

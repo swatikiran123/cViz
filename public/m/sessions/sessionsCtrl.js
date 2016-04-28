@@ -1,9 +1,11 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout ,$window) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout ,$window,$rootScope) {
+	console.log($rootScope.user.groups);
+	$scope.group=$rootScope.user.groups;
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
-        console.log(JSON.stringify($scope.scheduleList,null,2));
+    
         //console.log($scope.scheduleList.day);
     });
 
@@ -79,9 +81,9 @@ angular.module('sessions')
 		}
 })
 
-.controller('sessionCtrl', function($scope, $routeParams, $http) {
+.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
 	$scope.arrayData=[];
-
+	console.log($rootScope.user);
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response) {
 		$scope.session = response;
 		//console.log(JSON.stringify($scope.session,null,2));
