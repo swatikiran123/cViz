@@ -3,7 +3,9 @@ angular.module('sessions')
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope) {
 	console.log($rootScope.user.groups);
 	$scope.group=$rootScope.user.groups;
-    $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
+    $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+		cache: true
+	}).success(function(response) {
         $scope.scheduleList = response;
          //console.log(JSON.stringify($scope.scheduleList,null,2));
         //console.log($scope.scheduleList.day);
@@ -108,7 +110,9 @@ $scope.pushSession = function(sessionId){
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
 	$scope.arrayData=[];
 	console.log($rootScope.user);
-	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response) {
+	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
+		cache: true
+	}).success(function(response) {
 		$scope.session = response;
 		//console.log(JSON.stringify($scope.session,null,2));
 		$scope.owner= $scope.session.session.owner;
@@ -146,7 +150,9 @@ $scope.pushSession = function(sessionId){
 
 .controller('agendaCtrl', function($scope, $routeParams, $http, $location) {
     console.log("agenda controller running");
-		$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+		$http.get('/api/v1/secure/visits/all/activeVisit',{
+		cache: true
+	}).success(function(response) {
 				//console.log("next visit id " + "#/sessions/" + response.visits._id));
 				$location.path("sessions/" + response.visits._id);
 		});
@@ -157,7 +163,9 @@ $scope.pushSession = function(sessionId){
 	$scope.fbackTemp = $routeParams.fTmpl;
 	$scope.sessionId = $routeParams.sId;
 	$scope.visitId = $routeParams.vId;
-	$http.get('/api/v1/secure/visitSchedules/' + $scope.sessionId).success(function(response){
+	$http.get('/api/v1/secure/visitSchedules/' + $scope.sessionId,{
+		cache: true
+	}).success(function(response){
 		console.log(response.session.title);
 		$scope.sessionTitle = response.session.title;
 	} );

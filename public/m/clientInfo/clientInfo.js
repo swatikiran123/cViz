@@ -16,7 +16,9 @@ client.config(['$routeProvider', function ($routeProvider) {
 
 client.controller('clientBlankCtrl', function($scope, $routeParams, $http, $location) {
     console.log("client  blank controller running");
-        $http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+        $http.get('/api/v1/secure/visits/all/activeVisit',{
+    cache: true
+  }).success(function(response) {
                 //console.log("next visit id " + "#/sessions/" + response.visits._id));
         console.log(response.visits._id);
                 $location.path("clientInfo/id/" + response.visits._id);
@@ -24,10 +26,14 @@ client.controller('clientBlankCtrl', function($scope, $routeParams, $http, $loca
 })
 client.controller('clientInformationCtrl', function($scope, $routeParams, $http) {
     //$scope.id="a02234567892345678900001";
-    $http.get('/api/v1/secure/clients').success(function(response) {
+    $http.get('/api/v1/secure/clients',{
+    cache: true
+  }).success(function(response) {
         $scope.clientList1 = response;
     });
-       $http.get('/api/v1/secure/clients/id/' + $routeParams.id).success(function(response) {
+       $http.get('/api/v1/secure/clients/id/' + $routeParams.id,{
+    cache: true
+  }).success(function(response) {
         $scope.clientList = response;
         console.log($scope.clientList);
         console.log($scope.clientList.name);

@@ -26,13 +26,17 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.medium = "medium";
 	$scope.arrayData=[];
 
-	$http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
+	$http.get('/api/v1/secure/visits/current/keynotes',{
+		cache: true
+	}).success(function(response) {
 		if(response[0] != "")
 		{
 		$scope.welcomeResponse = response[0];
 		$scope.length = $scope.welcomeResponse.length - 1;
 		$scope.user_id = $scope.welcomeResponse[$scope.order].noteBy;
-		$http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response) {
+		$http.get('/api/v1/secure/admin/users/' + $scope.user_id,{
+		cache: true
+	}).success(function(response) {
 			$scope.user = response;
 		})
 		if(response[0].length == 1)
@@ -52,7 +56,9 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	{
 		$scope.order = $scope.order + 1;
 		$scope.user_id = $scope.welcomeResponse[$scope.order].noteBy;
-		$http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response) {
+		$http.get('/api/v1/secure/admin/users/' + $scope.user_id,{
+		cache: true
+	}).success(function(response) {
 			$scope.user = response;
 		})
 		if($scope.order == $scope.length)
@@ -84,7 +90,9 @@ app.controller('thankyouCtrl', ['$scope', 'location', '$http',  function ($scope
 }]);
 
 app.controller('homeBlankCtrl', ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
-	$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+	$http.get('/api/v1/secure/visits/all/activeVisit',{
+		cache: true
+	}).success(function(response) {
 		console.log(response);
 		$location.path("home/" + response.visits._id);
 	})

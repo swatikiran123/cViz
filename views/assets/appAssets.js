@@ -50,14 +50,14 @@ module.exports = {
 		]
 	},
 
-	"home":{
-		"dev":[
-			"/public/assets/w/styles/dashboard.css"
-		],
-		"prod":[
-			"/public/assets/w/styles/dashboard.css"
-		]
-	},
+	// "home":{
+	// 	"dev":[
+	// 		"/public/assets/w/styles/dashboard.css"
+	// 	],
+	// 	"prod":[
+	// 		"/public/assets/w/styles/dashboard.css"
+	// 	]
+	// },
 
 	"admin":{
 		"dev":[

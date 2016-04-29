@@ -1,17 +1,15 @@
 'use strict';
 
 angular.module('mviz-main', [
-'appFilters', 'home','locator','execBios','header','scroll', 'sessions', 'clientInfo','userViewDirective','overallFeedback','richTextDirective','ngRateIt'
+'appFilters', 'home','locator','header','scroll','userViewDirective'
 ]);
 
 angular.module('mviz-visits', [
-	'ui.bootstrap',
-	'appFilters', 'userdisplayDirective',
-	'visits','sessions','contacts','userdisplayDirective','header','scroll','feedbackDirective','userViewDirective', 'overallFeedback'
+	'appFilters','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','clientInfo', 'overallFeedback','ngRateIt'
 ]);
 
 angular.module('mviz-facts', [
-	'ui.bootstrap','ngMap',
+	'ngMap','ui.bootstrap',
 	'appFilters',
 	'facts','lctnGalry','header','scroll'
 ]);

@@ -43,7 +43,9 @@ angular.module('lctnGalry', ['ui.bootstrap.carousel'])
 
         $scope.searchWeather = function () {
             var searchTerm = $scope.cscLocation;
-            $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4')
+            $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{
+        cache: true
+    })
                 .success(function (data) {
                     $scope.weatherData = data;
                     console.log($scope.weatherData);
