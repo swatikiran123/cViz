@@ -7,7 +7,7 @@ angular.module('sessions')
 		cache: true
 	}).success(function(response) {
         $scope.scheduleList = response;
-         //console.log(JSON.stringify($scope.scheduleList,null,2));
+         console.log(JSON.stringify($scope.scheduleList,null,2));
         //console.log($scope.scheduleList.day);
     });
     console.log($scope.range)

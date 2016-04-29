@@ -6,6 +6,10 @@ feedback.config(['$routeProvider', function ($routeProvider) {
     templateUrl: '/public/m/overallFeedback/overallFeedback.html',
     controller: 'overallFeedbackCtrl'
 })
+ .when('/thankyou', {
+    templateUrl: '/public/m/home/thankyou.html',
+    controller: 'thankyouCtrl'
+  })
 
 }])
    feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $location, $routeParams,$http,$rootScope) {
@@ -236,3 +240,19 @@ feedback.config(['$routeProvider', function ($routeProvider) {
       };
 
     });
+
+
+ feedback.controller('thankyouCtrl', ['$scope', 'location', '$http',  function ($scope, location, $http) {
+    console.log("Thank You Controller Running");
+    $scope.order = 0;
+    $http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
+        console.log(response[1]);
+        $scope.thankyouResponse = response[1];
+        // $scope.length = $scope.welcomeResponse.length - 1;
+        $scope.user_id = $scope.thankyouResponse[0].noteBy;
+        $http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response)
+        {
+            $scope.user = response;
+        })
+    })
+}]);

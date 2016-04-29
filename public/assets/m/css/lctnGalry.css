@@ -3,15 +3,29 @@
   /*opacity: 0.8;*/
   
   text-align: center;
-  padding-top: 80px;
+  padding-top: 40px;
 }
 
+.Title{
+  margin: 0;
+  height: 33%;
+  font-family: robotoBold;
+
+  padding-top: 10px;
+  padding-bottom: 5px;
+  text-align: center;
+
+}
 ul{
     list-style: none;
-
+    padding-bottom: 0px;
   
     -webkit-padding-start: 2px;
 
+}
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 0px;
 }
  .quickfacts .divider {
 
@@ -20,24 +34,39 @@ ul{
     overflow: hidden;
     background-color: #bdbdbd;
 }
- .block{
-  padding: 15px 5px;
-    background-color: #fff;
-    font-family: robotoRegular;
-    box-shadow: 2px 4px 4px #c1c1c1;
-    font-size: 0.85em;
-
+hr{
+  padding: 2px;
+  margin: 2px;
 }
+
+.list-group-item {
+            display: inline-block;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #dddddd;
+            padding: 0px;
+            border-radius: 0px;
+            font-family: robotoRegular;
+        }
 
 .my-city-content {
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 9px;
+    padding-right: 9px;
     background-color: #eeeeee;
 }
 .city-card {
-    padding: 10px;
+    padding: 4px;
+    background-color: #fff;
+    font-family: robotoRegular;
+    box-shadow: 2px 4px 4px #c1c1c1;
+    font-size: 0.85em;
+  
+}
+.city-card1 {
+    padding: 2px;
+    padding-bottom: 2px;
     background-color: #fff;
     font-family: robotoRegular;
     box-shadow: 2px 4px 4px #c1c1c1;
@@ -152,7 +181,8 @@ height: 350px;
     width:100%;
     padding-top: 10px;
     height:auto;
- 
+ background-color: #dbdbdb;
+ margin-top: 10px;
     overflow-x:auto;
  white-space: nowrap;
   margin-bottom: -1px;
@@ -183,9 +213,10 @@ fieldset{
     padding-left: 1%;
 }
 fieldset{
-    float: left;
-    width: 130px;
-    height: 100px;
+    margin-left: 0px;
+    padding-left: 0px;
+    width: 110px;
+    height: 90px;
     text-align: center;
   
 }
@@ -198,8 +229,8 @@ fieldset{
 }
 fieldset{
     float: left;
-    width: 140px;
-    height: 100px;
+    width: 100px;
+    height: 90px;
     text-align: center;
   
 }
@@ -207,12 +238,12 @@ fieldset{
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
     #long {
     width:700%;
-    padding-left: 1%;
+    padding-left: 0%;
 }
 fieldset{
     float: left;
-    width: 150px;
-    height: 100px;
+    width: 100px;
+    height: 90px;
     text-align: center;
   
 }
@@ -222,12 +253,12 @@ fieldset{
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   #long {
     width:700%;
-    padding-left: 1%;
+    padding-left: 0%;
 }
 fieldset{
     float: left;
     width: 160px;
-    height: 100px;
+    height: 90px;
     text-align: center;
   
 }
@@ -238,12 +269,12 @@ fieldset{
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
   #long {
     width:700%;
-    padding-left: 10%;
+    padding-left: 0%;
 }
 fieldset{
     float: left;
     width: 170px;
-    height: 100px;
+    height: 90px;
     text-align: center;
   
 }
