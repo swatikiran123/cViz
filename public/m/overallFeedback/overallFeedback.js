@@ -15,7 +15,9 @@ feedback.config(['$routeProvider', function ($routeProvider) {
     $scope.showSaveNext = true;
     $scope.form_id = "form-" +  $scope.order;
     //$scope.feedbackModel = '';
-    $http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+    $http.get('/api/v1/secure/visits/all/activeVisit',{
+        cache: true
+    }).success(function(response) {
                 // console.log(response.visits.feedbackTmpl);
                 $scope.overallFeedbackTmpl = response.visits.feedbackTmpl;
                 $scope.visitId = response.visits._id;
@@ -119,7 +121,9 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
             // console.log($scope.feedbackModel);
             
-            $http.put('/api/v1/secure/feedbacks/'+ $scope.overallFeedbackTmpl , $scope.feedbackModel).success(function(response) {
+            $http.put('/api/v1/secure/feedbacks/'+ $scope.overallFeedbackTmpl , $scope.feedbackModel,{
+        cache: true
+    }).success(function(response) {
               // console.log(response);
             })    
    $scope.counter++;
@@ -159,7 +163,9 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
             console.log($scope.feedbackModel);
             
-            $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel).success(function(response) {
+            $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel,{
+        cache: true
+    }).success(function(response) {
               // console.log(response);
             })
             $location.path('/thankyou');

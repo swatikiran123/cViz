@@ -2,7 +2,9 @@ angular.module('visits')
 
 .controller('visitsCtrl', function($scope, $http) {
 	console.log("All visits controller running");
-	$http.get('/api/v1/secure/visits').success(function(response) {
+	$http.get('/api/v1/secure/visits',{
+		cache: true
+	}).success(function(response) {
 		//console.log(response);
 		$scope.visitList = response;
 		//console.log($scope.visitBunches);
@@ -11,7 +13,9 @@ angular.module('visits')
 
 .controller('visitCtrl', function($scope, $routeParams, $http) {
 	console.log("single visit controller running")
-	$http.get('/api/v1/secure/visits/' + $routeParams.id).success(function(response) {
+	$http.get('/api/v1/secure/visits/' + $routeParams.id,{
+		cache: true
+	}).success(function(response) {
 		$scope.visit = response;
 	});
 })
@@ -33,7 +37,9 @@ angular.module('visits')
   }
 
 
-  $http.get('/api/v1/secure/visits/all/my').success(function(response) {
+  $http.get('/api/v1/secure/visits/all/my',{
+		cache: true
+	}).success(function(response) {
 	    $scope.allVisits = response;
 			if($scope.timeline=="" || $scope.timeline===undefined){
 				$scope.timeline = "this-week";

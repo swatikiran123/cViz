@@ -50,17 +50,6 @@ module.exports = {
 			]
 		},
 
-		"jquery-ui": {
-			"cdn": [
-			],
-			"dev":[
-			"/public/libs/jquery-ui/jquery-ui.js",
-			"/public/libs/jquery-ui/themes/smoothness/jquery-ui.css"
-			],
-			"prod":[
-			]
-		},
-
 		"angular-core": {
 			"cdn": [
 			],

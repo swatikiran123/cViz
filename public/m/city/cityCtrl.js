@@ -7,7 +7,9 @@ app.controller('cityCtrl', function ($scope, $location, $routeParams, $http, NgM
 
   $scope.searchWeather = function () {
    var searchTerm = $scope.name;
-   $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4')
+   $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{
+    cache: true
+  })
    .success(function (data) {
     $scope.weatherData = data;
     if($scope.weatherData.weather[0].icon)
@@ -19,7 +21,9 @@ app.controller('cityCtrl', function ($scope, $location, $routeParams, $http, NgM
 
  $scope.searchForecast = function () {   
   var searchTerm = $scope.name;   
-  $http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + searchTerm + '&units=metric&cnt=5&&appid=73136fa514890c15bc4534e7b8a1c0c4')
+  $http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + searchTerm + '&units=metric&cnt=5&&appid=73136fa514890c15bc4534e7b8a1c0c4',{
+    cache: true
+  })
   .success(function (data) {
    $scope.today = new Date();
    $scope.day1 = data.list[0];
@@ -51,7 +55,9 @@ $scope.searchWeather();
 $scope.searchForecast();
 
 $scope.findquickFactsForCity = function() {
- $http.get('/api/v1/secure/cityFacts/get/' + $scope.name)
+ $http.get('/api/v1/secure/cityFacts/get/' + $scope.name,{
+    cache: true
+  })
  .success(function (response) {
   $scope.description = response.desc;
   $scope.bannerLink = response.bannerLink;

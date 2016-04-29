@@ -29,7 +29,7 @@
     <div class="load" ng-show="loading"><img src="/public/assets/m/img/bg/ajax-loading.gif"/></div>
     <div id="scrollBox" align="center" class="scroll-inner">
         <div ng-repeat="objs in dayHighlighter">
-        <a ng-href="#/sessions/{{value}}/?day={{objs.day}}">
+        <a ng-href="/m/visits/#/sessions/{{value}}/?day={{objs.day}}">
            <div>
             <fieldset>
                 
@@ -60,13 +60,13 @@
 
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/main/#/execBios">
+                <a href="/m/visits/#/execBios">
                     <div class="menu-circle-icon exec-bio exec-icon"></div>
                     <div class="exec-bio-text">EXECUTIVE BIO'S</div>
                 </a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/main/#/feedback">
+                <a href="/m/visits/#/feedback">
                     <div class="menu-circle-icon feedback feedback-icon"></div>
                     <div class="feedback-text">FEEDBACK</div>
                 </a>

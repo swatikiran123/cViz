@@ -13,24 +13,28 @@ bios.config(['$routeProvider', function ($routeProvider) {
 		controller: 'execBiosBlankCtrl'
 	})
 
-
-
 }]);
 
 bios.controller('execBiosBlankCtrl', function($scope, $routeParams, $http, $location) {
     console.log("exec bios blank controller running");
-		$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+		$http.get('/api/v1/secure/visits/all/activeVisit',{
+        cache: true
+    }).success(function(response) {
 				//console.log("next visit id " + "#/sessions/" + response.visits._id));
 				$location.path("execBios/" + response.visits._id);
 		});
 });
 
 bios.controller('execBiosCtrl', function($scope, $routeParams, $http) {
-$http.get('/api/v1/secure/visits/all/activeVisit').success(function(response) {
+$http.get('/api/v1/secure/visits/all/activeVisit',{
+        cache: true
+    }).success(function(response) {
                 //console.log("next visit id " + "#/sessions/" + response.visits._id));
                 $scope.title= response.visits.title;
         });
-    $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs').success(function(response) {
+    $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+        cache: true
+    }).success(function(response) {
         console.log(response);//responce has two arrays with clienId's and cscId's
         $scope.cscData = response["employees"];
         $scope.clientData = response["clients"];
