@@ -1,13 +1,37 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $location, $anchorScroll, $timeout ,$window,$rootScope) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope) {
 	console.log($rootScope.user.groups);
 	$scope.group=$rootScope.user.groups;
     $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions').success(function(response) {
         $scope.scheduleList = response;
-    
+         //console.log(JSON.stringify($scope.scheduleList,null,2));
         //console.log($scope.scheduleList.day);
     });
+    console.log($scope.range)
+
+$scope.pushSession = function(sessionId){
+	console.log(sessionId)
+     $window.location.reload();
+
+	    var x = document.getElementById("rangeInput").value;
+	    console.log(x);
+	    $http.get('/api/v1/secure/visits/a01234567892345678900006/pushsession?sessionId='+ sessionId +'&time='+ x).success(function(response) {
+	        $scope.sessiontime = response;
+	        $window.location.reload();
+	        $route.reload();
+	       /* http://localhost:8080/api/v1/secure/visits/a01234567892345678900006/pushsession?sessionId=a06234567892345678900050&time=3 */
+
+	});
+}
+/*
+	{
+	$http.get('/api/v1/secure/visits/'+$routeParams.id +'/pushsession?sessionId='+a06234567892345678900048+'&time='+10).success(function(response) {
+	        $scope.sessiontime = response;
+
+	});*/
+
+
 
 
    console.log($location.search()["day"]);
@@ -91,10 +115,13 @@ angular.module('sessions')
 		$scope.supporter =$scope.session.session.supporter;
 		// console.log($scope.session.session.owner);
 		// console.log($scope.owner);
-		$scope.arrayData.push($scope.owner)
+		$scope.arrayData.push($scope.owner);
+
 
 
 	});
+
+
 
         $scope.collapseDiv = function(index, text) {
             var ele = angular.element(document.getElementById(text + index));
