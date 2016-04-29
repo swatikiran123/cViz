@@ -86,10 +86,8 @@
 
 											+{{session.invitees.length}}
                                             <div ng-if="group=='customer' || group=='exec'">
-											<span class="feedback-link" ng-click="hideFeeedbackDiv = !hideFeeedbackDiv;$event.stopPropagation()">Feedback
-												<i class="fa fa-angle-down" aria-hidden="true" ng-if="hideFeeedbackDiv"></i>
-												<i class="fa fa-angle-up" aria-hidden="true" ng-if="!hideFeeedbackDiv"></i>
-												<i class="fa fa-caret-up feedback-triangle" aria-hidden="true" ng-if="!hideFeeedbackDiv"></i>
+											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
+														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
 											</span>
 											</div>
 
@@ -109,14 +107,14 @@
 											            </div>
 											           <div class="modal-body">
 											     
-				                                 <form oninput="amount.value=rangeInput.value" align="center">
-				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" oninput="this.form.amountInput.value=this.value">&nbsp;45m  &nbsp;&nbsp;
+				                                 <form  align="center">
+				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" oninput="this.form.amount.value=this.value">&nbsp;45m  &nbsp;&nbsp;
 												<!--input type="number" name="amountInput" min="-45" max="40" value="0" placeholder="mins" oninput="this.form.amountRange.value=this.value"/-->	
 											    <output name="amount" align="center" for="rangeInput">0</output>
 				                                 </form>
                                                        </div>
 											            <div class="modal-footer">
-											             <button type="button" class="btn btn-success xsbutn">Push</button>
+											             <button type="button" class="btn btn-success xsbutn" ng-click="pushSession(session._id)">Push</button>
 											                <button type="button" class="btn btn-warning xsbutn" >Drop</button>
 
 											               
