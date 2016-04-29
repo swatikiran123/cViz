@@ -29,14 +29,6 @@ angular.module('home', ['ngRoute'])
     templateUrl: '/public/m/home/welcome.html',
     controller: 'welcomeCtrl'
   })
-.when('/thankyou', {
-    templateUrl: '/public/m/home/thankyou.html',
-    controller: 'thankyouCtrl'
-  })
-.when('/splash', {
-    templateUrl: '/public/m/home/splash.html',
-    controller: 'splashCtrl'
-  })
 .when('/sessions/:id', {
     templateUrl: '/public/m/sessions/sessions.html',
     controller: 'sessionsCtrl'

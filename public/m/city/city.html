@@ -37,7 +37,7 @@
 <div class="my-city-content">
    
  <div class="cvm-gallery-header">
- <div class="city-card"> 
+ <div class="city-card1"> 
         <h1 class="headerTitle">{{name | uppercase}}</h1>
 
         <div class="header-temp-div">
@@ -64,12 +64,12 @@
             </div>
         </div>
 
-    
+<br>    
 
         <div class="comb">
         <div class="hsc">
          <div id="long">
-            <fieldset>{{ day1Day | limitTo:3 }} <br> <img  class="circle" ng-src="{{day1icon}}" ><br>&nbsp;&nbsp;{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</fieldset> 
+            <fieldset>{{ day1Day | limitTo:3 }} <br> <img ng-src="{{day1icon}}" ><br>&nbsp;&nbsp;{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</fieldset> 
             <fieldset> {{ day2Day | limitTo:3 }} <br> <img ng-src="{{day2icon}}"><br> &nbsp;&nbsp;{{ day2.temp.max}}&deg;C/{{ day2.temp.min}}&deg;C</fieldset>
             <fieldset>{{ day3Day | limitTo:3 }} <br>  <img ng-src="{{day3icon}}"><br>&nbsp;&nbsp;{{ day3.temp.max}}&deg;C/{{ day3.temp.min}}&deg;C</fieldset>
             <fieldset>{{ day4Day | limitTo:3 }}<br><img ng-src="{{day4icon}}"><br>&nbsp;&nbsp;{{ day4.temp.max}}&deg;C/{{ day4.temp.min}}&deg;C</fieldset>
@@ -88,25 +88,26 @@
     </div>
     <span class="desc"><i>{{description}}</i></span>
     </div>
-     <br>
-     <hr>
+   <br>
+
   
-    <h5 class="factheader">Quick Facts</h5>
-    <br>
+   <div class="city-card1"> 
+        <h4 class="Title">QUICK FACTS</h4>
+  
     <ul ng-repeat="facts in quickFacts" class="quickfacts">
 
-        <li class="block">{{facts}}</li>
-    
-        <li class="divider"></li>
-
-    </ul>
+        <li>{{facts}}</li>
+   <hr>
      
 
-    
-    <div>
-    <hr>
-    <h4 class="factheader">Quick Facts About Places</h4>
-  <br>
+    </ul>
+     </div>
+
+<br>
+    <div class="city-card1">
+
+    <h4 class="Title">SPOTS OF VISITS</h4>
+
     <div class="city-card"> 
     <map default-style="true" zoom="12" center="17.451, 78.37699999999995">
         <!--content of information windows for the places-->
@@ -126,6 +127,7 @@
   position="{{c.pos}}" title="{{c.name}}" info="{{c.info}}" id="{{c.id}}" url="{{c.url}}" on-click="showCity(event, c)">
 </marker>
 </map>
+</div>
 </div>
 </div>
 

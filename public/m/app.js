@@ -11,7 +11,7 @@ angular.module('mviz-visits', [
 angular.module('mviz-facts', [
 	'ngMap','ui.bootstrap',
 	'appFilters',
-	'facts','lctnGalry','header','scroll'
+	'facts','header','scroll'
 ]);
 
 angular.module('mviz-add', ['visitAdd','home','scroll']);
