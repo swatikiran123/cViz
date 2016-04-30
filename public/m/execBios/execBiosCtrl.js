@@ -15,39 +15,29 @@ bios.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-bios.controller('execBiosBlankCtrl', function($scope, $routeParams, $http, $location) {
-    console.log("exec bios blank controller running");
-		$http.get('/api/v1/secure/visits/all/activeVisit',{
-        cache: true
-    }).success(function(response) {
-				//console.log("next visit id " + "#/sessions/" + response.visits._id));
-				$location.path("execBios/" + response.visits._id);
-		});
+bios.controller('execBiosBlankCtrl', function($rootScope, $location) {
+	if($rootScope.activeVisit !== undefined)
+		$location.path("execBios/" + $rootScope.activeVisit._id);
 });
 
-bios.controller('execBiosCtrl', function($scope, $routeParams, $http) {
-$http.get('/api/v1/secure/visits/all/activeVisit',{
-        cache: true
-    }).success(function(response) {
-                //console.log("next visit id " + "#/sessions/" + response.visits._id));
-                $scope.title= response.visits.title;
-        });
-    $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
-        cache: true
-    }).success(function(response) {
-        console.log(response);//responce has two arrays with clienId's and cscId's
-        $scope.cscData = response["employees"];
-        $scope.clientData = response["clients"];
-         })
+bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http) {
+	$scope.title= $rootScope.activeVisit.title;
 
-    $scope.collapseDiv = function(index, text){
-        var ele = angular.element(document.getElementById(text + index));
-        ele.toggle();
-        var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
-        if(status === "block"){
-            ele.prev().addClass('chevron-down-arrow');
-        } else if(status === "none") {
-            ele.prev().removeClass('chevron-down-arrow');
-        }
-    };
+	$http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+		cache: true
+	}).success(function(response) {
+		$scope.cscData = response["employees"];
+		$scope.clientData = response["clients"];
+	})
+
+  $scope.collapseDiv = function(index, text){
+      var ele = angular.element(document.getElementById(text + index));
+      ele.toggle();
+      var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
+      if(status === "block"){
+          ele.prev().addClass('chevron-down-arrow');
+      } else if(status === "none") {
+          ele.prev().removeClass('chevron-down-arrow');
+      }
+  };
 });

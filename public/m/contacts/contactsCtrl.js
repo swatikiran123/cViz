@@ -1,13 +1,11 @@
 angular.module('contacts')
 
-.controller('spocCtrl', function($scope, $routeParams, $http, $location) {
-   $http.get('/api/v1/secure/visits/all/activeVisit',{
-    cache: true
-  }).success(function(response) {
-    var str= String(response.visits.locations);
-    var loc= str.split(",");
-    $location.path("contacts/"+loc[0]);
-    });
+.controller('spocCtrl', function($scope, $rootScope, $location) {
+	if($rootScope.activeVisit !== undefined){
+		var str= String($rootScope.activeVisit.locations);
+		var loc= str.split(",");
+		$location.path("contacts/"+loc[0]);
+	}
 })
 
 .controller('contactsCtrl', function($scope, $routeParams, $http) {
@@ -18,20 +16,19 @@ angular.module('contacts')
     $scope.contactList = response;
   })
 
-  $http.get('/api/v1/secure/visits/all/activeVisit',{
-    cache: true
-  }).success(function(response) {
-    var str= String(response.visits.locations);
+	if($rootScope.activeVisit !== undefined){
+    var str= String($rootScope.activeVisit.locations);
     $scope.cities = str.split(/[ ,]+/);
-    console.log($scope.cities)
+
     $scope.title=response.visits.title;
     $scope.anchor=response.visits.anchor;
-     $http.get('/api/v1/secure/admin/users/'+$scope.anchor,{
-    cache: true
-  }).success(function(response) {
+
+   	$http.get('/api/v1/secure/admin/users/'+$scope.anchor,{
+	    cache: true
+	  }).success(function(response) {
        $scope.anchor=response;
     })
-   })
+   }
 
   $scope.collapseDiv = function(index, text){
     var ele = angular.element(document.getElementById(text + index));

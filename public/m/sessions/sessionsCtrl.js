@@ -22,20 +22,9 @@ $scope.pushSession = function(sessionId){
 	        $scope.sessiontime = response;
 	        $window.location.reload();
 	        $route.reload();
-	       /* http://localhost:8080/api/v1/secure/visits/a01234567892345678900006/pushsession?sessionId=a06234567892345678900050&time=3 */
 
 	});
 }
-/*
-	{
-	$http.get('/api/v1/secure/visits/'+$routeParams.id +'/pushsession?sessionId='+a06234567892345678900048+'&time='+10).success(function(response) {
-	        $scope.sessiontime = response;
-
-	});*/
-
-
-
-
    console.log($location.search()["day"]);
    console.log($location.search()["s"]);
 
@@ -56,9 +45,9 @@ $scope.pushSession = function(sessionId){
 				 $scope.selectedIndex = $index;
 			}
 		}
-           
 
-     
+
+
 
 		$scope.setTab = function(){
 			if($location.search()["day"] === undefined)
@@ -120,44 +109,33 @@ $scope.pushSession = function(sessionId){
 		// console.log($scope.session.session.owner);
 		// console.log($scope.owner);
 		$scope.arrayData.push($scope.owner);
-
-
-
 	});
 
+  $scope.collapseDiv = function(index, text) {
+      var ele = angular.element(document.getElementById(text + index));
+      ele.toggle();
+      var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
+      if (status === "block") {
+          ele.prev().addClass('chevron-down-arrow');
+          ele.addClass('active');
+      } else if (status === "none") {
+          ele.prev().removeClass('chevron-down-arrow');
+          ele.removeClass('active');
+      }
+  };
 
 
-        $scope.collapseDiv = function(index, text) {
-            var ele = angular.element(document.getElementById(text + index));
-            ele.toggle();
-            var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
-            if (status === "block") {
-                ele.prev().addClass('chevron-down-arrow');
-                ele.addClass('active');
-            } else if (status === "none") {
-                ele.prev().removeClass('chevron-down-arrow');
-                ele.removeClass('active');
-            }
-        };
-
-
-		$scope.hideFeeedbackDiv = true;
-   	$scope.toggleFeedbackDialog = function(index, $event){
-            $scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
-            $event.stopPropagation();
-        };
+	$scope.hideFeeedbackDiv = true;
+	$scope.toggleFeedbackDialog = function(index, $event){
+		$scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
+		$event.stopPropagation();
+	};
 })
 
-.controller('agendaCtrl', function($scope, $routeParams, $http, $location) {
-    console.log("agenda controller running");
-		$http.get('/api/v1/secure/visits/all/activeVisit',{
-		cache: true
-	}).success(function(response) {
-				//console.log("next visit id " + "#/sessions/" + response.visits._id));
-				$location.path("sessions/" + response.visits._id);
-		});
+.controller('agendaCtrl', function($rootScope, $location) {
+	if($rootScope.activeVisit !== undefined)
+		$location.path("sessions/" + $rootScope.activeVisit._id);
 })
-
 
 .controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {
 	$scope.fbackTemp = $routeParams.fTmpl;
@@ -166,7 +144,6 @@ $scope.pushSession = function(sessionId){
 	$http.get('/api/v1/secure/visitSchedules/' + $scope.sessionId,{
 		cache: true
 	}).success(function(response){
-		console.log(response.session.title);
 		$scope.sessionTitle = response.session.title;
-	} );
+	});
 });
