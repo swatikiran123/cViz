@@ -11,6 +11,18 @@ angular.module('visits', ['ngRoute'])
     else {
 			// user not found, ask to login
     }
+
+		$http.get('/api/v1/secure/visits/all/activeVisit',{
+			cache: true
+		}).success(function(response) {
+			if(response.visits !== undefined){
+				$rootScope.activeVisit = response.visits;
+				console.log($rootScope.activeVisit);
+			}
+			else {
+				console.log("Not active visit");
+			}
+		});
 	});
 })
 
@@ -50,18 +62,22 @@ angular.module('visits', ['ngRoute'])
 		templateUrl: '/public/m/visits/visit.html',
 		controller: 'visitCtrl'
 	})
+
 	.when('/visitSessions/:id/details', {
 		templateUrl: '/public/m/sessions/session.html',
 		controller: 'sessionCtrl'
 	})
+
 	.when('/execvisits', {
 		templateUrl: '/public/m/visits/execVisit.html',
 		controller: 'execvistCtrl'
 	})
-   .when('/visits/all/my', {
+
+ 	.when('/visits/all/my', {
 		templateUrl: '/public/m/visits/myVisits.html',
 		controller: 'myVisitsCtrl'
 	});
+
 	// if none of the above states are matched, use this as the fallback
   $routeProvider.otherwise('/visits/all/my');
 
