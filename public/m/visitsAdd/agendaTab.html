@@ -1,0 +1,33 @@
+        <form name="agendaForm" id="agendaForm" class="form-vertical" novalidate>
+          <!--panel-one-->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> <b>Info about the client's visit agenda...</b></h3>
+            </div>
+            <div class = "panel-subheader pull-right">
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <!-- visits title input-->
+                <label>Title</label>
+                <!-- <input name="title" ng-model="visits.title"> -->
+                <input id="name" name="name" placeholder="Title" class="input-xlarge" required type="text" ng-model="visits.title">
+              </div>           
+              <!-- visits client input-->
+              <div class="row">
+                <label>Client Name</label>
+                <input required name="clientname" ng-model="clientName" autocomplete required>
+                <div ng-show="autoFail" class="error text-danger" >{{clientNotFound}}</div>
+              </div>           
+
+              <!-- visits agenda-->
+              <div class="row">
+                <label>Agenda</label>
+                <textarea class="form-control" rows="5" id="comment" ng-model="visits.agenda"></textarea>
+              </div>           
+
+            </div>
+          </div>
+          <input type="submit" wz-next="agenda(visits,clientId,clientName)" value="Next"/>
+
+        </form>

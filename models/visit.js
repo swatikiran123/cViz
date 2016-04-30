@@ -9,9 +9,9 @@ var clientSchema 			= require('./client');
 
 var visitSchema = new mongoose.Schema({
 
-	title						    : { type: String, trim: true, required: true },
-	client 						    : { type: Schema.Types.ObjectId, ref: 'clients', required: true },//{ type: String },
-	agenda							: { type: String, trim: true, required: true },
+	title						    : { type: String, trim: true },
+	client 						    : { type: Schema.Types.ObjectId, ref: 'clients' },//{ type: String },
+	agenda							: { type: String, trim: true },
 	startDate						: { type: Date},//, default: Date.now },
 	endDate							: { type: Date},//, default: Date.now },
 	locations						: { type: String, trim: true },  // set of csc locations
@@ -19,18 +19,18 @@ var visitSchema = new mongoose.Schema({
 	anchor							: { type: Schema.Types.ObjectId, ref: 'User'},
 	secondaryVmanager				: { type: Schema.Types.ObjectId, ref: 'User'},
 	schedule						: [{
-		startDate					: { type: Date, required: true},
-		endDate						: { type: Date, required: true},
-		location					: { type: String, required: true },  // set of csc locations
+		startDate					: { type: Date},
+		endDate						: { type: Date},
+		location					: { type: String },  // set of csc locations
 		meetingPlace				: { type: String, trim: true }
 
 	}],
-	billable						: { type: String, lowercase: true, trim: true, required: true, enum: ['billable', 'non-billable']},
+	billable						: { type: String, lowercase: true, trim: true, enum: ['billable', 'non-billable']},
 	wbsCode							: { type: String, trim: true },
 	chargeCode						: { type: String, trim: true },
 	visitors						: [{
-		visitor						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-		influence					: { type: String, lowercase: true, trim: true, required: true }		// {Decision Maker, Influencer, End User, Others}
+		visitor						: { type: Schema.Types.ObjectId, ref: 'User' },
+		influence					: { type: String, lowercase: true, trim: true }		// {Decision Maker, Influencer, End User, Others}
 	}],
 	interest						: {
 		businessType			    : { type: String, lowercase: true, trim: true },		// {new, repeat}
@@ -39,7 +39,7 @@ var visitSchema = new mongoose.Schema({
 	},
 	status							: { type: String, lowercase: true, trim: true },		// {confirmed, tentative, freeze, done}
 	createBy						: { type: Schema.Types.ObjectId, ref: 'User'},
-	createOn						: { type: Date, default: Date.now, required: true },
+	createOn						: { type: Date, default: Date.now },
 	feedbackTmpl				    : { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
 	sessionTmpl				    	: { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
 	 keynote						: [{
@@ -52,7 +52,9 @@ var visitSchema = new mongoose.Schema({
 });
 
 visitSchema.post('init', function(doc) {
-
+	if(doc.schedule.length<=0)
+		return; 
+	
 	var schedules =  _.sortBy( doc.schedule, 'startDate' );
 	var startDate = schedules[0].startDate;
 	var endDate = schedules[schedules.length-1].endDate;

@@ -1,0 +1,28 @@
+
+
+<div id="main_content_wrap" class="outer">
+ <section id="main_content" class="inner main-inner">
+
+  <wizard on-finish="finished()">
+
+   <wz-step wz-title="Agenda" canexit="exitValidation">
+   <div ng-include src="'/public/m/visitsAdd/agendaTab.html'"></div>
+</wz-step>
+
+<wz-step wz-title="Schedule" canexit="exitValidation">
+<div ng-include src="'/public/m/visitsAdd/scheduleVisit.html'"></div>
+</wz-step>
+
+
+<wz-step wz-title=" Org Take Away" canexit="exitValidation">
+<div ng-include src="'/public/m/visitsAdd/orgKeyTakaway.html'"></div>
+</wz-step>
+
+
+<wz-step wz-title="Add Visitors">
+<div ng-include src="'/public/m/visitsAdd/visitorsAdd.html'"></div>
+</wz-step>
+
+</wizard>
+</section>
+</div>
