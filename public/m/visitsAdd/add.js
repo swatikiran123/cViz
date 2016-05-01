@@ -36,6 +36,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
     if (clientId!= null) {
       visits.client = clientId;
+      visits.createBy= $rootScope.user._id;
       console.log(visits);
       if($scope.back== false){
         $http.post('/api/v1/secure/visits', visits).success(function(response) {
@@ -54,6 +55,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
       $http.get('/api/v1/secure/clients/find/name/'+clientName).success(function(response) {
         console.log(response);
         $scope.clientVist=response._id;visits.client = $scope.clientVist;
+        visits.createBy= $rootScope.user._id;
         console.log(visits);
         if($scope.back== false){
           $http.post('/api/v1/secure/visits', visits).success(function(response) {
