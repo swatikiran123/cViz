@@ -17,5 +17,10 @@ echo Creating User Collection
 mongoimport --db cViz-Test --collection groups --file jsonFiles/group.json --type json --jsonArray
 
 
+
+echo
+echo Creating cityFacts Collection
+mongoimport --db cViz-Test --collection city_facts --file jsonFiles/cityFacts.json --type json --jsonArray
+
 echo
 sleep

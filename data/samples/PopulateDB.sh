@@ -33,12 +33,6 @@ mongoimport --db cViz-Test --collection teasers --file jsonFiles/teaser.json --t
 
 
 echo
-echo Creating cityFacts Collection
-mongoimport --db cViz-Test --collection city_facts --file jsonFiles/cityFacts.json --type json --jsonArray
-
-
-
-echo
 echo Creating FactSheets Collection
 mongoimport --db cViz-Test --collection fact_sheets --file jsonFiles/factSheet.json --type json --jsonArray
 
