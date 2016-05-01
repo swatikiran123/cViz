@@ -135,6 +135,9 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     //   $scope.schedules.splice(index, 1);
     // };
 // Visit schedule table end
+$scope.finish=function(){
+  $scope.msg="succesfully Added a visit";
+}
 
 }])
 
