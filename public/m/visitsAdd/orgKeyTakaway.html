@@ -1,0 +1,78 @@
+<form name="orgkeyTakeForm" id="orgkeyTakeForm" class="form-vertical" novalidate>
+  <!--panel-four-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"> <b>CSC's key take away from the visit...</b></h3>
+    </div>
+    <div class = "panel-subheader pull-right">
+    </div>
+    <div class="panel-body">
+
+      <!--billable-->
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label>Is billable/ non-billable?</label>&nbsp;
+            <h6><input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
+              &nbsp;You need an active WBS code/ Charge Code...</h6>
+              <br/>
+
+              <div class="check-element animate-show"  ng-show="checked">
+                <!-- visits wbsCode input-->
+                <label><h5>WBS Code</h5></label>
+                <input ng-model="visits.wbsCode" name="wbsCode" required>
+
+              </div>
+
+              <div class="check-element animate-show" ng-show="!checked">
+               <!-- visits chargeCode input-->
+               <label>Charge Code</label>
+               <input ng-model="visits.chargeCode" name="chargeCode" required>
+             </div>
+           </div></div></div>
+
+           <!--vist Interest interest. businessType visitType objective-->
+
+           <!-- visits businessType-->
+           <div class="col-xs-4">
+            <div class="form-group">
+              <label>Business Type</label>
+              <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
+                <option ng-option value="new">New</option>
+                <option ng-option value="existing">Existing</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5"></div>
+
+            <!-- visits visitType-->
+            <div class="form-group col-xs-4">
+              <div id="new" ng-if="visits.interest.businessType == 'new'">
+                <label>Say more: </label>
+                <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+                  <option ng-option value="dueDiligence">Due Diligence</option>
+                  <option ng-option value="exploratory">Exploratory</option>
+                  <option ng-option value="planning">Planning</option>
+                </select>
+              </div>
+              <div id="existing" ng-if="visits.interest.businessType == 'existing'">
+                <label>Visit Type-Existing</label>
+                <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+                  <option ng-option value="operationsReview">Operations Review</option>
+                  <option ng-option value="renewals">Renewals</option>
+                  <option ng-option value="newBusiness">New Business</option>
+                  <option ng-option value="strategic">Strategic</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        status:
+        <input type="radio" name="status" ng-model="visits.status" value="confirm"> confirm<br>
+        <input type="radio" name="status" ng-model="visits.status" value="tentitive"> tentitive
+
+      </form>
+      <input type="button" wz-previous="logStep()" value="BACK" />
+      <input type="button" wz-next="logStep();orgKeytake(visits);" value="NEXT" />
+

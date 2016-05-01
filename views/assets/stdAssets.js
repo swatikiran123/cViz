@@ -182,6 +182,15 @@ module.exports = {
 		],
 	},
 
+	"angular-wizard":{
+		"cdn":[],
+		"dev":[
+		"/public/libs/angular-wizard/dist/angular-wizard.js",
+		"/public/libs/angular-wizard/dist/angular-wizard.css",
+		"/public/libs/angular-wizard/dist/angular-wizard.less"
+		],
+	},
+
 	"utils":{
 		"cdn":[],
 		"dev":[
