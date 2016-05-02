@@ -29,9 +29,9 @@
     "angular-animate": "~1.5.0",
     "angular-messages": "latest",
     "angular-material": "1.0.6",
-		"angular-ui": "0.4.0",
-		"moment":"2.12.0",
-		"moment-range": "2.2.0",
+    "angular-ui": "0.4.0",
+    "moment": "2.12.0",
+    "moment-range": "2.2.0",
     "html5-boilerplate": "~5.2.0",
     "font-awesome": "latest",
     "jquery": "latest",
@@ -46,13 +46,11 @@
     "ng-tags-input": "3.0.0",
     "ng-file-upload": "11.0.0",
     "ngImgCropFullExtended": "0.5.4",
-    "angular-material": "1.0.6",
-    "fullcalendar": "2.6.1"
-},
+    "fullcalendar": "2.6.1",
+    "angular-wizard": "~0.6.1"
+  },
   "resolutions": {
-
     "angular": "~1.5.0",
-
     "rdash-ui": "latest",
     "angular-touch": "latest",
     "angular-ui-grid": "latest",
@@ -60,5 +58,4 @@
     "angular-growl-v2": "latest",
     "angular-animate": "~1.5.0"
   }
-
 }

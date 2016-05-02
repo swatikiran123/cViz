@@ -1,12 +1,14 @@
 <!--schedules-->
+
+<div class="wizpad">
 <form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
 
   <table class="table boldtable table-responsive table-bordered table-hover" width="100">
     <thead class="data-grid-header">
       <tr>
-        <th><span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;Start Date</th>
-        <th><span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;End Date</th>
-        <th><span class="fa fa-globe fa-lg"></span>&nbsp;&nbsp;Location</th>
+        <th>Start Date</th>
+        <th> Date</th>
+        <th>Location</th>
         <th></th>
       </tr>
     </thead>
@@ -16,7 +18,7 @@
        <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate></td>
        <td><select
          ng-model="schedule.location"
-         ng-options="data for data in location" class="form-control">
+         ng-options="data for data in location" placeholder="location" class="form-control">
        </select>
      </td>
      <td><a class="table-btn" ng-click="addSchedule(schedule)" ng-disabled="scheduleForm.$invalid || stdate"><span class="fa fa-plus fa-lg" /></a></td>
@@ -34,5 +36,12 @@
 </form>
 <div ng-if="subdis" class="error text-info">Please dont forget to fill Visit schedul details. !!!!</div>
 <div ng-if="err" class="error text-danger">Please Enter valid data.!!</div>
-<input type="button" wz-previous="logStep();backcheck()" value="BACK" />
-<input type="button" wz-next="logStep();" value="NEXT" />
+<div class="but">
+
+<i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep();backcheck()"  aria-hidden="true">&nbsp;&nbsp;Previous</i>
+<i class="fa fa-angle-right fa-lg nextbut"  wz-next="logStep()"  aria-hidden="true">&nbsp;&nbsp;Next</i>
+
+<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
+
+</div>
+</div>
