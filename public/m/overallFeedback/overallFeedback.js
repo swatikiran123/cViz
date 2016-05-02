@@ -7,7 +7,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
     controller: 'overallFeedbackCtrl'
 })
  .when('/thankyou', {
-    templateUrl: '/public/m/home/thankyou.html',
+    templateUrl: '/public/m/overallFeedback/thankyou.html',
     controller: 'thankyouCtrl'
   })
 
@@ -242,7 +242,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
     });
 
 
- feedback.controller('thankyouCtrl', ['$scope', 'location', '$http',  function ($scope, location, $http) {
+ feedback.controller('thankyouCtrl', ['$scope', '$location', '$http',  function ($scope, location, $http) {
     console.log("Thank You Controller Running");
     $scope.order = 0;
     $http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {

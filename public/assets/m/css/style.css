@@ -211,6 +211,9 @@ span.menuName {
   font-family: workSansBold;
 }
 
+.padleft{
+  padding-left: 50px;
+}
 .spoc {
   background: url("") #850057 no-repeat 50% 50%;
   background-size: 45px;
@@ -220,6 +223,7 @@ span.menuName {
   content:"\f095";
   color: white;
   font-size: 40px;
+
 }
 
 .spoc-text {
