@@ -15,9 +15,10 @@ bios.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-bios.controller('execBiosBlankCtrl', function($rootScope, $location) {
-	if($rootScope.activeVisit !== undefined)
-		$location.path("execBios/" + $rootScope.activeVisit._id);
+bios.controller('execBiosBlankCtrl', function($rootScope, $location, appService) {
+	appService.activeVisit().then(function(avisit){
+		$location.path("execBios/" + avisit._id);
+	})
 });
 
 bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http) {

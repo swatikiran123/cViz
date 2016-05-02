@@ -10,17 +10,17 @@ angular.module('home', ['ngRoute'])
 			// user not found, ask to login
     }
 
-		$http.get('/api/v1/secure/visits/all/activeVisit',{
-			cache: true
-		}).success(function(response) {
-			if(response.visits !== undefined){
-				$rootScope.activeVisit = response.visits;
-				console.log($rootScope.activeVisit);
-			}
-			else {
-				console.log("Not active visit");
-			}
-		});
+		// $http.get('/api/v1/secure/visits/all/activeVisit',{
+		// 	cache: true
+		// }).success(function(response) {
+		// 	if(response.visits !== undefined){
+		// 		$rootScope.activeVisit = response.visits;
+		// 		console.log("active visit: " + JSON.stringify($rootScope.activeVisit));
+		// 	}
+		// 	else {
+		// 		console.log("Not active visit");
+		// 	}
+		// });
 
 	});
 })
