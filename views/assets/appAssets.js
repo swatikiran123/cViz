@@ -239,7 +239,7 @@ module.exports = {
 	"m-visitAdd":{
 		"dev":[
 		"/public/m/visitsAdd/add.js",
-		"/public/m/visitsAdd/visitRout.js",
+		"/public/m/visitsAdd/visitRout.js"
 		]
 	},
 

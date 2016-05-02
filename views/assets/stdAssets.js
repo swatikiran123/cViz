@@ -186,8 +186,7 @@ module.exports = {
 		"cdn":[],
 		"dev":[
 		"/public/libs/angular-wizard/dist/angular-wizard.js",
-		"/public/libs/angular-wizard/dist/angular-wizard.css",
-		"/public/libs/angular-wizard/dist/angular-wizard.less"
+		"/public/libs/angular-wizard/dist/angular-wizard.css"
 		],
 	},
 

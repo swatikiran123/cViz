@@ -1,3 +1,8 @@
+<style>select{
+
+  width: 80px;
+  }</style>
+<div class="wizpad">
 <form name="orgkeyTakeForm" id="orgkeyTakeForm" class="form-vertical" novalidate>
   <!--panel-four-->
   <div class="panel panel-default">
@@ -19,7 +24,7 @@
 
               <div class="check-element animate-show"  ng-show="checked">
                 <!-- visits wbsCode input-->
-                <label><h5>WBS Code</h5></label>
+                <label>WBS Code</label>
                 <input ng-model="visits.wbsCode" name="wbsCode" required>
 
               </div>
@@ -27,29 +32,29 @@
               <div class="check-element animate-show" ng-show="!checked">
                <!-- visits chargeCode input-->
                <label>Charge Code</label>
-               <input ng-model="visits.chargeCode" name="chargeCode" required>
+               <input ng-model="visits.chargeCode" name="chargeCode"  required>
              </div>
            </div></div></div>
 
            <!--vist Interest interest. businessType visitType objective-->
 
            <!-- visits businessType-->
-           <div class="col-xs-4">
-            <div class="form-group">
+           <div class="form-group col-xs-12">
+      
               <label>Business Type</label>
               <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
                 <option ng-option value="new">New</option>
                 <option ng-option value="existing">Existing</option>
               </select>
-            </div>
+          
           </div>
           <div class="row">
-            <div class="col-xs-5"></div>
+            <div class="col-xs-12"></div>
 
             <!-- visits visitType-->
-            <div class="form-group col-xs-4">
+            <div class="form-group col-xs-12">
               <div id="new" ng-if="visits.interest.businessType == 'new'">
-                <label>Say more: </label>
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;Say more: </label>
                 <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
                   <option ng-option value="dueDiligence">Due Diligence</option>
                   <option ng-option value="exploratory">Exploratory</option>
@@ -68,11 +73,24 @@
             </div>
           </div>
         </div>
-        status:
+        <div>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;status:</label><br>
+        &nbsp;&nbsp;
         <input type="radio" name="status" ng-model="visits.status" value="confirm"> confirm<br>
+        &nbsp;&nbsp;
         <input type="radio" name="status" ng-model="visits.status" value="tentitive"> tentitive
+        </div>
 
       </form>
-      <input type="button" wz-previous="logStep()" value="BACK" />
-      <input type="button" wz-next="logStep();orgKeytake(visits);" value="NEXT" />
+      <div class="but">
+
+<i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;Previous</i>
+<i class="fa fa-angle-right fa-lg nextbut"  wz-next="logStep();orgKeytake(visits);"  aria-hidden="true">&nbsp;&nbsp;Next</i>
+
+<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
+
+</div>
+
+   
+      </div>
 
