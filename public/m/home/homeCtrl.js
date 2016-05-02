@@ -1,22 +1,22 @@
 var app = angular.module('home');
 
-app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http) {
-	$scope.value=$routeParams.id;
+app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService) {
 
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 
-	if($rootScope.activeVisit !== undefined){
-		$http.get('/api/v1/secure/visits/'+$rootScope.activeVisit._id+'/schedules',{
+	appService.activeVisit().then(function(avisit){
+		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
 		}).success(function(response) {
+			$scope.visitId = avisit._id;
 	      $scope.dayHighlighter = response;
 	      $scope.loading = false;
 	  })
-	}
-	else {
+ 	}, function(reason) {
+		console.log("active visit not found");
 		$scope.loading = false;
-	}
+	});
 });
 
 app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope', function ($scope, location,$http,$routeParams,$rootScope) {

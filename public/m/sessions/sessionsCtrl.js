@@ -7,8 +7,6 @@ angular.module('sessions')
 		cache: true
 	}).success(function(response) {
         $scope.scheduleList = response;
-         console.log(JSON.stringify($scope.scheduleList,null,2));
-        //console.log($scope.scheduleList.day);
     });
     console.log($scope.range)
 
@@ -132,9 +130,11 @@ $scope.pushSession = function(sessionId){
 	};
 })
 
-.controller('agendaCtrl', function($rootScope, $location) {
-	if($rootScope.activeVisit !== undefined)
-		$location.path("sessions/" + $rootScope.activeVisit._id);
+.controller('agendaCtrl', function($rootScope, $location, appService) {
+
+	appService.activeVisit().then(function(avisit){
+		$location.path("sessions/" + avisit._id);
+ 	})
 })
 
 .controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {
