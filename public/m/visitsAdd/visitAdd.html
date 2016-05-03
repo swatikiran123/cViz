@@ -1,4 +1,89 @@
+<script>
+function startDictation(id) {
+    // alert(id.id);
+    var tid = id.id;
+    // alert(tid);
+ 
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+ 
+      var recognition = new webkitSpeechRecognition();
+ 
+      recognition.continuous = true;
+      recognition.interimResults = true;
+ 
+      recognition.lang = "en-US";
+      recognition.start();
+ 
+      recognition.onresult = function(e) {
 
+        var interim_transcript = '';
+
+        for (var i = e.resultIndex; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) {
+                 document.getElementById(tid).value
+                                 += e.results[i][0].transcript;
+            } else {
+                interim_transcript += e.results[i][0].transcript;
+            }
+        }
+
+        if(tid == 'locationinput')
+        {
+          if(document.getElementById(tid).value.trim() == 'Chennai')
+          {  
+            document.getElementById("location").selectedIndex = "1";
+          }
+
+          else if(document.getElementById(tid).value.trim() == 'Hyderabad')
+          {  
+            document.getElementById("location").selectedIndex = "2";
+          }
+
+          else if(document.getElementById(tid).value.trim() == 'Bangalore')
+          {  
+            document.getElementById("location").selectedIndex = "3";
+          }
+          else if(document.getElementById(tid).value.trim() == 'Noida')
+          {  
+            document.getElementById("location").selectedIndex = "4";
+          }
+          else if(document.getElementById(tid).value.trim() == 'Vadodara')
+          {  
+            document.getElementById("location").selectedIndex = "5";
+          }
+
+          else if(document.getElementById(tid).value.trim() == 'Indore')
+          {  
+            document.getElementById("location").selectedIndex = "6";
+          }
+
+          else if(document.getElementById(tid).value.trim() == 'Mumbai')
+          {  
+            document.getElementById("location").selectedIndex = "7";
+          }
+
+          else
+          {
+            document.getElementById("location").selectedIndex = "0";
+          }
+                        document.getElementById('locationinput').value="";
+
+        }
+  };
+      
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+ 
+    }
+  } 
+
+function setFocusToTextBox(){
+    // alert("Say your city name");
+    document.getElementById("locationinput").focus();
+}  
+</script>
 
 <style>
 .steps-indicator {

@@ -11,12 +11,13 @@
             <div class="panel-body">
               <div class="row">
               
+                {{visits.mode="speech";""}}
                 <!-- visits title input-->
-                              <!-- <input name="title" ng-model="visits.title"> -->
-                 <label>Title:</label>
-                <input id="name" name="name" placeholder="Title"   required type="text" ng-model="visits.title">
-                </div>
-                 <br>
+                <label>Title:</label>
+                <input id="name" name="name" placeholder="Title"   required type="text" ng-model="visits.title"
+                onfocus="startDictation(document.getElementById('name'))">
+              </div>
+              <br>
             
                    
               <!-- visits client input-->
@@ -30,7 +31,8 @@
               <!-- visits agenda-->
               <div class="row">
               <label>Agenda</label>
-                <textarea class="form-control" type="text" rows="5" id="comment" placeholder="Agenda" ng-model="visits.agenda"></textarea>
+                <textarea id="agenda" name="agenda" class="form-control" type="text" rows="5" placeholder="Agenda" ng-model="visits.agenda" 
+                onfocus="startDictation(document.getElementById('agenda'))"></textarea>
               </div>           
 
             </div>

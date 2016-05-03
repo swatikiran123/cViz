@@ -35,8 +35,18 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     // console.log(clientId);
 
     if (clientId!= null) {
+      if(visits!=undefined)
+      {  
       visits.client = clientId;
       visits.createBy= $rootScope.user._id;
+      }
+      if(visits.mode=="speech")
+      { 
+        visits.title = angular.element('#name').val();
+        visits.agenda = angular.element('#agenda').val();
+        visits.client = clientId;
+        visits.createBy= $rootScope.user._id;
+      }
       console.log(visits);
       if($scope.back== false){
         $http.post('/api/v1/secure/visits', visits).success(function(response) {
@@ -98,6 +108,9 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
       }
 
       $scope.addSchedule=function(schedule){
+        var x = document.getElementById("location").selectedIndex;
+        var y = document.getElementById("location").options;
+        schedule.location = y[x].text;
         $scope.subdis= false;
         if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
           $scope.stdate= false;
@@ -120,6 +133,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           schedule.endDate='';
           schedule.location='';
           schedule.meetingPlace='';
+          document.getElementById("location").selectedIndex = "0";
         };
 
         $scope.removeSchedule = function(index,schedules){
