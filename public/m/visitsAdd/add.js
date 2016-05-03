@@ -68,17 +68,17 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
   refresh();
 
 
-  $scope.agenda=function(visits,clientId,clientName){
-   console.log(clientId);
-   console.log("im in create: ")
-   if ($scope.checked == false){
+  $scope.agenda=function(visits,clientId,clientName,checked){
+   // console.log(clientId);
+   console.log(checked)
+   if (checked == false){
     $scope.unbillable= "non-billable";
-    if($scope.wbsCode!=null){$scope.wbsCode= null;}
+    if(visits.wbsCode!=null){visits.wbsCode= null;}
     visits.billable=$scope.unbillable;
       }//check code
       else{
         $scope.billable= "billable";
-        if($scope.chargeCode!=null){$scope.chargeCode= null;}
+        if(visits.chargeCode!=null){visits.chargeCode= null;}
         visits.billable=$scope.billable;
         }//WBS code
 

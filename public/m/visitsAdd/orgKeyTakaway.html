@@ -21,7 +21,7 @@
             <h6><input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
               &nbsp;You need an active WBS code/ Charge Code...</h6>
               <br/>
-
+{{checked}}
               <div class="check-element animate-show"  ng-show="checked">
                 <!-- visits wbsCode input-->
                 <label>WBS Code</label>
@@ -86,7 +86,7 @@
 
 <i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;Previous</i>
 <span class="nextbut">Next&nbsp;
-<i class="fa fa-angle-right fa-lg"  wz-next="logStep();agenda(visits,clientId,clientName);"  aria-hidden="true"></i></span>
+<i class="fa fa-angle-right fa-lg"  wz-next="logStep();agenda(visits,clientId,clientName,checked);"  aria-hidden="true"></i></span>
 
 <!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
 
