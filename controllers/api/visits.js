@@ -86,6 +86,10 @@ function getWithAction(req, res){
 				pushSession(req,res);
 				break;
 
+        case "getlocations":
+        getLocationsById(req,res);
+        break;   
+
 		default:
 			res.send("Invalid action");
 	}
@@ -216,6 +220,21 @@ function pushSession(req,res){
   dataService.pushSession(sessionId, time)
     .then(function(data){
         res.status(404).send("Session moved successfully");
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getLocationsById(req,res){
+  dataService.getLocationsById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.status(404).send("Location for the visit not found");
+        }
     })
     .catch(function (err){
         console.log("exception" + err);
