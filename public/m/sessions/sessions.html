@@ -1,12 +1,5 @@
 
-<style>
-
-
-</style>
-
-
-
-<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="feedback" >
+<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{current | DateFormat:'DD MMM YYYY HH:mm'}}" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
@@ -30,7 +23,7 @@
 
 
 <div class="divtop">
-	               
+
 	<div class="agenda-parent-div">
 
 		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
@@ -45,7 +38,7 @@
 					<div  class="agenda-block-sub-div">
 						<div class="inactivesession">
 							<div>
-							
+
 									<span ng-switch on="session.type.toLowerCase()">
 										<!--img ng-switch-when="presentation" src="/public/assets/g/imgs/ic/presentation.png" class="session-status-img">
 										<img ng-switch-when="dinner" src="/public/assets/g/imgs/ic/dinner.png" class="session-status-img">
@@ -70,8 +63,8 @@
 									<a ng-switch-when="lunch" href="#/sessions/{{session._id}}/details" >Lunch</a>
 									<a  ng-switch-when="tea-break" href="#/sessions/{{session._id}}/details" >Tea-Break</a>
 								</span></span>
-						
-								
+
+
 
 									<div class="agenda-session-overview">
 										<p class="agenda-session-loc">
@@ -100,17 +93,17 @@
 											    <div class="modal-dialog   mwidth vertical-align-center">
 											        <div class="modal-content">
 											            <div class="modal-header">
-											           
+
                                                             <i class="fa fa-times pull-right" aria-hidden="true" class="close" data-dismiss="modal"></i>
 											                </button>
 											                 <h4 class="modal-title" id="myModalLabel">Push/Drop session </h4>
 
 											            </div>
 											           <div class="modal-body">
-											     
+
 				                                 <form  align="center">
 				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" oninput="this.form.amount.value=this.value">&nbsp;45m  &nbsp;&nbsp;
-												<!--input type="number" name="amountInput" min="-45" max="40" value="0" placeholder="mins" oninput="this.form.amountRange.value=this.value"/-->	
+												<!--input type="number" name="amountInput" min="-45" max="40" value="0" placeholder="mins" oninput="this.form.amountRange.value=this.value"/-->
 											    <output name="amount" align="center" for="rangeInput">0</output>
 				                                 </form>
                                                        </div>
@@ -118,7 +111,7 @@
 											             <button type="button" class="btn btn-success xsbutn" ng-click="pushSession(session._id)">Push</button>
 											                <button type="button" class="btn btn-warning xsbutn" >Drop</button>
 
-											               
+
 											            </div>
 											        </div>
 											    </div>
@@ -146,4 +139,3 @@
 	</div> <!-- end of day -->
 </div> <!-- enf of days - sessions-->
 </div> <!-- end of scrollable area -->
-

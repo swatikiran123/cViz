@@ -2,7 +2,7 @@
 <div header showprofile="false" icon="fa fa-plane" title1="My Visits" title2="List of Vists" query='query'>
   <div class="searchViewHead col-xs-12">
         <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
-    
+
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" ng-model="$parent.query" />
 
@@ -16,13 +16,13 @@
                 <ul class="dropdown-menu">
                     <li><a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a></li>
                     <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>    
+                    <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>
                     <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>    
+                    <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>
                     <li class="divider"></li>
                     <li><a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a></li>
                     <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>  
+                    <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>
                     <li class="divider"></li>
                     <li><a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a></li>
                 </ul>
@@ -33,13 +33,13 @@
     </div>
 </div>
 <div class="divtop">
- 
+
     <div class="my-visit-content col-xs-12 col-sm-12 col-md-12">
         <div ng-repeat="visit in visitBatch.visits | filter: query" class="visit-card">
 
             <div> <div class="visitlinks">
                 <h3><a href="#/sessions/{{visit._id}}" >{{visit.title}}</a><br></h3>
-                <h5><a href="/m/main/#/clientInfo/id/{{visit.client._id}}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{{visit.client.name}}</a></h5>
+                <h5><a href="#/client/{{visit.client._id}}/info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{{visit.client.name}}</a></h5>
                 </div>
                 <div class="dropdown pull-right">
                     <div class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -73,7 +73,7 @@
                     <div ng-repeat="item in visit.involved" ng-show="showDetails">
 
                         <div ng-click="getSession(item)">
-                       
+
                          <br>
                             <div class="sessiondiv">
 
@@ -90,15 +90,15 @@
                                </div>
                              <br>
                                 <div class="sessionrole">
-                             
+
                                  <img class="presenterimg" src="/public/assets/m/rem/presenter-icon.png">
                                   {{item.role}} for {{item.type}}</div>
                                   <i class="fa fa-angle-right pull-right"></i>
-                                       
+
                             </div>
                         </div>
                     </div>
-                 </div>   
+                 </div>
             </p>
     </div>
 </div>
