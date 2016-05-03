@@ -254,8 +254,8 @@ module.exports = {
 
 	"m-clientInfo":{
 		"dev":[
-			"/public/assets/m/css/clientInfo.css",
-		    "/public/m/clientInfo/clientInfo.js",
+			"/public/assets/m/css/client.css",
+		    "/public/m/client/client.js",
 		    "/public/assets/m/css/userview.css"
 		    ]
 		 },
@@ -274,7 +274,7 @@ module.exports = {
 		    "/public/m/overallFeedback/overallFeedback.js"
 		    ]
 		 },
-		 
+
 
 	"m-contacts":{
 		"dev":[

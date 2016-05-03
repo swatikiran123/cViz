@@ -1,30 +1,33 @@
 angular.module('sessions')
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope) {
-	console.log($rootScope.user.groups);
+	//console.log($rootScope.user.groups);
 	$scope.group=$rootScope.user.groups;
-    $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+	$scope.current = new Date();
+
+  $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
 		cache: true
 	}).success(function(response) {
-        $scope.scheduleList = response;
-    });
-    console.log($scope.range)
+    $scope.scheduleList = response;
+  });
+  //console.log($scope.range)
 
-$scope.pushSession = function(sessionId){
-	console.log(sessionId)
-     $window.location.reload();
+	$scope.pushSession = function(sessionId){
+		//console.log(sessionId)
+		$window.location.reload();
 
-	    var x = document.getElementById("rangeInput").value;
-	    console.log(x);
-	    $http.get('/api/v1/secure/visits/a01234567892345678900006/pushsession?sessionId='+ sessionId +'&time='+ x).success(function(response) {
-	        $scope.sessiontime = response;
-	        $window.location.reload();
-	        $route.reload();
+		var x = document.getElementById("rangeInput").value;
+		//console.log(x);
 
-	});
-}
-   console.log($location.search()["day"]);
-   console.log($location.search()["s"]);
+		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ x).success(function(response) {
+		  $scope.sessiontime = response;
+		  $window.location.reload();
+		  $route.reload();
+
+		});
+	}
+  //  console.log($location.search()["day"]);
+  //  console.log($location.search()["s"]);
 
     $scope.visit_id = $routeParams.id;
     $scope.vmtab = $location.search()["day"];
@@ -71,7 +74,7 @@ $scope.pushSession = function(sessionId){
 			$event.stopPropagation();
 		};
 
-		console.log("tab setting done");
+		// console.log("tab setting done");
 
 		// var newHash = $location.search()["s"];
 		// if ($location.hash() !== newHash) {
@@ -101,7 +104,7 @@ $scope.pushSession = function(sessionId){
 		cache: true
 	}).success(function(response) {
 		$scope.session = response;
-		//console.log(JSON.stringify($scope.session,null,2));
+		console.log(JSON.stringify($scope.session,null,2));
 		$scope.owner= $scope.session.session.owner;
 		$scope.supporter =$scope.session.session.supporter;
 		// console.log($scope.session.session.owner);
@@ -131,7 +134,6 @@ $scope.pushSession = function(sessionId){
 })
 
 .controller('agendaCtrl', function($rootScope, $location, appService) {
-
 	appService.activeVisit().then(function(avisit){
 		$location.path("sessions/" + avisit._id);
  	})

@@ -1,8 +1,8 @@
 <style>
 </style>
-<div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="location fact  sheet">
-    <div>       
-            &nbsp;Location Factsheet
+<div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="City Facts">
+    <div>
+
 
             <div class="pull-right">
 
@@ -26,18 +26,18 @@
                     <li class="divider"></li>
                     <li><a href="#/city/Vadodara">Vadodara</a></li>
                     <li class="divider"></li>
-                    
+
                 </ul>
 
              </div>
 
           </div>
 </div>
-<div class="divtop">   
+<div class="divtop">
 <div class="my-city-content">
-   
+
  <div class="cvm-gallery-header">
- <div class="city-card1"> 
+ <div class="city-card1">
         <h1 class="headerTitle">{{name | uppercase}}</h1>
 
         <div class="header-temp-div">
@@ -64,12 +64,12 @@
             </div>
         </div>
 
-<br>    
+<br>
 
         <div class="comb">
         <div class="hsc">
          <div id="long">
-            <fieldset>{{ day1Day | limitTo:3 }} <br> <img ng-src="{{day1icon}}" ><br>&nbsp;&nbsp;{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</fieldset> 
+            <fieldset>{{ day1Day | limitTo:3 }} <br> <img ng-src="{{day1icon}}" ><br>&nbsp;&nbsp;{{ day1.temp.max}}&deg;C/{{ day1.temp.min}}&deg;C</fieldset>
             <fieldset> {{ day2Day | limitTo:3 }} <br> <img ng-src="{{day2icon}}"><br> &nbsp;&nbsp;{{ day2.temp.max}}&deg;C/{{ day2.temp.min}}&deg;C</fieldset>
             <fieldset>{{ day3Day | limitTo:3 }} <br>  <img ng-src="{{day3icon}}"><br>&nbsp;&nbsp;{{ day3.temp.max}}&deg;C/{{ day3.temp.min}}&deg;C</fieldset>
             <fieldset>{{ day4Day | limitTo:3 }}<br><img ng-src="{{day4icon}}"><br>&nbsp;&nbsp;{{ day4.temp.max}}&deg;C/{{ day4.temp.min}}&deg;C</fieldset>
@@ -77,28 +77,28 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 </div>
 
 <br>
     <div class="city-card">
     <div class="banner">
-        <img ng-src="{{bannerLink}}" />     
+        <img ng-src="{{bannerLink}}" />
     </div>
     <span class="desc"><i>{{description}}</i></span>
     </div>
    <br>
 
-  
-   <div class="city-card1"> 
+
+   <div class="city-card1">
         <h4 class="Title">QUICK FACTS</h4>
-  
+
     <ul ng-repeat="facts in quickFacts" class="quickfacts">
 
         <li>{{facts}}</li>
    <hr>
-     
+
 
     </ul>
      </div>
@@ -106,9 +106,9 @@
 <br>
     <div class="city-card1">
 
-    <h4 class="Title">SPOTS OF VISITS</h4>
+    <h4 class="Title">PLACES TO VISITS</h4>
 
-    <div class="city-card"> 
+    <div class="city-card">
     <map default-style="true" zoom="12" center="17.451, 78.37699999999995">
         <!--content of information windows for the places-->
         <info-window id="InfoWindow" style="width: 50px;">
@@ -132,6 +132,3 @@
 </div>
 
 </div>
-
-
-
