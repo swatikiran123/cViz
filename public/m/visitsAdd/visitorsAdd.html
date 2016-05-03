@@ -1,15 +1,51 @@
 <div class="wizpad">
 
+	<div class="but">
+		<!--visitors-->
+		<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
+			<b>Add - Visitor</b><br>
+			<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+				<thead class="data-grid-header">
+					<tr>
+						<th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+						<th><span  class="glyphicon"></span>Influence</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody class="data-grid-data">
+					<tr>
+						<td><input type="email" name="email" ng-model="visitorDef.visitor" class="form-control" required>
+							<span class="error text-danger" ng-show="visitorForm.email.$error.email">
+								Not valid email!</span>
+								<span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span></td>
+								<td><select 
+									ng-model="visitorDef.influence" 
+									ng-options="data for data in influence" class="form-control" required>
+								</select>
+							</td>
+							<td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
+						</form>
+					</tr>
+					<tr ng-repeat="visitorDef in visitors">
+						<td><div userdisplay view-mode="nameonly" user-id="visitorDef.visitor"></div></td>
+						<td>{{visitorDef.influence}}</td>
+						<td><div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
 
-   <div class="but">
+						</div>
+					</div></td>
+					<tr>
+						<td colspan="3" ng-if="showFlag == 'notRegisteredUser'">
+							{{emailId}} &nbsp;&nbsp;&nbsp;&nbsp;<span class="error text-info">{{message}}</span>
+							<input type="button" wz-next="logStep();" value="Add visitor" />
+							<!-- <input type="button" value="Delete"/> -->
+						</td>
+					</tr>
+				</tr>
 
-   <div class="but">
 
-<i class="fa fa-angle-left fa-lg  backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;previous</i>
-<a href="/#/visits/all/my "><i class="fa fa-angle-right nextbut"  aria-hidden="true">&nbsp;&nbsp;Finish</i>
+				<i class="fa fa-angle-left fa-lg  backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;previous</i>
+				<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my"><i class="fa fa-angle-right nextbut"  aria-hidden="true">&nbsp;&nbsp;Finish</i></a>
 
-<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
+			</div>
+		</div>
 
-</div>
-
-    

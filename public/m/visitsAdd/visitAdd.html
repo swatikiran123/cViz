@@ -402,10 +402,13 @@ visit step
 </wz-step>
 
 
-<wz-step wz-title="Finish">
+<wz-step wz-title="Add visitors" >
 <div ng-include src="'/public/m/visitsAdd/visitorsAdd.html'"></div>
 </wz-step>
 
+<wz-step wz-title="Add new visitor" wz-disabled="{{disabled}}">
+<div ng-include src="'/public/m/visitsAdd/newVisitorsAdd.html'"></div>
+</wz-step>
 </wizard>
 </section>
 </div>

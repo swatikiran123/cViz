@@ -25,29 +25,36 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.back= false;
     $scope.checked = false;
     $scope.clientId;
+    $scope.visitors=[];
+    $scope.nameonly= "nameonly";
+    $scope.disabled = 'true';
 
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
     $scope.location=response.values;
   });
+    //Influence - Http get for drop-down
+    $http.get('/api/v1/secure/lov/influence').success(function(response) {
+      $scope.influence=response.values;
+    });
+    var id = $routeParams.id;
+    var refresh = function() {
 
-  var id = $routeParams.id;
-  var refresh = function() {
+      $scope.mode=(id==null? 'add': 'edit');
+      switch($scope.mode)    {
+        case "add":
+        console.log("im in add");
+        $scope.visits = "";
+        break;
 
-    $scope.mode=(id==null? 'add': 'edit');
-    switch($scope.mode)    {
-      case "add":
-      console.log("im in add");
-      $scope.visits = "";
-      break;
-
-      case "edit":
-      $scope.back= true;
-      console.log("im in edit mode: "+id);
-      $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
-        console.log(response);
-        var visits = response;
+        case "edit":
+        $scope.back= true;
+        console.log("im in edit mode: "+id);
+        $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
+          console.log(response);
+          var visits = response;
         $scope.clientName= response.client.name;//auto fill with reff client db
+        $scope.visitors = visits.visitors;
         $scope.schedules = visits.schedule;//List of schedules
         if ($scope.schedules != undefined || $scope.schedules == "")
         {
@@ -63,12 +70,14 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
 
         })
+      }
     }
-  }
-  refresh();
+    refresh();
 
 
-  $scope.agenda=function(visits,clientId,clientName,checked){
+    $scope.save=function(visits,clientId,clientName,checked){
+      console.log("im in save lucky u")
+      console.log($scope.visitors);
    // console.log(clientId);
    console.log(checked)
    if (checked == false){
@@ -147,71 +156,149 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 $scope.backcheck=function(){
   $scope.back= true;
 }
-      //   $scope.orgKeytake=function(visits){
-      //     if ($scope.checked == false){
-      //       $scope.unbillable= "non-billable";
-      //       if($scope.wbsCode!=null){$scope.wbsCode= null;}
-      //       visits.billable=$scope.unbillable;
-      // }//check code
-      // else{
-      //   $scope.billable= "billable";
-      //   if($scope.chargeCode!=null){$scope.chargeCode= null;}
-      //   visits.billable=$scope.billable;
-      //   }//WBS code
-      //   var inData=visits;
-      //   inData.schedule = $scope.schedules;
-      //   $http.put('/api/v1/secure/visits/' + $scope.visitId,  inData).success(function(response) {
-      //     console.log(response);
-      //   })
-      // }
 
-      $scope.addSchedule=function(schedule){
-        var x = document.getElementById("location").selectedIndex;
-        var y = document.getElementById("location").options;
-        schedule.location = y[x].text;
-        $scope.subdis= false;
-        if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
-          $scope.stdate= false;
-          $scope.err= false;
-          var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-          var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-          $scope.schedules.push({
-            startDate: startDate,
-            endDate: endDate,
-            location: schedule.location,
-            meetingPlace: schedule.meetingPlace
-          });
-        }
-        else {
-          $scope.stdate= true;
-          $scope.err=true;
-          $timeout(function () { $scope.err = ''; }, 5000);}
+$scope.addSchedule=function(schedule){
+  var x = document.getElementById("location").selectedIndex;
+  var y = document.getElementById("location").options;
+  schedule.location = y[x].text;
+  $scope.subdis= false;
+  if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
+    $scope.stdate= false;
+    $scope.err= false;
+    var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+    var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+    $scope.schedules.push({
+      startDate: startDate,
+      endDate: endDate,
+      location: schedule.location,
+      meetingPlace: schedule.meetingPlace
+    });
+  }
+  else {
+    $scope.stdate= true;
+    $scope.err=true;
+    $timeout(function () { $scope.err = ''; }, 5000);}
 
-          schedule.startDate='';
-          schedule.endDate='';
-          schedule.location='';
-          schedule.meetingPlace='';
-          document.getElementById("location").selectedIndex = "0";
-        };
+    schedule.startDate='';
+    schedule.endDate='';
+    schedule.location='';
+    schedule.meetingPlace='';
+    document.getElementById("location").selectedIndex = "0";
+  };
 
-        $scope.removeSchedule = function(index,schedules){
+  $scope.removeSchedule = function(index,schedules){
 
-          $scope.schedules.splice(index, 1);
-          if (schedules.length == 0)
-          {
-            $scope.subdis= true;
-          }else{
-            $scope.subdis= false;}
-          };
+    $scope.schedules.splice(index, 1);
+    if (schedules.length == 0)
+    {
+      $scope.subdis= true;
+    }else{
+      $scope.subdis= false;}
+    };
 
     // $scope.editSchedule = function(index,schedule){
     //   $scope.schedule= schedule;
     //   $scope.schedules.splice(index, 1);
     // };
 // Visit schedule table end
-$scope.finish=function(){
-  $scope.msg="succesfully Added a visit";
+
+$scope.addvisitor=function(visitorDef){
+
+  $scope.showFlag='';
+  $scope.message='';
+  $scope.emailId = '';
+  var influence= visitorDef.influence;
+  var emailid = visitorDef.visitor;
+  var influencedata = visitorDef.influence;
+
+  console.log(visitorDef);
+  console.log(visitorDef.visitor);
+
+  console.log($scope.visits.client._id);
+  $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitor).success(function(response) {
+   if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
+   {
+    console.log(response);
+    console.log(response._id);//response.association
+    console.log(response.association);
+
+    $scope.userId = response._id;
+
+    $scope.visitors.push({
+      visitor: $scope.userId,
+      influence: influence
+    });
+    console.log($scope.visitors)
+  }
+  else if(response.association !='customer')
+  {
+    $scope.showFlag = "noUser";
+    $scope.message = "User not found";
+    $timeout(function () { $scope.message = ''; }, 3000);
+  }
+  for(var i=0;i<$scope.visitors.length - 1;i++)
+  {
+    if($scope.userId == $scope.visitors[i].visitor)
+    {
+      $scope.showFlag = "noUser";
+      $scope.message = "Visitor Already Exists , Add Unique Visitor";
+      $timeout(function () { $scope.message = ''; }, 3000);
+      $scope.visitors.splice($scope.visitors.length - 1, 1);
+    }
+  }
+})
+  .error(function(response, status){
+    console.log(emailid);
+    $scope.showFlag = "notRegisteredUser";
+    if(status===404)
+    { 
+      $scope.disabled = 'false';
+      console.log(influencedata);
+      $scope.emailId = emailid;
+      $scope.influencedata = influencedata;
+      console.log($scope.emailId); 
+      $scope.message = "User not found plz register";
+    }
+    else
+      console.log("error with user directive");
+  });
+  visitorDef.influence='';
+  // visitorDef.visitorId='';
+  visitorDef.visitor = '';
+  // visitorDef.visitorUser = '';
+};
+
+$scope.addvisitordata=function(visitor,emailId,influencedata){
+  console.log(influencedata);
+  console.log(visitor);
+  console.log(emailId)
+  visitor.email = emailId;
+  $scope.disabled = 'true';
+  // visitor.local.email = emailId;
+  visitor.association = 'customer';
+  // visitor.contactNo = $scope.contactNo;
+  visitor.orgRef = $scope.visits.client._id;
+  $http.post('/api/v1/secure/admin/users/',visitor).success(function(response){
+    console.log('POST');
+    console.log(response);
+  }).then(function() {
+    // "complete" code here
+    $http.get('/api/v1/secure/admin/users/email/' + visitor.email).success(function(response) {
+     console.log('GET') ;
+     $scope.userId = response._id;
+     $scope.showFlag = "user";
+     $scope.visitors.push({
+      visitor: $scope.userId,
+      influence: influencedata
+    });
+   });
+  });
 }
+
+$scope.removevisitor = function(index){
+  $scope.visitors.splice(index, 1);
+};
+
 
 }])
 
