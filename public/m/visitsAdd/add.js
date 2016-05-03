@@ -31,81 +31,139 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.location=response.values;
   });
 
-  $scope.agenda=function(visits,clientId,clientName){
-    // console.log(clientId);
+  var id = $routeParams.id;
+  var refresh = function() {
 
-    if (clientId!= null) {
-      if(visits!=undefined)
-      {  
-      visits.client = clientId;
-      visits.createBy= $rootScope.user._id;
-      }
-      if(visits.mode=="speech")
-      { 
-        visits.title = angular.element('#name').val();
-        visits.agenda = angular.element('#agenda').val();
-        visits.client = clientId;
-        visits.createBy= $rootScope.user._id;
-      }
-      console.log(visits);
-      if($scope.back== false){
-        $http.post('/api/v1/secure/visits', visits).success(function(response) {
-          $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-           console.log(response);
-         })
-          $scope.visitId=response._id;
-        })
-      }else
-      $http.put('/api/v1/secure/visits/' + $scope.visitId,  visits).success(function(response) {
+    $scope.mode=(id==null? 'add': 'edit');
+    switch($scope.mode)    {
+      case "add":
+      console.log("im in add");
+      $scope.visits = "";
+      break;
 
-      })
-    }
-    else
-    {
-      $http.get('/api/v1/secure/clients/find/name/'+clientName).success(function(response) {
-        console.log(response);
-        $scope.clientVist=response._id;visits.client = $scope.clientVist;
-        visits.createBy= $rootScope.user._id;
-        console.log(visits);
-        if($scope.back== false){
-          $http.post('/api/v1/secure/visits', visits).success(function(response) {
-            $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-             console.log(response);
-           })
-            $scope.visitId=response._id;
-          })
-        }else
-        $http.put('/api/v1/secure/visits/' + $scope.visitId,  visits).success(function(response) {
-
-        })
-      })}
-
-
-
-
-
-
-    }
-    $scope.backcheck=function(){
+      case "edit":
       $scope.back= true;
+      console.log("im in edit mode: "+id);
+      $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
+        console.log(response);
+        var visits = response;
+        $scope.clientName= response.client.name;//auto fill with reff client db
+        $scope.schedules = visits.schedule;//List of schedules
+        if ($scope.schedules != undefined || $scope.schedules == "")
+        {
+          $scope.subdis= false;
+        }else{
+          $scope.subdis= true;}
+          $scope.status= visits.status;
+          if (visits.billable == "billable") {
+            $scope.checked=true;
+          };
+          $scope.visits = visits;//Whole form object
+          console.log($scope.visits._id);
+
+
+        })
     }
-    $scope.orgKeytake=function(visits){
-      if ($scope.checked == false){
-        $scope.unbillable= "non-billable";
-        if($scope.wbsCode!=null){$scope.wbsCode= null;}
-        visits.billable=$scope.unbillable;
+  }
+  refresh();
+
+
+  $scope.agenda=function(visits,clientId,clientName){
+   console.log(clientId);
+   console.log("im in create: ")
+   if ($scope.checked == false){
+    $scope.unbillable= "non-billable";
+    if($scope.wbsCode!=null){$scope.wbsCode= null;}
+    visits.billable=$scope.unbillable;
       }//check code
       else{
         $scope.billable= "billable";
         if($scope.chargeCode!=null){$scope.chargeCode= null;}
         visits.billable=$scope.billable;
         }//WBS code
-        var inData=visits;
-        inData.schedule = $scope.schedules;
-        $http.put('/api/v1/secure/visits/' + $scope.visitId,  inData).success(function(response) {
-          console.log(response);
-        })
-      }
+
+        if (clientId!= null) {
+          if(visits!=undefined)
+          {  
+            visits.client = clientId;
+            visits.createBy= $rootScope.user._id;
+          }
+          if(visits.mode=="speech")
+          { 
+            visits.title = angular.element('#name').val();
+            visits.agenda = angular.element('#agenda').val();
+            visits.client = clientId;
+            visits.createBy= $rootScope.user._id;
+          }
+          console.log(visits);
+          if($scope.back== false){
+            $http.post('/api/v1/secure/visits', visits).success(function(response) {
+              $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+               console.log(response);
+             })
+              refresh();
+              $scope.visitId=response._id;
+              $location.path('/visits/'+$scope.visitId+'/edit');
+
+            })
+          }else{
+            console.log(visits);
+            console.log($scope.visits);
+            $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
+              $location.path('/visits/'+$scope.visits._id+'/edit');
+              refresh();
+
+            })}
+          }
+          else
+          {
+            $http.get('/api/v1/secure/clients/find/name/'+clientName).success(function(response) {
+              console.log(response);
+              $scope.clientVist=response._id;visits.client = $scope.clientVist;
+              visits.createBy= $rootScope.user._id;
+              console.log(visits);
+              // console.log($scope.back);
+              if($scope.back== false){
+                $http.post('/api/v1/secure/visits', visits).success(function(response) {
+                  $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+                   console.log(response);
+                 })
+                  refresh();
+                  $scope.visitId=response._id;
+                  $location.path('/visits/'+$scope.visitId+'/edit');
+
+                })
+              }else{
+
+                console.log(visits);
+                console.log($scope.visits);
+                $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
+                  $location.path('/visits/'+$scope.visits._id+'/edit');
+                  refresh();
+
+                })}
+              })}
+}
+$scope.backcheck=function(){
+  $scope.back= true;
+}
+      //   $scope.orgKeytake=function(visits){
+      //     if ($scope.checked == false){
+      //       $scope.unbillable= "non-billable";
+      //       if($scope.wbsCode!=null){$scope.wbsCode= null;}
+      //       visits.billable=$scope.unbillable;
+      // }//check code
+      // else{
+      //   $scope.billable= "billable";
+      //   if($scope.chargeCode!=null){$scope.chargeCode= null;}
+      //   visits.billable=$scope.billable;
+      //   }//WBS code
+      //   var inData=visits;
+      //   inData.schedule = $scope.schedules;
+      //   $http.put('/api/v1/secure/visits/' + $scope.visitId,  inData).success(function(response) {
+      //     console.log(response);
+      //   })
+      // }
 
       $scope.addSchedule=function(schedule){
         var x = document.getElementById("location").selectedIndex;
