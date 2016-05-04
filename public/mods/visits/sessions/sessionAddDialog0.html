@@ -214,9 +214,9 @@
         <i>Select Meeting Place</i>
         <select id="meetingPlace" ng-model="schedule.session.location">
           <option value="" disabled></option>
-          <option value="" disabled>=========================================================================================================</option>
+          <option value="" disabled>======================================================================================================</option>
           <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
-          <option value="" disabled>=========================================================================================================</option>
+          <option value="" disabled>======================================================================================================</option>
         </select>
       </div>
       <br>
@@ -247,7 +247,7 @@
         <!-- </div>   -->
      
     </ANY>
-      <ANY ng-switch-when="Tea">
+      <ANY ng-switch-when="Tea-Break">
 
 <!--        <md-input-container class="md-block" ng-if="mode=='add'">
        <label>Location</label>
@@ -282,6 +282,9 @@
         </div>
         <br>
         <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
@@ -338,32 +341,55 @@
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
       </ANY>
 
       <ANY ng-switch-when="Dinner">
 
-        <md-input-container class="md-block" ng-if="mode=='add'">
-        <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
-        ng-blur="sendMeetingPlace(meetingPlacesData)">
-        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
-
-        <md-input-container class="md-block" ng-if="mode=='edit'">
-        <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData" 
-        ng-blur="sendMeetingPlace(meetingPlaceData)">
-        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
+        <div class="row"> 
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location">
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
         <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ANY>
+
+      <ANY ng-switch-when="Breakfast">
+
+        <div class="row"> 
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location">
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
+        <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
