@@ -46,6 +46,7 @@
         }
            .company-logo img {
                 width: 62px;
+                height: 60px;
             }
         
         .client-category {
@@ -180,13 +181,14 @@
            .competitors-list .img-div {
                 border-left: 1px solid #d0d0d0;
                 /*text-align: center;*/
-                padding-left: 10px;
+               
             }
             .competitors-list .img-div img {
-                    width: 62px;
+                    width: 0px;
                 }
             
             .img-div:first-child {
-                border-left: none;
+                border-left: none; 
+                
 }
   

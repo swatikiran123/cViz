@@ -5,7 +5,7 @@ angular.module('mviz-main', [
 ]);
 
 angular.module('mviz-visits', [
-	'appFilters','appService','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt'
+	'appFilters','appService','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir'
 ]);
 
 angular.module('mviz-facts', [

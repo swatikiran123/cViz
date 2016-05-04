@@ -77,7 +77,6 @@
   width: 100%;
   padding-bottom: 5px;
 }
-
 .sidebar-item a {
   display: block;
   padding: 12px;
@@ -99,7 +98,7 @@
 .menu-profile-name {
   text-align: center;
   padding: 10px;
-  background-color: #f3f2f7;
+
   font-family: workSansRegular;
   font-size: 1.3em;
   color: #606060;
