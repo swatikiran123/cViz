@@ -1,6 +1,3 @@
-<!-- {{feedbackDatalist}} -->
-<!-- {{visitorList}}
-{{fbackList}} -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.js"></script>
 <div class="row"> 
 	<div class="col-sm-1"></div>
@@ -15,7 +12,6 @@
 		</div>
 
 <table>
-
 <tr>
 <td>          
 	Mode
@@ -38,10 +34,13 @@
 </table>
 
 <table>
-<tr ng-repeat="feedbackModel in feedbackDatalist">
+<tr ng-repeat="feedbackModel in feedbackDatalist track by $index">
 <td>
-<div style="pointer-events: none;">
-	<div class="text-highlight"><div userdisplay view-mode="nameonly" user-id="feedbackModel.providedBy"></div></div>
+
+       <userdisplay view-mode="nameonly" user-id="feedbackModel.providedBy"/>,
+       <userdisplay view-mode="designation" user-id="feedbackModel.providedBy"/>
+<div style="pointer-events: none;" ng-if="view.mode == 'person'">       
+	<h4>Feedback on {{feedbackTitles[$index]}}</h4>
 	<div  ng-repeat="(index,item) in feedbackModel.item">
 		{{item.query}}
 
@@ -72,11 +71,7 @@
 
 		<form>
 			<div ng-if="item.mode == 'multi-choice'">  					
-				<label class="checkbox-inline" ng-repeat="choice in item.choices">
-					<input type="checkbox" name="choice" ng-checked="selection.indexOf(choice) > -1" ng-click="toggleSelection(choice,index)"/>
-					{{choice}}
-				</label>
-				<br>
+				<b>Answer :</b>
 				{{feedbackModel.item[index].answer}}
 			</div>
 		</form>
@@ -90,44 +85,14 @@
 </tr>
 </table>
 
-<table>
-			<!--<tr ng-repeat-start="aData in arrayAnswer track by $index">
-			<td>
-			{{aData[$index].query}}
-			<!-- {{arrayAnswer[$index]}} 
-			</td>
-			<tr ng-repeat-end>
-			<td>{{aData}}</td>
-			</tr>
-<!-- 			<tr ng-repeat="fbModel in feedbacks">
-				<td>{{fbModel.providedBy}}</td>
-			</tr> 
-		
-			</tr>-->
-
-<!-- 			<div ng-repeat="aAnswer in arrayAnswer"> 
-			<div ng-if=aAnswer.query==arrayQuery[$index]/>
-			{{arrayQuery[$index]}}
-			{{aAnswer.answer}}
-			</div>
-			</div> -->
-
-</table>
-<!--  <li ng-repeat="employment in Employments">
-      <div ng-repeat="user in Users" ng-if="user.id === employment.user_id" >
-        {{user.name}}:{{employment.title}}
-      </div>
-    </li> -->
-    <!-- {{arrayQuery}} -->
-<!--     {{arrayAnswer}}
-	<div ng-repeat="answer in arrayAnswer" | unique:>
-		
-	</div> -->
-
-<div ng-repeat="questionPerItems in questionsToFilter() | filter:filterQuestions">
+<div ng-repeat="questionPerItems in questionsToFilter() | filter:filterQuestions" ng-if="view.mode == 'question'">
         <b>{{questionPerItems.query}}</b>
 
-        <li ng-repeat="item in arrayItem | filter:{query: questionPerItems.query}">{{item.answer}}</li>        
+        <li ng-repeat="item in arrayItem | filter:{query: questionPerItems.query}">
+
+       <userdisplay view-mode="nameonly" user-id="item.providedBy"/>,
+       <userdisplay view-mode="designation" user-id="item.providedBy"/>
+        said {{item.answer}}</li>        
     </div>
 
 
