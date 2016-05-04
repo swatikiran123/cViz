@@ -123,6 +123,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             $scope.feedbackModel.providedBy = providedById;
             $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
             $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
+            $scope.feedbackModel.item[$scope.order].providedBy =  providedById;
             // console.log($scope.feedbackModel);
             
             $http.put('/api/v1/secure/feedbacks/'+ $scope.overallFeedbackTmpl , $scope.feedbackModel,{
@@ -165,6 +166,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             $scope.feedbackModel.providedBy = providedById;
             $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
             $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
+            $scope.feedbackModel.item[$scope.order].providedBy =  providedById;
             console.log($scope.feedbackModel);
             
             $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel,{

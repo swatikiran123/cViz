@@ -77,8 +77,8 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService' , '$filter',
-  function($scope, $http, $route, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService, $filter) {
+visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$filter', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'AutoCompleteService', 'FeedbackService', 'KeynoteService',
+  function($scope, $http, $route,$filter, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, AutoCompleteService, FeedbackService, SessionService, KeynoteService) {
 
     var id = $routeParams.id;
 
@@ -113,7 +113,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
   $scope.finalizeTab=false;
   $scope.notifyTab=false;
   $scope.visitGrid= false;
-
+  $scope.designation= "designation";
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -729,9 +729,17 @@ $scope.removekeynote = function(index){
 
   //Feedback by Person
   $scope.feedbackbyPerson = function(visitid) {
+    $scope.feedbackTitles = [];
     $http.get('/api/v1/secure/feedbacks').success(function(response1)
-    {
-      $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid });
+    { 
+      $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid, feedbackOn: "visit" });
+      for(var i=0;i<$scope.feedbackDatalist.length;i++)
+      {
+        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[i].template).success(function(response2)
+        {
+          $scope.feedbackTitles.push(response2.title);
+        });
+      }
     });
   }
 
@@ -741,9 +749,8 @@ $scope.removekeynote = function(index){
    {
     $scope.arrayQuery = [];
     $scope.arrayItem = [];
-    $scope.feedbacks = $filter('filter')(response1, { visitid: visitid });
+    $scope.feedbacks = $filter('filter')(response1, { visitid: visitid, feedbackOn: "visit" });
     var feedbackData = $scope.feedbacks;
-
     for(var i =0;i<feedbackData.length;i++)
     {
       for(var j=0;j<feedbackData[0].item.length;j++)
