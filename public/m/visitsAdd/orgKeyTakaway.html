@@ -39,7 +39,7 @@
            <!--vist Interest interest. businessType visitType objective-->
 
            <!-- visits businessType-->
-           <div class="form-group col-xs-12">
+          
       
               <label>Business Type</label>
               <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
@@ -85,7 +85,8 @@
       <div class="but">
 
 <i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;Previous</i>
-<i class="fa fa-angle-right fa-lg nextbut"  wz-next="logStep();orgKeytake(visits);"  aria-hidden="true">&nbsp;&nbsp;Next</i>
+<span class="nextbut">Next&nbsp;
+<i class="fa fa-angle-right fa-lg"  wz-next="logStep();orgKeytake(visits);"  aria-hidden="true"></i></span>
 
 <!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
 
