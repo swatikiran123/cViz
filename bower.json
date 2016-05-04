@@ -47,7 +47,8 @@
     "ng-file-upload": "11.0.0",
     "ngImgCropFullExtended": "0.5.4",
     "fullcalendar": "2.6.1",
-    "angular-wizard": "~0.6.1"
+    "angular-wizard": "~0.6.1",
+    "angularjs-dropdown-multiselect": "~1.5.2"
   },
   "resolutions": {
     "angular": "~1.5.0",
