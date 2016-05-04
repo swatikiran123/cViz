@@ -14,18 +14,13 @@ angular.module('keynotes')
         controller: 'keynotesControllerMain'
       })
 
-      .when('/keynotes/:id/show', {
-        templateUrl: '/public/mods/keynotes/keynotesViewShow.html',
-        controller: 'keynotesControllerMain'
-      })
-
       .when('/keynotes/:id/edit', {
         templateUrl: '/public/mods/keynotes/keynotesViewAdd.html',
         controller: 'keynotesControllerMain'
       })
 
       .when('/keynotes/panelsview', {
-        templateUrl: '/public/mods/keynotes/keynotesViewPanels.html',
+        templateUrl: '/public/mods/keynotes/partials/keynotesViewPanels.html',
         controller: 'keynotesControllerMain'
       });
     }

@@ -1,4 +1,5 @@
 <!-- Grid filter -->
+<div class="container">
 <div class="form-inline has-feedback filter-header">
   <div class="row">
     <div class="col-xs-5">
@@ -17,7 +18,7 @@
     <!-- table header -->
     <tr>
       <th>
-        <span class="glyphicon glyphicon-th-large"></span>
+        <span class="fa fa-th-large fa-lg"></span>
         <a href="" ng-click="orderByField='Name'; reverseSort = !reverseSort">Name</a>
       </th>
       <th>
@@ -25,7 +26,7 @@
         <a href="" ng-click="orderByField='vertical'; reverseSort = !reverseSort">Vertical</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-globe"></span>
+        <span class="fa fa-globe fa-lg"></span>
         <a href="" ng-click="orderByField='regions'; reverseSort = !reverseSort">Regions</a>
       </th>
       <th>
@@ -49,11 +50,12 @@
       <td><div ng-repeat="regions in clients.regions track by $index">{{regions}}</td>
       <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td>
       <td>
-        <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a>
-        <a class="table-btn" href="#/clients/{{clients._id}}/edit"><span class="fa fa-pencil-square-o fa-lg" /></a>
-        <a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="glyphicon glyphicon-trash" /></a>
+        <!-- <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
+        <a class="table-btn" href="#/clients/{{clients._id}}/edit"><span class="fa fa-edit fa-lg"/></a>
+        <a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>"
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
       </td>
     </tr>
   </tbody>
 </table>
+</div>

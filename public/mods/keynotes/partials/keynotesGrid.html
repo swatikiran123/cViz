@@ -1,5 +1,6 @@
 <!-- Grid filter -->
-<div class="form-inline has-feedback filter-header">
+<div class="container">
+  <div class="form-inline has-feedback filter-header">
     <div class="row">
       <div class="col-xs-5">
       <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
@@ -18,23 +19,23 @@
     <!-- table header -->
     <tr>
       <th>
-        <span class="glyphicon glyphicon-th-large"></span>
+        <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='speaker'; reverseSort = !reverseSort">Speaker</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
-        <a href="" ng-click="orderByField='Desc'; reverseSort = !reverseSort">Desc</a>
+        <span class="fa fa-list-alt fa-lg"></span>&nbsp;&nbsp;
+        <a href="" ng-click="orderByField='Desc'; reverseSort = !reverseSort">Description</a>
       </th>
-      <th class="hidden-xs">
+      <!-- <th class="hidden-xs">
         <span class="glyphicon glyphicon-user"></span>
         <a href="" ng-click="orderByField='Tags'; reverseSort = !reverseSort">Tags</a>
-      </th>
+      </th> -->
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
+        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='Created'; reverseSort = !reverseSort">Created</a>
       </th>
       <th class="hidden-xs">
@@ -49,7 +50,7 @@
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.noteBy"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.desc"></span></th>
-      <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th>
+<!--       <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th> -->
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
@@ -62,15 +63,16 @@
       <td>{{keynote.title}}</td>
       <td><div userdisplay view-mode="nameonly" user-id="keynote.noteBy"></div></td>
       <td><p ng-bind-html="keynote.desc"></p></td>
-      <td class="hidden-xs"><div ng-repeat="tags in keynote.tags track by $index"--> {{tags}}</div></td>
+      <!-- <td class="hidden-xs"><div ng-repeat="tags in keynote.tags track by $index"> {{tags}}</div></td> -->
       <td class="hidden-xs">{{keynote.createOn | DateFormat:"ddd, DD MMM YYYY" }}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>
-        <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
-        <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+       <!--  <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
+        <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(keynote)" confirm-dialog header-text="Delete Keynote" content="Are you sure you want to delete the keynote with keynote title <b>{{keynote.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="glyphicon glyphicon-trash" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
       </td>
     </tr>
   </tbody>  
 </table>
+</div>

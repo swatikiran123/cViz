@@ -14,18 +14,13 @@ angular.module('clients')
 	    controller: 'clientsControllerMain'
 	  })
 
-	  .when('/clients/:id/show', {
-	    templateUrl: '/public/mods/clients/clientsViewShow.html',
-	    controller: 'clientsControllerMain'
-	  })
-
 	  .when('/clients/:id/edit', {
 	    templateUrl: '/public/mods/clients/clientsViewAdd.html',
 	    controller: 'clientsControllerMain'
 	  })
 
 	  .when('/clients/panels', {
-	    templateUrl: '/public/mods/clients/clientsViewPanels.html',
+	    templateUrl: '/public/mods/clients/partials/clientsViewPanels.html',
 	    controller: 'clientsControllerMain'
 	  });
 	}

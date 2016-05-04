@@ -14,11 +14,6 @@ angular.module('teasers')
         controller: 'teasersControllerMain'
       })
 
-      .when('/teasers/:id/show', {
-        templateUrl: '/public/mods/teasers/teasersViewShow.html',
-        controller: 'teasersControllerMain'
-      })
-
       .when('/teasers/:id/edit', {
         templateUrl: '/public/mods/teasers/teasersViewAdd.html',
         controller: 'teasersControllerMain'
