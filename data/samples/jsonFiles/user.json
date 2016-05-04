@@ -28,8 +28,8 @@
 				"email"				: "admin@gmail.com"
 			},
 
-		"summary"		: "Ar. Admin is the admin for this application.",
-		"jobTitle"			: "Admin",
+		"summary"		: "Mr. Admin is the admin for this application.",
+		"jobTitle"			: "Administrator",
 		"organization"	: "CSC",
 		"orgRef"			: "",
 		"association"		: "employee",
@@ -1656,7 +1656,7 @@
 			},
 
 			"summary"		: "David is a partner in CSC’s Big Data and Analytics practice. He is a results-oriented data scientist with 15 years as an analytics subject matter expert. He is experienced in the design and execution of data-driven business strategy using analytics to drive results.",
-			"jobTitle"			: "Sr. Principal",
+			"jobTitle"			: "Senior Executive",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
@@ -1715,7 +1715,7 @@
 			},
 
 			"summary"		: " Proven ability in Building and leading teams, Engineering Program Management, Agile product development",
-			"jobTitle"			: "Chief Technical Officer",
+			"jobTitle"			: "Senior Executive",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
@@ -1779,7 +1779,7 @@
 			},
 
 			"summary"		: " 8 years of work experience in Organizational Development, Training & Development and Executive Coaching, currently conducting need based training programs for Engineering, PG students & Employees",
-			"jobTitle"			: "Senior Executive Officer",
+			"jobTitle"			: "Senior Executive",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
@@ -1839,7 +1839,7 @@
 			},
 
 			"summary"		: " 10+ years of experience in the field of HR with exposure to Learning & Development, Induction/Orientation, Data Management, HRIS, Employee Engagement, Joining formalities and Campus Recruitment",
-			"jobTitle"			: "Chief  Executive Officer",
+			"jobTitle"			: "Advisor",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
@@ -1899,7 +1899,7 @@
 			},
 
 			"summary"		: " 15+ year experience in Learning &Talent Management Function in the IT, ITES & CRO Multi-National Companies.",
-			"jobTitle"			: "Senior Executive",
+			"jobTitle"			: "Manager",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
@@ -1960,7 +1960,7 @@
 			},
 
 			"summary"		: " Possess excellent leadership and people management skills and subject matter expertise on Learning and Development function. Have been instrumental in setting up the L&D function in my curent assignment",
-			"jobTitle"			: "Junior Executive Officer",
+			"jobTitle"			: "Advisor",
 			"organization"	: "CSC",
 
 			"orgRef"			: "",
