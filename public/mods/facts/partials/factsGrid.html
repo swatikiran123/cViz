@@ -37,7 +37,8 @@
 </style>
 
 <!-- Grid filter -->
-<div class="form-inline has-feedback filter-header">
+<div class="container">
+  <div class="form-inline has-feedback filter-header">
   <div class="row">
     <div class="col-xs-5">
       <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />
@@ -55,19 +56,19 @@
     <!-- table header -->
     <tr>
       <th>
-        <span class="glyphicon glyphicon-th-large"></span>
+        <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='editedBy'; reverseSort = !reverseSort">Editor Name</a>
       </th>
       <th>
-        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="fa fa-list-alt fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='description'; reverseSort = !reverseSort">Description</a>
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-list-alt"></span>
+        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='createOn'; reverseSort = !reverseSort">Created Date</a>
       </th>
       <th>&nbsp;<a href=""> Action</a></th>
@@ -88,11 +89,12 @@
       <td><p ng-bind-html="fact.description"></p></td>
       <td>{{fact.createOn | date:'dd-MM-yyyy'}}</td>
       <td>
-        <a class="table-btn" href="#/facts/{{fact._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a>
-        <a class="table-btn" href="#/facts/{{fact._id}}/edit"><span class="glyphicon glyphicon-edit" /></a>
+        <!-- <a class="table-btn" href="#/facts/{{fact._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
+        <a class="table-btn" href="#/facts/{{fact._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(fact)" confirm-dialog header-text="Delete Fact" content="Are you sure you want to delete the fact with fact title <b>{{fact.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="glyphicon glyphicon-trash" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
       </td>
     </tr>
   </tbody>
 </table>
+</div>

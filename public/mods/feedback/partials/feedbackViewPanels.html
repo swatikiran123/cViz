@@ -23,7 +23,7 @@
                 <div class="panel-heading pn-bodyhdr" pull-left>
                   <span>{{feedback.title}}</span>
                   <div class="pull-right">
-                    <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/show"><span class="fa fa-eye fa-lg" /></a>
+                    <!-- <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
                     <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/edit"><span class="fa fa-pencil-square-o fa-lg" /></a>
                     <a class="table-btn" ng-click="delete(feedback)" confirm-dialog header-text="Delete Feedback" content="Are you sure you want to delete the feedback with feedback title <b>{{feedback.title}} ? </b>" yes-text="Ok" no-text="Cancel"><span class="fa fa-trash-o fa-lg" /></a>
                     <a class="table-btn" ng-click="showFeedbackTemp($event,feedback._id)"><span class="fa fa-comments fa-lg"/></a>

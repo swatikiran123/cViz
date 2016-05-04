@@ -14,18 +14,13 @@ angular.module('facts')
         controller: 'factsControllerMain'
       })
 
-      .when('/facts/:id/show', {
-        templateUrl: '/public/mods/facts/factsViewShow.html',
-        controller: 'factsControllerMain'
-      })
-
       .when('/facts/:id/edit', {
         templateUrl: '/public/mods/facts/factsViewAdd.html',
         controller: 'factsControllerMain'
       })
 
       .when('/facts/panels', {
-        templateUrl: '/public/mods/facts/factsViewPanels.html',
+        templateUrl: '/public/mods/facts/partials/factsViewPanels.html',
         controller: 'factsControllerMain'
       });
     }
