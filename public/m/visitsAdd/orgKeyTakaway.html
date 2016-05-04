@@ -73,24 +73,24 @@
             </div>
           </div>
         </div>
-        <div>
+        
         <label>&nbsp;&nbsp;&nbsp;&nbsp;status:</label><br>
         &nbsp;&nbsp;
         <input type="radio" name="status" ng-model="visits.status" value="confirm"> confirm<br>
         &nbsp;&nbsp;
         <input type="radio" name="status" ng-model="visits.status" value="tentative"> tentative
-        </div>
+      
 
       </form>
-      <div class="but">
+  <br>
 
-<i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;Previous</i>
-<span class="nextbut">Next&nbsp;
-<i class="fa fa-angle-right fa-lg"  wz-next="logStep();save(visits,clientId,clientName,checked);"  aria-hidden="true"></i></span>
-
+<span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg"    aria-hidden="true">&nbsp;Previous</i></span>
+<span wz-next="logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;
+<i class="fa fa-angle-right fa-lg"    aria-hidden="true"></i></span>
+<br>
+<br>
 <!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
 
-</div>
 
    
       </div>

@@ -6,15 +6,16 @@
                 
 <span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Thank You !
                     
-     </span>
-                </div>
+ </span>
+ </div>
+ <br>
 
 <div class="detailsT">
   {{url=thankyouResponse[order].attachment;""}}
   {{fileExt=url.split(".").pop();""}}
 
   <div ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'">
-    <video id="welcome"  controls  autoplay muted ng-src="{{url}}" 
+    <video id="thankyou"  controls  autoplay muted ng-src="{{url}}" 
     type="video/fileExt">
     </video>
   </div>
@@ -29,14 +30,12 @@
     </audio>
   </div>
 
-    <br>
-    <br>
-    <p class="text">  
-     <div style="overflow-y: auto; height:100px; width:850px">
+        
+     <div class="richtextT">
        <richtext class="text" body-text="thankyouResponse[order].noteText">
        </richtext>
      </div>
-    </p>
+  
     <hr>
 
     <div class="profileT">
@@ -51,7 +50,7 @@
         </div>       
     </div>
 
-<a href="/m/main/"><button type="button"  class="btn btn-default">continue1&nbsp;<i class="fa fa-angle-right"></i></button></a>
+<a href="/m/main/"><button class="buttonT" type="button"  class="btn btn-default">continue1&nbsp;<i class="fa fa-angle-right"></i></button></a>
 </div>
 
 

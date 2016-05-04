@@ -43,14 +43,14 @@
 </form>
 <div ng-if="subdis" class="error text-info">Please dont forget to fill Visit schedul details. !!!!</div>
 <div ng-if="err" class="error text-danger">Please Enter valid data.!!</div>
-<div class="but">
 
-<i class="fa fa-angle-left fa-lg backbut"  wz-previous="logStep();backcheck()"  aria-hidden="true">&nbsp;Previous</i>
-<span class="nextbut">Next&nbsp;<i class="fa fa-angle-right fa-lg"  wz-next="logStep()"  aria-hidden="true"></i></span>
+
+<span class="pull-left" wz-previous="logStep();backcheck()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
+<span  class="pull-right" wz-next="logStep()">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
 
 <!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
 
-</div>
+
 </div>
 <input type="text" name="q" id="locationinput" style="border: none;
 background: transparent;outline: none;color:transparent;" 

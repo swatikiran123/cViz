@@ -10,6 +10,12 @@ angular.module('sessions')
 	}).success(function(response) {
     $scope.scheduleList = response;
   });
+	  $http.get('/api/v1/secure/visits/' + $routeParams.id ,{
+		cache: true
+	}).success(function(response) {
+    $scope.visittitle = response;
+    $scope.visittitles = $scope.visittitle.title;
+     });
   //console.log($scope.range)
 
 	$scope.pushSession = function(sessionId){

@@ -1,6 +1,6 @@
 <div class="wizpad">
 
-	<div class="but">
+
 		<!--visitors-->
 		<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
 			<b>Add - Visitor</b><br>
@@ -41,11 +41,12 @@
 						</td>
 					</tr>
 				</tr>
+</tbody></table></form>
+	
+				<span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg"    aria-hidden="true">&nbsp;previous</i></span>
+				<span class="pull-right finish">
+				<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my"><i class="fa fa-angle-right"  aria-hidden="true">&nbsp;Finish</i></a></span>
 
-
-				<i class="fa fa-angle-left fa-lg  backbut"  wz-previous="logStep()"  aria-hidden="true">&nbsp;&nbsp;previous</i>
-				<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my"><i class="fa fa-angle-right nextbut"  aria-hidden="true">&nbsp;&nbsp;Finish</i></a>
-
-			</div>
+		
 		</div>
 
