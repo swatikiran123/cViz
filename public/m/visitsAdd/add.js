@@ -76,8 +76,6 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
 
     $scope.save=function(visits,clientId,clientName,checked){
-      console.log("im in save lucky u")
-      console.log($scope.visitors);
    // console.log(clientId);
    console.log(checked)
    if (checked == false){
