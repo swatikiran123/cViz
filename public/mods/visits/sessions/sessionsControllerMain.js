@@ -49,6 +49,11 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				$scope.meetingPlacesData = $scope.meetingPlaces.toString();//pushing all meeting location data to meetingPlacesData
 				}
 			});
+
+			$http.get("/api/v1/secure/visits/" + $scope.visitId + "/getLocations").success(function(response) {
+				$scope.location = response;
+				console.log($scope.location);
+			});
 		}
 
 		var refresh = function(){
@@ -100,10 +105,53 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  		$scope.showFiltered = false;
 	  	}
 
-		$scope.setEntryDate = function(dt){
+		$scope.setEntryDate = function(dt,index){
+
+				console.log(index);
+
 				$scope.entryDate = dt;
+				$scope.index = $scope.location[index];
 				$scope.showFiltered = true;
 				$scope.showAll = false;
+
+
+				if($scope.index == "Hyderabad")
+				{
+					$scope.rooms = ['Hyd Board Room','B7 1st Floor Conference Room','B4 Cafeteria',
+	    'B4 Executive Dining Room','Hyd Amphi Theatre','Hyd Main Lobby'];
+				}
+
+				else if($scope.index == "Noida")
+				{
+					$scope.rooms = ['Noida Board Room','Noida Cafeteria','Noida Amphi Theatre','Noida Main Lobby'];
+				}
+
+				else if($scope.index == "Chennai")
+				{
+					$scope.rooms = ['Chennai Lobby Area','Chennai Ex Lunch','Chennai Amphi Theatre','Chennai Main Lobby'];
+				}
+
+				else if($scope.index == "Bangalore")
+				{
+					$scope.rooms = ['Bng Lobby Area','Bng Ex Lunch','Bng Amphi Theatre','Bng Main Lobby'];
+				}
+
+				else if($scope.index == "Mumbai")
+				{
+					$scope.rooms = ['Mumbai Lobby Area','Mumbai Ex Lunch','Mumbai Amphi Theatre','Mumbai Main Lobby'];
+				}
+
+				else if($scope.index == "Vadodara")
+				{
+					$scope.rooms = ['Vadodara Lobby Area','Vadodara Ex Lunch','Vadodara Amphi Theatre','Vadodara Main Lobby'];
+				}
+
+				else if($scope.index == "Indore")
+				{
+					$scope.rooms = ['Indore Lobby Area','Indore Ex Lunch','Indore Amphi Theatre','Indore Main Lobby'];
+				}
+
+				console.log($scope.rooms);
 		}
 
 		$scope.dayFilter = function (schedule) {
@@ -191,19 +239,20 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			//session invitees to be added
 
 			// session info
+		// console.log($scope.startHourTime);
+		// console.log()
 			$scope.schedule.session.owner = $scope.ownerId;
 	    $scope.schedule.session.supporter = $scope.supporterId;
 	    var startTime = $scope.startHourTime + ":" +$scope.startMinTime;
 	    var endTime = $scope.endHourTime + ":" +$scope.endMinTime;
 	    $scope.schedule.session.startTime = DateReplaceTime($scope.entryDate, startTime);
 	    $scope.schedule.session.endTime = DateReplaceTime($scope.entryDate, endTime);
-	    //console.log($scope.data);
 	   	if($scope.mode == 'add')
 	   	{	
-	    	if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
-	    	{
-	    	$scope.schedule.session.location = $scope.meetingPlacesData;
-			}
+	  //   	if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
+	  //   	{
+	  //   	$scope.schedule.session.location = $scope.meetingPlacesData;
+			// }
 
 			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 			{
@@ -213,10 +262,10 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 		if($scope.mode == 'edit')
 	   	{
-	   		if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
-	   		{
-	   			$scope.schedule.session.location = $scope.meetingPlaceData;
-	   		}
+	   		// if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
+	   		// {
+	   		// 	$scope.schedule.session.location = $scope.meetingPlaceData;
+	   		// }
 
 	   		if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 	   		{
@@ -224,10 +273,10 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	   		}
 	   	}	
 
-		if($scope.sessionMeetingData != '' && $scope.sessionMeetingData != undefined)
-		{
-		 $scope.schedule.session.location = $scope.sessionMeetingData;
-		}
+		// if($scope.sessionMeetingData != '' && $scope.sessionMeetingData != undefined)
+		// {
+		//  $scope.schedule.session.location = $scope.sessionMeetingData;
+		// }
 
 
 		if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
@@ -245,9 +294,10 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	        break;
 	    } // end of switch scope.mode ends
 	  } // end of save method
-
+	  console.log($scope.schedule);
 	  $scope.create = function() {
 	    $http.post('/api/v1/secure/visitSchedules', $scope.schedule).success(function(response) {
+	      console.log(response);
 	      growl.info(parse("Title: [%s]<br/>New session schedule added", $scope.schedule.session.title));
 				$mdDialog.hide();
 	    })

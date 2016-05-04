@@ -6,7 +6,7 @@
 
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <div class="md-header">Enter the Schedule  for {{entryDate | DateFormat:"ddd, DD MMM" }}<!-- @ {{entryLocation}} ]--></div>
+        <div class="md-header">Enter the Schedule  for {{entryDate | DateFormat:"ddd, DD MMM" }}@ {{index}}</div>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
@@ -48,14 +48,14 @@
                   <option ng-option value="05">05</option>
                   <option ng-option value="10">10</option>
                   <option ng-option value="15">15</option>
-                  <option ng-option value="9">20</option>
-                  <option ng-option value="10">25</option>
-                  <option ng-option value="11">30</option>
-                  <option ng-option value="12">35</option>
-                  <option ng-option value="13">40</option>
-                  <option ng-option value="14">45</option>
-                  <option ng-option value="15">50</option>
-                  <option ng-option value="16">55</option>
+                  <option ng-option value="20">20</option>
+                  <option ng-option value="25">25</option>
+                  <option ng-option value="30">30</option>
+                  <option ng-option value="35">35</option>
+                  <option ng-option value="40">40</option>
+                  <option ng-option value="45">45</option>
+                  <option ng-option value="50">50</option>
+                  <option ng-option value="55">55</option>
                 </select>
 
               </div>
@@ -105,10 +105,9 @@
                 <i>Select Session Type</i>
                 <br>
                 <select id="type" ng-model="schedule.session.type">
-                 <option value=""></option>
+                 <option value="" disabled></option>
                  <option ng-repeat="ty in prTypes">{{ty}}</option>
                </select>
-
               </div>
          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
 
@@ -127,7 +126,7 @@
 
          <!--location have to pic from User -->
          <!-- {{meetingPlacesData}} -->
-         <md-input-container class="md-block" ng-if="mode=='add'">
+         <!-- <md-input-container class="md-block" ng-if="mode=='add'">
          <label>Location</label>
          <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
          ng-blur="sendMeetingPlace(meetingPlacesData)">
@@ -147,7 +146,36 @@
             <div ng-messages-include="/public/mods/partials/messages.html"></div>
             <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
             <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-          </md-input-container>
+          </md-input-container> -->
+
+    <!-- {{schedule.session.location}} -->
+<!--     <select  id="meetingPlace" ng-model="schedule.session.location">
+      <option value=""></option>
+      <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+    </select>
+ -->
+
+
+
+<!--    <div layout="row">
+      <md-input-container style="margin-right: 10px;">
+        <label>Size</label>
+        <md-select ng-model="schedule.session.location">
+          <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
+        <label>Topping</label>
+        <md-select ng-model="selectedToppings" multiple>
+          <md-optgroup label="Meats">
+            <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'meat' }">{{topping.name}}</md-option>
+          </md-optgroup>
+          <md-optgroup label="Veggies">
+            <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'veg' }">{{topping.name}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+    </div> -->
 
          <!--desc have to pic from User -->
              <md-input-container class="md-block">
@@ -182,6 +210,16 @@
         <div ng-message="minlength">The feedback template should contain minimum 5characters</div></div></div>
       </md-input-container>
 
+      <div> 
+        <i>Select Meeting Place</i>
+        <select id="meetingPlace" ng-model="schedule.session.location">
+          <option value="" disabled></option>
+          <option value="" disabled>=========================================================================================================</option>
+          <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+          <option value="" disabled>=========================================================================================================</option>
+        </select>
+      </div>
+      <br>
 		 	<!-- session speaker -->
 			<div class="row">
 				<div class="form-group col-xs-6">
@@ -211,7 +249,7 @@
     </ANY>
       <ANY ng-switch-when="Tea">
 
-       <md-input-container class="md-block" ng-if="mode=='add'">
+<!--        <md-input-container class="md-block" ng-if="mode=='add'">
        <label>Location</label>
        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
        ng-blur="sendMeetingPlace(meetingPlacesData)">
@@ -231,7 +269,18 @@
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
           <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
+        </md-input-container> -->
+
+        <div class="row"> 
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location">
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
         <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
         <br>
         <br>
@@ -247,7 +296,7 @@
 
       <ANY ng-switch-when="Lunch">
 
-        <md-input-container class="md-block" ng-if="mode=='add'">
+<!--         <md-input-container class="md-block" ng-if="mode=='add'">
         <label>Location</label>
         <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
         ng-blur="sendMeetingPlace(meetingPlacesData)">
@@ -267,7 +316,17 @@
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
           <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
+        </md-input-container> -->
+        <div class="row"> 
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location">
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
         <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
         <br>
         <br>

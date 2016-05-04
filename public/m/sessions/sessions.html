@@ -1,5 +1,5 @@
 
-<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{current | DateFormat:'DD MMM YYYY HH:mm'}}" >
+<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{current | date:'dd MMM yyyy HH:mm'}}" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
@@ -49,7 +49,7 @@
 										<i ng-switch-default  class="fa fa-circle fa-lg session-status-img" aria-hidden="true"></i>
 									</span>
 									<span class="agenda-session-time">
-										{{session.session.startTime | DateFormat : 'HH:mm'}}
+										{{session.session.startTime | date:'HH:mm'}}
 
 										<!-- -
 										{{session.session.endTime | date : "HH:mm"}} -->
