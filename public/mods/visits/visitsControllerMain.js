@@ -270,11 +270,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$rou
           $scope.visits = visits;//Whole form object
 
           $scope.arraydata=response.invitees;
-
+          if (response.agm!=undefined) {
           $scope.agmUser = response.agm;
           $scope.agmEmail = response.agm.email;
           $scope.agmId = response.agm._id;
-
+          }
           $scope.clientName= response.client.name;//auto fill with reff client db
           if (response.feedbackTmpl!=undefined) {
             $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
