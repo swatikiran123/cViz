@@ -391,7 +391,7 @@ input[type=range]:focus::-ms-fill-upper {
   .agenda-session-name a {
     font-family: workSansMedium;
     font-size: 16px;
-     color: purple;
+     color: black;
     font-weight: bold;
     padding-left: 10px;
   }
