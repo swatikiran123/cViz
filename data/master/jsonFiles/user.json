@@ -30,6 +30,12 @@
 				"email"				: "admin@csc.com"
 			},
 
+		"summary"		: "Mr. Admin is the admin for this application.",
+		"jobTitle"			: "Administrator",
+		"organization"	: "CSC",
+		"orgRef"			: "",
+		"association"		: "employee",
+
 		"socialProfile"	:
 			[
 				{
