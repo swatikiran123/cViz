@@ -172,7 +172,8 @@ module.exports = {
 			"/public/d/userView/script.js",
 			"/public/assets/g/js/rateit.js",
 			"/public/assets/g/js/toaster.js",
-			"/public/d/richText/script.js"
+			"/public/d/richText/script.js",
+			"/public/d/ssnFeedbackDir/ssnfeedback.js"
 		],
 		"prod":[
 		]

@@ -9,7 +9,7 @@
             <img src="/public/uploads/images/industry/diversified.png">
         </div>
         <div class="col-xs-8 col-sm-10 col-md-10 col-lg-11">
-            <div class="client-category">{{client.name}}</div>
+            <div class="client-category">{{client.name | uppercase}}</div>
             <div class="team-size">Team Size <span class="size-figure">345*</span></div>
         </div>
     </div></div>
@@ -69,8 +69,8 @@
     <div class="prime-competitors">
         <div class="heading">PRIME COMPETITORS</div>
         <div class="competitors-list">
-            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-1 img-div" ng-repeat="competitor in client.competitors">
-                <img ng-src="{{competitor.image}}">
+            <div class="col-xs-2 col-sm-3 col-md-3 col-lg-1 img-div" ng-repeat="competitor in client.competitors">
+                <!--img ng-src="{{competitor.image}}"-->
                 {{competitor}}
             </div>
         </div>

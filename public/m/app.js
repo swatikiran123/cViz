@@ -5,7 +5,7 @@ angular.module('mviz-main', [
 ]);
 
 angular.module('mviz-visits', [
-	'appFilters','appService','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt'
+	'appFilters','appService','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir'
 ]);
 
 angular.module('mviz-facts', [
@@ -14,7 +14,7 @@ angular.module('mviz-facts', [
 	'facts','header','scroll'
 ]);
 
-angular.module('mviz-add', ['visitAdd','home','scroll','mgo-angular-wizard','header','scroll']);
+angular.module('mviz-add', ['visitAdd','home','scroll','mgo-angular-wizard','header','scroll','userdisplayDirective']);
 
 angular.module('mviz-emp', []);
 

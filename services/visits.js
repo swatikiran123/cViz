@@ -30,6 +30,7 @@ service.getMyVisits = getMyVisits;
 service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
 service.pushSession = pushSession;
+service.getLocationsById = getLocationsById;
 
 module.exports = service;
 
@@ -642,6 +643,40 @@ function getKeynotesById(id){
 	return deferred.promise;
 }
 
+function getLocationsById(id)
+{
+	var deferred = Q.defer();
+	var locations = [];
+
+	model
+	.findOne({ _id: id })
+	.exec(function (err, item) {
+		console.log(item);
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+
+		else
+		{
+			//fetching locations
+			for (var i=0; i<item.schedule.length; i++){
+				var startDate = moment(item.schedule[i].startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+				var endDate = moment(item.schedule[i].endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+				var dr    = moment.range(startDate, endDate);
+				var daysDiff = dr.diff('days'); // dates diff
+				for(var k=0;k<=daysDiff;k++)
+				{
+					locations.push(item.schedule[i].location);
+				}
+			}
+		}
+
+		deferred.resolve(locations);
+	});
+	return deferred.promise;
+}
+	
 function create(data) {
 	var deferred = Q.defer();
 

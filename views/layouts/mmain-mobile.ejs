@@ -21,7 +21,11 @@
 
   width: 100%;
 }
+.leftbg{
+  width:100%;
+  height: 4% !important;
 
+}
 #page {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -119,20 +123,26 @@
   display: inline-block;
   margin-right: 15px;
 }
-
+.menu-profile-name{
+    background: rgba(0, 0, 0, 0.5);
+}
 .menu-profile-pic,
 .menu-profile-name {
   text-align: center;
-  padding: 10px;
-  background-color: #f3f2f7;
+  padding: 0px;
+  
   font-family: workSansRegular;
   font-size: 1.3em;
-  color: #606060;
+  color: #f3f5fd;
+  font-weight: bold;
 }
-
+.menu-profile-name span{
+   color: #f3f5fd;
+}
 .menu-profile-pic img {
     width: 75px;
     height: 75px;
+
     border-radius: 150px;
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px;
@@ -141,7 +151,10 @@
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
 }
-
+.sb-profile{
+ background-image: url("/public/assets/m/img/bg/left-panel.jpg");
+ background-size: 100% 100%;
+}
 .menu-profile-name {
   padding-top: 7px;
 }
@@ -154,15 +167,19 @@
   <div id="page">
 
     <!-- Sidebar -->
-    <div id="sb-wrapper"><h1>&nbsp;&nbsp;Visit Portal</h1>
+    <div id="sb-wrapper">
         <div class="sb-profile">
+        <div class="bg">
         <%if (locals.user !== undefined) { %>
+        <br>
+        <br>
         <div class="menu-profile-pic"><img src="<%=locals.user.avatar%>"></div>
         <div class="menu-profile-name">
 					<%=locals.user.name.first%> <%=locals.user.name.last%><br/>
 					<span style="font-size: 80%;"><%=locals.user.jobTitle%></span><br/>
 					<span style="font-size: 70%;"><%=locals.user.get('groups')%></span>
 				</div>
+        </div>
         <% } %>
       </div> <!-- sb-profile end -->
       <%-locals.menu %>

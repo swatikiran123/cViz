@@ -1,5 +1,5 @@
 
-<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{current | DateFormat:'DD MMM YYYY HH:mm'}}" >
+<div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{current | date:'dd MMM yyyy HH:mm'}}" >
 
 	 <ul class="scroll-outer">
 		<ul ng-init="vm.tab=setTab()"  class="agenda-list scroll-inner">
@@ -49,7 +49,7 @@
 										<i ng-switch-default  class="fa fa-circle fa-lg session-status-img" aria-hidden="true"></i>
 									</span>
 									<span class="agenda-session-time">
-										{{session.session.startTime | DateFormat : 'HH:mm'}}
+										{{session.session.startTime | date:'HH:mm'}}
 
 										<!-- -
 										{{session.session.endTime | date : "HH:mm"}} -->
@@ -62,6 +62,7 @@
 									<a ng-switch-when="dinner" href="#/sessions/{{session._id}}/details" >Dinner</a>
 									<a ng-switch-when="lunch" href="#/sessions/{{session._id}}/details" >Lunch</a>
 									<a  ng-switch-when="tea-break" href="#/sessions/{{session._id}}/details" >Tea-Break</a>
+									<a  ng-switch-when="breakfast" href="#/sessions/{{session._id}}/details" >Breakfast</a>
 								</span></span>
 
 
@@ -79,11 +80,12 @@
 											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
 											+{{session.invitees.length}}
-                                            <div ng-if="group=='customer' || group=='exec'">
+                                            <!--div ng-if="group=='customer' || group=='exec'">
 											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
-											</span>
-											</div>
+											</span></div-->
+											<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}"></div>
+											
 
                                              <div ng-if="group=='admin' || group=='vManager'">
                                              <span  data-toggle="modal" data-target="#myModal" class="feedback-link">Move Session</span>
