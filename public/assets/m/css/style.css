@@ -27,7 +27,7 @@ a:hover {
 }
 div#profile-details {
   padding-top: 60px;
-  background: url("/public/uploads/images/f.jpg") no-repeat;
+  background: url("/public/assets/m/img/bg/welcome-bg.jpg") no-repeat;
   background-size: 100% 94%;
 }
 
@@ -307,7 +307,9 @@ span.menuName {
   overflow:hidden;
   height: 58px; 
   margin-bottom:32px;
-}img {
+
+}
+.load img {
                 width: 60px;
             }
 .profile-location u {
@@ -335,7 +337,7 @@ span.menuName {
 @media only screen and (min-device-width: 290px)and (max-device-width: 320px){
 div#profile-details {
   padding-top: 60px;
-  background: url("/public/uploads/images/f.jpg") no-repeat;
+  background: url("/public/assets/m/img/bg/welcome-bg.jpg") no-repeat;
   background-size: 100% 91%;
 }
   #scrollBox > div fieldset {

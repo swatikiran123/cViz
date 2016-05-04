@@ -9,6 +9,25 @@
 		width: 70px;
 
 	}
+	.image1{
+    height:300px;
+    width: 800px;
+}
+.lo{
+    width: 10%;
+    height: 10%;
+    padding-right: 20px;
+    border-right: 1px solid black;
+}
+.lb{
+    width: 50px;
+    height: 50px;
+}
+.ly{
+     border-right: 1px solid black;
+ 
+}
+
 	.welltext{
 		text-align: center;
 	}

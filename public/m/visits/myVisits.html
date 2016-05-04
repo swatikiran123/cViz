@@ -39,7 +39,7 @@
 
             <div> <div class="visitlinks">
                 <h3><a href="#/sessions/{{visit._id}}" >{{visit.title}}</a><br></h3>
-                <h5><a href="#/client/{{visit.client._id}}/info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{{visit.client.name}}</a></h5>
+                <h5><a href="#/client/{{visit.client._id}}/info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{{visit.client.name | uppercase}}</a></h5>
                 </div>
                 <div class="dropdown pull-right">
                     <div class="dropdown-toggle" type="button" data-toggle="dropdown">
