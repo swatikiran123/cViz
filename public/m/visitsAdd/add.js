@@ -76,6 +76,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
 
     $scope.save=function(visits,clientId,clientName,checked){
+
    // console.log(clientId);
    console.log(checked)
    if (checked == false){
@@ -265,7 +266,10 @@ $scope.addvisitor=function(visitorDef){
   visitorDef.visitor = '';
   // visitorDef.visitorUser = '';
 };
-
+$scope.closeNewVisitor=function(){
+  $scope.disabled = 'true';
+  $scope.showFlag='false';
+}
 $scope.addvisitordata=function(visitor,emailId,influencedata){
   console.log(influencedata);
   console.log(visitor);

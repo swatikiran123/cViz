@@ -9,5 +9,5 @@
 	Designation: <input type="text" ng-model="visitor.jobTitle"><br><br>
 </form>
 <input type="button" wz-previous="logStep();addvisitordata(visitor,emailId,influencedata)" value="Save &amp; Continue" /><br><br>
-<input type="button" wz-previous="logStep()" value="Cancel" /><br><br>
+<input type="button" wz-previous="logStep();closeNewVisitor();" value="Cancel" /><br><br>
 <!-- <input type="button" wz-next="logStep();finish();" value="FINISH" /> -->
