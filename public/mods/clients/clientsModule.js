@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('clients', ['ngRoute', 'angular-growl'])
+angular.module('clients', ['ngRoute', 'angular-growl','angularjs-dropdown-multiselect',])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
