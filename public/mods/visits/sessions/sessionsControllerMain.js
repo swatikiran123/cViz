@@ -318,7 +318,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  }; // update method ends
 
 	  // type field dropdown list
-	  $scope.prTypes = ['Presentation','Discussion','Tea','Lunch','Dinner','Floor-Walk'];
+	  $scope.prTypes = ['Presentation','Discussion','Breakfast','Tea-Break','Lunch','Dinner','Floor-Walk'];
 
 	  // location field dropdown list
 	  $scope.locations = [{

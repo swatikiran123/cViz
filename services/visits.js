@@ -431,6 +431,7 @@ function getSessionsById(id){
 		else{
 			scheduleModel
 			.find({ visit: id })
+			.sort('session.startTime')
 			.exec(function (err, sessions){
 				if(err){
 					logger.writeLine('error',0,err);

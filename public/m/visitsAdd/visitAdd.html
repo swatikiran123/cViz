@@ -1,3 +1,228 @@
+
+
+<style>
+.steps-indicator {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 11% 0 0 0;
+    height: 30px;
+    list-style: none;
+    position: fixed;
+    top:0;
+    z-index: -1000000;
+}
+.divtop{
+  padding-top: 120px;
+
+}
+.finish a{
+color: black;
+}
+.wizpad{
+	padding-top: 13%;
+	}
+	table.table tr th {
+    background-color: black !important;
+    color: #f6f6f6 !important;
+    font-family: verdana, arial !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+  }
+ input[type="text"] {
+  padding: 5px;
+  transition: border 0.3s;
+  width: 98%;
+  border: 0.3px solid black;
+  outline-color: black;
+}
+ input[type="text"]:focus,
+ input[type="text"].focus {
+  outline-color: #B3B3B3;
+  border: 1px solid #B3B3B3;
+}
+
+textarea[type="text"]{
+   padding: 2px;
+  border: 1px  solid black;
+  width: 98%;
+
+}
+ textarea[type="text"]:focus,
+  textarea[type="text"].focus{
+  outline-color: blue;
+box-shadow: none;
+
+}
+ input[type="tt"] {
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-bottom: solid 2px grey;
+  transition: border 0.3s;
+
+}
+ input[type="tt"]:focus,
+ input[type="tt"].focus {
+  border-bottom: solid 2px blue;
+  outline: none;
+}
+
+.wbutton{
+ margin-left: 70%;
+ font-family: robotoMedium;
+}
+
+
+select{
+	width: 150px;
+}
+
+@media only screen and (max-device-width: 320px){
+	.steps-indicator {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0px 0 0 0;
+    margin-top: 48%;
+    height: 30px;
+    list-style: none;
+    position: fixed;
+    top:0;
+   z-index: -99999;
+}
+.wizpad{
+	padding-top: 58%;
+	}
+}
+
+	@media only screen and (min-device-width: 321px) and (max-device-width: 400px) {
+			.steps-indicator {
+       margin-top: 45%;
+     }
+.wizpad{
+	padding-top: 59%;
+	}
+}
+
+  @media only screen and (min-device-width: 400px) and (max-device-width: 479px) {
+      .steps-indicator {
+
+margin-top: 40%;
+   
+}
+
+  }
+@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+			.steps-indicator {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0px 0 0 0;
+margin-top: 25%;
+    height: 30px;
+    list-style: none;
+    position: fixed;
+    top:0;
+   z-index: -99999;
+}
+.wizpad{
+	padding-top: 28%;
+	}
+
+
+
+
+}
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+      .steps-indicator {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0px 0 0 0;
+margin-top: 25%;
+    height: 30px;
+    list-style: none;
+    position: fixed;
+    top:0;
+   z-index: -99999;
+}
+.wizpad{
+  padding-top: 30%;
+  }
+
+
+
+
+}
+
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+  		      .steps-indicator {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0px 0 0 0;
+margin-top: 25%;
+    height: 30px;
+    list-style: none;
+    position: fixed;
+    top:0;
+   z-index: -99999;
+}
+.wizpad{
+  padding-top: 28%;
+  }
+
+
+
+
+
+
+
+}
+
+
+ </style>
+<link rel="stylesheet" href="/public/assets/m/css/header.css">
+<div header showprofile="false" icon="fa fa-info-circle" title1="visit add " title2="create visit">
+visit step
+    </div>
+
+<div id="main_content_wrap" class="outer">
+ <section id="main_content" class="inner main-inner">
+
+  <wizard on-finish="finished()">
+
+   <wz-step  wz-title="Agenda" canexit="exitValidation">
+   <div  class="wxsection" ng-include src="'/public/m/visitsAdd/agendaTab.html'"></div>
+</wz-step>
+
+<wz-step wz-title="Schedule" canexit="exitValidation">
+<div ng-include src="'/public/m/visitsAdd/scheduleVisit.html'"></div>
+</wz-step>
+
+
+<wz-step wz-title=" Org Take Away" canexit="exitValidation">
+<div ng-include src="'/public/m/visitsAdd/orgKeyTakaway.html'"></div>
+</wz-step>
+
+
+<wz-step wz-title="Add visitors" >
+<div ng-include src="'/public/m/visitsAdd/visitorsAdd.html'"></div>
+</wz-step>
+
+<wz-step wz-title="Add new visitor" wz-disabled="{{disabled}}">
+<div ng-include src="'/public/m/visitsAdd/newVisitorsAdd.html'"></div>
+</wz-step>
+</wizard>
+</section>
+</div>
 <script>
 function startDictation(id) {
     // alert(id.id);
@@ -84,331 +309,3 @@ function setFocusToTextBox(){
     document.getElementById("locationinput").focus();
 }  
 </script>
-
-<style>
-.steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 12% 0 0 0;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-    z-index: -1000000;
-}
-.divtop{
-  padding-top: 120px;
-
-}
-.wizpad{
-	padding-top: 16%;
-	}
-	table.table tr th {
-    background-color: black !important;
-    color: #f6f6f6 !important;
-    font-family: verdana, arial !important;
-    font-size: 12px !important;
-    font-weight: bold !important;
-  }
- input[type="text"] {
-  padding: 5px;
-  transition: border 0.3s;
-  width: 98%;
-  border: 0.3px solid black;
-  outline-color: black;
-}
- input[type="text"]:focus,
- input[type="text"].focus {
-  outline-color: #B3B3B3;
-  border: 1px solid #B3B3B3;
-}
-
-textarea[type="text"]{
-   padding: 2px;
-  border: 1px  solid black;
-  width: 98%;
-
-}
- textarea[type="text"]:focus,
-  textarea[type="text"].focus{
-  outline-color: blue;
-box-shadow: none;
-
-}
- input[type="tt"] {
-  padding: 10px;
-  outline: none;
-  border: none;
-  border-bottom: solid 2px grey;
-  transition: border 0.3s;
-
-}
- input[type="tt"]:focus,
- input[type="tt"].focus {
-  border-bottom: solid 2px blue;
-  outline: none;
-}
-
-.wbutton{
-  position: fixed;
-  top:0;
-  margin-top: 15%;
-  margin-left: 70%;
- font-family: robotoMedium;
-  
-	}
-	
-.backbut{
-position : fixed;
-top:0;
-float:left;
-margin-top: 15%;
-margin-left: 10%;
-}
-
-select{
-	width: 150px;
-}
-.nextbut{
-
-position : fixed;
-top:0;
-margin-top: 15%;
-float: right;
-margin-left: 73%;
-
-}
-.but{
-position:fixed;
-top:0;
-margin-top: 64%;
-font-family: robotoMedium;
-
-
-}
-
-@media only screen and (max-device-width: 320px){
-	.steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 0px 0 0 0;
-    margin-top: 50%;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-   z-index: -99999;
-}
-.wizpad{
-	padding-top: 73%;
-	}
-
-.nextbut{
-    margin-top: 65%;
-}
-
-  
-.backbut{
-margin-top: 65%;
-}
-.wbutton{
-position: fixed;
-top:0;
-margin-top: 65%;
-}
-
-}
-
-	@media only screen and (min-device-width: 321px) and (max-device-width: 480px) {
-			.steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 0px 0 0 0;
-margin-top: 50%;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-   z-index: -99999;
-}
-.wizpad{
-	padding-top: 75%;
-	}
-
-
-.wbutton{
-
-	   position: fixed;
-    top:0;
-   margin-top: 67%;
-   margin-left: ;
-
-	}
-
-.nextbut{
-margin-top: 67%;
-}
-
-  
-.backbut{
-margin-top: 67%;
-}
-
-}
-@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
-			.steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 0px 0 0 0;
-margin-top: 25%;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-   z-index: -99999;
-}
-.wizpad{
-	padding-top: 33%;
-	}
-
-
-.wbutton{
-
-	   position: fixed;
-    top:0;
-   margin-top: 30%;
-  
-	}
-.nextbut{
-margin-top: 30%;
-}
-
-  
-.backbut{
-margin-top: 30%;
-}
-
-}
-@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
-      .steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 0px 0 0 0;
-margin-top: 25%;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-   z-index: -99999;
-}
-.wizpad{
-  padding-top: 33%;
-  }
-
-
-.wbutton{
-
-     position: fixed;
-    top:0;
-   margin-top: 30%;
-  
-  }
-.nextbut{
-margin-top: 30%;
-}
-
-  
-.backbut{
-margin-top: 30%;
-}
-
-
-}
-
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-  		      .steps-indicator {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    padding: 0px 0 0 0;
-margin-top: 25%;
-    height: 30px;
-    list-style: none;
-    position: fixed;
-    top:0;
-   z-index: -99999;
-}
-.wizpad{
-  padding-top: 33%;
-  }
-
-
-.wbutton{
-
-     position: fixed;
-    top:0;
-   margin-top: 30%;
-  
-  }
-.nextbut{
-margin-top: 30%;
-}
-
-  
-.backbut{
-margin-top: 30%;
-}
-
-
-
-
-}
-
-
- </style>
-<link rel="stylesheet" href="/public/assets/m/css/header.css">
-<div header showprofile="false" icon="fa fa-info-circle" title1="visit add " title2="create visit">
-visit step
-    </div>
-
-<div id="main_content_wrap" class="outer">
- <section id="main_content" class="inner main-inner">
-
-  <wizard on-finish="finished()">
-
-   <wz-step  wz-title="Agenda" canexit="exitValidation">
-   <div ng-include src="'/public/m/visitsAdd/agendaTab.html'"></div>
-</wz-step>
-
-<wz-step wz-title="Schedule" canexit="exitValidation">
-<div ng-include src="'/public/m/visitsAdd/scheduleVisit.html'"></div>
-</wz-step>
-
-
-<wz-step wz-title=" Org Take Away" canexit="exitValidation">
-<div ng-include src="'/public/m/visitsAdd/orgKeyTakaway.html'"></div>
-</wz-step>
-
-
-<wz-step wz-title="Add visitors" >
-<div ng-include src="'/public/m/visitsAdd/visitorsAdd.html'"></div>
-</wz-step>
-
-<wz-step wz-title="Add new visitor" wz-disabled="{{disabled}}">
-<div ng-include src="'/public/m/visitsAdd/newVisitorsAdd.html'"></div>
-</wz-step>
-</wizard>
-</section>
-</div>
