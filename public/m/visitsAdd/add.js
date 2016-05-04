@@ -56,15 +56,16 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
         $scope.clientName= response.client.name;//auto fill with reff client db
         $scope.visitors = visits.visitors;
         $scope.schedules = visits.schedule;//List of schedules
-        if ($scope.schedules != undefined || $scope.schedules == "")
-        {
-          $scope.subdis= false;
-        }else{
-          $scope.subdis= true;}
-          $scope.status= visits.status;
-          if (visits.billable == "billable") {
-            $scope.checked=true;
-          };
+
+            if ($scope.schedules != undefined || $scope.schedules == "")
+            {
+              $scope.subdis= false;
+            }else{
+              $scope.subdis= true;}
+              $scope.status= visits.status;
+              if (visits.billable == "billable") {
+                $scope.checked=true;
+              };
           $scope.visits = visits;//Whole form object
           console.log($scope.visits._id);
 
@@ -95,6 +96,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           {  
             visits.client = clientId;
             visits.createBy= $rootScope.user._id;
+
           }
           if(visits.mode=="speech")
           { 
@@ -116,6 +118,8 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
             })
           }else{
             console.log(visits);
+            visits.title = angular.element('#name').val();
+            visits.agenda = angular.element('#agenda').val();
             console.log($scope.visits);
             $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
               $location.path('/visits/'+$scope.visits._id+'/edit');
@@ -144,6 +148,9 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
               }else{
 
                 console.log(visits);
+
+                visits.title = angular.element('#name').val();
+                visits.agenda = angular.element('#agenda').val();
                 console.log($scope.visits);
                 $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
                   $location.path('/visits/'+$scope.visits._id+'/edit');
