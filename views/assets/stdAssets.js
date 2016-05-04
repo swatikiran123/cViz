@@ -196,12 +196,6 @@ module.exports = {
 		"/public/libs/moment/moment.js",
 		"/public/libs/moment-range/dist/moment-range.js"
 		],
-	},
-	"angularjs-dropdown-multiselect":{
-		"dev":[
-		"/public/libs/lodash/dist/lodash.js",
-		"/public/libs/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js"
-		]
 	}
 
 }

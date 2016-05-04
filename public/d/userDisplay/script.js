@@ -91,6 +91,11 @@ angular.module('userdisplayDirective', [])
         {
           return "/public/d/userDisplay/templates/mediumpanel.html";
         }
+
+        if(viewmode === "designation")
+        {
+           return "/public/d/userDisplay/templates/designation.html";
+        }
       }
     }
   };

@@ -14,18 +14,13 @@ angular.module('feedback')
         controller: 'feedbackControllerMain'
       })
 
-      .when('/feedbackTmpl/:id/show', {
-        templateUrl: '/public/mods/feedback/feedbackViewShow.html',
-        controller: 'feedbackControllerMain'
-      })
-
       .when('/feedbackTmpl/:id/edit', {
         templateUrl: '/public/mods/feedback/feedbackViewAdd.html',
         controller: 'feedbackControllerMain'
       })
 
       .when('/feedbackTmpl/panels', {
-        templateUrl: '/public/mods/feedback/feedbackViewPanels.html',
+        templateUrl: '/public/mods/feedback/partials/feedbackViewPanels.html',
         controller: 'feedbackControllerMain'
       });
     }

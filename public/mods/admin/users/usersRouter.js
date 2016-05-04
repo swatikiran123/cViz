@@ -15,7 +15,7 @@ angular.module('users')
       })
 
       .when('/users/panels', {
-        templateUrl: '/public/mods/admin/users/usersViewPanels.html',
+        templateUrl: '/public/mods/admin/partials/users/usersViewPanels.html',
         controller: 'usersControllerMain'
       });
 

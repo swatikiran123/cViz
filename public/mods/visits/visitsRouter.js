@@ -24,11 +24,6 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
-      .when('/visits/:id/show', {
-        templateUrl: '/public/mods/visits/visitsViewShow.html',
-        controller: 'visitsControllerMain'
-      })
-
 			.when('/visits/:id/sessions', {
 				templateUrl: '/public/mods/visits/sessions/sessionsViewMain.html',
 				controller: 'sessionsControllerMain'

@@ -10,7 +10,7 @@ angular.module('contactList')
       })
 
       .when('/contactList/panels', {
-        templateUrl: '/public/mods/contactList/contactListViewPanels.html',
+        templateUrl: '/public/mods/contactList/partials/contactListViewPanels.html',
         controller: 'contactListControllerMain'
       });
     }
