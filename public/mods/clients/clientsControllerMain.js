@@ -14,6 +14,9 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     $scope.regions=response.values;
   });
 
+  $scope.example1model = []; 
+  $scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
+  
   $http.get('/api/v1/secure/lov/offerings').success(function(response) {
     $scope.offerings=response.values;
   });

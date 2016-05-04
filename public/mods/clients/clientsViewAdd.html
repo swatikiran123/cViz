@@ -74,6 +74,9 @@
     </div>
   </div>
 
+{{regions}}
+<div ng-dropdown-multiselect="" options="regions" selected-model="clients.regions"></div>
+{{clients.regions}}
   <!-- offerings checkboxofferings:-->
 
   <div class="form-group" ng-class="{ 'has-error': clientsForm.offerings.$touched && clientsForm.offerings.$invalid }">
@@ -149,7 +152,7 @@
 <!-- netPromoterScore Type input-->
 <md-input-container class="md-block">
 <label>Net Promoter Score</label>
-<input md-maxlength="30" minlength="5" required name="Net Promoter Score" ng-model="clients.netPromoterScore">
+<input md-maxlength="30" minlength="3" required name="Net Promoter Score" ng-model="clients.netPromoterScore">
 <div ng-messages="clientsForm.netPromoterScore.$error" ng-show="clientsForm.netPromoterScore.$touched || !clientsForm.netPromoterScore.$pristine">
  <div class="messagenotify">
   <div ng-messages-include="/public/mods/partials/messages.html"></div>
