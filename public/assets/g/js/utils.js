@@ -32,3 +32,15 @@ DatesInRange = function(dt1, dt2){
 	var dayRange = moment.range(dt1, dt2);
 	return (dayRange.toArray('days'));
 }
+// return local date and time, equal to now() at local
+Today = function(){
+	return moment.utc().toDate();
+}
+
+DateDiff = function(dt1, dt2){
+	return (moment(dt1).diff(moment(dt2), 'days')); 
+}
+
+AddDays = function(dt, days){
+	return (moment(dt).add(days, 'days'));
+} 

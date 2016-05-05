@@ -3,26 +3,22 @@
     <form name="agendaForm" id="agendaForm" class="form-vertical" novalidate>
       <!--panel-one-->
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"> <b>Info about the client's visit agenda...</b></h3>
-        </div>
-        <div class = "panel-subheader pull-right">
+       <div class = "panel-subheader pull-right">
         </div>
         <div class="panel-body">
           <div class="row">
             
             {{visits.mode="speech";""}}
             <!-- visits title input-->
-            <label>Title:</label>
-            <input id="name" name="name" placeholder="Title"   required type="text" ng-model="visits.title"
-            onfocus="startDictation(document.getElementById('name'))">
+            <label>Title</label>
+            <input id="name" name="name" placeholder="Title"   required type="text" ng-model="visits.title" onfocus="startDictation(document.getElementById('name'))">
           </div>
           <br>
           
           
           <!-- visits client input-->
           <div class="row">
-            <label>ClientName:</label>
+            <label>Client</label>
             <input required name="clientname" ng-model="clientName" placeholder="Client Name" type="text" autocomplete required>
             <div ng-show="autoFail" class="error text-danger" >{{clientNotFound}}</div>
             
@@ -35,13 +31,14 @@
             onfocus="startDictation(document.getElementById('agenda'))"></textarea>
           </div>  
 
-          
-          <label>&nbsp;&nbsp;&nbsp;&nbsp;status:</label><br>
+          <br>
+          <div class="row">
+          <label>Status</label>
           &nbsp;&nbsp;
-          <input type="radio" name="status" ng-model="visits.status" value="confirm"> confirm<br>
+          <input type="radio" name="status" ng-model="visits.status" value="confirm">&nbsp; Confirm
           &nbsp;&nbsp;
-          <input type="radio" name="status" ng-model="visits.status" value="tentative"> tentative         
-
+          <input type="radio" name="status" ng-model="visits.status" value="tentative"> Tentative         
+          </div>
         </div>
       </div>
       <div  class="wbutton">
