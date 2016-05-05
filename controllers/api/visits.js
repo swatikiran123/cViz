@@ -219,7 +219,7 @@ function pushSession(req,res){
 
   dataService.pushSession(sessionId, time)
     .then(function(data){
-        res.status(404).send("Session moved successfully");
+        res.status(200).send("Session moved successfully");
     })
     .catch(function (err){
         console.log("exception" + err);

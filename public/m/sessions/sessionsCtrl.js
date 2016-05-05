@@ -5,33 +5,91 @@ angular.module('sessions')
 	$scope.group=$rootScope.user.groups;
 	$scope.current = new Date();
 
-  $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+  /*$http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
 		cache: true
 	}).success(function(response) {
     $scope.scheduleList = response;
+
   });
 	  $http.get('/api/v1/secure/visits/' + $routeParams.id ,{
 		cache: true
 	}).success(function(response) {
     $scope.visittitle = response;
     $scope.visittitles = $scope.visittitle.title;
-     });
+     });*/
+	
+
   //console.log($scope.range)
+var refresh = function() {
+  $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+		//cache: true
+	}).success(function(response) {
+    $scope.scheduleList = response;
+    console.log($scope.scheduleList)
+  });
+	  $http.get('/api/v1/secure/visits/' + $routeParams.id ,{
+		//cache: true
+	}).success(function(response) {
+    $scope.visittitle = response;
+    $scope.visittitles = $scope.visittitle.title;
+     })
+console.log('refresh');
+};
+	
+	refresh();
 
-	$scope.pushSession = function(sessionId){
+	$scope.pushSession = function(sessionId,rtime){
 		//console.log(sessionId)
-		$window.location.reload();
+		//$window.location.reload();
+         console.log(sessionId);
+         console.log(rtime);
 
-		var x = document.getElementById("rangeInput").value;
-		//console.log(x);
-
-		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ x).success(function(response) {
+		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime).success(function(response) {
 		  $scope.sessiontime = response;
-		  $window.location.reload();
-		  $route.reload();
+		
+		  refresh();
 
 		});
 	}
+	$scope.drop = function(sessionId){
+			$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
+			{
+				console.log(response);
+				$scope.response = response;
+						$console.log($scope.response);
+							$scope.response.status = "cancelled";
+							$console.log($scope.response.status);
+						
+            // $scope.status = "cancelled";
+            // console.log(sessionId);console.log(status);
+            $http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
+            	console.log(response);
+
+            });
+             	if ($scope.response.status === "cancelled"){
+								   angular.element('#cancel-session').addClass('agenda-cancel-session');
+								   console.log('hellow')
+							}
+
+			});
+
+
+	}
+
+
+	     $scope.getClass = function (strValue) {
+                    if (strValue == ("cancelled"))
+                        return "agenda-block-sub-div-cancel";
+                    else{
+                  return "agenda-block-sub-div";}
+                }
+       
+            $scope.getdiv = function (strValue) {
+                    if (strValue == ("cancelled"))
+                        return "feed";
+                    else{
+                  return "feedback-link";}
+                }
   //  console.log($location.search()["day"]);
   //  console.log($location.search()["s"]);
 

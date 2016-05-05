@@ -14,10 +14,11 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
 
       if (!req.isAuthenticated()){
-				res.locals.pageTitle = "Main";
+				/*res.locals.pageTitle = "Main";
 				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
 				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
-        res.render('index.ejs',{layout: 'layouts/public'});
+        res.render('index.ejs',{layout: 'layouts/public'});*/
+        res.redirect('/login');
 			} else {
 				renderHome(req, res);
       }

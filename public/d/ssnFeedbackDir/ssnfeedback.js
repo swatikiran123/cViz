@@ -3,7 +3,24 @@ var fb=angular.module('ssnfbdir', [])
 fb.controller('ssnfbCtrl',function($scope, $routeParams, $http, $location, $timeout, $rootScope) {
   $scope.group=$rootScope.user.groups;
   console.log($scope.group);
+  $scope.current = new Date();
+  console.log( $scope.current);
+
+    $scope.getfeedback = function (strValue) {
+                    if (strValue == ("cancelled"))
+                        return "cancel";
+                    else{
+                  return "feedback-link";}
+                };
+  /*$scope.settime = function(starttime){
+  if (starttime <= $scope.current){
+    $scope.stime = "less";
+  }else{  $scope.stime = "more";}
+
+}*/
 });
+
+
 
 
 
@@ -14,7 +31,10 @@ fb.directive('ssnfbdir', function() {
     scope: {
       ftmplate: '@',
       visitId: '@',
-      sessionId: '@'
+      sessionId: '@',
+      status: '@',
+      type: '@',
+      starttime:'@'
     },
 
 }
