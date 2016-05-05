@@ -19,18 +19,18 @@
     <!-- table header -->
     <tr>
       <th>
-        <span class="fa fa-th-large fa-lg"></span>
+        <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th>
-        <span class="fa fa-th fa-lg"></span>
+        <span class="fa fa-th fa-lg"></span>&nbsp;&nbsp;
         <a href="" ng-click="orderByField='teaser'; reverseSort = !reverseSort">Teaser</a>
       </th>
       <th class="hidden-xs">
-        <span class="fa fa-user fa-lg"></span>
-        <a href="" ng-click="orderByField='createdBy'; reverseSort = !reverseSort">Created</a>
+        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Created By
+        <!-- <a href="" ng-click="orderByField='createdBy'; reverseSort = !reverseSort">Created By</a> -->
       </th>
-<!--       <th class="hidden-xs">
+      <!--<th class="hidden-xs">
         <span class="fa fa-link fa-lg"></span>
         <a href="" ng-click="orderByField='externalLink'; reverseSort = !reverseSort">Link</a>
       </th> -->
@@ -41,7 +41,9 @@
     <tr ng-hide="hideFilter">
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.teaser"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createdBy"></span></th>
+      <th></th>
+      <th></th>
+      <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createdBy"></span></th> -->
       <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.externalLink"></span></th> -->
     </tr>
 

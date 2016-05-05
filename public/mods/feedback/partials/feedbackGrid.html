@@ -27,22 +27,22 @@
         <a href="" ng-click="orderByField='type'; reverseSort = !reverseSort">Type</a>
       </th>
       <th>
-        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
+        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Created By
+        <!-- <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a> -->
       </th>
       <th class="hidden-xs">
-        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='createOn'; reverseSort = !reverseSort">Created On</a>
+        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;Created On
+        <!-- <a href="" ng-click="orderByField='createOn'; reverseSort = !reverseSort">Created On</a> -->
       </th>
-      <th>&nbsp;<a href=""> Action</a></th>
+      <th></th>
     </tr>
 
     <!-- table filter -->
     <tr ng-hide="hideFilter">
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.type"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.userCreateBy"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createOn"></span></th>
+      <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.userCreateBy"></span></th> -->
+      <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.createOn"></span></th> -->
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
@@ -54,7 +54,7 @@
       <td>{{feedback.title}}</td>
       <td>{{feedback.type}}</td>
       <td><div userdisplay view-mode="nameonly" user-id="feedback.createBy"></div></td>
-      <td>{{feedback.createOn | date:'dd-MM-yyyy'}}</td>
+      <td>{{feedback.createOn | date:'dd MMM yyyy'}}</td>
       <td>
        <!--  <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
         <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/edit"><span class="fa fa-edit fa-lg" /></a>

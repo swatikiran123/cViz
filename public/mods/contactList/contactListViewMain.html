@@ -33,8 +33,8 @@
 				<th><span class="fa fa-list-alt fa-lg"></span>&nbsp;&nbsp;
 					<a href="" ng-click="orderByField='type'; reverseSort = !reverseSort">Contact Type</a>
 				</th>
-				<th><span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-					<a href="" ng-click="orderByField='user'; reverseSort = !reverseSort">Contact User</a>
+				<th><span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Contact User
+					<!-- <a href="" ng-click="orderByField='user'; reverseSort = !reverseSort">Contact User</a> -->
 				</th>
 				<th></th>
 			</tr>
@@ -43,7 +43,9 @@
 			<tr ng-hide="hideFilter">
 				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.location"></span></th>
 				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.type"></span></th>
-				<th><span ng-hide="hideFilter"><input type="text" ng-model="search.user"></span></th>
+				<th></th>
+				<th></th>
+				<!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.user"></span></th> -->
 			</tr>      
 
 			<!-- table input template -->
