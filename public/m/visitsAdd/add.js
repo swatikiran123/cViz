@@ -220,7 +220,7 @@ $scope.addvisitor=function(visitorDef){
   console.log(visitorDef);
   console.log(visitorDef.visitor);
 
-  console.log($scope.visits.client._id);
+  // console.log($scope.visits.client._id);
   $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitor).success(function(response) {
    if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
    {

@@ -23,24 +23,24 @@
         <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th>
-        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='speaker'; reverseSort = !reverseSort">Speaker</a>
+        <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Speaker
+        <!-- <a href="" ng-click="orderByField='noteBy'; reverseSort = !reverseSort">Speaker</a> -->
       </th>
       <th>
         <span class="fa fa-list-alt fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='Desc'; reverseSort = !reverseSort">Description</a>
+        <a href="" ng-click="orderByField='desc'; reverseSort = !reverseSort">Description</a>
       </th>
       <!-- <th class="hidden-xs">
         <span class="glyphicon glyphicon-user"></span>
         <a href="" ng-click="orderByField='Tags'; reverseSort = !reverseSort">Tags</a>
       </th> -->
       <th class="hidden-xs">
-        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='Created'; reverseSort = !reverseSort">Created</a>
+        <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;Created On
+        <!-- <a href="" ng-click="orderByField='Created'; reverseSort = !reverseSort">Created</a> -->
       </th>
       <th class="hidden-xs">
-        <span class="glyphicon glyphicon-dashboard"></span>
-        <a href="" ng-click="orderByField='link'; reverseSort = !reverseSort">Link</a>
+        <span class="glyphicon glyphicon-dashboard"></span>Link
+        <!-- <a href="" ng-click="orderByField='link'; reverseSort = !reverseSort">Link</a> -->
       </th>
       <th>&nbsp;</th>
     </tr>
@@ -48,9 +48,11 @@
     <!-- table filter -->
     <tr ng-hide="hideFilter">
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.noteBy"></span></th>
+      <th></th>
+      <!-- <th></th> -->
+      <!-- <th><span ng-hide="hideFilter"><input type="text" ng-model="search.noteBy"></span></th> -->
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.desc"></span></th>
-<!--       <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th> -->
+      <!-- <th class="hidden-xs"><span ng-hide="hideFilter"><input type="text" ng-model="search.tags"></span></th> -->
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>

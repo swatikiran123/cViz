@@ -54,7 +54,21 @@
               </div>
             </md-input-container>
 
-          <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div>
+          <!-- <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div> -->
+
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"> <b>Attachments</b></h3>
+              </div>
+              <div class = "panel-subheader pull-right">
+              </div>
+              <div class="panel-body">
+               <i><h5>Please click Attach files to add images, videos or audio files.</h5></i><br>
+               <span class="error text-info"><b> Note: </b>This is a mandator field.</span>
+               <fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile" ng-click="keyTrue()"/>
+             </div>
+           </div>
 
  
 <!--md-chips 
@@ -69,7 +83,7 @@
           <div class="form-group">
               <div class="pull-left">
                 <button type="submit" class="btn btn-success" 
-                  ng-click="save()" ng-disabled="keynotesForm.$invalid">Submit
+                  ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone">Submit
                 </button>
                 <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
             yes-text="Ok" no-text="Cancel">Cancel</button>

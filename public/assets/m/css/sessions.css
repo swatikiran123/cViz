@@ -12,7 +12,20 @@
   overflow-x:hidden;
 }
 
+  .agenda-block-sub-div-cancel {
+    background-color: #d3d3d3;
+    border-left: 1px solid #000;
+    margin-left: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid purple; }
+  
+  .feed{
+    display: none;
 
+
+  }
+.agenda-cancel-se{
+      background: rgba(0, 0, 0, 0.5);}
 .scroll-inner{
  
   overflow-x: auto;
@@ -84,11 +97,13 @@
     font-size: 20px;
     text-align: center;
 }
-
+.cancel{
+  display: none;
+}
   .feedback-link{
     text-decoration: underline;
     margin-left: 50px;
-    color: #969696;
+    color: red;
 		font-size: 14px;
     -moz-text-decoration-color: #d6d6d6; /* Code for Firefox */
     text-decoration-color: #d6d6d6;
