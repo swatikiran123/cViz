@@ -1,3 +1,4 @@
+                                           
 
 <div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{visittitles}}" >
 
@@ -35,7 +36,7 @@
 			</h1>
 			<div id="agenda-scrollable-block" class="scroll">
 				<div id="{{session._id}}" class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
-					<div  class="agenda-block-sub-div">
+					<div  ng-class="[getClass(session.status)]">
 						<div class="inactivesession">
 							<div>
 
@@ -84,13 +85,14 @@
 											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
 											</span></div-->
-											<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}"></div>
-											
+											<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}"></div>
 
+                                             {{session.status}}
+                                       
                                              <div ng-if="group=='admin' || group=='vManager'">
-                                             <span  data-toggle="modal" data-target="#myModal" class="feedback-link">Move Session</span>
+                                             <span ng-class="[getdiv(session.status)]" data-toggle="modal" data-target="#myModal{{session._id}}">Move Session</span>
 <!-- Modal -->
-											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="modal fade" id="myModal{{session._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="vertical-alignment-helper">
 											    <div class="modal-dialog   mwidth vertical-align-center">
 											        <div class="modal-content">
@@ -98,20 +100,19 @@
 
                                                             <i class="fa fa-times pull-right" aria-hidden="true" class="close" data-dismiss="modal"></i>
 											                </button>
-											                 <h4 class="modal-title" id="myModalLabel">Push/Drop session </h4>
+											                 <h4 class="modal-title" id="myModalLabel">Push/Drop session</h4>
 
 											            </div>
 											           <div class="modal-body">
-
-				                                 <form  align="center">
-				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" oninput="this.form.amount.value=this.value">&nbsp;45m  &nbsp;&nbsp;
-												<!--input type="number" name="amountInput" min="-45" max="40" value="0" placeholder="mins" oninput="this.form.amountRange.value=this.value"/-->
-											    <output name="amount" align="center" for="rangeInput">0</output>
-				                                 </form>
+                                                            <form  align="center">
+				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" ng-model="rtime">&nbsp;45m  &nbsp;&nbsp;
+				                                 <br>
+				                                 {{rtime}} timeeeee
+				                           
                                                        </div>
 											            <div class="modal-footer">
-											             <button type="button" class="btn btn-success xsbutn" ng-click="pushSession(session._id)">Push</button>
-											                <button type="button" class="btn btn-warning xsbutn" >Drop</button>
+											             <button type="button" class="btn btn-success xsbutn" ng-click="pushSession(session._id,rtime)" data-dismiss="modal">Push</button>
+											                <button type="button" class="btn btn-warning xsbutn" ng-click="drop(session._id)" data-dismiss="modal">Drop</button>
 
 
 											            </div>
