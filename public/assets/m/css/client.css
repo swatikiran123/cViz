@@ -7,6 +7,7 @@
     }*/
 }
 
+
 .client-rep {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -50,8 +51,8 @@
             }
         
         .client-category {
-            color: #CDBA39;
-            font-size: 0.9em;
+            color: black;
+            font-size: 1.3em;
             font-family: robotoRegular;
             padding: 5px;
         }
