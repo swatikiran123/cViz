@@ -89,7 +89,11 @@ function arrayIntersection() {
     $scope.feedbackModel.providedBy = providedById;
     $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
     $scope.feedbackModel.sessionid = $scope.sessionId;
-
+    console.log($scope.feedbackModel.item.length);
+    for(var i=0;i<$scope.feedbackModel.item.length;i++)
+    {
+      $scope.feedbackModel.item[i].providedBy = providedById;
+    }
     $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel).success(function(response) {
     })
 

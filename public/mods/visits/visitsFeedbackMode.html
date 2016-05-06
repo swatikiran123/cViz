@@ -1,100 +1,30 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.js"></script>
-<div class="row"> 
-	<div class="col-sm-1"></div>
-	<div class="col-md-8">
-
-		<!-- page header/subheader -->
-
-		<div class="page-header">
-			Feedback Mode
-			<div class="sub-header">Select View Mode
-			</div>
-		</div>
-
-<table>
-<tr>
-<td>          
-	Mode
-	<div>
-	<select name="mode" ng-model="view.mode" ng-dropdown>
-			<option ng-option value="person">By Person</option>
-			<option ng-option value="question">By Question</option>
-	</select>
-		<div id="person" ng-if="view.mode == 'person'" style="display: inline">
-		<!-- {{userData._id}} -->
-			<label ng-init="feedbackbyPerson(visitid)"/>
-		</div>
-		<div id="question" ng-if="view.mode == 'question'" style="display: inline">
-			<label ng-init="feedbackbyQuestion(visitid)"/>
-		</div>
+<!-- page header/subheader -->
+<div class="page-header">
+	View Feedback Given by Customer
+	<div class="sub-header">See Visit Wise or Session Wise Feedback
 	</div>
-</td>
-<td>
-</tr>
-</table>
-
-<table>
-<tr ng-repeat="feedbackModel in feedbackDatalist track by $index">
-<td>
-
-       <userdisplay view-mode="nameonly" user-id="feedbackModel.providedBy"/>,
-       <userdisplay view-mode="designation" user-id="feedbackModel.providedBy"/>
-<div style="pointer-events: none;" ng-if="view.mode == 'person'">       
-	<h4>Feedback on {{feedbackTitles[$index]}}</h4>
-	<div  ng-repeat="(index,item) in feedbackModel.item">
-		{{item.query}}
-
-		<form>
-			<div ng-if="item.mode == 'star-rating'">           
-				<label>
-					<ng-rate-it ng-model="feedbackModel.item[index].answer"></ng-rate-it>
-				</label>
-				<br>
-			</div>
-		</form>
-
-		<form>
-			<div  ng-if="item.mode == 'freetext'">  					
-				<textarea ng-model="feedbackModel.item[index].answer" rows="3" cols="35"></textarea>
-			</div>
-		</form>
-
-		<form>
-			<div  ng-if="item.mode == 'single-choice'">  					
-				<label class="radio-inline" ng-repeat="choice in item.choices">
-					<input type="radio" name="choice" ng-model="feedbackModel.item[index].answer" value="{{choice}}"/>
-					{{choice}}  	
-
-				</label>
-			</div>
-		</form>
-
-		<form>
-			<div ng-if="item.mode == 'multi-choice'">  					
-				<b>Answer :</b>
-				{{feedbackModel.item[index].answer}}
-			</div>
-		</form>
-
-		<br>
-	</div>
-
 </div>
-</td>
-<hr>
-</tr>
-</table>
+<div ng-controller="visitsControllerMain">
 
-<div ng-repeat="questionPerItems in questionsToFilter() | filter:filterQuestions" ng-if="view.mode == 'question'">
-        <b>{{questionPerItems.query}}</b>
+  <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+  <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;"></div>
 
-        <li ng-repeat="item in arrayItem | filter:{query: questionPerItems.query}">
+  <!--Basic Information TAB ONE-->
+  <md-tab label="Visit Wise Feedback">
+  <md-content class="md-padding">
+  <div ng-include src="'/public/mods/visits/visitwiseFeedback.html'"></div>
+  </md-content>
+  </md-tab>
 
-       <userdisplay view-mode="nameonly" user-id="item.providedBy"/>,
-       <userdisplay view-mode="designation" user-id="item.providedBy"/>
-        said {{item.answer}}</li>        
-    </div>
+  <!--Add Visitors TAB TWO-->
+  <md-tab label="Session Wise Feedback">
+  <md-content class="md-padding">
+  <div ng-include src="'/public/mods/visits/sessionwiseFeedback.html'"></div>
+  </md-content>
+  </md-tab>
 
-
+</md-tabs><!--end of tabs-->
+</md-content><!--end of content-->
 </div>
-</div>
+
+

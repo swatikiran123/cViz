@@ -114,6 +114,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.notifyTab=false;
   $scope.visitGrid= false;
   $scope.designation= "designation";
+  // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -145,6 +146,17 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $http.get('/api/v1/secure/lov/influence').success(function(response) {
     $scope.influence=response.values;
   });
+
+  // console.log($scope.mode);
+  if($scope.mode == 'edit')
+  {
+    $http.get('/api/v1/secure/visitSchedules/visit/'+$routeParams.id).success(function(response) {
+      // console.log(response);
+      $scope.sessiondbId = response;
+
+      console.log($scope.sessiondbId);
+    });
+  }
 
   $scope.visitorId = "";
   $scope.visitor = "";
@@ -733,13 +745,11 @@ $scope.removekeynote = function(index){
     $http.get('/api/v1/secure/feedbacks').success(function(response1)
     { 
       $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid, feedbackOn: "visit" });
-      for(var i=0;i<$scope.feedbackDatalist.length;i++)
-      {
-        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[i].template).success(function(response2)
+
+        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[0].template).success(function(response2)
         {
           $scope.feedbackTitles.push(response2.title);
         });
-      }
     });
   }
 
@@ -760,6 +770,66 @@ $scope.removekeynote = function(index){
     }
   });
  }
+
+  //Feedback by Person
+  $scope.sessionFeedbackbyPerson = function(visitId,sessionId) {
+    console.log(sessionId);
+    console.log(visitId);
+    $scope.feedbackSampleTitles = [];
+    $http.get('/api/v1/secure/feedbacks').success(function(response1)
+    { 
+      // console.log(response1);
+      $scope.feedbackSamplelist = $filter('filter')(response1, {visitid:visitId, sessionid: sessionId, feedbackOn: "session" });
+      console.log($scope.feedbackSamplelist);
+
+        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackSamplelist[0].template).success(function(response2)
+        {
+          $scope.feedbackSampleTitles.push(response2.title);
+        });
+
+    });
+
+    $http.get('/api/v1/secure/visitSchedules/' + sessionId).success(function(response3)
+    {
+      $scope.owner = response3.session.owner;
+      $scope.supporter = response3.session.supporter;
+      $scope.locationsession = response3.session.location;
+      $scope.description = response3.session.desc;
+      $scope.sessiontitle = response3.session.title;
+    });
+  }
+
+  //Feedback By Question
+  $scope.sessionFeedbackbyQuestion = function(visitId,sessionId) {
+    console.log(sessionId);
+    console.log(visitId);
+
+   $http.get('/api/v1/secure/feedbacks').success(function(response1)
+   {
+    $scope.arrayQuery = [];
+    $scope.arrayItem = [];
+    $scope.feedbacks = $filter('filter')(response1, {visitid:visitId, sessionid: sessionId, feedbackOn: "session" });
+    var feedbackData = $scope.feedbacks;
+    for(var i =0;i<feedbackData.length;i++)
+    {
+      for(var j=0;j<feedbackData[0].item.length;j++)
+      {
+        $scope.arrayItem.push(feedbackData[i].item[j]);
+      }
+    }
+  });
+
+$http.get('/api/v1/secure/visitSchedules/' + sessionId).success(function(response4)
+    {
+      console.log(response4);
+      $scope.owner = response4.session.owner;
+      $scope.supporter = response4.session.supporter;
+      $scope.locationsession = response4.session.location;
+      $scope.description = response4.session.desc;
+      $scope.sessiontitle = response4.session.title;
+    });
+ }
+
 
  var indexedQuestions = [];
 
