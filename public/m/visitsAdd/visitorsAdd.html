@@ -1,52 +1,58 @@
 <div class="wizpad">
 
 
-		<!--visitors-->
-		<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
-			<b>Add - Visitor</b><br>
-			<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
-				<thead class="data-grid-header">
-					<tr>
-						<th>Visitor Email-Id</th>
-						<th>Influence</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody class="data-grid-data">
-					<tr>
-						<td><input type="email" name="email" ng-model="visitorDef.visitor" class="form-control" required>
-							<span class="error text-danger" ng-show="visitorForm.email.$error.email">
-								Not valid email!</span>
-								<span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span></td>
-								<td><select 
-									ng-model="visitorDef.influence" 
-									ng-options="data for data in influence" class="form-control" required>
-								</select>
-							</td>
-							<td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
-						</form>
-					</tr>
-					<tr ng-repeat="visitorDef in visitors">
-						<td><div userdisplay view-mode="nameonly" user-id="visitorDef.visitor"></div></td>
-						<td>{{visitorDef.influence}}</td>
-						<td><div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
-
-						</div>
-					</div></td>
-					<tr>
-						<td colspan="3" ng-if="showFlag == 'notRegisteredUser'">
-							{{emailId}} &nbsp;&nbsp;&nbsp;&nbsp;<span class="error text-info">{{message}}</span>
-							<input type="button" wz-next="logStep();" value="Add visitor" />
-							<!-- <input type="button" value="Delete"/> -->
-						</td>
-					</tr>
+	<!--visitors-->
+	<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
+		<b>Add - Visitor</b><br>
+		<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+			<thead class="data-grid-header">
+				<tr>
+					<th>Visitor Email-Id</th>
+					<th>Influence</th>
+					<th></th>
 				</tr>
-</tbody></table></form>
-	
-				<span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg"    aria-hidden="true">&nbsp;previous</i></span>
-				<span class="pull-right finish">
-				<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my"><i class="fa fa-angle-right"  aria-hidden="true">&nbsp;Finish</i></a></span>
+			</thead>
+			<tbody class="data-grid-data">
+				<tr>
+					<td><input type="email" name="email" ng-model="visitorDef.visitor" class="form-control" required>
+						<span class="error text-danger" ng-show="visitorForm.email.$error.email">
+							Not valid email!</span>
+							<span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span></td>
+							<td><select 
+								ng-model="visitorDef.influence" 
+								ng-options="data for data in influence" class="form-control" required>
+							</select>
+						</td>
+						<td><a class="table-btn" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid"><span class="fa fa-plus fa-lg" /></a></td>
+						<!-- <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid">Add visitor</button></td> -->
 
-		
-		</div>
+					</form>
+				</tr>
+				<tr ng-repeat="visitorDef in visitors">
+					<td><div userdisplay view-mode="nameonly" user-id="visitorDef.visitor"></div></td>
+					<td>{{visitorDef.influence}}</td>
+					<td><div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
+
+					</div>
+				</div></td>
+				<tr>
+					<td colspan="3" ng-if="showFlag == 'notRegisteredUser'">
+						{{emailId}} <br><span class="error text-info">{{message}}</span>
+						<input type="button" wz-next="logStep();" value="Add visitor" />
+						<!-- <input type="button" value="Delete"/> -->
+					</td>
+				</tr>
+			</tr>
+		</tbody>
+	</table>
+</form>
+<span class="pull-left" wz-previous="logStep()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
+
+<span class="pull-right finish">
+	<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my">&nbsp;Finish</a></span>
+
+
+
+
+</div>
 

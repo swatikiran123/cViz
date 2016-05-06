@@ -79,7 +79,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.save=function(visits,clientId,clientName,checked){
 
    // console.log(clientId);
-   console.log(checked)
+   // console.log(checked)
    if (checked == false){
     $scope.unbillable= "non-billable";
     if(visits.wbsCode!=null){visits.wbsCode= null;}
@@ -107,20 +107,34 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           }
           console.log(visits);
           if($scope.back== false){
-            $http.post('/api/v1/secure/visits', visits).success(function(response) {
-              $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-               console.log(response);
-             })
-              refresh();
-              $scope.visitId=response._id;
-              $location.path('/visits/'+$scope.visitId+'/edit');
 
-            })
+            //function to validate-title,client,agenda
+            var isValid = $scope.isDataValidVisitPre(visits);
+            if(isValid === "OK"){
+              $http.post('/api/v1/secure/visits', visits).success(function(response) {
+                $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+                 console.log(response);
+               })
+                refresh();
+                $scope.visitId=response._id;
+                $location.path('/visits/'+$scope.visitId+'/edit');
+
+              })
+            }
+            else {
+              console.log(isValid);
+              $scope.err = isValid;
+              $timeout(function () { $scope.err = ''; }, 5000);
+            }
+
+
+
           }else{
             console.log(visits);
             visits.title = angular.element('#name').val();
             visits.agenda = angular.element('#agenda').val();
             console.log($scope.visits);
+            //function to validate-title,client,agenda,wbs,charge,visitors.
             $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
               $location.path('/visits/'+$scope.visits._id+'/edit');
               refresh();
@@ -136,6 +150,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
               console.log(visits);
               // console.log($scope.back);
               if($scope.back== false){
+                //function to validate-title,client,agenda
                 $http.post('/api/v1/secure/visits', visits).success(function(response) {
                   $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
                    console.log(response);
@@ -152,6 +167,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                 visits.title = angular.element('#name').val();
                 visits.agenda = angular.element('#agenda').val();
                 console.log($scope.visits);
+                //function to validate-title,client,agenda,wbs,charge,visitors.
                 $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
                   $location.path('/visits/'+$scope.visits._id+'/edit');
                   refresh();
@@ -159,6 +175,16 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                 })}
               })}
 }
+
+$scope.isDataValidVisitPre=function(visits){
+  console.log(visits);
+  // if(visits === "" || visits === undefined)
+  //  return "Data undefined";
+
+ return "OK";
+
+}
+
 $scope.backcheck=function(){
   $scope.back= true;
 }
