@@ -57,15 +57,15 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
         $scope.visitors = visits.visitors;
         $scope.schedules = visits.schedule;//List of schedules
 
-            if ($scope.schedules != undefined || $scope.schedules == "")
-            {
-              $scope.subdis= false;
-            }else{
-              $scope.subdis= true;}
-              $scope.status= visits.status;
-              if (visits.billable == "billable") {
-                $scope.checked=true;
-              };
+        if ($scope.schedules != undefined || $scope.schedules == "")
+        {
+          $scope.subdis= false;
+        }else{
+          $scope.subdis= true;}
+          $scope.status= visits.status;
+          if (visits.billable == "billable") {
+            $scope.checked=true;
+          };
           $scope.visits = visits;//Whole form object
           console.log($scope.visits._id);
 
@@ -79,7 +79,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.save=function(visits,clientId,clientName,checked){
 
    // console.log(clientId);
-   console.log(checked)
+   // console.log(checked)
    if (checked == false){
     $scope.unbillable= "non-billable";
     if(visits.wbsCode!=null){visits.wbsCode= null;}
@@ -107,20 +107,34 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           }
           console.log(visits);
           if($scope.back== false){
-            $http.post('/api/v1/secure/visits', visits).success(function(response) {
-              $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-               console.log(response);
-             })
-              refresh();
-              $scope.visitId=response._id;
-              $location.path('/visits/'+$scope.visitId+'/edit');
 
-            })
+            //function to validate-title,client,agenda
+            var isValid = $scope.isDataValidVisitPre(visits);
+            if(isValid === "OK"){
+              $http.post('/api/v1/secure/visits', visits).success(function(response) {
+                $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+                 console.log(response);
+               })
+                refresh();
+                $scope.visitId=response._id;
+                $location.path('/visits/'+$scope.visitId+'/edit');
+
+              })
+            }
+            else {
+              console.log(isValid);
+              $scope.err = isValid;
+              $timeout(function () { $scope.err = ''; }, 5000);
+            }
+
+
+
           }else{
             console.log(visits);
             visits.title = angular.element('#name').val();
             visits.agenda = angular.element('#agenda').val();
             console.log($scope.visits);
+            //function to validate-title,client,agenda,wbs,charge,visitors.
             $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
               $location.path('/visits/'+$scope.visits._id+'/edit');
               refresh();
@@ -136,6 +150,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
               console.log(visits);
               // console.log($scope.back);
               if($scope.back== false){
+                //function to validate-title,client,agenda
                 $http.post('/api/v1/secure/visits', visits).success(function(response) {
                   $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
                    console.log(response);
@@ -152,6 +167,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                 visits.title = angular.element('#name').val();
                 visits.agenda = angular.element('#agenda').val();
                 console.log($scope.visits);
+                //function to validate-title,client,agenda,wbs,charge,visitors.
                 $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
                   $location.path('/visits/'+$scope.visits._id+'/edit');
                   refresh();
@@ -159,18 +175,50 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                 })}
               })}
 }
+
+$scope.isDataValidVisitPre=function(visits){
+  console.log(visits);
+  // if(visits === "" || visits === undefined)
+  //  return "Data undefined";
+
+ return "OK";
+
+}
+
 $scope.backcheck=function(){
   $scope.back= true;
 }
 
+$scope.isDataValid=function(schedule){
+  console.log(schedule);
+  var Today = new Date();
+
+  if(schedule === "" || schedule === undefined)
+   return "Data undefined";
+
+ if(schedule.startDate === "" || schedule.startDate === undefined || schedule.startDate === null)
+  return "Start Date not valid";
+
+if(schedule.endDate === "" || schedule.endDate === undefined || schedule.endDate === null)
+  return "End Date not valid";
+
+if(currentDiff(schedule.startDate)<0)
+  return "start Date cannot be less than Current Date";
+
+if(DateDiff(schedule.startDate,schedule.endDate)>0)
+  return "End Date cannot be less than Start Date";
+
+if(schedule.location === "" || schedule.location === undefined )
+  return "Location not valid";
+
+return "OK";
+} 
+
 $scope.addSchedule=function(schedule){
-  var x = document.getElementById("location").selectedIndex;
-  var y = document.getElementById("location").options;
-  schedule.location = y[x].text;
+
+  var isValid = $scope.isDataValid(schedule);
   $scope.subdis= false;
-  if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
-    $scope.stdate= false;
-    $scope.err= false;
+  if(isValid === "OK"){
     var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     $scope.schedules.push({
@@ -181,15 +229,15 @@ $scope.addSchedule=function(schedule){
     });
   }
   else {
-    $scope.stdate= true;
-    $scope.err=true;
+    console.log(isValid);
+    $scope.err = isValid;
     $timeout(function () { $scope.err = ''; }, 5000);}
 
     schedule.startDate='';
     schedule.endDate='';
     schedule.location='';
     schedule.meetingPlace='';
-    document.getElementById("location").selectedIndex = "0";
+    // document.getElementById("location").selectedIndex = "0";
   };
 
   $scope.removeSchedule = function(index,schedules){
@@ -220,7 +268,7 @@ $scope.addvisitor=function(visitorDef){
   console.log(visitorDef);
   console.log(visitorDef.visitor);
 
-  // console.log($scope.visits.client._id);
+  console.log($scope.visits.client._id);
   $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitor).success(function(response) {
    if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
    {
