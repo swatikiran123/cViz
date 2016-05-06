@@ -192,10 +192,13 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	      $scope.endHourTime = $scope.endTime.split(":")[0];
 	      $scope.endMinTime = $scope.endTime.split(":")[1];
 	      $scope.meetingPlaceData = $scope.schedule.session.location;
+	      if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" )
+			{
 	      $scope.sessiondfbid = $scope.schedule.feedbackTemplate;
 	      $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.sessiondfbid).success(function(response) {
 	  	  $scope.sessiondata = response.title;
 	      });
+	  }
 
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
@@ -247,29 +250,33 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	    var endTime = $scope.endHourTime + ":" +$scope.endMinTime;
 	    $scope.schedule.session.startTime = DateReplaceTime($scope.entryDate, startTime);
 	    $scope.schedule.session.endTime = DateReplaceTime($scope.entryDate, endTime);
-	   	if($scope.mode == 'add')
-	   	{	
+	    if($scope.mode == 'add')
+	    {	
 	  //   	if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
 	  //   	{
 	  //   	$scope.schedule.session.location = $scope.meetingPlacesData;
 			// }
-
-			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+			if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" )
 			{
-				$scope.schedule.feedbackTemplate = $scope.sessionFeedbackDefaultId;
+				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+				{
+					$scope.schedule.feedbackTemplate = $scope.sessionFeedbackDefaultId;
+				}
 			}
 		}
 
 		if($scope.mode == 'edit')
-	   	{
+		{
 	   		// if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
 	   		// {
 	   		// 	$scope.schedule.session.location = $scope.meetingPlaceData;
 	   		// }
-
-	   		if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+	   		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk")
 	   		{
-	   			$scope.schedule.feedbackTemplate = $scope.sessiondfbid;
+	   			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+	   			{
+	   				$scope.schedule.feedbackTemplate = $scope.sessiondfbid;
+	   			}
 	   		}
 	   	}	
 
@@ -278,12 +285,14 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		//  $scope.schedule.session.location = $scope.sessionMeetingData;
 		// }
 
-
-		if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
-		{
-			$scope.schedule.feedbackTemplate = $scope.sessionFeedbackId;
+		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk")
+		{		
+			if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
+			{
+				$scope.schedule.feedbackTemplate = $scope.sessionFeedbackId;
+			}
 		}
-
+		console.log($scope.schedule);
 	    switch ($scope.mode) {
 	      case "add":
 	        $scope.create();
@@ -294,7 +303,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	        break;
 	    } // end of switch scope.mode ends
 	  } // end of save method
-	  console.log($scope.schedule);
 	  $scope.create = function() {
 	    $http.post('/api/v1/secure/visitSchedules', $scope.schedule).success(function(response) {
 	      console.log(response);

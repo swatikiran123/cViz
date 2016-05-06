@@ -1,0 +1,97 @@
+<table>
+	<tr>
+		<td>          
+			<!-- Mode -->
+			<div>
+				<select name="mode" ng-model="view.mode" ng-dropdown>
+					<option ng-option value="person">By Person</option>
+					<option ng-option value="question">By Question</option>
+				</select>
+				<div id="person" ng-if="view.mode == 'person'" style="display: inline">
+					<label ng-init="feedbackbyPerson(visitid)"/>
+				</div>
+				<div id="question" ng-if="view.mode == 'question'" style="display: inline">
+					<label ng-init="feedbackbyQuestion(visitid)"/>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+<br>
+{{mode="large";""}}
+<!-- {{mode}} -->
+<div class="panel panel-default" ng-if="view.mode == 'person'">
+	<div class="panel-heading">
+		<h3 class="panel-title"> <b>Overall Feedback on Visit By Person</b></h3>
+	</div>
+
+	<div ng-repeat="feedbackModel in feedbackDatalist track by $index">
+		
+		<div ng-if="view.mode == 'person'">
+
+			<div class = "panel-subheader">
+				<br>
+				&nbsp;&nbsp;&nbsp;<userdisplay view-mode="mode" user-id="feedbackModel.providedBy"/>
+			</div>
+			<div class="panel-body">
+				<div style="pointer-events: none;">
+					<div  ng-repeat="(index,item) in feedbackModel.item">
+						{{item.query}}
+
+						<form>
+							<div ng-if="item.mode == 'star-rating'">           
+								<label>
+									<ng-rate-it ng-model="feedbackModel.item[index].answer"></ng-rate-it>
+								</label>
+								<br>
+							</div>
+						</form>
+
+						<form>
+							<div  ng-if="item.mode == 'freetext'">  					
+								<textarea ng-model="feedbackModel.item[index].answer" rows="3" cols="35"></textarea>
+							</div>
+						</form>
+
+						<form>
+							<div  ng-if="item.mode == 'single-choice'">  					
+								<label class="radio-inline" ng-repeat="choice in item.choices">
+									<input type="radio" name="choice" ng-model="feedbackModel.item[index].answer" value="{{choice}}"/>
+									{{choice}}  	
+
+								</label>
+							</div>
+						</form>
+
+						<form>
+							<div ng-if="item.mode == 'multi-choice'">  					
+								<b>Answer :</b>
+								{{feedbackModel.item[index].answer}}
+							</div>
+						</form>
+
+						<br>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<hr>
+	</div>	
+	</div>
+
+	<div class="panel panel-default" ng-if="view.mode == 'question'">
+		<div class="panel-heading">
+			<h3 class="panel-title"> <b>Overall Feedback on Visit By Question</b></h3>
+		</div>
+		<div ng-repeat="questionPerItems in questionsToFilter() | filter:filterQuestions" 
+		ng-if="view.mode == 'question'">
+		<b><h4>&nbsp;&nbsp;&nbsp;{{questionPerItems.query}}</h4></b>
+
+		<li ng-repeat="item in arrayItem | filter:{query: questionPerItems.query}" 
+		style="margin-left: 1cm">
+			<userdisplay view-mode="designation" user-id="item.providedBy"/>
+			responded : {{item.answer}}</li>
+		<hr>		        
+		</div>
+	</div>
