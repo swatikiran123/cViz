@@ -17,18 +17,12 @@
        <td><input type="text" placeholder="Start Date" ng-model="schedule.startDate" class="form-control" ui-date novalidate></td>
        <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate></td>
        <td>
-        <select id="location" name="location" onfocus="setFocusToTextBox()" placeholder="location" class="form-control">
-          <option selected disabled></option>
-          <option value="Chennai">Chennai</option>
-          <option value="Hyderabad">Hyderabad</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Noida">Noida</option>
-          <option value="Vadodara">Vadodara</option>
-          <option value="Indore">Indore</option>
-          <option value="Mumbai">Mumbai</option>
-        </select>
+        <select
+         ng-model="schedule.location"
+         ng-options="data for data in location" class="form-control">
+       </select>
      </td>
-     <td><a class="table-btn" ng-click="addSchedule(schedule)" ng-disabled="scheduleForm.$invalid || stdate"><span class="fa fa-plus fa-lg" /></a></td>
+     <td><a class="table-btn" ng-click="addSchedule(schedule)" ng-disabled="scheduleForm.$invalid"><span class="fa fa-plus fa-lg" /></a></td>
 
    </tr>
    <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">
@@ -42,7 +36,7 @@
 </table>
 </form>
 <div ng-if="subdis" class="error text-info">Please dont forget to fill Visit schedul details. !!!!</div>
-<div ng-if="err" class="error text-danger">Please Enter valid data.!!</div>
+<div ng-if="err" class="error text-danger">{{err}}</div>
 
 
 <span class="pull-left" wz-previous="logStep();backcheck()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>

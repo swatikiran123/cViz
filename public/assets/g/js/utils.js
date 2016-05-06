@@ -44,3 +44,8 @@ DateDiff = function(dt1, dt2){
 AddDays = function(dt, days){
 	return (moment(dt).add(days, 'days'));
 } 
+
+currentDiff =function(date){
+	var today=Today();
+	return (moment(date).diff(today, 'days'));
+}
