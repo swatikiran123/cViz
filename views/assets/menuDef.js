@@ -20,8 +20,8 @@ module.exports = {
 		},
 		{
 			name: "Exec Visits",
-			link: "/m/visits/#/visits/all/exec",
-			icon: "fa-calendar",
+			link: "/m/visits/#/execvisits",
+			icon: "fa-trophy",
 			roles: "exec,vManager,admin"
 		},
 		{
