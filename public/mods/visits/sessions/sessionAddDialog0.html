@@ -19,7 +19,7 @@
          <div class="form-group">
 
            <div class="row">
-              <div class="col-xs-3"> 
+              <div class="col-xs-3">
                 <i>Select Start Time</i><br>
                 <select ng-model="startHourTime" ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
@@ -60,7 +60,7 @@
 
               </div>
 
-              <div class="col-xs-3"> 
+              <div class="col-xs-3">
                 <i>Select End Time</i>
                 <br>
                 <select ng-model="endHourTime" ng-dropdown ng-change="checkTime()">
@@ -101,7 +101,7 @@
                 </select>
               </div>
 
-              <div class="col-xs-6" style="padding-left: 200px;"> 
+              <div class="col-xs-6" style="padding-left: 200px;">
                 <i>Select Session Type</i>
                 <br>
                 <select id="type" ng-model="schedule.session.type">
@@ -112,8 +112,8 @@
          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
 
          <!--title have to pic from User -->
-    <ANY ng-switch="schedule.session.type"> 
-       <ANY ng-switch-default>         
+    <ANY ng-switch="schedule.session.type">
+       <ANY ng-switch-default>
             <md-input-container class="md-block">
         <label>Title</label>
         <input md-maxlength="30" minlength="5" required name="title" ng-model="schedule.session.title">
@@ -128,7 +128,7 @@
          <!-- {{meetingPlacesData}} -->
          <!-- <md-input-container class="md-block" ng-if="mode=='add'">
          <label>Location</label>
-         <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
+         <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
          ng-blur="sendMeetingPlace(meetingPlacesData)">
          <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
            <div class="messagenotify">
@@ -139,7 +139,7 @@
 
           <md-input-container class="md-block" ng-if="mode=='edit'">
           <label>Location</label>
-          <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData" 
+          <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
           ng-blur="sendMeetingPlace(meetingPlaceData)">
           <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
            <div class="messagenotify">
@@ -180,7 +180,7 @@
          <!--desc have to pic from User -->
              <md-input-container class="md-block">
         <label>Description</label>
-        <textarea md-maxlength="30" minlength="5" required name="desc" ng-model="schedule.session.desc"></textarea>
+        <textarea md-maxlength="3000" minlength="5" required name="desc" ng-model="schedule.session.desc"></textarea>
         <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
              <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -210,7 +210,7 @@
         <div ng-message="minlength">The feedback template should contain minimum 5characters</div></div></div>
       </md-input-container>
 
-      <div> 
+      <div>
         <i>Select Meeting Place</i>
         <select id="meetingPlace" ng-model="schedule.session.location">
           <option value="" disabled></option>
@@ -241,17 +241,17 @@
 				</div>
 			</div>
 
-     
+
         <!-- <div style="overflow-y: auto; height:100px; width:700px"> -->
            <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
         <!-- </div>   -->
-     
+
     </ANY>
       <ANY ng-switch-when="Tea-Break">
 
 <!--        <md-input-container class="md-block" ng-if="mode=='add'">
        <label>Location</label>
-       <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
+       <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
        ng-blur="sendMeetingPlace(meetingPlacesData)">
        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
          <div class="messagenotify">
@@ -262,7 +262,7 @@
 
         <md-input-container class="md-block" ng-if="mode=='edit'">
         <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData" 
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
         ng-blur="sendMeetingPlace(meetingPlaceData)">
         <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
          <div class="messagenotify">
@@ -271,7 +271,7 @@
           <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
         </md-input-container> -->
 
-        <div class="row"> 
+        <div class="row">
           <i>Select Meeting Place</i>
           <select id="meetingPlace" ng-model="schedule.session.location">
             <option value="" disabled></option>
@@ -301,7 +301,7 @@
 
 <!--         <md-input-container class="md-block" ng-if="mode=='add'">
         <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData" 
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
         ng-blur="sendMeetingPlace(meetingPlacesData)">
         <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
          <div class="messagenotify">
@@ -312,7 +312,7 @@
 
         <md-input-container class="md-block" ng-if="mode=='edit'">
         <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData" 
+        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
         ng-blur="sendMeetingPlace(meetingPlaceData)">
         <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
          <div class="messagenotify">
@@ -320,7 +320,7 @@
           <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
           <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
         </md-input-container> -->
-        <div class="row"> 
+        <div class="row">
           <i>Select Meeting Place</i>
           <select id="meetingPlace" ng-model="schedule.session.location">
             <option value="" disabled></option>
@@ -348,7 +348,7 @@
 
       <ANY ng-switch-when="Dinner">
 
-        <div class="row"> 
+        <div class="row">
           <i>Select Meeting Place</i>
           <select id="meetingPlace" ng-model="schedule.session.location">
             <option value="" disabled></option>
@@ -376,7 +376,7 @@
 
       <ANY ng-switch-when="Breakfast">
 
-        <div class="row"> 
+        <div class="row">
           <i>Select Meeting Place</i>
           <select id="meetingPlace" ng-model="schedule.session.location">
             <option value="" disabled></option>

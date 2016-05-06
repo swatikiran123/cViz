@@ -10,11 +10,10 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 			cache: true
 		}).success(function(response) {
 			$scope.visitId = avisit._id;
-	      $scope.dayHighlighter = response;
-	      $scope.loading = false;
+			$scope.dayHighlighter = response;
+			$scope.loading = false;
 	  })
  	}, function(reason) {
-		console.log("active visit not found");
 		$scope.loading = false;
 	});
 });

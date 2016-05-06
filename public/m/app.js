@@ -35,7 +35,8 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					 defer.resolve(response.visits);
 				 }
 				 else {
-					 console.log("Not active visit");
+ 					 //console.log("Not active visit");
+					 defer.reject("Not active visit");
 				 }
 			 });
 

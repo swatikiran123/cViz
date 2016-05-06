@@ -19,7 +19,7 @@
           <th class="hidden-xs">
             <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Schedule Date</a>
-          </th>        
+          </th>
           <th>
             <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
@@ -36,6 +36,10 @@
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='anchor'; reverseSort = !reverseSort">Visit Manager</a>
           </th>
+					<th class="hidden-xs">
+						<span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
+						<a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
+					</th>
           <th class="hidden-xs">
             <span class="fa fa-refresh fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</a>
@@ -47,9 +51,10 @@
         <tr ng-hide="hideFilter">
           <th><span ng-hide="hideFilter"></span></th>
           <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.client"></span></th>
+          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.client">--></span></th>
           <th><span ng-hide="hideFilter"><input type="text" ng-model="search.locations"></span></th>
-          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.anchor"></span></th>
+          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.anchor"></span>--></th>
+          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.createBy"></span>--></th>
           <th><span ng-hide="hideFilter"><input type="text" ng-model="search.status"></span></th>
 
           <th></th>
@@ -64,10 +69,11 @@
           <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client._id"></div></td>
           <td>{{visit.locations}}</td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
+					<td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
            <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
-           
+
            <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
             yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" /></a>
 
@@ -80,5 +86,5 @@
           </tr>
         </tbody>
       </table>
-    </div>  
-  </div>    
+    </div>
+  </div>
