@@ -51,7 +51,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
         $scope.back= true;
         console.log("im in edit mode: "+id);
         $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
-          console.log(response);
+          // console.log(response);
           var visits = response;
         $scope.clientName= response.client.name;//auto fill with reff client db
         $scope.visitors = visits.visitors;
@@ -63,9 +63,11 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
         }else{
           $scope.subdis= true;}
           $scope.status= visits.status;
-          if (visits.billable == "billable") {
+
+          if (visits.billable == "billable" && visits.wbsCode!= null) {
             $scope.checked=true;
           };
+
           $scope.visits = visits;//Whole form object
           console.log($scope.visits._id);
 
@@ -78,18 +80,20 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
     $scope.save=function(visits,clientId,clientName,checked){
 
-   // console.log(clientId);
-   // console.log(checked)
-   if (checked == false){
-    $scope.unbillable= "non-billable";
-    if(visits.wbsCode!=null){visits.wbsCode= null;}
-    visits.billable=$scope.unbillable;
-      }//check code
-      else{
+      console.log("visit charge code: "+visits.chargeCode);
+      console.log("scope checked: "+$scope.checked);
+      console.log("checked: "+checked);
+
+
+
+      if (checked == false){
+        $scope.unbillable= "non-billable";
+        if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
+      $scope.visits.billable=$scope.unbillable;}//check code
+      else if($scope.checked == true || checked == true){
         $scope.billable= "billable";
-        if(visits.chargeCode!=null){visits.chargeCode= null;}
-        visits.billable=$scope.billable;
-        }//WBS code
+        if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
+        $scope.visits.billable=$scope.billable;}//WBS code
 
         if (clientId!= null) {
           if(visits!=undefined)
@@ -144,7 +148,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           else
           {
             $http.get('/api/v1/secure/clients/find/name/'+clientName).success(function(response) {
-              console.log(response);
+              // console.log(response);
               $scope.clientVist=response._id;visits.client = $scope.clientVist;
               visits.createBy= $rootScope.user._id;
               console.log(visits);
@@ -181,7 +185,7 @@ $scope.isDataValidVisitPre=function(visits){
   // if(visits === "" || visits === undefined)
   //  return "Data undefined";
 
- return "OK";
+  return "OK";
 
 }
 
