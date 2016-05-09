@@ -17,8 +17,9 @@ select option{
   </style>
   <div class="wizpad">
     <form name="orgkeyTakeForm" id="orgkeyTakeForm" class="form-vertical" novalidate>
+      <div ng-if="err" class="error text-danger well">{{err}}</div>
+
       <!--panel-four-->
-      
       <div class="panel panel-default">
         <div class = "panel-subheader pull-right">
         </div>
@@ -89,8 +90,6 @@ select option{
       </div>
     </form>
     <br>
-    <div ng-if="err" class="error text-danger">{{err}}</div>
-
     <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
     <span ng-click="orgkeyTakeTab();logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
     <br>

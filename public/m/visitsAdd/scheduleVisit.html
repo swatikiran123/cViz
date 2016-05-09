@@ -2,8 +2,7 @@
 
 <div class="wizpad">
 <form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
-    {{visits.agendaTab=true;""}}
-
+  <div ng-if="err" class="error text-danger well">{{err}}</div>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100">
     <thead class="data-grid-header">
       <tr>
@@ -36,8 +35,6 @@
 </tbody>
 </table>
 </form>
-<div ng-if="err" class="error text-danger">{{err}}</div>
-
 
 <span class="pull-left" wz-previous="logStep();backcheck()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
 <span  class="pull-right" ng-click="scheduleTab();logStep();save(visits,clientId,clientName,checked);">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>

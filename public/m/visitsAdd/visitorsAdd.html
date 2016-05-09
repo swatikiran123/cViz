@@ -3,7 +3,8 @@
 
 	<!--visitors-->
 	<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
-		<b>Add - Visitor</b><br>
+		<div ng-if="err" class="error text-danger well">{{err}}</div>
+		
 		<table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
 			<thead class="data-grid-header">
 				<tr>
@@ -46,18 +47,16 @@
 		</tbody>
 	</table>
 </form>
-<div ng-if="err" class="error text-danger">{{err}}</div>
-
 <span class="pull-left" wz-previous="logStep()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
 
 <span class="pull-right finish">
-	<a  href="/#/visits/all/my">&nbsp;Finish</a></span>
-
-	<br>
-	<br>
-	<br>
-	<span class="finish">
-		<a  ng-click="visitVTab();save(visits,clientId,clientName);">save</a></span>
-
+	<a  ng-click="visitVTab();save(visits,clientId,clientName);">save</a></span>
+	<br><br>
+	<div class="finish well" ng-if="finish">
+		Make sure to save the data befour clicking finish.<br>
+		On click Finish, it will trigger to list of visits.
+		<span >
+			<a class="pull-right" ng-click="visitVTab();save(visits,clientId,clientName);" href="/#/visits/all/my">&nbsp;Finish</a></span>
+		</div>
 	</div>
 

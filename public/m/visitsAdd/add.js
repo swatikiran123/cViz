@@ -34,6 +34,8 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.scheduleT=false;
     $scope.orgkeyTT=false;
     $scope.visitorsTab=false;
+    $scope.finish=false;
+
 
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
@@ -49,13 +51,11 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
       $scope.mode=(id==null? 'add': 'edit');
       switch($scope.mode)    {
         case "add":
-        console.log("im in add");
         $scope.visits = "";
         break;
 
         case "edit":
         $scope.back= true;
-        console.log("im in edit mode: "+id);
         $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
           // console.log(response);
           var visits = response;
@@ -71,7 +71,6 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
         }
         $scope.schedules = visits.schedule;//List of schedules
-        console.log($scope.schedules.length)
         if ($scope.schedules.length == 0)
         {
           $scope.subdis= true;
@@ -187,13 +186,16 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                 $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
                   $location.path('/visits/'+$scope.visits._id+'/edit');
                   refresh();
+                  if ($scope.visitorsT==true) {
+                    $scope.finish=true;
+                  };
 
                 })
               }
             })
 }//end of clientname
 else{
-  $scope.err = "clientname not valid";
+  $scope.err = "client name not valid";
   $timeout(function () { $scope.err = ''; }, 5000);
 }
 }
@@ -207,41 +209,28 @@ else {
 
 }
 $scope.isDataValidVisitPre=function(visits,clientId){
-  console.log("im in isDataValidVisitPre")
-  console.log(visits);
-  console.log(clientId);
-  console.log("$scope.agenda: "+$scope.agendaTab);
-  console.log("$scope.scheduleTab: "+$scope.scheduleT);
-  console.log("$scope.orgkeyTakeTab: "+$scope.orgkeyTT);
-  console.log("$scope.visitVTab: "+$scope.visitorsT);
-
 
   if ($scope.agendaTab==true) {
     if(visits === "" || visits === undefined || visits === null)
     { 
-      console.log("im in visit undefined")
       return "Data undefined";
     }
 
     if(visits.title === "" || visits.title === undefined || visits.title === null)
     { 
-      console.log("im in visits.title undefined")
       return "visits title undefined";
     }
     if(visits.agenda === "" || visits.agenda === undefined || visits.agenda === null)
     { 
-      console.log("im in visits.agenda undefined")
       return "visits agenda undefined";
     }
     if(visits.status === "" || visits.status === undefined || visits.status === null)
     { 
-      console.log("im in visits.status undefined")
       return "visits status undefined";
     }
 
     if ($scope.scheduleT==true) {
       if ($scope.subdis==true) {
-        console.log("$scope.subdis: "+$scope.subdis)
         return "Schedule details undefined";
       }
 
@@ -254,7 +243,6 @@ $scope.isDataValidVisitPre=function(visits,clientId){
         }
 
         if ($scope.visitorsT==true) {
-          console.log($scope.visvalid)
           if ($scope.visvalid==true) {
             return "visitors details undefined";
           }
@@ -267,7 +255,6 @@ $scope.isDataValidVisitPre=function(visits,clientId){
 
 }
 $scope.scheduleTab=function(){
-  console.log("scheduleTab: ");
   $scope.scheduleT=true;
   $scope.agendaTab=true;
   $scope.orgkeyTT=false;
@@ -275,8 +262,6 @@ $scope.scheduleTab=function(){
 
 }
 $scope.orgkeyTakeTab=function(){
-  console.log("orgkeyTakeTab: ");
-
   $scope.orgkeyTT=true;
   $scope.scheduleT=true;
   $scope.agendaTab=true;
@@ -284,12 +269,10 @@ $scope.orgkeyTakeTab=function(){
 
 }
 $scope.visitVTab=function(){
-  console.log("visitorsTab: ");
-
-  $scope.orgkeyTT=true;
-  $scope.scheduleT=true;
-  $scope.agendaTab=true;
-  $scope.visitorsT=true;
+ $scope.orgkeyTT=true;
+ $scope.scheduleT=true;
+ $scope.agendaTab=true;
+ $scope.visitorsT=true;
 
 }
 $scope.backcheck=function(){
@@ -297,7 +280,6 @@ $scope.backcheck=function(){
 }
 
 $scope.isDataValid=function(schedule){
-  console.log(schedule);
   var Today = new Date();
 
   if(schedule === "" || schedule === undefined)
@@ -372,17 +354,9 @@ $scope.addvisitor=function(visitorDef){
   var emailid = visitorDef.visitor;
   var influencedata = visitorDef.influence;
 
-  console.log(visitorDef);
-  console.log(visitorDef.visitor);
-
-  console.log($scope.visits.client._id);
   $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitor).success(function(response) {
    if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
    {
-    console.log(response);
-    console.log(response._id);//response.association
-    console.log(response.association);
-
     $scope.userId = response._id;
     $scope.visvalid= false;
 
@@ -390,7 +364,6 @@ $scope.addvisitor=function(visitorDef){
       visitor: $scope.userId,
       influence: influence
     });
-    console.log($scope.visitors)
   }
   else if(response.association !='customer')
   {
@@ -410,15 +383,12 @@ $scope.addvisitor=function(visitorDef){
   }
 })
   .error(function(response, status){
-    console.log(emailid);
     $scope.showFlag = "notRegisteredUser";
     if(status===404)
     { 
       $scope.disabled = 'false';
-      console.log(influencedata);
       $scope.emailId = emailid;
       $scope.influencedata = influencedata;
-      console.log($scope.emailId); 
       $scope.message = "User not found plz register";
     }
     else
@@ -434,22 +404,13 @@ $scope.closeNewVisitor=function(){
   $scope.showFlag='false';
 }
 $scope.addvisitordata=function(visitor,emailId,influencedata){
-  console.log(influencedata);
-  console.log(visitor);
-  console.log(emailId)
   visitor.email = emailId;
   $scope.disabled = 'true';
-  // visitor.local.email = emailId;
   visitor.association = 'customer';
-  // visitor.contactNo = $scope.contactNo;
   visitor.orgRef = $scope.visits.client._id;
   $http.post('/api/v1/secure/admin/users/',visitor).success(function(response){
-    console.log('POST');
-    console.log(response);
   }).then(function() {
-    // "complete" code here
     $http.get('/api/v1/secure/admin/users/email/' + visitor.email).success(function(response) {
-     console.log('GET') ;
      $scope.userId = response._id;
      $scope.showFlag = "user";
      $scope.visvalid=false;
