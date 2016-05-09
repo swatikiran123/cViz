@@ -151,10 +151,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   if($scope.mode == 'edit')
   {
     $http.get('/api/v1/secure/visitSchedules/visit/'+$routeParams.id).success(function(response) {
-      // console.log(response);
       $scope.sessiondbId = response;
-
-      console.log($scope.sessiondbId);
     });
   }
 
@@ -745,7 +742,7 @@ $scope.removekeynote = function(index){
     $http.get('/api/v1/secure/feedbacks').success(function(response1)
     { 
       $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid, feedbackOn: "visit" });
-
+      console.log($scope.feedbackDatalist);
         $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[0].template).success(function(response2)
         {
           $scope.feedbackTitles.push(response2.title);
@@ -771,17 +768,17 @@ $scope.removekeynote = function(index){
   });
  }
 
+  $scope.haschange = function()
+  {
+    $scope.view ={"mode":null};
+  }
   //Feedback by Person
   $scope.sessionFeedbackbyPerson = function(visitId,sessionId) {
-    console.log(sessionId);
-    console.log(visitId);
     $scope.feedbackSampleTitles = [];
+    $scope.persons = [];
     $http.get('/api/v1/secure/feedbacks').success(function(response1)
     { 
-      // console.log(response1);
       $scope.feedbackSamplelist = $filter('filter')(response1, {visitid:visitId, sessionid: sessionId, feedbackOn: "session" });
-      console.log($scope.feedbackSamplelist);
-
         $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackSamplelist[0].template).success(function(response2)
         {
           $scope.feedbackSampleTitles.push(response2.title);
@@ -796,13 +793,23 @@ $scope.removekeynote = function(index){
       $scope.locationsession = response3.session.location;
       $scope.description = response3.session.desc;
       $scope.sessiontitle = response3.session.title;
+
+      $http.get('/api/v1/secure/admin/users/' + $scope.owner).success(function(response)
+      {
+        $scope.userModel = response;
+      });
+
+      $http.get('/api/v1/secure/admin/users/' + $scope.supporter).success(function(response)
+      {
+        $scope.userModel1 = response;
+      });
     });
+
+
   }
 
   //Feedback By Question
   $scope.sessionFeedbackbyQuestion = function(visitId,sessionId) {
-    console.log(sessionId);
-    console.log(visitId);
 
    $http.get('/api/v1/secure/feedbacks').success(function(response1)
    {
@@ -821,13 +828,24 @@ $scope.removekeynote = function(index){
 
 $http.get('/api/v1/secure/visitSchedules/' + sessionId).success(function(response4)
     {
-      console.log(response4);
-      $scope.owner = response4.session.owner;
-      $scope.supporter = response4.session.supporter;
+      $scope.owner1 = response4.session.owner;
+      $scope.supporter1 = response4.session.supporter;
       $scope.locationsession = response4.session.location;
       $scope.description = response4.session.desc;
       $scope.sessiontitle = response4.session.title;
+
+      $http.get('/api/v1/secure/admin/users/' + $scope.owner1).success(function(response)
+      {
+        $scope.userModel2 = response;
+
+      });
+
+      $http.get('/api/v1/secure/admin/users/' + $scope.supporter1).success(function(response)
+      {
+        $scope.userModel3 = response;
+      });
     });
+
  }
 
 

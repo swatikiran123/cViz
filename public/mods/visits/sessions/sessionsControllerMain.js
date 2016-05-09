@@ -34,6 +34,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.showFiltered = false;
 		$scope.hideFilter = true;
 		$scope.meetingPlaces =[];
+		$scope.submitOwnerSupporter = true;
+		$scope.checkTimeVar = false;
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -52,7 +54,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 			$http.get("/api/v1/secure/visits/" + $scope.visitId + "/getLocations").success(function(response) {
 				$scope.location = response;
-				console.log($scope.location);
 			});
 		}
 
@@ -150,8 +151,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				{
 					$scope.rooms = ['Indore Lobby Area','Indore Ex Lunch','Indore Amphi Theatre','Indore Main Lobby'];
 				}
-
-				console.log($scope.rooms);
 		}
 
 		$scope.dayFilter = function (schedule) {
@@ -181,6 +180,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  }
 
 	  $scope.editSession = function(ev, id){
+
 	    $scope.mode = "edit";
 	    $http.get('/api/v1/secure/visitSchedules/' + id ).success(function(response) {
 	      $scope.schedule = response;
@@ -192,7 +192,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	      $scope.endHourTime = $scope.endTime.split(":")[0];
 	      $scope.endMinTime = $scope.endTime.split(":")[1];
 	      $scope.meetingPlaceData = $scope.schedule.session.location;
-	      if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" )
+	      if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
 			{
 	      $scope.sessiondfbid = $scope.schedule.feedbackTemplate;
 	      $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.sessiondfbid).success(function(response) {
@@ -203,7 +203,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
 				$scope.arraydata = $scope.schedule.invitees;
-
 	      $scope.showAdvanced(ev);
 	    }); // get visitSchedule call back ends
 	  }
@@ -213,14 +212,19 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	var start_time = $scope.startHourTime + $scope.startMinTime;
 	var end_time = $scope.endHourTime + $scope.endMinTime;
 
-	if (start_time > end_time || end_time < start_time) {
+	if (start_time >= end_time || end_time <= start_time) {
 		$scope.errMessage = "Wrong Time Entry Done !!!"
+		$scope.checkTimeVar = true;
 	}
 
 	else
 	{
 		$scope.errMessage="";
+		$scope.checkTimeVar = false;
 	}
+
+	$scope.startHourGreatTime = start_time;
+	$scope.endHourGreatTime = end_time;
     };
 
 	  $scope.deleteSession = function(schedule) {
@@ -244,8 +248,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			// session info
 		// console.log($scope.startHourTime);
 		// console.log()
-			$scope.schedule.session.owner = $scope.ownerId;
-	    $scope.schedule.session.supporter = $scope.supporterId;
+		$scope.schedule.session.owner = $scope.ownerId;
+    	$scope.schedule.session.supporter = $scope.supporterId;
 	    var startTime = $scope.startHourTime + ":" +$scope.startMinTime;
 	    var endTime = $scope.endHourTime + ":" +$scope.endMinTime;
 	    $scope.schedule.session.startTime = DateReplaceTime($scope.entryDate, startTime);
@@ -256,7 +260,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  //   	{
 	  //   	$scope.schedule.session.location = $scope.meetingPlacesData;
 			// }
-			if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" )
+			if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
 			{
 				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 				{
@@ -271,7 +275,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	   		// {
 	   		// 	$scope.schedule.session.location = $scope.meetingPlaceData;
 	   		// }
-	   		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk")
+	   		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
 	   		{
 	   			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 	   			{
@@ -285,7 +289,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		//  $scope.schedule.session.location = $scope.sessionMeetingData;
 		// }
 
-		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk")
+		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
 		{		
 			if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
 			{
