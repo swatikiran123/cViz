@@ -2,14 +2,15 @@
 	<tr>
 		<td>          
 			<div>
-				<select name="sessionmode" ng-model="sessionId" ng-dropdown>
+				<select name="sessionmode" ng-model="sessionId" ng-dropdown ng-change="haschange()">
 					<option value=""></option>
-					<option ng-repeat="ty in sessiondbId" value="{{ty._id}}" ng-if = "ty.session.type == 
-					'Presentation' || ty.session.type == 'Discussion' || ty.session.type == 'Floor-Walk'">
+					<option ng-repeat="ty in sessiondbId" value="{{ty._id}}" 
+					ng-if = "ty.session.type == 'Presentation' || ty.session.type == 'Discussion' || ty.session.type == 'Floor-Walk' || ty.session.type == 'presentation' || ty.session.type == 'discussion' || ty.session.type == 'floor-walk'">
 					{{ty.session.title}}
 				</option>
 			</select>
-			<select name="mode" ng-model="view.mode" ng-dropdown>
+			<select name="mode" ng-model="view.mode" ng-if="sessionId" ng-dropdown>
+				<option value=""></option>
 				<option ng-option value="personSession">By Person</option>
 				<option ng-option value="questionSession">By Question</option>
 			</select>
@@ -25,28 +26,49 @@
 	</tr>
 </table>
 <br>
-<!-- {{owner}}
-{{supporter}}
-{{locationsession}}
-{{description}}
-{{sessiontitle}} -->
-	<div class="panel panel-default" ng-if="view.mode == 'personSession'" col-xs-6>
-		<div class="panel-heading">
+<div class="panel panel-default" ng-if="view.mode == 'personSession'" col-xs-6>
+	<div class="panel-heading">
 
-			<div class="row">
-				<div class="col-sm-6 col-xs-6 col-md-6">
-					<h3 class="panel-title"> <b>Owner</b></h3>
-					<br>
-					<userdisplay view-mode="mode" user-id="owner"/>
+		<div class="row">
+			<div class="col-sm-6 col-xs-6 col-md-6">
+				<h3 class="panel-title"> <b>Owner</b></h3>
+				<br>
+				<div class="panel panel-default">
+					<div class="panel-body ">
+
+						<div class="pull-left" ng-if="view.mode == 'personSession'">
+							<img ng-src="{{userModel.avatar}}"  class="img-circle userpiclg"> </div>
+							<div class="panelpdlg">
+
+								<div class="text-highlight">{{userModel.name.first}} {{userModel.name.last}}</div>
+								<div class="text-xsmall">{{userModel.email}}</div>
+								<div class="text-xsmall">{{userModel.jobTitle}} {{userModel.organization}}</div>
+								<div class="text-desc">{{userModel.summary}}</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-sm-6 col-xs-6 col-md-6">
 					<h3 class="panel-title"> <b>Supporter</b></h3>
 					<br>
-					<userdisplay view-mode="mode" user-id="supporter"/>
-				</div>			
+					<div class="panel panel-default">
+						<div class="panel-body ">
+
+							<div class="pull-left" ng-if="view.mode == 'personSession'">
+								<img ng-src="{{userModel1.avatar}}"  class="img-circle userpiclg"> </div>
+								<div class="panelpdlg">
+
+									<div class="text-highlight">{{userModel1.name.first}} {{userModel1.name.last}}</div>
+									<div class="text-xsmall">{{userModel1.email}}</div>
+									<div class="text-xsmall">{{userModel1.jobTitle}} {{userModel1.organization}}</div>
+									<div class="text-desc">{{userModel1.summary}}</div>
+								</div>
+							</div>
+						</div>
+					</div>			
+				</div>
 			</div>
 		</div>
-	</div>
 {{mode= "large";""}}
 <!-- {{mode}} -->
 
@@ -63,23 +85,49 @@
 		</div>
 	</div>
 
-		<div class="panel panel-default" ng-if="view.mode == 'questionSession'" col-xs-6>
+	<div class="panel panel-default" ng-if="view.mode == 'questionSession'" col-xs-6>
 		<div class="panel-heading">
 
 			<div class="row">
 				<div class="col-sm-6 col-xs-6 col-md-6">
 					<h3 class="panel-title"> <b>Owner</b></h3>
 					<br>
-					<userdisplay view-mode="mode" user-id="owner"/>
+					<div class="panel panel-default">
+						<div class="panel-body ">
+
+							<div class="pull-left" ng-if="view.mode == 'questionSession'">
+								<img ng-src="{{userModel2.avatar}}"  class="img-circle userpiclg"> </div>
+								<div class="panelpdlg">
+
+								<div class="text-highlight">{{userModel2.name.first}} {{userModel2.name.last}}</div>
+									<div class="text-xsmall">{{userModel2.email}}</div>
+									<div class="text-xsmall">{{userModel2.jobTitle}} {{userModel2.organization}}</div>
+									<div class="text-desc">{{userModel2.summary}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-xs-6 col-md-6">
+						<h3 class="panel-title"> <b>Supporter</b></h3>
+						<br>
+						<div class="panel panel-default">
+							<div class="panel-body ">
+
+								<div class="pull-left" ng-if="view.mode == 'questionSession'">
+									<img ng-src="{{userModel3.avatar}}"  class="img-circle userpiclg"> </div>
+									<div class="panelpdlg">
+
+										<div class="text-highlight">{{userModel3.name.first}} {{userModel3.name.last}}</div>
+										<div class="text-xsmall">{{userModel3.email}}</div>
+										<div class="text-xsmall">{{userModel3.jobTitle}} {{userModel3.organization}}</div>
+										<div class="text-desc">{{userModel3.summary}}</div>
+									</div>
+								</div>
+							</div>
+						</div>			
+					</div>
 				</div>
-				<div class="col-sm-6 col-xs-6 col-md-6">
-					<h3 class="panel-title"> <b>Supporter</b></h3>
-					<br>
-					<userdisplay view-mode="mode" user-id="supporter"/>
-				</div>			
 			</div>
-		</div>
-	</div>
 
 	<div class="panel panel-default" ng-if="view.mode == 'questionSession'" col-xs-6>
 		<div class="panel-heading">

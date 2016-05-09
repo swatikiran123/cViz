@@ -17,11 +17,14 @@
     <md-dialog-content>
        <div >
          <div class="form-group">
+          <div ng-if="mode=='edit'">
+            {{$parent.submitOwnerSupporter=false;""}}
+          </div>
 
            <div class="row">
               <div class="col-xs-3">
                 <i>Select Start Time</i><br>
-                <select ng-model="startHourTime" ng-dropdown ng-change="checkTime()">
+                <select ng-model="startHourTime" required ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
                   <option ng-option value="06">06</option>
                   <option ng-option value="07">07</option>
@@ -42,7 +45,7 @@
                   <option ng-option value="22">22</option>
                 </select>
 
-                <select ng-model="startMinTime" ng-dropdown  ng-change="checkTime()">
+                <select ng-model="startMinTime" required ng-dropdown  ng-change="checkTime()">
                   <option value=""></option>
                   <option ng-option value="00">00</option>
                   <option ng-option value="05">05</option>
@@ -63,7 +66,7 @@
               <div class="col-xs-3">
                 <i>Select End Time</i>
                 <br>
-                <select ng-model="endHourTime" ng-dropdown ng-change="checkTime()">
+                <select ng-model="endHourTime" required ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
                   <option ng-option value="06">06</option>
                   <option ng-option value="07">07</option>
@@ -84,7 +87,7 @@
                   <option ng-option value="22">22</option>
                 </select>
 
-                <select ng-model="endMinTime" ng-dropdown  ng-change="checkTime()">
+                <select ng-model="endMinTime" required ng-dropdown  ng-change="checkTime()">
                   <option value=""></option>
                   <option ng-option value="00">00</option>
                   <option ng-option value="05">05</option>
@@ -104,9 +107,9 @@
               <div class="col-xs-6" style="padding-left: 200px;">
                 <i>Select Session Type</i>
                 <br>
-                <select id="type" ng-model="schedule.session.type">
+                <select id="type" ng-model="schedule.session.type" required>
                  <option value="" disabled></option>
-                 <option ng-repeat="ty in prTypes">{{ty}}</option>
+                 <option ng-repeat="ty in prTypes" value="{{ty.toLowerCase()}}">{{ty}}</option>
                </select>
               </div>
          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
@@ -212,7 +215,7 @@
 
       <div>
         <i>Select Meeting Place</i>
-        <select id="meetingPlace" ng-model="schedule.session.location">
+        <select id="meetingPlace" ng-model="schedule.session.location" required>
           <option value="" disabled></option>
           <option value="" disabled>======================================================================================================</option>
           <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
@@ -231,7 +234,7 @@
 					</md-input-container>
 				</div>
 
-				<div class="form-group col-xs-6">
+				<div class="form-group col-xs-6"><!-- ng-blur="seeOwnerSupporter()" -->
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterUser.$touched && sessionAddForm.supporterUser.$invalid }">
 						<label >Supporter &nbsp;&nbsp; :</label>
@@ -239,15 +242,34 @@
 						</div>
 					</md-input-container>
 				</div>
-			</div>
 
+        <div ng-if="ownerId==supporterId && ownerId != null && supporterId != null">
+          {{$parent.submitOwnerSupporter=true;""}}
+          {{errMessage="Owner Email Id and Supporter Email Id should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+
+        <div ng-if="ownerId!=supporterId && ownerId != null && supporterId != null">
+          {{$parent.submitOwnerSupporter=false;""}}
+        </div> 
+			</div>
+      <br>
 
         <!-- <div style="overflow-y: auto; height:100px; width:700px"> -->
            <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
         <!-- </div>   -->
-
+        <md-dialog-actions layout="row">
+        <md-button class="md-primary md-raised" ng-click="save()" 
+        ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar">
+        Submit
+      </md-button>
+      <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+      yes-text="Ok" no-text="Cancel">
+      Cancel
+    </md-button>
+  </md-dialog-actions>
     </ANY>
-      <ANY ng-switch-when="Tea-Break">
+      <ANY ng-switch-when="tea-break">
 
 <!--        <md-input-container class="md-block" ng-if="mode=='add'">
        <label>Location</label>
@@ -273,7 +295,7 @@
 
         <div class="row">
           <i>Select Meeting Place</i>
-          <select id="meetingPlace" ng-model="schedule.session.location">
+          <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>=========================================================================================================</option>
             <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
@@ -295,9 +317,19 @@
         <br>
         <br>
         <br>
+        <md-dialog-actions layout="row">
+           <md-button class="md-primary md-raised" ng-click="save()" 
+            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+              Submit
+           </md-button>
+           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+             yes-text="Ok" no-text="Cancel">
+           Cancel
+           </md-button>
+        </md-dialog-actions>
       </ANY>
 
-      <ANY ng-switch-when="Lunch">
+      <ANY ng-switch-when="lunch">
 
 <!--         <md-input-container class="md-block" ng-if="mode=='add'">
         <label>Location</label>
@@ -322,7 +354,7 @@
         </md-input-container> -->
         <div class="row">
           <i>Select Meeting Place</i>
-          <select id="meetingPlace" ng-model="schedule.session.location">
+          <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>=========================================================================================================</option>
             <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
@@ -344,75 +376,96 @@
         <br>
         <br>
         <br>
-      </ANY>
-
-      <ANY ng-switch-when="Dinner">
-
-        <div class="row">
-          <i>Select Meeting Place</i>
-          <select id="meetingPlace" ng-model="schedule.session.location">
-            <option value="" disabled></option>
-            <option value="" disabled>=========================================================================================================</option>
-            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
-            <option value="" disabled>=========================================================================================================</option>
-          </select>
-        </div>
-        <br>
-        <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </ANY>
-
-      <ANY ng-switch-when="Breakfast">
-
-        <div class="row">
-          <i>Select Meeting Place</i>
-          <select id="meetingPlace" ng-model="schedule.session.location">
-            <option value="" disabled></option>
-            <option value="" disabled>=========================================================================================================</option>
-            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
-            <option value="" disabled>=========================================================================================================</option>
-          </select>
-        </div>
-        <br>
-        <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </ANY>
-
-</ANY>
-
-          <md-dialog-actions layout="row">
-            <md-button class="md-primary md-raised" ng-click="save()" ng-disabled="sessionAddForm.$invalid">
+        <md-dialog-actions layout="row">
+           <md-button class="md-primary md-raised" ng-click="save()" 
+            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
               Submit
-            </md-button>
-            <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">
-              Cancel
-            </md-button>
-          </md-dialog-actions>
+           </md-button>
+           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+             yes-text="Ok" no-text="Cancel">
+           Cancel
+           </md-button>
+        </md-dialog-actions>
+      </ANY>
+
+      <ANY ng-switch-when="dinner">
+
+        <div class="row">
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location" required>
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
+        <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <md-dialog-actions layout="row">
+           <md-button class="md-primary md-raised" ng-click="save()" 
+            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+              Submit
+           </md-button>
+           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+             yes-text="Ok" no-text="Cancel">
+           Cancel
+           </md-button>
+        </md-dialog-actions>
+      </ANY>
+
+      <ANY ng-switch-when="breakfast">
+
+        <div class="row">
+          <i>Select Meeting Place</i>
+          <select id="meetingPlace" ng-model="schedule.session.location" required>
+            <option value="" disabled></option>
+            <option value="" disabled>=========================================================================================================</option>
+            <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
+            <option value="" disabled>=========================================================================================================</option>
+          </select>
+        </div>
+        <br>
+        <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <md-dialog-actions layout="row">
+           <md-button class="md-primary md-raised" ng-click="save()" 
+            ng-disabled="sessionAddForm.$invalid">
+              Submit
+           </md-button>
+           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+             yes-text="Ok" no-text="Cancel">
+           Cancel
+           </md-button>
+        </md-dialog-actions>
+      </ANY>
+
+</ANY>    
+ 
 
         </div>
 
