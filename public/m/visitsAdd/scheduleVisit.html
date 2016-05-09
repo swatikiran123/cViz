@@ -2,6 +2,7 @@
 
 <div class="wizpad">
 <form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
+    {{visits.agendaTab=true;""}}
 
   <table class="table boldtable table-responsive table-bordered table-hover" width="100">
     <thead class="data-grid-header">
@@ -35,17 +36,14 @@
 </tbody>
 </table>
 </form>
-<div ng-if="subdis" class="error text-info">Please dont forget to fill Visit schedul details. !!!!</div>
 <div ng-if="err" class="error text-danger">{{err}}</div>
 
 
 <span class="pull-left" wz-previous="logStep();backcheck()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
-<span  class="pull-right" wz-next="logStep();save(visits,clientId,clientName,checked);">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
+<span  class="pull-right" ng-click="scheduleTab();logStep();save(visits,clientId,clientName,checked);">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
 
-<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
+<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK"     {{visits.agendaTab=false;""}}
+    {{visits.scheduleTab=true;""}}/-->
 
 
 </div>
-<input type="text" name="q" id="locationinput" style="border: none;
-background: transparent;outline: none;color:transparent;" 
-onfocus="startDictation(document.getElementById('locationinput'))" />

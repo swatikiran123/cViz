@@ -28,6 +28,12 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
     $scope.visitors=[];
     $scope.nameonly= "nameonly";
     $scope.disabled = 'true';
+    $scope.subdis= true;
+    $scope.visvalid= true;
+    $scope.agendaTab=true
+    $scope.scheduleT=false;
+    $scope.orgkeyTT=false;
+    $scope.visitorsTab=false;
 
   //Location - Http get for drop-down
   $http.get('/api/v1/secure/lov/locations').success(function(response) {
@@ -55,18 +61,32 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
           var visits = response;
         $scope.clientName= response.client.name;//auto fill with reff client db
         $scope.visitors = visits.visitors;
-        $scope.schedules = visits.schedule;//List of schedules
-
-        if ($scope.schedules != undefined || $scope.schedules == "")
+        if ($scope.visitors.length == 0)
         {
-          $scope.subdis= false;
-        }else{
-          $scope.subdis= true;}
-          $scope.status= visits.status;
+          $scope.visvalid= true;
 
-          if (visits.billable == "billable" && visits.wbsCode!= null) {
-            $scope.checked=true;
-          };
+        }
+        else{
+          $scope.visvalid= false;
+
+        }
+        $scope.schedules = visits.schedule;//List of schedules
+        console.log($scope.schedules.length)
+        if ($scope.schedules.length == 0)
+        {
+          $scope.subdis= true;
+
+        }
+        else{
+          $scope.subdis= false;
+
+        }
+
+        $scope.status= visits.status;
+
+        if (visits.billable == "billable" && visits.wbsCode!= null) {
+          $scope.checked=true;
+        };
 
           $scope.visits = visits;//Whole form object
           console.log($scope.visits._id);
@@ -79,13 +99,6 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
 
     $scope.save=function(visits,clientId,clientName,checked){
-
-      console.log("visit charge code: "+visits.chargeCode);
-      console.log("scope checked: "+$scope.checked);
-      console.log("checked: "+checked);
-
-
-
       if (checked == false){
         $scope.unbillable= "non-billable";
         if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
@@ -95,26 +108,28 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
         if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
         $scope.visits.billable=$scope.billable;}//WBS code
 
-        if (clientId!= null) {
-          if(visits!=undefined)
-          {  
-            visits.client = clientId;
-            visits.createBy= $rootScope.user._id;
+        var isValidVisit = $scope.isDataValidVisitPre(visits,clientId);
+        if(isValidVisit === "OK"){
 
-          }
-          if(visits.mode=="speech")
-          { 
-            visits.title = angular.element('#name').val();
-            visits.agenda = angular.element('#agenda').val();
-            visits.client = clientId;
-            visits.createBy= $rootScope.user._id;
-          }
-          console.log(visits);
-          if($scope.back== false){
+          if (clientId!= null) {
+            WizardHandler.wizard().next();
 
-            //function to validate-title,client,agenda
-            var isValid = $scope.isDataValidVisitPre(visits);
-            if(isValid === "OK"){
+            if(visits!=undefined)
+            {  
+              visits.client = clientId;
+              visits.createBy= $rootScope.user._id;
+
+            }
+            if(visits.mode=="speech")
+            { 
+              visits.title = angular.element('#name').val();
+              visits.agenda = angular.element('#agenda').val();
+              visits.client = clientId;
+              visits.createBy= $rootScope.user._id;
+            }
+            console.log(visits);
+            if($scope.back== false){
+
               $http.post('/api/v1/secure/visits', visits).success(function(response) {
                 $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
                  console.log(response);
@@ -125,34 +140,30 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
 
               })
             }
-            else {
-              console.log(isValid);
-              $scope.err = isValid;
-              $timeout(function () { $scope.err = ''; }, 5000);
-            }
 
-
-
-          }else{
-            console.log(visits);
-            visits.title = angular.element('#name').val();
-            visits.agenda = angular.element('#agenda').val();
-            console.log($scope.visits);
+            else{
+              console.log(visits);
+              visits.title = angular.element('#name').val();
+              visits.agenda = angular.element('#agenda').val();
+              console.log($scope.visits);
             //function to validate-title,client,agenda,wbs,charge,visitors.
             $http.put('/api/v1/secure/visits/' + $scope.visits._id,  visits).success(function(response) {
               $location.path('/visits/'+$scope.visits._id+'/edit');
               refresh();
 
-            })}
+            })
           }
-          else
+          }//end of client id != null
+          else if(clientName!=null)
           {
+            WizardHandler.wizard().next();
+
             $http.get('/api/v1/secure/clients/find/name/'+clientName).success(function(response) {
-              // console.log(response);
-              $scope.clientVist=response._id;visits.client = $scope.clientVist;
+              $scope.clientVist=response._id;
+              visits.client = $scope.clientVist;
               visits.createBy= $rootScope.user._id;
               console.log(visits);
-              // console.log($scope.back);
+
               if($scope.back== false){
                 //function to validate-title,client,agenda
                 $http.post('/api/v1/secure/visits', visits).success(function(response) {
@@ -164,7 +175,8 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                   $location.path('/visits/'+$scope.visitId+'/edit');
 
                 })
-              }else{
+              }
+              else{
 
                 console.log(visits);
 
@@ -176,19 +188,110 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard'])
                   $location.path('/visits/'+$scope.visits._id+'/edit');
                   refresh();
 
-                })}
-              })}
+                })
+              }
+            })
+}//end of clientname
+else{
+  $scope.err = "clientname not valid";
+  $timeout(function () { $scope.err = ''; }, 5000);
+}
 }
 
-$scope.isDataValidVisitPre=function(visits){
+else {
+  console.log(isValidVisit);
+  $scope.err = isValidVisit;
+  $timeout(function () { $scope.err = ''; }, 5000);
+}
+
+
+}
+$scope.isDataValidVisitPre=function(visits,clientId){
+  console.log("im in isDataValidVisitPre")
   console.log(visits);
-  // if(visits === "" || visits === undefined)
-  //  return "Data undefined";
+  console.log(clientId);
+  console.log("$scope.agenda: "+$scope.agendaTab);
+  console.log("$scope.scheduleTab: "+$scope.scheduleT);
+  console.log("$scope.orgkeyTakeTab: "+$scope.orgkeyTT);
+  console.log("$scope.visitVTab: "+$scope.visitorsT);
+
+
+  if ($scope.agendaTab==true) {
+    if(visits === "" || visits === undefined || visits === null)
+    { 
+      console.log("im in visit undefined")
+      return "Data undefined";
+    }
+
+    if(visits.title === "" || visits.title === undefined || visits.title === null)
+    { 
+      console.log("im in visits.title undefined")
+      return "visits title undefined";
+    }
+    if(visits.agenda === "" || visits.agenda === undefined || visits.agenda === null)
+    { 
+      console.log("im in visits.agenda undefined")
+      return "visits agenda undefined";
+    }
+    if(visits.status === "" || visits.status === undefined || visits.status === null)
+    { 
+      console.log("im in visits.status undefined")
+      return "visits status undefined";
+    }
+
+    if ($scope.scheduleT==true) {
+      if ($scope.subdis==true) {
+        console.log("$scope.subdis: "+$scope.subdis)
+        return "Schedule details undefined";
+      }
+
+      if ($scope.orgkeyTT==true) {
+        if (visits.billable === "billable" && visits.wbsCode== null) {
+          return "billable WBS code undefined";
+        }
+        if (visits.billable === "non-billable" && visits.chargeCode== null) {
+          return "billable Charge code undefined";
+        }
+
+        if ($scope.visitorsT==true) {
+          console.log($scope.visvalid)
+          if ($scope.visvalid==true) {
+            return "visitors details undefined";
+          }
+        }
+      }
+    }
+  }
 
   return "OK";
 
 }
+$scope.scheduleTab=function(){
+  console.log("scheduleTab: ");
+  $scope.scheduleT=true;
+  $scope.agendaTab=true;
+  $scope.orgkeyTT=false;
+  $scope.visitorsTab=false;
 
+}
+$scope.orgkeyTakeTab=function(){
+  console.log("orgkeyTakeTab: ");
+
+  $scope.orgkeyTT=true;
+  $scope.scheduleT=true;
+  $scope.agendaTab=true;
+  $scope.subdis= false;
+
+}
+$scope.visitVTab=function(){
+  console.log("visitorsTab: ");
+
+  $scope.orgkeyTT=true;
+  $scope.scheduleT=true;
+  $scope.agendaTab=true;
+  $scope.visitorsT=true;
+
+}
 $scope.backcheck=function(){
   $scope.back= true;
 }
@@ -219,12 +322,11 @@ return "OK";
 } 
 
 $scope.addSchedule=function(schedule){
-
   var isValid = $scope.isDataValid(schedule);
-  $scope.subdis= false;
   if(isValid === "OK"){
     var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
     var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+    $scope.subdis= false;
     $scope.schedules.push({
       startDate: startDate,
       endDate: endDate,
@@ -235,6 +337,7 @@ $scope.addSchedule=function(schedule){
   else {
     console.log(isValid);
     $scope.err = isValid;
+    $scope.subdis= true;
     $timeout(function () { $scope.err = ''; }, 5000);}
 
     schedule.startDate='';
@@ -281,6 +384,7 @@ $scope.addvisitor=function(visitorDef){
     console.log(response.association);
 
     $scope.userId = response._id;
+    $scope.visvalid= false;
 
     $scope.visitors.push({
       visitor: $scope.userId,
@@ -348,6 +452,7 @@ $scope.addvisitordata=function(visitor,emailId,influencedata){
      console.log('GET') ;
      $scope.userId = response._id;
      $scope.showFlag = "user";
+     $scope.visvalid=false;
      $scope.visitors.push({
       visitor: $scope.userId,
       influence: influencedata

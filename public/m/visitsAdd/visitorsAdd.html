@@ -46,13 +46,18 @@
 		</tbody>
 	</table>
 </form>
+<div ng-if="err" class="error text-danger">{{err}}</div>
+
 <span class="pull-left" wz-previous="logStep()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
 
 <span class="pull-right finish">
-	<a  ng-click="save(visits,clientId,clientName);" href="/#/visits/all/my">&nbsp;Finish</a></span>
+	<a  href="/#/visits/all/my">&nbsp;Finish</a></span>
 
+	<br>
+	<br>
+	<br>
+	<span class="finish">
+		<a  ng-click="visitVTab();save(visits,clientId,clientName);">save</a></span>
 
-
-
-</div>
+	</div>
 
