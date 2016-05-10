@@ -28,6 +28,8 @@
           </div>
         </md-input-container>
 
+    <div class="row">
+      <div class="form-group col-xs-5">
         <!-- visits client input-->
         <md-input-container class="md-block">
         <label>Client Name</label>
@@ -39,7 +41,19 @@
           </div>
         </div>
       </md-input-container>
-
+    </div>
+      <!-- regions checkboxregions:-->
+      <div class="form-group col-xs-4">
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.regions.$touched && visitsForm.regions.$invalid }">
+          <label>Region &nbsp;&nbsp; </label>
+          <select
+          ng-model="visits.regions"
+          ng-options="data for data in regions">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
       <!-- visits agenda-->
       <md-input-container class="md-block">
       <label ng-show="visits.agenda" class="show-hide">Agenda</label>
@@ -167,7 +181,7 @@
           <!-- visits visitType-->
           <div class="form-group col-xs-4">
             <div id="new" ng-if="visits.interest.businessType == 'new'">
-              <label>Say more: </label>
+              <label>Say more </label>
               <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
                 <option ng-option value="dueDiligence">Due Diligence</option>
                 <option ng-option value="exploratory">Exploratory</option>

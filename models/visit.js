@@ -11,6 +11,7 @@ var visitSchema = new mongoose.Schema({
 
 	title						    : { type: String, trim: true },
 	client 						    : { type: Schema.Types.ObjectId, ref: 'clients' },//{ type: String },
+	regions 						: { type: String, trim: true, required: true },
 	agenda							: { type: String, trim: true },
 	startDate						: { type: Date},//, default: Date.now },
 	endDate							: { type: Date},//, default: Date.now },

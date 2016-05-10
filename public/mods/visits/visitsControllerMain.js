@@ -149,6 +149,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.influence=response.values;
   });
 
+  //regions - Http get for drop-down
+  $http.get('/api/v1/secure/lov/regions').success(function(response) {
+    $scope.regions=response.values;
+  });
+
+
   // console.log($scope.mode);
   if($scope.mode == 'edit')
   {
