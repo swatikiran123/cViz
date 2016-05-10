@@ -97,6 +97,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.visitid = id;
   $scope.showAvatar = false;
   $scope.arraydata = [];
+  $scope.dataOne=[];
   $scope.tab=false;
   $scope.anchor='';
   $scope.secondaryVmanager='';
@@ -115,6 +116,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.visitGrid= false;
   $scope.designation= "designation";
   $scope.visvalid= true;
+  $scope.secTrue=false;
+  $scope.privalid=true;
+
+
 
   // $scope.sessiondbId = "";
 
@@ -210,43 +215,34 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
         var visits = response;
         if (visits.anchor!=undefined){
-          $scope.anchor = visits.anchor._id;}
-          if(visits.secondaryVmanager!=undefined) {
-            $scope.secondaryVmanager = visits.secondaryVmanager._id;
-          };
+          $scope.anchor = visits.anchor._id;
+          $scope.secTrue=true;
+        }
+        if(visits.secondaryVmanager!=undefined) {
+          $scope.secondaryVmanager = visits.secondaryVmanager._id;
+          $scope.yes();
 
-          switch(visits.status){
-            case "confirm": 
-            $scope.agendaTab=true;
-            $scope.visitorsTab=true;
-            break;
+        }else 
+        $scope.secTrue=false;
 
-            case "tentative": 
-            $scope.agendaTab=true;
-            $scope.visitorsTab=true;
-            break;
 
-            case "wip":
-            if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-              $scope.finalizeTab= true;
-              $scope.agendaTab=true;
-              $scope.visitorsTab=true;
-              $scope.notifyTab=false;
-            }
-            else{
-             $scope.agendaTab= true;
-             $scope.visitorsTab= true;
-             $scope.finalizeTab= false;
-             $scope.notifyTab= false;
-           }
-           break;
+        switch(visits.status){
+          case "confirm": 
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          break;
 
-           case "finalize": 
-           if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+          case "tentative": 
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          break;
+
+          case "wip":
+          if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
             $scope.finalizeTab= true;
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
-            $scope.notifyTab=true;
+            $scope.notifyTab=false;
           }
           else{
            $scope.agendaTab= true;
@@ -255,6 +251,21 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
            $scope.notifyTab= false;
          }
          break;
+
+         case "finalize": 
+         if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+          $scope.finalizeTab= true;
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          $scope.notifyTab=true;
+        }
+        else{
+         $scope.agendaTab= true;
+         $scope.visitorsTab= true;
+         $scope.finalizeTab= false;
+         $scope.notifyTab= false;
+       }
+       break;
 
      //   case "close": 
      //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
@@ -493,6 +504,7 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
      growl.info(parse("Visit Manager Edited successfully"));
@@ -531,6 +543,10 @@ break;
   }
   $scope.sendAnchor= function(anchor,status){
     $scope.anchorman = anchor;
+    $scope.privalid=false;
+    $scope.dataOne=[];
+
+
     if ($scope.notifyTab== true) {
       $scope.status = status;
     }
@@ -538,6 +554,7 @@ break;
       $scope.status = status;
       $scope.status="wip";
     }
+    $scope.yes();
   }
   $scope.sendSecVman= function(secondaryVmanager,status){
     $scope.vman = secondaryVmanager;
@@ -548,6 +565,21 @@ break;
       $scope.status = status;
       $scope.status="wip";
     }
+  }
+
+  $scope.yes=function(){
+    $scope.secTrue=true;
+    $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
+      response[-1]="none";
+      for (var i =0;i< response.length; i++) {
+        if ($scope.anchorman== response[i]._id) {
+        }else{
+         $scope.dataOne.push({
+          response: response[i]
+        });
+       }
+     };
+   });
   }
   $scope.clientEmail=function(){
     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/welcomeclient').success(function(response) {
