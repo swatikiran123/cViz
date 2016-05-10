@@ -120,7 +120,11 @@ module.exports = {
 
 			"/public/mods/contactList/contactListModule.js",
 			"/public/mods/contactList/contactListControllerMain.js",
-			"/public/mods/contactList/contactListRouter.js"
+			"/public/mods/contactList/contactListRouter.js",
+
+			"/public/mods/meetingPlaces/meetingPlacesModule.js",
+			"/public/mods/meetingPlaces/meetingPlacesControllerMain.js",
+			"/public/mods/meetingPlaces/meetingPlacesRouter.js"
 		],
 		"prod":[
 			"/public/mods/keynotes/keynotesModule.js",

@@ -8,12 +8,13 @@ visitsApp.factory('SessionDataService', ["$http", function ($http) {
     search: function (term) {
       //var client = {title: new RegExp(term, 'i')};
       var maxRecs = 10;
-      var fields = ('title _id');
+      var fields = ('title _id type');
       var sort = ({title:'ascending'});
+      var type = "session";
       return $http({
         method: 'GET',
         url: '/api/v1/secure/feedbackDefs/find',
-        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
+        params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort, type: type }
       }).then(function (response) {
         return response.data;
       });
@@ -108,48 +109,23 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 		$scope.setEntryDate = function(dt,index){
 
-				console.log(index);
-
 				$scope.entryDate = dt;
 				$scope.index = $scope.location[index];
 				$scope.showFiltered = true;
 				$scope.showAll = false;
 
-
-				if($scope.index == "Hyderabad")
+				if($scope.index)
 				{
-					$scope.rooms = ['Hyd Board Room','B7 1st Floor Conference Room','B4 Cafeteria',
-	    'B4 Executive Dining Room','Hyd Amphi Theatre','Hyd Main Lobby'];
-				}
-
-				else if($scope.index == "Noida")
-				{
-					$scope.rooms = ['Noida Board Room','Noida Cafeteria','Noida Amphi Theatre','Noida Main Lobby'];
-				}
-
-				else if($scope.index == "Chennai")
-				{
-					$scope.rooms = ['Chennai Lobby Area','Chennai Ex Lunch','Chennai Amphi Theatre','Chennai Main Lobby'];
-				}
-
-				else if($scope.index == "Bangalore")
-				{
-					$scope.rooms = ['Bng Lobby Area','Bng Ex Lunch','Bng Amphi Theatre','Bng Main Lobby'];
-				}
-
-				else if($scope.index == "Mumbai")
-				{
-					$scope.rooms = ['Mumbai Lobby Area','Mumbai Ex Lunch','Mumbai Amphi Theatre','Mumbai Main Lobby'];
-				}
-
-				else if($scope.index == "Vadodara")
-				{
-					$scope.rooms = ['Vadodara Lobby Area','Vadodara Ex Lunch','Vadodara Amphi Theatre','Vadodara Main Lobby'];
-				}
-
-				else if($scope.index == "Indore")
-				{
-					$scope.rooms = ['Indore Lobby Area','Indore Ex Lunch','Indore Amphi Theatre','Indore Main Lobby'];
+	    			$scope.rooms =[];
+	    			
+				    $http.get('/api/v1/secure/meetingPlaces').success(function(response1)
+				    { 
+				    	$scope.roomsList = $filter('filter')(response1, {location: $scope.index.toLowerCase() });
+				    	for(var i=0;i<$scope.roomsList.length;i++)
+				    	{
+				    		$scope.rooms.push($scope.roomsList[i].meetingPlace);
+				    	}
+				    });
 				}
 		}
 
@@ -175,7 +151,11 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 	  $scope.addSchedule1 = function(ev){
 	    $scope.mode = "add";
-			$scope.schedule="";
+		$scope.schedule="";
+		$scope.startHourTime =null;
+		$scope.startMinTime =null;
+		$scope.endHourTime =null;
+		$scope.endMinTime =null;
 	    $scope.showAdvanced(ev);
 	  }
 
@@ -211,8 +191,9 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	 {
 	var start_time = $scope.startHourTime + $scope.startMinTime;
 	var end_time = $scope.endHourTime + $scope.endMinTime;
-
-	if (start_time >= end_time || end_time <= start_time) {
+	console.log(start_time);
+	console.log(end_time);
+	if ((start_time >= end_time || end_time <= start_time) && $scope.startHourTime!=null && $scope.startMinTime!=null && $scope.endHourTime!=null) {
 		$scope.errMessage = "Wrong Time Entry Done !!!"
 		$scope.checkTimeVar = true;
 	}
@@ -388,6 +369,12 @@ visitsApp.directive("sessiondata", ["SessionDataService", function (SessionDataS
       elem.autocomplete({
         source: function (searchTerm, response) {
           SessionDataService.search(searchTerm.term).then(function (autocompleteResults) {
+          	if(autocompleteResults == undefined || autocompleteResults == ''){
+              scope.sessionAuto=true;
+              scope.sessionNotFound="Session Feedback Template not found!!!"
+            }
+            else
+            {
             response($.map(autocompleteResults, function (autocompleteResult) {
               return {
                 label: autocompleteResult.title,
@@ -395,12 +382,14 @@ visitsApp.directive("sessiondata", ["SessionDataService", function (SessionDataS
                 id: autocompleteResult._id
               }
             }))
+        	}
           });
         },
         minLength: 4,
         select: function (event, selectedItem) {
           scope.sessiondata= selectedItem.item.value;
           scope.sessionId= selectedItem.item.id;
+          scope.sessionAuto=false;
           scope.$apply();
           event.preventDefault();
         }

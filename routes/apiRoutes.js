@@ -23,6 +23,7 @@ var teasers					=	require(constants.paths.controllers + '/api/teasers');
 var contactList			=	require(constants.paths.controllers + '/api/contactList');
 var feedbacks				=	require(constants.paths.controllers + '/api/feedbacks');
 var emails					=	require(constants.paths.controllers + '/api/emails');
+var meetingPlaces 			= 	require(constants.paths.controllers + '/api/meetingPlaces')
 
 /*
  * Routes that can be accessed by any one
@@ -161,5 +162,12 @@ router.put('/api/v1/secure/feedbacks/:id', feedbacks.updateById);
 router.delete('/api/v1/secure/feedbacks/:id', feedbacks.deleteById);
 
 router.get('/api/v1/secure/email/:id/:action', emails.sendMails);
+
+// List of service routes for meetingPlaces
+router.get('/api/v1/secure/meetingPlaces', meetingPlaces.getAll);
+router.get('/api/v1/secure/meetingPlaces/:id', meetingPlaces.getOneById);
+router.post('/api/v1/secure/meetingPlaces', meetingPlaces.create);
+router.put('/api/v1/secure/meetingPlaces/:id', meetingPlaces.updateById);
+router.delete('/api/v1/secure/meetingPlaces/:id', meetingPlaces.deleteById);
 
 module.exports = router;
