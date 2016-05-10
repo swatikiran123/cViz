@@ -10,7 +10,7 @@ module.exports = {
 
 		'mobile'			: {
 			'customer'	: '/m/main/',
-			'exec'			: '/m/visits/',
+			'exec'			: '/m/visits//#/execvisits',
 			'user'			: '/m/visits/',
 			'vManager'	: '/m/visits/',
 			'admin'			: '/m/visits/'

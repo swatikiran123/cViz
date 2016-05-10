@@ -36,7 +36,8 @@ grunt.initConfig(  {
 //copy
 copy: {
   options: {
-      mangle   : false
+      mangle   : false,
+      collapseWhitespace: true
     },
   libs: {
     files: [
@@ -89,6 +90,9 @@ copy: {
       {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.woff'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.woff'},
       {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.ttf'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.ttf'},
       {src: ['public/libs/font-awesome/fonts/fontawesome-webfont.svg'], dest: 'dist/public/libs/font-awesome/fonts/fontawesome-webfont.svg'},
+
+      {src: ['public/libs/angular-wizard/dist/angular-wizard.js'], dest: 'dist/public/libs/angular-wizard/dist/angular-wizard.js'},
+      {src: ['public/libs/angular-wizard/dist/angular-wizard.css'], dest: 'dist/public/libs/angular-wizard/dist/angular-wizard.css'},
 
       {src: ['public/libs/angular-route/angular-route.min.js.map'], dest: 'dist/public/libs/angular-route/angular-route.min.js.map'},
       {src: ['public/libs/bootstrap/dist/css/bootstrap.min.css.map'], dest: 'dist/public/libs/bootstrap/dist/css/bootstrap.min.css.map'},
