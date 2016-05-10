@@ -11,18 +11,19 @@ select option{
 }
 .selpad{
   padding-left: 13px;}
- .selpad select{
+  .selpad select{
     width: 93%;
   }
   </style>
   <div class="wizpad">
     <form name="orgkeyTakeForm" id="orgkeyTakeForm" class="form-vertical" novalidate>
+      <div ng-if="err" class="error text-danger well">{{err}}</div>
+
       <!--panel-four-->
       <div class="panel panel-default">
         <div class = "panel-subheader pull-right">
         </div>
         <div class="panel-body">
-
           <!--billable-->
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8">
@@ -34,14 +35,14 @@ select option{
                 <br/>
                 <br>
 
-                <div class="check-element animate-show"  ng-show="checked">
+                <div class="check-element animate-show"  ng-if="checked">
                   <!-- visits wbsCode input-->
                   <label>WBS Code</label>
                   <input ng-model="visits.wbsCode" name="wbsCode" type="text" required>
 
                 </div>
 
-                <div class="check-element animate-show" ng-show="!checked">
+                <div class="check-element animate-show" ng-if="!checked">
                  <!-- visits chargeCode input-->
                  <label>Charge Code</label>
                  <input ng-model="visits.chargeCode" name="chargeCode" type="text"  required>
@@ -67,40 +68,31 @@ select option{
               <div class="form-group">
                 <div id="new" ng-if="visits.interest.businessType == 'new'">
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;Say more </label><br><div class="selpad">
-                 <select  name="type" ng-model="visits.interest.visitType" ng-dropdown>
-                  <option ng-option value="dueDiligence">Due Diligence</option>
-                  <option ng-option value="exploratory">Exploratory</option>
-                  <option ng-option value="planning">Planning</option>
-                </select>
-              </div>
+                  <select  name="type" ng-model="visits.interest.visitType" ng-dropdown>
+                    <option ng-option value="dueDiligence">Due Diligence</option>
+                    <option ng-option value="exploratory">Exploratory</option>
+                    <option ng-option value="planning">Planning</option>
+                  </select>
+                </div>
               </div>
               <div id="existing" ng-if="visits.interest.businessType == 'existing'">
                 <label>&nbsp;&nbsp;&nbsp;&nbsp;Visit Type-Existing</label><br><div class="selpad">
-               <select name="type" ng-model="visits.interest.visitType"  ng-dropdown>
-                <option ng-option value="operationsReview">Operations Review</option>
-                <option ng-option value="renewals">Renewals</option>
-                <option ng-option value="newBusiness">New Business</option>
-                <option ng-option value="strategic">Strategic</option>
-              </select></div>
+                <select name="type" ng-model="visits.interest.visitType"  ng-dropdown>
+                  <option ng-option value="operationsReview">Operations Review</option>
+                  <option ng-option value="renewals">Renewals</option>
+                  <option ng-option value="newBusiness">New Business</option>
+                  <option ng-option value="strategic">Strategic</option>
+                </select></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <br>
-
-
-
-  <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
-  <span wz-next="logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
-
-
-  <br>
-  <br>
-  <!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK" /-->
-
-
-
-</div>
+    </form>
+    <br>
+    <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
+    <span ng-click="orgkeyTakeTab();logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
+    <br>
+    <br>
+  </div>
 
