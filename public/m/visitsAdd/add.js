@@ -208,6 +208,12 @@ else {
 
 
 }
+  $scope.checkedBill=function(){
+    $scope.checked=true;
+  }
+    $scope.checkednonBill=function(){
+    $scope.checked=false;
+  }
 $scope.isDataValidVisitPre=function(visits,clientId){
 
   if ($scope.agendaTab==true) {

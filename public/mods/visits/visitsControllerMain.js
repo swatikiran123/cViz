@@ -581,6 +581,12 @@ break;
      };
    });
   }
+  $scope.checkedBill=function(){
+    $scope.checked=true;
+  }
+    $scope.checkednonBill=function(){
+    $scope.checked=false;
+  }
   $scope.clientEmail=function(){
     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/welcomeclient').success(function(response) {
      growl.info(parse("client invitations sent successfully"));

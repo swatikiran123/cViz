@@ -163,93 +163,107 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
       <div class="col-xs-8">
         <div class="form-group">
           <label>Is billable/ non-billable?</label>&nbsp;
-          <input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
+<!--           <input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
           &nbsp;You need an active WBS code/ Charge Code...
-          <br/>
+          <br/> -->
+          <md-input-container class="md-block">
+          <md-radio-group name="billable" id="billable" ng-model="visits.billable" required class="">
+          <div class="row">
+            <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+              <md-radio-button value="billable"  ng-click="checkedBill()"> Billable</md-radio-button></div>
+              <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                <md-radio-button value="non-billable" ng-click="checkednonBill()"> Non-Billable</md-radio-button></div>
+              </md-radio-group></div>
+              <div ng-messages="visitsForm.billable.$error" ng-show="visitsForm.billable.$touched || !visitsForm.billable.$pristine">
+                <div class="messagenotify">
+                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                </div>
+              </div>
+            </md-input-container>
 
-          <div>
-            <div class="check-element animate-show"  ng-if="checked">
-              <!-- visits wbsCode input-->
-              <md-input-container class="md-block">
-              <label><h5>WBS Code</h5></label>
-              <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
-              <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
-               <div class="messagenotify">
-                <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
-              </md-input-container>
+            <div>
+              <div class="check-element animate-show"  ng-if="checked">
+                <!-- visits wbsCode input-->
+                <md-input-container class="md-block">
+                <label><h5>WBS Code</h5></label>
+                <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
+                <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
+                 <div class="messagenotify">
+                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                  <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
+                  <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
+                </md-input-container>
+              </div>
             </div>
-          </div>
 
-          <div>
-            <div class="check-element animate-show" ng-if="!checked">
-             <!-- visits chargeCode input-->
-             <md-input-container class="md-block">
-             <label>Charge Code</label>
-             <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
-             <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
-               <div class="messagenotify">
-                <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
-              </md-input-container>
+            <div>
+              <div class="check-element animate-show" ng-if="!checked">
+               <!-- visits chargeCode input-->
+               <md-input-container class="md-block">
+               <label>Charge Code</label>
+               <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
+               <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
+                 <div class="messagenotify">
+                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                  <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
+                  <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
+                </md-input-container>
+              </div>
             </div>
           </div>
         </div>
+
+
+        <!--vist Interest interest. businessType visitType objective-->
+
+        <!-- visits businessType-->
+        <div class="col-xs-4"></div>
+
       </div>
 
+      <!-- visits objective -->
 
-      <!--vist Interest interest. businessType visitType objective-->
-
-      <!-- visits businessType-->
-      <div class="col-xs-4"></div>
-
-    </div>
-
-    <!-- visits objective -->
-
-    <md-input-container class="md-block">
-    <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
-    <text-angular
-    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-    ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
-    <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
-      <div class="messagenotify">
-        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <md-input-container class="md-block">
+      <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
+      <text-angular
+      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+      ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
+      <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        </div>
       </div>
-    </div>
-  </md-input-container>
+    </md-input-container>
 
-  <!-- visits status input-->
-  <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
-    <label><h4><b>Status</b></h4></label>
-    <md-input-container class="md-block">
-    <md-radio-group name="status" id="status" ng-model="status" required class="">
-    <div class="row">
-      <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
-      <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
-    </md-radio-group></div>
-    <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
-      <div class="messagenotify">
-        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+    <!-- visits status input-->
+    <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
+      <label><h4><b>Status</b></h4></label>
+      <md-input-container class="md-block">
+      <md-radio-group name="status" id="status" ng-model="status" required class="">
+      <div class="row">
+        <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
+        <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
+      </md-radio-group></div>
+      <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        </div>
       </div>
-    </div>
-  </md-input-container>
-</div>
+    </md-input-container>
+  </div>
 
-<div ng-show="status == 'wip'|| status == 'finalize'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
-{{agendaEdit=true;""}}
-<!--buttons-->
-<div class="form-group">
-  <div class="pull-left">
-    <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
-  </button>
-  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-  yes-text="Ok" no-text="Cancel">Cancel</button>
-</div>
+  <div ng-show="status == 'wip'|| status == 'finalize'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+  {{agendaEdit=true;""}}
+  <!--buttons-->
+  <div class="form-group">
+    <div class="pull-left">
+      <button type="submit" class="btn btn-success"
+      ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
+    </button>
+    <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+    yes-text="Ok" no-text="Cancel">Cancel</button>
+  </div>
 </div>
 </form>
 
