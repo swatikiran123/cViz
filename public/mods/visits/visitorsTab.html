@@ -3,6 +3,8 @@
 {{check=true;""}}
 
   <b>Add - Visitor</b><br>
+  <div ng-if="visvalid" class="error text-info">Atleast a visitor needs to be added.</div>
+  <br>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
     <thead class="data-grid-header">
       <tr>
@@ -33,7 +35,7 @@
  <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
   <td colspan="3"> <div>
     <div>{{visitorDef.influence}}</div>
-    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index,visitors)"><span class="fa fa-trash fa-lg" /></a>
       <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a> -->
     </div>
   </div>
@@ -199,7 +201,7 @@
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid">Submit
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>

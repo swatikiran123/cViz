@@ -28,6 +28,8 @@
           </div>
         </md-input-container>
 
+    <div class="row">
+      <div class="form-group col-xs-5">
         <!-- visits client input-->
         <md-input-container class="md-block">
         <label>Client Name</label>
@@ -39,14 +41,26 @@
           </div>
         </div>
       </md-input-container>
-
+    </div>
+      <!-- regions checkboxregions:-->
+      <div class="form-group col-xs-4">
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.regions.$touched && visitsForm.regions.$invalid }">
+          <label>Region &nbsp;&nbsp; </label>
+          <select
+          ng-model="visits.regions"
+          ng-options="data for data in regions">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
       <!-- visits agenda-->
       <md-input-container class="md-block">
       <label ng-show="visits.agenda" class="show-hide">Agenda</label>
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+      ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." required /></text-angular>
       <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -86,7 +100,7 @@
 <!--panel-three-->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <b>Visit outline schedule with break-up...</b></h3>
+    <h3 class="panel-title"> <b>Visit Schedule...</b></h3>
   </div>
   <div class = "panel-subheader pull-right">
   </div>
@@ -167,7 +181,7 @@
           <!-- visits visitType-->
           <div class="form-group col-xs-4">
             <div id="new" ng-if="visits.interest.businessType == 'new'">
-              <label>Say more: </label>
+              <label>Say more </label>
               <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
                 <option ng-option value="dueDiligence">Due Diligence</option>
                 <option ng-option value="exploratory">Exploratory</option>
@@ -194,7 +208,7 @@
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
+      ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
       <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
