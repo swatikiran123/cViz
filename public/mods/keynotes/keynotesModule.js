@@ -7,7 +7,6 @@ angular.module('keynotes', ['ngRoute', 'angular-growl', 'ngMaterial','ngFileUplo
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
-			console.log($rootScope.user);
 		}
 	});
 })

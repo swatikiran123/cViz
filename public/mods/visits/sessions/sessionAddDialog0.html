@@ -193,7 +193,6 @@
 
       <md-input-container class="md-block" ng-if="mode=='add'">
       <label>Session Feedback Template</label>
-
       <input name="session" ng-model="session" session required ng-blur="sendFeedbackId(sessionId)">
       <div ng-messages="sessionAddForm.session.$error" ng-show="sessionAddForm.session.$touched || !sessionAddForm.session.$pristine">
        <div class="messagenotify">
@@ -454,7 +453,7 @@
         <br>
         <md-dialog-actions layout="row">
            <md-button class="md-primary md-raised" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid">
+            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
               Submit
            </md-button>
            <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
