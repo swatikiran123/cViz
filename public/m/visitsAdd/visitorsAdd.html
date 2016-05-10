@@ -32,7 +32,7 @@
 				<tr ng-repeat="visitorDef in visitors">
 					<td><div userdisplay view-mode="nameonly" user-id="visitorDef.visitor"></div></td>
 					<td>{{visitorDef.influence}}</td>
-					<td><div class="pull-right"><a class="table-btn" ng-click="removevisitor($index)"><span class="fa fa-trash fa-lg" /></a>
+					<td><div class="pull-right"><a class="table-btn" ng-click="removevisitor($index,visitors)"><span class="fa fa-trash fa-lg" /></a>
 
 					</div>
 				</div></td>

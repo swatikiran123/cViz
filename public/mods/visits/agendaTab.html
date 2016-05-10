@@ -46,7 +46,7 @@
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.agenda" name="agenda" placeholder="Agenda of visit." required /></text-angular>
+      ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." required /></text-angular>
       <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -86,7 +86,7 @@
 <!--panel-three-->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <b>Visit outline schedule with break-up...</b></h3>
+    <h3 class="panel-title"> <b>Visit Schedule...</b></h3>
   </div>
   <div class = "panel-subheader pull-right">
   </div>
@@ -194,7 +194,7 @@
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.interest.objective" name="objective" placeholder="CSC's takeaway from this..." required /></text-angular>
+      ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
       <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>

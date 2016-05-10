@@ -114,6 +114,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.notifyTab=false;
   $scope.visitGrid= false;
   $scope.designation= "designation";
+  $scope.visvalid= true;
+
   // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
@@ -265,24 +267,40 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
    };
 
-          $scope.schedules = visits.schedule;//List of schedules
-          if ($scope.schedules != undefined || $scope.schedules == "")
+          // $scope.schedules = visits.schedule;//List of schedules
+          //   $scope.visitors = visits.visitors;//List of visitors
+
+          $scope.visitors = visits.visitors;
+          if ($scope.visitors.length == 0)
           {
-            $scope.subdis= false;
-          }else{
-            $scope.subdis= true;}
-          $scope.visitors = visits.visitors;//List of visitors
-          $scope.status= visits.status;
-          if (visits.billable == "billable") {
-            $scope.checked=true;
-          };
+            $scope.visvalid= true;
+
+          }
+          else{
+            $scope.visvalid= false;
+
+          }
+        $scope.schedules = visits.schedule;//List of schedules
+        if ($scope.schedules.length == 0)
+        {
+          $scope.subdis= true;
+
+        }
+        else{
+          $scope.subdis= false;
+
+        }
+        $scope.status= visits.status;
+        if (visits.billable == "billable") {
+          $scope.checked=true;
+        };
           $scope.visits = visits;//Whole form object
 
           $scope.arraydata=response.invitees;
           if (response.agm!=undefined) {
-          $scope.agmUser = response.agm;
-          $scope.agmEmail = response.agm.email;
-          $scope.agmId = response.agm._id;
+            $scope.agmUser = response.agm;
+            $scope.agmEmail = response.agm.email;
+            $scope.agmId = response.agm._id;
           }
           $scope.clientName= response.client.name;//auto fill with reff client db
           if (response.feedbackTmpl!=undefined) {
@@ -539,14 +557,37 @@ break;
   $scope.closeNotification=function(){
    $location.path("visits/list"); 
  }
+
+ $scope.isDataValid=function(schedule){
+  var Today = new Date();
+
+  if(schedule === "" || schedule === undefined)
+    return "Data undefined !";
+
+  if(schedule.startDate === "" || schedule.startDate === undefined || schedule.startDate === null)
+    return "Start Date not valid !";
+
+  if(schedule.endDate === "" || schedule.endDate === undefined || schedule.endDate === null)
+    return "End Date not valid !";
+
+  if(currentDiff(schedule.startDate)<0)
+    return "start Date cannot be less than Current Date !";
+
+  if(DateDiff(schedule.startDate,schedule.endDate)>0)
+    return "End Date cannot be less than Start Date !";
+
+  if(schedule.location === "" || schedule.location === undefined )
+    return "Location not valid !";
+
+  return "OK";
+} 
   // Visit schedule table
   $scope.addSchedule=function(schedule){
-    $scope.subdis= false;
-    if(schedule.startDate!= "" && schedule.endDate!="" && schedule.startDate!= undefined && schedule.endDate!= undefined && schedule.location!=undefined && (new Date(schedule.startDate).getTime() <= new Date(schedule.endDate).getTime())){
-      $scope.stdate= false;
-      $scope.err= false;
+    var isValid = $scope.isDataValid(schedule);
+    if(isValid === "OK"){
       var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
       var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+      $scope.subdis= false;
       $scope.schedules.push({
         startDate: startDate,
         endDate: endDate,
@@ -555,8 +596,9 @@ break;
       });
     }
     else {
-      $scope.stdate= true;
-      $scope.err=true;
+      console.log(isValid);
+      $scope.err = isValid;
+      $scope.subdis= true;
       $timeout(function () { $scope.err = ''; }, 5000);}
 
       schedule.startDate='';
@@ -672,6 +714,7 @@ $scope.removekeynote = function(index){
      { 
        $scope.userId = response._id;
        $scope.showFlag = "user";
+       $scope.visvalid= false;
        $scope.visitors.push({
         visitor: $scope.userId,
         influence: influence
@@ -705,20 +748,20 @@ $scope.removekeynote = function(index){
     }
   })
 
-    .error(function(response, status){
-      console.log(emailid);
-      $scope.showFlag = "notRegisteredUser";
-      if(status===404)
-      { 
-        console.log(influencedata);
-        $scope.emailId = emailid;
-        $scope.influencedata = influencedata;
-        console.log($scope.emailId); 
-        $scope.message = "User not found plz register";
-      }
-      else
-        console.log("error with user directive");
-    });
+.error(function(response, status){
+  console.log(emailid);
+  $scope.showFlag = "notRegisteredUser";
+  if(status===404)
+  { 
+    console.log(influencedata);
+    $scope.emailId = emailid;
+    $scope.influencedata = influencedata;
+    console.log($scope.emailId); 
+    $scope.message = "User not found plz register";
+  }
+  else
+    console.log("error with user directive");
+});
 
 
     //if not found add visitor-post that and get id
@@ -727,13 +770,22 @@ $scope.removekeynote = function(index){
     visitorDef.visitor = '';
     visitorDef.visitorUser = '';
   };
-  $scope.removevisitor = function(index){
+  
+  $scope.removevisitor = function(index,visitors){
     $scope.visitors.splice(index, 1);
-  };
+    if (visitors.length == 0)
+    {
+     $scope.visvalid=true;
+     
+   }else{
+     $scope.visvalid=false;
 
-  $scope.editvisitor = function(index,visitorDef){
-    $scope.visitorDef = visitorDef;
-    $scope.visitors.splice(index, 1);
+   }
+ };
+
+ $scope.editvisitor = function(index,visitorDef){
+  $scope.visitorDef = visitorDef;
+  $scope.visitors.splice(index, 1);
   };// Visit visitor table end
 
   //Feedback by Person
@@ -743,10 +795,10 @@ $scope.removekeynote = function(index){
     { 
       $scope.feedbackDatalist = $filter('filter')(response1, { visitid: visitid, feedbackOn: "visit" });
       console.log($scope.feedbackDatalist);
-        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[0].template).success(function(response2)
-        {
-          $scope.feedbackTitles.push(response2.title);
-        });
+      $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackDatalist[0].template).success(function(response2)
+      {
+        $scope.feedbackTitles.push(response2.title);
+      });
     });
   }
 
@@ -768,10 +820,10 @@ $scope.removekeynote = function(index){
   });
  }
 
-  $scope.haschange = function()
-  {
-    $scope.view ={"mode":null};
-  }
+ $scope.haschange = function()
+ {
+  $scope.view ={"mode":null};
+}
   //Feedback by Person
   $scope.sessionFeedbackbyPerson = function(visitId,sessionId) {
     $scope.feedbackSampleTitles = [];
@@ -779,10 +831,10 @@ $scope.removekeynote = function(index){
     $http.get('/api/v1/secure/feedbacks').success(function(response1)
     { 
       $scope.feedbackSamplelist = $filter('filter')(response1, {visitid:visitId, sessionid: sessionId, feedbackOn: "session" });
-        $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackSamplelist[0].template).success(function(response2)
-        {
-          $scope.feedbackSampleTitles.push(response2.title);
-        });
+      $http.get('/api/v1/secure/feedbackDefs/id/'+$scope.feedbackSamplelist[0].template).success(function(response2)
+      {
+        $scope.feedbackSampleTitles.push(response2.title);
+      });
 
     });
 
@@ -826,25 +878,25 @@ $scope.removekeynote = function(index){
     }
   });
 
-$http.get('/api/v1/secure/visitSchedules/' + sessionId).success(function(response4)
+   $http.get('/api/v1/secure/visitSchedules/' + sessionId).success(function(response4)
+   {
+    $scope.owner1 = response4.session.owner;
+    $scope.supporter1 = response4.session.supporter;
+    $scope.locationsession = response4.session.location;
+    $scope.description = response4.session.desc;
+    $scope.sessiontitle = response4.session.title;
+
+    $http.get('/api/v1/secure/admin/users/' + $scope.owner1).success(function(response)
     {
-      $scope.owner1 = response4.session.owner;
-      $scope.supporter1 = response4.session.supporter;
-      $scope.locationsession = response4.session.location;
-      $scope.description = response4.session.desc;
-      $scope.sessiontitle = response4.session.title;
+      $scope.userModel2 = response;
 
-      $http.get('/api/v1/secure/admin/users/' + $scope.owner1).success(function(response)
-      {
-        $scope.userModel2 = response;
-
-      });
-
-      $http.get('/api/v1/secure/admin/users/' + $scope.supporter1).success(function(response)
-      {
-        $scope.userModel3 = response;
-      });
     });
+
+    $http.get('/api/v1/secure/admin/users/' + $scope.supporter1).success(function(response)
+    {
+      $scope.userModel3 = response;
+    });
+  });
 
  }
 

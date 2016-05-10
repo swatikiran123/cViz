@@ -422,8 +422,16 @@ $scope.addvisitordata=function(visitor,emailId,influencedata){
   });
 }
 
-$scope.removevisitor = function(index){
+$scope.removevisitor = function(index,visitors){
   $scope.visitors.splice(index, 1);
+  if (visitors.length == 0)
+  {
+     $scope.visvalid=true;
+    
+  }else{
+     $scope.visvalid=false;
+
+  }
 };
 
 
