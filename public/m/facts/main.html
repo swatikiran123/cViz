@@ -70,3 +70,26 @@
                 </div>
             </div>
         </div>
+
+   <div class="factsheet-down-block">
+        <div id="cscJourney">
+            <h1 class="map-title">CSC India Journey so far</h1>
+            <div class="ftb-journey-block" ng-repeat="journeyImage in journeyImages">
+                <label class="ftb-year-class">{{journeyImage.year}} </label>
+                <img ng-src="{{journeyImage.line_slice}}" class="ftb-slice-class">
+                <div class="ftb-second-block">
+                    <svg class="ftb-circle-class">
+                        <circle class="ftb-circle-class-circle" cx="90" cy="90" r="90"></circle>
+                    </svg>
+                    <span class="ftb-title-text">{{journeyImage.titleText}}</span>
+                </div>
+                <div class="ftb-third-block">
+                    <img ng-src="{{journeyImage.image1}}" class="ftb-image1Class">
+                    <span class="ftb-text-1">{{journeyImage.startedText1}}</span>
+                    <span class="ftb-text-2">{{journeyImage.startedText2}}</span>
+                </div>
+                <label class="ftb-title-class">{{journeyImage.title}} </label>
+            </div>
+        </div>
+   
+   </div>
