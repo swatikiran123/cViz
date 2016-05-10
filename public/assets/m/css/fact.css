@@ -36,6 +36,15 @@
   margin-top: 50px;
 }
 
+.factsheet-down-block {
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #eae9f4;
+  margin-top: 10px;
+padding-bottom: 20px;
+}
 .img-factsheet {
   width: 160px;
   height: 184px;
@@ -401,8 +410,173 @@
 .row {
   margin-right: 0;
   margin-left: 0;
+}/* journey so far */
+
+    .factsheet-third-block {
+        width: 100%;
+        text-align: center;
+        background-color: #ebf1e5;
+        padding-bottom: 20px;
+    }
+    .ftb-journey-block {
+        position: relative;
+        height: 300px;
+    }
+    .ftb-year-class {
+        position: absolute;
+        left: 24%;
+        font-size: 30px;
+        font-family: antonioBold;
+        color: #b4d191;
+    }
+    .ftb-slice-class {
+        position: absolute;
+        height: 310px;
+        width: 20px;
+        left: 29%;
+    }
+    .ftb-third-block {
+        position: absolute;
+        height: 170px;
+        width: 145px;
+        top: 9%;
+        left: 32%;
+    }
+    .ftb-image1Class {
+        height: 170px;
+        width: 145px;
+        padding-bottom: 30px;
+    }
+    .ftb-text-1 {
+        position: absolute;
+        top: 25%;
+        left: 26%;
+        font-size: 30px;
+        font-family: workSansBold;
+        color: #fff;
+    }
+    .ftb-text-2 {
+        position: absolute;
+        top: 43%;
+        left: 17%;
+        font-size: 17px;
+        font-family: workSansSemiBold;
+        color: #fff;
+    }
+    .ftb-second-block {
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: 25%;
+        left: 39%;
+    }
+    .ftb-circle-class {
+        height: 200px;
+        width: 200px;
+    }
+        .ftb-circle-class-circle {
+            stroke: none;
+            fill: #88ba41;
+        }
+    
+    .ftb-title-text {
+        position: absolute;
+        width: 52%;
+        top: 30%;
+        left: 19%;
+        font-size: 16px;
+        font-family: workSansSemiBold;
+        color: #fff;
+    }
+    .ftb-title-class {
+        position: absolute;
+        top: 98%;
+        left: 32%;
+        font-size: 16px;
+        font-family: workSansLight;
+        color: #3f561e;
+    }
+
+
+@media only screen and (max-device-width: 1024px) {
+   
+        .ftb-year-class {
+            left: 17%;
+        }
+        .ftb-slice-class {
+            left: 26%;
+        }
+        .ftb-text-1 {
+            left: 26%;
+        }
+        .ftb-text-2 {
+            left: 16%;
+        }
+        .ftb-title-text {
+            left: 29%;
+        }
+        .ftb-title-class {
+            left: 32%;
+        }
+    
 }
 
+@media only screen and (max-device-width: 760px) {
+
+        .ftb-year-class {
+            left: 6%;
+        }
+        .ftb-slice-class {
+            left: 22%;
+        }
+        .ftb-second-block {
+            top: 29%;
+            left: 45%;
+        }
+        .ftb-text-1 {
+            left: 24%;
+        }
+        .ftb-text-2 {
+            left: 12%;
+        }
+        .ftb-title-text {
+            left: 23%;
+        }
+        .ftb-title-class {
+            left: 32%;
+        }
+    
+}
+
+
+@media only screen and (max-device-width: 320px){ 
+  .ftb-year-class {
+            left: 2%;
+        }
+        .ftb-slice-class {
+            left: 20%;
+        }
+        .ftb-second-block {
+            left: 37%;
+        }
+        .ftb-text-1 {
+            left: 22%;
+        }
+        .ftb-text-2 {
+            left: 13%;
+        }
+        .ftb-third-block {
+            left: 29%;
+        }
+        .ftb-title-text {
+            top: 36%;
+            left: 21%;
+        }
+        .ftb-title-class {
+            left: 38%;
+        }
+
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
@@ -524,6 +698,31 @@
     bottom: 35px;
     left: 101px;
   }
+    .ftb-year-class {
+            left: 10%;
+        }
+        .ftb-slice-class {
+            left: 20%;
+        }
+        .ftb-second-block {
+            left: 37%;
+        }
+        .ftb-text-1 {
+            left: 22%;
+        }
+        .ftb-text-2 {
+            left: 13%;
+        }
+        .ftb-third-block {
+            left: 29%;
+        }
+        .ftb-title-text {
+            top: 36%;
+            left: 21%;
+        }
+        .ftb-title-class {
+            left: 38%;
+        }
 }
 @media only screen and (min-device-width: 485px)and (max-device-width: 768px) {
 
@@ -709,13 +908,6 @@
   height: 300px;
 }
 
-.ftb-year-class {
-  position: absolute;
-  left: 24%;
-  font-size: 30px;
-  font-family: antonioBold;
-  color: #b4d191;
-}
 
 .ftb-slice-class {
   position: absolute;
@@ -783,11 +975,3 @@
   color: #fff;
 }
 
-.ftb-title-class {
-  position: absolute;
-  top: 98%;
-  left: 32%;
-  font-size: 16px;
-  font-family: workSansLight;
-  color: #3f561e;
-}
