@@ -29,70 +29,68 @@ select option{
             <div class="col-xs-12 col-sm-8 col-md-8">
               <div class="form-group">
                 <label>Is billable/ non-billable?</label>&nbsp;
-                <br>
-                <input type="checkbox"  ng-click="checked=!checked" aria-label="Toggle ngHide">
-                &nbsp;You need an active WBS code/ Charge Code...
-                <br/>
-                <br>
-
-                <div class="check-element animate-show"  ng-if="checked">
-                  <!-- visits wbsCode input-->
-                  <label>WBS Code</label>
-                  <input ng-model="visits.wbsCode" name="wbsCode" type="text" required>
-
-                </div>
-
-                <div class="check-element animate-show" ng-if="!checked">
-                 <!-- visits chargeCode input-->
-                 <label>Charge Code</label>
-                 <input ng-model="visits.chargeCode" name="chargeCode" type="text"  required>
-               </div>
-             </div></div></div>
-
-             <!--vist Interest interest. businessType visitType objective-->
-
-             <!-- visits businessType-->
-
-
-             <label>Business Type</label><br>
-             <select name="type"  ng-model="visits.interest.businessType"  ng-dropdown>
-              <option ng-option  value="new">New</option>
-              <option ng-option value="existing">Existing</option>
-            </select>
-
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-
-              <!-- visits visitType-->
-              <div class="form-group">
-                <div id="new" ng-if="visits.interest.businessType == 'new'">
-                  <label>&nbsp;&nbsp;&nbsp;&nbsp;Say more </label><br><div class="selpad">
-                  <select  name="type" ng-model="visits.interest.visitType" ng-dropdown>
-                    <option ng-option value="dueDiligence">Due Diligence</option>
-                    <option ng-option value="exploratory">Exploratory</option>
-                    <option ng-option value="planning">Planning</option>
-                  </select>
-                </div>
+                <input type="radio" name="status" ng-model="visits.billable" value="billable"  ng-click="checkedBill()">&nbsp; Billable
+                &nbsp;&nbsp;
+                <input type="radio" name="status" ng-model="visits.billable" value="non-billable" ng-click="checkednonBill()"> Non-Billable         
               </div>
-              <div id="existing" ng-if="visits.interest.businessType == 'existing'">
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;Visit Type-Existing</label><br><div class="selpad">
-                <select name="type" ng-model="visits.interest.visitType"  ng-dropdown>
-                  <option ng-option value="operationsReview">Operations Review</option>
-                  <option ng-option value="renewals">Renewals</option>
-                  <option ng-option value="newBusiness">New Business</option>
-                  <option ng-option value="strategic">Strategic</option>
-                </select></div>
+              <div class="check-element animate-show"  ng-if="checked">
+                <!-- visits wbsCode input-->
+                <label>WBS Code</label>
+                <input ng-model="visits.wbsCode" name="wbsCode" type="text" required>
+
               </div>
+
+              <div class="check-element animate-show" ng-if="!checked">
+               <!-- visits chargeCode input-->
+               <label>Charge Code</label>
+               <input ng-model="visits.chargeCode" name="chargeCode" type="text"  required>
+             </div>
+           </div></div></div>
+
+           <!--vist Interest interest. businessType visitType objective-->
+
+           <!-- visits businessType-->
+
+
+           <label>Business Type</label><br>
+           <select name="type"  ng-model="visits.interest.businessType"  ng-dropdown>
+            <option ng-option  value="new">New</option>
+            <option ng-option value="existing">Existing</option>
+          </select>
+
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+
+            <!-- visits visitType-->
+            <div class="form-group">
+              <div id="new" ng-if="visits.interest.businessType == 'new'">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;Say more </label><br><div class="selpad">
+                <select  name="type" ng-model="visits.interest.visitType" ng-dropdown>
+                  <option ng-option value="dueDiligence">Due Diligence</option>
+                  <option ng-option value="exploratory">Exploratory</option>
+                  <option ng-option value="planning">Planning</option>
+                </select>
+              </div>
+            </div>
+            <div id="existing" ng-if="visits.interest.businessType == 'existing'">
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;Visit Type-Existing</label><br><div class="selpad">
+              <select name="type" ng-model="visits.interest.visitType"  ng-dropdown>
+                <option ng-option value="operationsReview">Operations Review</option>
+                <option ng-option value="renewals">Renewals</option>
+                <option ng-option value="newBusiness">New Business</option>
+                <option ng-option value="strategic">Strategic</option>
+              </select></div>
             </div>
           </div>
         </div>
       </div>
-    </form>
-    <br>
-    <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
-    <span ng-click="orgkeyTakeTab();logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
-    <br>
-    <br>
-  </div>
+    </div>
+  </form>
+  <br>
+  <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
+  <span ng-click="orgkeyTakeTab();logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
+  <br>
+  <br>
+</div>
 

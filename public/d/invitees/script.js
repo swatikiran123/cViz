@@ -18,10 +18,9 @@ angular.module('inviteesDirective', [])
   var j=[];
 
   $scope.addInvitees=function(invite){
-    console.log($scope.invite);
-    console.log(invite)
+
     $http.get('/api/v1/secure/admin/users/email/' + invite).success(function(response) {
-     if($scope.userType ==response.association)
+     if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
      { 
        $scope.userId = response._id;
 
@@ -30,15 +29,12 @@ angular.module('inviteesDirective', [])
       });
 
        $scope.checked = false;
-       
-       console.log("length"+$scope.array.length);
+
        for (var i =0 ;i<$scope.array.length;  i++) {
          j =$scope.array[i].invite; 
        };
 
        $scope.arraydata.push(j);
-       console.log($scope.arraydata);
-
      }
 
      else {
