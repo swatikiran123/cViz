@@ -595,14 +595,14 @@ break;
     }
   }
 
-  $scope.yes=function(){
+  $scope.yes=function(anchor){
     $scope.secTrue=true;
     $scope.addSec=false;
     $scope.dataOne=[];
     $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
       response[-1]="none";
       for (var i =0;i< response.length; i++) {
-        if ($scope.anchorman== response[i]._id) {
+        if ($scope.anchorman== response[i]._id || anchor== response[i]._id) {
         }else{
          $scope.dataOne.push({
           response: response[i]
