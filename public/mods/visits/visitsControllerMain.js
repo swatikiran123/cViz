@@ -120,7 +120,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.privalid=true;
   $scope.array = [];
 
-
   // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
@@ -191,9 +190,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       Object.keys($scope.allVisits).forEach(function (key) {
        var value = $scope.allVisits[key]
        if(!(key === "today" && key === "next-one")){
-        console.log(key);
+        // console.log(key);
         allVisits.push.apply(allVisits, value.visits);
-        console.log(value.visits.length, allVisits.length);
+        // console.log(value.visits.length, allVisits.length);
       }
     })
 
@@ -253,11 +252,13 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
             case "confirm": 
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
+            $scope.agendaSave=1;
             break;
 
             case "tentative": 
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
+            $scope.agendaSave=1;
             break;
 
             case "wip":
@@ -266,12 +267,16 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
               $scope.agendaTab=true;
               $scope.visitorsTab=true;
               $scope.notifyTab=false;
+              $scope.agendaSave=0;
+              $scope.visitorSave=1;
             }
             else{
              $scope.agendaTab= true;
              $scope.visitorsTab= true;
              $scope.finalizeTab= false;
              $scope.notifyTab= false;
+             $scope.agendaSave=1;
+
            }
            break;
 
@@ -281,12 +286,17 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
             $scope.notifyTab=true;
+            $scope.agendaSave=0;
+            $scope.visitorSave=0;
+            $scope.finalizeSave=1;
           }
           else{
            $scope.agendaTab= true;
            $scope.visitorsTab= true;
            $scope.finalizeTab= false;
            $scope.notifyTab= false;
+           $scope.agendaSave=1;
+
          }
          break;
 
@@ -464,6 +474,7 @@ break;
   }; // Delete method ends
 
   $scope.update = function() {
+
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
