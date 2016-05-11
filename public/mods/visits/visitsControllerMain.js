@@ -222,8 +222,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.secondaryVmanager = visits.secondaryVmanager._id;
           $scope.yes();
 
-        }else 
-        $scope.secTrue=false;
+        }else {
+          $scope.secTrue=false;
+          $scope.addSecMan();}
 
 
         switch(visits.status){
@@ -504,7 +505,7 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
-    $scope.dataOne=[];
+    // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
      growl.info(parse("Visit Manager Edited successfully"));
@@ -557,6 +558,10 @@ break;
     $scope.yes();
   }
   $scope.sendSecVman= function(secondaryVmanager,status){
+    if ($scope.secTrue==false) {
+      console.log("vam null")
+      $scope.vman = null;
+    }else
     $scope.vman = secondaryVmanager;
     if ($scope.notifyTab== true) {
       $scope.status = status;
@@ -569,6 +574,8 @@ break;
 
   $scope.yes=function(){
     $scope.secTrue=true;
+    $scope.addSec=false;
+    $scope.dataOne=[];
     $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
       response[-1]="none";
       for (var i =0;i< response.length; i++) {
@@ -581,10 +588,17 @@ break;
      };
    });
   }
+  $scope.removeVman=function(){
+    $scope.secTrue=false;
+    $scope.sendSecVman();
+  }
+  $scope.addSecMan=function(){
+    $scope.addSec=true;
+  }
   $scope.checkedBill=function(){
     $scope.checked=true;
   }
-    $scope.checkednonBill=function(){
+  $scope.checkednonBill=function(){
     $scope.checked=false;
   }
   $scope.clientEmail=function(){
