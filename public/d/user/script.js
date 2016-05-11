@@ -38,7 +38,7 @@ angular.module('userDirective', [])
 
       else{
         $scope.showFlag = "noUser";
-        $scope.message = "User not found!!!";
+        $scope.message = "User is not an organization employee!!";
         $timeout(function () { $scope.message = ''; }, 3000);
 
       }
@@ -48,7 +48,7 @@ angular.module('userDirective', [])
       $scope.showFlag = "noUser";
       if(status===404)
       {
-        $scope.message = "User not found!!!";
+        $scope.message = "User is not an organization employee!!";
         $timeout(function () { $scope.message = ''; }, 3000);
 
       }

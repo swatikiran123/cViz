@@ -124,7 +124,7 @@
              <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">The title should contain minimum 5characters</div></div></div>
+         <div ng-message="minlength">The title should contain minimum 5 characters</div></div></div>
       </md-input-container>
 
          <!--location have to pic from User -->
@@ -183,12 +183,12 @@
          <!--desc have to pic from User -->
              <md-input-container class="md-block">
         <label>Description</label>
-        <textarea md-maxlength="3000" minlength="5" required name="desc" ng-model="schedule.session.desc"></textarea>
+        <textarea md-maxlength="3000" minlength="30" required name="desc" ng-model="schedule.session.desc"></textarea>
         <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
              <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The description  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">The description should contain minimum 5characters</div></div></div>
+          <div ng-message="md-maxlength">The description  has to be less than 3000 characters long.</div>
+         <div ng-message="minlength">The description should contain minimum 30 characters</div></div></div>
       </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='add'">
@@ -198,7 +198,7 @@
        <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
         <div ng-message="md-maxlength">The feedback template  has to be less than 30 characters long.</div>
-        <div ng-message="minlength">The feedback template should contain minimum 5characters</div></div></div>
+        <div ng-message="minlength">The feedback template should contain minimum 5 characters</div></div></div>
       </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='edit'">
@@ -209,7 +209,7 @@
        <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
         <div ng-message="md-maxlength">The feedback template has to be less than 30 characters long.</div>
-        <div ng-message="minlength">The feedback template should contain minimum 5characters</div></div></div>
+        <div ng-message="minlength">The feedback template should contain minimum 5 characters</div></div></div>
       </md-input-container>
 
       <div>

@@ -47,7 +47,7 @@
                     
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Middle Name</label>
-                    <input md-maxlength="10" required name="middle" 
+                    <input name="middle" 
                     ng-model="userModel.name.middle">
                     <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
                      <div class="messagenotify">
@@ -112,7 +112,8 @@
 
                 <div class="col-md-12">
                   <md-input-container class="md-block" style="height: auto;">
-                  <label>Summary</label>
+                  <label ng-if="userModel.association=='customer'">Client Bio</label>
+                  <label ng-if="userModel.association=='employee'">Summary</label>
                   <textarea ng-model="userModel.summary" md-maxlength="2000" minlength="30" required name="summary" 
                   rows="4" aria-multiline="true" style="height: 116px;"></textarea>
                   <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
