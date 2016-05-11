@@ -187,6 +187,23 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $http.get('/api/v1/secure/visits/all/my').success(function(response) {
       $scope.allVisits = response;
       // console.log("after delete :"+$scope.allVisits)
+      var allVisits = [];
+      Object.keys($scope.allVisits).forEach(function (key) {
+       var value = $scope.allVisits[key]
+       if(!(key === "today" && key === "next-one")){
+        console.log(key);
+        allVisits.push.apply(allVisits, value.visits);
+        console.log(value.visits.length, allVisits.length);
+      }
+    })
+
+      $scope.allVisits["all"] = {
+        "start" : "begin",
+        "end": "end",
+        "visits": allVisits
+      };
+
+      
       if($scope.timeline=="" || $scope.timeline===undefined){
         $scope.timeline = "this-week";
         // console.log("no timeline. Set to " + $scope.timeline);
@@ -227,23 +244,38 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.addSecMan();}
 
 
-        switch(visits.status){
-          case "confirm": 
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          break;
+          switch(visits.status){
+            case "confirm": 
+            $scope.agendaTab=true;
+            $scope.visitorsTab=true;
+            break;
 
-          case "tentative": 
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          break;
+            case "tentative": 
+            $scope.agendaTab=true;
+            $scope.visitorsTab=true;
+            break;
 
-          case "wip":
-          if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+            case "wip":
+            if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+              $scope.finalizeTab= true;
+              $scope.agendaTab=true;
+              $scope.visitorsTab=true;
+              $scope.notifyTab=false;
+            }
+            else{
+             $scope.agendaTab= true;
+             $scope.visitorsTab= true;
+             $scope.finalizeTab= false;
+             $scope.notifyTab= false;
+           }
+           break;
+
+           case "finalize": 
+           if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
             $scope.finalizeTab= true;
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
-            $scope.notifyTab=false;
+            $scope.notifyTab=true;
           }
           else{
            $scope.agendaTab= true;
@@ -252,21 +284,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
            $scope.notifyTab= false;
          }
          break;
-
-         case "finalize": 
-         if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-          $scope.finalizeTab= true;
-          $scope.agendaTab=true;
-          $scope.visitorsTab=true;
-          $scope.notifyTab=true;
-        }
-        else{
-         $scope.agendaTab= true;
-         $scope.visitorsTab= true;
-         $scope.finalizeTab= false;
-         $scope.notifyTab= false;
-       }
-       break;
 
      //   case "close": 
      //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
