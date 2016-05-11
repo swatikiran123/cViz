@@ -253,9 +253,8 @@
         </div> 
 			</div>
       <br>
-
         <!-- <div style="overflow-y: auto; height:100px; width:700px"> -->
-           <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type="employee"></invitees>
+           <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type={{visit.client._id}}></invitees>
         <!-- </div>   -->
         <md-dialog-actions layout="row">
         <md-button class="md-primary md-raised" ng-click="save()" 

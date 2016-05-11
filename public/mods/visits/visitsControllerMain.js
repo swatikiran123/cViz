@@ -750,10 +750,9 @@ $scope.removekeynote = function(index){
     $scope.message='';
     $scope.emailId = '';
     var influence= visitorDef.influence;
-    var emailid = visitorDef.visitorId;
+    var emailid = visitorDef.visitorId.toLowerCase();
     var influencedata = visitorDef.influence;
-
-    $http.get('/api/v1/secure/admin/users/email/' + visitorDef.visitorId).success(function(response) {
+    $http.get('/api/v1/secure/admin/users/email/' + emailid).success(function(response) {
      if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
      { 
        $scope.userId = response._id;
@@ -793,7 +792,6 @@ $scope.removekeynote = function(index){
   })
 
 .error(function(response, status){
-  console.log(emailid);
   $scope.showFlag = "notRegisteredUser";
   if(status===404)
   { 
