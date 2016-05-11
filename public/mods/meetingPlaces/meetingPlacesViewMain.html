@@ -67,8 +67,8 @@
 				<td>{{meetingPlaces.location}}</td>
 				<td>{{meetingPlaces.meetingPlace}}</td>
 				<td>
-					<a class="table-btn" ng-click="edit(meetingPlaces._id)"><span class="fa fa-pencil-square-o fa-lg" /></a>
-					<a class="table-btn" ng-click="remove(meetingPlaces)"><span class="fa fa-trash-o fa-lg" /></a>
+					<a class="table-btn" ng-click="edit(meetingPlaces._id)" tooltips tooltip-template="Edit Meeting Place"><span class="fa fa-pencil-square-o fa-lg" /></a>
+					<a class="table-btn" ng-click="remove(meetingPlaces)" tooltips tooltip-template="Delete Meeting Place"><span class="fa fa-trash-o fa-lg" /></a>
 				</td>
 			</tr>
 		</tbody>

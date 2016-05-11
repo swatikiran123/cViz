@@ -118,7 +118,7 @@ md-dialog-content{
       <td>{{schedule.session.location}}</td>
       <td>
         <!-- <a class="table-btn" ng-click="editSession($event,schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
-        <a class="table-btn" ng-click="deleteSession(schedule)"><span class="glyphicon glyphicon-trash" /></a>
+        <a class="table-btn" ng-click="deleteSession(schedule)"><span class="glyphicon glyphicon-trash" tooltips tooltip-template="Delete Session"/></a>
       </td>
     </tr>
 
@@ -132,9 +132,9 @@ md-dialog-content{
       <td>{{schedule.session.title}}</td>
       <td>{{schedule.session.location}}</td>
       <td>
-        <a class="table-btn" ng-click="editSession($event,schedule._id)"><span class="glyphicon glyphicon-edit" /></a>
+        <a class="table-btn" ng-click="editSession($event,schedule._id)" tooltips tooltip-template="Edit Session"><span class="glyphicon glyphicon-edit" /></a>
 				<!-- <a class="table-btn" ng-click="editSession1(schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
-        <a class="table-btn" ng-click="deleteSession(schedule)"><span class="glyphicon glyphicon-trash" /></a>
+        <a class="table-btn" ng-click="deleteSession(schedule)" tooltips tooltip-template="Delete Session"><span class="glyphicon glyphicon-trash" /></a>
       </td>
     </tr>
   </tbody>

@@ -14,8 +14,8 @@ module.exports = {
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css",
 			"/public/assets/g/css/rateit.css",
-			"/public/assets/g/css/toaster.css"
-
+			"/public/assets/g/css/toaster.css",
+			"/public/assets/w/styles/tooltip.css"
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -28,7 +28,8 @@ module.exports = {
 			"/public/assets/g/css/sidebar.css",
 			"/public/assets/m/css/font.css",
 			"/public/assets/g/css/rateit.css",
-			"/public/assets/g/js/toaster.css"
+			"/public/assets/g/js/toaster.css",
+			"/public/assets/w/styles/tooltip.css"
 		]
 	},
 
@@ -86,7 +87,8 @@ module.exports = {
 			"/public/d/richText/script.js",
 			"/public/d/feedbackDirective/script.js",
 			"/public/assets/g/js/rateit.js",
-			"/public/assets/g/js/toaster.js"
+			"/public/assets/g/js/toaster.js",
+			"/public/d/tooltipDirective/script.js"
 		],
 		"prod":[
 		]

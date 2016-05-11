@@ -23,9 +23,9 @@
                 <div class="panel-heading pn-bodyhdr" pull-left>
                   <span>{{teasers.title}}</span><div class="pull-right">
                   <!-- <a class="table-btn" href="#/teasers/{{teasers._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
-                  <a class="table-btn" href="#/teasers/{{teasers._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+                  <a class="table-btn" href="#/teasers/{{teasers._id}}/edit"><span class="fa fa-edit fa-lg" tooltips tooltip-template="Edit Teaser"/></a>
                   <a class="table-btn" ng-click="delete(teasers)" confirm-dialog header-text="Delete teasers" content="Are you sure you want to delete the teasers with teasers title <b>{{teasers.title}} ? </b>" 
-                    yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+                    yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Teaser"/></a>
                   </div>
                 </div>
 

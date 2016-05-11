@@ -72,16 +72,17 @@
 					<td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
-           <a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+           <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
            <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-            yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" /></a>
+            yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
 
             <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-              yes-text="Ok" no-text="Cancel" ng-hide="visitGrid" ng-if="visit.status == 'confirm' || visit.status == 'tentative'"><span class="fa fa-trash fa-lg" /></a>
+              yes-text="Ok" no-text="Cancel" ng-hide="visitGrid" ng-if="visit.status == 'confirm' || visit.status == 'tentative'"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
 
-              <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid"><span class="fa fa-calendar fa-lg" /></a>
-              <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid"><span class="fa fa-comments fa-lg"/></a>
+              <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid" 
+              tooltips tooltip-template="Add Sessions"><span class="fa fa-calendar fa-lg" /></a>
+              <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid" tooltips tooltip-template="View Feedbacks"><span class="fa fa-comments fa-lg"/></a>
             </td>
           </tr>
         </tbody>
