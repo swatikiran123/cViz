@@ -48,7 +48,9 @@ var visitSchema = new mongoose.Schema({
 	 	context 					: {type: String, enum: ['welcome', 'thankyou'], trim: true},
 	 	order						: {type: Number, required: false}
 	 }],
-	 invitees						: [{type: Schema.Types.ObjectId, ref: 'User'}]
+	 invitees						: [{type: Schema.Types.ObjectId, ref: 'User'}],
+	 wbscodeAttachment				: { type: String},
+	 visitAttachment				: [{ type: String }]
 
 });
 
