@@ -19,8 +19,8 @@ angular.module('userDirective', [])
       url='/api/v1/secure/admin/users/' + $scope.userId;
     }
     
-    if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
-      url='/api/v1/secure/admin/users/email/' + $scope.userEmail;
+    if ($scope.userEmail.toLowerCase()!="" && $scope.userEmail.toLowerCase()!=undefined) {
+      url='/api/v1/secure/admin/users/email/' + $scope.userEmail.toLowerCase();
     }
     // else{
     //     message = "Invalid User Id/email";
