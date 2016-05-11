@@ -12,14 +12,13 @@
 	</div>
 </div>
 
-
 <div class= "page-toolbar">
 
     <div ng-if="mode=='edit' && adminInitVman">
         <div ng-if="visitGrid"><!--checking if visit manager or not-->
 
             <div class="row ">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class= "well">
@@ -34,10 +33,16 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue"> 
                                 Secondary Manager
+                                <i class="fa fa-trash " aria-hidden="true" ng-click="removeVman();addSecMan();"></i>
                                 <select ng-change="sendSecVman(secondaryVmanager,visits.status)" ng-model="secondaryVmanager" ng-options="d.response._id as d.response.name.prefix+' '+d.response.name.first+' '+d.response.name.last for d in dataOne">   
                                 </select>
                             </div>
-                            <button class="btn btn-success" ng-click="AddVmanager()">Assign</button>
+                            <div ng-if="addSec" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <i class="fa fa-user" aria-hidden="true" ng-click="yes();"></i>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <button class="btn btn-success" ng-click="AddVmanager()">Assign</button>
+                            </div>
                         </div>
                     </div><!--close of well-->
                 </div>

@@ -569,6 +569,7 @@ break;
 
   $scope.yes=function(){
     $scope.secTrue=true;
+    $scope.addSec=false;
     $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
       response[-1]="none";
       for (var i =0;i< response.length; i++) {
@@ -581,6 +582,12 @@ break;
      };
    });
   }
+  $scope.removeVman=function(){
+    $scope.secTrue=false;
+  }
+  $scope.addSecMan=function(){
+    $scope.addSec=true;
+   }
   $scope.checkedBill=function(){
     $scope.checked=true;
   }
