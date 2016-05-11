@@ -21,10 +21,11 @@
             <div class="col-xs-11">
               <div class="panel panel-info">
                 <div class="panel-heading pn-bodyhdr" pull-left>
-                  <span>{{visit.title}}</span><div class="pull-right"><a class="table-btn" href="#/visits/{{visit._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+                  <span>{{visit.title}}</span><div class="pull-right"><a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
                   <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-                    yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" /></a>
-                    <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid"><span class="fa fa-calendar fa-lg" /></a>
+                    yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
+                    <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid" tooltips tooltip-template="Add Sessions"><span class="fa fa-calendar fa-lg" /></a>
+                    <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid" tooltips tooltip-template="View Feedbacks"><span class="fa fa-comments fa-lg"/></a>
                   </div>
                 </div>
 

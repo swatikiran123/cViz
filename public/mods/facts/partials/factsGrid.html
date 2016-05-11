@@ -93,9 +93,9 @@
       <td>{{fact.createOn | date:'dd-MM-yyyy'}}</td>
       <td>
         <!-- <a class="table-btn" href="#/facts/{{fact._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
-        <a class="table-btn" href="#/facts/{{fact._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+        <a class="table-btn" href="#/facts/{{fact._id}}/edit" tooltips tooltip-template="Edit Fact"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(fact)" confirm-dialog header-text="Delete Fact" content="Are you sure you want to delete the fact with fact title <b>{{fact.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Fact"/></a>
       </td>
     </tr>
   </tbody>

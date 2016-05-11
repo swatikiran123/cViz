@@ -57,8 +57,8 @@
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
     </tr>
-
   </thead>
+
 
   <tbody class="data-grid-data">
     <tr ng-repeat="keynote in keynotesList | filter: search |orderBy:orderByField:reverseSort">
@@ -70,9 +70,9 @@
       <td class="hidden-xs">ToBeDefined</td>
       <td>
        <!--  <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
-        <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit"><span class="fa fa-edit fa-lg" /></a>
+        <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="Edit Keynote"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(keynote)" confirm-dialog header-text="Delete Keynote" content="Are you sure you want to delete the keynote with keynote title <b>{{keynote.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Keynote"/></a>
       </td>
     </tr>
   </tbody>  

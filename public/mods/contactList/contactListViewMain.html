@@ -80,8 +80,8 @@
 		<td>{{contactList.type}}</td>
 		<td><div userdisplay view-mode="nameonly" user-id="contactList.user"></td>
 		<td>
-			<a class="table-btn" ng-click="edit(contactList._id)"><span class="fa fa-pencil-square-o fa-lg" /></a>
-			<a class="table-btn" ng-click="remove(contactList)"><span class="fa fa-trash-o fa-lg" /></a>
+			<a class="table-btn" ng-click="edit(contactList._id)" tooltips tooltip-template="Edit Contact"><span class="fa fa-pencil-square-o fa-lg" /></a>
+			<a class="table-btn" ng-click="remove(contactList)" tooltips tooltip-template="Delete Contact"><span class="fa fa-trash-o fa-lg" /></a>
 		</td>
 	</tr>
 </tbody>

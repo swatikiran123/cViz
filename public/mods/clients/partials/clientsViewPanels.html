@@ -23,11 +23,11 @@
                   <span>{{clients.name}}</span>
                   <div class="pull-right">
                     <!-- <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
-                    <a class="table-btn" href="#/clients/{{clients._id}}/edit"><span class="fa fa-edit fa-lg"/></a>
+                    <a class="table-btn" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="Edit Client"><span class="fa fa-edit fa-lg"/></a>
                     <a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>" 
                     yes-text="Ok" no-text="Cancel">
 
-                    <span class="fa fa-trash fa-lg" /></a>
+                    <span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Client"/></a>
                   </div>
                 </div>
 
