@@ -236,6 +236,18 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
       </div>
     </md-input-container>
 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <b>Attachments</b></h3>
+      </div>
+      <div class = "panel-subheader pull-right">
+      </div>
+      <div class="panel-body">
+       <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
+       <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
+     </div>
+   </div>
+
     <!-- visits status input-->
     <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
       <label><h4><b>Status</b></h4></label>

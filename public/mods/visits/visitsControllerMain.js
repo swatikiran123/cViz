@@ -118,7 +118,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.visvalid= true;
   $scope.secTrue=false;
   $scope.privalid=true;
-
+  $scope.array = [];
 
 
   // $scope.sessiondbId = "";
@@ -213,6 +213,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
       case "edit":
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
+
+        for(var files=0;files<response.visitAttachment.length;files++)
+        {
+          $scope.array.push(response.visitAttachment[files])
+        }
         var visits = response;
         if (visits.anchor!=undefined){
           $scope.anchor = visits.anchor._id;
@@ -355,6 +360,7 @@ break;
     $scope.visits.status =$scope.status;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.invitees = $scope.arraydata;
+    $scope.visits.visitAttachment = $scope.array;
     $scope.check= true;
     console.log($scope.visits);
     

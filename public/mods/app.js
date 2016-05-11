@@ -11,8 +11,8 @@ angular.module('cviz-customize',
 angular.module('cviz-manage',
 	['userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective', 'inviteesDirective',
 	'appFilters',
-	'datePicker','dropzone','fileuploadDirective',
-	'visits',"clients",'confirmDialogDirective','richTextDirective','ngRateIt','tooltips']);
+	'datePicker','fileuploadDirective',
+	'visits',"clients",'confirmDialogDirective','richTextDirective','ngRateIt','tooltips','dropzone']);
 
 angular.module('cviz-profile',
 	['userprofileDirective','userDirective','userdisplayDirective',

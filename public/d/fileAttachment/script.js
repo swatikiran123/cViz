@@ -1,7 +1,7 @@
 //dropzone directive dropzone.css required,options in controller
 angular.module('dropzone', [])
 
-.controller('fileattachmentDirectiveControllerMain', ['$scope', '$http','$mdDialog', '$mdMedia','Upload','growl', function($scope, $http, $mdDialog, $mdMedia,Upload,growl) {
+.controller('fileattachmentDirectiveControllerMain', ['$scope', '$http','$mdDialog', '$mdMedia','Upload','growl','$timeout', function($scope, $http, $mdDialog, $mdMedia,Upload,growl,$timeout) {
 
  var folderType = $scope.folderType;
  var filesize = $scope.fileSize;
@@ -26,7 +26,6 @@ angular.module('dropzone', [])
     },
     //event handler for checking the file type and based on file type showing the thumbnail.
     'addedfile': function(file) {
-      console.log(file.type);
       if (file.type ==='application/msword' || file.type ==='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.type ==='application/vnd.ms-excel.sheet.macroEnabled.12')
         {
           // This is not an image, so Dropzone doesn't create a thumbnail.
@@ -70,9 +69,13 @@ angular.module('dropzone', [])
       if($scope.fileType == 'multiFile')
       {
         $scope.array.push(imagepath);
+        if($scope.array.length>files)
+        { 
+          $scope.array.splice(-1,1);
+          $scope.message = "Max Files Allowed to attach are:" + files;
+          $timeout(function () { $scope.message = ''; }, 10000);
+        }
       }
-      //console.log($scope.array);
-      //$scope.showPanel =true;
     },
 
 
@@ -90,7 +93,6 @@ $scope.status = '  ';
 
 //event handler for showing the dialog box.
 $scope.showUploadButton = function(ev) {
-   console.log(dropzoneConfig);
    $mdDialog.show({
     controller: DialogUploadCtrl,
     templateUrl: '/public/d/fileAttachment/templates/fileDialog.html',
@@ -111,11 +113,7 @@ $scope.showUploadButton = function(ev) {
 
 
  $scope.removeImageItem = function(index,x){
-  console.log(index);
-  console.log($scope.array);
   $scope.array.splice(index, 1);
-  console.log($scope.array);
-  // window.unlink(x);
   localStorage.removeItem(x);
 };
 
@@ -156,7 +154,6 @@ $scope.delete = function(index){
     var config, dropzone;
 
     config = scope[attrs.dropzone];
-
     // create a Dropzone for the element with the given options
     dropzone = new Dropzone(element[0], config.options);
 
