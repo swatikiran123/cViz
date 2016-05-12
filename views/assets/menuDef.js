@@ -16,14 +16,14 @@ module.exports = {
 			name: "My Visits",
 			link: "/m/visits/#/visits/all/my",
 			icon: "fa-plane",
-			roles: "user,vManager,admin"
+			roles: "user,vManager,admin,exec"
 		},
-		{
-			name: "Exec Visits",
-			link: "/m/visits/#/execvisits",
-			icon: "fa-trophy",
-			roles: "exec,vManager,admin"
-		},
+		// {
+		// 	name: "Exec Visits",
+		// 	link: "/m/visits/#/execvisits",
+		// 	icon: "fa-trophy",
+		// 	roles: "exec,vManager,admin"
+		// },
 		{
 			name: "Add Visit",
 			link: "/m/visit/add/#/add",
