@@ -2,7 +2,7 @@
 
 angular.module('feedbackDirective', ['ngRateIt','ngAnimate', 'toaster'])
 
-.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope','$timeout','toaster', function($scope, $http, $rootScope,$timeout,toaster) {
+.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope','$timeout','toaster','$location', function($scope, $http, $rootScope,$timeout,toaster,$location) {
 
   if($scope.feedbackModel === undefined || $scope.feedbackModel === "")
     $scope.showFlag = "none";
@@ -16,7 +16,6 @@ angular.module('feedbackDirective', ['ngRateIt','ngAnimate', 'toaster'])
     }
 
     $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.feedbackId).success(function(response) {
-      console.log(response);
       $scope.feedbackModel = response;
       $scope.showFlag = "feedback";
     })
@@ -97,7 +96,15 @@ function arrayIntersection() {
     $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel).success(function(response) {
     })
 
-    // showSuccessMessage();
+    if($scope.type=='session')
+    {
+    $scope.showSuccessMessage();
+    }
+
+    if($scope.type=='visit')
+    {
+      $location.path('/thankyou');
+    }
   };
 
   $scope.selection = [];
@@ -141,7 +148,8 @@ function callSubmit() {
       feedbackModel: "=feedbackModel",
       feedbackId: "=feedbackId",
       visitId: "=visitId",
-      sessionId: "=sessionId"
+      sessionId: "=sessionId",
+      type: "@type"
     },
 
 };

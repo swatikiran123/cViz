@@ -135,6 +135,7 @@ angular.module('userprofileDirective', [])
       userModel: "=userModel",
       userId: "=userId",
       userEmail: "=userEmail",
+      show: "@show"
    }
   };
 });

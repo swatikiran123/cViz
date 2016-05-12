@@ -191,8 +191,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	 {
 	var start_time = $scope.startHourTime + $scope.startMinTime;
 	var end_time = $scope.endHourTime + $scope.endMinTime;
-	console.log(start_time);
-	console.log(end_time);
 	if ((start_time >= end_time || end_time <= start_time) && $scope.startHourTime!=null && $scope.startMinTime!=null && $scope.endHourTime!=null) {
 		$scope.errMessage = "Wrong Time Entry Done !!!"
 		$scope.checkTimeVar = true;
