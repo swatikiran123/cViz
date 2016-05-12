@@ -82,7 +82,14 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
 <div header showprofile="false" icon="fa fa-line-chart" title1="Visit Feedback" title2="feedback for visit">
     feedback visit
 </div>
-<div class="divtop">  
+<br>
+<br>
+<div class="divtop">
+<div class="sessionfeedback">
+<div feedback feedback-id="overallFeedbackTmpl" visit-id="visitId" feedback-model type="visit"></div>
+</div>
+</div>
+<!-- <div class="divtop">  
     <div id="overall-feedback-page">
    
         <div class="scrollable-content">
@@ -91,12 +98,11 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
                 <div class="corousel-inner" style="width: 1496px;">
                 <br>
                 <br>
-                <!-- {{url=form-{{order}};""}} -->
+
                 {{form_id}}
                 form-{{order}}
                     <form  id="form-order" class="form-div active" value="Increase Progress">
-<!--                         {{items[order]}}
-                        {{items[order].choices}} -->
+
                         <div ng-if="items[order].mode == 'multi-choice'" class="checkbox-div">
                             <div class="checkbox-text">{{items[order].query}}</div>
                             <div class="checkbox-input">
@@ -142,72 +148,8 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
                                     </form>
                                     <form id="form-2" class="form-div">
                              
-                                        <!-- <div class="star-ratings-div">
-                                            <div class="star-rating-text">How would you rate your hospitality in and outside Bangalore ?</div>
-                                            <div class="stars">
-                                                <input class="star star-5" id="star-5" type="radio" name="star" />
-                                                <label class="star star-5" for="star-5"></label>
-                                                <input class="star star-4" id="star-4" type="radio" name="star" />
-                                                <label class="star star-4" for="star-4"></label>
-                                                <input class="star star-3" id="star-3" type="radio" name="star" />
-                                                <label class="star star-3" for="star-3"></label>
-                                                <input class="star star-2" id="star-2" type="radio" name="star" />
-                                                <label class="star star-2" for="star-2"></label>
-                                                <input class="star star-1" id="star-1" type="radio" name="star" />
-                                                <label class="star star-1" for="star-1"></label>
-                                            </div>
-                                        </div>
-                                        <div class="comments-div">
-                                            <div class="comments-text">Please leave your comments, if any</div>
-                                            <div class="comments-input">
-                                                <textarea></textarea>
-                                            </div>
-                                        </div> -->
                                     </form>
-                                    <!-- <form id="form-3" class="form-div">
-                                        <div class="checkbox-div">
-                                            <div class="checkbox-text">How was your visit experience to India ?</div>
-                                            <div class="checkbox-input">
-                                                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <input type="checkbox" />&nbsp;&nbsp;Excellent</label>
-                                                    <label class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                        <input type="checkbox" />&nbsp;&nbsp;Good</label>
-                                                        <label class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                            <input type="checkbox" />&nbsp;&nbsp;Average</label>
-                                                            <label class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                                <input type="checkbox" />&nbsp;&nbsp;Bad</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comments-div">
-                                                            <div class="comments-text">Please leave your comments, if any</div>
-                                                            <div class="comments-input">
-                                                                <textarea></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    <form id="form-4" class="form-div">
-                                                        <div class="star-ratings-div">
-                                                            <div class="star-rating-text">How did you like the cuisine ?</div>
-                                                            <div class="stars">
-                                                                <input class="star star-5" id="star-5" type="radio" name="star" />
-                                                                <label class="star star-5" for="star-5"></label>
-                                                                <input class="star star-4" id="star-4" type="radio" name="star" />
-                                                                <label class="star star-4" for="star-4"></label>
-                                                                <input class="star star-3" id="star-3" type="radio" name="star" />
-                                                                <label class="star star-3" for="star-3"></label>
-                                                                <input class="star star-2" id="star-2" type="radio" name="star" />
-                                                                <label class="star star-2" for="star-2"></label>
-                                                                <input class="star star-1" id="star-1" type="radio" name="star" />
-                                                                <label class="star star-1" for="star-1"></label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comments-div">
-                                                            <div class="comments-text">Please leave your comments, if any</div>
-                                                            <div class="comments-input">
-                                                                <textarea></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </form> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -231,4 +173,4 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
