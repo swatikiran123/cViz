@@ -71,6 +71,19 @@ factsApp.controller('factsControllerMain', ['$scope', '$http', '$routeParams','$
     }); // http delete keynoges ends
   }; // delete method ends
 
+  $scope.copy = function(facts) {
+    delete facts._id;
+    var title = "Copy of " + facts.title;
+    facts.title = title;
+    $http.post('/api/v1/secure/facts/',facts).success(function(response) {
+      refresh();
+      growl.info(parse("Fact [%s]<br/>Copied successfully", title));
+    })
+    .error(function(data, status){
+      growl.error("Error Copying Fact");
+    });
+  };
+
   $scope.update = function() {
     $http.put('/api/v1/secure/facts/' + $scope.facts._id, $scope.facts).success(function(response) {
       refresh();

@@ -73,6 +73,7 @@
         <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="Edit Keynote"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(keynote)" confirm-dialog header-text="Delete Keynote" content="Are you sure you want to delete the keynote with keynote title <b>{{keynote.title}} ? </b>" 
         yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Keynote"/></a>
+        <a class="table-btn" ng-click="copy(keynote)" tooltips tooltip-template="Copy Keynote"><span class="fa fa-files-o fa-lg" /></a>
       </td>
     </tr>
   </tbody>  

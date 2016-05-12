@@ -29,7 +29,6 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
             var feedbackDefs = response;
             $scope.items = feedbackDefs.item;       //list of item
             $scope.feedbackDefs = feedbackDefs;     //whole form object
-            console.log($scope.items);
           });
 
       } // switch scope.mode ends
@@ -80,6 +79,19 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
       growl.error("Error deleting feedback");
     }); // http delete feedback ends
   }; // delete method ends
+
+  $scope.copy = function(feedback) {
+    delete feedback._id;
+    var title = "Copy of " + feedback.title;
+    feedback.title = title;
+    $http.post('/api/v1/secure/feedbackDefs/',feedback).success(function(response) {
+      refresh();
+      growl.info(parse("Template [%s]<br/>Copied successfully", title));
+    })
+    .error(function(data, status){
+      growl.error("Error Copying Template");
+    });
+  };
 
   $scope.update = function() {
 

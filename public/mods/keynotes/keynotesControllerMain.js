@@ -114,6 +114,19 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
     }); // http delete keynoges ends
   }; // delete method ends
 
+  $scope.copy = function(keynotes) {
+    delete keynotes._id;
+    var title = "Copy of " + keynotes.title;
+    keynotes.title = title;
+    $http.post('/api/v1/secure/keynotes/',keynotes).success(function(response) {
+      refresh();
+      growl.info(parse("Keynotes [%s]<br/>Copied successfully", title));
+    })
+    .error(function(data, status){
+      growl.error("Error Copying keynote");
+    });
+  };
+
   $scope.update = function() {
     $http.put('/api/v1/secure/keynotes/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
       refresh();
