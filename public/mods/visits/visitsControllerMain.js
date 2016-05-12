@@ -561,6 +561,7 @@ break;
   };
 
   $scope.showNotifie= function(status){
+    console.log("im in showNotifie");
 
     $scope.status = status;
     $scope.status="finalize";
@@ -584,6 +585,47 @@ break;
       $scope.nextTab($scope.visits._id);
     })
 
+  }
+  $scope.getvalidation= function(feedback,status,ev){
+    console.log("im in getvalidation");
+    $scope.status = status;
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.status =$scope.status;
+    $scope.visits.agm = $scope.agmId;
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.client = $scope.clientId;
+    $scope.visits.invitees = $scope.arraydata;
+    if ($scope.feedback === "" || $scope.feedback === undefined || $scope.feedback === null ) {
+      console.log("feed is null soo true");
+      $scope.visits.feedbackTmpl = $scope.feedbackId;
+    }else $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.sessionTmpl = $scope.sessionId;
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
+
+    $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
+      if(response=="ok"){
+        $scope.showNotifie(status);
+      }
+      else{
+        $scope.errinData= response;
+        console.log($scope.errinData);
+        $mdDialog.show(
+          $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Visit Finalize')
+          .textContent(response)
+          .ariaLabel('Alert Dialog Demo')
+          .ok('Got it!')
+          .targetEvent(ev)
+          );
+      }
+
+    })
   }
   $scope.sendAnchor= function(anchor,status){
     $scope.anchorman = anchor;
@@ -741,24 +783,44 @@ break;
 // Visit schedule table end
 
  // Visit keynote table
+ $scope.isDataValidkey=function(keynoteDef){
+  console.log(keynoteDef);
+  if(keynoteDef === "" || keynoteDef === undefined)
+    return "Data undefined !";
 
- $scope.addkeynote=function(keynoteDef){
+  if(keynoteDef.noteName === "" || keynoteDef.noteName === undefined || keynoteDef.noteName === null)
+    return "keynote not valid !";
 
-  $scope.keynotes.push({
-    note: $scope.keynoteId,
-    noteName: keynoteDef.noteName, 
-    context: keynoteDef.context,
-    order: keynoteDef.order
-  });
+  if(keynoteDef.context === "" || keynoteDef.context === undefined || keynoteDef.context === null)
+    return "context not valid !";
 
-  keynoteDef.noteName='';
-  keynoteDef.context='';
-  keynoteDef.order='';
-};
+  if(keynoteDef.order === "" || keynoteDef.order === undefined || keynoteDef.order === null)
+    return "order not valid !";
 
-$scope.removekeynote = function(index){
-  $scope.keynotes.splice(index, 1);
-};
+  return "OK";
+}
+
+$scope.addkeynote=function(keynoteDef){
+  var isValid = $scope.isDataValidkey(keynoteDef);
+  if(isValid === "OK"){
+    $scope.keyvalid=false;
+    $scope.keynotes.push({
+      note: $scope.keynoteId,
+      noteName: keynoteDef.noteName, 
+      context: keynoteDef.context,
+      order: keynoteDef.order
+    });
+  }else {$scope.keyvalid=isValid;
+    $timeout(function () { $scope.keyvalid = ''; }, 5000);}
+
+    keynoteDef.noteName='';
+    keynoteDef.context='';
+    keynoteDef.order='';
+  };
+
+  $scope.removekeynote = function(index){
+    $scope.keynotes.splice(index, 1);
+  };
 
 // $scope.editkeynote = function(index,keynoteDef){
 //   $scope.showKey=true;

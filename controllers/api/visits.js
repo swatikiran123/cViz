@@ -14,6 +14,7 @@ controller.updateById = updateById;
 controller.deleteById = deleteById;
 
 controller.getWithAction = getWithAction;
+controller.getvalidationById = getvalidationById;
 // controller.getSessionsById = getSessionsById;
 // controller.getSchedulesById=getSchedulesById;
 // controller.getExecsById = getExecsById;
@@ -51,6 +52,8 @@ function getOneById(req,res){
         res.status(500).send(err);
     });
 }
+
+
 
 function getWithAction(req, res){
 	logger.dump('debug',0, req.params.id, req.params.action);
@@ -275,6 +278,21 @@ function updateById(req, res) {
     })
     .catch(function (err) {
         console.log(err);
+        res.status(500).send(err);
+    });
+}
+
+function getvalidationById(req,res){
+  dataService.getvalidationById(req.params.id, req.body)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
         res.status(500).send(err);
     });
 }

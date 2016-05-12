@@ -31,6 +31,7 @@ service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
 service.pushSession = pushSession;
 service.getLocationsById = getLocationsById;
+service.getvalidationById = getvalidationById;
 
 module.exports = service;
 
@@ -708,6 +709,56 @@ function updateById(id, data) {
 
 	return deferred.promise;
 }
+
+
+
+function getvalidationById(id, data){
+	var deferred = Q.defer();
+
+	model
+
+	.findByIdAndUpdate(id, data) 
+	// function (err, item) {
+
+	// .findOne({ _id: id })
+	.populate('keynote.note')
+	.populate('feedbackTmpl')
+	.populate('sessionTmpl')
+	.exec(function (err, item) {
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null || item.feedbackTmpl === "007"){
+			var errinDatafeedbackTmpl= "feedback Template undefined !";
+			deferred.resolve(errinDatafeedbackTmpl);
+		}
+		else if(item.keynote.length === 0){
+			var errinDatakeynote= "Atleast one keynote should be defined !";
+			deferred.resolve(errinDatakeynote);
+		}
+		else if(item.keynote.length != 0){
+			var count=0;
+			for (var i=0; i<item.keynote.length; i++){
+				if(item.keynote[i].context == 'welcome')
+				{
+					count++;
+				}
+			}
+			if (count == 0) {
+				var errinDatakeynotewel= "welcome keynote undefined !";
+			deferred.resolve(errinDatakeynotewel);
+		}
+		}
+		else {
+			var ok="ok"; 
+			deferred.resolve(ok);
+
+		} 
+	});
+	return deferred.promise;
+
+} // gentOneById method ends
 
 function deleteById(id) {
 	var deferred = Q.defer();
