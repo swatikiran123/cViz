@@ -10,25 +10,26 @@
   </li>
 
   <!-- Additional pull down starts here -->
-  <li class="dropdown">
+  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
       <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
       <li><a href="/manage/#/clients/list">Clients</a></li>
       <li><a href="/customize/#/keynotes/list">Keynotes</a></li>
-      <li><a href="/customize/#/facts/list">Facts</a></li>
-      <li><a href="/customize/#/contactList/list">Contact list</a></li>
+      <!--li><a href="/customize/#/facts/list">Facts</a></li-->
+      <li><a href="/customize/#/contactList/list">Contact List</a></li>
       <li><a href="/customize/#/meetingPlaces/list">Meeting Places</a></li>
       <li role="separator" class="divider"></li>
       <li class="dropdown-header">Customize</li>
       <li><a href="/customize/#/feedbackTmpl/list">Feedback</a></li>
-      <li><a href="/customize/#/teasers/list">Teasers</a></li>
+      <!--li><a href="/customize/#/teasers/list">Teasers</a></li-->
     </ul>
   </li>
   <!-- Additional pull down ends -->
 
   <!-- Admin pull down starts here -->
-  <li class="dropdown">
+
+  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
       <li><a href="/admin/#/groups/">Groups</a></li>
