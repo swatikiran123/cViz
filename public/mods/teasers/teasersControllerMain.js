@@ -75,6 +75,19 @@ teasersApp.controller('teasersControllerMain', ['$scope', '$http', '$routeParams
     }); // http delete keynoges ends
   }; // delete method ends
 
+  $scope.copy = function(teasers) {
+    delete teasers._id;
+    var title = "Copy of " + teasers.title;
+    teasers.title = title;
+    $http.post('/api/v1/secure/teasers/',teasers).success(function(response) {
+      refresh();
+      growl.info(parse("Teasers [%s]<br/>Copied successfully", title));
+    })
+    .error(function(data, status){
+      growl.error("Error Copying Teasers");
+    });
+  };
+
   $scope.update = function() {
     $http.put('/api/v1/secure/teasers/' + $scope.teasers._id, $scope.teasers).success(function(response) {
       refresh();

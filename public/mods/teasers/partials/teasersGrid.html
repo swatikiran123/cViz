@@ -61,6 +61,7 @@
         <a class="table-btn" href="#/teasers/{{teasers._id}}/edit" tooltips tooltip-template="Edit Teaser"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(teasers)" confirm-dialog header-text="Delete teasers" content="Are you sure you want to delete the teasers with teasers title <b>{{teasers.title}} ? </b>" 
           yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Teaser"/></a>
+        <a class="table-btn" ng-click="copy(teasers)" tooltips tooltip-template="Copy Teaser"><span class="fa fa-files-o fa-lg" /></a>  
         </td>
       </tr>
     </tbody>
