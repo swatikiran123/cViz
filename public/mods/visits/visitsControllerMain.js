@@ -119,7 +119,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.secTrue=false;
   $scope.privalid=true;
   $scope.array = [];
-
+  $scope.arrayiwo = [];
   // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
@@ -234,6 +234,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         {
           $scope.array.push(response.visitAttachment[files])
         }
+
+        $scope.arrayiwo.push(response.wbscodeAttachment);
         var visits = response;
         if (visits.anchor!=undefined){
           $scope.anchor = visits.anchor._id;
@@ -389,17 +391,20 @@ break;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
+    $scope.visits.wbscodeAttachment = $scope.arrayiwo;
     $scope.check= true;
-    console.log($scope.visits);
-    
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
       if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
-      $scope.visits.billable=$scope.unbillable;}//check code
+      $scope.visits.billable=$scope.unbillable;
+      $scope.visits.wbscodeAttachment ="";
+      }//check code
       else{
         $scope.billable= "billable";
         if($scope.visits.chargeCode!=null){$scope.visits.chargeCode= null;}
-        $scope.visits.billable=$scope.billable;}//WBS code
+        $scope.visits.billable=$scope.billable;
+        $scope.visits.wbscodeAttachment = $scope.arrayiwo.toString();
+        }//WBS code
 
         $scope.visits.feedbackTmpl = $scope.feedbackId;
         $scope.visits.sessionTmpl = $scope.sessionId;
