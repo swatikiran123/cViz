@@ -49,7 +49,7 @@
  
               <md-input-container class="form-group md-block">
               <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser.$touched && keynotesForm.noteByUser.$invalid }">
-                <label>Speaker &nbsp;&nbsp; :</label>
+                <label>Signatory &nbsp;&nbsp; :</label>
                 <div user type="picker" user-model="noteByUser" view-type="large" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee"></div>
               </div>
             </md-input-container>
@@ -65,7 +65,7 @@
               </div>
               <div class="panel-body">
                <i><h5>Please click Attach files to add images, videos or audio files.</h5></i><br>
-               <span class="error text-info"><b> Note: </b>This is a mandator field.</span>
+               <span class="error text-info"><b> Note: </b>This is a mandatory field.</span>
                <fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile" ng-click="keyTrue()"/>
              </div>
            </div>
