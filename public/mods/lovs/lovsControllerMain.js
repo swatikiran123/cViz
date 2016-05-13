@@ -2,7 +2,7 @@
 var lovsApp = angular.module('lovs', []);
 
 lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'growl','$rootScope',
-  function($scope, $http, $routeParams, $growl,$rootScope) {
+  function($scope, $http, $routeParams, growl,$rootScope) {
 
 
     $http.get('/api/v1/secure/lov/influence').success(function(response) {
@@ -38,265 +38,371 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
 
 
     $scope.addInfluence = function() {
-     $scope.influence.push($scope.newInfluenceValue);
-     var obj ={} ;
-     obj.values = $scope.influence;
-
-     $http.put('/api/v1/secure/lov/influence', obj).success(function(response)
-     {
-      console.log(response);
-      $scope.newInfluenceValue = '';
-    });
-   }
-
-
-   $scope.addRegions = function() {
-    $scope.regions.push($scope.newRegionsValue);
-    var obj ={} ;
-    obj.values = $scope.regions;
-
-    $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
-    {
-      console.log(response);
-      $scope.newRegionsValue = '';
-    });
-  }
-
-
-  $scope.addLocations = function () {
-    $scope.locations.push($scope.newLocationsValue);
-    var obj ={} ;
-    obj.values = $scope.locations;
-
-    $http.put('/api/v1/secure/lov/locations', obj).success(function(response)
-    {
-      console.log(response);
-      $scope.newLocationsValue = '';
-    });
-  }
-
-
-  $scope.addOfferings = function () {
-    $scope.offerings.push($scope.newOfferingsValue);
-    var obj ={} ;
-    obj.values = $scope.offerings;
-
-    $http.put('/api/v1/secure/lov/offerings', obj).success(function(response)
-    {
-      console.log(response);
-      $scope.newOfferingsValue = '';
-    });
-  }
-
-
-
-  $scope.addContactType = function () {
-    $scope.contactType.push($scope.newContactTypeValue);
-    var obj ={} ;
-    obj.values = $scope.contactType;
-
-    $http.put('/api/v1/secure/lov/contactType', obj).success(function(response)
-    {
-      console.log(response);
-      $scope.newContactTypeValue = '';
-    });
-  }
-
-
-
-  $scope.addVertical = function(newVerticalValue) {
-    $scope.vertical.push($scope.newVerticalValue);
-    var obj ={} ;
-    obj.values = $scope.vertical;
-
-    $http.put('/api/v1/secure/lov/vertical', obj).success(function(response)
-    {
-      console.log(response);
-      $scope.newVerticalValue = '';
-    });
-  }
-
-
-  $scope.removeInfluence = function(selectedObjIndex){
-
-    $http.get('/api/v1/secure/lov/influence').success(function(response) {
-      $scope.influence = response.values;
-      $scope.influence.splice(selectedObjIndex, 1);
-
-      var obj = {};
-      obj.values = $scope.influence;
-
-      $http.put('/api/v1/secure/lov/influence', obj).success(function(response)
+      if ($scope.newInfluenceValue == '' || $scope.newInfluenceValue == undefined)
       {
-        console.log(response);
-      });
-    });
-  }
-
-  $scope.removeRegions = function(selectedObjIndex){
-
-    $http.get('/api/v1/secure/lov/regions').success(function(response) {
-      $scope.regions = response.values;
-      $scope.regions.splice(selectedObjIndex, 1);
-
-      var obj = {};
-      obj.values = $scope.regions;
-
-      $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
+        growl.error(parse("Please enter a Influence"));
+      }
+      else
       {
-        console.log(response);
-      });
-    });
-  }
+        $scope.influence.push($scope.newInfluenceValue);
+        var obj ={} ;
+        obj.values = $scope.influence;
 
-  $scope.removeLocations = function(selectedObjIndex){
+        $http.put('/api/v1/secure/lov/influence', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Influence [%s]<br/>added successfully",$scope.newInfluenceValue));
+          $scope.newInfluenceValue = '';
+        });
+      }
 
-    $http.get('/api/v1/secure/lov/locations').success(function(response) {
-      $scope.locations = response.values;
-      $scope.locations.splice(selectedObjIndex, 1);
+    }
 
-      var obj = {};
-      obj.values = $scope.locations;
 
-      $http.put('/api/v1/secure/lov/locations', obj).success(function(response)
+    $scope.addRegions = function() {
+      if ($scope.newRegionsValue == '' || $scope.newRegionsValue == undefined)
       {
-        console.log(response);
-      });
-    });
-  }
-
-
-  $scope.removeOfferings = function(selectedObjIndex){
-
-    $http.get('/api/v1/secure/lov/offerings').success(function(response) {
-      $scope.offerings = response.values;
-      $scope.offerings.splice(selectedObjIndex, 1);
-
-      var obj = {};
-      obj.values = $scope.offerings;
-
-      $http.put('/api/v1/secure/lov/offerings', obj).success(function(response)
+        growl.error(parse("Please enter a Region"));
+      }
+      else
       {
-        console.log(response);
-      });
-    });
-  }
+        $scope.regions.push($scope.newRegionsValue);
+        var obj ={} ;
+        obj.values = $scope.regions;
 
-  $scope.removeContactType = function(selectedObjIndex){
+        $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Region [%s]<br/>added successfully",$scope.newRegionsValue));
+          $scope.newRegionsValue = '';
+        });
+      }
+    }
 
-    $http.get('/api/v1/secure/lov/contactType').success(function(response) {
-      $scope.contactType = response.values;
-      $scope.contactType.splice(selectedObjIndex, 1);
 
-      var obj = {};
-      obj.values = $scope.contactType;
-
-      $http.put('/api/v1/secure/lov/contactType', obj).success(function(response)
+    $scope.addLocations = function () {
+      if ($scope.newLocationsValue == '' || $scope.newLocationsValue == undefined)
       {
-        console.log(response);
-      });
-    });
-  }
-
-
-  $scope.removeVertical = function(selectedObjIndex){
-
-    $http.get('/api/v1/secure/lov/vertical').success(function(response) {
-      $scope.vertical = response.values;
-      $scope.vertical.splice(selectedObjIndex, 1);
-
-      var obj = {};
-      obj.values = $scope.vertical;
-
-      $http.put('/api/v1/secure/lov/vertical', obj).success(function(response)
+        growl.error(parse("Please enter a Location"));
+      }
+      else
       {
-        console.log(response);
-      });
-    });
-  }
+        $scope.locations.push($scope.newLocationsValue);
+        var obj ={} ;
+        obj.values = $scope.locations;
+
+        $http.put('/api/v1/secure/lov/locations', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Location [%s]<br/>added successfully",$scope.newLocationsValue));
+          $scope.newLocationsValue = '';
+        });
+      }
+    }
 
 
-
-  $scope.removeAll = function(val) {
-    $http.get('/api/v1/secure/lov/'+val).success(function(response) {
-
-      if(val == 'influence')
+    $scope.addOfferings = function () {
+      if ($scope.newOfferingsValue == '' || $scope.newOfferingsValue == undefined)
       {
+        growl.error(parse("Please enter a Offerring"));
+      }
+      else
+      {
+        $scope.offerings.push($scope.newOfferingsValue);
+        var obj ={} ;
+        obj.values = $scope.offerings;
+
+        $http.put('/api/v1/secure/lov/offerings', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New offerings [%s]<br/>added successfully",$scope.newOfferingsValue));
+          $scope.newOfferingsValue = '';
+        });
+      }
+    }
+
+
+
+    $scope.addContactType = function () {
+      if ($scope.newContactTypeValue == '' || $scope.newContactTypeValue == undefined)
+      {
+        growl.error(parse("Please enter a Contact-Type"));
+      }
+      else
+      {
+        $scope.contactType.push($scope.newContactTypeValue);
+        var obj ={} ;
+        obj.values = $scope.contactType;
+
+        $http.put('/api/v1/secure/lov/contactType', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Contact-type [%s]<br/>added successfully",$scope.newContactTypeValue));
+          $scope.newContactTypeValue = '';
+        });
+      }
+    }
+
+
+
+    $scope.addVertical = function(newVerticalValue) {
+      if ($scope.newVerticalValue == '' || $scope.newVerticalValue == undefined)
+      {
+        growl.error(parse("Please enter a Vertical"));
+      }
+      else
+      {
+        $scope.vertical.push($scope.newVerticalValue);
+        var obj ={} ;
+        obj.values = $scope.vertical;
+
+        $http.put('/api/v1/secure/lov/vertical', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Vertical [%s]<br/>added successfully",$scope.newVerticalValue));
+          $scope.newVerticalValue = '';
+        });
+      }
+    }
+
+
+
+    $scope.removeInfluence = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/influence').success(function(response) {
         $scope.influence = response.values;
-        
-        for (var i = 0; i < $scope.influence.length; i++) {
-          $scope.influence.splice(i);
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Influence to remove"));
+        }
+        else
+        {
+          growl.info(parse("Influence [%s]<br/>deleted successfully",$scope.influence[selectedObjIndex]));
+          $scope.influence.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.influence;
-        }
-      }
 
-      else if(val == 'regions')
-      {
+          $http.put('/api/v1/secure/lov/influence', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+
+    $scope.removeRegions = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/regions').success(function(response) {
         $scope.regions = response.values;
 
-        for (var i = 0; i < $scope.regions.length; i++) {
-          $scope.regions.splice(i);
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Region to remove"));
+        }
+        else
+        {
+          growl.info(parse("Region [%s]<br/>deleted successfully",$scope.regions[selectedObjIndex]));
+          $scope.regions.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.regions;
-        }
-      }
 
-      else if(val == 'locations')
-      {
+          $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+
+    $scope.removeLocations = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/locations').success(function(response) {
         $scope.locations = response.values;
-        
-        for (var i = 0; i < $scope.locations.length; i++) {
-          $scope.locations.splice(i);
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Location to remove"));
+        }
+        else
+        {
+          growl.info(parse("Location [%s]<br/>deleted successfully",$scope.locations[selectedObjIndex]));
+          $scope.locations.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.locations;
-        }
-      }
 
-      else if(val == 'offerings')
-      {
+          $http.put('/api/v1/secure/lov/locations', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+    $scope.removeOfferings = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/offerings').success(function(response) {
         $scope.offerings = response.values;
-        
-        for (var i = 0; i < $scope.offerings.length; i++) {
-          $scope.offerings.splice(i);
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Offering to remove"));
+        }
+        else
+        {
+          growl.info(parse("Offerings [%s]<br/>deleted successfully",$scope.offerings[selectedObjIndex]));
+          $scope.offerings.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.offerings;
-        }
-      }
 
-      else if(val == 'contactType')
-      {
+          $http.put('/api/v1/secure/lov/offerings', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+
+    $scope.removeContactType = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/contactType').success(function(response) {
         $scope.contactType = response.values;
-        
-        for (var i = 0; i < $scope.contactType.length; i++) {
-          $scope.contactType.splice(i);
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Contact-Type to remove"));
+        }
+        else
+        {
+          growl.info(parse("Contact-type [%s]<br/>deleted successfully",$scope.contactType[selectedObjIndex]));
+          $scope.contactType.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.contactType;
-        }
-      }
 
-      else if(val == 'vertical')
-      {
+          $http.put('/api/v1/secure/lov/contactType', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+
+
+    $scope.removeVertical = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/vertical').success(function(response) {
         $scope.vertical = response.values;
-        
-        for (var i = 0; i < $scope.vertical.length; i++) {
-          $scope.vertical.splice(i);
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a Vertical to remove"));
+        }
+        else
+        {
+          growl.info(parse("Vertical [%s]<br/>deleted successfully",$scope.vertical[selectedObjIndex]));
+          $scope.vertical.splice(selectedObjIndex, 1);
+
           var obj = {};
           obj.values = $scope.vertical;
-          console.log(obj);  
+
+          $http.put('/api/v1/secure/lov/vertical', obj).success(function(response)
+          {
+            console.log(response);
+          });
         }
-      }
+      });
+    }
 
 
-      $http.put('/api/v1/secure/lov/' +val, obj).success(function(response)
-      {
-        console.log(obj);
-        console.log(response);
+
+    $scope.removeAll = function(val) {
+      $http.get('/api/v1/secure/lov/'+val).success(function(response) {
+
+        if(val == 'influence')
+        {
+          $scope.influence = response.values;
+          growl.error(parse("Influence deleted successfully"));
+          for (var i = 0; i < $scope.influence.length; i++) {
+            $scope.influence.splice(i);
+            var obj = {};
+            obj.values = $scope.influence;
+          }
+        }
+
+        else if(val == 'regions')
+        {
+          $scope.regions = response.values;
+          growl.error(parse("Regions deleted successfully"));
+          for (var i = 0; i < $scope.regions.length; i++) {
+            $scope.regions.splice(i);
+            var obj = {};
+            obj.values = $scope.regions;
+          }
+        }
+
+        else if(val == 'locations')
+        {
+          $scope.locations = response.values;
+          growl.error(parse("Locations deleted successfully"));
+          for (var i = 0; i < $scope.locations.length; i++) {
+            $scope.locations.splice(i);
+            var obj = {};
+            obj.values = $scope.locations;
+          }
+        }
+
+        else if(val == 'offerings')
+        {
+          $scope.offerings = response.values;
+          growl.error(parse("Offerings deleted successfully"));
+          for (var i = 0; i < $scope.offerings.length; i++) {
+            $scope.offerings.splice(i);
+            var obj = {};
+            obj.values = $scope.offerings;
+          }
+        }
+
+        else if(val == 'contactType')
+        {
+          $scope.contactType = response.values;
+          growl.error(parse("Contact-Types deleted successfully"));
+          for (var i = 0; i < $scope.contactType.length; i++) {
+            $scope.contactType.splice(i);
+            var obj = {};
+            obj.values = $scope.contactType;
+          }
+        }
+
+        else if(val == 'vertical')
+        {
+          $scope.vertical = response.values;
+          growl.error(parse("Verticals deleted successfully"));
+          for (var i = 0; i < $scope.vertical.length; i++) {
+            $scope.vertical.splice(i);
+            var obj = {};
+            obj.values = $scope.vertical;
+            console.log(obj);
+          }
+        }
+
+
+        $http.put('/api/v1/secure/lov/' +val, obj).success(function(response)
+        {
+          console.log(obj);
+          console.log(response);
+        });
+
       });
 
-    });
 
+    }
 
-  }
-
-}]);
+  }]);
