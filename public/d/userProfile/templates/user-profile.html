@@ -5,6 +5,7 @@
  ng-change="userEmail=input;userId=input; " />
 -->
 
+{{cNo = 1 * userModel.contactNo[0].contactNumber;""}}
 <ANY ng-switch="showFlag">
   <ANY ng-switch-when="user">
   <br>
@@ -36,8 +37,14 @@
                   <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>First Name</label>
+                    <div ng-if="show=='noSaveProfile'">
+                    <input md-maxlength="20" required name="first" 
+                    ng-model="userModel.name.first" ng-readonly="true">
+                    </div>
+                    <div ng-if="show=='saveProfile'">
                     <input md-maxlength="20" required name="first" 
                     ng-model="userModel.name.first">
+                    </div>
                     <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
                      <div class="messagenotify">
                       <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -47,8 +54,12 @@
                     
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Middle Name</label>
-                    <input name="middle" 
-                    ng-model="userModel.name.middle">
+                    <div ng-if="show=='noSaveProfile'">
+                    <input name="middle" ng-model="userModel.name.middle" ng-readonly="true">
+                    </div>
+                    <div ng-if="show=='saveProfile'">
+                    <input name="middle" ng-model="userModel.name.middle">
+                    </div>
                     <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
                      <div class="messagenotify">
                       <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -58,8 +69,14 @@
                     
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Last Name</label>
+                    <div ng-if="show=='noSaveProfile'">
+                    <input md-maxlength="20" required name="last" ng-readonly="true" 
+                    ng-model="userModel.name.last">
+                    </div>
+                    <div ng-if="show=='saveProfile'">
                     <input md-maxlength="20" required name="last" 
                     ng-model="userModel.name.last">
+                    </div>
                     <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
                      <div class="messagenotify">
                       <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -71,8 +88,14 @@
                   <div>
                   <md-input-container class="md-block" flex-gt-sm>
                   <label>Email</label>
+                  <div ng-if="show=='noSaveProfile'">
                   <input type="email" md-maxlength="255" minlength="8" required name="email" 
-                  ng-model="userModel.email">
+                  ng-model="userModel.email" ng-readonly="true">
+                  </div>
+                  <div ng-if="show=='saveProfile'">
+                    <input type="email" md-maxlength="255" minlength="8" required name="email" 
+                    ng-model="userModel.email">
+                  </div>
                   <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
                    <div class="messagenotify">
                     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -82,14 +105,21 @@
                   </div>
 
                   <div>
+
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Contact No</label>
-                    <input type="contactno" md-maxlength="255" minlength="8" required name="contactno" 
-                    ng-model="userModel.contactNo[0].contactNumber">
+                    <div ng-if="show=='noSaveProfile'">
+                    <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+                    ng-model="cNo" ng-readonly="true">
+                    </div>
+                    <div ng-if="show=='saveProfile'">
+                      <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+                      ng-model="cNo">
+                    </div>
                     <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
                      <div class="messagenotify">
                       <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                      <div ng-message="md-maxlength">The contact no has to be less than 255 characters long.</div>
+                      <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
                       <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
                     </md-input-container>
                   </div>
@@ -100,8 +130,14 @@
                 <div class="col-md-12">
                   <md-input-container class="md-block" flex-gt-sm>
                   <label>Job Title</label>
+                  <div ng-if="show=='noSaveProfile'">
                   <input md-maxlength="40" minlength="5" required name="jobTitle" 
-                  ng-model="userModel.jobTitle">
+                  ng-model="userModel.jobTitle" ng-readonly="true">
+                  </div>
+                  <div ng-if="show=='saveProfile'">
+                    <input md-maxlength="40" minlength="5" required name="jobTitle" 
+                    ng-model="userModel.jobTitle">
+                  </div>
                   <div ng-messages="profileForm.jobTitle.$error" ng-show="profileForm.jobTitle.$touched || !profileForm.jobTitle.$pristine">
                    <div class="messagenotify">
                     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -114,8 +150,14 @@
                   <md-input-container class="md-block" style="height: auto;">
                   <label ng-if="userModel.association=='customer'">Client Bio</label>
                   <label ng-if="userModel.association=='employee'">Summary</label>
+                  <div ng-if="show=='noSaveProfile'">
                   <textarea ng-model="userModel.summary" md-maxlength="2000" minlength="30" required name="summary" 
-                  rows="4" aria-multiline="true" style="height: 116px;"></textarea>
+                  rows="4" aria-multiline="true" style="height: 116px;" ng-readonly="true"></textarea>
+                  </div>
+                  <div ng-if="show=='saveProfile'">
+                  <textarea ng-model="userModel.summary" md-maxlength="2000" minlength="30" required name="summary" 
+                  rows="4" aria-multiline="true" style="height: 116px;" ng-readonly="true"></textarea>
+                  </div>                  
                   <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
                    <div class="messagenotify">
                     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -129,7 +171,7 @@
                 </div>
 
                 <div ng-if="show=='saveProfile'">
-                  <md-button  class="md-primary md-raised pull-right" ng-click="editprofile(userModel,userModel._id)">
+                  <md-button  class="md-primary md-raised pull-right" ng-click="editprofile(userModel,userModel._id,cNo)">
                     <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Save Profile
                   </md-button>
                 </div>

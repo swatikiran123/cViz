@@ -750,11 +750,12 @@ $scope.removekeynote = function(index){
 
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
-  {
+  { 
+    console.log(userdata.contactNumber);
     $scope.contactNo = [];
 
     $scope.contactNo.push({
-      contactNumber:userdata.contactNumber,
+      contactNumber:"+" + userdata.contactNumber,
       contactType:userdata.contactType
     })
 

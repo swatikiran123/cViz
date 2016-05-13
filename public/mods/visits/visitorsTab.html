@@ -70,7 +70,7 @@
             ng-model="userdata.name.first">
             <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
              <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+              <div ng-message='required'>First Name is mandatory field.</div>
               <div ng-message="md-maxlength">The first name has to be less than 20 characters long.</div>
               <div ng-message="minlength">The first name should contain minimum 5 characters</div></div></div>
             </md-input-container>
@@ -81,7 +81,7 @@
             ng-model="userdata.name.middle">
             <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
              <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+              <div ng-message='required'>Middle Name is mandatory field.</div>
               <div ng-message="md-maxlength">The middle name has to be less than 10 characters long.</div>
               <div ng-message="minlength">The middle name should contain minimum 5 characters</div></div></div>
             </md-input-container>  
@@ -92,7 +92,7 @@
             ng-model="userdata.name.last">
             <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
              <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+              <div ng-message='required'>Last Name is mandatory field.</div>
               <div ng-message="md-maxlength">The last name has to be less than 20 characters long.</div>
               <div ng-message="minlength">The last name should contain minimum 5 characters</div></div></div>
             </md-input-container>
@@ -105,7 +105,7 @@
             ng-model="emailId">
             <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
              <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+              <div ng-message='email'>Email Address is mandatory field.</div>
               <div ng-message="md-maxlength">The email has to be less than 255 characters long.</div>
               <div ng-message="minlength">The email should contain minimum 8 characters</div></div></div>
             </md-input-container>
@@ -118,7 +118,7 @@
             ng-model="userdata.local.password">
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
              <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
+              <div ng-message='required'>Password is mandatory field.</div>
               <div ng-message="md-maxlength">The password has to be less than 255 characters long.</div>
               <div ng-message="minlength">The password should contain minimum 8 characters</div></div></div>
             </md-input-container>
@@ -129,12 +129,12 @@
         <div class="col-md-12">
           <md-input-container class="md-block" flex-gt-sm>
           <label>Contact No</label>
-          <input type="text" md-maxlength="255" minlength="8" required name="contactno" 
+          <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
           ng-model="userdata.contactNumber">
           <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
            <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-            <div ng-message="md-maxlength">The contact no has to be less than 10 characters long.</div>
+            <div ng-message='required'>Contact No is mandatory field.</div>
+            <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
             <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
           </md-input-container>
         </div>
@@ -146,7 +146,7 @@
           ng-model="userdata.jobTitle">
           <div ng-messages="profileForm.jobTitle.$error" ng-show="profileForm.jobTitle.$touched || !profileForm.jobTitle.$pristine">
            <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+            <div ng-message='required'>Job Title is mandatory field.</div>
             <div ng-message="md-maxlength">The Job Title has to be less than 40 characters long.</div>
             <div ng-message="minlength">The Job Title should contain minimum 5 characters</div></div></div>
           </md-input-container>
@@ -159,7 +159,7 @@
           rows="4" aria-multiline="true" style="height: 116px;"></textarea>
           <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
            <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+            <div ng-message='required'>Client Bio is mandatory field.</div>
             <div ng-message="md-maxlength">The Client Bio has to be less than 2000 characters long.</div>
             <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div>
           </md-input-container>
