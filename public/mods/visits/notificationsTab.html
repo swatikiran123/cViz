@@ -19,18 +19,31 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="panel panel-default">
+	<div class="panel panel-default" ng-if='!closeTab'>
 		<div class="panel-heading">
-			<h3 class="panel-title"> <b>List of visits</b></h3>
+			<h3 class="panel-title"> <b>Close the visit</b></h3>
 		</div>
-		<div class = "panel-subheader pull-right">
+		<div class = "panel-subheader pull-left"><!-- <b>Close Status:</b> -->
 		</div>
 		<div class="panel-body">
-			If Notifications are send as required, please click <b>List</b> to go back to list of all visits. <br>
-			<div class="pull-right"> 	<button type="submit" class="btn btn-success"
-				ng-click="closeNotification()">List</button></div>
+			This close represents the closing of visit and only Admin can edit further.
+			Please make sure all the data is filled/sent as required.
+			<br>
+			<div class="pull-right"><button type="submit" class="btn btn-danger"
+				ng-click="closeVisit(status)" confirm-dialog header-text="Close" content="Are you sure you want to Close the visit</b>" yes-text="Ok" no-text="Cancel">close</button></div>
 			</div>
 		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"> <b>List of visits</b></h3>
+			</div>
+			<div class = "panel-subheader pull-right">
+			</div>
+			<div class="panel-body">
+				Please click <b>List</b> to go back to list of all visits. <br>
+				<div class="pull-right"> 	<button type="submit" class="btn btn-success"
+					ng-click="closeNotification()">List</button></div>
+				</div>
+			</div>
 
-	</div>
+		</div>

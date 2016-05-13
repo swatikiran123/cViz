@@ -120,6 +120,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.privalid=true;
   $scope.array = [];
   $scope.arrayiwo = [];
+  $scope.closeSave=0;
   // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
@@ -232,7 +233,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
       case "edit":
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
-
+        console.log(response);
         for(var files=0;files<response.visitAttachment.length;files++)
         {
           $scope.array.push(response.visitAttachment[files])
@@ -253,7 +254,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.addSecMan();
         }
 
-
+        console.log(visits.status);
         switch(visits.status){
           case "confirm": 
           $scope.agendaTab=true;
@@ -306,36 +307,54 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
        }
        break;
 
-     //   case "close": 
-     //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-     //    $scope.finalizeTab= true;
-     //    $scope.agendaTab=true;
-     //    $scope.visitorsTab=true;
-     //    $scope.notifyTab=true;
-     //  }
-     //  else{
-     //   $scope.agendaTab= true;
-     //   $scope.visitorsTab= true;
-     //   $scope.finalizeTab= false;
-     //   $scope.notifyTab= false;
-     // }
-     // break;
+       case "complete": 
+       if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+        $scope.closeTab=true;
+        $scope.finalizeTab= true;
+        $scope.agendaTab=true;
+        $scope.visitorsTab=true;
+        $scope.notifyTab=true;
+        $scope.agendaSave=0;
+        $scope.visitorSave=0;
+        $scope.finalizeSave=0;
+        $scope.closeSave=1;
+        // console.log($scope.agendaSave +" "+$scope.visitorSave+" "+$scope.finalizeSave+" "+$scope.closeSave);
+      }
 
-   };
+      break;
 
-          // $scope.schedules = visits.schedule;//List of schedules
-          //   $scope.visitors = visits.visitors;//List of visitors
+      case "close": 
+      if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+        $scope.closeTab=true;
+        $scope.finalizeTab= true;
+        $scope.agendaTab=true;
+        $scope.visitorsTab=true;
+        $scope.notifyTab=true;
+        $scope.agendaSave=0;
+        $scope.visitorSave=0;
+        $scope.finalizeSave=0;
+        $scope.closeSave=1;
+      }
 
-          $scope.visitors = visits.visitors;
-          if ($scope.visitors.length == 0)
-          {
-            $scope.visvalid= true;
+      break;
 
-          }
-          else{
-            $scope.visvalid= false;
+    };
 
-          }
+    for(var files=0;files<response.visitGallery.length;files++)
+    {
+      $scope.arrayClose.push(response.visitGallery[files])
+    }
+
+    $scope.visitors = visits.visitors;
+    if ($scope.visitors.length == 0)
+    {
+      $scope.visvalid= true;
+
+    }
+    else{
+      $scope.visvalid= false;
+
+    }
         $scope.schedules = visits.schedule;//List of schedules
         if ($scope.schedules.length == 0)
         {
@@ -396,6 +415,8 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
     $scope.visits.wbscodeAttachment = $scope.arrayiwo;
+    $scope.visits.visitGallery = $scope.arrayClose;
+
     $scope.check= true;
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
@@ -560,14 +581,11 @@ break;
    })
   };
 
-  $scope.showNotifie= function(status){
-
-    $scope.status = status;
-    $scope.status="finalize";
-
+  $scope.showNotifie= function(){
+    console.log("imm in showNotifie")
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.status =$scope.status;
+    $scope.visits.status ="finalize";
     $scope.visits.agm = $scope.agmId;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
@@ -584,6 +602,68 @@ break;
       $scope.nextTab($scope.visits._id);
     })
 
+  }
+  $scope.reachedEnd=function(){
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.status ="close";
+    $scope.visits.agm = $scope.agmId;
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.client = $scope.clientId;
+    $scope.visits.invitees = $scope.arraydata;
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.visits.visitGallery = $scope.arrayClose;
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
+
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
+      growl.info(parse("Planning stage compleated successfully"));
+      console.log(response);
+      $location.path("visits/list"); 
+      
+    })
+  }
+  $scope.getvalidation= function(feedback,ev){
+    console.log($scope.visits.status);
+    console.log("im in getvalidation");
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.status =$scope.status;
+    $scope.visits.agm = $scope.agmId;
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.client = $scope.clientId;
+    $scope.visits.invitees = $scope.arraydata;
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.sessionTmpl = $scope.sessionId;
+    var inData     = $scope.visits;
+    inData.keynote = $scope.keynotes;
+
+    $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
+      console.log("find the response");console.log(response);
+      if(response=="ok"){
+        $scope.showNotifie($scope.visits.status);
+      }
+      else{
+        $scope.errinData= response;
+        console.log($scope.errinData);
+        $mdDialog.show(
+          $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Visit Finalize')
+          .textContent(response)
+          .ariaLabel('Alert Dialog Demo')
+          .ok('Got it!')
+          .targetEvent(ev)
+          );
+      }
+
+    })
   }
   $scope.sendAnchor= function(anchor,status){
     $scope.anchorman = anchor;
@@ -674,8 +754,32 @@ break;
   $scope.closeNotification=function(){
    $location.path("visits/list"); 
  }
+ $scope.closeVisit=function(status){
+  console.log(status);
+  $scope.status = status;
+  $scope.status="complete";
 
- $scope.isDataValid=function(schedule){
+  $scope.visits.anchor = $scope.anchorman;
+  $scope.visits.secondaryVmanager= $scope.vman;
+  $scope.visits.status =$scope.status;
+  $scope.visits.agm = $scope.agmId;
+  $scope.visits.anchor = $scope.anchorman;
+  $scope.visits.secondaryVmanager= $scope.vman;
+  $scope.visits.createBy= $rootScope.user._id;
+  $scope.visits.client = $scope.clientId;
+  $scope.visits.invitees = $scope.arraydata;
+  $scope.visits.feedbackTmpl = $scope.feedbackId;
+  $scope.visits.sessionTmpl = $scope.sessionId;
+  var inData       = $scope.visits;
+  inData.keynote = $scope.keynotes;
+
+  $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
+    growl.info(parse("notifications stage compleated successfully"));
+    $scope.nextTab($scope.visits._id);
+  })
+
+}
+$scope.isDataValid=function(schedule){
   var Today = new Date();
 
   if(schedule === "" || schedule === undefined)
@@ -741,24 +845,44 @@ break;
 // Visit schedule table end
 
  // Visit keynote table
+ $scope.isDataValidkey=function(keynoteDef){
+  console.log(keynoteDef);
+  if(keynoteDef === "" || keynoteDef === undefined)
+    return "Data undefined !";
 
- $scope.addkeynote=function(keynoteDef){
+  if(keynoteDef.noteName === "" || keynoteDef.noteName === undefined || keynoteDef.noteName === null)
+    return "keynote not valid !";
 
-  $scope.keynotes.push({
-    note: $scope.keynoteId,
-    noteName: keynoteDef.noteName, 
-    context: keynoteDef.context,
-    order: keynoteDef.order
-  });
+  if(keynoteDef.context === "" || keynoteDef.context === undefined || keynoteDef.context === null)
+    return "context not valid !";
 
-  keynoteDef.noteName='';
-  keynoteDef.context='';
-  keynoteDef.order='';
-};
+  if(keynoteDef.order === "" || keynoteDef.order === undefined || keynoteDef.order === null)
+    return "order not valid !";
 
-$scope.removekeynote = function(index){
-  $scope.keynotes.splice(index, 1);
-};
+  return "OK";
+}
+
+$scope.addkeynote=function(keynoteDef){
+  var isValid = $scope.isDataValidkey(keynoteDef);
+  if(isValid === "OK"){
+    $scope.keyvalid=false;
+    $scope.keynotes.push({
+      note: $scope.keynoteId,
+      noteName: keynoteDef.noteName, 
+      context: keynoteDef.context,
+      order: keynoteDef.order
+    });
+  }else {$scope.keyvalid=isValid;
+    $timeout(function () { $scope.keyvalid = ''; }, 5000);}
+
+    keynoteDef.noteName='';
+    keynoteDef.context='';
+    keynoteDef.order='';
+  };
+
+  $scope.removekeynote = function(index){
+    $scope.keynotes.splice(index, 1);
+  };
 
 // $scope.editkeynote = function(index,keynoteDef){
 //   $scope.showKey=true;

@@ -9,7 +9,7 @@ angular.module('userdisplayDirective', [])
     $scope.showFlag = "user";
 
   $scope.getUser = function(){
-    if($scope.userId==="" || $scope.userId=== undefined){
+    if($scope.userId==="" || $scope.userId=== undefined || $scope.userId === null){
       $scope.showFlag = "noUser";
       }
     else{
