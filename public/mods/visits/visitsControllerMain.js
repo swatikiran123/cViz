@@ -140,6 +140,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
+    var i= 0;
+    i= response.length;
+    response[i++]= {name:{first:"none"},_id:null};
     $scope.data=response;
   });
 
@@ -244,53 +247,34 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         if(visits.secondaryVmanager!=undefined) {
           $scope.secondaryVmanager = visits.secondaryVmanager._id;
           $scope.yes();
-
+          $scope.addSec=false;
         }else {
           $scope.secTrue=false;
-          $scope.addSecMan();}
+          $scope.addSecMan();
+        }
 
 
-          switch(visits.status){
-            case "confirm": 
-            $scope.agendaTab=true;
-            $scope.visitorsTab=true;
-            $scope.agendaSave=1;
-            break;
+        switch(visits.status){
+          case "confirm": 
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          $scope.agendaSave=1;
+          break;
 
-            case "tentative": 
-            $scope.agendaTab=true;
-            $scope.visitorsTab=true;
-            $scope.agendaSave=1;
-            break;
+          case "tentative": 
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          $scope.agendaSave=1;
+          break;
 
-            case "wip":
-            if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-              $scope.finalizeTab= true;
-              $scope.agendaTab=true;
-              $scope.visitorsTab=true;
-              $scope.notifyTab=false;
-              $scope.agendaSave=0;
-              $scope.visitorSave=1;
-            }
-            else{
-             $scope.agendaTab= true;
-             $scope.visitorsTab= true;
-             $scope.finalizeTab= false;
-             $scope.notifyTab= false;
-             $scope.agendaSave=1;
-
-           }
-           break;
-
-           case "finalize": 
-           if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+          case "wip":
+          if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
             $scope.finalizeTab= true;
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
-            $scope.notifyTab=true;
+            $scope.notifyTab=false;
             $scope.agendaSave=0;
-            $scope.visitorSave=0;
-            $scope.finalizeSave=1;
+            $scope.visitorSave=1;
           }
           else{
            $scope.agendaTab= true;
@@ -301,6 +285,26 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
          }
          break;
+
+         case "finalize": 
+         if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+          $scope.finalizeTab= true;
+          $scope.agendaTab=true;
+          $scope.visitorsTab=true;
+          $scope.notifyTab=true;
+          $scope.agendaSave=0;
+          $scope.visitorSave=0;
+          $scope.finalizeSave=1;
+        }
+        else{
+         $scope.agendaTab= true;
+         $scope.visitorsTab= true;
+         $scope.finalizeTab= false;
+         $scope.notifyTab= false;
+         $scope.agendaSave=1;
+
+       }
+       break;
 
      //   case "close": 
      //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
@@ -598,7 +602,6 @@ break;
   }
   $scope.sendSecVman= function(secondaryVmanager,status){
     if ($scope.secTrue==false) {
-      console.log("vam null")
       $scope.vman = null;
     }else
     $scope.vman = secondaryVmanager;
@@ -612,13 +615,11 @@ break;
   }
 
   $scope.yes=function(anchor){
-    $scope.secTrue=true;
-    $scope.addSec=false;
+    $scope.addSec=true;
     $scope.dataOne=[];
     $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
-      response[-1]="none";
       for (var i =0;i< response.length; i++) {
-        if ($scope.anchorman== response[i]._id || anchor== response[i]._id) {
+        if ($scope.anchorman== response[i]._id || anchor== response[i]._id || $scope.anchor == response[i]._id) {
         }else{
          $scope.dataOne.push({
           response: response[i]
@@ -627,9 +628,28 @@ break;
      };
    });
   }
+  $scope.optionsec=function(){
+    $scope.secTrue=true;
+    $scope.addSec=false;
+  }
   $scope.removeVman=function(){
     $scope.secTrue=false;
     $scope.sendSecVman();
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.status =$scope.status;
+    $scope.visits.agm = $scope.agmId;
+    $scope.visits.anchor = $scope.anchorman;
+    $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.client = $scope.clientId;
+    $scope.visits.invitees = $scope.arraydata;
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.sessionTmpl = $scope.sessionId;
+    // $scope.dataOne=[];
+
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
+    });
   }
   $scope.addSecMan=function(){
     $scope.addSec=true;
