@@ -1,0 +1,71 @@
+<div ng-controller="visitsControllerMain">
+	<div class="panel-group">
+		<!-- <md-content class="md-padding"> -->
+		<div class="data-form">
+
+			<form name="closeForm" id="closeForm" class="form-vertical" >
+
+				<!--panel-one-->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"> <b>Summary,Action item,Photos Attachments</b></h3>
+					</div>
+					<div class = "panel-subheader pull-right">
+					</div>
+					<div class="panel-body">
+
+						<!-- visits agenda-->
+						<md-input-container class="md-block">
+						<label ng-show="visits.summary" class="show-hide">Visit Overview</label>
+						<text-angular
+						ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+						['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+						ng-model="visits.summary" name="summary" placeholder="Summary of the visit..." required /></text-angular>
+						<div ng-messages="closeForm.agenda.$error" ng-show="closeForm.summary.$touched && !closeForm.agenda.$pristine">
+							<div class="messagenotify">
+								<div ng-messages-include="/public/mods/partials/messages.html"></div>
+							</div>
+						</div>
+					</md-input-container>
+
+					<!-- visits agenda-->
+					<md-input-container class="md-block">
+					<label ng-show="visits.actionItem" class="show-hide">Action Item</label>
+					<text-angular
+					ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+					['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+					ng-model="visits.actionItem" name="actionItem" placeholder="Action items identified during the visit...." /></text-angular>
+					<div ng-messages="closeForm.agenda.$error" ng-show="closeForm.actionItem.$touched && !closeForm.agenda.$pristine">
+						<div class="messagenotify">
+							<div ng-messages-include="/public/mods/partials/messages.html"></div>
+						</div>
+					</div>
+				</md-input-container>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"> <b>Attachments</b></h3>
+					</div>
+					<div class = "panel-subheader pull-right">
+					</div>
+					<div class="panel-body">
+						<i><h5>Please click Attach photos related to visit.</h5></i><br>
+						<fileattachment folder-type="visits" file-size="10" file-allowed="5" array="arrayClose" file-type="multiFile"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="pull-left">
+						<button type="submit" class="btn btn-success"
+						ng-click="save()" ng-disabled="closeForm.$invalid">close
+					</button>
+					<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+					yes-text="Ok" no-text="Cancel">Cancel</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+</div>

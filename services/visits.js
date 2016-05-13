@@ -716,11 +716,7 @@ function getvalidationById(id, data){
 	var deferred = Q.defer();
 
 	model
-
 	.findByIdAndUpdate(id, data) 
-	// function (err, item) {
-
-	// .findOne({ _id: id })
 	.populate('keynote.note')
 	.populate('feedbackTmpl')
 	.populate('sessionTmpl')
@@ -729,10 +725,15 @@ function getvalidationById(id, data){
 			console.log(err);
 			deferred.reject(err);
 		}
-		else if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null || item.feedbackTmpl === "007"){
-			var errinDatafeedbackTmpl= "feedback Template undefined !";
+
+		else if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null){
+			var errinDatafeedbackTmpl= "Feedback Template undefined !";
 			deferred.resolve(errinDatafeedbackTmpl);
 		}
+		else if(item.sessionTmpl === "" || item.sessionTmpl === undefined || item.sessionTmpl === null){
+			var errinDatasessionTmpl= "Session Template undefined !";
+			deferred.resolve(errinDatasessionTmpl);
+		}		
 		else if(item.keynote.length === 0){
 			var errinDatakeynote= "Atleast one keynote should be defined !";
 			deferred.resolve(errinDatakeynote);
@@ -746,14 +747,17 @@ function getvalidationById(id, data){
 				}
 			}
 			if (count == 0) {
-				var errinDatakeynotewel= "welcome keynote undefined !";
-			deferred.resolve(errinDatakeynotewel);
-		}
+				var errinDatakeynotewel= "There should be Atleast one welcome message defined !";
+				deferred.resolve(errinDatakeynotewel);
+			}
+			else {
+				var ok="ok"; 
+				deferred.resolve(ok);
+			}
 		}
 		else {
 			var ok="ok"; 
 			deferred.resolve(ok);
-
 		} 
 	});
 	return deferred.promise;

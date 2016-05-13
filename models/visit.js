@@ -50,7 +50,11 @@ var visitSchema = new mongoose.Schema({
 	 }],
 	 invitees						: [{type: Schema.Types.ObjectId, ref: 'User'}],
 	 wbscodeAttachment				: { type: String},
-	 visitAttachment				: [{ type: String }]
+	 visitAttachment				: [{ type: String }],
+	 summary						: { type: String, lowercase: true, trim: true },
+	 actionItem						: { type: String, lowercase: true, trim: true },
+	 visitGallery					: [{ type: String }]
+
 
 });
 

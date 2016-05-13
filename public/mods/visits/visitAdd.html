@@ -38,6 +38,12 @@
   <div ng-include src="'/public/mods/visits/notificationsTab.html'"></div>
   </md-content>
   </md-tab>
+  <!--Add Close Visit TAB PAGE SIX-->
+  <md-tab label="Visit complete" ng-if="closeTab" md-active="closeSave">
+  <md-content class="md-padding">
+  <div ng-include src="'/public/mods/visits/closeTab.html'"></div>
+  </md-content>
+  </md-tab>
 
 </md-tabs><!--end of tabs-->
 </md-content><!--end of content-->

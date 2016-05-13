@@ -89,7 +89,7 @@
     <!-- visits session input-->
     <md-input-container class="md-block">
     <label>Session Template</label>
-    <input name="session" ng-model="session" session>
+    <input name="session" ng-model="session" session required>
     <div ng-show="autoFailsec" class="error text-danger" >{{sessionNotFound}}</div>  
     <div ng-messages="finalizeForm.session.$error" ng-show="finalizeForm.session.$touched || !finalizeForm.session.$pristine">
       <div class="messagenotify">
@@ -111,7 +111,7 @@
 
   </div>
 </div><br><br><br>
-<!--panel-three-->
+<!--panel-three-->{{showNotifieViist}}
 <div class="panel panel-default" ng-if='!notifyTab'>
   <div class="panel-heading">
     <h3 class="panel-title"> <b>Finalize</b></h3>

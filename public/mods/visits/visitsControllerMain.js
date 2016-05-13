@@ -120,6 +120,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.privalid=true;
   $scope.array = [];
   $scope.arrayiwo = [];
+  $scope.closeSave=0;
   // $scope.sessiondbId = "";
 
   $scope.nextTab = function(data) {
@@ -232,7 +233,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
       case "edit":
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
-
+        console.log(response);
         for(var files=0;files<response.visitAttachment.length;files++)
         {
           $scope.array.push(response.visitAttachment[files])
@@ -253,7 +254,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.addSecMan();
         }
 
-
+        console.log(visits.status);
         switch(visits.status){
           case "confirm": 
           $scope.agendaTab=true;
@@ -306,22 +307,24 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
        }
        break;
 
-     //   case "close": 
-     //   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-     //    $scope.finalizeTab= true;
-     //    $scope.agendaTab=true;
-     //    $scope.visitorsTab=true;
-     //    $scope.notifyTab=true;
-     //  }
-     //  else{
-     //   $scope.agendaTab= true;
-     //   $scope.visitorsTab= true;
-     //   $scope.finalizeTab= false;
-     //   $scope.notifyTab= false;
-     // }
-     // break;
+       case "complete": 
+       if ($rootScope.user.groups.indexOf("admin") > -1) {
+        $scope.closeTab=true;
+        $scope.finalizeTab= true;
+        $scope.agendaTab=true;
+        $scope.visitorsTab=true;
+        $scope.notifyTab=true;
+        $scope.agendaSave=0;
+        $scope.visitorSave=0;
+        $scope.finalizeSave=0;
+        $scope.closeSave=1;
+        // console.log($scope.agendaSave +" "+$scope.visitorSave+" "+$scope.finalizeSave+" "+$scope.closeSave);
 
-   };
+      }
+
+      break;
+
+    };
 
           // $scope.schedules = visits.schedule;//List of schedules
           //   $scope.visitors = visits.visitors;//List of visitors
@@ -396,6 +399,8 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
     $scope.visits.wbscodeAttachment = $scope.arrayiwo;
+    $scope.visits.visitGallery = $scope.arrayClose;
+
     $scope.check= true;
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
@@ -560,15 +565,11 @@ break;
    })
   };
 
-  $scope.showNotifie= function(status){
-    console.log("im in showNotifie");
-
-    $scope.status = status;
-    $scope.status="finalize";
-
+  $scope.showNotifie= function(){
+    console.log("imm in showNotifie")
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.status =$scope.status;
+    $scope.visits.status ="finalize";
     $scope.visits.agm = $scope.agmId;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
@@ -586,9 +587,9 @@ break;
     })
 
   }
-  $scope.getvalidation= function(feedback,status,ev){
+  $scope.getvalidation= function(feedback,ev){
+    console.log($scope.visits.status);
     console.log("im in getvalidation");
-    $scope.status = status;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status =$scope.status;
@@ -598,17 +599,15 @@ break;
     $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
-    if ($scope.feedback === "" || $scope.feedback === undefined || $scope.feedback === null ) {
-      console.log("feed is null soo true");
-      $scope.visits.feedbackTmpl = $scope.feedbackId;
-    }else $scope.visits.feedbackTmpl = $scope.feedbackId;
+    $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
-    var inData       = $scope.visits;
+    var inData     = $scope.visits;
     inData.keynote = $scope.keynotes;
 
     $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
+      console.log("find the response");console.log(response);
       if(response=="ok"){
-        $scope.showNotifie(status);
+        $scope.showNotifie($scope.visits.status);
       }
       else{
         $scope.errinData= response;
@@ -716,8 +715,32 @@ break;
   $scope.closeNotification=function(){
    $location.path("visits/list"); 
  }
+ $scope.closeVisit=function(status){
+  console.log(status);
+  $scope.status = status;
+  $scope.status="complete";
 
- $scope.isDataValid=function(schedule){
+  $scope.visits.anchor = $scope.anchorman;
+  $scope.visits.secondaryVmanager= $scope.vman;
+  $scope.visits.status =$scope.status;
+  $scope.visits.agm = $scope.agmId;
+  $scope.visits.anchor = $scope.anchorman;
+  $scope.visits.secondaryVmanager= $scope.vman;
+  $scope.visits.createBy= $rootScope.user._id;
+  $scope.visits.client = $scope.clientId;
+  $scope.visits.invitees = $scope.arraydata;
+  $scope.visits.feedbackTmpl = $scope.feedbackId;
+  $scope.visits.sessionTmpl = $scope.sessionId;
+  var inData       = $scope.visits;
+  inData.keynote = $scope.keynotes;
+
+  $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
+    growl.info(parse("notifications stage compleated successfully"));
+    $scope.nextTab($scope.visits._id);
+  })
+
+}
+$scope.isDataValid=function(schedule){
   var Today = new Date();
 
   if(schedule === "" || schedule === undefined)
