@@ -71,9 +71,16 @@ angular.module('userprofileDirective', [])
     }
 }
 
-  $scope.editprofile = function (user,id) {
+  $scope.editprofile = function (user,id,cNo) {
     console.log(user);
     console.log(id);
+    $scope.contactNo = [];
+
+    $scope.contactNo.push({
+      contactNumber:"+" + cNo,
+      contactType:user.contactType
+    })
+    user.contactNo = $scope.contactNo;
     var userid = id;
     $http.put('/api/v1/secure/admin/users/'+ id, user).success(function(response) {
 
