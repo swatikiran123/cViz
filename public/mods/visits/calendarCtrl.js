@@ -44,7 +44,8 @@ angular.module('visits').controller('calendarCtrl',
                     $scope.events.push({
                         title: data.title,
                         start: data.startDate,
-                        end: data.endDate
+                        end: data.endDate,
+                        url:'#/visits/'+ data._id +'/edit'
                     });
                 });
                 count = count + 1;
