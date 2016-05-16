@@ -3,8 +3,15 @@
     {{sessionTitle}} feedback
 </div>
 <div class="divtop">
-
+<div ng-if="feedbackId==''">
 <div class="sessionfeedback">
 <div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session"></div>
+</div>
+</div>
+<div ng-if="feedbackId!=''">
+<div class="sessionfeedback">
+<div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session" 
+ fbid="feedbackId"></div>
+</div>
 </div>
 </div>

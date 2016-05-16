@@ -1,10 +1,8 @@
 var fb=angular.module('ssnfbdir', [])
 
-fb.controller('ssnfbCtrl',function($scope, $routeParams, $http, $location, $timeout, $rootScope) {
+fb.controller('ssnfbCtrl',function($scope, $routeParams, $http,$filter, $location, $timeout, $rootScope) {
   $scope.group=$rootScope.user.groups;
-  console.log($scope.group);
   $scope.current = new Date();
-  console.log( $scope.current);
 
     $scope.getfeedback = function (strValue) {
                     if (strValue == ("cancelled"))
@@ -18,6 +16,10 @@ fb.controller('ssnfbCtrl',function($scope, $routeParams, $http, $location, $time
   }else{  $scope.stime = "more";}
 
 }*/
+
+  $http.get('/api/v1/secure/feedbacks/').success(function(response) {
+    $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, sessionid: $scope.sessionId, feedbackOn: "session",providedBy:$rootScope.user._id });
+  });
 });
 
 

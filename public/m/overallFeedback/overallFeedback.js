@@ -12,10 +12,10 @@ feedback.config(['$routeProvider', function ($routeProvider) {
   })
 
 }])
-   feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $location, $routeParams,$http,$rootScope) {
+   feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $filter, $location, $routeParams,$http,$rootScope) {
     $scope.order = 0;
      $scope.counter = 0;
-    
+    console.log($rootScope.user._id);
     $scope.showSaveNext = true;
     $scope.form_id = "form-" +  $scope.order;
     //$scope.feedbackModel = '';
@@ -30,6 +30,10 @@ feedback.config(['$routeProvider', function ($routeProvider) {
                     $scope.length = response.item.length - 1;
                     $scope.feedbackModel = response;
                     $scope.max = $scope.length + 1;
+                });
+
+                $http.get('/api/v1/secure/feedbacks/').success(function(response) {
+                    $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, feedbackOn: "visit" ,providedBy:$rootScope.user._id });
                 });
     });
 

@@ -29,5 +29,9 @@ angular.module('sessions', ['ngRoute'])
 		controller: "sessionFeedbackCtrl"
 	})
 
+	.when("/sessionFeedback/:fTmpl/:sId/:vId/:fId", {
+		templateUrl: '/public/m/sessions/sessionFeedback.html',
+		controller: "sessionFeedbackCtrl"
+	})
 
 }]);

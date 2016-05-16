@@ -207,6 +207,7 @@ console.log('refresh');
 	$scope.fbackTemp = $routeParams.fTmpl;
 	$scope.sessionId = $routeParams.sId;
 	$scope.visitId = $routeParams.vId;
+	$scope.feedbackId = $routeParams.fId;
 	$http.get('/api/v1/secure/visitSchedules/' + $scope.sessionId,{
 		cache: true
 	}).success(function(response){
