@@ -80,21 +80,30 @@ function arrayIntersection() {
  }
 
   $scope.submit = function() {
-    
+
     deleteData();
     providedById = $rootScope.user._id;
     $scope.feedbackModel.visitid = $scope.visitId;
     $scope.feedbackModel.template = $scope.feedbackId;
     $scope.feedbackModel.providedBy = providedById;
-    $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
+    $scope.feedbackModel.feedbackOn = $scope.type;
     $scope.feedbackModel.sessionid = $scope.sessionId;
-    console.log($scope.feedbackModel.item.length);
     for(var i=0;i<$scope.feedbackModel.item.length;i++)
     {
       $scope.feedbackModel.item[i].providedBy = providedById;
     }
+
+    if($scope.fbid==undefined)
+    {
     $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel).success(function(response) {
     })
+    }
+
+    if($scope.fbid!=undefined)
+    {
+      $http.put('/api/v1/secure/feedbacks/'+ $scope.fbid, $scope.feedbackModel).success(function(response) {
+      })
+    }
 
     if($scope.type=='session')
     {
@@ -110,7 +119,6 @@ function arrayIntersection() {
   $scope.selection = [];
   // toggle selection for a given choice by name
   $scope.toggleSelection = function toggleSelection(choice,index) {
-    console.log(index);
 
     var idx = $scope.selection.indexOf(choice);
       // is currently selected
@@ -149,7 +157,8 @@ function callSubmit() {
       feedbackId: "=feedbackId",
       visitId: "=visitId",
       sessionId: "=sessionId",
-      type: "@type"
+      type: "@type",
+      fbid: "=fbid"
     },
 
 };

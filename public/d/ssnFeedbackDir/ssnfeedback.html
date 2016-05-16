@@ -3,9 +3,16 @@
 {{stime}}
 </div-->
   <div ng-if="(group=='customer' || group=='exec') && (type=='presentation' || type=='discussion' || type=='floor-walk') && (starttime | date:'HH:mm' <= current | date:'HH:mm')">
-<div ng-class="[getfeedback(status)]">
-<a href="/m/visits/#/sessionFeedback/{{ftmplate}}/{{sessionId}}/{{visitId}}">Give Feedback</a>
-	{{status}}
+<div ng-if="feedbackSamplelist==''">
+  	<div ng-class="[getfeedback(status)]">
+  		<a href="/m/visits/#/sessionFeedback/{{ftmplate}}/{{sessionId}}/{{visitId}}">Give Feedback</a>
+  		{{status}}
+  	</div>
+</div>
+<div ng-if="feedbackSamplelist!=''">  	
+	<div ng-class="[getfeedback(status)]">
+		<a href="/m/visits/#/sessionFeedback/{{ftmplate}}/{{sessionId}}/{{visitId}}/{{feedbackSamplelist[0]._id}}">Edit Feedback</a>
+		{{status}}
 	</div>
 </div>
 </div>
