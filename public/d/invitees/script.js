@@ -10,7 +10,7 @@ angular.module('inviteesDirective', [])
   $scope.medium= "medium";
   if($scope.switchMode == 'add')
   {  
-  $scope.arraydata=[];
+    $scope.arraydata=[];
   }
 
   $scope.array=[];
@@ -21,29 +21,37 @@ angular.module('inviteesDirective', [])
 
     $http.get('/api/v1/secure/admin/users/email/' + invite).success(function(response) {
      if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
-     { 
-       $scope.userId = response._id;
+     {
+       if(response.memberOf == null || response.memberOf == undefined || response.memberOf == "" )
+       {
+         $scope.userId = response._id;
 
-       $scope.array.push({
-        invite: $scope.userId,
-      });
+         $scope.array.push({
+          invite: $scope.userId,
+        });
 
-       $scope.checked = false;
+         $scope.checked = false;
 
-       for (var i =0 ;i<$scope.array.length;  i++) {
-         j =$scope.array[i].invite; 
-       };
+         for (var i =0 ;i<$scope.array.length;  i++) {
+           j =$scope.array[i].invite; 
+         };
 
-       $scope.arraydata.push(j);
-     }
+         $scope.arraydata.push(j);
+       }
+       else {
+        $scope.checked = true;
+        $scope.message = "User is not an organization employee!!";
+        $timeout(function () { $scope.message = ''; }, 3000);
+      }
+    }
 
-     else {
+    else {
       $scope.checked = true;
       $scope.message = "User is not an organization employee!!";
       $timeout(function () { $scope.message = ''; }, 3000);
     }
     
-        $scope.invite='';
+    $scope.invite='';
 
   })
 
