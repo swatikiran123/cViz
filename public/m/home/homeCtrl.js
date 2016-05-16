@@ -38,6 +38,18 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		}).success(function(response) {
 			$scope.user = response;
 		})
+		$scope.user_id1 = $scope.welcomeResponse[$scope.order].noteBy1;
+			$http.get('/api/v1/secure/admin/users/' + $scope.user_id1,{
+			cache: true
+		}).success(function(response) {
+			$scope.user1 = response;
+		})
+		$scope.user_id2 = $scope.welcomeResponse[$scope.order].noteBy2;
+			$http.get('/api/v1/secure/admin/users/' + $scope.user_id2,{
+			cache: true
+		}).success(function(response) {
+			$scope.user2 = response;
+		})
 			if(response[0].length == 1)
 			{
 				$scope.showContinue = false;
@@ -60,6 +72,18 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		}).success(function(response) {
 			$scope.user = response;
 		})
+		$scope.user_id1 = $scope.welcomeResponse[$scope.order].noteBy1;
+			$http.get('/api/v1/secure/admin/users/' + $scope.user_id1,{
+			cache: true
+		}).success(function(response) {
+			$scope.user1 = response;
+		})
+		$scope.user_id2 = $scope.welcomeResponse[$scope.order].noteBy2;
+			$http.get('/api/v1/secure/admin/users/' + $scope.user_id2,{
+			cache: true
+		}).success(function(response) {
+			$scope.user2 = response;
+		})
 		if($scope.order == $scope.length)
 		{
 			$scope.showContinue = false;
@@ -70,5 +94,9 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		{
 			$scope.showContinue = true;
 		}
+
+		$scope.user = '';
+		$scope.user1 = '';
+		$scope.user2 = '';
 	}
 }]);

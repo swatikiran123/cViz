@@ -1,11 +1,11 @@
   <br>
  
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-if="userModel!=null">
         <div class="panel-body">
 
             <div class="pull-left">
-             <img src="{{userModel.avatar}}" class="img-circle userpicmd"> 
+             <img ng-src="{{userModel.avatar}}" class="img-circle userpicmd"> 
              </div>
              <div class="panelpdmd">
              <div class="text-highlight">{{userModel.name.first}} {{userModel.name.last}}</div>
