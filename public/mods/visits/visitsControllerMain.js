@@ -254,7 +254,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.addSecMan();
         }
 
-        console.log(visits.status);
         switch(visits.status){
           case "confirm": 
           $scope.agendaTab=true;
@@ -318,7 +317,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         $scope.visitorSave=0;
         $scope.finalizeSave=0;
         $scope.closeSave=1;
-        // console.log($scope.agendaSave +" "+$scope.visitorSave+" "+$scope.finalizeSave+" "+$scope.closeSave);
       }
 
       break;
@@ -378,9 +376,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
             $scope.agmId = response.agm._id;
           }
           $scope.clientName= response.client.name;//auto fill with reff client db
+         
           if (response.feedbackTmpl!=undefined) {
             $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
           }
+         
           if(response.sessionTmpl!=undefined) {
           $scope.session= response.sessionTmpl.title;//auto fill with reff feedback db
         }
@@ -582,7 +582,6 @@ break;
   };
 
   $scope.showNotifie= function(){
-    console.log("imm in showNotifie")
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status ="finalize";
@@ -621,46 +620,41 @@ break;
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
-      console.log(response);
       $location.path("visits/list"); 
       
     })
   }
-  $scope.getvalidation= function(feedback,ev){
-    console.log($scope.visits.status);
-    console.log("im in getvalidation");
-    $scope.visits.anchor = $scope.anchorman;
-    $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.status =$scope.status;
+  $scope.getvalidation= function(ev){
+
     $scope.visits.agm = $scope.agmId;
+    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientId;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+
     var inData     = $scope.visits;
     inData.keynote = $scope.keynotes;
-
+    
+    $scope.errinData=[];
     $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
-      console.log("find the response");console.log(response);
-      if(response=="ok"){
+      if(response.errMessgs==0){
         $scope.showNotifie($scope.visits.status);
       }
       else{
-        $scope.errinData= response;
-        console.log($scope.errinData);
-        $mdDialog.show(
-          $mdDialog.alert()
-          .parent(angular.element(document.querySelector('#popupContainer')))
-          .clickOutsideToClose(true)
-          .title('Visit Finalize')
-          .textContent(response)
-          .ariaLabel('Alert Dialog Demo')
-          .ok('Got it!')
-          .targetEvent(ev)
-          );
+        for (var i =0; i<response.length; i++) {
+          $scope.errinData.push(response[i]);
+        };
+        $mdDialog.show({
+          templateUrl: '/public/mods/visits/valFinal.html',
+          scope: $scope.$new(),
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true
+
+        })
       }
 
     })

@@ -59,7 +59,7 @@
               </td>
               <td><a class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid || autoFailkey">Add Keynote</a></td>
             </tr>
-            <tr ng-repeat="keynoteDef in keynotes | filter: search |orderBy:orderByField:reverseSort">
+            <tr ng-repeat="keynoteDef in keynotes">
              <td >{{keynoteDef.noteName}}</td>
              <td>{{keynoteDef.context}}</td>
              <td>{{keynoteDef.order}}</td>
@@ -111,7 +111,8 @@
 
   </div>
 </div><br><br><br>
-<!--panel-three-->{{showNotifieViist}}
+
+<!--panel-three-->
 <div class="panel panel-default" ng-if='!notifyTab'>
   <div class="panel-heading">
     <h3 class="panel-title"> <b>Finalize</b></h3>
@@ -120,8 +121,7 @@
   </div>
   <div class="panel-body">
    If you completed providing of all data required, please click <b>finalize</b> to initiate notifications for clients and invitees. <br>
-   <div class="pull-right"> <button type="reset" class="btn btn-danger" ng-disabled="finalizeForm.$invalid || autoFailfed || autoFailsec" confirm-dialog header-text="Finalize" content="Are you sure you want to Finalize the visit</b>" yes-text="Ok" no-text="Cancel" ng-click="getvalidation(status,$event)">Finalize</button></div>
+   <div class="pull-right"> <button type="reset" class="btn btn-danger" ng-disabled="finalizeForm.$invalid || autoFailfed || autoFailsec" confirm-dialog header-text="Finalize" content="Are you sure you want to Finalize the visit</b>" yes-text="Ok" no-text="Cancel" ng-click="getvalidation(ev)">Finalize</button></div>
  </div>
 </div>
-
 </div>
