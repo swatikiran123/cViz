@@ -620,6 +620,8 @@ function getKeynotesById(id){
 				title : keynote.note.title,
 				noteText :keynote.note.noteText,
 				noteBy :keynote.note.noteBy,
+				noteBy1 :keynote.note.noteBy1,
+				noteBy2 :keynote.note.noteBy2,
 				createOn :keynote.note.createOn,
 				desc: keynote.note.desc,
 				attachment: keynote.note.attachment

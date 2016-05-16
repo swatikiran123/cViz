@@ -156,6 +156,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.startMinTime =null;
 		$scope.endHourTime =null;
 		$scope.endMinTime =null;
+		$scope.ownerId=null;
+		$scope.supporterId=null;
 	    $scope.showAdvanced(ev);
 	  }
 

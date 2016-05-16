@@ -5,7 +5,7 @@ angular.module('userDirective', [])
 
   // console.log($scope.switchMode);
   // console.log($scope.userType);
-
+  // console.log($scope.userEmail);
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
@@ -19,8 +19,34 @@ angular.module('userDirective', [])
       url='/api/v1/secure/admin/users/' + $scope.userId;
     }
     
-    if ($scope.userEmail.toLowerCase()!="" && $scope.userEmail.toLowerCase()!=undefined) {
+    if ($scope.userEmail!="" && $scope.userEmail!=undefined) {
       url='/api/v1/secure/admin/users/email/' + $scope.userEmail.toLowerCase();
+    }
+
+    // if ($scope.userEmail =="" && $scope.notNull!="") {
+    //     url='/api/v1/secure/admin/users/email/' + $scope.userEmail.toLowerCase();
+    //     $scope.userEmail = undefined;
+    //     $scope.userId = undefined;
+    //   }
+    if($scope.switchMode == 'add' && ($scope.moduleType == 'sessions' || $scope.moduleType == 'keynotes'))
+    {
+      if ($scope.userEmail == "") {
+        url='/api/v1/secure/admin/users/email/' + $scope.userEmail.toLowerCase();
+        $scope.userEmail = undefined;
+        $scope.userId = undefined;
+      }
+    }
+    if($scope.switchMode == 'edit' && ($scope.moduleType == 'sessions'))
+    {
+      if ($scope.userEmail =="" && $scope.userId!=null) {
+        url='/api/v1/secure/admin/users/' + $scope.userId;
+      }
+
+      if ($scope.userEmail =="" && $scope.notNull!="") {
+        url='/api/v1/secure/admin/users/email/' + $scope.userEmail.toLowerCase();
+        $scope.userEmail = undefined;
+        $scope.userId = undefined;
+      }
     }
     // else{
     //     message = "Invalid User Id/email";
@@ -53,7 +79,10 @@ angular.module('userDirective', [])
 
       }
       else
+      {
         console.log("error with user directive");
+        $scope.userId = undefined;
+      }
     });
   } // end of getUser method
   
@@ -79,7 +108,8 @@ angular.module('userDirective', [])
       userEmail: "=userEmail",
       viewType: "=viewType",
       switchMode: "=switchMode",
-      userType: "@userType"
+      userType: "@userType",
+      moduleType: "@moduleType"
     },
 
     link : function(scope,element,attrs)

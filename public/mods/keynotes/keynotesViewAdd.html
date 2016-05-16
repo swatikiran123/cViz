@@ -1,5 +1,4 @@
 <div class="container">
-
  <!-- page header/subheader -->
 
     <div ng-if="mode=='add'" class="page-header">
@@ -40,19 +39,47 @@
        
          
     <div class="field">
-                  <label ng-show="keynotes.noteText" class="show-hide">note</label><br>
+                  <label ng-show="keynotes.noteText" class="show-hide">Note</label><br>
         <text-angular 
                     ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
                                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
                          ng-model="keynotes.noteText" name="note"/>
          </text-angular></div>
- 
-              <md-input-container class="form-group md-block">
+              <!-- {{noteById=$parent.noteById;""}}{{noteById1=$parent.noteById;""}}{{noteById2=$parent.noteById;""}} -->
+              
+
+           
+          
+
+        <div class="row">
+          <div class="form-group col-xs-4">
+            <md-input-container class="form-group md-block">
               <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser.$touched && keynotesForm.noteByUser.$invalid }">
                 <label>Signatory &nbsp;&nbsp; :</label>
-                <div user type="picker" user-model="noteByUser" view-type="large" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee"></div>
+                <div user type="picker" user-model="noteByUser" view-type="medium" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee" module-type="keynotes"></div>
               </div>
             </md-input-container>
+          </div>
+          <!--accountGM-CSCPersonnel-->
+          <div class="form-group col-xs-4">
+               <md-input-container class="form-group md-block">
+               <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser1.$touched && keynotesForm.noteByUser1.$invalid }">
+                <label>Signatory1 &nbsp;&nbsp; :</label>
+                <div user type="picker" user-model="noteByUser1" view-type="medium" user-id="noteById1" 
+                user-email=" noteByEmail1" switch-mode="mode" user-type="employee" module-type="keynotes"></div>
+                </div>
+            </md-input-container>
+          </div>
+          <!--industryExec-CSCPersonnel-->
+          <div class="form-group col-xs-4">
+            <md-input-container class="form-group md-block">
+          <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser2.$touched && keynotesForm.noteByUser2.$invalid }">
+            <label>Signatory2 &nbsp;&nbsp; :</label>
+            <div user type="picker" user-model="noteByUser2" view-type="medium" user-id="noteById2" user-email="noteByEmail2" switch-mode="mode" user-type="employee" module-type="keynotes"></div>
+          </div>
+        </md-input-container>
+        </div>
+      </div>
 
           <!-- <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div> -->
 

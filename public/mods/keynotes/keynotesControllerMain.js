@@ -9,8 +9,8 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
    self.readonly = false;
    $scope.nameonly= "nameonly";
    $scope.tags=[];
-   var tag=$scope.tags;
-   console.log(tag);
+   // var tag=$scope.tags;
+   // console.log(tag);
    var id = $routeParams.id;
       // AUtomatically swap between the edit and new mode to reuse the same frontend form
       $scope.mode=(id==null? 'add': 'edit');
@@ -41,18 +41,33 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
             $scope.keyTruedone=false;
             
             $scope.keynotes = $http.get('/api/v1/secure/keynotes/id/' + id).success(function(response){
-              $scope.keynotes = response;
 
-              console.log($scope.keynotes);
-              console.log(response.noteBy);
-              $scope.noteByUser = response.noteBy;
-              $scope.noteByEmail = response.noteBy.email;
-              $scope.noteById = response.noteBy._id;
+              
+              var keynotes = response;
               $scope.array.push(response.attachment);
+              // reformat date fields to avoid type compability issues with <input type=date on ng-model
+              $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
+              $scope.keynotes = keynotes;
 
+              if(response.noteBy !=null || response.noteBy !=undefined)
+              {  
+                $scope.noteByUser = response.noteBy;
+                $scope.noteByEmail = response.noteBy.email;
+                $scope.noteById = response.noteBy._id;
+              }
+              if(response.noteBy1 !=null || response.noteBy1 !=undefined)
+              {
+                $scope.noteByUser1 = response.noteBy1;
+                $scope.noteByEmail1 = response.noteBy1.email;
+                $scope.noteById1 = response.noteBy1._id;
+              }
+              if(response.noteBy2 !=null || response.noteBy2 !=undefined)
+              {
+                $scope.noteByUser2 = response.noteBy2;
+                $scope.noteByEmail2 = response.noteBy2.email;
+                $scope.noteById2 = response.noteBy2._id;
+              }
 
-            // reformat date fields to avoid type compability issues with <input type=date on ng-model
-            $scope.keynotes.startDate = new Date($scope.keynotes.createdOn);
           });
 
       } // switch scope.mode ends
@@ -64,11 +79,13 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   $scope.save = function(){
     // set noteBy based on the user picker value
     $scope.keynotes.noteBy = $scope.noteById;
-    $scope.keynotes.attachment = $scope.array.toString();
-    console.log($scope.keynotes.noteBy);
-    $scope.keynotes.createby = $rootScope.user._id;
+    $scope.keynotes.noteBy1 = $scope.noteById1;
+    $scope.keynotes.noteBy2 = $scope.noteById2;
 
-    $scope.keynotes.tags = tag;
+    $scope.keynotes.attachment = $scope.array.toString();
+    // console.log($scope.keynotes.noteBy);
+    $scope.keynotes.createby = $rootScope.user._id;
+    // $scope.keynotes.tags = tag;
     angular.forEach($scope.keynotes.tags, function(ofrngs){
      if($scope.keynotes.tags === undefined)
       $scope.keynotes.tags = ofrngs.tag1;
@@ -76,8 +93,6 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.keynotes.tags = $scope.keynotes.tags+ ", " + ofrngs.tag1;
 
   });
-
-    console.log($scope.keynotes.tags);
 
     switch($scope.mode)    {
       case "add":
@@ -93,6 +108,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   } // end of save method
 
   $scope.create = function() {
+
     $http.post('/api/v1/secure/keynotes', $scope.keynotes).success(function(response) {
       console.log($scope.keynotes.title)
       refresh();
@@ -128,13 +144,15 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
   };
 
   $scope.update = function() {
-    $http.put('/api/v1/secure/keynotes/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
-      refresh();
+
+    $http.put('/api/v1/secure/keynotes/id/' + $scope.keynotes._id, $scope.keynotes).success(function(response) {
+      // refresh();
       growl.info(parse("Keynote [%s]<br/>Edited successfully", $scope.keynotes.title));
     })
     .error(function(data, status){
       growl.error("Error updating keynote");
     }); // http put keynoges ends
+
   }; // update method ends
 
   $scope.cancel = function() {
@@ -156,16 +174,16 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       var user = response;
       $scope.keynotes.receiver = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
     });*/
-}
+  }
 
-$scope.removeImageItem = function(index){
-  console.log($scope.array);
-  $scope.array.splice(index, 1);
-  console.log($scope.array);
-};
-$scope.keyTrue=function(){
-  console.log("reached");
-  $scope.keyTruedone=false;
-}
+  $scope.removeImageItem = function(index){
+    console.log($scope.array);
+    $scope.array.splice(index, 1);
+    console.log($scope.array);
+  };
+  $scope.keyTrue=function(){
+    console.log("reached");
+    $scope.keyTruedone=false;
+  }
 
 }]);﻿ // controller ends

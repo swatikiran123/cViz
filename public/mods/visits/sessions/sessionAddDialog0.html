@@ -228,7 +228,7 @@
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.ownerUser.$touched && sessionAddForm.ownerUser.$invalid }">
 						<label >Speaker &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee"></div>
+						<div user type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee" module-type="sessions"></div>
 						</div>
 					</md-input-container>
 				</div>
@@ -237,7 +237,7 @@
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterUser.$touched && sessionAddForm.supporterUser.$invalid }">
 						<label >Supporter &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee"></div>
+						<div user type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee" module-type="sessions"></div>
 						</div>
 					</md-input-container>
 				</div>
@@ -249,6 +249,10 @@
         </div> 
 
         <div ng-if="ownerId!=supporterId && ownerId != null && supporterId != null">
+          {{$parent.submitOwnerSupporter=false;""}}
+        </div>
+
+        <div ng-if="ownerId == null || supporterId == null">
           {{$parent.submitOwnerSupporter=false;""}}
         </div> 
 			</div>
