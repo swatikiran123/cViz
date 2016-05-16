@@ -302,7 +302,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
     </md-input-container>
   </div>
 
-  <div ng-show="status == 'wip'|| status == 'finalize'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+  <div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
   {{agendaEdit=true;""}}
   <!--buttons-->
   <div class="form-group">
