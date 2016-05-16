@@ -467,7 +467,7 @@ function getSessionsById(id){
 					});
 
 					// skip days for which sessions are not scheduled
-					if(daySessions.length > 0){
+					// if(daySessions.length > 0){
 						var schedule = {
 							day : i,
 							date : d,
@@ -477,7 +477,7 @@ function getSessionsById(id){
 						}; // end of schedule object
 
 						i++;
-					}
+					// }
 
 					sessionDays.push(schedule);
 				}); // end of date range loop
@@ -714,7 +714,7 @@ function updateById(id, data) {
 
 function getvalidationById(id, data){
 	var deferred = Q.defer();
-
+	var errMessgs=[];
 	model
 	.findByIdAndUpdate(id, data) 
 	.populate('keynote.note')
@@ -725,42 +725,41 @@ function getvalidationById(id, data){
 			console.log(err);
 			deferred.reject(err);
 		}
+		else{	
+			if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null){
+				errMessgs.push("Feedback Template needs to be defined.");
+			}
+			if(item.sessionTmpl === "" || item.sessionTmpl === undefined || item.sessionTmpl === null){
+				errMessgs.push("Session Template needs to be defined.");
 
-		else if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null){
-			var errinDatafeedbackTmpl= "Feedback Template undefined !";
-			deferred.resolve(errinDatafeedbackTmpl);
-		}
-		else if(item.sessionTmpl === "" || item.sessionTmpl === undefined || item.sessionTmpl === null){
-			var errinDatasessionTmpl= "Session Template undefined !";
-			deferred.resolve(errinDatasessionTmpl);
-		}		
-		else if(item.keynote.length === 0){
-			var errinDatakeynote= "Atleast one keynote should be defined !";
-			deferred.resolve(errinDatakeynote);
-		}
-		else if(item.keynote.length != 0){
-			var count=0;
-			for (var i=0; i<item.keynote.length; i++){
-				if(item.keynote[i].context == 'welcome')
-				{
-					count++;
+			}		
+			if(item.keynote.length != 0 || item.keynote.length == 0 ){
+				var count=0;
+				for (var i=0; i<item.keynote.length; i++){
+					if(item.keynote[i].context === 'welcome')
+					{
+						count++;
+					}
+				}
+				if (count == 0) {
+					errMessgs.push("There should be Atleast one welcome message in the keynote.");
 				}
 			}
-			if (count == 0) {
-				var errinDatakeynotewel= "There should be Atleast one welcome message defined !";
-				deferred.resolve(errinDatakeynotewel);
-			}
-			else {
-				var ok="ok"; 
-				deferred.resolve(ok);
-			}
 		}
-		else {
-			var ok="ok"; 
-			deferred.resolve(ok);
-		} 
-	});
-	return deferred.promise;
+		getSessionsById(item._id)
+		.then(function(schedule){
+			if(schedule){
+				for(var i=0;i<schedule.length;i++){
+					if (schedule[i].sessions <= 0 || schedule[i].sessions == undefined || schedule[i].sessions == null ) {
+
+						errMessgs.push(util.formatString("Session is missing for day %s on date %s. ",schedule[i].day,moment(schedule[i].date).format('DD-MMM-YYYY')));
+					}
+					deferred.resolve(errMessgs);
+				}
+			}
+		})	
+	});			
+return deferred.promise;
 
 } // gentOneById method ends
 
