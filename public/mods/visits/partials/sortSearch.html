@@ -1,21 +1,41 @@
+        <style type="text/css">
+        .scheduledates a {  
+          text-decoration: none;
+          font-size: 14px;
+          font-family: workSansBold;
+
+        }
+
+
+        .scheduledates a:focus {
+          padding-bottom: 11px;
+          border-bottom: 3px solid #6495ce;
+          font-size: 16px;
+
+          vertical-align: center;
+        }
+
+        </style>
         <div class="col-xs-3">
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-            <i class="fa fa-th-large"></i>
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu" >
-              <li><a href="#/visits/list">List</a></li>
-              <li><a href="#/visits/panels">Detail</a></li>
-              <li><a href="#/visits/calendar">Calendar</a></li>
-            </ul>
-          </div>
-      </div> 
-     <div class="col-xs-12">
-    <a href ng-click="setTimeline('all')">All ({{allVisits["all"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a>&nbsp;&nbsp;
-    <a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a>&nbsp;&nbsp;
-    </div> 
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+              <i class="fa fa-th-large"></i>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" >
+                <li><a href="#/visits/list">List</a></li>
+                <li><a href="#/visits/panels">Detail</a></li>
+                <li><a href="#/visits/calendar">Calendar</a></li>
+              </ul>
+            </div>
+          </div> 
+          <div class="col-xs-12">
+            <div class="scheduledates">
+            <a href ng-click="setTimeline('all')">All ({{allVisits["all"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a>&nbsp;&nbsp;
+            <a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a>&nbsp;&nbsp;
+          </div> 
+        </div>
