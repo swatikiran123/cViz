@@ -1005,7 +1005,10 @@ $scope.addkeynote=function(keynoteDef){
     visitorDef.visitorUser = '';
   };
   
-  $scope.removevisitor = function(index,visitors){
+  $scope.removevisitor = function(visitorDef,visitors){
+    console.log(visitors.indexOf(visitorDef));
+    // console.log(index);
+    var index = visitors.indexOf(visitorDef);
     $scope.visitors.splice(index, 1);
     if (visitors.length == 0)
     {
@@ -1022,6 +1025,9 @@ $scope.addkeynote=function(keynoteDef){
   $scope.visitors.splice(index, 1);
   };// Visit visitor table end
 
+  $scope.mySort = $scope.newestFirst = function(visitorDef) {
+    return -$scope.visitors.indexOf(visitorDef);
+  }
   //Feedback by Person
   $scope.feedbackbyPerson = function(visitid) {
     $scope.feedbackTitles = [];
@@ -1367,5 +1373,11 @@ visitsApp.directive('uiDate', function() {
       }
       return element.datepicker($scope.uiDate);
     }
+  };
+});
+
+visitsApp.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
   };
 });

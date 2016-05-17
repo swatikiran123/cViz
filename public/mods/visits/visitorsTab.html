@@ -114,7 +114,7 @@
           <div>
             <md-input-container class="md-block" flex-gt-sm>
             <label>Password</label>
-            <input type="password" md-maxlength="255" minlength="8" required name="password" 
+            <input type="password" md-maxlength="15" minlength="8" required name="password" 
             ng-model="userdata.local.password">
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
              <div class="messagenotify">
@@ -182,10 +182,11 @@
   </div>
 </div>
 </td>
- <tr ng-repeat="visitorDef in visitors | filter: search |orderBy:orderByField:reverseSort">
+<!-- {{visitorsData=visitors|orderBy:mySort}} -->
+ <tr ng-repeat="visitorDef in visitors | orderBy:mySort">
   <td colspan="3"> <div>
     <div>{{visitorDef.influence}}</div>
-    <div class="pull-right"><a class="table-btn" ng-click="removevisitor($index,visitors)"><span class="fa fa-trash fa-lg" /></a>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor(visitorDef,visitors)"><span class="fa fa-trash fa-lg" /></a>
       <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a> -->
     </div>
   </div>
