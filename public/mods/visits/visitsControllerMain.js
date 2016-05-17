@@ -193,7 +193,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       var allVisits = [];
       Object.keys($scope.allVisits).forEach(function (key) {
        var value = $scope.allVisits[key]
-       if(!(key === "today" && key === "next-one")){
+        if(key === "today" || key === "next-week" || key === "further" || key === "next-on"){
         // console.log(key);
         allVisits.push.apply(allVisits, value.visits);
         // console.log(value.visits.length, allVisits.length);
@@ -208,12 +208,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
       
       if($scope.timeline=="" || $scope.timeline===undefined){
-        $scope.timeline = "this-week";
+        $scope.timeline = "all";
         // console.log("no timeline. Set to " + $scope.timeline);
         $scope.visitBatch = $scope.allVisits[$scope.timeline];
       }
       else{
-       $scope.timeline = "this-week";
+       $scope.timeline = "all";
        // console.log("no timeline. Set to " + $scope.timeline);
        $scope.visitBatch = $scope.allVisits[$scope.timeline];
      }
