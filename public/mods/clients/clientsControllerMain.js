@@ -1,29 +1,15 @@
+
 'use strict';
 
 var clientsApp = angular.module('clients');
 
 clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl',
-	function($scope, $http, $routeParams, $location, growl) {
+  function($scope, $http, $routeParams, $location, growl) {
 
-		var id = $routeParams.id;
+    var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
-
-  $http.get('/api/v1/secure/lov/regions').success(function(response) {
-    $scope.regions=response.values;
-  });
-
-  $scope.example1model = []; 
-  $scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
-  
-  $http.get('/api/v1/secure/lov/offerings').success(function(response) {
-    $scope.offerings=response.values;
-  });
-
-  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
-    $scope.vertical=response.values;
-  });
 
   $scope.small= "small";
   $scope.large= "LARGE";
@@ -107,13 +93,13 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
     $scope.cscPersonnel.cre= $scope.creId;
     switch($scope.mode)    {
-    	case "add":
-    	$scope.create();
-    	break;
+      case "add":
+      $scope.create();
+      break;
 
-    	case "edit":
-    	$scope.update();
-    	break;
+      case "edit":
+      $scope.update();
+      break;
       } // end of switch scope.mode ends
 
       $location.path("clients/list");
@@ -133,13 +119,13 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // create method ends
 
   $scope.delete = function(clients) {
-  	var name = clients.name;
-  	$http.delete('/api/v1/secure/clients/' + clients._id).success(function(response) {
-  		refresh();
-  		growl.info(parse("clients [%s]<br/>Deleted successfully", name));
-  	})
-  	.error(function(data, status){
-  		growl.error("Error deleting client");
+    var name = clients.name;
+    $http.delete('/api/v1/secure/clients/' + clients._id).success(function(response) {
+      refresh();
+      growl.info(parse("clients [%s]<br/>Deleted successfully", name));
+    })
+    .error(function(data, status){
+      growl.error("Error deleting client");
     }); // http delete keynoges ends
   }; // delete method ends
 
@@ -158,17 +144,17 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.cancel = function() {
 
-  	$scope.clients="";
-  	$location.path("clients/list");
+    $scope.clients="";
+    $location.path("clients/list");
   }
 
   $scope.getUser = function(){
 
 
-  	$http.get('/api/v1/secure/admin/users/' + $scope.cscPersonnel).success(function(response) {
+    $http.get('/api/v1/secure/admin/users/' + $scope.cscPersonnel).success(function(response) {
 
-  		var user = response;
-  		$scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
+      var user = response;
+      $scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
       $scope.cscPersonnel.accountGM = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
       $scope.cscPersonnel.industryExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
       $scope.cscPersonnel.globalDelivery = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);

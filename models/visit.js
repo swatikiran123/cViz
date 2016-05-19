@@ -1,3 +1,4 @@
+
 'use strict';
 
 var mongoose = require('mongoose')
@@ -53,7 +54,17 @@ var visitSchema = new mongoose.Schema({
 	 visitAttachment				: [{ type: String }],
 	 summary						: { type: String, lowercase: true, trim: true },
 	 actionItem						: { type: String, lowercase: true, trim: true },
-	 visitGallery					: [{ type: String }]
+	 visitGallery					: [{ type: String }],
+	 vertical						: { type: String, trim: true, required: true },
+	 offerings 						: [{ type: String, trim: true }],
+	 cscPersonnel					: {
+	 	salesExec					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	 	accountGM					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	 	industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	 	globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	 	cre 						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	 }
+
 
 
 });
