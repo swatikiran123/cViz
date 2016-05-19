@@ -17,8 +17,9 @@ service.create = create;
 service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
-
+service.getAllUsers = getAllUsers;
 service.getByEmail = getByEmail;
+service.getWithQuery = getWithQuery;
 
 module.exports = service;
 
@@ -151,3 +152,107 @@ function getByEmail(email){
 
     return deferred.promise;
 } // gentOneById method ends
+
+function getAllUsers(data){
+
+    var deferred = Q.defer();
+    var usersArray = [];
+    model
+    .find(data)
+    .exec(function(err, list){
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+            for(var i=0;i<list.length;i++)
+            {        
+                // deferred.resolve(list);
+                if(list[i].association=='employee')
+                {
+                usersArray.push(transform(list[i]));
+                }
+            }   
+
+            deferred.resolve
+            ({
+                "items": usersArray
+            });
+    });
+
+    function transform(user)
+    {
+        if (user==null) {
+            console.log("error in adding");
+        }
+        else{
+            var userData={
+                userid : user._id,
+                firstName :user.name.first,
+                lastName :user.name.last,
+                email : user.email,
+                avatar :user.avatar,
+                association :user.association
+            }
+            console.log("******************************");
+            console.log(userData);
+            console.log("******************************");
+            return userData;
+        }
+    }
+    return deferred.promise;
+} // getAll method ends
+
+
+function getWithQuery(query, fields, maxRecs, sortEx){
+    var deferred = Q.defer();
+    var usersArray = [];
+    
+    model
+    .find(query)
+    .limit(maxRecs)
+    .select(fields)
+    .sort(sortEx)
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else
+            for(var i=0;i<item.length;i++)
+            {        
+                // deferred.resolve(list);
+                if(item[i].association=='employee')
+                {
+                usersArray.push(transform(item[i]));
+                }
+            }   
+
+            deferred.resolve
+            ({
+                "items": usersArray
+            });
+    });
+
+    function transform(user)
+    {
+        if (user==null) {
+            console.log("error in adding");
+        }
+        else{
+            var userData={
+                userid : user._id,
+                firstName :user.name.first,
+                lastName :user.name.last,
+                email : user.email,
+                avatar :user.avatar,
+                association :user.association
+            }
+            console.log("******************************");
+            console.log(userData);
+            console.log("******************************");
+            return userData;
+        }
+    }
+    return deferred.promise;
+} // getWithQuery method ends

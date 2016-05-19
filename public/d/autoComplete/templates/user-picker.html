@@ -1,0 +1,49 @@
+<!-- <input type="text" name="user" id="user"
+  placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75"> -->
+
+{{userEmail1=selectedUser.originalObject.email;""}}  
+<!-- {{userEmail1}} -->
+{{userId1=selectedUser.originalObject.userid;""}}  
+<!-- {{userId1}} -->
+<angucomplete tabindex="-1" ng-focus="getUser1();" ng-blur="getUser1();" ng-model="userEmail1" id="members"
+                  placeholder="User"
+                  pause="400"
+                  selectedobject="selectedUser"
+                  url="/api/v1/secure/admin/users/find/find?query="
+                  datafield="items"
+                  titlefield="firstName,lastName"
+                  descriptionfield="email"
+                  imagefield="avatar"
+                  inputclass="form-control form-control-small"></angucomplete>
+<div ng-if="userEmail=='' && (moduleType=='sessions'||moduleType=='keynotes')">
+{{notNull=="true";""}}
+</div>
+<br>
+<ANY ng-switch="showFlag">
+  <ANY ng-switch-when="user">
+  	<!-- <div class="user-badge" style="width:180px;!important;">
+		  <div class="pull-left">
+		    <img height="40" width="40" src="/public/assets/images/avatar.jpg" />
+		  </div>
+		  <div class="pull-right">
+		    <div class="text-highlight">{{userModel.name.first}} {{userModel.name.last}}</div>
+		    <div class="text-xsmall">{{userModel.email}}</div>
+		    <div class="text-xsmall">{{userModel.jobTitle}}<br/>{{userModel.organization}} </div>
+		  </div>
+		</div> -->
+      <div ng-include = "getTemplate()">
+
+</div>
+  </ANY>
+
+<!--   <ANY ng-switch-when="noUser">
+	  <div class="text-danger" style="width:300px;!important;">
+			{{message}}
+		</div>
+  </ANY> -->
+
+  <ANY ng-switch-default>
+    <div class="text-info" style="width:180px;!important;">
+		</div>
+	</ANY>
+</ANY>
