@@ -2,6 +2,7 @@
 <form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
 {{check=true;""}}
 
+
   <div ng-if="visvalid" class="error text-info">Atleast a visitor needs to be added.</div>
   <br>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
@@ -14,26 +15,51 @@
     </thead>
     <tbody class="data-grid-data">
       <tr>
-      <td>
-        <!-- <form name="visitorForm"> -->
+<!--       <td>
+        <form name="visitorForm">
         <input type="email" name="email" ng-model="visitorDef.visitorId" class="form-control" required>
         <br>
         <span class="error text-danger" ng-show="visitorForm.email.$error.email">
           Not valid email!</span>
           <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>  
-        </td>
+        </td> -->
+
+        <td>
+          {{visitorDef.visitorId=selectedUser.originalObject.email;""}}
+          <!-- {{visitorDef.visitorId}} -->
+
+        <div angucomplete-alt
+        id="ex5"
+        placeholder="User"
+        pause="500"
+        selected-object="selectedUser"
+        remote-url="/api/v1/secure/admin/users/find/find?query="
+        remote-url-data-field="items1"
+        title-field="firstName,lastName"
+        description-field="email"
+        minlength="3"
+        image-field="avatar"
+        input-class="form-control form-control-small"
+        match-class="highlight"
+        >
+      </div>
+          <br>
+          <span class="error text-danger" ng-show="visitorForm.email.$error.email">
+            Not valid email!</span>
+            <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>  
+          </td>
         <td><select 
          ng-model="visitorDef.influence" 
          ng-options="data for data in influence" class="form-control" required>
        </select>
      </td>
-     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef)" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
+     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
    </form>
  </tr>
  <td colspan="3" ng-if="showFlag == 'notRegisteredUser'">
- <!-- {{emailId}} 
+ <!-- {{emailId}}  -->
  {{message}}
- {{influencedata}} -->
+ <!-- {{influencedata}} -->
  <br>
  <br>
  <br>
