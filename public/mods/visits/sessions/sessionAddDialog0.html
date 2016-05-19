@@ -227,8 +227,8 @@
 				<div class="form-group col-xs-6">
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.ownerUser.$touched && sessionAddForm.ownerUser.$invalid }">
-						<label >Speaker &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee" module-type="sessions"></div>
+						<label >Select Speaker &nbsp;&nbsp; :</label>
+						<div userauto type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee" module-type="sessions" title="Speaker"></div>
 						</div>
 					</md-input-container>
 				</div>
@@ -236,8 +236,8 @@
 				<div class="form-group col-xs-6"><!-- ng-blur="seeOwnerSupporter()" -->
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterUser.$touched && sessionAddForm.supporterUser.$invalid }">
-						<label >Supporter &nbsp;&nbsp; :</label>
-						<div user type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee" module-type="sessions"></div>
+						<label >Select Supporter &nbsp;&nbsp; :</label>
+						<div userauto type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee" module-type="sessions" title="Supporter"></div>
 						</div>
 					</md-input-container>
 				</div>

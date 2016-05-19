@@ -12,6 +12,8 @@ controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
 controller.getByEmail = getByEmail;
+controller.getAllUsers = getAllUsers;
+controller.getWithQuery = getWithQuery;
 
 module.exports = controller;
 
@@ -89,6 +91,52 @@ function updateById(req, res) {
     }) 
     .catch(function (err) {
         console.log(err);
+        res.status(500).send(err);
+    });
+}
+
+function getAllUsers(req,res){
+  console.log(req.param('q'));
+  var name = req.param('q');
+  dataService.getAllUsers(name)
+    .then(function(userList){
+        if (userList){
+            res.send(userList);
+        }else {
+            res.status(404).send("Doc not found");
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+
+function getWithQuery(req,res){
+    console.log(req.params);
+    var name = req.param('query');
+    // var query = {email: new RegExp(name, 'i')};
+    var query = {
+     $or: [
+     { 'name.first' : new RegExp(name, 'i') },
+     { 'name.last' : new RegExp(name, 'i') },
+     { 'email' : new RegExp(name, 'i') }
+     ]
+    }
+    var maxRecs = req.param('maxRecs');
+    var fields = req.param('fields');
+    var sort = req.param('sort');
+    dataService.getWithQuery(query,fields ,maxRecs, sort)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404).send("Doc dont exists");
+        }
+    })
+    .catch(function (err){
+        console.log("doc dont exists" + err);
         res.status(500).send(err);
     });
 }

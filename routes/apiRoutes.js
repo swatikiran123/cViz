@@ -40,7 +40,8 @@ router.post('/api/v1/secure/admin/users/', users.create);
 router.put('/api/v1/secure/admin/users/:id', users.updateById);
 router.delete('/api/v1/secure/admin/users/:id', users.deleteById);
 router.get('/api/v1/secure/admin/users/email/:email', users.getByEmail);
-
+router.get('/api/v1/secure/admin/users/findAll/data', users.getAllUsers);
+router.get('/api/v1/secure/admin/users/find/find', users.getWithQuery);
 //Route for file upload
 //router.post('/api/v1/upload',fileupload.create);
 router.post('/api/v1/upload/:entity',fileupload.create);

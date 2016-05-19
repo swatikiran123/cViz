@@ -15,7 +15,8 @@ module.exports = {
 			"/public/assets/m/css/font.css",
 			"/public/assets/g/css/rateit.css",
 			"/public/assets/g/css/toaster.css",
-			"/public/assets/w/styles/tooltip.css"
+			"/public/assets/w/styles/tooltip.css",
+			"/public/assets/w/styles/angucomplete.css"
 		],
 		"prod":[
 			"/public/assets/w/styles/layout.min.css",
@@ -29,7 +30,8 @@ module.exports = {
 			"/public/assets/m/css/font.css",
 			"/public/assets/g/css/rateit.css",
 			"/public/assets/g/js/toaster.css",
-			"/public/assets/w/styles/tooltip.css"
+			"/public/assets/w/styles/tooltip.css",
+			"/public/assets/w/styles/angucomplete.css"
 		]
 	},
 
@@ -88,7 +90,9 @@ module.exports = {
 			"/public/d/feedbackDirective/script.js",
 			"/public/assets/g/js/rateit.js",
 			"/public/assets/g/js/toaster.js",
-			"/public/d/tooltipDirective/script.js"
+			"/public/d/tooltipDirective/script.js",
+			"/public/d/autoComplete/angucomplete.js",
+			"/public/d/autoComplete/script.js"
 		],
 		"prod":[
 		]

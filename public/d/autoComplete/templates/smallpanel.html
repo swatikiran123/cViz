@@ -1,0 +1,16 @@
+
+ <br>
+  {{title}}
+      <div class="panel  panel-default" class="panel-bg" ng-if="userModel!=null">
+      <div class="panel-body">
+        <div class="pull-left">
+            <img ng-src="{{userModel.avatar}}" class="img-circle userpic">
+         </div>
+         <div class="panelpad">
+          <div class="text-highlight">{{userModel.name.first}} {{userModel.name.last}}</div>
+          <div class="text-xsmall">{{userModel.jobTitle}}</div>
+          <div class="text-xsmall">{{userModel.organization}}</div>
+        </div>
+      
+      </div>
+    </div>
