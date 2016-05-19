@@ -889,7 +889,6 @@ $scope.addkeynote=function(keynoteDef){
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   { 
-    console.log(userdata.contactNumber);
     $scope.contactNo = [];
 
     $scope.contactNo.push({
@@ -910,14 +909,10 @@ $scope.addkeynote=function(keynoteDef){
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
     userdata.orgRef = $scope.visits.client._id;
-    console.log(userdata);
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
-      console.log('POST');
-      console.log(response);
     }).then(function() {
     // "complete" code here
     $http.get('/api/v1/secure/admin/users/email/' + userdata.email).success(function(response) {
-     console.log('GET') ;
      $scope.userId = response._id;
      $scope.showFlag = "user";
      $scope.visitors.push({
@@ -942,9 +937,12 @@ $scope.addkeynote=function(keynoteDef){
     $scope.message='';
     $scope.emailId = '';
     var influence= visitorDef.influence;
-    var emailid = visitorDef.visitorId.toLowerCase();
+    var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
-    $http.get('/api/v1/secure/admin/users/email/' + emailid).success(function(response) {
+
+    if(visitorDef.visitorId!=null)
+    {
+    $http.get('/api/v1/secure/admin/users/email/' + emailid.toLowerCase()).success(function(response) {
      if(response.association == 'customer' && response.orgRef == $scope.visits.client._id)
      { 
        $scope.userId = response._id;
@@ -967,35 +965,67 @@ $scope.addkeynote=function(keynoteDef){
       }
     }
 
-    else if(response.association !='customer')
+    else if(response.groups == 'exec')
+    { 
+     $scope.userId = response._id;
+     $scope.showFlag = "user";
+     $scope.visvalid= false;
+     $scope.visitors.push({
+      visitor: $scope.userId,
+      influence: influence
+    });
+
+     for(var i=0;i<$scope.visitors.length - 1;i++)
+     {
+      if($scope.userId == $scope.visitors[i].visitor)
+      {
+        $scope.showFlag = "noUser";
+        $scope.message = "Senior Executive Already Exists , Add Unique Senior Executive";
+        $timeout(function () { $scope.message = ''; }, 3000);
+        $scope.visitors.splice($scope.visitors.length - 1, 1);
+      }
+    }
+  }
+
+    else if(response.association !='customer' || response.groups!='exec')
     {
       $scope.showFlag = "noUser";
-      $scope.message = "User not found";
+      $scope.message = "User is not senior executive or client.";
       $timeout(function () { $scope.message = ''; }, 3000);
     }
 
     else if(response.orgRef != $scope.visits.client._id)
     {
-      console.log($scope.visits.client.name);
       $scope.showFlag = "noUser";
       $scope.message = "User does not belongs to " + $scope.visits.client.name;
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
+}
 
-.error(function(response, status){
-  $scope.showFlag = "notRegisteredUser";
-  if(status===404)
-  { 
+if(visitorDef.visitorId==null)
+{
+$scope.showFlag = "notRegisteredUser";
     console.log(influencedata);
     $scope.emailId = emailid;
     $scope.influencedata = influencedata;
     console.log($scope.emailId); 
-    $scope.message = "User not found plz register";
-  }
-  else
-    console.log("error with user directive");
-});
+    $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
+}  
+// .error(function(response, status){
+
+//   $scope.showFlag = "notRegisteredUser";
+//   if(status===404)
+//   { 
+//     console.log(influencedata);
+//     $scope.emailId = emailid;
+//     $scope.influencedata = influencedata;
+//     console.log($scope.emailId); 
+//     $scope.message = "User not found plz register";
+//   }
+//   else
+//     console.log("error with user directive");
+// });
 
 
     //if not found add visitor-post that and get id
@@ -1003,11 +1033,10 @@ $scope.addkeynote=function(keynoteDef){
     visitorDef.visitorId='';
     visitorDef.visitor = '';
     visitorDef.visitorUser = '';
+    $scope.selectedUser = '';
   };
   
   $scope.removevisitor = function(visitorDef,visitors){
-    console.log(visitors.indexOf(visitorDef));
-    // console.log(index);
     var index = visitors.indexOf(visitorDef);
     $scope.visitors.splice(index, 1);
     if (visitors.length == 0)
@@ -1201,6 +1230,15 @@ $scope.canceldialog = function() {
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
 };
+
+$scope.clearInput = function (id) {
+  if (id) {
+    $scope.$broadcast('angucomplete-alt:clearInput', id);
+  }
+  else{
+    $scope.$broadcast('angucomplete-alt:clearInput');
+  }
+}
 }])
 
 //Autocompleate - Directive '$timeout', function($timeout)

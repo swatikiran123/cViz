@@ -207,6 +207,7 @@ function getAllUsers(data){
 function getWithQuery(query, fields, maxRecs, sortEx){
     var deferred = Q.defer();
     var usersArray = [];
+    var usersArray1 = [];
     
     model
     .find(query)
@@ -226,11 +227,17 @@ function getWithQuery(query, fields, maxRecs, sortEx){
                 {
                 usersArray.push(transform(item[i]));
                 }
+
+                if(item[i].association == 'customer' || item[i].association=='employee')
+                {
+                    usersArray1.push(transform(item[i]));
+                }    
             }   
 
             deferred.resolve
             ({
-                "items": usersArray
+                "items": usersArray,
+                "items1":usersArray1
             });
     });
 
@@ -248,9 +255,9 @@ function getWithQuery(query, fields, maxRecs, sortEx){
                 avatar :user.avatar,
                 association :user.association
             }
-            console.log("******************************");
-            console.log(userData);
-            console.log("******************************");
+            // console.log("******************************");
+            // console.log(userData);
+            // console.log("******************************");
             return userData;
         }
     }
