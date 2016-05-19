@@ -1,30 +1,30 @@
 <div class="container">
   <div class="page-header">
    Client Account Management - Panel
-    <div class="sub-header">Managing Accounts</div>
-  </div>
+   <div class="sub-header">Managing Accounts</div>
+ </div>
 
-  <div class="container">
+ <div class="container">
    <div class="row">
-      <div class="col-xs-5">
-        <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />        
-      </div>
-      <div ng-include src="'/public/mods/clients/partials/sortSearch.html'"></div>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" placeholder="Search" ng-model="search.$" />        
     </div>
-    <div class="pnbdr panel panel-primary">
-      <!--div class="panel-heading">visits panels view</div--><div class="searchpad">
-      <div ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
-        <div class="row">
+    <div ng-include src="'/public/mods/clients/partials/sortSearch.html'"></div>
+  </div>
+  <div class="pnbdr panel panel-primary">
+    <!--div class="panel-heading">visits panels view</div--><div class="searchpad">
+    <div ng-repeat="clients in clientsList | filter: search |orderBy:orderByField:reverseSort">
+      <div class="row">
 
-          <div class="pn-bodypad">
-            <div class="col-xs-11">
-              <div class="panel panel-info">
-                <div class="panel-heading pn-bodyhdr" pull-left>
-                  <span>{{clients.name}}</span>
-                  <div class="pull-right">
-                    <!-- <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
-                    <a class="table-btn" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="Edit Client"><span class="fa fa-edit fa-lg"/></a>
-                    <a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>" 
+        <div class="pn-bodypad">
+          <div class="col-xs-11">
+            <div class="panel panel-info">
+              <div class="panel-heading pn-bodyhdr" pull-left>
+                <span>{{clients.name}}</span>
+                <div class="pull-right">
+                  <!-- <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
+                  <a class="table-btn" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="Edit Client"><span class="fa fa-edit fa-lg"/></a>
+                  <a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>" 
                     yes-text="Ok" no-text="Cancel">
 
                     <span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Client"/></a>
@@ -35,16 +35,18 @@
                   <div class="pn-inrbodypad">
                     <div class="row">
                       <div class="col-xs-4">
-                        <div class="text-xs">{{clients.vertical}}</div>
+                        <div class="text-xs">{{clients.subName}}</div>
                       </div>
                       <div class="col-xs-4">
                         <div class="text-xs">
-                          <div ng-repeat="regions in clients.regions track by $index">{{regions}}</div>
+                          <!-- <div ng-repeat="regions in clients.regions track by $index"></div> -->
+                          {{clients.regions}}
                         </div>
                       </div>
                       <div class="col-xs-4">
                         <div class="text-xs">
-                          <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div>
+                          <!-- <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div> -->
+                          {{clients.industry}}
                         </div>
                       </div>                      
                     </div>
