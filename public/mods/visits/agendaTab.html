@@ -89,8 +89,81 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="form-group col-xs-3">
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
+          <label>Vertical &nbsp;&nbsp; </label>
+
+          <select
+          ng-model="visits.vertical"
+          ng-options="data for data in vertical">
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-xs-9">
+      <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
+        <label>Offerings &nbsp;&nbsp; </label>
+
+        <select
+        ng-model="visits.offerings"
+        ng-options="data for data in offerings">
+      </select>
+    </div>
   </div>
 </div>
+
+<!-- CSC Personnel input-->
+<!--salesExec-CSCPersonnel-->
+<div class="row">
+  <div class="form-group col-xs-4">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
+      <label>Sales Executive &nbsp;&nbsp; :</label>
+      <div user type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee"></div>
+    </div>
+  </md-input-container>
+</div>
+  <!--accountGM-CSCPersonnel-->
+  <div class="form-group col-xs-4">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
+      <label>Account General Manager &nbsp;&nbsp; :</label>
+      <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee"></div>
+    </div>
+  </md-input-container>
+</div>
+<!--industryExec-CSCPersonnel-->
+<div class="form-group col-xs-4">
+  <md-input-container class="md-block">
+  <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
+    <label>Industry Executive &nbsp;&nbsp; :</label>
+    <div user type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee"></div>
+  </div>
+</md-input-container>
+</div>
+</div>
+<!-- globalDelivery-CSCPersonnel -->
+<div class="row">
+  <div class="form-group col-xs-6">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
+      <label >Global Delivery &nbsp;&nbsp; :</label>
+      <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee"></div>
+    </div>
+  </md-input-container></div>
+
+  <!-- cre-CSCPersonnel -->
+  <div class="form-group col-xs-6">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
+      <label>CRE &nbsp;&nbsp; :</label>
+      <div user type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee"></div>
+    </div>
+  </div>
+</md-input-container>
+</div>
+</div>
+
 <!-- visits agenda-->
 <md-input-container class="md-block">
 <label ng-show="visits.agenda" class="show-hide">Agenda</label>
@@ -121,10 +194,11 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
     <!-- visits AGM By input-->
     <div class="row">
       <div class="form-group col-xs-5">
+
         <md-input-container class="md-block">
-        <label>Sponsor</label>
-        <div class="form-group" ng-class="{ 'has-error': clientsForm.anchorUser.$touched && clientsForm.agmUser.$invalid }">
-          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="small" switch-mode="mode" user-type="employee"></div>
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.agmUser.$touched && !visitsForm.agmUser.$invalid }">
+          <label>Sponsor</label>
+          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="small" switch-mode="mode" user-type="employee" module-type="keynotes"></div>
         </div>
       </md-input-container>
     </div>
@@ -203,116 +277,116 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
                  </div>
                  {{$parent.arrayiwo=arrayiwo;""}}
                </div>
-              </div>
+             </div>
 
-              <div class="check-element animate-show"  ng-if="checked && mode=='edit'">
-                <!-- visits wbsCode input-->
-                <md-input-container class="md-block">
-                <label><h5>WBS Code</h5></label>
-                <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
-                <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
-                 <div class="messagenotify">
-                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                  <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
-                  <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
-                </md-input-container>
-                <br>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title"> <b>Attach IWO File</b></h3>
-                  </div>
-                  <div class = "panel-subheader pull-right">
-                  </div>
-                  <div class="panel-body">
-                    {{arrayiwo=$parent.arrayiwo;""}} 
-                   <i><h5>Please click Attach files to upload IWO File</h5></i><br>
-                   <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
-                   file-type="singleFile"/>
-                 </div>
-                 {{$parent.arrayiwo=arrayiwo;""}}
-               </div>
-              </div>
-            </div>
-            <div>
-              <div class="check-element animate-show" ng-if="!checked">
-               <!-- visits chargeCode input-->
-               <md-input-container class="md-block">
-               <label>Charge Code</label>
-               <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
-               <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
-                 <div class="messagenotify">
-                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                  <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
-                  <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
-                </md-input-container>
+             <div class="check-element animate-show"  ng-if="checked && mode=='edit'">
+              <!-- visits wbsCode input-->
+              <md-input-container class="md-block">
+              <label><h5>WBS Code</h5></label>
+              <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
+              <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
+               <div class="messagenotify">
+                <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
+                <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
+              </md-input-container>
+              <br>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"> <b>Attach IWO File</b></h3>
+                </div>
+                <div class = "panel-subheader pull-right">
+                </div>
+                <div class="panel-body">
+                  {{arrayiwo=$parent.arrayiwo;""}} 
+                  <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                  <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
+                  file-type="singleFile"/>
+                </div>
+                {{$parent.arrayiwo=arrayiwo;""}}
               </div>
             </div>
           </div>
-        </div>
-
-
-        <!--vist Interest interest. businessType visitType objective-->
-
-        <!-- visits businessType-->
-        <div class="col-xs-4"></div>
-
-      </div>
-
-      <!-- visits objective -->
-
-      <md-input-container class="md-block">
-      <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
-      <text-angular
-      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
-      <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
-        <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div>
+            <div class="check-element animate-show" ng-if="!checked">
+             <!-- visits chargeCode input-->
+             <md-input-container class="md-block">
+             <label>Charge Code</label>
+             <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
+             <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
+               <div class="messagenotify">
+                <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
+                <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
+              </md-input-container>
+            </div>
+          </div>
         </div>
       </div>
-    </md-input-container>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"> <b>Attachments</b></h3>
+
+      <!--vist Interest interest. businessType visitType objective-->
+
+      <!-- visits businessType-->
+      <div class="col-xs-4"></div>
+
+    </div>
+
+    <!-- visits objective -->
+
+    <md-input-container class="md-block">
+    <label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
+    <text-angular
+    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+    ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
+    <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
+      <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
       </div>
-      <div class = "panel-subheader pull-right">
-      </div>
-      <div class="panel-body">
-       <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
-       <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
-     </div>
+    </div>
+  </md-input-container>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"> <b>Attachments</b></h3>
+    </div>
+    <div class = "panel-subheader pull-right">
+    </div>
+    <div class="panel-body">
+     <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
+     <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
    </div>
+ </div>
 
-    <!-- visits status input-->
-    <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
-      <label><h4><b>Status</b></h4></label>
-      <md-input-container class="md-block">
-      <md-radio-group name="status" id="status" ng-model="status" required class="">
-      <div class="row">
-        <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
-        <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
-      </md-radio-group></div>
-      <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
-        <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-        </div>
-      </div>
-    </md-input-container>
+ <!-- visits status input-->
+ <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
+  <label><h4><b>Status</b></h4></label>
+  <md-input-container class="md-block">
+  <md-radio-group name="status" id="status" ng-model="status" required class="">
+  <div class="row">
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
+  </md-radio-group></div>
+  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+    <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+    </div>
   </div>
+</md-input-container>
+</div>
 
-  <div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
-  {{agendaEdit=true;""}}
-  <!--buttons-->
-  <div class="form-group">
-    <div class="pull-left">
-      <button type="submit" class="btn btn-success"
-      ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
-    </button>
-    <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-    yes-text="Ok" no-text="Cancel">Cancel</button>
-  </div>
+<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+{{agendaEdit=true;""}}
+<!--buttons-->
+<div class="form-group">
+  <div class="pull-left">
+    <button type="submit" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
+  </button>
+  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+  yes-text="Ok" no-text="Cancel">Cancel</button>
+</div>
 </div>
 </form>
 

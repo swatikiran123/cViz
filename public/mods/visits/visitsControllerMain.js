@@ -1,3 +1,4 @@
+
 'use strict';
 
 var visitsApp = angular.module('visits');
@@ -8,7 +9,7 @@ visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
     search: function (term) {
       //var client = {name: new RegExp(term, 'i')};
       var maxRecs = 10;
-      var fields = ('name _id');
+      var fields = ('name _id cscPersonnel');
       var sort = ({name:'ascending'});
       return $http({
         method: 'GET',
@@ -123,6 +124,28 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.closeSave=0;
   // $scope.sessiondbId = "";
 
+  $scope.cscPersonnel={};
+
+  $scope.salesExecId = "";
+  $scope.salesExecEmail = "";
+  $scope.salesExecUser =  "";
+
+  $scope.accountGMId = "";
+  $scope.accountGMEmail = "";
+  $scope.accountGMUser =  "";
+
+  $scope.industryExecId = "";
+  $scope.industryExecEmail = "";
+  $scope.industryExecUser =  "";
+
+  $scope.globalDeliveryId = "";
+  $scope.globalDeliveryEmail = "";
+  $scope.globalDeliveryUser =  "";
+
+  $scope.creId = "";
+  $scope.creEmail = "";
+  $scope.creUser =  "";
+
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
     $route.reload();
@@ -152,9 +175,19 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.location=response.values;
   });
 
+  //offerings - Http get for drop-down
+  $http.get('/api/v1/secure/lov/offerings').success(function(response) {
+    $scope.offerings=response.values;
+  });
+
   //Influence - Http get for drop-down
   $http.get('/api/v1/secure/lov/influence').success(function(response) {
     $scope.influence=response.values;
+  });
+
+  //vertical - Http get for drop-down
+  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
+    $scope.vertical=response.values;
   });
 
   //regions - Http get for drop-down
@@ -191,10 +224,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       $scope.allVisits = response;
       // console.log("after delete :"+$scope.allVisits)
       var allVisits = [];
+      // var key ="today";
       Object.keys($scope.allVisits).forEach(function (key) {
+
        var value = $scope.allVisits[key]
-        if(key === "today" || key === "next-week" || key === "further" || key === "next-on"){
-        // console.log(key);
+       if(key === "today" || key === "next-week" || key === "further" || key === "next-on"){
         allVisits.push.apply(allVisits, value.visits);
         // console.log(value.visits.length, allVisits.length);
       }
@@ -376,11 +410,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
             $scope.agmId = response.agm._id;
           }
           $scope.clientName= response.client.name;//auto fill with reff client db
-         
+
           if (response.feedbackTmpl!=undefined) {
             $scope.feedback= response.feedbackTmpl.title;//auto fill with reff feedback db
           }
-         
+
           if(response.sessionTmpl!=undefined) {
           $scope.session= response.sessionTmpl.title;//auto fill with reff feedback db
         }
@@ -393,6 +427,28 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
             order: visits.keynote[i].order
           });
         };
+        if (response.cscPersonnel!=undefined) {
+
+          $scope.salesExecUser = response.cscPersonnel.salesExec;
+          $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+          $scope.salesExecId = response.cscPersonnel.salesExec._id;
+
+          $scope.accountGMUser = response.cscPersonnel.accountGM;
+          $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+          $scope.accountGMId = response.cscPersonnel.accountGM._id;
+
+          $scope.industryExecUser = response.cscPersonnel.industryExec;
+          $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+          $scope.industryExecId = response.cscPersonnel.industryExec._id;
+
+          $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+          $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+
+          $scope.creUser = response.cscPersonnel.cre;
+          $scope.creEmail = response.cscPersonnel.cre.email;
+          $scope.creId = response.cscPersonnel.cre._id;
+        }
 
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
@@ -416,6 +472,11 @@ break;
     $scope.visits.visitAttachment = $scope.array;
     $scope.visits.wbscodeAttachment = $scope.arrayiwo;
     $scope.visits.visitGallery = $scope.arrayClose;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
 
     $scope.check= true;
     if ($scope.checked == false){
@@ -476,7 +537,14 @@ break;
           inData.keynote = $scope.keynotes;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
-
+          inData.cscPersonnel =$scope.cscPersonnel;
+          console.log($scope.cscPersonnel);
+          // console.log(inData.client);
+          var client ={};
+          client.cscPersonnel =$scope.cscPersonnel;
+          $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
+            // console.log("added");
+          })
           $http.post('/api/v1/secure/visits', inData).success(function(response) {
 
             $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
@@ -507,6 +575,15 @@ break;
 
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
+    inData.cscPersonnel =$scope.cscPersonnel;
+    var client ={};
+    client.cscPersonnel =$scope.cscPersonnel;
+    $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
+    })
+    .error(function(data, status){
+      growl.error("Error updating client");
+    }); // http put keynoges ends
+
     $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
      refresh();
      growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
@@ -533,10 +610,6 @@ break;
       }else
       $location.path("/visits/"+$scope.visits._id+"/edit"); 
     }
-
-
-
-
   })
 .error(function(data, status){
   growl.error("Error updating visit");
@@ -556,6 +629,48 @@ break;
     $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
 }
 
+// $scope.valppl=function(){
+
+//   if($scope.salesExecId == undefined || $scope.salesExecId == null || $scope.salesExecId == ""){
+//     $scope.people= true;
+//     $scope.errsalExe ="Sales Exec undefined"
+//     $timeout(function () { $scope.people =false;$scope.errsalExe=''; }, 25000);
+
+//   }
+//   else if($scope.accountGMId == undefined || $scope.accountGMId == null || $scope.accountGMId == ""){
+//     $scope.people= true;
+//     $scope.erragm ="Account GM undefined"
+//     $timeout(function () { $scope.people =false; $scope.erragm=''; }, 25000);
+
+//   }
+//   else if($scope.industryExecId == undefined || $scope.industryExecId == null || $scope.industryExecId == ""){
+//     $scope.people= true;
+//     $scope.errsalExe ="Industry Exec undefined"
+//     $timeout(function () { $scope.people =false;$scope.errsalExe=''; }, 25000);
+
+//   }
+//   else if($scope.globalDeliveryId == undefined || $scope.globalDeliveryId == null || $scope.globalDeliveryId == ""){
+//     $scope.people= true;
+//     $scope.errglo ="Global Delivery undefined"
+//     $timeout(function () { $scope.people =false;$scope.globalDeliveryId=''; }, 25000);
+
+//   }
+//   else if($scope.creId == undefined || $scope.creId == null || $scope.creId == ""){
+//     $scope.people= true;
+//     $scope.errcre ="CRE undefined"
+//     $timeout(function () { $scope.people =false;$scope.creId=''; }, 25000);
+
+//   }
+//   else if($scope.agmId == undefined || $scope.agmId == null || $scope.agmId == ""){
+//     $scope.people= true;
+//     $scope.errspon ="sponser undefined"
+//     $timeout(function () { $scope.people =false;$scope.agmId=''; }, 25000);
+
+//   }
+//   else{ $scope.people= false;
+//    $scope.save();}
+//  }
+
    //add vmanager
    $scope.AddVmanager=function(){
     $scope.visits.anchor = $scope.anchorman;
@@ -569,6 +684,12 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
+    $scope.visits.cscPersonnel=$scope.cscPersonnel;
     // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
@@ -593,6 +714,13 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
+    $scope.visits.cscPersonnel=$scope.cscPersonnel;
+
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
 
@@ -615,6 +743,13 @@ break;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
     $scope.visits.visitGallery = $scope.arrayClose;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
+    $scope.visits.cscPersonnel=$scope.cscPersonnel;
+
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
 
@@ -634,13 +769,21 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
+    $scope.visits.cscPersonnel=$scope.cscPersonnel;
+
 
     var inData     = $scope.visits;
     inData.keynote = $scope.keynotes;
     
     $scope.errinData=[];
     $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
-      if(response.errMessgs==0){
+      console.log(response)
+      if(response == undefined || response == 0 || response == null){
         $scope.showNotifie($scope.visits.status);
       }
       else{
@@ -720,6 +863,13 @@ break;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
     $scope.visits.sessionTmpl = $scope.sessionId;
+    $scope.cscPersonnel.salesExec = $scope.salesExecId;
+    $scope.cscPersonnel.accountGM= $scope.accountGMId;
+    $scope.cscPersonnel.industryExec = $scope.industryExecId;
+    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+    $scope.cscPersonnel.cre= $scope.creId;
+    $scope.visits.cscPersonnel=$scope.cscPersonnel;
+
     // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
@@ -764,6 +914,13 @@ break;
   $scope.visits.invitees = $scope.arraydata;
   $scope.visits.feedbackTmpl = $scope.feedbackId;
   $scope.visits.sessionTmpl = $scope.sessionId;
+  $scope.cscPersonnel.salesExec = $scope.salesExecId;
+  $scope.cscPersonnel.accountGM= $scope.accountGMId;
+  $scope.cscPersonnel.industryExec = $scope.industryExecId;
+  $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+  $scope.cscPersonnel.cre= $scope.creId;
+  $scope.visits.cscPersonnel=$scope.cscPersonnel;
+
   var inData       = $scope.visits;
   inData.keynote = $scope.keynotes;
 
@@ -1212,24 +1369,35 @@ visitsApp.directive("autocomplete", ["AutoCompleteService", "$timeout", function
             }
             else{
               response($.map(autocompleteResults, function (autocompleteResult) {
+                console.log(autocompleteResult)
                 return {
                   label: autocompleteResult.name,
                   value: autocompleteResult.name,
-                  id: autocompleteResult._id
+                  id: autocompleteResult._id,
+                  // salesExecId: autocompleteResult.cscPersonnel.salesExec,
+                  // accountGMId: autocompleteResult.cscPersonnel.accountGM,
+                  // industryExecId: autocompleteResult.cscPersonnel.industryExec,
+                  // globalDeliveryId: autocompleteResult.cscPersonnel.globalDelivery,
+                  // creId: autocompleteResult.cscPersonnel.cre
                 }
               }))
             }
           });
-        },
-        minLength: 3,
-        select: function (event, selectedItem) {
-          scope.clientName= selectedItem.item.value;
-          scope.clientId= selectedItem.item.id;
-          scope.autoFail=false;
-          scope.$apply();
-          event.preventDefault();
-        }
-      });
+},
+minLength: 3,
+select: function (event, selectedItem) {
+  scope.clientName= selectedItem.item.value;
+  scope.clientId= selectedItem.item.id;
+  // scope.salesExecId = selectedItem.item.salesExecId;
+  // scope.accountGMId= selectedItem.item.accountGMId;
+  // scope.industryExecId = selectedItem.item.industryExecId;
+  // scope.globalDeliveryId = selectedItem.item.globalDeliveryId;
+  // scope.creId= selectedItem.item.creId;
+  scope.autoFail=false;
+  scope.$apply();
+  event.preventDefault();
+}
+});
 }
 };
 }]);
