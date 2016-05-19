@@ -107,9 +107,9 @@
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 slctsession">
                 <i>Select Session Type</i>
                 <br>
-                <select id="type" ng-model="schedule.session.type" required>
+                <select class="session-type" id="type" ng-model="schedule.session.type" required>
                  <option value="" disabled></option>
-                 <option ng-repeat="ty in prTypes" value="{{ty.toLowerCase()}}">{{ty}}</option>
+                 <option ng-repeat="type in sessionType" value="{{type.toLowerCase()}}">{{type}}</option>
                </select>
               </div>
          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
@@ -476,6 +476,10 @@
 </div>
 
 <style>
+
+  .session-type{
+    width: 130px;
+  }
 
   .slctsession{
     padding-left: 250px;

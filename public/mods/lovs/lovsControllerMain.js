@@ -36,6 +36,12 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
   });
 
 
+    $http.get('/api/v1/secure/lov/sessionType').success(function(response) {
+      $scope.sessionType = response.values;
+    // console.log($scope.vertical);
+  });
+
+
 
     $scope.addInfluence = function() {
       if ($scope.newInfluenceValue == '' || $scope.newInfluenceValue == undefined)
@@ -145,7 +151,7 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
 
 
 
-    $scope.addVertical = function(newVerticalValue) {
+    $scope.addVertical = function() {
       if ($scope.newVerticalValue == '' || $scope.newVerticalValue == undefined)
       {
         growl.error(parse("Please enter a Vertical"));
@@ -164,6 +170,30 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         });
       }
     }
+
+
+    $scope.addSessionType = function() {
+      console.log($scope.newSessionTypeValue);
+      if ($scope.newSessionTypeValue == '' || $scope.newSessionTypeValue == undefined)
+      {
+        growl.error(parse("Please enter a Session-Type"));
+      }
+      else
+      {
+        $scope.sessionType.push($scope.newSessionTypeValue);
+        var obj ={} ;
+        obj.values = $scope.sessionType;
+
+        $http.put('/api/v1/secure/lov/sessionType', obj).success(function(response)
+        {
+          console.log(response);
+          growl.info(parse("New Vertical [%s]<br/>added successfully",$scope.newSessionTypeValue));
+          $scope.newSessionTypeValue = '';
+        });
+      }
+    }
+
+
 
 
 
@@ -323,6 +353,32 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
 
 
 
+    $scope.removeSessionType = function(selectedObjIndex){
+      $http.get('/api/v1/secure/lov/sessionType').success(function(response) {
+        $scope.sessionType = response.values;
+
+        if (selectedObjIndex == null || selectedObjIndex=== undefined || selectedObjIndex === "" || selectedObjIndex === -1)
+        {
+          growl.error(parse("Please select a SessionType to remove"));
+        }
+        else
+        {
+          growl.info(parse("SessionType [%s]<br/>deleted successfully",$scope.sessionType[selectedObjIndex]));
+          $scope.sessionType.splice(selectedObjIndex, 1);
+
+          var obj = {};
+          obj.values = $scope.sessionType;
+
+          $http.put('/api/v1/secure/lov/sessionType', obj).success(function(response)
+          {
+            console.log(response);
+          });
+        }
+      });
+    }
+
+
+
     $scope.removeAll = function(val) {
       $http.get('/api/v1/secure/lov/'+val).success(function(response) {
 
@@ -389,6 +445,18 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
             $scope.vertical.splice(i);
             var obj = {};
             obj.values = $scope.vertical;
+            console.log(obj);
+          }
+        }
+
+        else if(val == 'sessionType')
+        {
+          $scope.sessionType = response.values;
+          growl.error(parse("sessionTypes deleted successfully"));
+          for (var i = 0; i < $scope.sessionType.length; i++) {
+            $scope.sessionType.splice(i);
+            var obj = {};
+            obj.values = $scope.sessionType;
             console.log(obj);
           }
         }

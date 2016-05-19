@@ -58,6 +58,12 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			});
 		}
 
+		$http.get('/api/v1/secure/lov/sessionType').success(function(response) {
+			 $scope.sessionType = response.values;
+			// console.log($scope.prTypes);
+		});
+
+
 		var refresh = function(){
 			$http.get('/api/v1/secure/visitSchedules/visit/' + $scope.visitId ).success(function(response) {
 				$scope.scheduleList = response;
@@ -311,26 +317,26 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  }; // update method ends
 
 	  // type field dropdown list
-	  $scope.prTypes = ['Presentation','Discussion','Breakfast','Tea-Break','Lunch','Dinner','Floor-Walk'];
+	  // $scope.prTypes = ['Presentation','Discussion','Breakfast','Tea-Break','Lunch','Dinner','Floor-Walk', 'Visit-Wrap-Up'];
 
 	  // location field dropdown list
-	  $scope.locations = [{
-	    "city" : "Hyderabad",
-	    "rooms": ['Hyd Board Room','B7 1st Floor Conference Room','B4 Cafeteria',
-	    'B4 Executive Dining Room','Hyd Amphi Theatre','Hyd Main Lobby']
-	  },
-	  {
-	    "city" : "Noida",
-	    "rooms": ['Noida Board Room','Noida Cafeteria','Noida Amphi Theatre','Noida Main Lobby']
-	  },
-	  {
-	    "city" : "Chennai",
-	    "rooms": ['Chennai Lobby Area','Chennai Ex Lunch','Chennai Amphi Theatre','Chennai Main Lobby']
-	  },
-	  {
-	    "city" : "Bangalore",
-	    "rooms": ['Bng Lobby Area','Bng Ex Lunch','Bng Amphi Theatre','Bng Main Lobby']
-	  }];
+	  // $scope.locations = [{
+	  //   "city" : "Hyderabad",
+	  //   "rooms": ['Hyd Board Room','B7 1st Floor Conference Room','B4 Cafeteria',
+	  //   'B4 Executive Dining Room','Hyd Amphi Theatre','Hyd Main Lobby']
+	  // },
+	  // {
+	  //   "city" : "Noida",
+	  //   "rooms": ['Noida Board Room','Noida Cafeteria','Noida Amphi Theatre','Noida Main Lobby']
+	  // },
+	  // {
+	  //   "city" : "Chennai",
+	  //   "rooms": ['Chennai Lobby Area','Chennai Ex Lunch','Chennai Amphi Theatre','Chennai Main Lobby']
+	  // },
+	  // {
+	  //   "city" : "Bangalore",
+	  //   "rooms": ['Bng Lobby Area','Bng Ex Lunch','Bng Amphi Theatre','Bng Main Lobby']
+	  // }];
 
 
 		$scope.showAdvanced = function(ev) {
