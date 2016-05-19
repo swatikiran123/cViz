@@ -7,7 +7,9 @@ meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope', '$http', '
     $scope.hideFilter = true;
     $scope.hideAddRow = true;
     $scope.action = "none";
-
+  if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+    $scope.visitGrid= true;
+  }
     //fetching all the meetingPlaces details by calling refresh function
     var refresh = function() {
       $http.get('/api/v1/secure/meetingPlaces').success(function(response) {

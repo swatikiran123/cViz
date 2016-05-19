@@ -1,0 +1,85 @@
+<!-- <div ng-controller="clientsControllerMain"> -->
+  <div class="data-form">
+    <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
+      <br>
+      <div class="row">
+
+        <div class="col-md-4 text-center">
+          <br>
+          <br>
+          <img ng-if="showAvatar == false" ng-src="/public/assets/g/imgs/avatar.jpg" width="122" height="122" 
+          />
+          <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+          style="background-size:cover;"/>
+          <div>
+           <md-button class="md-primary md-raised" 
+           ng-click="addClientLogo($event)">
+           Add Logo
+         </md-button>
+       </div>
+     </div>
+     <div class="col-md-8">
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Parent Account Name </label>
+        <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
+        <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The name  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The name should contain minimum 5 characters.</div></div></div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Child Account Name </label>
+        <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.subName">
+        <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The Child Customer  name  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The  Child Customer name should contain minimum 5 characters.</div></div></div>
+        </md-input-container> 
+      </div>
+
+      <div>
+
+
+        <md-input-container class="md-block">
+        <label>Industry</label>
+        <input md-maxlength="100" minlength="5" required name="industry" ng-model="clients.industry">
+        <div ng-messages="clientsForm.industry.$error" ng-show="clientsForm.industry.$touched || !clientsForm.industry.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The Industry  has to be less than 30 characters long.</div>
+          <div ng-message="minlength">The Industry should contain minimum 5 characters.</div></div></div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+        <label>SFDC Id</label>
+        <input md-maxlength="40" minlength="3" required name="SFDCId" ng-model="clients.SFDCId">
+      </md-input-container>
+    </div>
+    <div>
+      <label>Region &nbsp;&nbsp; </label>
+      <select
+      ng-model="clients.regions"
+      ng-options="data for data in regions">
+    </select>
+  </div>
+</div>
+</div>
+<!-- Button -->
+<div class="form-group" ng-if="clientModule">
+  <md-button class="md-warn md-raised pull-right" 
+  ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
+  yes-text="Ok" no-text="Cancel">
+  Cancel
+</md-button> 
+
+<md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid">
+Submit
+</md-button>
+</div>
+</form>
+</div>
+<!-- </div> -->

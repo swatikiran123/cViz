@@ -10,7 +10,7 @@
   </li>
 
   <!-- Additional pull down starts here -->
-  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin">
+  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin || <%=locals.user.get('groups')%> == vManager">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
       <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">

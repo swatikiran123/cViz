@@ -3,8 +3,8 @@
 
 var clientsApp = angular.module('clients');
 
-clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload',
-  function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload) {
+clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload','$rootScope',
+  function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
 
     var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -38,11 +38,15 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.creEmail = "";
   $scope.creUser =  "";
 
-
+  $scope.clientModule=true;
+  $scope.showAvatar =false;
   //regions - Http get for drop-down
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
     $scope.regions=response.values;
   });
+  // if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+  //   $scope.visitGrid= true;
+  // }
 
   var refresh = function() {
 
@@ -60,7 +64,11 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
         console.log($scope.clients)
-        $scope.avatar= response.logo;$scope.showAvatar = true
+        if (response.logo!=undefined || response.logo!=null || response.logo!="") {
+          $scope.showAvatar = true
+          $scope.avatar= response.logo;
+        }
+        else $scope.showAvatar = false;
     // reformat date fields to avoid type compability issues with <input type=date on ng-model
     $scope.clients.startDate = new Date($scope.clients.createdOn);
   });
