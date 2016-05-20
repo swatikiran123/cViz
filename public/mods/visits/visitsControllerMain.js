@@ -1042,7 +1042,20 @@ $scope.addkeynote=function(keynoteDef){
 //   $scope.keynotes.splice(index, 1);
 // };
 // Visit keynote table end
+  
+  function toTitleCase(string)
+  {
+      // \u00C0-\u00ff for a happy Latin-1
+      return string.toLowerCase().replace(/_/g, ' ').replace(/\b([a-z\u00C0-\u00ff])/g, function (_, initial) {
+        return initial.toUpperCase();
+      }).replace(/(\s(?:de|a|o|e|da|do|em|ou|[\u00C0-\u00ff]))\b/ig, function (_, match) {
+        return match.toLowerCase();
+      });
+    }
 
+  $scope.inputChanged = function(str) {
+      $scope.jobTitle = str;
+  }  
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   { 
@@ -1066,6 +1079,15 @@ $scope.addkeynote=function(keynoteDef){
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
     userdata.orgRef = $scope.visits.client._id;
+    if(userdata.jobTitle!=null)
+    {
+    userdata.jobTitle = toTitleCase(userdata.jobTitle);
+    }
+
+    if(userdata.jobTitle==null)
+    {
+      userdata.jobTitle = toTitleCase($scope.jobTitle);
+    }
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
     // "complete" code here
