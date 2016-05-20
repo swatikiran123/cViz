@@ -46,7 +46,11 @@
 			<tr ng-hide="hideAddRow">
 				<td>
 					<span ng-hide="hideAddRow">
-						<input type="text" ng-model="meetingPlaces.location">
+						<!-- <input type="text" ng-model="meetingPlaces.location"> -->
+						<select 
+						ng-model="meetingPlaces.location" 
+						ng-options="data for data in location">
+						</select>
 					</span>
 				</td>
 				<td>
