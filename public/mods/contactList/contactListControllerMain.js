@@ -24,7 +24,7 @@ contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$rou
   $http.get('/api/v1/secure/lov/contactType').success(function(response) {
     $scope.type=response.values;
   });
-  if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
     $scope.visitGrid= true;
   }
 

@@ -1,4 +1,3 @@
-
 'use strict';
 
 var clientsApp = angular.module('clients');
@@ -11,43 +10,16 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
-  $scope.small= "small";
-  $scope.large= "LARGE";
-  $scope.medium= "medium";
-
-
-  $scope.cscPersonnel={};
-
-  $scope.salesExecId = "";
-  $scope.salesExecEmail = "";
-  $scope.salesExecUser =  "";
-
-  $scope.accountGMId = "";
-  $scope.accountGMEmail = "";
-  $scope.accountGMUser =  "";
-
-  $scope.industryExecId = "";
-  $scope.industryExecEmail = "";
-  $scope.industryExecUser =  "";
-
-  $scope.globalDeliveryId = "";
-  $scope.globalDeliveryEmail = "";
-  $scope.globalDeliveryUser =  "";
-
-  $scope.creId = "";
-  $scope.creEmail = "";
-  $scope.creUser =  "";
-
   $scope.clientModule=true;
   $scope.showAvatar =false;
   //regions - Http get for drop-down
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
     $scope.regions=response.values;
   });
-  // if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-  //   $scope.visitGrid= true;
-  // }
-
+  $scope.isSaving=false;
+  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+    $scope.isSaving= true; 
+  }
   var refresh = function() {
 
     $http.get('/api/v1/secure/clients').success(function(response) {
@@ -64,7 +36,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
         console.log($scope.clients)
-        if (response.logo!=undefined || response.logo!=null || response.logo!="") {
+        if (response.logo!=undefined) {
           $scope.showAvatar = true
           $scope.avatar= response.logo;
         }
@@ -79,39 +51,38 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   refresh();
 
-  $scope.save = function(){
+  $scope.save = function(clients){
+    console.log(clients);
     // set noteBy based on the user picker value
-    $scope.cscPersonnel.salesExec = null;
-    $scope.cscPersonnel.accountGM= null;
-    $scope.cscPersonnel.industryExec = null;
-    $scope.cscPersonnel.globalDelivery = null;
-    $scope.cscPersonnel.cre= null;
-
     switch($scope.mode)    {
       case "add":
-      $scope.create();
+      $scope.create(clients);
       break;
 
       case "edit":
-      $scope.update();
+      $scope.update(clients);
       break;
       } // end of switch scope.mode ends
 
       $location.path("clients/list");
   } // end of save method
 
-  $scope.create = function() {
-    var inData  = $scope.clients;
-    inData.cscPersonnel =$scope.cscPersonnel;
-    inData.logo=$scope.avatar;
-    console.log(inData.cscPersonnel);
-    console.log(inData)
-    $http.post('/api/v1/secure/clients', inData).success(function(response) {
-      refresh();
-      growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
-    })
-    .error(function(data, status){
-      growl.error("Error adding client");
+  $scope.create = function(clients) {
+    var inData  = clients;
+    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+      inData.status="final";
+    }else 
+      inData.status="draft";
+
+    if ($scope.avatar!=undefined) {
+      inData.logo=avatar;}
+      console.log(inData)
+      $http.post('/api/v1/secure/clients', inData).success(function(response) {
+        refresh();
+        growl.info(parse("client [%s]<br/>Added successfully", clients.name));
+      })
+      .error(function(data, status){
+        growl.error("Error adding client");
     }); // http post keynoges ends
   }; // create method ends
 
@@ -126,9 +97,8 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     }); // http delete keynoges ends
   }; // delete method ends
 
-  $scope.update = function() {
-    var inData  = $scope.clients;
-    inData.cscPersonnel =$scope.cscPersonnel;
+  $scope.update = function(clients) {
+    var inData  = clients;
     inData.logo=$scope.avatar;
 
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {

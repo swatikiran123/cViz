@@ -1,97 +1,98 @@
 <div class="container">
  <!-- page header/subheader -->
 
-    <div ng-if="mode=='add'" class="page-header">
-      Keynotes Management - Add
-      <div class="sub-header">Add new keynote
-      </div>
-    </div>
+ <div ng-if="mode=='add'" class="page-header">
+  Keynotes Management - Add
+  <div class="sub-header">Add new keynote
+  </div>
+</div>
 
-    <div ng-if="mode=='edit'" class="page-header">
-      Keynotes Management - Edit
-      <div class="sub-header">Edit keynote {{keynotes.title}}
-      </div>
-    </div>
+<div ng-if="mode=='edit'" class="page-header">
+  Keynotes Management - Edit
+  <div class="sub-header">Edit keynote {{keynotes.title}}
+  </div>
+</div>
 
-   <!-- keynotes pageheader input--> 
-      <form name="keynotesForm">
-      <md-input-container class="md-block">
-        <label>Title</label>
-        <input md-maxlength="30" minlength="5" required name="title" ng-model="keynotes.title">
-        <div ng-messages="keynotesForm.title.$error" ng-show="keynotesForm.title.$touched || !keynotesForm.title.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-         <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
-      </md-input-container>
+<!-- keynotes pageheader input--> 
+<form name="keynotesForm">
+  <fieldset ng-disabled="isSaving">
+    <md-input-container class="md-block">
+    <label>Title</label>
+    <input md-maxlength="30" minlength="5" required name="title" ng-model="keynotes.title">
+    <div ng-messages="keynotesForm.title.$error" ng-show="keynotesForm.title.$touched || !keynotesForm.title.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+    </md-input-container>
 
 
     <md-input-container class="md-block">
-        <label>Description</label>
-        <textarea md-maxlength="1000" minlength="5" required name="desc" ng-model="keynotes.desc"></textarea>
-        <div ng-messages="keynotesForm.desc.$error" ng-show="keynotesForm.desc.$touched || !keynotesForm.desc.$pristine">
-        <div class="messagenotify">
-         <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The description has to be less than 1000characters long.</div>
-         <div ng-message="minlength" >the description should contain minimum 5characters</div></div></div>
-      </md-input-container>
-       
-         
-    <div class="field">
-                  <label ng-show="keynotes.noteText" class="show-hide">Note</label><br>
-        <text-angular 
-                    ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-                                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
-                         ng-model="keynotes.noteText" name="note"/>
-         </text-angular></div>
-              <!-- {{noteById=$parent.noteById;""}}{{noteById1=$parent.noteById;""}}{{noteById2=$parent.noteById;""}}-->
-        <div class="row">
-          <div class="form-group col-xs-4">
-            <md-input-container class="form-group md-block">
-              <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser.$touched && keynotesForm.noteByUser.$invalid }">
-                <label>Select Signatory &nbsp;&nbsp; :</label>
-                <div userauto type="picker" user-model="noteByUser" view-type="medium" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory"></div>
-              </div>
-            </md-input-container>
-          </div>
-          <!--accountGM-CSCPersonnel-->
-          <div class="form-group col-xs-4">
-               <md-input-container class="form-group md-block">
-               <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser1.$touched && keynotesForm.noteByUser1.$invalid }">
-                <label>Select Signatory1 &nbsp;&nbsp; :</label>
-                <div userauto type="picker" user-model="noteByUser1" view-type="medium" user-id="noteById1" 
-                user-email="noteByEmail1" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory1"></div>
-                </div>
-            </md-input-container>
-          </div>
-          <!--industryExec-CSCPersonnel-->
-          <div class="form-group col-xs-4">
-            <md-input-container class="form-group md-block">
-          <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser2.$touched && keynotesForm.noteByUser2.$invalid }">
-            <label>Select Signatory2 &nbsp;&nbsp; :</label>
-            <div userauto type="picker" user-model="noteByUser2" view-type="medium" user-id="noteById2" user-email="noteByEmail2" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory2"></div>
-          </div>
-        </md-input-container>
+    <label>Description</label>
+    <textarea md-maxlength="1000" minlength="5" required name="desc" ng-model="keynotes.desc"></textarea>
+    <div ng-messages="keynotesForm.desc.$error" ng-show="keynotesForm.desc.$touched || !keynotesForm.desc.$pristine">
+      <div class="messagenotify">
+       <div ng-messages-include="/public/mods/partials/messages.html"></div>
+       <div ng-message="md-maxlength">The description has to be less than 1000characters long.</div>
+       <div ng-message="minlength" >the description should contain minimum 5characters</div></div></div>
+     </md-input-container>
+
+
+     <div class="field">
+      <label ng-show="keynotes.noteText" class="show-hide">Note</label><br>
+      <text-angular 
+      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]" 
+      ng-model="keynotes.noteText" name="note"/>
+    </text-angular></div>
+    <!-- {{noteById=$parent.noteById;""}}{{noteById1=$parent.noteById;""}}{{noteById2=$parent.noteById;""}}-->
+    <div class="row">
+      <div class="form-group col-xs-4">
+        <md-input-container class="form-group md-block">
+        <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser.$touched && keynotesForm.noteByUser.$invalid }">
+          <label>Select Signatory &nbsp;&nbsp; :</label>
+          <div userauto type="picker" user-model="noteByUser" view-type="medium" user-id="noteById" user-email="noteByEmail" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory"></div>
         </div>
-      </div>
+      </md-input-container>
+    </div>
+    <!--accountGM-CSCPersonnel-->
+    <div class="form-group col-xs-4">
+     <md-input-container class="form-group md-block">
+     <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser1.$touched && keynotesForm.noteByUser1.$invalid }">
+      <label>Select Signatory1 &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="noteByUser1" view-type="medium" user-id="noteById1" 
+      user-email="noteByEmail1" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory1"></div>
+    </div>
+  </md-input-container>
+</div>
+<!--industryExec-CSCPersonnel-->
+<div class="form-group col-xs-4">
+  <md-input-container class="form-group md-block">
+  <div class="form-group" ng-class="{ 'has-error': keynotesForm.noteByUser2.$touched && keynotesForm.noteByUser2.$invalid }">
+    <label>Select Signatory2 &nbsp;&nbsp; :</label>
+    <div userauto type="picker" user-model="noteByUser2" view-type="medium" user-id="noteById2" user-email="noteByEmail2" switch-mode="mode" user-type="employee" module-type="keynotes" title="Signatory2"></div>
+  </div>
+</md-input-container>
+</div>
+</div>
 
-          <!-- <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div> -->
+<!-- <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div> -->
 
 
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"> <b>Attachments</b></h3>
-              </div>
-              <div class = "panel-subheader pull-right">
-              </div>
-              <div class="panel-body">
-               <i><h5>Please click Attach files to add images, videos or audio files.</h5></i><br>
-               <span class="error text-info"><b> Note: </b>This is a mandatory field.</span>
-               <fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile" ng-click="keyTrue()"/>
-             </div>
-           </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Attachments</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+   <i><h5>Please click Attach files to add images, videos or audio files.</h5></i><br>
+   <span class="error text-info"><b> Note: </b>This is a mandatory field.</span>
+   <fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile" ng-click="keyTrue()"/>
+ </div>
+</div>
 
- 
+
 <!--md-chips 
        name="tags"
         ng-model="tags"
@@ -100,18 +101,18 @@
         delete-button-label="Remove Tag"
         delete-hint="Press delete to remove tag"
         secondary-placeholder="+Tag"></md-chips--></md-input-container>
-<br>
-          <div class="form-group">
-              <div class="pull-left">
-                <button type="submit" class="btn btn-success" 
-                  ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone">Submit
-                </button>
-                <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">Cancel</button>
-              </div>
-           </div>
-        
-</form></div>
+        <br>
+        <div class="form-group">
+          <div class="pull-left">
+            <button type="submit" class="btn btn-success" 
+            ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone">Submit
+          </button>
+          <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+          yes-text="Ok" no-text="Cancel">Cancel</button>
+        </div>
+      </div>
+    </fieldset>
+  </form></div>
 
 
 

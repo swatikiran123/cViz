@@ -22,9 +22,12 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.small= "small";
       $scope.large= "LARGE";
       $scope.medium= "medium";
+      $scope.isSaving= false; 
 
       $scope.keyTruedone=true;
-
+      if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+        $scope.isSaving= true; 
+      }
       var refresh = function() {
         $http.get('/api/v1/secure/keynotes').success(function(response) {
 
@@ -68,7 +71,7 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
                 $scope.noteById2 = response.noteBy2._id;
               }
 
-          });
+            });
 
       } // switch scope.mode ends
     }); // get keynote call back ends
@@ -174,16 +177,16 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       var user = response;
       $scope.keynotes.receiver = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
     });*/
-  }
+}
 
-  $scope.removeImageItem = function(index){
-    console.log($scope.array);
-    $scope.array.splice(index, 1);
-    console.log($scope.array);
-  };
-  $scope.keyTrue=function(){
-    console.log("reached");
-    $scope.keyTruedone=false;
-  }
+$scope.removeImageItem = function(index){
+  console.log($scope.array);
+  $scope.array.splice(index, 1);
+  console.log($scope.array);
+};
+$scope.keyTrue=function(){
+  console.log("reached");
+  $scope.keyTruedone=false;
+}
 
 }]);﻿ // controller ends

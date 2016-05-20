@@ -23,7 +23,8 @@ var clientSchema = new mongoose.Schema({
 		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User'},
 		cre 						: { type: Schema.Types.ObjectId, ref: 'User'},
 	},
-	// netPromoterScore				: { type: Number }
+	status 					: {type: String, enum: ['draft', 'final'], trim: true},
+	
 	
 });
 

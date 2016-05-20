@@ -8,6 +8,9 @@ angular.module('lovs')
         templateUrl: '/public/mods/lovs/lovsViewAdd.html',
         controller: 'lovsControllerMain'
       })
-
+      .when('/lovs/details/', {
+        templateUrl: '/public/mods/lovs/vManView.html',
+        controller: 'lovsControllerMain'
+      })
     }
   ]);

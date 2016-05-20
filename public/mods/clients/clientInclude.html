@@ -1,6 +1,8 @@
 <!-- <div ng-controller="clientsControllerMain"> -->
-  <div class="data-form">
-    <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
+<div class="data-form">
+  <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
+    <fieldset ng-disabled="isSaving">
+
       <br>
       <div class="row">
 
@@ -76,10 +78,11 @@
   Cancel
 </md-button> 
 
-<md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid">
+<md-button class="md-primary md-raised pull-right" ng-click="save(clients)" ng-disabled="clientsForm.$invalid">
 Submit
 </md-button>
 </div>
+</fieldset>
 </form>
 </div>
 <!-- </div> -->

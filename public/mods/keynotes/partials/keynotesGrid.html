@@ -7,7 +7,7 @@
       <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
       <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" ng-if="!isSaving">
       <a class="btn btn-default btn-sm pull-right" href="#/keynotes/add">Add New Keynote</a>
     </div>
     <div ng-include src="'/public/mods/keynotes/partials/sortSearch.html'"></div>
@@ -72,8 +72,8 @@
        <!--  <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
         <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="Edit Keynote"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(keynote)" confirm-dialog header-text="Delete Keynote" content="Are you sure you want to delete the keynote with keynote title <b>{{keynote.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Keynote"/></a>
-        <a class="table-btn" ng-click="copy(keynote)" tooltips tooltip-template="Copy Keynote"><span class="fa fa-files-o fa-lg" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Keynote"/ ng-if="!isSaving"></a>
+        <a class="table-btn" ng-click="copy(keynote)" tooltips tooltip-template="Copy Keynote" ng-if="!isSaving"><span class="fa fa-files-o fa-lg" /></a>
       </td>
     </tr>
   </tbody>  
