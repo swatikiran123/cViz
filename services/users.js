@@ -153,12 +153,16 @@ function getByEmail(email){
     return deferred.promise;
 } // gentOneById method ends
 
-function getAllUsers(data){
+function getAllUsers(query, fields, maxRecs, sortEx){
 
     var deferred = Q.defer();
     var usersArray = [];
+    var userDesig = []
     model
-    .find(data)
+    .find(query)
+    .limit(maxRecs)
+    .select(fields)
+    .sort(sortEx)
     .exec(function(err, list){
         if(err) {
             console.log(err);
@@ -168,38 +172,52 @@ function getAllUsers(data){
             for(var i=0;i<list.length;i++)
             {        
                 // deferred.resolve(list);
-                if(list[i].association=='employee')
-                {
-                usersArray.push(transform(list[i]));
-                }
+                // if(usersArray.indexOf(list[i].jobTitle) === -1)
+                // {
+                // usersArray.push(transform(list[i]));
+                // }
+
+                if(usersArray.indexOf(list[i].jobTitle) === -1){
+                    usersArray.push(list[i].jobTitle);
+
+                }    
             }   
 
+            var data = usersArray;
+
+            for (var i = 0; i < data.length; i++) {
+                // console.log(data[i]);
+                userDesig.push({'designation':data[i]});
+            }
+
+            console.log(userDesig.length);
             deferred.resolve
             ({
-                "items": usersArray
+                "items": userDesig
             });
     });
 
-    function transform(user)
-    {
-        if (user==null) {
-            console.log("error in adding");
-        }
-        else{
-            var userData={
-                userid : user._id,
-                firstName :user.name.first,
-                lastName :user.name.last,
-                email : user.email,
-                avatar :user.avatar,
-                association :user.association
-            }
-            console.log("******************************");
-            console.log(userData);
-            console.log("******************************");
-            return userData;
-        }
-    }
+    // function transform(user)
+    // {
+    //     if (user==null) {
+    //         console.log("error in adding");
+    //     }
+    //     else{
+    //         var userData={
+    //             // userid : user._id,
+    //             // firstName :user.name.first,
+    //             // lastName :user.name.last,
+    //             // email : user.email,
+    //             // avatar :user.avatar,
+    //             // association :user.association
+    //             designation:user.jobTitle
+    //         }
+    //         console.log("******************************");
+    //         console.log(userData);
+    //         console.log("******************************");
+    //         return userData;
+    //     }
+    // }
     return deferred.promise;
 } // getAll method ends
 

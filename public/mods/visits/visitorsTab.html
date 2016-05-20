@@ -145,27 +145,46 @@
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
              <div class="messagenotify">
               <div ng-message='required'>Password is mandatory field.</div>
-              <div ng-message="md-maxlength">The password has to be less than 255 characters long.</div>
+              <div ng-message="md-maxlength">The password has to be less than 15 characters long.</div>
               <div ng-message="minlength">The password should contain minimum 8 characters</div></div></div>
             </md-input-container>
           </div>
           
         </div>
 
-        <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Contact No</label>
+            <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+            ng-model="userdata.contactNumber">
+            <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Contact No is mandatory field.</div>
+              <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+            </md-input-container>
+          </div>
+        <div class="col-md-6">
           <md-input-container class="md-block" flex-gt-sm>
-          <label>Contact No</label>
-          <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
-          ng-model="userdata.contactNumber">
-          <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
-           <div class="messagenotify">
-            <div ng-message='required'>Contact No is mandatory field.</div>
-            <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
-            <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+          <label>Designation</label>
+            <angucomplete-alt
+            id="ex14"
+            placeholder="Select Designation or Add Designation"
+            pause="500"
+            selected-object="selectedDesignation"
+            remote-url="/api/v1/secure/admin/users/findAll/data?query="
+            remote-url-data-field="items"
+            title-field="designation"
+            minlength="3" 
+            input-class="form-control form-control-small"
+            match-class="highlight"
+            template-url="/my-custom-template.html"/>
           </md-input-container>
-        </div>
+      </div> 
 
-        <div class="col-md-12">
+        </div>
+<!--         <div class="col-md-12">
           <md-input-container class="md-block" flex-gt-sm>
           <label>Job Title</label>
           <input md-maxlength="40" minlength="5" required name="jobTitle" 
@@ -177,7 +196,8 @@
             <div ng-message="minlength">The Job Title should contain minimum 5 characters</div></div></div>
           </md-input-container>
         </div>
-        
+ -->
+
         <div class="col-md-12">
           <md-input-container class="md-block" style="height: auto;">
           <label>Client Bio</label>
@@ -189,8 +209,62 @@
             <div ng-message="md-maxlength">The Client Bio has to be less than 2000 characters long.</div>
             <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div>
           </md-input-container>
+        </div>       
+
+        <div class="large-padded-row">
+
+          <div class="padded-row">
+            <script type="text/ng-template" id="/my-custom-template.html">
+              <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+               <input ng-model="searchStr"
+               ng-disabled="disableInput"
+               type="text"
+               placeholder="{{placeholder}}"
+               ng-focus="onFocusHandler()"
+               class="{{inputClass}}"
+               ng-focus="resetHideResults()"
+               ng-blur="hideResults($event)"
+               autocapitalize="off"
+               autocorrect="off"
+               autocomplete="off"
+               ng-change="inputChangeHandler(searchStr)"/>
+               <div class="angucomplete-dropdown" ng-show="showDropdown">
+                <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+                <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+                <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+                  <div ng-if="imageField" class="angucomplete-image-holder">
+                    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+                    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+                  </div>
+                  <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+                  <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+                  <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+                  <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+                </div>
+                <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+                  <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
+                </div>
+              </div>
+            </div>
+          </script>
         </div>
-                  <md-button class="md-warn md-raised pull-right" 
+      </div>
+
+
+
+      {{userdata.jobTitle=selectedDesignation.originalObject.designation;""}}
+<!--       <div class="result">
+        <div ng-show="selectedDesignation">
+          <span ng-if="!selectedDesignation.originalObject.custom">
+            You selected <span class="bold-span">{{selectedDesignation.originalObject.designation}}</span> which has a country code of <span class="bold-span">{{selectedDesignation.originalObject.code}}</span>
+          </span>
+          <span ng-if="selectedDesignation.originalObject.custom">
+            You selected a custom country <span class="bold-span">{{selectedDesignation.originalObject.designation}}</span>
+          </span>
+        </div>
+      </div> -->
+    </div>
+    <md-button class="md-warn md-raised pull-right" 
                   ng-click="cancelButton()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding visitor? </b>"
                   yes-text="Ok" no-text="Cancel">
                   <i class="fa fa-floppy-o"></i>  Cancel

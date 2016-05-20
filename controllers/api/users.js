@@ -96,9 +96,20 @@ function updateById(req, res) {
 }
 
 function getAllUsers(req,res){
-  console.log(req.param('q'));
-  var name = req.param('q');
-  dataService.getAllUsers(name)
+    console.log(req.params);
+    var name = req.param('query');
+    var query = {jobTitle: new RegExp(name, 'i')};
+    // var query = {
+    //  $or: [
+    //  { 'name.first' : new RegExp(name, 'i') },
+    //  { 'name.last' : new RegExp(name, 'i') },
+    //  { 'email' : new RegExp(name, 'i') }
+    //  ]
+    // }
+    var maxRecs = req.param('maxRecs');
+    var fields = req.param('fields');
+    var sort = req.param('sort');
+  dataService.getAllUsers(query,maxRecs,fields,sort)
     .then(function(userList){
         if (userList){
             res.send(userList);

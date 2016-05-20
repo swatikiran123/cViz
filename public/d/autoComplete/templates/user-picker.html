@@ -1,11 +1,11 @@
 <!-- <input type="text" name="user" id="user"
   placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75"> -->
 
-{{userEmail1=selectedUser.originalObject.email;""}}  
+<!-- {{userEmail1=selectedUser.originalObject.email;""}}   -->
 <!-- {{userEmail1}} -->
-{{userId1=selectedUser.originalObject.userid;""}}  
+<!-- {{userId1=selectedUser.originalObject.userid;""}}   -->
 <!-- {{userId1}} -->
-<angucomplete tabindex="-1" ng-focus="getUser1();" ng-blur="getUser1();" ng-model="userEmail1" id="members"
+<!-- <angucomplete tabindex="-1" ng-focus="getUser1();" ng-blur="getUser1();" ng-model="userEmail1" id="members"
                   placeholder="User"
                   pause="400"
                   selectedobject="selectedUser"
@@ -14,7 +14,23 @@
                   titlefield="firstName,lastName"
                   descriptionfield="email"
                   imagefield="avatar"
-                  inputclass="form-control form-control-small"></angucomplete>
+                  inputclass="form-control form-control-small"></angucomplete> -->
+
+                  <div angucomplete-alt
+                  id="ex10"
+                  placeholder="User"
+                  pause="500"
+                  selected-object="selectedUser"
+                  remote-url="/api/v1/secure/admin/users/find/find?query="
+                  remote-url-data-field="items"
+                  title-field="firstName,lastName"
+                  description-field="email"
+                  minlength="3"
+                  image-field="avatar"
+                  input-class="form-control form-control-small"
+                  match-class="highlight"
+                  >
+</div>                  
 <div ng-if="userEmail=='' && (moduleType=='sessions'||moduleType=='keynotes')">
 {{notNull=="true";""}}
 </div>
