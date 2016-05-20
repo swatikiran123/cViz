@@ -693,11 +693,11 @@ break;
     // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
-     growl.info(parse("Visit Manager Edited successfully"));
+     growl.info(parse("Visit Manager Added successfully"));
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
       console.log(response);
-      growl.info(parse("Email sent on change of visit managers successfully"));
+      growl.info(parse("Email sent to visit managers successfully"));
     }) 
    })
   };

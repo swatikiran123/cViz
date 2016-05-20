@@ -118,6 +118,10 @@
         <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
       </th>
       <th class="hidden-xs">
+        <span class="fa fa-lg fa-th-large"></span>
+        <a href="" ng-click="orderByField='speaker'; reverseSort = !reverseSort">Speaker</a>
+      </th>
+      <th class="hidden-xs">
         <span class="fa fa-lg fa-globe"></span>
         <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Location</a>
       </th>
@@ -134,6 +138,7 @@
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.startTime"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.endTime"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.title"></span></th>
+      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.owner"></span></th>
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.session.location"></span></th>
       <th><span ng-hide="hideFilter">&nbsp;</span></th>
     </tr>
@@ -147,6 +152,10 @@
       <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
       <td>{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
       <td>{{schedule.session.title}}</td>
+
+      <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "> <div userdisplay view-mode="nameonly" user-id="schedule.session.owner"></div> </td>
+      <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td>
+
       <td>{{schedule.session.location}}</td>
       <td>
         <!-- <a class="table-btn" ng-click="editSession($event,schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
@@ -162,7 +171,12 @@
       <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
       <td>{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
       <td>{{schedule.session.title}}</td>
+
+      <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "> <div userdisplay view-mode="nameonly" user-id="schedule.session.owner"></div> </td>
+      <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td>
+
       <td>{{schedule.session.location}}</td>
+
       <td>
         <a class="table-btn" ng-click="editSession($event,schedule._id)" tooltips tooltip-template="Edit Session"><span class="glyphicon glyphicon-edit" /></a>
         <!-- <a class="table-btn" ng-click="editSession1(schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
