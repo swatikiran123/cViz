@@ -192,4 +192,28 @@
         </div>
       </div>
 
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Session Type:</label>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <input type="text" class="Add" placeholder="Add" ng-model = "newSessionTypeValue"/> &nbsp;
+            <button class="btn btn-success" ng-click = "addSessionType()">AddItem</button>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.sessionType"
+                ng-options = "data for data in sessionType">
+            </select>&nbsp;
+            {{val7="sessionType";""}}
+            <button class="btn btn-warning" ng-click = "removeSessionType(sessionType.indexOf(lovs.sessionType))">Remove</button> &nbsp;
+            <button class="btn btn-danger" ng-click = "removeAll(val7)">Remove All</button>
+        </div>
+      </div>
+
 </div>

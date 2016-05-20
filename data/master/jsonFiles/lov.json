@@ -102,6 +102,24 @@
 				"Owner",
 				"Supporter"
 			]
+	},
+
+
+
+	{
+		"_id"							: ObjectId("A09234567892345678900007"),
+		"name"						: "sessionType",
+		"values"					:
+			[
+				"Presentation",
+				"Discussion",
+				"Breakfast",
+				"Tea-Break",
+				"Lunch",
+				"Dinner",
+				"Floor-Walk",
+				"Visit-Wrap-Up"
+			]
 	}
 	
 	

@@ -943,7 +943,7 @@ $scope.isDataValid=function(schedule){
     return "End Date not valid !";
 
   if(currentDiff(schedule.startDate)<0)
-    return "start Date cannot be less than Current Date !";
+    return "Start Date cannot be less than Current Date !";
 
   if(DateDiff(schedule.startDate,schedule.endDate)>0)
     return "End Date cannot be less than Start Date !";
