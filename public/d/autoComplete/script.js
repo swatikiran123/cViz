@@ -77,8 +77,8 @@ angular.module('userAutoDirective', [])
   } // end of getUser method
 
   $scope.getUser1 = function(){
-    console.log($scope.userId1);
-    console.log($scope.userEmail1);
+    // console.log($scope.userId1);
+    // console.log($scope.userEmail1);
     $scope.userId = $scope.userId1;
     $scope.userEmail = $scope.userEmail1;
     var url= "";
@@ -136,6 +136,22 @@ angular.module('userAutoDirective', [])
     });
   } // end of getUser method  
 
+
+   $scope.inputChanged = function(str) {
+      $scope.console10 = str;
+      console.log($scope.console10);
+    }
+
+    $scope.selectedUser = function(selected) {
+      if (selected) {
+        // window.alert('You have selected ' + selected.originalObject.email);
+        $scope.userEmail1 = selected.originalObject.email;
+        $scope.userId1 = selected.originalObject.userid;
+        $scope.getUser1();
+      } else {
+        // console.log('cleared');
+      }
+    };
   if($scope.switchMode == 'edit')
   {  
    if($scope.userId)
