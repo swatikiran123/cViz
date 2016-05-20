@@ -37,6 +37,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.meetingPlaces =[];
 		$scope.submitOwnerSupporter = true;
 		$scope.checkTimeVar = false;
+		$scope.nameonly = "nameonly";
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -180,7 +181,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	      $scope.endHourTime = $scope.endTime.split(":")[0];
 	      $scope.endMinTime = $scope.endTime.split(":")[1];
 	      $scope.meetingPlaceData = $scope.schedule.session.location;
-	      if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
+	      if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type =="Visit-Wrap-Up" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk" || $scope.schedule.session.type.toLowerCase() == "visit-wrap-up")
 			{
 	      $scope.sessiondfbid = $scope.schedule.feedbackTemplate;
 	      $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.sessiondfbid).success(function(response) {
@@ -247,7 +248,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  //   	{
 	  //   	$scope.schedule.session.location = $scope.meetingPlacesData;
 			// }
-			if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
+			if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type =="Visit-Wrap-Up" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk" || $scope.schedule.session.type.toLowerCase() == "visit-wrap-up")
 			{
 				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 				{
@@ -262,7 +263,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	   		// {
 	   		// 	$scope.schedule.session.location = $scope.meetingPlaceData;
 	   		// }
-	   		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
+	   		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type =="Visit-Wrap-Up" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk" || $scope.schedule.session.type.toLowerCase() == "visit-wrap-up")
 	   		{
 	   			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
 	   			{
@@ -276,7 +277,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		//  $scope.schedule.session.location = $scope.sessionMeetingData;
 		// }
 
-		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk")
+		if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type =="Visit-Wrap-Up" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk" || $scope.schedule.session.type.toLowerCase() == "visit-wrap-up")
 		{		
 			if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
 			{
