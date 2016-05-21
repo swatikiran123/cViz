@@ -14,7 +14,7 @@ var clientSchema = new mongoose.Schema({
 	// competitors 					: [{ type: String, trim: true }],
 	SFDCId 							: { type: String, trim: true },
 	industry 						: { type: String, trim: true },
-	regions 						: { type: String, trim: true, required: true },
+	regions 						: { type: String, trim: true },
 	// offerings 						: [{ type: String, trim: true }],
 	cscPersonnel					: {
 		salesExec					: { type: Schema.Types.ObjectId, ref: 'User'},

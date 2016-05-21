@@ -49,7 +49,18 @@ function getOneById(req,res){
 function getWithQuery(req,res){
     console.log(req.params);
     var name= req.param('query');
-    var query = {name: new RegExp(name, 'i')};
+    var subname = req.param('subQuery');
+    var industry = req.param('industry');
+    var regions = req.param('regions');
+        var query = {
+     $and: [
+     { 'name' : new RegExp(name, 'i') },
+     { 'subName' : new RegExp(subname, 'i') },
+     { 'industry' : new RegExp(industry, 'i') },
+     { 'regions' : new RegExp(regions, 'i') }
+
+     ]
+    }
     var maxRecs = req.param('maxRecs');
     var fields = req.param('fields');
     var sort = req.param('sort');
@@ -83,15 +94,31 @@ function getWithName(req,res){
 }
 
 function create(req, res) {
-  dataService.create(req.body)
-  .then(function () {
-    res.status(200).send("Doc added successfully");
-})
-  .catch(function (err) {
-    console.log("cntrl create: err - " + err);
-    res.status(500).send(err);
-});
+  dataService.create(req.body,res)
+    .then(function (data) {
+        if (data){
+            res.send(data);
+        }else {
+            res.status(404).send("Doc not added");
+        }
+    })
+    .catch(function (err) {
+        console.log("cntrl create: err - " + err);
+        res.status(500).send(err);
+    });
 }
+
+// function create(req, res) {
+//   dataService.create(req.body,res)
+//   .then(function (data) {
+//     res.status(200).send("Doc added successfully");
+// })
+//   .catch(function (err) {
+//     console.log("cntrl create: err - " + err);
+//     res.status(500).send(err);
+// });
+// }
+
 
 function deleteById(req, res) {
   dataService.deleteById(req.params.id)

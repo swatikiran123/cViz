@@ -1,88 +1,64 @@
-<div ng-controller="clientsControllerMain">
-  <div class="data-form">
-    <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
-      <fieldset ng-disabled="isSaving">
+<div ng-controller="visitsControllerMain">
+  <div class="row">
 
-        <br>
-        <div class="row">
-
-          <div class="col-md-4 text-center">
-            <br>
-            <br>
-            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
-            />
-            <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
-            style="background-size:cover;"/>
-            <div>
-             <md-button class="md-primary md-raised" 
-             ng-click="addClientLogo($event)">
-             Add Logo
-           </md-button>
-         </div>
-       </div>
-       <div class="col-md-8">
-        <div layout-gt-sm="row">
-<!--         <md-input-container class="md-block" flex-gt-sm>
-        <label>Parent Account Name </label>
-        <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
-        <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The name  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The name should contain minimum 5 characters.</div></div></div>
-        </md-input-container> remote-url="/api/v1/secure/clients/find?query=clients.name&subName="
-      -->
-      <md-input-container class="md-block" flex-gt-sm>
-      <label>Parent Account Name </label>
-      <angucomplete-alt
-      id="ex14"
-      placeholder="Select Client or Add Client"
-      pause="500"
-      selected-object="selectedClient"
-      remote-url="/api/v1/secure/clients/find?query="
-      remote-url-data-field="items"
-      title-field="parentClient"
-      minlength="3" 
-      input-class="form-control form-control-small"
-      match-class="highlight"
-      template-url="/my-custom-template.html"
-      initial-value="parentSelected"
+    <div class="col-md-4 text-center">
+      <br>
+      <br>
+      <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
       />
-    </md-input-container>
+      <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+      style="background-size:cover;"/>
+      <div>
+       <md-button class="md-primary md-raised" 
+       ng-click="addClientLogo($event)">
+       Add Logo
+     </md-button>
+   </div>
+ </div>
+ <div class="col-md-8">
+  <div layout-gt-sm="row">
 
     <md-input-container class="md-block" flex-gt-sm>
-    <label>Child Account Name </label>
+    <label>Parent Account Name </label>
     <angucomplete-alt
     id="ex14"
-    placeholder="Select Child Client or Add Client"
+    placeholder="Select Client or Add Client"
     pause="500"
-    selected-object="selectedchildClient"
-    remote-url="/api/v1/secure/clients/find?query={{clients.name}}&subQuery="
-    remote-url-data-field="items1"
-    title-field="childClient"
+    selected-object="selectedClient"
+    remote-url="/api/v1/secure/clients/find?query="
+    remote-url-data-field="items"
+    title-field="parentClient"
     minlength="3" 
     input-class="form-control form-control-small"
     match-class="highlight"
-    template-url="/my-custom1-template.html"
-    initial-value="childSelected"
-
+    template-url="/my-custom-template.html"
+    initial-value="parentSelected"
     />
   </md-input-container>
+
+  <md-input-container class="md-block" flex-gt-sm>
+  <label>Child Account Name </label>
+  <angucomplete-alt
+  id="ex14"
+  placeholder="Select Child Client or Add Client"
+  pause="500"
+  selected-object="selectedchildClient"
+  remote-url="/api/v1/secure/clients/find?query={{clients.name}}&subQuery="
+  remote-url-data-field="items1"
+  title-field="childClient"
+  minlength="3" 
+  input-class="form-control form-control-small"
+  match-class="highlight"
+  template-url="/my-custom1-template.html"
+  initial-value="childSelected"
+
+  />
+</md-input-container>
 
 </div>
 
 <div>
 
-
-<!--   <md-input-container class="md-block">
-  <label>Industry</label>
-  <input md-maxlength="100" minlength="5" required name="industry" ng-model="clients.industry">
-  <div ng-messages="clientsForm.industry.$error" ng-show="clientsForm.industry.$touched || !clientsForm.industry.$pristine">
-   <div class="messagenotify">
-    <div ng-messages-include="/public/mods/partials/messages.html"></div>
-    <div ng-message="md-maxlength">The Industry  has to be less than 30 characters long.</div>
-    <div ng-message="minlength">The Industry should contain minimum 5 characters.</div></div></div>
-  </md-input-container> -->
   <md-input-container class="md-block" flex-gt-sm>
   <label>Industry</label>
   <angucomplete-alt
@@ -130,6 +106,13 @@
 </div>
 </div>
 </div>
+{{visits.name=selectedClient.originalObject.parentClient;""}}
+
+{{visits.subName=selectedchildClient.originalObject.childClient;""}}
+
+{{visits.industry=selectedindustryClient.originalObject.IndustryClient;""}}
+
+{{visits.regions=selectedregionsClient.originalObject.regionClient;""}}
 <div class="large-padded-row">
 
   <div class="padded-row">
@@ -168,7 +151,6 @@
     </script>
   </div>
 </div>
-{{clients.name=selectedClient.originalObject.parentClient;""}}
 
 <div class="large-padded-row">
 
@@ -208,7 +190,6 @@
     </script>
   </div>
 </div>
-{{clients.subName=selectedchildClient.originalObject.childClient;""}}
 
 <div class="large-padded-row">
 
@@ -248,7 +229,7 @@
     </script>
   </div>
 </div>
-{{clients.industry=selectedindustryClient.originalObject.IndustryClient;""}}
+
 <div class="large-padded-row">
 
   <div class="padded-row">
@@ -286,34 +267,5 @@
     </div>
     </script>
   </div>
-</div>
-{{clients.regions=selectedregionsClient.originalObject.regionClient;""}}
-      <!-- {{selectedClient}} 
-      
-      <div class="result">
-        <div ng-show="selectedClient">
-          <span ng-if="!selectedClient.originalObject.custom">
-            You selected <span class="bold-span">
-            {{selectedClient.originalObject.parentClient}}</span> which has a country code of <span class="bold-span">{{selectedClient.originalObject.code}}</span>
-          </span>
-          <span ng-if="selectedClient.originalObject.custom">
-            You selected a custom country <span class="bold-span">{{selectedClient.originalObject.parentClient}}</span>
-          </span>
-        </div>
-      </div> -->
-      <!-- Button -->
-      <div class="form-group" ng-if="clientModule">
-        <md-button class="md-warn md-raised pull-right" 
-        ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
-        yes-text="Ok" no-text="Cancel">
-        Cancel
-      </md-button> 
-
-      <md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid">
-      Submit
-    </md-button>
-  </div>
-</fieldset>
-</form>
 </div>
 </div>

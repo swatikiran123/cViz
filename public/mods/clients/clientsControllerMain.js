@@ -35,6 +35,14 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        case "edit":
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
+        $scope.parentSelected= $scope.clients.name;
+        $scope.childSelected= $scope.clients.subName;
+        $scope.industrySelected= $scope.clients.industry;
+        $scope.regionsSelected= $scope.clients.regions;
+
+        // $scope.selected-object= $scope.clients.name;
+
+        // $scope.selectedClient= $scope.clients.name;
         console.log($scope.clients)
         if (response.logo!=undefined) {
           $scope.showAvatar = true
@@ -51,24 +59,24 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   refresh();
 
-  $scope.save = function(clients){
-    console.log(clients);
+  $scope.save = function(){
+    console.log();
     // set noteBy based on the user picker value
     switch($scope.mode)    {
       case "add":
-      $scope.create(clients);
+      $scope.create();
       break;
 
       case "edit":
-      $scope.update(clients);
+      $scope.update();
       break;
       } // end of switch scope.mode ends
 
       $location.path("clients/list");
   } // end of save method
 
-  $scope.create = function(clients) {
-    var inData  = clients;
+  $scope.create = function() {
+    var inData  = $scope.clients;
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       inData.status="final";
     }else 
@@ -79,7 +87,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
       console.log(inData)
       $http.post('/api/v1/secure/clients', inData).success(function(response) {
         refresh();
-        growl.info(parse("client [%s]<br/>Added successfully", clients.name));
+        growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
       })
       .error(function(data, status){
         growl.error("Error adding client");
@@ -97,8 +105,8 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     }); // http delete keynoges ends
   }; // delete method ends
 
-  $scope.update = function(clients) {
-    var inData  = clients;
+  $scope.update = function() {
+    var inData  = $scope.clients;
     inData.logo=$scope.avatar;
 
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {

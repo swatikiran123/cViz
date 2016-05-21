@@ -12,7 +12,6 @@ var visitSchema = new mongoose.Schema({
 
 	title						    : { type: String, trim: true },
 	client 						    : { type: Schema.Types.ObjectId, ref: 'clients' },//{ type: String },
-	regions 						: { type: String, trim: true},
 	agenda							: { type: String, trim: true },
 	startDate						: { type: Date},//, default: Date.now },
 	endDate							: { type: Date},//, default: Date.now },
@@ -44,26 +43,26 @@ var visitSchema = new mongoose.Schema({
 	createOn						: { type: Date, default: Date.now },
 	feedbackTmpl				    : { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
 	sessionTmpl				    	: { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
-	 keynote						: [{
+	keynote						: [{
 		note   						: { type: Schema.Types.ObjectId, ref: 'keynotes' },
-	 	context 					: {type: String, enum: ['welcome', 'thankyou'], trim: true},
-	 	order						: {type: Number, required: false}
-	 }],
-	 invitees						: [{type: Schema.Types.ObjectId, ref: 'User'}],
-	 wbscodeAttachment				: { type: String},
-	 visitAttachment				: [{ type: String }],
-	 summary						: { type: String, lowercase: true, trim: true },
-	 actionItem						: { type: String, lowercase: true, trim: true },
-	 visitGallery					: [{ type: String }],
-	 vertical						: { type: String, trim: true, required: true },
-	 offerings 						: [{ type: String, trim: true }],
-	 cscPersonnel					: {
-	 	salesExec					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-	 	accountGM					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-	 	industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-	 	globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-	 	cre 						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-	 }
+		context 					: {type: String, enum: ['welcome', 'thankyou'], trim: true},
+		order						: {type: Number, required: false}
+	}],
+	invitees						: [{type: Schema.Types.ObjectId, ref: 'User'}],
+	wbscodeAttachment				: { type: String},
+	visitAttachment				: [{ type: String }],
+	summary						: { type: String, lowercase: true, trim: true },
+	actionItem						: { type: String, lowercase: true, trim: true },
+	visitGallery					: [{ type: String }],
+	vertical						: { type: String, trim: true, required: true },
+	offerings 						: [{ type: String, trim: true }],
+	cscPersonnel					: {
+		salesExec					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		accountGM					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		cre 						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	}
 
 
 
@@ -80,9 +79,9 @@ visitSchema.post('init', function(doc) {
 
 	schedules.forEach(function(sch){
 		if(locations === "")
-		 locations = sch.location;
-	 else
-		 locations = locations + ", " + sch.location;
+			locations = sch.location;
+		else
+			locations = locations + ", " + sch.location;
 	})
 
 	// add temporary variable to be added to doc
