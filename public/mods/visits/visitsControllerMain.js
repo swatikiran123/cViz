@@ -1132,7 +1132,6 @@ function toTitleCase(string)
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   { 
     $scope.contactNo = [];
-
     $scope.contactNo.push({
       contactNumber:"+" + userdata.contactNumber,
       contactType:userdata.contactType
@@ -1170,9 +1169,20 @@ function toTitleCase(string)
       visitor: $scope.userId,
       influence: influencedata
     });
+
+     if ($scope.visitors.length == 0)
+     {
+       $scope.visvalid=true;
+
+     }else{
+       $scope.visvalid=false;
+
+     }
    });
   });
     $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
+
+
   }
 
   $scope.cancelButton = function(){
@@ -1202,7 +1212,6 @@ function toTitleCase(string)
     var influence= visitorDef.influence;
     var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
-
     if(visitorDef.visitorId!=null)
     {
       $http.get('/api/v1/secure/admin/users/email/' + emailid.toLowerCase()).success(function(response) {

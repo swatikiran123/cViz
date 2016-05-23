@@ -3562,7 +3562,7 @@
 		"scheduleDate"					: { "$date" : "2016-05-25T08:00:00.000+0530"} ,
 		"session"							:
 			{
-				"type"						: "Discussion",
+				"type"						: "discussion",
 				"startTime"				: { "$date" : "2016-05-25T17:01:00.000+0530"}  ,
 				"endTime"					: { "$date" : "2016-05-25T18:00:00.000+0530"}  ,
 				"title"						: "Summary",
