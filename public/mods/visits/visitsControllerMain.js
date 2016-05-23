@@ -554,8 +554,8 @@ break;
             inDataClient.status="final";
           }else inDataClient.status="draft";
 
-          if ($scope.avatar!=undefined) {
-            inData.logo=avatar;}
+          // if ($scope.avatar!=undefined) {
+          //   inData.logo=avatar;}
             console.log(inDataClient)
 
             $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
@@ -646,8 +646,8 @@ break;
       client.status="final";
     }else client.status="draft";
 
-    if ($scope.avatar!=undefined) {
-      inData.logo=avatar;}
+    // if ($scope.avatar!=undefined) {
+    //   inData.logo=avatar;}
 
       console.log(client);
       $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
