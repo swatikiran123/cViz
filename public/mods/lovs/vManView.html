@@ -1,0 +1,147 @@
+<style>
+    .row{
+        padding-top:50px;
+    }
+  
+   /* .col-xs-6 {
+        margin-left: -150px;
+    }*/
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    select {
+        width: 200px;
+    }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    select {
+        width: 250px;
+    }
+}
+
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    select {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-device-width: 1025px) and (max-device-width: 1440px) {
+     select {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-device-width: 1441px) and (max-device-width: 1600px) {
+     select {
+        width: 300px;
+    }
+}
+
+    
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <center><h3>List of Values</h3></center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Influence</label>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.influence"
+                ng-options = "data for data in influence">
+            </select>&nbsp;
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Regions</label>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.regions"
+                ng-options = "data for data in regions">
+            </select>&nbsp;
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Locations</label>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.locations"
+                ng-options = "data for data in locations">
+            </select>&nbsp;
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Offerings</label>
+        </div>
+       
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.offerings"
+                ng-options = "data for data in offerings">
+            </select>&nbsp;
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Contact Type</label>
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.contactType"
+                ng-options = "data for data in contactType">
+            </select>&nbsp;
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+            <label>Vertical</label>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <select
+                ng-model = "lovs.vertical"
+                ng-options = "data for data in vertical">
+            </select>&nbsp;
+           </div>
+      </div>
+
+</div>

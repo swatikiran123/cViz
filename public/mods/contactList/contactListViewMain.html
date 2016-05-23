@@ -15,7 +15,7 @@
 				<!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
 				<button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-4" ng-if="!visitGrid">
 				<button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add New contactList</button>
 			</div>
 		 	<div ng-include src="'/public/mods/contactList/partials/sortSearch.html'"></div>
@@ -36,7 +36,7 @@
 				<th><span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Contact User
 					<!-- <a href="" ng-click="orderByField='user'; reverseSort = !reverseSort">Contact User</a> -->
 				</th>
-				<th></th>
+				<th ng-if="!visitGrid"></th>
 			</tr>
 
 			<!-- table search filters -->
@@ -79,7 +79,7 @@
 		<td>{{contactList.location}}</td>
 		<td>{{contactList.type}}</td>
 		<td><div userdisplay view-mode="nameonly" user-id="contactList.user"></td>
-		<td>
+		<td ng-if="!visitGrid">
 			<a class="table-btn" ng-click="edit(contactList._id)" tooltips tooltip-template="Edit Contact"><span class="fa fa-pencil-square-o fa-lg" /></a>
 			<a class="table-btn" ng-click="remove(contactList)" tooltips tooltip-template="Delete Contact"><span class="fa fa-trash-o fa-lg" /></a>
 		</td>

@@ -10,6 +10,10 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   $scope.mode=(id==null? 'add': 'edit');
   $scope.nameonly= "nameonly";
   $scope.hideFilter = true;
+        $scope.isSaving=false;
+      if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+        $scope.isSaving= true; 
+      }
   var refresh = function() {
 
     $http.get('/api/v1/secure/feedbackDefs').success(function(response) {

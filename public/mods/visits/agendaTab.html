@@ -27,89 +27,342 @@
             </div>
           </div>
         </md-input-container>
-
+        <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
+        <!--client input-->
         <div class="row">
-          <div class="form-group col-xs-5">
-            <!-- visits client input-->
-            <md-input-container class="md-block">
-            <label>Client Name</label>
-            <input required name="clientname" ng-model="clientName" autocomplete required>
-            <div ng-show="autoFail" class="error text-danger" >{{clientNotFound}}</div>  
-            <div ng-messages="visitsForm.clientname.$error" ng-show="visitsForm.clientname.$touched || !visitsForm.clientname.$pristine || autoFail">
-              <div class="messagenotify">
-                <div ng-messages-include="/public/mods/partials/messages.html"></div>
-              </div>
-            </div>
-          </md-input-container>
-        </div>
-        <!-- regions checkboxregions:-->
-        <div class="form-group col-xs-4">
-          <div class="form-group" ng-class="{ 'has-error': visitsForm.regions.$touched && visitsForm.regions.$invalid }">
-            <label>Region &nbsp;&nbsp; </label>
-            <select
-            ng-model="visits.regions"
-            ng-options="data for data in regions">
-          </select>
-        </div>
-      </div>
+
+          <div class="col-md-4 text-center">
+            <br>
+            <br>
+            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
+            />
+            <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+            style="background-size:cover;"/>
+            <div>
+             <md-button class="md-primary md-raised" 
+             ng-click="addClientLogo($event)">
+             Add Logo
+           </md-button>
+         </div>
+       </div>
+       <div class="col-md-8">
+        <div layout-gt-sm="row">
+
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Parent Account Name </label>
+          <angucomplete-alt
+          id="ex14"
+          placeholder="Select Client or Add Client"
+          pause="500"
+          selected-object="visitsSelectedClient"
+          remote-url="/api/v1/secure/clients/find?query="
+          remote-url-data-field="items"
+          title-field="parentClient"
+          minlength="3" 
+          input-class="form-control form-control-small"
+          match-class="highlight"
+          template-url="/my-custom-template.html"
+          initial-value="parentSelected"
+          />
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Child Account Name </label>
+        <angucomplete-alt
+        id="ex14"
+        placeholder="Select Child Client or Add Client"
+        pause="500"
+        selected-object="visitsSelectedchildClient"
+        remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery="
+        remote-url-data-field="items1"
+        title-field="childClient"
+        minlength="3" 
+        input-class="form-control form-control-small"
+        match-class="highlight"
+        template-url="/my-custom1-template.html"
+        initial-value="childSelected"
+        />
+      </md-input-container>
+
     </div>
 
-    <div class="row">
+    <div>
 
-      <div class="form-group col-xs-3">
-        <div class="form-group">
-          <label>Business Type</label>
-          <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
-            <option ng-option value="new">New</option>
-            <option ng-option value="existing">Existing</option>
-          </select>
-        </div>
-      </div>
-      <!-- </div> -->
-      <!-- <div class="col-xs-4"></div> -->
-      <!-- <div class="col-xs-4"></div> -->
-      <!-- visits visitType-->
-      <div class="form-group col-xs-5">
-        <div id="new" ng-if="visits.interest.businessType == 'new'">
-          <label>Say More&nbsp;&nbsp; </label>
-          <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
-            <option ng-option value="dueDiligence">Due Diligence</option>
-            <option ng-option value="exploratory">Exploratory</option>
-            <option ng-option value="planning">Planning</option>
-          </select>
-        </div>
-        <div id="existing" ng-if="visits.interest.businessType == 'existing'">
-          <label>Visit Type-Existing&nbsp;&nbsp;</label>
-          <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
-            <option ng-option value="operationsReview">Meeting & Operations Review</option>
-            <option ng-option value="renewals">Renewals</option>
-            <option ng-option value="newBusiness">New Business</option>
-            <option ng-option value="strategic">Exploratory</option>
-          </select>
-        </div>
-      </div>
+      <md-input-container class="md-block" flex-gt-sm>
+      <label>Industry</label>
+      <angucomplete-alt
+      id="ex14"
+      placeholder="Select Industry type or Add Industry type"
+      pause="500"
+      selected-object="visitsSelectedindustryClient"
+      remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery={{visits.subName}}&industry="
+      remote-url-data-field="items2"
+      title-field="IndustryClient"
+      minlength="3" 
+      input-class="form-control form-control-small"
+      match-class="highlight"
+      template-url="/my-custom3-template.html"
+      initial-value="industrySelected"
+      />
+    </md-input-container>
+
+  </div>
+  <div>
+    <md-input-container class="md-block" flex-gt-sm>
+    <label>Region</label>
+    <angucomplete-alt
+    id="ex14"
+    placeholder="Select Region or Add Region"
+    pause="500"
+    selected-object="visitsSelectedregionsClient"
+    remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery={{visits.subName}}&industry={{visits.industry}}&regions="
+    remote-url-data-field="items3"
+    title-field="regionClient"
+    minlength="3" 
+    input-class="form-control form-control-small"
+    match-class="highlight"
+    template-url="/my-custom4-template.html"
+    initial-value="regionsSelected"
+    />
+  </md-input-container>
+</div>
+</div>
+</div>
+
+
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
     </div>
-    <div class="row">
-      <div class="form-group col-xs-3">
-        <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
-          <label>Vertical &nbsp;&nbsp; </label>
-
-          <select
-          ng-model="visits.vertical"
-          ng-options="data for data in vertical">
-        </select>
-      </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
     </div>
-    <div class="form-group col-xs-9">
-      <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-        <label>Offerings &nbsp;&nbsp; </label>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { parentClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.clientName=visitsSelectedClient.originalObject.parentClient;""}}
 
-        <select
-        ng-model="visits.offerings"
-        ng-options="data for data in offerings">
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom1-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { childClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.subName=visitsSelectedchildClient.originalObject.childClient;""}}
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom3-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { IndustryClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.industry=visitsSelectedindustryClient.originalObject.IndustryClient;""}}
+
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom4-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { regionClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.regions=visitsSelectedregionsClient.originalObject.regionClient;""}}
+<!-- {{visitsSelectedregionsClient.originalObject.id}} -->
+
+<!--client input end-->
+<!-- {{visitsSelectedClient}} 
+
+<div class="result">
+  <div ng-show="visitsSelectedClient">
+    <span ng-if="!selectedClient.originalObject.custom">
+      You selected <span class="bold-span">
+      {{selectedClient.originalObject.parentClient}}</span> which has a country code of <span class="bold-span">{{selectedClient.originalObject.code}}</span>
+    </span>
+    <span ng-if="visitsSelectedClient.originalObject.custom">
+      You selected a custom country <span class="bold-span">{{selectedClient.originalObject.parentClient}}</span>
+    </span>
+  </div>
+</div> -->
+<div class="row">
+
+  <div class="form-group col-xs-3">
+    <div class="form-group">
+      <label>Business Type</label>
+      <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
+        <option ng-option value="new">New</option>
+        <option ng-option value="existing">Existing</option>
       </select>
     </div>
   </div>
+  <!-- </div> -->
+  <!-- <div class="col-xs-4"></div> -->
+  <!-- <div class="col-xs-4"></div> -->
+  <!-- visits visitType-->
+  <div class="form-group col-xs-5">
+    <div id="new" ng-if="visits.interest.businessType == 'new'">
+      <label>Say More&nbsp;&nbsp; </label>
+      <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+        <option ng-option value="dueDiligence">Due Diligence</option>
+        <option ng-option value="exploratory">Exploratory</option>
+        <option ng-option value="planning">Planning</option>
+      </select>
+    </div>
+    <div id="existing" ng-if="visits.interest.businessType == 'existing'">
+      <label>Visit Type-Existing&nbsp;&nbsp;</label>
+      <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+        <option ng-option value="operationsReview">Operations Review</option>
+        <option ng-option value="renewals">Renewals</option>
+        <option ng-option value="newBusiness">New Business</option>
+        <option ng-option value="strategic">Strategic</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-xs-3">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
+      <label>Vertical &nbsp;&nbsp; </label>
+
+      <select
+      ng-model="visits.vertical"
+      ng-options="data for data in vertical">
+    </select>
+  </div>
+</div>
+<div class="form-group col-xs-9">
+  <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
+    <label>Offerings &nbsp;&nbsp; </label>
+
+    <select
+    ng-model="visits.offerings"
+    ng-options="data for data in offerings">
+  </select>
+</div>
+</div>
 </div>
 
 <!-- CSC Personnel input-->
@@ -123,14 +376,14 @@
     </div>
   </md-input-container>
 </div>
-  <!--accountGM-CSCPersonnel-->
-  <div class="form-group col-xs-4">
-    <md-input-container class="md-block">
-    <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
-      <label>Account General Manager &nbsp;&nbsp; :</label>
-      <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee"></div>
-    </div>
-  </md-input-container>
+<!--accountGM-CSCPersonnel-->
+<div class="form-group col-xs-4">
+  <md-input-container class="md-block">
+  <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
+    <label>Account General Manager &nbsp;&nbsp; :</label>
+    <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee"></div>
+  </div>
+</md-input-container>
 </div>
 <!--industryExec-CSCPersonnel-->
 <div class="form-group col-xs-4">
@@ -382,7 +635,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
+    ng-click="callClientId();save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>

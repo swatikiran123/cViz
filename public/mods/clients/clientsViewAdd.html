@@ -1,63 +1,65 @@
 
 <div class="container">
-   <!-- page header/subheader -->
+ <!-- page header/subheader -->
 
-   <div ng-if="mode=='add'" class="page-header">
-    Account Management - Add
-    <div class="sub-header">Add new client information before scheduling a visit...
-    </div>
+ <div ng-if="mode=='add'" class="page-header">
+  Account Management - Add
+  <div class="sub-header">Add new client information before scheduling a visit...
   </div>
+</div>
 
-  <div ng-if="mode=='edit'" class="page-header">
-    Account Management - Edit
-    <div class="sub-header">Edit {{clients.name}} information
-    </div>
+<div ng-if="mode=='edit'" class="page-header">
+  Account Management - Edit
+  <div class="sub-header">Edit {{clients.name}} information
   </div>
+</div>
+<!-- Client-Account pageheader input-->
+<div ng-controller="clientsControllerMain">
+<div ng-include src="'/public/mods/clients/clientInclude.html'"></div>
+</div>
+</div>
 
-  <!-- Client-Account pageheader input-->
+<!-- 
+    <table class="table boldtable table-responsive table-bordered table-hover" width="100"><tr>
+      <th>Child Account Name</th>
+      <th></th></tr>
+      <tbody class="data-grid-data">
+        <tr>
+         <td><input name="clientChildname" ng-model="clientChildname" class="form-control">
+         </td>
+         <td><a class="table-btn" ng-click="addchildClient(clientChildname);clientChildname = null"><span class="fa fa-plus fa-lg" /></a></td>
 
+       </tr>
+       <tr ng-repeat="childClient in childClients | filter: search |orderBy:orderByField:reverseSort">
+        <td>{{childClient.clientChildname}}</td>
+        <td><a class="table-btn" ng-click="removechildClient($index,childClients)"><span class="fa fa-trash fa-lg" /></a>
+          <a ng-if="mode=='edit'" class="table-btn" ng-click="editchildClient($index,childClient)"><span class="fa fa-edit fa-lg" /></a>
+        </td>
+      </tr>
 
-  <div class="data-form">
-    <form name="clientsForm" id="clientsForm" class="form-vertical" novalidate>
-      <br>
-
-      <!-- Account name input-->
-      <md-input-container class="md-block">
-      <label>Account Name</label>
-      <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
-      <div ng-messages="clientsForm.title.$error" ng-show="clientsForm.title.$touched || !clientsForm.title.$pristine">
-       <div class="messagenotify">
-        <div ng-messages-include="/public/mods/partials/messages.html"></div>
-        <div ng-message="md-maxlength">The name  has to be less than 30 characters long.</div>
-        <div ng-message="minlength">the name should contain minimum 5characters</div></div></div>
-      </md-input-container>
-
-
-      <!-- Profile editor-->
-      <div class="field">
-       <label ng-show="clients.profile" class="show-hide">Profile</label><br>
-       <div class="form-group">
-        <text-angular
-        ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-        ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-        ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
-      </div>
-
-
-<!-- competitors Type input-->
-<md-input-container class="md-block">
-<label>Competitors</label>
-<input md-maxlength="200" minlength="5" required name="competitors" ng-model="clients.competitors">
-<div ng-messages="clientsForm.competitors.$error" ng-show="clientsForm.competitors.$touched || !clientsForm.competitors.$pristine">
- <div class="messagenotify">
-  <div ng-messages-include="/public/mods/partials/messages.html"></div>
-  <div ng-message="md-maxlength">The vertical  has to be less than 30 characters long.</div>
-  <div ng-message="minlength">the vertical should contain minimum 5characters</div></div></div>
-</md-input-container>
-
-
-<!-- CSC Personnel input-->
-<!--salesExec-CSCPersonnel-->
+    </tbody>
+  </table>
+  <div ng-if="err" class="error text-danger">{{err}}</div> -->
+  <!-- Profile editor-->
+<!-- <div class="field">
+ <label ng-show="clients.profile" class="show-hide">Profile</label><br>
+ <div class="form-group">
+  <text-angular
+  ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+  ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+  ng-model="clients.profile" name="profile" placeholder="Describe profile" required /></text-angular>
+</div> -->
+<!--   <md-input-container >
+  <label>Net Promoter Score</label>
+  <input required name="netPromoterScore" ng-model="clients.netPromoterScore"> -->
+<!--   <div ng-messages="clientsForm.netPromoterScore.$error" ng-show="clientsForm.netPromoterScore.$touched || !clientsForm.netPromoterScore.$pristine">
+   <div class="messagenotify">
+    <div ng-messages-include="/public/mods/partials/messages.html"></div>
+    <div ng-message="md-maxlength">The netPromoterScore  has to be less than 30 characters long.</div>
+    <div ng-message="minlength">The netPromoterScore should contain minimum 3 characters.</div></div></div> -->
+    <!--   </md-input-container> -->
+    <!-- CSC Personnel input-->
+    <!--salesExec-CSCPersonnel-->
 <!-- <div class="row">
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
@@ -93,7 +95,7 @@
   <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee"></div>
 </div>
 </md-input-container></div> -->
- 
+
 <!-- cre-CSCPersonnel -->
 <!--  <div class="form-group col-xs-6">
 <md-input-container class="md-block">
@@ -103,29 +105,3 @@
 </div>
 </div>
 </md-input-container></div></div> -->
- 
-<!-- netPromoterScore Type input-->
-<md-input-container class="md-block">
-<label>Net Promoter Score</label>
-<input md-maxlength="30" minlength="3" required name="Net Promoter Score" ng-model="clients.netPromoterScore">
-<div ng-messages="clientsForm.netPromoterScore.$error" ng-show="clientsForm.netPromoterScore.$touched || !clientsForm.netPromoterScore.$pristine">
- <div class="messagenotify">
-  <div ng-messages-include="/public/mods/partials/messages.html"></div>
-  <div ng-message="md-maxlength">The Net Promoter Score  has to be less than 30 characters long.</div>
-  <div ng-message="minlength">the Net Promoter Score should contain minimum 5characters</div></div></div>
-</md-input-container>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4">
-    <button type="submit" class="btn btn-success"
-    ng-disabled="clientsForm.$invalid" ng-click="save()">Submit</button>
-    <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">Cancel</button>
-  </div>
-</div>
-</div>
-</form>
-</div>
-</div>

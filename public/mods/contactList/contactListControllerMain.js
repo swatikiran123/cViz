@@ -24,7 +24,9 @@ contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$rou
   $http.get('/api/v1/secure/lov/contactType').success(function(response) {
     $scope.type=response.values;
   });
-
+  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+    $scope.visitGrid= true;
+  }
 
     //fetching all the contactList details by calling refresh function
     var refresh = function() {

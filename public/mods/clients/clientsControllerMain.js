@@ -1,43 +1,25 @@
-
 'use strict';
 
 var clientsApp = angular.module('clients');
 
-clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl',
-  function($scope, $http, $routeParams, $location, growl) {
+clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload','$rootScope',
+  function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
 
     var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
 
-  $scope.small= "small";
-  $scope.large= "LARGE";
-  $scope.medium= "medium";
-
-
-  $scope.cscPersonnel={};
-
-  $scope.salesExecId = "";
-  $scope.salesExecEmail = "";
-  $scope.salesExecUser =  "";
-
-  $scope.accountGMId = "";
-  $scope.accountGMEmail = "";
-  $scope.accountGMUser =  "";
-
-  $scope.industryExecId = "";
-  $scope.industryExecEmail = "";
-  $scope.industryExecUser =  "";
-
-  $scope.globalDeliveryId = "";
-  $scope.globalDeliveryEmail = "";
-  $scope.globalDeliveryUser =  "";
-
-  $scope.creId = "";
-  $scope.creEmail = "";
-  $scope.creUser =  "";
-
+  $scope.clientModule=true;
+  $scope.showAvatar =false;
+  //regions - Http get for drop-down
+  $http.get('/api/v1/secure/lov/regions').success(function(response) {
+    $scope.regions=response.values;
+  });
+  $scope.isSaving=false;
+  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+    $scope.isSaving= true; 
+  }
   var refresh = function() {
 
     $http.get('/api/v1/secure/clients').success(function(response) {
@@ -53,30 +35,23 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        case "edit":
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
+        $scope.parentSelected= $scope.clients.name;
+        $scope.childSelected= $scope.clients.subName;
+        $scope.industrySelected= $scope.clients.industry;
+        $scope.regionsSelected= $scope.clients.regions;
 
-        $scope.salesExecUser = response.cscPersonnel.salesExec;
-        $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
-        $scope.salesExecId = response.cscPersonnel.salesExec._id;
+        // $scope.selected-object= $scope.clients.name;
 
-        $scope.accountGMUser = response.cscPersonnel.accountGM;
-        $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-        $scope.accountGMId = response.cscPersonnel.accountGM._id;
-
-        $scope.industryExecUser = response.cscPersonnel.industryExec;
-        $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-        $scope.industryExecId = response.cscPersonnel.industryExec._id;
-
-        $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
-        $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-        $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
-
-        $scope.creUser = response.cscPersonnel.cre;
-        $scope.creEmail = response.cscPersonnel.cre.email;
-        $scope.creId = response.cscPersonnel.cre._id;
-
-            // reformat date fields to avoid type compability issues with <input type=date on ng-model
-            $scope.clients.startDate = new Date($scope.clients.createdOn);
-          });
+        // $scope.selectedClient= $scope.clients.name;
+        console.log($scope.clients)
+        if (response.logo!=undefined) {
+          $scope.showAvatar = true
+          $scope.avatar= response.logo;
+        }
+        else $scope.showAvatar = false;
+    // reformat date fields to avoid type compability issues with <input type=date on ng-model
+    $scope.clients.startDate = new Date($scope.clients.createdOn);
+  });
 
       } // switch scope.mode ends
     }); // get client call back ends
@@ -85,13 +60,8 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   refresh();
 
   $scope.save = function(){
-    console.log($scope.regions);
+    console.log();
     // set noteBy based on the user picker value
-    $scope.cscPersonnel.salesExec = $scope.salesExecId;
-    $scope.cscPersonnel.accountGM= $scope.accountGMId;
-    $scope.cscPersonnel.industryExec = $scope.industryExecId;
-    $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
-    $scope.cscPersonnel.cre= $scope.creId;
     switch($scope.mode)    {
       case "add":
       $scope.create();
@@ -107,14 +77,20 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.create = function() {
     var inData  = $scope.clients;
-    inData.cscPersonnel =$scope.cscPersonnel;
+    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+      inData.status="final";
+    }else 
+      inData.status="draft";
 
-    $http.post('/api/v1/secure/clients', inData).success(function(response) {
-      refresh();
-      growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
-    })
-    .error(function(data, status){
-      growl.error("Error adding client");
+    if ($scope.avatar!=undefined) {
+      inData.logo=avatar;}
+      console.log(inData)
+      $http.post('/api/v1/secure/clients', inData).success(function(response) {
+        refresh();
+        growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
+      })
+      .error(function(data, status){
+        growl.error("Error adding client");
     }); // http post keynoges ends
   }; // create method ends
 
@@ -131,7 +107,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.update = function() {
     var inData  = $scope.clients;
-    inData.cscPersonnel =$scope.cscPersonnel;
+    inData.logo=$scope.avatar;
 
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {
       refresh();
@@ -148,19 +124,49 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     $location.path("clients/list");
   }
 
-  $scope.getUser = function(){
+  $scope.addClientLogo = function(ev) {
+    $mdDialog.show({
+      templateUrl: '/public/mods/clients/clientLogoDialog.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
 
-
-    $http.get('/api/v1/secure/admin/users/' + $scope.cscPersonnel).success(function(response) {
-
-      var user = response;
-      $scope.cscPersonnel.salesExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-      $scope.cscPersonnel.accountGM = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-      $scope.cscPersonnel.industryExec = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-      $scope.cscPersonnel.globalDelivery = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-      $scope.cscPersonnel.cre = parse("%s %s, <%s>", user.name.first, user.name.last, user.email);
-
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
     });
-  }
+
+  };
+
+  $scope.addlogo = function (dataUrl) {
+    Upload.upload({
+      url: '/api/v1/upload/visits',
+      data: {
+        file: Upload.dataUrltoBlob(dataUrl),
+      },
+    }).then(function (response) {
+      $scope.userdata ='';
+      $scope.result = response.data;
+      var filepath = response.data.file.path;
+      var imagepath = '/'+ filepath.replace(/\\/g , "/");
+      $scope.avatar = imagepath;
+      $scope.showAvatar = true;
+      $mdDialog.hide();
+    });
+
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.canceldialog = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
 
 }]);﻿ // controller ends

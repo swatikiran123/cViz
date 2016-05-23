@@ -7,7 +7,7 @@
     <!-- <i class="glyphicon glyphicon-search form-control-feedback"></i> -->
       <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" ng-if="!isSaving">
       <a class="btn btn-default btn-sm pull-right" href="#/feedbackTmpl/add">Add New Feedback</a>
     </div>
     <div ng-include src="'/public/mods/feedback/partials/sortSearch.html'"></div>
@@ -59,9 +59,9 @@
        <!--  <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
         <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/edit" tooltips tooltip-template="Edit Template"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(feedback)" confirm-dialog header-text="Delete Feedback" content="Are you sure you want to delete the feedback with feedback title <b>{{feedback.title}} ? </b>" 
-        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Template"/></a>
-        <a class="table-btn" ng-click="showFeedbackTemp($event,feedback._id)" tooltips tooltip-template="View Template"><span class="fa fa-comments fa-lg"/></a>
-        <a class="table-btn" ng-click="copy(feedback)" tooltips tooltip-template="Copy Template"><span class="fa fa-files-o fa-lg" /></a>
+        yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Template" ng-if="!isSaving"/></a>
+        <a class="table-btn" ng-click="showFeedbackTemp($event,feedback._id)" tooltips tooltip-template="View Template" ng-if="!isSaving"><span class="fa fa-comments fa-lg"/></a>
+        <a class="table-btn" ng-click="copy(feedback)" tooltips tooltip-template="Copy Template" ng-if="!isSaving"><span class="fa fa-files-o fa-lg" /></a>
       </td>
     </tr>
   </tbody>

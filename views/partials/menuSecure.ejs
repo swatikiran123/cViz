@@ -10,7 +10,7 @@
   </li>
 
   <!-- Additional pull down starts here -->
-  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin">
+  <li class="dropdown" ng-if="<%=locals.user.get('groups').indexOf("admin") > -1%> || <%=locals.user.get('groups').indexOf("vManager") > -1%>">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
       <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
@@ -23,7 +23,8 @@
       <li class="dropdown-header">Customize</li>
       <li><a href="/customize/#/feedbackTmpl/list">Feedback</a></li>
       <!--li><a href="/customize/#/teasers/list">Teasers</a></li-->
-      <li><a href="/customize/#/lovs/">List of values</a></li>
+      <li ng-if="<%=locals.user.get('groups').indexOf("admin") > -1%>"><a href="/customize/#/lovs/">List of values</a></li>
+      <li ng-if="<%=locals.user.get('groups').indexOf("vManager") > -1%>"><a href="/customize/#/lovs/details/">List of values</a></li>
 
     </ul>
   </li>
@@ -31,7 +32,7 @@
 
   <!-- Admin pull down starts here -->
 
-  <li class="dropdown" ng-if="<%=locals.user.get('groups')%> == admin">
+  <li class="dropdown" ng-if="<%=locals.user.get('groups').indexOf("admin") > -1%>">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
     <ul class="dropdown-menu callouts--left">
       <li><a href="/admin/#/groups/">Groups</a></li>

@@ -1,67 +1,68 @@
 <div class="container">
 
-       <!-- page header/subheader -->
+ <!-- page header/subheader -->
 
-       <div ng-if="mode=='add'" class="page-header">
-        Feedback Template - Add
-        <div class="sub-header">Add new Feedback Template
-        </div>
-      </div>
+ <div ng-if="mode=='add'" class="page-header">
+  Feedback Template - Add
+  <div class="sub-header">Add new Feedback Template
+  </div>
+</div>
 
-      <div ng-if="mode=='edit'" class="page-header">
-        Feedback Template - Edit
-        <div class="sub-header">Edit {{feedbackDefs.title}} Template
-        </div>
-      </div>
+<div ng-if="mode=='edit'" class="page-header">
+  Feedback Template - Edit
+  <div class="sub-header">Edit {{feedbackDefs.title}} Template
+  </div>
+</div>
 
-      <!--Feedback pageheader input--> 
-      <div class="data-form">
-          <form name="feedbackForm" id="feedbackForm" class="form-vertical" novalidate
-          ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+<!--Feedback pageheader input--> 
+<div class="data-form">
+  <form name="feedbackForm" id="feedbackForm" class="form-vertical" novalidate
+  ng-model-options="{updateOn:'default blur',debounce:{'default':500,'blur':0}}">
+  <fieldset ng-disabled="isSaving">
 
-          <!--Feedback Title-->
-          <md-input-container class="md-block">
-          <label>Feedback Title</label>
-          <input md-maxlength="30" minlength="5" required name="title" ng-model="feedbackDefs.title">
-          <div ng-messages="feedbackForm.title.$error" ng-show="feedbackForm.title.$touched || !feedbackForm.title.$pristine">
-           <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-            <div ng-message="md-maxlength">The feedback title  has to be less than 30 characters long.</div>
-            <div ng-message="minlength">the feedback title should contain minimum 5 characters</div>
-          </div>
-        </div>
-      </md-input-container>            
+    <!--Feedback Title-->
+    <md-input-container class="md-block">
+    <label>Feedback Title</label>
+    <input md-maxlength="30" minlength="5" required name="title" ng-model="feedbackDefs.title">
+    <div ng-messages="feedbackForm.title.$error" ng-show="feedbackForm.title.$touched || !feedbackForm.title.$pristine">
+     <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+      <div ng-message="md-maxlength">The feedback title  has to be less than 30 characters long.</div>
+      <div ng-message="minlength">the feedback title should contain minimum 5 characters</div>
+    </div>
+  </div>
+</md-input-container>            
 
-         <!-- Feedback Type input-->
-          <div class="form-group" > 
-          Feedback Type
-          <div class="radio-inline" style="margin-left: 1cm" >
-            <label>
-            <input type="radio" ng-model="feedbackDefs.type" value="session" required>
-              Session
-            </label><br/>
-          </div>
-          <div class="radio-inline">  
-            <label>
-            <input type="radio" ng-model="feedbackDefs.type" value="visit">
-              Visit
-            </label><br/>
-          </div>  
-          </div>   
-          <hr>
-          <!-- Feedback Item-->   
-           <!-- <div ng-include src="'/public/mods/feedback/itemViewAdd.html'"></div> -->
-           <button class="btn btn-default btn-md"
-           ng-click="addFeedbackItem($event)">
-           Add Feedback Item
-         </button>
-            
+<!-- Feedback Type input-->
+<div class="form-group" > 
+  Feedback Type
+  <div class="radio-inline" style="margin-left: 1cm" >
+    <label>
+      <input type="radio" ng-model="feedbackDefs.type" value="session" required>
+      Session
+    </label><br/>
+  </div>
+  <div class="radio-inline">  
+    <label>
+      <input type="radio" ng-model="feedbackDefs.type" value="visit">
+      Visit
+    </label><br/>
+  </div>  
+</div>   
+<hr>
+<!-- Feedback Item-->   
+<!-- <div ng-include src="'/public/mods/feedback/itemViewAdd.html'"></div> -->
+<button class="btn btn-default btn-md"
+ng-click="addFeedbackItem($event)">
+Add Feedback Item
+</button>
+
          <!-- createBy
           <div class="form-group"> 
             <input type="text" class="form-control" placeholder="createBy" id="createBy" name="createBy" 
             ng-model="feedbackDefs.createBy" required ng-list floating-validation/>
           </div>
-          -->
+        -->
         <!-- createOn
           <div class="form-group"> 
              <input type="text" class="form-control" placeholder="createOn" id="createOn" name="createOn" 
@@ -86,19 +87,21 @@
             <td>{{item.query}}</td>
             <td>{{item.mode}}</td>
             <td>{{item.choices}}</td>
-            <td><a class="table-btn" ng-click="removeItem($index)"><span class="glyphicon glyphicon-trash" /></a>
+            <td><a class="table-btn" ng-click="removeItem($index)"><span class="glyphicon glyphicon-trash" ng-if="!isSaving" /></a>
               <a class="table-btn" ng-click="editItem($index,item,$event)"><span class="glyphicon glyphicon-edit" /></a>
             </td>
           </tr>
         </tbody>
       </table>
       <hr>
-          <div class="form-group">              
-              <div>
-                <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="feedbackForm.$invalid">Submit</button>
-                <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">Cancel</button>
-              </div>
-          </div>
-          </form>
+      <div class="form-group">              
+        <div>
+          <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="feedbackForm.$invalid">Submit</button>
+          <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+          yes-text="Ok" no-text="Cancel">Cancel</button>
+        </div>
       </div>
+    </fieldset>
+
+  </form>
+</div>
