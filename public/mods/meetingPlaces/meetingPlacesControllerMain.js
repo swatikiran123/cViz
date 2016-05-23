@@ -12,6 +12,11 @@ meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope', '$http', '
   }
     //fetching all the meetingPlaces details by calling refresh function
     var refresh = function() {
+       //Location - Http get for drop-down
+       $http.get('/api/v1/secure/lov/locations').success(function(response) {
+        $scope.location=response.values;
+      });
+
       $http.get('/api/v1/secure/meetingPlaces').success(function(response) {
         $scope.meetingPlaceslist = response;
         $scope.meetingPlaces = "";
