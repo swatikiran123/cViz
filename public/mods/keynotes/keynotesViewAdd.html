@@ -77,8 +77,48 @@
 </div>
 
 <!-- <div fileattachment folder-type="keynotes" file-size="25" file-allowed="1" array="array" file-type="singleFile"></div> -->
+        <div class="row">
+
+        <div ng-if="noteById==noteById1  && noteById != null && noteById1 != null">
+          {{$parent.submitKeynotes=true;""}}
+          {{errMessage="Signatory and Signatory1 Email should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+
+        <div ng-if="noteById==noteById2  && noteById != null && noteById2 != null">
+          {{$parent.submitKeynotes=true;""}}
+          {{errMessage="Signatory and Signatory2 Email should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+
+        <div ng-if="noteById1==noteById2  && noteById1 != null && noteById2 != null">
+          {{$parent.submitKeynotes=true;""}}
+          {{errMessage="Signatory1 and  Signatory2 Email should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+       </div> 
 
 
+<!--         <div ng-if="(noteById1==noteById || noteById1==noteById2)  && noteById != null && noteById1 != null && noteById2 !=null">
+          {{$parent.submitKeynotes=true;""}}
+          {{errMessage="Owner Email Id and Supporter Email Id should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+
+        <div ng-if="(noteById2==noteById || noteById2==noteById1)  && noteById != null && noteById1 != null && noteById2 !=null">
+          {{$parent.submitKeynotes=true;""}}
+          {{errMessage="Owner Email Id and Supporter Email Id should not be same.";""}}
+          <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+        </div> 
+ -->
+        <div ng-if="noteById!=noteById1 && noteById != null && noteById1 != null">
+          {{$parent.submitKeynotes=false;""}}
+        </div>
+
+        <div ng-if="noteById == null || noteById1 == null">
+          {{$parent.submitKeynotes=false;""}}
+        </div> 
+      <!-- </div> -->
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"> <b>Attachments</b></h3>
@@ -100,12 +140,12 @@
         placeholder="Enter a tag"
         delete-button-label="Remove Tag"
         delete-hint="Press delete to remove tag"
-        secondary-placeholder="+Tag"></md-chips--></md-input-container>
+        secondary-placeholder="+Tag"></md-chips-->
         <br>
         <div class="form-group">
           <div class="pull-left">
             <button type="submit" class="btn btn-success" 
-            ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone">Submit
+            ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone || submitKeynotes">Submit
           </button>
           <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
           yes-text="Ok" no-text="Cancel">Cancel</button>
@@ -113,8 +153,4 @@
       </div>
     </fieldset>
   </form></div>
-
-
-
-
 </div>

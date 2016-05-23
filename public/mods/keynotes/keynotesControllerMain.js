@@ -23,8 +23,9 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.large= "LARGE";
       $scope.medium= "medium";
       $scope.isSaving= false; 
-
+      $scope.submitKeynotes = true;
       $scope.keyTruedone=true;
+
       if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
         $scope.isSaving= true; 
       }
