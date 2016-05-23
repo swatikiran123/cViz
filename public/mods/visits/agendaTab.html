@@ -36,7 +36,7 @@
             <br>
             <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
             />
-            <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+            <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" width="122" height="122"
             style="background-size:cover;"/>
             <div>
              <md-button class="md-primary md-raised" 
@@ -63,6 +63,7 @@
           match-class="highlight"
           template-url="/my-custom-template.html"
           initial-value="parentSelected"
+          box-type="md"
           />
         </md-input-container>
 
@@ -73,7 +74,7 @@
         placeholder="Select Child Client or Add Client"
         pause="500"
         selected-object="visitsSelectedchildClient"
-        remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery="
+        remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery="
         remote-url-data-field="items1"
         title-field="childClient"
         minlength="3" 
@@ -81,6 +82,7 @@
         match-class="highlight"
         template-url="/my-custom1-template.html"
         initial-value="childSelected"
+        box-type="md"
         />
       </md-input-container>
 
@@ -95,7 +97,7 @@
       placeholder="Select Industry type or Add Industry type"
       pause="500"
       selected-object="visitsSelectedindustryClient"
-      remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery={{visits.subName}}&industry="
+      remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery={{visits.subName}}&industry="
       remote-url-data-field="items2"
       title-field="IndustryClient"
       minlength="3" 
@@ -103,6 +105,7 @@
       match-class="highlight"
       template-url="/my-custom3-template.html"
       initial-value="industrySelected"
+      box-type="md"
       />
     </md-input-container>
 
@@ -115,7 +118,7 @@
     placeholder="Select Region or Add Region"
     pause="500"
     selected-object="visitsSelectedregionsClient"
-    remote-url="/api/v1/secure/clients/find?query={{visits.client}}&subQuery={{visits.subName}}&industry={{visits.industry}}&regions="
+    remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery={{visits.subName}}&industry={{visits.industry}}&regions="
     remote-url-data-field="items3"
     title-field="regionClient"
     minlength="3" 
@@ -123,6 +126,7 @@
     match-class="highlight"
     template-url="/my-custom4-template.html"
     initial-value="regionsSelected"
+    box-type="md"
     />
   </md-input-container>
 </div>
@@ -137,6 +141,7 @@
     <script type="text/ng-template" id="/my-custom-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -177,6 +182,7 @@
     <script type="text/ng-template" id="/my-custom1-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -217,6 +223,7 @@
     <script type="text/ng-template" id="/my-custom3-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -258,6 +265,7 @@
     <script type="text/ng-template" id="/my-custom4-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -334,34 +342,35 @@
     <div id="existing" ng-if="visits.interest.businessType == 'existing'">
       <label>Visit Type-Existing&nbsp;&nbsp;</label>
       <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
-        <option ng-option value="operationsReview">Operations Review</option>
+        <option ng-option value="operationsReview">Meeting &amp; Operations Review</option>
         <option ng-option value="renewals">Renewals</option>
         <option ng-option value="newBusiness">New Business</option>
-        <option ng-option value="strategic">Strategic</option>
+        <option ng-option value="strategic">Exploratory</option>
       </select>
     </div>
   </div>
 </div>
+
 <div class="row">
-  <div class="form-group col-xs-3">
-    <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
+  <div class="form-group col-xs-9">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
+      <label>Offerings &nbsp;&nbsp; </label>
+
+      <select
+      ng-model="visits.offerings"
+      ng-options="data for data in offerings">
+    </select>
+  </div>
+</div>
+<div class="form-group col-xs-3">
+<!--     <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
       <label>Vertical &nbsp;&nbsp; </label>
 
       <select
       ng-model="visits.vertical"
       ng-options="data for data in vertical">
     </select>
-  </div>
-</div>
-<div class="form-group col-xs-9">
-  <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-    <label>Offerings &nbsp;&nbsp; </label>
-
-    <select
-    ng-model="visits.offerings"
-    ng-options="data for data in offerings">
-  </select>
-</div>
+  </div> -->
 </div>
 </div>
 
@@ -436,7 +445,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 
 
 <!--panel-two-->
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"> <b>Key personnel for the visit...</b></h3>
   </div>
@@ -445,7 +454,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
   <div class="panel-body">
 
     <!-- visits AGM By input-->
-    <div class="row">
+<!--     <div class="row">
       <div class="form-group col-xs-5">
 
         <md-input-container class="md-block">
@@ -459,7 +468,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
     </div>
   </div>
 </div>
-</div>
+</div> --> 
 
 <!--panel-three-->
 <div class="panel panel-default">
@@ -618,8 +627,8 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
   <md-input-container class="md-block">
   <md-radio-group name="status" id="status" ng-model="status" required class="">
   <div class="row">
-    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
-    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm Draft</md-radio-button></div>
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative Draft</md-radio-button></div>
   </md-radio-group></div>
   <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
     <div class="messagenotify">
@@ -635,10 +644,13 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="callClientId();save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
+  <button type="submit" class="btn btn-success"
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save to Draft
+</button>
 </div>
 </div>
 </form>
