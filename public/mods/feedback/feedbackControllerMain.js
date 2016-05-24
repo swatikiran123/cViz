@@ -10,6 +10,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   $scope.mode=(id==null? 'add': 'edit');
   $scope.nameonly= "nameonly";
   $scope.hideFilter = true;
+  $scope.fbvalid= true;
         $scope.isSaving=false;
       if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
         $scope.isSaving= true; 
@@ -33,6 +34,15 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
             var feedbackDefs = response;
             $scope.items = feedbackDefs.item;       //list of item
             $scope.feedbackDefs = feedbackDefs;     //whole form object
+            if ($scope.items.length == 0)
+            {
+              $scope.fbvalid= true;
+
+            }
+            else{
+              $scope.fbvalid= false;
+
+            }
           });
 
       } // switch scope.mode ends
@@ -123,14 +133,31 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
       choices: item.choices
     });
 
+    if($scope.items.length == 0)
+    {
+      $scope.fbvalid = true;
+    }
+
+    else
+    {
+      $scope.fbvalid = false;
+    }
     item.query='';
     item.mode='';
     item.choices='';
     $mdDialog.hide();
   };
 
-  $scope.removeItem = function(index){
+  $scope.removeItem = function(index,items){
     $scope.items.splice(index, 1);
+    if (items.length == 0)
+    {
+     $scope.fbvalid=true;
+     
+   }else{
+     $scope.fbvalid=false;
+
+   }
   };
 
   $scope.editItem = function(index,item,ev){
@@ -172,7 +199,7 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
   };
 
   $scope.canceldialog = function(item) {
-
+    // console.log(item.choices);
     if(item === undefined || item=== '')
     {
       console.log('Hi');
@@ -188,11 +215,19 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
        choices: item.choices
      });
 
+      if(item.query==undefined || item.mode==undefined || (item.mode=="freetext" && item.choices == undefined) || (item.mode=="star-rating" && item.choices == undefined) || (item.mode=="single-choice" && item.choices == undefined) || (item.mode=="multi-choice" && item.choices == undefined))
+      {
+        $scope.items.splice($scope.items.length - 1, 1);
+        $mdDialog.cancel();
+      }
       item.query='';
       item.mode='';
       item.choices='';
+
       $mdDialog.cancel();
     };
+
+
   }
 
 }])

@@ -57,11 +57,11 @@ var visitSchema = new mongoose.Schema({
 	// vertical						: { type: String, trim: true, required: true },
 	offerings 						: [{ type: String, trim: true }],
 	cscPersonnel					: {
-		salesExec					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-		accountGM					: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		salesExec					: { type: Schema.Types.ObjectId, ref: 'User'},
+		accountGM					: { type: Schema.Types.ObjectId, ref: 'User'},
 		industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-		cre 						: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		cre 						: { type: Schema.Types.ObjectId, ref: 'User'},
 	}
 
 

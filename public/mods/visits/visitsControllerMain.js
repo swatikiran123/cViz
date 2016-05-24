@@ -111,25 +111,26 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   $scope.cscPersonnel={};
 
-  $scope.salesExecId = "";
-  $scope.salesExecEmail = "";
-  $scope.salesExecUser =  "";
+  // $scope.salesExecId = "";
+  // $scope.salesExecEmail = "";
+  // $scope.salesExecUser =  "";
 
-  $scope.accountGMId = "";
-  $scope.accountGMEmail = "";
-  $scope.accountGMUser =  "";
+  // $scope.accountGMId = "";
+  // $scope.accountGMEmail = "";
+  // $scope.accountGMUser =  "";
 
-  $scope.industryExecId = "";
-  $scope.industryExecEmail = "";
-  $scope.industryExecUser =  "";
+  // $scope.industryExecId = "";
+  // $scope.industryExecEmail = "";
+  // $scope.industryExecUser =  "";
 
-  $scope.globalDeliveryId = "";
-  $scope.globalDeliveryEmail = "";
-  $scope.globalDeliveryUser =  "";
+  // $scope.globalDeliveryId = "";
+  // $scope.globalDeliveryEmail = "";
+  // $scope.globalDeliveryUser =  "";
 
-  $scope.creId = "";
-  $scope.creEmail = "";
-  $scope.creUser =  "";
+  // $scope.creId = "";
+  // $scope.creEmail = "";
+  // $scope.creUser =  "";
+  $scope.submitVisitsUsers = false;
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -436,25 +437,90 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         };
         if (response.cscPersonnel!=undefined) {
 
+          if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
+          {
+          $scope.saleExeId = response.cscPersonnel.salesExec._id;
+          }
+
+          if(response.cscPersonnel.salesExec == null || response.cscPersonnel.salesExec == undefined)
+          {
+            $scope.saleExeId = null;
+          }
+
+          if(response.cscPersonnel.accountGM != null || response.cscPersonnel.accountGM != undefined)
+          {
+          $scope.accountGmId = response.cscPersonnel.accountGM._id;
+          }
+
+          if(response.cscPersonnel.accountGM == null || response.cscPersonnel.accountGM == undefined)
+          {
+            $scope.accountGmId = null;
+          }
+
+          if(response.cscPersonnel.industryExec != null || response.cscPersonnel.industryExec != undefined)
+          {
+          $scope.industryExeCId = response.cscPersonnel.industryExec._id;
+          }
+
+          if(response.cscPersonnel.industryExec == null || response.cscPersonnel.industryExec == undefined)
+          {
+            $scope.industryExeCId = null;
+          }
+
+          if(response.cscPersonnel.globalDelivery != null || response.cscPersonnel.globalDelivery != undefined)
+          {
+          $scope.globalDeliverYId = response.cscPersonnel.globalDelivery._id;
+          }
+
+          if(response.cscPersonnel.globalDelivery == null || response.cscPersonnel.globalDelivery == undefined)
+          {
+          $scope.globalDeliverYId = null;
+          }
+
+          if(response.cscPersonnel.cre != null || response.cscPersonnel.cre != undefined)
+          {
+          $scope.crEId = response.cscPersonnel.cre._id;
+          } 
+
+          if(response.cscPersonnel.cre == null || response.cscPersonnel.cre == undefined)
+          {
+            $scope.crEId = null;
+          } 
+          
+          if($scope.saleExeId !=null || $scope.saleExeId !=undefined)
+          {
           $scope.salesExecUser = response.cscPersonnel.salesExec;
           $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
           $scope.salesExecId = response.cscPersonnel.salesExec._id;
+          }
 
+          if($scope.accountGmId !=null || $scope.accountGmId !=undefined)
+          {
           $scope.accountGMUser = response.cscPersonnel.accountGM;
           $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
           $scope.accountGMId = response.cscPersonnel.accountGM._id;
+          }
 
+          if($scope.industryExeCId !=null || $scope.industryExeCId !=undefined)
+          {
           $scope.industryExecUser = response.cscPersonnel.industryExec;
           $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
           $scope.industryExecId = response.cscPersonnel.industryExec._id;
+          }
 
+          if($scope.globalDeliverYId !=null || $scope.globalDeliverYId !=undefined)
+          {
           $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
           $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
           $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+          }
 
+          if($scope.crEId !=null || $scope.crEId !=undefined)
+          {  
           $scope.creUser = response.cscPersonnel.cre;
           $scope.creEmail = response.cscPersonnel.cre.email;
           $scope.creId = response.cscPersonnel.cre._id;
+          }
         }
 
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model

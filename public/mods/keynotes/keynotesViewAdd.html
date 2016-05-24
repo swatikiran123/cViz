@@ -115,7 +115,15 @@
           {{$parent.submitKeynotes=false;""}}
         </div>
 
-        <div ng-if="noteById == null || noteById1 == null">
+        <div ng-if="noteById!=noteById2 && noteById != null && noteById2 != null">
+          {{$parent.submitKeynotes=false;""}}
+        </div>
+
+        <div ng-if="noteById1!=noteById2 && noteById1 != null && noteById2 != null">
+          {{$parent.submitKeynotes=false;""}}
+        </div>
+
+        <div ng-if="noteById == null || noteById1 == null || noteById2 == null">
           {{$parent.submitKeynotes=false;""}}
         </div> 
       <!-- </div> -->

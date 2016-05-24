@@ -65,7 +65,7 @@
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
     ng-click="addItem(item)" ng-disabled="itemAddForm.$invalid">Add Items</button>
-    <button type="reset" class="btn btn-warning" ng-click="canceldialog(item)">Cancel</button>
+    <button type="reset" class="btn btn-warning" ng-click="canceldialog(item)" ng-disabled="itemAddForm.$valid">Cancel</button>
   </div>
 </md-dialog-actions>
 </fieldset>
