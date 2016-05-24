@@ -2,25 +2,6 @@
 'use strict';
 
 var visitsApp = angular.module('visits');
-
-//Autocompleate - Factory
-// visitsApp.factory('AutoCompleteService', ["$http", function ($http) {
-//   return {
-//     search: function (term) {
-//       //var client = {name: new RegExp(term, 'i')};
-//       var maxRecs = 10;
-//       var fields = ('name _id cscPersonnel');
-//       var sort = ({name:'ascending'});
-//       return $http({
-//         method: 'GET',
-//         url: '/api/v1/secure/clients/find',
-//         params: { query: term, fields: fields, maxRecs: maxRecs, sort: sort }
-//       }).then(function (response) {
-//         return response.data;
-//       });
-//     }
-//   };
-// }]);
 //Autocompleate - Factory
 visitsApp.factory('FeedbackService', ["$http", function ($http) {
   return {
@@ -85,6 +66,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
+  $scope.createBy='';
   $scope.hideFilter = true;
   $scope.checked = false;
   $scope.schedules=[];
@@ -103,6 +85,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.anchor='';
   $scope.secondaryVmanager='';
   $scope.clientId='';
+  $scope.visitEmp='';
   
   $scope.visitGrid=false;
   $scope.navVisit ='';
@@ -110,6 +93,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.showKey=false;
   $scope.subdis= true;
   $scope.stdate= true;
+
 
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
@@ -154,14 +138,22 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
-
+  console.log(group);
   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
     $scope.visitGrid= true;
+    $scope.visitEmp= true;
   }
 
   if ($rootScope.user.groups.indexOf("admin") > -1) {
     $scope.adminInitVman= true;
-  }
+    $scope.visitEmp= true;
+    // $http.get('/api/v1/secure/visits/' + id).success(function(response){
+    //   console.log(response);
+    //   if(response.client.status == "draft"){
+    //     $scope.ClientDraft= true;
+    //   }else $scope.ClientDraft= false;
+    // })
+}
 
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
@@ -372,12 +364,20 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       break;
 
     };
+    $scope.createBy= response.createBy._id;
     console.log(visits.client);
     $scope.clientIdData=visits.client._id;
     $scope.parentSelected= visits.client.name;
     $scope.childSelected= visits.client.subName;
     $scope.industrySelected= visits.client.industry;
     $scope.regionsSelected= visits.client.regions;
+    $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
+// })
+    if(response.status == "draft"){
+      $scope.ClientDraft= true;
+      console.log("draft");
+    }else{ $scope.ClientDraft= false; console.log("final");}
+  })
 
     for(var files=0;files<response.visitGallery.length;files++)
     {
@@ -467,14 +467,24 @@ break;
   }; // Refresh method ends
 
   refresh();
-
+  $scope.saveDraft=function() {
+    $scope.save();
+    $scope.saveDraf=true;
+    $scope.visitEmp= false;// edit/delete will be shown for employee in deaf
+  }
+  $scope.saveVisitorsData=function () {
+    if ($rootScope.user.memberOf){
+      $scope.save();
+      $scope.visitEmp= false;
+    }else 
+    $scope.save();
+  }
   $scope.save = function(){
     // Set agm based on the user picker value
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.agm = $scope.agmId;
+    $scope.visits.agm = null;
     $scope.visits.status =$scope.status;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
     $scope.visits.wbscodeAttachment = $scope.arrayiwo;
@@ -502,38 +512,52 @@ break;
         $scope.visits.sessionTmpl = $scope.sessionId;
         console.log($scope.visits);
         // while edit vll get id den v need to search by id too...
-        $http.get('/api/v1/secure/clients/find?query=' + $scope.visits.clientName+"&subQuery="+$scope.visits.subName+"&industry="+$scope.visits.industry+"&regions="+$scope.visits.regions+"&id=").success(function(response) {
+        var inDataClient={};
+        if ($scope.visits.clientName!=undefined) 
+          {inDataClient.name =$scope.visits.clientName;}
+        else inDataClient.name = $scope.parentSelected;
+
+        if ($scope.visits.subName!=undefined) 
+          {inDataClient.subName =$scope.visits.subName;}
+        else inDataClient.subName = $scope.childSelected;
+
+        if ($scope.visits.industry!=undefined) 
+          {inDataClient.industry =$scope.visits.industry;}
+        else inDataClient.industry = $scope.industrySelected;
+
+        if ($scope.visits.regions!=undefined) 
+          { inDataClient.regions =$scope.visits.regions;}
+        else inDataClient.regions = $scope.regionsSelected;
+
+        $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
           console.log(response);
           if (response.id!="null") {
-        // if ($scope.clientId!= null) {
-          $scope.visits.client = response.id;
+            console.log("im in here with id")
+            $scope.visits.client = response.id;
 
-          switch($scope.mode){
-            case "add":
-            $scope.create();
-            break;
+            switch($scope.mode){
+              case "add":
+              $scope.create();
+              break;
 
-            case "edit":
-            $scope.update();
-            $route.reload();
-            break;
+              case "edit":
+              $scope.update();
+              $route.reload();
+              break;
 
+            }
           }
-        }
-        else if($scope.clientIdData!=undefined && response.id!="null" ){
-          console.log("you can proceed now");
-          $scope.visits.clientIdData=$scope.clientIdData;
-          $scope.update(); 
-        }
-        else
+          else if($scope.clientIdData!=undefined && response.id!="null" ){
+            console.log("you can proceed now");
+            $scope.visits.clientIdData=$scope.clientIdData;
+            $scope.update(); 
+          }
+          else
         {//get al client data
           console.log($scope.visits);
           
           var inDataClient ={};
-          // inDataClient.name =$scope.visits.client;
-          // inDataClient.subName =$scope.visits.subName;
-          // inDataClient.industry =$scope.visits.industry;
-          //  inDataClient.regions =$scope.visits.regions;
+
           if ($scope.visits.clientName!=undefined) 
             {inDataClient.name =$scope.visits.clientName;}
           else inDataClient.name = $scope.parentSelected;
@@ -554,8 +578,8 @@ break;
             inDataClient.status="final";
           }else inDataClient.status="draft";
 
-          // if ($scope.avatar!=undefined) {
-          //   inData.logo=avatar;}
+          if ($scope.avatarVisit!=undefined) {
+            inDataClient.logo=$scope.avatarVisit;}
             console.log(inDataClient)
 
             $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
@@ -591,37 +615,49 @@ break;
           $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
             // console.log("added");
           })
-          $http.post('/api/v1/secure/visits', inData).success(function(response) {
 
-            $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-             console.log(response);
-           })
-            $scope.nextTab(response._id);
+          if ($scope.saveDraf==true) {
+            $http.post('/api/v1/secure/visits', inData).success(function(response) {
+              console.log("im in saveDraf mode!!")
 
-            growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
-          })
-          .error(function(data, status){
-            growl.error("Error adding visit");
-    }); // Http post visit ends
-          
-  }; //End of create method
+              $scope.nextTab(response._id);
 
-  $scope.delete = function(visits) {
-    var title = visits.title;
-    $http.delete('/api/v1/secure/visits/' + visits._id).success(function(response) {
-      refresh();
-      growl.info(parse("visits [%s]<br/>Deleted successfully", title));
-    })
-    .error(function(data, status){
-      growl.error("Error deleting visit");
+              growl.info(parse("visit [%s]<br/>Added successfully as draft", inData.title));
+            })
+          }else{
+            $http.post('/api/v1/secure/visits', inData).success(function(response) {
+              console.log("im in else saveDraf mode!!")
+              $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
+               console.log(response);
+             })
+              $scope.nextTab(response._id);
+
+              growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
+            })
+            .error(function(data, status){
+              growl.error("Error adding visit");
+              }); // Http post visit ends
+          }
+    }; //End of create method
+
+    $scope.delete = function(visits) {
+      var title = visits.title;
+      $http.delete('/api/v1/secure/visits/' + visits._id).success(function(response) {
+        refresh();
+        growl.info(parse("visits [%s]<br/>Deleted successfully", title));
+      })
+      .error(function(data, status){
+        growl.error("Error deleting visit");
     }); // Http put delete ends
   }; // Delete method ends
 
   $scope.update = function() {
+
     console.log($scope.visits);
     console.log($scope.visits.clientIdData)
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
+    inData.createBy=$scope.createBy;
     inData.cscPersonnel =$scope.cscPersonnel;
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
@@ -644,45 +680,45 @@ break;
 
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       client.status="final";
-    }else client.status="draft";
+    }
 
     // if ($scope.avatar!=undefined) {
     //   inData.logo=avatar;}
 
-      console.log(client);
-      $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
-      })
-      .error(function(data, status){
-        growl.error("Error updating client");
+    console.log(client);
+    $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
+    })
+    .error(function(data, status){
+      growl.error("Error updating client");
     }); // http put keynoges ends
 
-      $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
-       refresh();
-       growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
+     refresh();
+     growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
 
-       if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-        if($scope.agendaTab == true && $scope.agendaEdit == false) {
-          if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
-          {
-            $location.path("visits/list");
-          }else
-          $location.path("/visits/"+$scope.visits._id+"/edit"); 
-        }
-        else if($scope.finalizeTab == true && $scope.finall == true)
-        {
-          $location.path("visits/list");
-        }
-        else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
-      }
-
-      else if($scope.agendaTab == true && $scope.agendaEdit == false) {
-        if($scope.visitorsTab == true && $scope.check == true)
+     if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+      if($scope.agendaTab == true && $scope.agendaEdit == false) {
+        if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
         {
           $location.path("visits/list");
         }else
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
       }
-    })
+      else if($scope.finalizeTab == true && $scope.finall == true)
+      {
+        $location.path("visits/list");
+      }
+      else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+
+    else if($scope.agendaTab == true && $scope.agendaEdit == false) {
+      if($scope.visitorsTab == true && $scope.check == true)
+      {
+        $location.path("visits/list");
+      }else
+      $location.path("/visits/"+$scope.visits._id+"/edit"); 
+    }
+  })
 .error(function(data, status){
   growl.error("Error updating visit");
     }); // Http put visit ends
@@ -743,15 +779,45 @@ break;
 //    $scope.save();}
 //  }
 
+$scope.updateClientStatus=function () {
+  $http.get('/api/v1/secure/clients/id/'+$scope.visits.client._id).success(function(response) {
+
+    console.log(response);
+  })
+
+  //   var inDataClient={};
+  //   if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+  //     $scope.cscPersonnel.salesExec = $scope.salesExecId;
+  //     $scope.cscPersonnel.accountGM= $scope.accountGMId;
+  //     $scope.cscPersonnel.industryExec = $scope.industryExecId;
+  //     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+  //     $scope.cscPersonnel.cre= $scope.creId;
+  //     inDataClient.cscPersonnel=$scope.cscPersonnel;
+  //     inDataClient.status="final";
+  //   }
+  //   else inDataClient.status="draft";
+
+  //   console.log(inDataClient);
+
+  //   $http.put('/api/v1/secure/clients/id/' + $scope.response._id, inDataClient).success(function(response) {
+  //   })
+  //   $route.reload();
+  // })
+}
+
+$scope.ClientStatusReject=function () {
+  console.log("reject clint");
+  $scope.visitEmp= true;
+}
+
    //add vmanager
    $scope.AddVmanager=function(){
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status =$scope.status;
-    $scope.visits.agm = $scope.agmId;
+    $scope.visits.agm = null;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientIdData;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -762,9 +828,12 @@ break;
     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.cscPersonnel=$scope.cscPersonnel;
+    $scope.visits.createBy = $scope.createBy;
     // $scope.dataOne=[];
 
-    $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
+    $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
      growl.info(parse("Visit Manager Added successfully"));
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
@@ -778,10 +847,10 @@ break;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status ="finalize";
-    $scope.visits.agm = $scope.agmId;
+    $scope.visits.agm = null;
+    $scope.visits.createBy = $scope.createBy;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientIdData;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -806,10 +875,10 @@ break;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status ="close";
-    $scope.visits.agm = $scope.agmId;
+    $scope.visits.agm = null;
+    $scope.visits.createBy = $scope.createBy;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientIdData;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -833,8 +902,7 @@ break;
   }
   $scope.getvalidation= function(ev){
 
-    $scope.visits.agm = $scope.agmId;
-    $scope.visits.createBy= $rootScope.user._id;
+    $scope.visits.agm = null;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.client = $scope.clientIdData;
@@ -847,6 +915,8 @@ break;
     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.cscPersonnel=$scope.cscPersonnel;
+    $scope.visits.createBy = $scope.createBy;
+
 
 
     var inData     = $scope.visits;
@@ -927,10 +997,9 @@ break;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.status =$scope.status;
-    $scope.visits.agm = $scope.agmId;
+    $scope.visits.agm = null;
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
-    $scope.visits.createBy= $rootScope.user._id;
     $scope.visits.client = $scope.clientIdData;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -941,11 +1010,13 @@ break;
     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.cscPersonnel=$scope.cscPersonnel;
+    $scope.visits.createBy = $scope.createBy;
 
     // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
     });
+    refresh();
   }
   $scope.addSecMan=function(){
     $scope.addSec=true;
@@ -978,10 +1049,9 @@ break;
   $scope.visits.anchor = $scope.anchorman;
   $scope.visits.secondaryVmanager= $scope.vman;
   $scope.visits.status =$scope.status;
-  $scope.visits.agm = $scope.agmId;
+  $scope.visits.agm = null;
   $scope.visits.anchor = $scope.anchorman;
   $scope.visits.secondaryVmanager= $scope.vman;
-  $scope.visits.createBy= $rootScope.user._id;
   $scope.visits.client = $scope.clientIdData;
   $scope.visits.invitees = $scope.arraydata;
   $scope.visits.feedbackTmpl = $scope.feedbackId;
@@ -992,6 +1062,8 @@ break;
   $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
   $scope.cscPersonnel.cre= $scope.creId;
   $scope.visits.cscPersonnel=$scope.cscPersonnel;
+  $scope.visits.createBy = $scope.createBy;
+
 
   var inData       = $scope.visits;
   inData.keynote = $scope.keynotes;
@@ -1132,6 +1204,7 @@ function toTitleCase(string)
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   { 
     $scope.contactNo = [];
+
     $scope.contactNo.push({
       contactNumber:"+" + userdata.contactNumber,
       contactType:userdata.contactType
@@ -1181,8 +1254,6 @@ function toTitleCase(string)
    });
   });
     $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
-
-
   }
 
   $scope.cancelButton = function(){
@@ -1212,6 +1283,7 @@ function toTitleCase(string)
     var influence= visitorDef.influence;
     var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
+
     if(visitorDef.visitorId!=null)
     {
       $http.get('/api/v1/secure/admin/users/email/' + emailid.toLowerCase()).success(function(response) {

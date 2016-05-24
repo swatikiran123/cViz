@@ -36,10 +36,10 @@
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='anchor'; reverseSort = !reverseSort">Visit Manager</a>
           </th>
-					<th class="hidden-xs">
-						<span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-						<a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
-					</th>
+          <th class="hidden-xs">
+            <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
+            <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
+          </th>
           <th class="hidden-xs">
             <span class="fa fa-refresh fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</a>
@@ -69,13 +69,13 @@
           <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client._id"></div></td>
           <td>{{visit.locations}}</td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
-					<td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
+          <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
-          <td>
+          <td><!--  ng-if="visitEmp" for edit commint -->
            <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
            <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-            yes-text="Ok" no-text="Cancel" ng-if="visitGrid"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
+            yes-text="Ok" no-text="Cancel" ng-if="visitGrid || visitEmp"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
 
             <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
               yes-text="Ok" no-text="Cancel" ng-hide="visitGrid" ng-if="visit.status == 'confirm' || visit.status == 'tentative'"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>

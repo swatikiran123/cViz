@@ -54,7 +54,7 @@ var visitSchema = new mongoose.Schema({
 	summary						: { type: String, lowercase: true, trim: true },
 	actionItem						: { type: String, lowercase: true, trim: true },
 	visitGallery					: [{ type: String }],
-	vertical						: { type: String, trim: true, required: true },
+	// vertical						: { type: String, trim: true, required: true },
 	offerings 						: [{ type: String, trim: true }],
 	cscPersonnel					: {
 		salesExec					: { type: Schema.Types.ObjectId, ref: 'User', required: true },

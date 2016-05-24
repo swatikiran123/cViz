@@ -43,7 +43,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
         // $scope.selected-object= $scope.clients.name;
 
         // $scope.selectedClient= $scope.clients.name;
-        console.log($scope.clients)
+        // console.log($scope.clients)
         if (response.logo!=undefined) {
           $scope.showAvatar = true
           $scope.avatar= response.logo;
@@ -80,10 +80,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       inData.status="final";
     }else 
-      inData.status="draft";
+    inData.status="draft";
 
     if ($scope.avatar!=undefined) {
-      inData.logo=avatar;}
+      inData.logo=$scope.avatar;}
       console.log(inData)
       $http.post('/api/v1/secure/clients', inData).success(function(response) {
         refresh();
@@ -106,9 +106,32 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // delete method ends
 
   $scope.update = function() {
+    console.log($scope.clients);
     var inData  = $scope.clients;
+
     inData.logo=$scope.avatar;
 
+    if ($scope.clients.name!=undefined) 
+      {inData.name =$scope.clients.name;}
+    else inData.name = $scope.parentSelected;
+
+    if ($scope.clients.subName!=undefined) 
+      {inData.subName =$scope.clients.subName;}
+    else inData.subName = $scope.childSelected;
+
+    if ($scope.clients.industry!=undefined) 
+      {inData.industry =$scope.clients.industry;}
+    else inData.industry = $scope.industrySelected;
+
+    if ($scope.clients.regions!=undefined) 
+      { inData.regions =$scope.clients.regions;}
+    else inData.regions = $scope.regionsSelected;
+    
+    console.log(inData);
+    
+    // console.log($scope.parentSelected+" "+$scope.childSelected+" "+$scope.industrySelected+" "+$scope.regionsSelected);
+    
+    // console.log(inData.cscPersonnel);
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {
       refresh();
       growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));

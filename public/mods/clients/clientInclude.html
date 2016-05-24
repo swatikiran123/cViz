@@ -47,6 +47,7 @@
       match-class="highlight"
       template-url="/my-custom-template.html"
       initial-value="parentSelected"
+      box-type="md"
       />
     </md-input-container>
 
@@ -65,7 +66,7 @@
     match-class="highlight"
     template-url="/my-custom1-template.html"
     initial-value="childSelected"
-
+    box-type="md"
     />
   </md-input-container>
 
@@ -98,6 +99,7 @@
   match-class="highlight"
   template-url="/my-custom3-template.html"
   initial-value="industrySelected"
+  box-type="md"
   />
 </md-input-container>
 
@@ -124,7 +126,7 @@
   match-class="highlight"
   template-url="/my-custom4-template.html"
   initial-value="regionsSelected"
-
+  box-type="md"
   />
 </md-input-container>
 </div>
@@ -136,6 +138,7 @@
     <script type="text/ng-template" id="/my-custom-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -176,6 +179,7 @@
     <script type="text/ng-template" id="/my-custom1-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -216,6 +220,7 @@
     <script type="text/ng-template" id="/my-custom3-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
@@ -255,6 +260,7 @@
     <script type="text/ng-template" id="/my-custom4-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input ng-model="searchStr"
+    class="md-block"
     ng-disabled="disableInput"
     type="text"
     placeholder="{{placeholder}}"
