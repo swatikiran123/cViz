@@ -5,7 +5,15 @@
 
         <br>
         <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+        <span class="error text-info"> Note - All the fields are mandatory except SFDC ID please fill all the fields.</span>
 
+        </div>
+        </div>
+        <br>
+        <div class="row">
           <div class="col-md-4 text-center">
             <br>
             <br>
@@ -48,7 +56,11 @@
       template-url="/my-custom-template.html"
       initial-value="parentSelected"
       box-type="md"
+      input-changed="parentClientChanged"
       />
+      <div class="messagenotify">
+      <div class="text-danger">{{errparentMsg}}</div>
+      </div> 
     </md-input-container>
 
     <md-input-container class="md-block" flex-gt-sm>
@@ -67,7 +79,11 @@
     template-url="/my-custom1-template.html"
     initial-value="childSelected"
     box-type="md"
+    input-changed="childClientChanged"
     />
+    <div class="messagenotify">
+    <div class="text-danger">{{errchildMsg}}</div>
+    </div>  
   </md-input-container>
 
 </div>
@@ -100,7 +116,11 @@
   template-url="/my-custom3-template.html"
   initial-value="industrySelected"
   box-type="md"
+  input-changed="industryClientChanged"
   />
+  <div class="messagenotify">
+    <div class="text-danger">{{errindustryMsg}}</div>
+  </div>  
 </md-input-container>
 
 
@@ -127,8 +147,13 @@
   template-url="/my-custom4-template.html"
   initial-value="regionsSelected"
   box-type="md"
+  input-changed="regionClientChanged"
   />
+  <div class="messagenotify">
+  <div class="text-danger">{{errregionMsg}}</div>
+  </div>
 </md-input-container>
+
 </div>
 </div>
 </div>
@@ -315,7 +340,7 @@
         Cancel
       </md-button> 
 
-      <md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid">
+      <md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionClient">
       Submit
     </md-button>
   </div>

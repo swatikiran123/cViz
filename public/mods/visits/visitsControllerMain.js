@@ -107,6 +107,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.array = [];
   $scope.arrayiwo = [];
   $scope.closeSave=0;
+  $scope.parentClient = true;
+  $scope.childClient = true;
+  $scope.industryClient = true;
+  $scope.regionClient = true;
   // $scope.sessiondbId = "";
 
   $scope.cscPersonnel={};
@@ -260,6 +264,10 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       break;
 
       case "edit":
+      $scope.parentClient = false;
+      $scope.childClient = false;
+      $scope.industryClient = false;
+      $scope.regionClient = false;
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
         console.log(response);
         for(var files=0;files<response.visitAttachment.length;files++)
@@ -595,6 +603,10 @@ break;
           { inDataClient.regions =$scope.visits.regions;}
         else inDataClient.regions = $scope.regionsSelected;
 
+        inDataClient.SFDCId=$scope.visits.SFDCId;
+        inDataClient.netPromoter =$scope.visits. netPromoter;
+        inDataClient.competitors =$scope.visits. competitors; 
+
         $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
           console.log(response);
           if (response.id!="null") {
@@ -644,6 +656,10 @@ break;
             inDataClient.status="final";
           }else inDataClient.status="draft";
 
+          inDataClient.SFDCId=$scope.visits.SFDCId;
+          inDataClient.netPromoter =$scope.visits. netPromoter;
+          inDataClient.competitors =$scope.visits. competitors;
+
           if ($scope.avatarVisit!=undefined) {
             inDataClient.logo=$scope.avatarVisit;}
             console.log(inDataClient)
@@ -674,6 +690,7 @@ break;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
           inData.cscPersonnel =$scope.cscPersonnel;
+          
           console.log($scope.cscPersonnel);
           console.log(inData.client);
           var client ={};
@@ -1649,6 +1666,70 @@ $scope.clearInput = function (id) {
     $scope.$broadcast('angucomplete-alt:clearInput');
   }
 }
+
+$scope.parentClientChanged = function(str) {
+  $scope.parentClientString = str;
+
+  if($scope.parentClientString!=null || $scope.parentClientString!="")
+  {
+    $scope.parentClient = false;
+    $scope.errparentMsg = "";
+  }
+
+  if($scope.parentClientString==null || $scope.parentClientString=="")
+  {
+    $scope.parentClient = true;
+    $scope.errparentMsg = "Parent Account Name is Mandatory field";
+  }
+}  
+
+$scope.childClientChanged = function(str) {
+  $scope.childClientString = str;
+
+  if($scope.childClientString!=null || $scope.childClientString!="")
+  {
+    $scope.childClient = false;
+    $scope.errchildMsg = "";
+  }
+
+  if($scope.childClientString==null || $scope.childClientString=="")
+  {
+    $scope.childClient = true;
+    $scope.errchildMsg = "Child Account Name is Mandatory field";
+  }
+} 
+
+$scope.industryClientChanged = function(str) {
+  $scope.industryClientString = str;
+
+  if($scope.industryClientString!=null || $scope.industryClientString!="")
+  {
+    $scope.industryClient = false;
+    $scope.errindustryMsg = "";
+  }
+
+  if($scope.industryClientString==null || $scope.industryClientString=="")
+  {
+    $scope.industryClient = true;
+    $scope.errindustryMsg = "Industry is Mandatory field";
+  }
+} 
+
+$scope.regionClientChanged = function(str) {
+  $scope.regionClientString = str;
+
+  if($scope.regionClientString!=null || $scope.regionClientString!="")
+  {
+    $scope.regionClient = false;
+    $scope.errregionMsg = "";
+  }
+
+  if($scope.regionClientString==null || $scope.regionClientString=="")
+  {
+    $scope.regionClient = true;
+    $scope.errregionMsg = "Region is Mandatory field";
+  }
+} 
 }])
 
 //Autocompleate - Directive '$timeout', function($timeout)

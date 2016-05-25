@@ -12,6 +12,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.clientModule=true;
   $scope.showAvatar =false;
+  $scope.parentClient = true;
+  $scope.childClient = true;
+  $scope.industryClient = true;
+  $scope.regionClient = true;
   //regions - Http get for drop-down
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
     $scope.regions=response.values;
@@ -33,6 +37,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        break;
 
        case "edit":
+       $scope.parentClient = false;
+       $scope.childClient = false;
+       $scope.industryClient = false;
+       $scope.regionClient = false;
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
         $scope.parentSelected= $scope.clients.name;
@@ -85,9 +93,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     if ($scope.avatar!=undefined) {
       inData.logo=$scope.avatar;}
       console.log(inData)
+      var name = inData.name
       $http.post('/api/v1/secure/clients', inData).success(function(response) {
         refresh();
-        growl.info(parse("client [%s]<br/>Added successfully", $scope.clients.name));
+        growl.info(parse("client [%s]<br/>Added successfully", name));
       })
       .error(function(data, status){
         growl.error("Error adding client");
@@ -192,4 +201,67 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     $mdDialog.hide(answer);
   };
 
+  $scope.parentClientChanged = function(str) {
+    $scope.parentClientString = str;
+
+    if($scope.parentClientString!=null || $scope.parentClientString!="")
+    {
+        $scope.parentClient = false;
+        $scope.errparentMsg = "";
+    }
+
+    if($scope.parentClientString==null || $scope.parentClientString=="")
+    {
+        $scope.parentClient = true;
+        $scope.errparentMsg = "Parent Account Name is Mandatory field";
+    }
+  }  
+
+    $scope.childClientChanged = function(str) {
+    $scope.childClientString = str;
+
+    if($scope.childClientString!=null || $scope.childClientString!="")
+    {
+        $scope.childClient = false;
+        $scope.errchildMsg = "";
+    }
+
+    if($scope.childClientString==null || $scope.childClientString=="")
+    {
+        $scope.childClient = true;
+        $scope.errchildMsg = "Child Account Name is Mandatory field";
+    }
+  } 
+
+    $scope.industryClientChanged = function(str) {
+    $scope.industryClientString = str;
+
+    if($scope.industryClientString!=null || $scope.industryClientString!="")
+    {
+        $scope.industryClient = false;
+        $scope.errindustryMsg = "";
+    }
+
+    if($scope.industryClientString==null || $scope.industryClientString=="")
+    {
+        $scope.industryClient = true;
+        $scope.errindustryMsg = "Industry is Mandatory field";
+    }
+  } 
+
+    $scope.regionClientChanged = function(str) {
+    $scope.regionClientString = str;
+
+    if($scope.regionClientString!=null || $scope.regionClientString!="")
+    {
+        $scope.regionClient = false;
+        $scope.errregionMsg = "";
+    }
+
+    if($scope.regionClientString==null || $scope.regionClientString=="")
+    {
+        $scope.regionClient = true;
+        $scope.errregionMsg = "Region is Mandatory field";
+    }
+  } 
 }]);﻿ // controller ends
