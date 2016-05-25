@@ -377,11 +377,16 @@
 <!-- CSC Personnel input-->
 <!--salesExec-CSCPersonnel-->
 <div class="row">
+<div>
+  {{errMessage="Industry Executive and Global Delivery Contact are Mandatory Fields.";""}}
+  <span class="error text-info">&nbsp;&nbsp;Note-{{errMessage}}</span>
+</div>
+<br>
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
-      <label>Sales Executive &nbsp;&nbsp; :</label>
-      <div user type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee"></div>
+      <label>Select Sales Executive &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee" title="Sales Executive"></div>
     </div>
   </md-input-container>
 </div>
@@ -389,8 +394,8 @@
 <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
-    <label>Account General Manager &nbsp;&nbsp; :</label>
-    <div user type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee"></div>
+    <label>Select Account General Manager &nbsp;&nbsp; :</label>
+    <div userauto type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee" title="Account General Manager"></div>
   </div>
 </md-input-container>
 </div>
@@ -398,8 +403,8 @@
 <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
-    <label>Industry Executive &nbsp;&nbsp; :</label>
-    <div user type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee"></div>
+    <label>Select Industry Executive &nbsp;&nbsp; :</label>
+    <div userauto type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee" title="Industry Executive"></div>
   </div>
 </md-input-container>
 </div>
@@ -409,8 +414,8 @@
   <div class="form-group col-xs-6">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
-      <label >Global Delivery &nbsp;&nbsp; :</label>
-      <div user type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee"></div>
+      <label >Select Global Delivery &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee" title="Global Delivery"></div>
     </div>
   </md-input-container></div>
 
@@ -418,12 +423,61 @@
   <div class="form-group col-xs-6">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
-      <label>CRE &nbsp;&nbsp; :</label>
-      <div user type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee"></div>
+      <label>Select CRE &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee" title="CRE"></div>
     </div>
+    </md-input-container>
   </div>
-</md-input-container>
 </div>
+<div class="row">
+
+<div ng-if="industryExecId==null && globalDeliveryId==null">
+  {{$parent.submitVisitsUsers=true;""}}
+</div>
+<div ng-if="salesExecId == null && accountGMId == null && creId==null && industryExecId!=null && globalDeliveryId!=null">
+  {{$parent.submitVisitsUsers=false;""}}
+</div> 
+
+<div ng-if="salesExecId!=accountGMId && salesExecId!=industryExecId && salesExecId!=globalDeliveryId &&salesExecId!=creId && industryExecId!=null && globalDeliveryId!=null && salesExecId!=null" >
+  {{$parent.submitVisitsUsers=false;""}}
+</div>
+
+<div ng-if="accountGMId!=industryExecId && accountGMId!=globalDeliveryId && accountGMId!=creId &&industryExecId!=null && globalDeliveryId!=null && accountGMId!=null" >
+  {{$parent.submitVisitsUsers=false;""}}
+</div>
+
+<div ng-if="industryExecId!=globalDeliveryId && industryExecId!=creId  && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+  {{$parent.submitVisitsUsers=false;""}}
+</div>
+
+<div ng-if="globalDeliveryId!=creId && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+  {{$parent.submitVisitsUsers=false;""}}
+</div>
+
+  <div ng-if="(salesExecId==accountGMId || salesExecId==industryExecId || salesExecId==globalDeliveryId || salesExecId==creId)  && (salesExecId != null)">
+    {{$parent.submitVisitsUsers=true;""}}
+    {{errMessage="Sales Executive and other client Representatives should not be same.";""}}
+    <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+  </div> 
+  
+  <div ng-if="(accountGMId==industryExecId || accountGMId==globalDeliveryId || accountGMId==creId)
+    && (accountGMId != null)">
+    {{$parent.submitVisitsUsers=true;""}}
+    {{errMessage="Account GM and other client Representatives should not be same.";""}}
+    <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+  </div>
+
+  <div ng-if="(industryExecId==globalDeliveryId || industryExecId==creId)  && (industryExecId!=null)">
+    {{$parent.submitVisitsUsers=true;""}}
+    {{errMessage="Industry Executive  and other client Representatives should not be same.";""}}
+    <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+  </div> 
+
+  <div ng-if="(globalDeliveryId==creId)  && (globalDeliveryId!=null)">
+    {{$parent.submitVisitsUsers=true;""}}
+    {{errMessage="Global Delivery  and other client  Representatives should not be same.";""}}
+    <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+  </div>  
 </div>
 
 <!-- visits agenda-->
@@ -644,12 +698,12 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save &amp; Continue 
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers">Save &amp; Continue 
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
   <button type="submit" class="btn btn-success"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save to Draft
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers">Save to Draft
 </button>
 </div>
 </div>

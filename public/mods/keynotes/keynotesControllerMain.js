@@ -16,9 +16,9 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.mode=(id==null? 'add': 'edit');
       $scope.hideFilter = true;
 
-      $scope.noteById = "";
-      $scope.noteByEmail = "";
-      $scope.noteByUser =  "";
+      // $scope.noteById = "";
+      // $scope.noteByEmail = "";
+      // $scope.noteByUser =  "";
       $scope.small= "small";
       $scope.large= "LARGE";
       $scope.medium= "medium";
