@@ -62,9 +62,11 @@ var visitSchema = new mongoose.Schema({
 		industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 		cre 						: { type: Schema.Types.ObjectId, ref: 'User'},
-	}
-
-
+	},
+	competitors 					: [{ type: String, trim: true }], 
+	SFDCId 							: { type: String, trim: true }, 
+	netPromoter						: { type: Number },
+	visitorType						: { type: String, trim: true }
 
 });
 
