@@ -190,6 +190,15 @@ module.exports = {
 		],
 	},
 
+	"angularMultipleSelect":{
+		"cdn":[],
+		"dev":[
+		"/public/libs/angularMultipleSelect/build/multiple-select.min.js",
+		"/public/libs/angularMultipleSelect/build/multiple-select.min.css"
+		],
+	},
+
+
 	"utils":{
 		"cdn":[],
 		"dev":[
