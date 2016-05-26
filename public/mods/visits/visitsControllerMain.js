@@ -690,7 +690,7 @@ break;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
           inData.cscPersonnel =$scope.cscPersonnel;
-          
+
           console.log($scope.cscPersonnel);
           console.log(inData.client);
           var client ={};
@@ -1283,6 +1283,14 @@ function toTitleCase(string)
     $scope.inputChanged = function(str) {
       $scope.jobTitle = str;
     }  
+
+    $scope.inputChanged1 = function(str) {
+      $scope.dsgData = str;
+    }
+
+    $scope.inputChanged2 = function(str) {
+      $scope.emailData = str;
+    }
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
   { 
@@ -1313,7 +1321,8 @@ function toTitleCase(string)
 
     if(userdata.jobTitle==null)
     {
-      userdata.jobTitle = toTitleCase($scope.jobTitle);
+      userdata.jobTitle = toTitleCase($scope.designationdata);
+      // userdata.jobTitle = toTitleCase($scope.jobTitle);
     }
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
@@ -1366,6 +1375,27 @@ function toTitleCase(string)
     var influence= visitorDef.influence;
     var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
+    var designationdata = visitorDef.autoDesignation;
+
+    if(designationdata!=undefined || designationdata !=null)
+    {
+      designationdata = designationdata;
+    }
+
+    if(designationdata==undefined || designationdata ==null)
+    {
+      designationdata = $scope.dsgData;
+    }
+
+    if(emailid!=undefined || emailid !=null)
+    {
+      emailid = emailid;
+    }
+
+    if(emailid==undefined || emailid ==null)
+    {
+      emailid = $scope.emailData;
+    }
 
     if(visitorDef.visitorId!=null)
     {
@@ -1433,10 +1463,9 @@ function toTitleCase(string)
 if(visitorDef.visitorId==null)
 {
   $scope.showFlag = "notRegisteredUser";
-  console.log(influencedata);
   $scope.emailId = emailid;
   $scope.influencedata = influencedata;
-  console.log($scope.emailId); 
+  $scope.designationdata = designationdata;
   $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
 }  
 // .error(function(response, status){
@@ -1461,6 +1490,7 @@ if(visitorDef.visitorId==null)
     visitorDef.visitor = '';
     visitorDef.visitorUser = '';
     $scope.selectedUser = '';
+    $scope.designationAuto = '';
   };
   
   $scope.removevisitor = function(visitorDef,visitors){
@@ -1666,6 +1696,16 @@ $scope.clearInput = function (id) {
     $scope.$broadcast('angucomplete-alt:clearInput');
   }
 }
+
+$scope.clearInput1 = function (id) {
+  if (id) {
+    $scope.$broadcast('angucomplete-alt:clearInput', id);
+  }
+  else{
+    $scope.$broadcast('angucomplete-alt:clearInput');
+  }
+}
+
 
 $scope.parentClientChanged = function(str) {
   $scope.parentClientString = str;

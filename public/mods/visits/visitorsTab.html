@@ -10,6 +10,7 @@
       <tr>
         <th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
         <th><span  class="glyphicon"></span>Influence</th>
+        <th><span  class="glyphicon"></span>Designation</th>
         <th></th>
       </tr>
     </thead>
@@ -41,9 +42,12 @@
           image-field="avatar"
           input-class="form-control form-control-small"
           match-class="highlight"
+          input-changed="inputChanged2"
           box-type="nonmd"
           >
         </div>
+
+        {{designationAuto=selectedUser.originalObject.jobTitle;""}}
         <br>
         <span class="error text-danger" ng-show="visitorForm.email.$error.email">
           Not valid email!</span>
@@ -54,10 +58,71 @@
          ng-options="data for data in influence" class="form-control" required>
        </select>
      </td>
-     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
+     <td ng-if="designationAuto!=null"><input class="form-control" ng-model="designationAuto"></input></td>
+<!--      <td ng-if="designationAuto==null"><input class="form-control" 
+     ng-model="designationAuto"></input></td> -->
+
+     <td ng-if="designationAuto==null">
+      <div angucomplete-alt
+      id="ex24"
+      placeholder="Select Designation or Add Designation"
+      pause="500"
+      selected-object="selectedDesignation1"
+      remote-url="/api/v1/secure/admin/users/findAll/data?query="
+      remote-url-data-field="items"
+      title-field="designation"
+      minlength="3" 
+      input-class="form-control form-control-small"
+      match-class="highlight"
+      input-changed="inputChanged1"
+      template-url="/my-custom-template1.html"
+      box-type="nonmd" required>
+      </div>
+      {{visitorDef.autoDesignation=selectedDesignation1.originalObject.designation;""}}
+      </td>
+     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
+
+     <div class="large-padded-row">
+      <div class="padded-row">
+        <script type="text/ng-template" id="/my-custom-template1.html">
+          <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+            <input ng-model="searchStr"
+            ng-disabled="disableInput"
+            type="text"
+            placeholder="{{placeholder}}"
+            ng-focus="onFocusHandler()"
+            class="{{inputClass}}"
+            ng-focus="resetHideResults()"
+            ng-blur="hideResults($event)"
+            autocapitalize="off"
+            autocorrect="off"
+            autocomplete="off"
+            ng-change="inputChangeHandler(searchStr)"/>
+            <div class="angucomplete-dropdown" ng-show="showDropdown">
+              <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+              <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+              <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+                <div ng-if="imageField" class="angucomplete-image-holder">
+                  <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+                  <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+                </div>
+                <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+                <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+                <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+                <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+              </div>
+              <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+                <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+
    </form>
  </tr>
- <td colspan="3" ng-if="showFlag == 'notRegisteredUser'">
+ <td colspan="4" ng-if="showFlag == 'notRegisteredUser'">
    <!-- {{emailId}}  -->
    {{message}}
    <!-- {{influencedata}} -->
@@ -182,6 +247,7 @@
               match-class="highlight"
               template-url="/my-custom-template.html"
               input-changed="inputChanged"
+              initial-value ="designationdata"
               box-type="md"/>
             </md-input-container>
           </div> 
@@ -288,7 +354,7 @@
 </td>
 <!-- {{visitorsData=visitors|orderBy:mySort}} -->
 <tr ng-repeat="visitorDef in visitors | orderBy:mySort">
-  <td colspan="3"> <div>
+  <td colspan="4"> <div>
     <div>{{visitorDef.influence}}</div>
     <div class="pull-right"><a class="table-btn" ng-click="removevisitor(visitorDef,visitors)"><span class="fa fa-trash fa-lg" /></a>
       <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a> -->
@@ -297,9 +363,6 @@
   <userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor" show="noSaveProfile"/></td>
 </td>
 </tr>
-
-
-
 </tbody>
 </table>
 <div class="form-group">

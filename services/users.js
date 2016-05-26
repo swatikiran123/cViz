@@ -271,7 +271,8 @@ function getWithQuery(query, fields, maxRecs, sortEx){
                 lastName :user.name.last,
                 email : user.email,
                 avatar :user.avatar,
-                association :user.association
+                association :user.association,
+                jobTitle : user.jobTitle
             }
             // console.log("******************************");
             // console.log(userData);
