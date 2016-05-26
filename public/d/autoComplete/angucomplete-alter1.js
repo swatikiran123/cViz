@@ -1,12 +1,3 @@
-/*
- * angucomplete-alt
- * Autocomplete directive for AngularJS
- * This is a fork of Daryl Rowland's angucomplete with some extra features.
- * By Hidenari Nozaki
- */
-
-/*! Copyright (c) 2014 Hidenari Nozaki and contributors | Licensed under the MIT license */
-
 (function (root, factory) {
   'use strict';
   if (typeof module !== 'undefined' && module.exports) {
@@ -22,7 +13,7 @@
 }(window, function (angular) {
   'use strict';
 
-  angular.module('angucomplete-alt', []).directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
+  angular.module('angucomplete-alter', []).directive('angucompleteAlter', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
     // keyboard events
     var KEY_DW  = 40;
     var KEY_RT  = 39;
@@ -46,8 +37,8 @@
     // Set the default template for this directive
     $templateCache.put(TEMPLATE_URL,
         '<div class="angucomplete-holder" ng-class="{\'angucomplete-dropdown-visible\': showDropdown}">' +
-        '  <input class="md-block" id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
-        '  <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">' +
+        '  <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
+        '  <div id="{{id}}_dropdown" class="angucomplete-dropdown1" ng-show="showDropdown">' +
         '    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>' +
         '    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>' +
         '    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{\'angucomplete-selected-row\': $index == currentIndex}">' +
@@ -73,7 +64,7 @@
       var responseFormatter;
       var validState = null;
       var httpCanceller = null;
-      var dd = elem[0].querySelector('.angucomplete-dropdown');
+      var dd = elem[0].querySelector('.angucomplete-dropdown1');
       var isScrollOn = false;
       var mousedownOn = null;
       var unbindInitialValue;
@@ -117,7 +108,7 @@
         }
       });
 
-      scope.$on('angucomplete-alt:clearInput', function (event, elementId) {
+      scope.$on('angucomplete-alter:clearInput', function (event, elementId) {
         if (!elementId || elementId === scope.id) {
           scope.searchStr = null;
           callOrAssign();
@@ -126,7 +117,7 @@
         }
       });
 
-      scope.$on('angucomplete-alt:changeInput', function (event, elementId, newval) {
+      scope.$on('angucomplete-alter:changeInput', function (event, elementId, newval) {
         if (!!elementId && elementId === scope.id) {
           handleInputChange(newval);
         }

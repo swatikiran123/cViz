@@ -96,6 +96,11 @@ angular.module('userdisplayDirective', [])
         {
            return "/public/d/userDisplay/templates/designation.html";
         }
+
+        if(viewmode === "association")
+        {
+         return "/public/d/userDisplay/templates/association.html";
+        }
       }
     }
   };
