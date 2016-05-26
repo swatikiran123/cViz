@@ -158,7 +158,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     //     $scope.ClientDraft= true;
     //   }else $scope.ClientDraft= false;
     // })
-}
+  }
 
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
@@ -382,11 +382,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.regionsSelected= visits.client.regions;
     $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
 // })
-    if(response.status == "draft"){
-      $scope.ClientDraft= true;
-      console.log("draft");
-    }else{ $scope.ClientDraft= false; console.log("final");}
-  })
+if(response.status == "draft"){
+  $scope.ClientDraft= true;
+  console.log("draft");
+}else{ $scope.ClientDraft= false; console.log("final");}
+})
 
     for(var files=0;files<response.visitGallery.length;files++)
     {
@@ -413,7 +413,19 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.subdis= false;
 
         }
-        $scope.status= visits.status;
+        if ( visits.status == "confirm draft") {
+          $scope.status = "confirm";
+          $scope.visitEmp= true;
+        }
+        else if (visits.status == "tentative draft") {
+          $scope.status = "tentative";
+          $scope.visitEmp= true;
+        }else{
+          if ($rootScope.user.memberOf){
+            $scope.visitEmp= false;
+          }
+          $scope.status= visits.status;
+        } 
         if (visits.billable == "billable") {
           $scope.checked=true;
         };
@@ -447,7 +459,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
           if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
           {
-          $scope.saleExeId = response.cscPersonnel.salesExec._id;
+            $scope.saleExeId = response.cscPersonnel.salesExec._id;
           }
 
           if(response.cscPersonnel.salesExec == null || response.cscPersonnel.salesExec == undefined)
@@ -457,7 +469,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
           if(response.cscPersonnel.accountGM != null || response.cscPersonnel.accountGM != undefined)
           {
-          $scope.accountGmId = response.cscPersonnel.accountGM._id;
+            $scope.accountGmId = response.cscPersonnel.accountGM._id;
           }
 
           if(response.cscPersonnel.accountGM == null || response.cscPersonnel.accountGM == undefined)
@@ -467,7 +479,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
           if(response.cscPersonnel.industryExec != null || response.cscPersonnel.industryExec != undefined)
           {
-          $scope.industryExeCId = response.cscPersonnel.industryExec._id;
+            $scope.industryExeCId = response.cscPersonnel.industryExec._id;
           }
 
           if(response.cscPersonnel.industryExec == null || response.cscPersonnel.industryExec == undefined)
@@ -477,17 +489,17 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
           if(response.cscPersonnel.globalDelivery != null || response.cscPersonnel.globalDelivery != undefined)
           {
-          $scope.globalDeliverYId = response.cscPersonnel.globalDelivery._id;
+            $scope.globalDeliverYId = response.cscPersonnel.globalDelivery._id;
           }
 
           if(response.cscPersonnel.globalDelivery == null || response.cscPersonnel.globalDelivery == undefined)
           {
-          $scope.globalDeliverYId = null;
+            $scope.globalDeliverYId = null;
           }
 
           if(response.cscPersonnel.cre != null || response.cscPersonnel.cre != undefined)
           {
-          $scope.crEId = response.cscPersonnel.cre._id;
+            $scope.crEId = response.cscPersonnel.cre._id;
           } 
 
           if(response.cscPersonnel.cre == null || response.cscPersonnel.cre == undefined)
@@ -497,37 +509,37 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           
           if($scope.saleExeId !=null || $scope.saleExeId !=undefined)
           {
-          $scope.salesExecUser = response.cscPersonnel.salesExec;
-          $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
-          $scope.salesExecId = response.cscPersonnel.salesExec._id;
+            $scope.salesExecUser = response.cscPersonnel.salesExec;
+            $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+            $scope.salesExecId = response.cscPersonnel.salesExec._id;
           }
 
           if($scope.accountGmId !=null || $scope.accountGmId !=undefined)
           {
-          $scope.accountGMUser = response.cscPersonnel.accountGM;
-          $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-          $scope.accountGMId = response.cscPersonnel.accountGM._id;
+            $scope.accountGMUser = response.cscPersonnel.accountGM;
+            $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+            $scope.accountGMId = response.cscPersonnel.accountGM._id;
           }
 
           if($scope.industryExeCId !=null || $scope.industryExeCId !=undefined)
           {
-          $scope.industryExecUser = response.cscPersonnel.industryExec;
-          $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-          $scope.industryExecId = response.cscPersonnel.industryExec._id;
+            $scope.industryExecUser = response.cscPersonnel.industryExec;
+            $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+            $scope.industryExecId = response.cscPersonnel.industryExec._id;
           }
 
           if($scope.globalDeliverYId !=null || $scope.globalDeliverYId !=undefined)
           {
-          $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
-          $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+            $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+            $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+            $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
           }
 
           if($scope.crEId !=null || $scope.crEId !=undefined)
           {  
-          $scope.creUser = response.cscPersonnel.cre;
-          $scope.creEmail = response.cscPersonnel.cre.email;
-          $scope.creId = response.cscPersonnel.cre._id;
+            $scope.creUser = response.cscPersonnel.cre;
+            $scope.creEmail = response.cscPersonnel.cre.email;
+            $scope.creId = response.cscPersonnel.cre._id;
           }
         }
 
@@ -542,23 +554,30 @@ break;
 
   refresh();
   $scope.saveDraft=function() {
-    $scope.save();
     $scope.saveDraf=true;
     $scope.visitEmp= false;// edit/delete will be shown for employee in deaf
+    $scope.save();
   }
   $scope.saveVisitorsData=function () {
     if ($rootScope.user.memberOf){
-      $scope.save();
       $scope.visitEmp= false;
+      $scope.save();
     }else 
     $scope.save();
   }
   $scope.save = function(){
     // Set agm based on the user picker value
+    if ( $scope.saveDraf==true && $scope.status == "confirm") {
+      $scope.visits.status = "confirm draft";
+    }
+    else if ( $scope.saveDraf==true && $scope.status == "tentative") {
+      $scope.visits.status = "tentative draft";
+    }else{
+      $scope.visits.status =$scope.status;
+    } 
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.agm = null;
-    $scope.visits.status =$scope.status;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
     $scope.visits.wbscodeAttachment = $scope.arrayiwo;
@@ -692,7 +711,7 @@ break;
           inData.cscPersonnel =$scope.cscPersonnel;
 
           console.log($scope.cscPersonnel);
-          console.log(inData.client);
+          console.log(inData);
           var client ={};
           client.cscPersonnel =$scope.cscPersonnel;
           $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
@@ -802,8 +821,8 @@ break;
       $location.path("/visits/"+$scope.visits._id+"/edit"); 
     }
   })
-.error(function(data, status){
-  growl.error("Error updating visit");
+    .error(function(data, status){
+      growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
@@ -1458,16 +1477,16 @@ function toTitleCase(string)
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
-}
+    }
 
-if(visitorDef.visitorId==null)
-{
-  $scope.showFlag = "notRegisteredUser";
-  $scope.emailId = emailid;
-  $scope.influencedata = influencedata;
-  $scope.designationdata = designationdata;
-  $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
-}  
+    if(visitorDef.visitorId==null)
+    {
+      $scope.showFlag = "notRegisteredUser";
+      $scope.emailId = emailid;
+      $scope.influencedata = influencedata;
+      $scope.designationdata = designationdata;
+      $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
+    }  
 // .error(function(response, status){
 
 //   $scope.showFlag = "notRegisteredUser";
@@ -1690,19 +1709,19 @@ $scope.answer = function(answer) {
 
 $scope.clearInput = function (id) {
   if (id) {
-    $scope.$broadcast('angucomplete-alt:clearInput', id);
+    $scope.$broadcast('angucomplete-alter:clearInput', id);
   }
   else{
-    $scope.$broadcast('angucomplete-alt:clearInput');
+    $scope.$broadcast('angucomplete-alter:clearInput');
   }
 }
 
 $scope.clearInput1 = function (id) {
   if (id) {
-    $scope.$broadcast('angucomplete-alt:clearInput', id);
+    $scope.$broadcast('angucomplete-alter:clearInput', id);
   }
   else{
-    $scope.$broadcast('angucomplete-alt:clearInput');
+    $scope.$broadcast('angucomplete-alter:clearInput');
   }
 }
 
@@ -1851,8 +1870,8 @@ visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (Feedba
           event.preventDefault();
         }
       });
-}
-};
+    }
+  };
 }]);
 //Autocompleate - Directive
 visitsApp.directive("session", ["SessionService", "$timeout", function (SessionService,$timeout) {
@@ -1920,8 +1939,8 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
           event.preventDefault();
         }
       });
-}
-};
+    }
+  };
 }]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {

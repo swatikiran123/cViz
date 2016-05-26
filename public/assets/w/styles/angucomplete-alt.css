@@ -15,6 +15,23 @@
     /*top: 32px;
     left: 0px;
     */
+    margin-top: +30px;
+    background-color: #ffffff;
+}
+
+.angucomplete-dropdown1 {
+    border-color: #ececec;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    width: 250px;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    /*top: 32px;
+    left: 0px;
+    */
     margin-top: -6px;
     background-color: #ffffff;
 }

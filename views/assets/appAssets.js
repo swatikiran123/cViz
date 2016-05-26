@@ -95,7 +95,8 @@ module.exports = {
 			"/public/d/tooltipDirective/script.js",
 			"/public/d/autoComplete/angucomplete.js",
 			"/public/d/autoComplete/script.js",
-			"/public/d/autoComplete/angucomplete-alt.js"
+			"/public/d/autoComplete/angucomplete-alt.js",
+			"/public/d/autoComplete/angucomplete-alter1.js"
 		],
 		"prod":[
 		]

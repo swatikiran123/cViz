@@ -29,7 +29,7 @@
           {{visitorDef.visitorId=selectedUser.originalObject.email;""}}
           <!-- {{visitorDef.visitorId}} -->
 
-          <div angucomplete-alt
+          <div angucomplete-alter
           id="ex5"
           placeholder="User"
           pause="500"
@@ -63,7 +63,7 @@
      ng-model="designationAuto"></input></td> -->
 
      <td ng-if="designationAuto==null">
-      <div angucomplete-alt
+      <div angucomplete-alter
       id="ex24"
       placeholder="Select Designation or Add Designation"
       pause="500"
@@ -98,7 +98,7 @@
             autocorrect="off"
             autocomplete="off"
             ng-change="inputChangeHandler(searchStr)"/>
-            <div class="angucomplete-dropdown" ng-show="showDropdown">
+            <div class="angucomplete-dropdown1" ng-show="showDropdown">
               <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
               <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
               <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
@@ -352,10 +352,11 @@
 </div>
 </div>
 </td>
+{{mode="association";""}}
 <!-- {{visitorsData=visitors|orderBy:mySort}} -->
 <tr ng-repeat="visitorDef in visitors | orderBy:mySort">
   <td colspan="4"> <div>
-    <div>{{visitorDef.influence}}</div>
+    <div>{{visitorDef.influence}}&nbsp;<userdisplay view-mode="mode" user-id="visitorDef.visitor"></div>
     <div class="pull-right"><a class="table-btn" ng-click="removevisitor(visitorDef,visitors)"><span class="fa fa-trash fa-lg" /></a>
       <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a> -->
     </div>
@@ -364,7 +365,7 @@
 </td>
 </tr>
 </tbody>
-</table>
+</table><br>
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
@@ -372,8 +373,8 @@
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
-  <button type="submit" class="btn btn-success"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis">Save to Draft
+  <button type="submit" class="btn btn-info"
+  ng-click="saveDraft();" ng-disabled="visitsForm.$invalid || visvalid">Save to Draft
 </button>
 </div>
 </div>

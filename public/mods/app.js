@@ -12,7 +12,7 @@ angular.module('cviz-manage',
 	['userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective', 'inviteesDirective',
 	'appFilters',
 	'datePicker','fileuploadDirective',
-	'visits',"clients",'confirmDialogDirective','richTextDirective','ngRateIt','tooltips','dropzone','angucomplete','userAutoDirective','angucomplete-alt']);
+	'visits',"clients",'confirmDialogDirective','richTextDirective','ngRateIt','tooltips','dropzone','angucomplete','userAutoDirective','angucomplete-alt','angucomplete-alter']);
 
 angular.module('cviz-profile',
 	['userprofileDirective','userDirective','userdisplayDirective',

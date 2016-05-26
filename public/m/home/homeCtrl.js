@@ -18,7 +18,7 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	});
 });
 
-app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope', function ($scope, location,$http,$routeParams,$rootScope) {
+app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService', function ($scope, location,$http,$routeParams,$rootScope,appService) {
 	$scope.order = 0;
 	$scope.group=$rootScope.user.groups;
 	$scope.showContinue = true;
@@ -60,6 +60,16 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		{
 			console.log("No keynotes Defined");
 		}
+
+
+		appService.activeVisit().then(function(avisit){
+			$http.get('/api/v1/secure/visits/'+avisit._id,{
+				cache: true
+			}).success(function(response) {
+				console.log(response.client.name);
+				$scope.clientName = response.client.name;
+			})
+		});
 	})
 
 
