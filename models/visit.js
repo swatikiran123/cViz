@@ -26,7 +26,14 @@ var visitSchema = new mongoose.Schema({
 		meetingPlace				: { type: String, trim: true }
 
 	}],
+	bod								: [{
+		tcv							: {type: String, trim: true },
+		duration					: {type: String, trim: true },
+		offerings					: {type: String, trim: true },
+		teamSize					: {type: Number, trim: true }
+	}],
 	billable						: { type: String, lowercase: true, trim: true, enum: ['billable', 'non-billable']},
+	competitorVisit					: { type: String, trim: true },
 	wbsCode							: { type: String, trim: true },
 	chargeCode						: { type: String, trim: true },
 	visitors						: [{

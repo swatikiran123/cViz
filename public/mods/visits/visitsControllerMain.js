@@ -69,9 +69,11 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.createBy='';
   $scope.hideFilter = true;
   $scope.checked = false;
+  $scope.checked1 = true;
   $scope.schedules=[];
   $scope.visitors=[];
   $scope.keynotes=[];
+  $scope.bods = [];
   $scope.small= "small";
   $scope.large= "LARGE";
   $scope.medium= "medium";
@@ -204,6 +206,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     });
   }
 
+  $scope.selectedList = [];
+
   $scope.visitorId = "";
   $scope.visitor = "";
   $scope.visitorUser =  "";
@@ -257,7 +261,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
      $scope.schedules=[];
      $scope.visitors=[];
      $scope.keynotes=[];
-
+     $scope.bods = [];
 
 
      switch($scope.mode)    {
@@ -385,17 +389,20 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.regionsSelected= visits.client.regions;
     $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
 // })
+$scope.selectedList = visits.offerings;
 if(response.status == "draft"){
   $scope.ClientDraft= true;
   console.log("draft");
 }else{ $scope.ClientDraft= false; console.log("final");}
 })
 
+
     for(var files=0;files<response.visitGallery.length;files++)
     {
       $scope.arrayClose.push(response.visitGallery[files])
     }
 
+    $scope.bods = visits.bod;
     $scope.visitors = visits.visitors;
     if ($scope.visitors.length == 0)
     {
@@ -464,6 +471,14 @@ if(response.status == "draft"){
             order: visits.keynote[i].order
           });
         };
+        if (response.competitorVisit!=undefined) {
+         $scope.vCompetitor= "no";
+          $scope.checked1 = false;
+          // $scope.value="yes";
+        }else{
+         $scope.vCompetitor= "yes";
+          $scope.checked1 = true;
+        }
         if (response.cscPersonnel!=undefined) {
 
           if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
@@ -586,6 +601,7 @@ break;
     } 
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
+    $scope.visits.offerings = $scope.selectedList;
     $scope.visits.agm = null;
     $scope.visits.invitees = $scope.arraydata;
     $scope.visits.visitAttachment = $scope.array;
@@ -597,6 +613,10 @@ break;
     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.check= true;
+    if ($scope.checked1 == true){
+      $scope.visits.competitorVisit=null;
+      }//check code
+      console.log($scope.visits.competitorVisit);
     if ($scope.checked == false){
       $scope.unbillable= "non-billable";
       if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
@@ -715,6 +735,7 @@ break;
           var inData       = $scope.visits;
           inData.schedule = $scope.schedules;
           inData.keynote = $scope.keynotes;
+          inData.bods = $scope.bods;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
           inData.cscPersonnel =$scope.cscPersonnel;
@@ -1138,6 +1159,15 @@ $scope.ClientStatusReject=function () {
   $scope.checkednonBill=function(){
     $scope.checked=false;
   }
+
+  $scope.vCompetitorCheck=function(){
+    $scope.checked1=true;
+  }
+
+  $scope.vCompetitorUncheck = function () {
+    $scope.checked1 = false;
+  }
+
   $scope.clientEmail=function(){
     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/welcomeclient').success(function(response) {
      growl.info(parse("client invitations sent successfully"));
@@ -1249,6 +1279,61 @@ $scope.isDataValid=function(schedule){
     //   $scope.schedules.splice(index, 1);
     // };
 // Visit schedule table end
+
+//BOD Table
+
+$scope.isDatevalidBOD =  function(bodDef) {
+    //console.log(bodDef);
+    if (bodDef === "" || bodDef === undefined || bodDef === null)
+      return "Data undefined !";
+
+    if (bodDef.tcvName === "" || bodDef.tcvName === undefined || bodDef.tcvName === null)
+      return "TCV name not valid !";
+
+    if (bodDef.duration === "" || bodDef.duration ===  undefined || bodDef.duration ===  null)
+      return "Duration not valid !";
+
+    if (bodDef.offerings === "" || bodDef.offerings ===  undefined || bodDef.offerings === null)
+      return "Offerings not valid !";
+
+    if (bodDef.teamSize === "" || bodDef.teamSize === undefined || bodDef.teamSize === null)
+      return "Team Size not valid !";
+
+    return "OK";
+  }
+
+  $scope.addBod = function (bodDef) {
+  //  console.log(bodDef.tcvName);
+    //console.log(bodDef);
+
+    var isValid = $scope.isDatevalidBOD(bodDef);
+
+    if (isValid === "OK")
+    {
+      $scope.bodDef = false;
+      $scope.bods.push ({
+        tcvName: bodDef.tcvName,
+        duration: bodDef.duration,
+        offerings: bodDef.offerings,
+        teamSize: bodDef.teamSize
+      });
+    }
+    else {
+      //console.log(isValid);
+      $scope.err = isValid;
+      $timeout(function () { $scope.err = ''; }, 5000);}
+
+      bodDef.tcvName = '';
+      bodDef.duration = '';
+      bodDef.offerings = '';
+      bodDef.teamSize = '';
+    };
+
+    $scope.removeBod = function (index){
+      $scope.bods.splice(index, 1);
+    };
+
+
 
  // Visit keynote table
  $scope.isDataValidkey=function(keynoteDef){

@@ -41,6 +41,7 @@
     "angular-touch": "latest",
     "angular-ui-grid": "latest",
     "angularjs-datepicker": "latest",
+    "angular-multiple-select": "latest",
     "angular-growl-v2": "0.7.9",
     "ngFloatingLabels": "angular-floating-labels#*",
     "ng-tags-input": "3.0.0",
