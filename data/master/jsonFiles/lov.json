@@ -5,13 +5,13 @@
 		"name"						: "regions",
 		"values"					: 
 			[
-				"America",
-				"Australia",
-				"Nordic and Baltic Region",
-				"UK, Ireland & Netherlands",
-				"Asia, Middle East, Africa",
-				"Central and Eastern Europe",
-				"South and West Europe"
+				"Americas",
+				"AMEA",
+				"ANZ",
+				"UKI & N",
+				"NORDICS",
+				"C & EE",
+				"S & WE"
 			]
 	},
 	
@@ -21,24 +21,12 @@
 		"name"						: "offerings",
 		"values"					: 
 			[
-				"Big Data Analytics",
-				"Aerospace & Defense",
-				"Rapid-Deployment Solutions (RDS)",
-				"SAP Global VAR License Reseller Services",
-				"SAP Managed Cloud as a Service (MCaaS)",
-				"Certified Systems Integrator, Hosting, Cloud and Apps Management Services",
-				"ERP Industry Solutions Template",
-				"Customer Relationship Management (CRM)",
-				"Human Capital Management (HCM)",
-				"Supply Chain Management (SCM)",
-				"Supplier Relationship Management (SRM)",
-				"Mobility Solutions",
-				"Business Intelligence Solutions",
-				"HANA",
-				"Environmental, Health and Safety (EH&S) Solutions",
-				"Cybersecurity",
-				"Upgrade Toolkit",
-				"Full Breadth of Business and Technology Consulting"
+				"Big Data & Analytics",
+				"GBS - Digital application",
+				"GBS – Consulting",
+				"GBS – IS&S",
+				"GIS",
+				"Other"
 			]
 	},
 
