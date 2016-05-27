@@ -135,6 +135,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   // $scope.creEmail = "";
   // $scope.creUser =  "";
   $scope.submitVisitsUsers = false;
+  $scope.submitAddVisitor = true;
+  $scope.submitAddEmail = true;
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -683,8 +685,8 @@ break;
           }else inDataClient.status="draft";
 
           inDataClient.SFDCId=$scope.visits.SFDCId;
-          inDataClient.netPromoter =$scope.visits. netPromoter;
-          inDataClient.competitors =$scope.visits. competitors;
+          inDataClient.netPromoter =$scope.visits.netPromoter;
+          inDataClient.competitors =$scope.visits.competitors;
 
           if ($scope.avatarVisit!=undefined) {
             inDataClient.logo=$scope.avatarVisit;}
@@ -1312,10 +1314,26 @@ function toTitleCase(string)
 
     $scope.inputChanged1 = function(str) {
       $scope.dsgData = str;
+      if($scope.dsgData != null || $scope.dsgData != "")
+      {
+        $scope.submitAddVisitor = false;
+      }
+      if($scope.dsgData == null || $scope.dsgData == "")
+      {
+        $scope.submitAddVisitor = true;
+      }
     }
 
     $scope.inputChanged2 = function(str) {
       $scope.emailData = str;
+      if($scope.emailData != null || $scope.emailData != "")
+      {
+        $scope.submitAddEmail = false;
+      }
+      if($scope.emailData == null || $scope.emailData == "")
+      {
+        $scope.submitAddEmail = true;
+      }
     }
   //adding visitor data if not registered user
   $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
@@ -1394,6 +1412,8 @@ function toTitleCase(string)
   }
 
   $scope.addvisitor=function(visitorDef){
+    $scope.submitAddVisitor = true;
+    $scope.submitAddEmail = true;
     $scope.showAvatar = false;
     $scope.showFlag='';
     $scope.message='';
@@ -1517,6 +1537,7 @@ function toTitleCase(string)
     visitorDef.visitorUser = '';
     $scope.selectedUser = '';
     $scope.designationAuto = '';
+
   };
   
   $scope.removevisitor = function(visitorDef,visitors){

@@ -85,6 +85,45 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
   $scope.create = function() {
     var inData  = $scope.clients;
+    if(inData.name!=null)
+    {
+      inData.name = $scope.clients.name;
+    }
+
+    if(inData.name==null)
+    {
+      inData.name = $scope.parentClientString;
+    }
+
+    if(inData.subName!=null)
+    {
+      inData.name = $scope.clients.subName;
+    }
+
+    if(inData.subName==null)
+    {
+      inData.subName = $scope.childClientString;
+    }
+
+    if(inData.industry!=null)
+    {
+      inData.industry = $scope.clients.industry;
+    }
+
+    if(inData.industry==null)
+    {
+      inData.industry = $scope.industryClientString;
+    }
+
+    if(inData.regions!=null)
+    {
+      inData.regions = $scope.clients.regions;
+    }
+
+    if(inData.regions==null)
+    {
+      inData.regions = $scope.regionClientString;
+    }
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       inData.status="final";
     }else 

@@ -1,8 +1,8 @@
 <!--visitors-->
 <form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
   {{check=true;""}}
-
-
+<!-- {{$parent.submitAddVisitor=true;""}} -->
+<!-- {{submitAddVisitor}} {{submitAddEmail}} -->
   <div ng-if="visvalid" class="error text-info">Atleast a visitor needs to be added.</div>
   <br>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
@@ -58,11 +58,13 @@
          ng-options="data for data in influence" class="form-control" required>
        </select>
      </td>
-     <td ng-if="designationAuto!=null"><input class="form-control" ng-model="designationAuto"></input></td>
+     <td ng-if="designationAuto!=null"><!-- {{$parent.submitAddVisitor=false;""}} --><input class="form-control" ng-model="designationAuto"></input>
+     </td>
 <!--      <td ng-if="designationAuto==null"><input class="form-control" 
      ng-model="designationAuto"></input></td> -->
 
      <td ng-if="designationAuto==null">
+     <!-- {{$parent.submitAddVisitor=true;""}} -->
       <div angucomplete-alter
       id="ex24"
       placeholder="Select Designation or Add Designation"
@@ -80,7 +82,7 @@
       </div>
       {{visitorDef.autoDesignation=selectedDesignation1.originalObject.designation;""}}
       </td>
-     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');" ng-disabled="visitorForm.$invalid">Add visitor</button></td>
+     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');callFun(designationAuto);" ng-disabled="visitorForm.$invalid || submitAddEmail">Add visitor</button></td>
 
      <div class="large-padded-row">
       <div class="padded-row">
