@@ -261,6 +261,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
      switch($scope.mode)    {
       case "add":
       $scope.visits = "";
+      $scope.visitorType = "";
       break;
 
       case "edit":
@@ -413,6 +414,12 @@ if(response.status == "draft"){
           $scope.subdis= false;
 
         }
+
+        if (response.visitorType!='')
+          $scope.visitorType = response.visitorType; // response from visitor type
+        else
+          $scope.visitorType = '';
+
         if ( visits.status == "confirm draft") {
           $scope.status = "confirm";
           $scope.visitEmp= true;

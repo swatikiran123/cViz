@@ -168,11 +168,11 @@
 </md-input-container> 
 </div>
 <label>Visitor Type </label>
-      <select name="type" ng-model="visits.visitorType" ng-dropdown>
-        <option ng-option value=" Elite ">Elite</option>
-        <option ng-option value=" Preferred ">Preferred</option>
-        <option ng-option value=" Premier ">Premier</option>
-      </select>
+      <select name="type" ng-model="visits.visitorType" ng-dropdown>
+        <option ng-option ng-selected="Elite == visitorType" value="Elite">Elite</option>
+        <option ng-option ng-selected="Preferred == visitorType" value="Preferred">Preferred</option>
+        <option ng-option ng-selected="Premier == visitorType" value="Premier">Premier</option>
+      </select>
 </div>
 </div>
 </div>
