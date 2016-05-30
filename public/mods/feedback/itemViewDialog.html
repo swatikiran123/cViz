@@ -4,7 +4,7 @@
   <div class="md-toolbar-tools">
     <h2>Add Feedback Items</h2>
     <span flex></span>
-    <md-button class="md-icon-button" ng-click="canceldialog(item)">
+    <md-button class="md-icon-button" ng-click="canceldialog(item)" ng-disabled="itemAddForm.$valid">
     <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
   </md-button>
 </div>
