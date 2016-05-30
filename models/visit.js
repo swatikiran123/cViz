@@ -70,8 +70,7 @@ var visitSchema = new mongoose.Schema({
 		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 		cre 						: { type: Schema.Types.ObjectId, ref: 'User'},
 	},
-	competitors 					: [{ type: String, trim: true }], 
-	SFDCId 							: { type: String, trim: true }, 
+	competitors 					: [{ type: String, trim: true }],
 	netPromoter						: { type: Number },
 	visitorType						: { type: String, trim: true }
 

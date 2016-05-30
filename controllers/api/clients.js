@@ -52,12 +52,14 @@ function getWithQuery(req,res){
     var subname = req.param('subQuery');
     var industry = req.param('industry');
     var regions = req.param('regions');
+    var sfdcid = req.param('sfdcid');
         var query = {
      $and: [
      { 'name' : new RegExp(name, 'i') },
      { 'subName' : new RegExp(subname, 'i') },
      { 'industry' : new RegExp(industry, 'i') },
-     { 'regions' : new RegExp(regions, 'i') }
+     { 'regions' : new RegExp(regions, 'i') },
+     { 'sfdcid' : new RegExp(sfdcid, 'i') }
 
      ]
     }

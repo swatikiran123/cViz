@@ -6,6 +6,9 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
 
     var id = $routeParams.id;
+    $http.get('/api/v1/secure/lov/locations').success(function(response) {
+      $scope.location=response.values;
+    });
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
@@ -57,6 +60,96 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
           $scope.avatar= response.logo;
         }
         else $scope.showAvatar = false;
+
+        if (response.cscPersonnel!=undefined) {
+          $scope.cscPersonnel=response.cscPersonnel;
+
+          if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
+          {
+            $scope.saleExeId = response.cscPersonnel.salesExec._id;
+          }
+
+          if(response.cscPersonnel.salesExec == null || response.cscPersonnel.salesExec == undefined)
+          {
+            $scope.saleExeId = null;
+          }
+
+          if(response.cscPersonnel.accountGM != null || response.cscPersonnel.accountGM != undefined)
+          {
+            $scope.accountGmId = response.cscPersonnel.accountGM._id;
+          }
+
+          if(response.cscPersonnel.accountGM == null || response.cscPersonnel.accountGM == undefined)
+          {
+            $scope.accountGmId = null;
+          }
+
+          if(response.cscPersonnel.industryExec != null || response.cscPersonnel.industryExec != undefined)
+          {
+            $scope.industryExeCId = response.cscPersonnel.industryExec._id;
+          }
+
+          if(response.cscPersonnel.industryExec == null || response.cscPersonnel.industryExec == undefined)
+          {
+            $scope.industryExeCId = null;
+          }
+
+          if(response.cscPersonnel.globalDelivery != null || response.cscPersonnel.globalDelivery != undefined)
+          {
+            $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+          }
+
+          if(response.cscPersonnel.globalDelivery == null || response.cscPersonnel.globalDelivery == undefined)
+          {
+            $scope.globalDeliveryId = null;
+          }
+
+          if(response.cscPersonnel.cre != null || response.cscPersonnel.cre != undefined)
+          {
+            $scope.crEId = response.cscPersonnel.cre._id;
+          } 
+
+          if(response.cscPersonnel.cre == null || response.cscPersonnel.cre == undefined)
+          {
+            $scope.crEId = null;
+          } 
+
+          if($scope.saleExeId !=null || $scope.saleExeId !=undefined)
+          {
+            $scope.salesExecUser = response.cscPersonnel.salesExec;
+            $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+            $scope.salesExecId = response.cscPersonnel.salesExec._id;
+          }
+
+          if($scope.accountGmId !=null || $scope.accountGmId !=undefined)
+          {
+            $scope.accountGMUser = response.cscPersonnel.accountGM;
+            $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+            $scope.accountGMId = response.cscPersonnel.accountGM._id;
+          }
+
+          if($scope.industryExeCId !=null || $scope.industryExeCId !=undefined)
+          {
+            $scope.industryExecUser = response.cscPersonnel.industryExec;
+            $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+            $scope.industryExecId = response.cscPersonnel.industryExec._id;
+          }
+
+          if($scope.globalDeliveryId !=null || $scope.globalDeliveryId !=undefined)
+          {
+            $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+            $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+            $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+          }
+
+          if($scope.crEId !=null || $scope.crEId !=undefined)
+          {  
+            $scope.creUser = response.cscPersonnel.cre;
+            $scope.creEmail = response.cscPersonnel.cre.email;
+            $scope.creId = response.cscPersonnel.cre._id;
+          }
+        }
+
     // reformat date fields to avoid type compability issues with <input type=date on ng-model
     $scope.clients.startDate = new Date($scope.clients.createdOn);
   });
@@ -68,7 +161,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   refresh();
 
   $scope.save = function(){
-    console.log();
+    // console.log();
     // set noteBy based on the user picker value
     switch($scope.mode)    {
       case "add":
@@ -154,6 +247,15 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // delete method ends
 
   $scope.update = function() {
+    // console.log($scope.cscPersonnel);
+    if ($scope.cscPersonnel!=undefined) {
+      $scope.cscPersonnel.salesExec = $scope.salesExecId;
+      $scope.cscPersonnel.accountGM= $scope.accountGMId;
+      $scope.cscPersonnel.industryExec = $scope.industryExecId;
+      $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
+      $scope.cscPersonnel.cre= $scope.creId;
+      $scope.clients.cscPersonnel=$scope.cscPersonnel;
+    }
     console.log($scope.clients);
     var inData  = $scope.clients;
 
@@ -174,15 +276,20 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     if ($scope.clients.regions!=undefined) 
       { inData.regions =$scope.clients.regions;}
     else inData.regions = $scope.regionsSelected;
-    
+
     console.log(inData);
-    
+
     // console.log($scope.parentSelected+" "+$scope.childSelected+" "+$scope.industrySelected+" "+$scope.regionsSelected);
     
     // console.log(inData.cscPersonnel);
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {
       refresh();
-      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));
+      // console.log($scope.clients.name);
+      if ($scope.clients.name!=undefined) {
+      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));}
+      else
+      growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
+
     })
     .error(function(data, status){
       growl.error("Error updating client");
@@ -245,62 +352,61 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
     if($scope.parentClientString!=null || $scope.parentClientString!="")
     {
-        $scope.parentClient = false;
-        $scope.errparentMsg = "";
+      $scope.parentClient = false;
+      $scope.errparentMsg = "";
     }
 
     if($scope.parentClientString==null || $scope.parentClientString=="")
     {
-        $scope.parentClient = true;
-        $scope.errparentMsg = "Parent Account Name is Mandatory field";
+      $scope.parentClient = true;
+      $scope.errparentMsg = "Parent Account Name is Mandatory field";
     }
   }  
 
-    $scope.childClientChanged = function(str) {
+  $scope.childClientChanged = function(str) {
     $scope.childClientString = str;
 
     if($scope.childClientString!=null || $scope.childClientString!="")
     {
-        $scope.childClient = false;
-        $scope.errchildMsg = "";
+      $scope.childClient = false;
+      $scope.errchildMsg = "";
     }
 
     if($scope.childClientString==null || $scope.childClientString=="")
     {
-        $scope.childClient = true;
-        $scope.errchildMsg = "Child Account Name is Mandatory field";
+      $scope.childClient = true;
+      $scope.errchildMsg = "Child Account Name is Mandatory field";
     }
   } 
 
-    $scope.industryClientChanged = function(str) {
+  $scope.industryClientChanged = function(str) {
     $scope.industryClientString = str;
 
     if($scope.industryClientString!=null || $scope.industryClientString!="")
     {
-        $scope.industryClient = false;
-        $scope.errindustryMsg = "";
+      $scope.industryClient = false;
+      $scope.errindustryMsg = "";
     }
 
     if($scope.industryClientString==null || $scope.industryClientString=="")
     {
-        $scope.industryClient = true;
-        $scope.errindustryMsg = "Industry is Mandatory field";
+      $scope.industryClient = true;
+      $scope.errindustryMsg = "Industry is Mandatory field";
     }
   } 
 
-    $scope.regionClientChanged = function(str) {
-    $scope.regionClientString = str;
+  $scope.regionClientChanged = function() {
 
-    if($scope.regionClientString!=null || $scope.regionClientString!="")
+    if($scope.regions!=null || $scope.regions!="")
     {
-        $scope.regionClient = false;
-        $scope.errregionMsg = "";
+      $scope.regionClient = false;
+      $scope.errregionMsg = "";
     }
 
-    if($scope.regionClientString==null || $scope.regionClientString=="")
+    if($scope.regions==null || $scope.regions=="" || $scope.regions == undefined)
     {
-        $scope.regionClient = true;
-        $scope.errregionMsg = "Region is Mandatory field";
+      $scope.regionClient = true;
+      $scope.errregionMsg = "Region is Mandatory field";
     }
   } 
 }]);﻿ // controller ends

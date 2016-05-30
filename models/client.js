@@ -12,7 +12,7 @@ var clientSchema = new mongoose.Schema({
 	logo							: { type: String, trim: true },
 	createOn						: { type: Date, default: Date.now },
 	// competitors 					: [{ type: String, trim: true }],
-	SFDCId 							: { type: String, trim: true },
+	sfdcid 							: { type: String, trim: true },
 	industry 						: { type: String, trim: true },
 	regions 						: { type: String, trim: true },
 	// offerings 						: [{ type: String, trim: true }],

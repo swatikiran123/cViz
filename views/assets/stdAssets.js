@@ -193,8 +193,8 @@ module.exports = {
 	"angularMultipleSelect":{
 		"cdn":[],
 		"dev":[
-		"/public/libs/angularMultipleSelect/build/multiple-select.min.js",
-		"/public/libs/angularMultipleSelect/build/multiple-select.min.css"
+		"/public/libs/angular-multiple-select/build/multiple-select.min.js",
+		"/public/libs/angular-multiple-select/build/multiple-select.min.css"
 		],
 	},
 

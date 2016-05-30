@@ -13,17 +13,22 @@
           </thead>
           <tbody class="data-grid-data">
             <tr>
-              <td><input type="text" placeholder="TCV" ng-model="bodDef.tcvName" class="form-control"></td>
+              <td><input type="text" placeholder="TCV" ng-model="bodDef.tcv" class="form-control"></td>
               <td><input type="text" placeholder="Duration" ng-model="bodDef.duration" class="form-control" ></td>
               <td>
-                <select name="type" ng-model="bodDef.offerings" class="form-control" ng-dropdown >
+                <select
+                ng-model="bodDef.offerings"
+                ng-options="data for data in offerings" class="form-control">
+              </select>
+               
+<!--                 <select name="type" ng-model="bodDef.offerings" class="form-control" ng-dropdown >
                   <option ng-option value="welcome"> Big Data & Analytics</option>
                   <option ng-option value="digitalApp"> GBS - Digital Application</option>
                   <option ng-option value="GBScons"> GBS – Consulting</option>
                   <option ng-option value="GBSis"> GBS – IS & S</option>
                   <option ng-option value="GIS"> GIS </option>
                   <option ng-option value="other"> Other </option>
-                </select>
+                </select> -->
               </td>
               <td><input type="text" name = "teamSize" placeholder="Team Size" ng-model="bodDef.teamSize" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" class="form-control"> <span  ng-show="BOD-form.teamSize.$error.pattern">Team Size should be a number !</span></td>
               
@@ -32,11 +37,12 @@
             
             </tr>
             <tr ng-repeat="bodDef in bods">
-             <td>{{bodDef.tcvName}}</td>
+             <td>{{bodDef.tcv}}</td>
              <td>{{bodDef.duration}}</td>
              <td>{{bodDef.offerings}}</td>
              <td>{{bodDef.teamSize}}</td>
-             <td> <a class="table-btn" ng-click="removeBod($index)"><span class="fa fa-trash fa-lg" /></a> </td>
+             <td> <a class="table-btn" ng-click="removeBod($index)"><span class="fa fa-trash fa-lg" /></a>
+             <a class="table-btn" ng-click="editBod($index,bodDef)" ng-if="mode === 'edit'"><span class="fa fa-edit fa-lg" /></a> </td>
           </tr>
         </tbody>
       </table>

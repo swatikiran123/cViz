@@ -5,12 +5,12 @@
 
         <br>
         <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8">
-        <span class="error text-info"> Note - All the fields are mandatory except SFDC ID please fill all the fields.</span>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <span class="error text-info"> Note - All the fields are mandatory except SFDC ID please fill all the fields.</span>
 
-        </div>
+          </div>
         </div>
         <br>
         <div class="row">
@@ -59,7 +59,7 @@
       input-changed="parentClientChanged"
       />
       <div class="messagenotify">
-      <div class="text-danger">{{errparentMsg}}</div>
+        <div class="text-danger">{{errparentMsg}}</div>
       </div> 
     </md-input-container>
 
@@ -82,7 +82,7 @@
     input-changed="childClientChanged"
     />
     <div class="messagenotify">
-    <div class="text-danger">{{errchildMsg}}</div>
+      <div class="text-danger">{{errchildMsg}}</div>
     </div>  
   </md-input-container>
 
@@ -127,38 +127,18 @@
 
 <md-input-container class="md-block">
 <label>SFDC Id</label>
-<input name="SFDCId" ng-model="clients.SFDCId">
-</md-input-container>
-</div>
-<div>
-  <md-input-container class="md-block" flex-gt-sm>
-  <label>Region</label>
-  <angucomplete-alt
-  id="ex14"
-  placeholder="Select Region or Add Region"
-  pause="500"
-  selected-object="selectedregionsClient"
-  remote-url="/api/v1/secure/clients/find?query={{clients.name}}&subQuery={{clients.subName}}&industry={{clients.industry}}&regions="
-  remote-url-data-field="items3"
-  title-field="regionClient"
-  minlength="3" 
-  input-class="form-control form-control-small"
-  match-class="highlight"
-  template-url="/my-custom4-template.html"
-  initial-value="regionsSelected"
-  box-type="md"
-  input-changed="regionClientChanged"
-  />
-  <div class="messagenotify">
-  <div class="text-danger">{{errregionMsg}}</div>
-  </div>
+<input name="sfdcid" ng-model="clients.sfdcid">
 </md-input-container>
 
+<label>Regions</label>
+<select
+ng-model="clients.regions" ng-change="regionClientChanged()"
+ng-options="data for data in location" class="form-control">
+</select>
 </div>
 </div>
 </div>
 <div class="large-padded-row">
-
   <div class="padded-row">
     <script type="text/ng-template" id="/my-custom-template.html">
     <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
@@ -230,7 +210,7 @@
     <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
     </div>
     <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { childClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    <div class="angucomplete-title">Add New child Client '{{ searchStr }}'</div>
     </div>
     </div>
     </div>
@@ -271,7 +251,7 @@
     <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
     </div>
     <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { IndustryClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    <div class="angucomplete-title">Add New Client industry'{{ searchStr }}'</div>
     </div>
     </div>
     </div>
@@ -279,46 +259,7 @@
   </div>
 </div>
 {{clients.industry=selectedindustryClient.originalObject.IndustryClient;""}}
-<div class="large-padded-row">
 
-  <div class="padded-row">
-    <script type="text/ng-template" id="/my-custom4-template.html">
-    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-    <input ng-model="searchStr"
-    class="md-block"
-    ng-disabled="disableInput"
-    type="text"
-    placeholder="{{placeholder}}"
-    ng-focus="onFocusHandler()"
-    class="{{inputClass}}"
-    ng-focus="resetHideResults()"
-    ng-blur="hideResults($event)"
-    autocapitalize="off"
-    autocorrect="off"
-    autocomplete="off"
-    ng-change="inputChangeHandler(searchStr)"/>
-    <div class="angucomplete-dropdown" ng-show="showDropdown">
-    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-    <div ng-if="imageField" class="angucomplete-image-holder">
-    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-    </div>
-    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-    </div>
-    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { regionClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
-    </div>
-    </div>
-    </div>
-    </script>
-  </div>
-</div>
-{{clients.regions=selectedregionsClient.originalObject.regionClient;""}}
       <!-- {{selectedClient}} 
       
       <div class="result">
@@ -333,18 +274,15 @@
         </div>
       </div> -->
       <!-- Button -->
-      <div class="form-group" ng-if="clientModule">
-        <md-button class="md-warn md-raised pull-right" 
-        ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
-        yes-text="Ok" no-text="Cancel">
-        Cancel
-      </md-button> 
+      <div class="form-group pull-right" ng-if="clientModule" >
+        <button type="reset" class="btn btn-warning pull-right" ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
+          yes-text="Ok" no-text="Cancel">Cancel</button>&nbsp;&nbsp;
 
-      <md-button class="md-primary md-raised pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionClient">
-      Submit
-    </md-button>
+          <button type="submit" class="btn btn-success pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionClient">
+            Submit
+          </button>
+        </div>
+      </fieldset>
+    </form>
   </div>
-</fieldset>
-</form>
-</div>
 </div>

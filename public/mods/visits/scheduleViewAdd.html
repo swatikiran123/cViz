@@ -1,7 +1,19 @@
 <!--schedules-->
 <br>
 <form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
-<div ng-if="subdis" class="error text-info">Please dont forget to fill Visit schedul details.</div>
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+      <div class="well" ng-show="closeNoteTipSch">
+        Note: Atleast One Visit schedule needs to be added.
+        <div class=" pull-right closeicon">
+          <a class="table-btn" ng-click="closeNoteTipST()"><li class="fa fa-times fa-lg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <div ng-if="subdis" class="error text-info">Note: Please dont forget to fill Visit schedul details.</div> -->
+
 <br>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100">
     <thead class="data-grid-header">
