@@ -64,7 +64,9 @@
         '</div>'
     );
 
-    function link(scope, elem, attrs, ctrl) {
+    function link(scope, elem, attrs, ctrl,rootScope) {
+      // console.log(elem[0]);
+      scope.element = elem[0];
       var inputField = elem.find('input');
       var minlength = MIN_LENGTH;
       var searchTimer = null;
@@ -74,6 +76,7 @@
       var validState = null;
       var httpCanceller = null;
       var dd = elem[0].querySelector('.angucomplete-dropdown');
+      // scope.dd = elem[0].querySelector('.angucomplete-dropdown');
       var isScrollOn = false;
       var mousedownOn = null;
       var unbindInitialValue;
@@ -769,8 +772,22 @@
       responseFormatter = callFunctionOrIdentity('remoteUrlResponseFormatter');
 
       // set isScrollOn
-      $timeout(function() {
-        var css = getComputedStyle(dd);
+      $timeout(function(scope,rootScope) {
+        // console.log(dd);
+        // scope.aman = dd;
+        // console.log(elem[0]);
+        var dd = elem[0].querySelector('.angucomplete-dropdown');
+        console.log(dd);
+        if(dd!=null)
+        {
+          var css = getComputedStyle(dd);
+        }
+        if(dd==null)
+        {
+          var dd = elem[0].querySelector('.angucomplete-dropdown');
+          console.log(dd);
+          var css = getComputedStyle(dd);
+        }
         isScrollOn = css.maxHeight && css.overflowY === 'auto';
       });
     }

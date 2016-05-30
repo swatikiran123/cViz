@@ -87,8 +87,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.anchor='';
   $scope.secondaryVmanager='';
   $scope.clientId='';
-  $scope.visitEmp='';
-  
+  $scope.isSaving= false;
+
   $scope.visitGrid=false;
   $scope.navVisit ='';
   $scope.agendaEdit= false;
@@ -113,6 +113,12 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.childClient = true;
   $scope.industryClient = true;
   $scope.regionClient = true;
+  $scope.Addlogovisit=false;
+  $scope.removelogovisit=false;
+  $scope.closeNote=true;
+  $scope.closeNoteTipSch=true;
+  $scope.closeNoteTipVis=true;
+  $scope.saveDrafButton=true;
   // $scope.sessiondbId = "";
 
   $scope.cscPersonnel={};
@@ -147,21 +153,14 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
-  console.log(group);
   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
     $scope.visitGrid= true;
-    $scope.visitEmp= true;
   }
-
+  if ($rootScope.user.groups.indexOf("vManager") > -1){
+    $scope.isSaving= true;
+  }
   if ($rootScope.user.groups.indexOf("admin") > -1) {
     $scope.adminInitVman= true;
-    $scope.visitEmp= true;
-    // $http.get('/api/v1/secure/visits/' + id).success(function(response){
-    //   console.log(response);
-    //   if(response.client.status == "draft"){
-    //     $scope.ClientDraft= true;
-    //   }else $scope.ClientDraft= false;
-    // })
   }
 
   //visit manager group- HTTP get for drop-down
@@ -361,63 +360,109 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         $scope.finalizeSave=0;
         $scope.closeSave=1;
       }
+      else{
+       $scope.agendaTab= true;
+       $scope.visitorsTab= true;
+       $scope.finalizeTab= false;
+       $scope.notifyTab= false;
+       $scope.agendaSave=1;
 
-      break;
+     }
+     break;
 
-      case "close": 
-      if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-        $scope.closeTab=true;
-        $scope.finalizeTab= true;
-        $scope.agendaTab=true;
-        $scope.visitorsTab=true;
-        $scope.notifyTab=true;
-        $scope.agendaSave=0;
-        $scope.visitorSave=0;
-        $scope.finalizeSave=0;
-        $scope.closeSave=1;
-      }
-
-      break;
-
-    };
-    $scope.createBy= response.createBy._id;
-    console.log(visits.client);
-    $scope.clientIdData=visits.client._id;
-    $scope.parentSelected= visits.client.name;
-    $scope.childSelected= visits.client.subName;
-    $scope.industrySelected= visits.client.industry;
-    $scope.regionsSelected= visits.client.regions;
-    $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
-// })
-$scope.selectedList = visits.offerings;
-if(response.status == "draft"){
-  $scope.ClientDraft= true;
-  console.log("draft");
-}else{ $scope.ClientDraft= false; console.log("final");}
-})
-
-
-    for(var files=0;files<response.visitGallery.length;files++)
-    {
-      $scope.arrayClose.push(response.visitGallery[files])
-    }
-
-    $scope.bods = visits.bod;
-    $scope.visitors = visits.visitors;
-    if ($scope.visitors.length == 0)
-    {
-      $scope.visvalid= true;
-
+     case "close": 
+     if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+      $scope.closeTab=true;
+      $scope.finalizeTab= true;
+      $scope.agendaTab=true;
+      $scope.visitorsTab=true;
+      $scope.notifyTab=true;
+      $scope.agendaSave=0;
+      $scope.visitorSave=0;
+      $scope.finalizeSave=0;
+      $scope.closeSave=1;
     }
     else{
-      $scope.visvalid= false;
+     $scope.agendaTab= true;
+     $scope.visitorsTab= true;
+     $scope.finalizeTab= false;
+     $scope.notifyTab= false;
+     $scope.agendaSave=1;
 
-    }
+   }
+   break;
+
+   case "confirm draft": 
+   $scope.agendaTab= true;
+   $scope.visitorsTab= true;
+   $scope.finalizeTab= false;
+   $scope.notifyTab= false;
+   $scope.agendaSave=1;
+   break;
+
+   case "tentative draft": 
+   $scope.agendaTab= true;
+   $scope.visitorsTab= true;
+   $scope.finalizeTab= false;
+   $scope.notifyTab= false;
+   $scope.agendaSave=1;
+   break;
+ };
+ $scope.createBy= response.createBy._id;
+ // console.log(visits.client);
+ $scope.clientIdData=visits.client._id;
+ $scope.parentSelected= visits.client.name;
+ $scope.childSelected= visits.client.subName;
+ $scope.industrySelected= visits.client.industry;
+ $scope.regionsSelected= visits.client.regions;
+ $scope.sfdcidSelected= visits.client.sfdcid;
+ if (visits.client.logo!= null) {
+  $scope.showAvatar =true;
+  $scope.avatarVisit=visits.client.logo;
+}else{ 
+  $scope.showAvatar =false;
+  $scope.Addlogovisit=true;
+  $scope.removelogovisit=true;}
+  $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
+// })
+
+  $scope.selectedList = visits.offerings;
+  if(response.status == "draft"){
+    $scope.ClientDraft= true;
+    // console.log("draft");
+    if (response.logo!= null) {
+      $scope.showAvatar =true;
+      $scope.avatarVisit=visits.client.logo;
+    }else 
+    $scope.showAvatar =false;
+    $scope.Addlogovisit=true;
+    $scope.removelogovisit=true;
+  }else{ $scope.ClientDraft= false;
+   // console.log("final");
+ }
+})
+  for(var files=0;files<response.visitGallery.length;files++)
+  {
+    $scope.arrayClose.push(response.visitGallery[files])
+  }
+
+  $scope.bods = visits.bod;
+  $scope.visitors = visits.visitors;
+  if ($scope.visitors.length == 0)
+  {
+    $scope.visvalid= true;
+    $scope.closeNoteTipVis=true;
+
+  }
+  else{
+    $scope.visvalid= false;
+
+  }
         $scope.schedules = visits.schedule;//List of schedules
         if ($scope.schedules.length == 0)
         {
           $scope.subdis= true;
-
+          $scope.closeNoteTipSch=true;
         }
         else{
           $scope.subdis= false;
@@ -430,17 +475,15 @@ if(response.status == "draft"){
           $scope.visitorType = '';
 
         if ( visits.status == "confirm draft") {
+          $scope.saveDrafButton=true;
           $scope.status = "confirm";
-          $scope.visitEmp= true;
         }
         else if (visits.status == "tentative draft") {
+          $scope.saveDrafButton=true;
           $scope.status = "tentative";
-          $scope.visitEmp= true;
         }else{
-          if ($rootScope.user.memberOf){
-            $scope.visitEmp= false;
-          }
           $scope.status= visits.status;
+          $scope.saveDrafButton=false;
         } 
         if (visits.billable == "billable") {
           $scope.checked=true;
@@ -473,99 +516,99 @@ if(response.status == "draft"){
         };
         if (response.competitorVisit!=undefined) {
          $scope.vCompetitor= "no";
-          $scope.checked1 = false;
+         $scope.checked1 = false;
           // $scope.value="yes";
         }else{
          $scope.vCompetitor= "yes";
-          $scope.checked1 = true;
+         $scope.checked1 = true;
+       }
+       if (response.cscPersonnel!=undefined) {
+        $scope.closeNote= false;
+        if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
+        {
+          $scope.saleExeId = response.cscPersonnel.salesExec._id;
         }
-        if (response.cscPersonnel!=undefined) {
 
-          if(response.cscPersonnel.salesExec != null || response.cscPersonnel.salesExec != undefined)
-          {
-            $scope.saleExeId = response.cscPersonnel.salesExec._id;
-          }
-
-          if(response.cscPersonnel.salesExec == null || response.cscPersonnel.salesExec == undefined)
-          {
-            $scope.saleExeId = null;
-          }
-
-          if(response.cscPersonnel.accountGM != null || response.cscPersonnel.accountGM != undefined)
-          {
-            $scope.accountGmId = response.cscPersonnel.accountGM._id;
-          }
-
-          if(response.cscPersonnel.accountGM == null || response.cscPersonnel.accountGM == undefined)
-          {
-            $scope.accountGmId = null;
-          }
-
-          if(response.cscPersonnel.industryExec != null || response.cscPersonnel.industryExec != undefined)
-          {
-            $scope.industryExeCId = response.cscPersonnel.industryExec._id;
-          }
-
-          if(response.cscPersonnel.industryExec == null || response.cscPersonnel.industryExec == undefined)
-          {
-            $scope.industryExeCId = null;
-          }
-
-          if(response.cscPersonnel.globalDelivery != null || response.cscPersonnel.globalDelivery != undefined)
-          {
-            $scope.globalDeliverYId = response.cscPersonnel.globalDelivery._id;
-          }
-
-          if(response.cscPersonnel.globalDelivery == null || response.cscPersonnel.globalDelivery == undefined)
-          {
-            $scope.globalDeliverYId = null;
-          }
-
-          if(response.cscPersonnel.cre != null || response.cscPersonnel.cre != undefined)
-          {
-            $scope.crEId = response.cscPersonnel.cre._id;
-          } 
-
-          if(response.cscPersonnel.cre == null || response.cscPersonnel.cre == undefined)
-          {
-            $scope.crEId = null;
-          } 
-          
-          if($scope.saleExeId !=null || $scope.saleExeId !=undefined)
-          {
-            $scope.salesExecUser = response.cscPersonnel.salesExec;
-            $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
-            $scope.salesExecId = response.cscPersonnel.salesExec._id;
-          }
-
-          if($scope.accountGmId !=null || $scope.accountGmId !=undefined)
-          {
-            $scope.accountGMUser = response.cscPersonnel.accountGM;
-            $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
-            $scope.accountGMId = response.cscPersonnel.accountGM._id;
-          }
-
-          if($scope.industryExeCId !=null || $scope.industryExeCId !=undefined)
-          {
-            $scope.industryExecUser = response.cscPersonnel.industryExec;
-            $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
-            $scope.industryExecId = response.cscPersonnel.industryExec._id;
-          }
-
-          if($scope.globalDeliverYId !=null || $scope.globalDeliverYId !=undefined)
-          {
-            $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
-            $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
-            $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
-          }
-
-          if($scope.crEId !=null || $scope.crEId !=undefined)
-          {  
-            $scope.creUser = response.cscPersonnel.cre;
-            $scope.creEmail = response.cscPersonnel.cre.email;
-            $scope.creId = response.cscPersonnel.cre._id;
-          }
+        if(response.cscPersonnel.salesExec == null || response.cscPersonnel.salesExec == undefined)
+        {
+          $scope.saleExeId = null;
         }
+
+        if(response.cscPersonnel.accountGM != null || response.cscPersonnel.accountGM != undefined)
+        {
+          $scope.accountGmId = response.cscPersonnel.accountGM._id;
+        }
+
+        if(response.cscPersonnel.accountGM == null || response.cscPersonnel.accountGM == undefined)
+        {
+          $scope.accountGmId = null;
+        }
+
+        if(response.cscPersonnel.industryExec != null || response.cscPersonnel.industryExec != undefined)
+        {
+          $scope.industryExeCId = response.cscPersonnel.industryExec._id;
+        }
+
+        if(response.cscPersonnel.industryExec == null || response.cscPersonnel.industryExec == undefined)
+        {
+          $scope.industryExeCId = null;
+        }
+
+        if(response.cscPersonnel.globalDelivery != null || response.cscPersonnel.globalDelivery != undefined)
+        {
+          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+        }
+
+        if(response.cscPersonnel.globalDelivery == null || response.cscPersonnel.globalDelivery == undefined)
+        {
+          $scope.globalDeliveryId = null;
+        }
+
+        if(response.cscPersonnel.cre != null || response.cscPersonnel.cre != undefined)
+        {
+          $scope.crEId = response.cscPersonnel.cre._id;
+        } 
+
+        if(response.cscPersonnel.cre == null || response.cscPersonnel.cre == undefined)
+        {
+          $scope.crEId = null;
+        } 
+        
+        if($scope.saleExeId !=null || $scope.saleExeId !=undefined)
+        {
+          $scope.salesExecUser = response.cscPersonnel.salesExec;
+          $scope.salesExecEmail = response.cscPersonnel.salesExec.email;
+          $scope.salesExecId = response.cscPersonnel.salesExec._id;
+        }
+
+        if($scope.accountGmId !=null || $scope.accountGmId !=undefined)
+        {
+          $scope.accountGMUser = response.cscPersonnel.accountGM;
+          $scope.accountGMEmail = response.cscPersonnel.accountGM.email;
+          $scope.accountGMId = response.cscPersonnel.accountGM._id;
+        }
+
+        if($scope.industryExeCId !=null || $scope.industryExeCId !=undefined)
+        {
+          $scope.industryExecUser = response.cscPersonnel.industryExec;
+          $scope.industryExecEmail = response.cscPersonnel.industryExec.email;
+          $scope.industryExecId = response.cscPersonnel.industryExec._id;
+        }
+
+        if($scope.globalDeliveryId !=null || $scope.globalDeliveryId !=undefined)
+        {
+          $scope.globalDeliveryUser = response.cscPersonnel.globalDelivery;
+          $scope.globalDeliveryEmail = response.cscPersonnel.globalDelivery.email;
+          $scope.globalDeliveryId = response.cscPersonnel.globalDelivery._id;
+        }
+
+        if($scope.crEId !=null || $scope.crEId !=undefined)
+        {  
+          $scope.creUser = response.cscPersonnel.cre;
+          $scope.creEmail = response.cscPersonnel.cre.email;
+          $scope.creId = response.cscPersonnel.cre._id;
+        }
+      }
 
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
@@ -579,14 +622,7 @@ break;
   refresh();
   $scope.saveDraft=function() {
     $scope.saveDraf=true;
-    $scope.visitEmp= false;// edit/delete will be shown for employee in deaf
-    $scope.save();
-  }
-  $scope.saveVisitorsData=function () {
-    if ($rootScope.user.memberOf){
-      $scope.visitEmp= false;
-      $scope.save();
-    }else 
+    $scope.saveDrafButton=true;
     $scope.save();
   }
   $scope.save = function(){
@@ -616,12 +652,11 @@ break;
     if ($scope.checked1 == true){
       $scope.visits.competitorVisit=null;
       }//check code
-      console.log($scope.visits.competitorVisit);
-    if ($scope.checked == false){
-      $scope.unbillable= "non-billable";
-      if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
-      $scope.visits.billable=$scope.unbillable;
-      $scope.visits.wbscodeAttachment ="";
+      if ($scope.checked == false){
+        $scope.unbillable= "non-billable";
+        if($scope.visits.wbsCode!=null){$scope.visits.wbsCode= null;}
+        $scope.visits.billable=$scope.unbillable;
+        $scope.visits.wbscodeAttachment ="";
       }//check code
       else{
         $scope.billable= "billable";
@@ -632,7 +667,7 @@ break;
 
         $scope.visits.feedbackTmpl = $scope.feedbackId;
         $scope.visits.sessionTmpl = $scope.sessionId;
-        console.log($scope.visits);
+        // console.log($scope.visits);
         // while edit vll get id den v need to search by id too...
         var inDataClient={};
         if ($scope.visits.clientName!=undefined) 
@@ -651,14 +686,19 @@ break;
           { inDataClient.regions =$scope.visits.regions;}
         else inDataClient.regions = $scope.regionsSelected;
 
-        inDataClient.SFDCId=$scope.visits.SFDCId;
-        inDataClient.netPromoter =$scope.visits. netPromoter;
-        inDataClient.competitors =$scope.visits. competitors; 
+        if ($scope.visits.sfdcid!=undefined) 
+          { inDataClient.sfdcid =$scope.visits.sfdcid;}
+        else inDataClient.sfdcid = $scope.sfdcidSelected;
+
+        // inDataClient.sfdcid=$scope.visits.sfdcid;
+        inDataClient.netPromoter =$scope.visits.netPromoter;
+        inDataClient.competitors =$scope.visits.competitors;
+        inDataClient.logo= $scope.avatarVisit; 
 
         $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
           console.log(response);
-          if (response.id!="null") {
-            console.log("im in here with id")
+          if (response.id!= null) {
+            // console.log("im in here with id")
             $scope.visits.client = response.id;
 
             switch($scope.mode){
@@ -673,14 +713,14 @@ break;
 
             }
           }
-          else if($scope.clientIdData!=undefined && response.id!="null" ){
-            console.log("you can proceed now");
+          else if($scope.clientIdData!=undefined && response.id!= null ){
+            // console.log("you can proceed now");
             $scope.visits.clientIdData=$scope.clientIdData;
             $scope.update(); 
           }
           else
         {//get al client data
-          console.log($scope.visits);
+          // console.log($scope.visits);
           
           var inDataClient ={};
 
@@ -700,17 +740,20 @@ break;
             { inDataClient.regions =$scope.visits.regions;}
           else inDataClient.regions = $scope.regionsSelected;
 
+          if ($scope.visits.sfdcid!=undefined) 
+            { inDataClient.sfdcid =$scope.visits.sfdcid;}
+          else inDataClient.sfdcid = $scope.sfdcidSelected;
+
           if ($rootScope.user.groups.indexOf("admin") > -1 ) {
             inDataClient.status="final";
           }else inDataClient.status="draft";
 
-          inDataClient.SFDCId=$scope.visits.SFDCId;
           inDataClient.netPromoter =$scope.visits.netPromoter;
           inDataClient.competitors =$scope.visits.competitors;
 
           if ($scope.avatarVisit!=undefined) {
             inDataClient.logo=$scope.avatarVisit;}
-            console.log(inDataClient)
+            // console.log(inDataClient)
 
             $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
              $scope.visits.client = response._id;
@@ -735,13 +778,13 @@ break;
           var inData       = $scope.visits;
           inData.schedule = $scope.schedules;
           inData.keynote = $scope.keynotes;
-          inData.bods = $scope.bods;
+          inData.bod = $scope.bods;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
           inData.cscPersonnel =$scope.cscPersonnel;
 
-          console.log($scope.cscPersonnel);
-          console.log(inData);
+          // console.log($scope.cscPersonnel);
+          // console.log(inData);
           var client ={};
           client.cscPersonnel =$scope.cscPersonnel;
           $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
@@ -750,7 +793,7 @@ break;
 
           if ($scope.saveDraf==true) {
             $http.post('/api/v1/secure/visits', inData).success(function(response) {
-              console.log("im in saveDraf mode!!")
+              // console.log("im in saveDraf mode!!")
 
               $scope.nextTab(response._id);
 
@@ -758,9 +801,9 @@ break;
             })
           }else{
             $http.post('/api/v1/secure/visits', inData).success(function(response) {
-              console.log("im in else saveDraf mode!!")
+              // console.log("im in else saveDraf mode!!")
               $http.get('/api/v1/secure/email/'+ response._id+'/newvisit').success(function(response) {
-               console.log(response);
+               // console.log(response);
              })
               $scope.nextTab(response._id);
 
@@ -786,7 +829,7 @@ break;
   $scope.update = function() {
 
     console.log($scope.visits);
-    console.log($scope.visits.clientIdData)
+    // console.log($scope.visits.clientIdData)
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
     inData.createBy=$scope.createBy;
@@ -810,49 +853,53 @@ break;
       { client.regions =$scope.visits.regions;}
     else client.regions = $scope.regionsSelected;
 
+    if ($scope.visits.sfdcid!=undefined) 
+      { client.sfdcid =$scope.visits.sfdcid;}
+    else client.sfdcid = $scope.sfdcidSelected;
+
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       client.status="final";
     }
 
-    // if ($scope.avatar!=undefined) {
-    //   inData.logo=avatar;}
+    if ($scope.avatarVisit!=undefined) {
+      client.logo=$scope.avatarVisit;}
 
-    console.log(client);
-    $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
-    })
-    .error(function(data, status){
-      growl.error("Error updating client");
+      // console.log(client);
+      $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
+      })
+      .error(function(data, status){
+        growl.error("Error updating client");
     }); // http put keynoges ends
 
-    $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
-     refresh();
-     growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
+      $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
+       refresh();
+       growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
 
-     if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
-      if($scope.agendaTab == true && $scope.agendaEdit == false) {
-        if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
+       if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+        if($scope.agendaTab == true && $scope.agendaEdit == false) {
+          if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
+          {
+            $location.path("visits/list");
+          }else
+          $location.path("/visits/"+$scope.visits._id+"/edit"); 
+        }
+        else if($scope.finalizeTab == true && $scope.finall == true)
+        {
+          $location.path("visits/list");
+        }
+        else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
+      }
+
+      else if($scope.agendaTab == true && $scope.agendaEdit == false) {
+        if($scope.visitorsTab == true && $scope.check == true)
         {
           $location.path("visits/list");
         }else
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
       }
-      else if($scope.finalizeTab == true && $scope.finall == true)
-      {
-        $location.path("visits/list");
-      }
-      else   $location.path("/visits/"+$scope.visits._id+"/edit"); 
-    }
-
-    else if($scope.agendaTab == true && $scope.agendaEdit == false) {
-      if($scope.visitorsTab == true && $scope.check == true)
-      {
-        $location.path("visits/list");
-      }else
-      $location.path("/visits/"+$scope.visits._id+"/edit"); 
-    }
-  })
-    .error(function(data, status){
-      growl.error("Error updating visit");
+    })
+.error(function(data, status){
+  growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
@@ -869,79 +916,52 @@ break;
     $scope.visits.agm = parse("%s %s, <%s>", user.name.first, user.name.last, user.email); });
 }
 
-// $scope.valppl=function(){
-
-//   if($scope.salesExecId == undefined || $scope.salesExecId == null || $scope.salesExecId == ""){
-//     $scope.people= true;
-//     $scope.errsalExe ="Sales Exec undefined"
-//     $timeout(function () { $scope.people =false;$scope.errsalExe=''; }, 25000);
-
-//   }
-//   else if($scope.accountGMId == undefined || $scope.accountGMId == null || $scope.accountGMId == ""){
-//     $scope.people= true;
-//     $scope.erragm ="Account GM undefined"
-//     $timeout(function () { $scope.people =false; $scope.erragm=''; }, 25000);
-
-//   }
-//   else if($scope.industryExecId == undefined || $scope.industryExecId == null || $scope.industryExecId == ""){
-//     $scope.people= true;
-//     $scope.errsalExe ="Industry Exec undefined"
-//     $timeout(function () { $scope.people =false;$scope.errsalExe=''; }, 25000);
-
-//   }
-//   else if($scope.globalDeliveryId == undefined || $scope.globalDeliveryId == null || $scope.globalDeliveryId == ""){
-//     $scope.people= true;
-//     $scope.errglo ="Global Delivery undefined"
-//     $timeout(function () { $scope.people =false;$scope.globalDeliveryId=''; }, 25000);
-
-//   }
-//   else if($scope.creId == undefined || $scope.creId == null || $scope.creId == ""){
-//     $scope.people= true;
-//     $scope.errcre ="CRE undefined"
-//     $timeout(function () { $scope.people =false;$scope.creId=''; }, 25000);
-
-//   }
-//   else if($scope.agmId == undefined || $scope.agmId == null || $scope.agmId == ""){
-//     $scope.people= true;
-//     $scope.errspon ="sponser undefined"
-//     $timeout(function () { $scope.people =false;$scope.agmId=''; }, 25000);
-
-//   }
-//   else{ $scope.people= false;
-//    $scope.save();}
-//  }
-
 $scope.updateClientStatus=function () {
   $http.get('/api/v1/secure/clients/id/'+$scope.visits.client._id).success(function(response) {
-
     console.log(response);
+    var inData       = $scope.visits;
+    inData.keynote = $scope.keynotes;
+    inData.createBy=$scope.createBy;
+    inData.cscPersonnel =$scope.cscPersonnel;
+    var client ={};
+    client.cscPersonnel =$scope.cscPersonnel;
+
+    if ($scope.visits.clientName!=undefined) 
+      {client.name =$scope.visits.clientName;}
+    else client.name = $scope.parentSelected;
+
+    if ($scope.visits.subName!=undefined) 
+      {client.subName =$scope.visits.subName;}
+    else client.subName = $scope.childSelected;
+
+    if ($scope.visits.industry!=undefined) 
+      {client.industry =$scope.visits.industry;}
+    else client.industry = $scope.industrySelected;
+
+    if ($scope.visits.regions!=undefined) 
+      { client.regions =$scope.visits.regions;}
+    else client.regions = $scope.regionsSelected;
+
+    if ($scope.visits.sfdcid!=undefined) 
+      { client.sfdcid =$scope.visits.sfdcid;}
+    else client.sfdcid = $scope.sfdcidSelected;
+
+    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+      client.status="final";
+    }
+
+    if ($scope.avatarVisit!=undefined) {
+      client.logo=$scope.avatarVisit;}
+
+      console.log(client);
+      $http.put('/api/v1/secure/clients/id/' + response._id, client).success(function(response) {
+      })
+      .error(function(data, status){
+        growl.error("Error updating client");
+    }); // http put keynoges ends
   })
-
-  //   var inDataClient={};
-  //   if ($rootScope.user.groups.indexOf("admin") > -1 ) {
-  //     $scope.cscPersonnel.salesExec = $scope.salesExecId;
-  //     $scope.cscPersonnel.accountGM= $scope.accountGMId;
-  //     $scope.cscPersonnel.industryExec = $scope.industryExecId;
-  //     $scope.cscPersonnel.globalDelivery = $scope.globalDeliveryId;
-  //     $scope.cscPersonnel.cre= $scope.creId;
-  //     inDataClient.cscPersonnel=$scope.cscPersonnel;
-  //     inDataClient.status="final";
-  //   }
-  //   else inDataClient.status="draft";
-
-  //   console.log(inDataClient);
-
-  //   $http.put('/api/v1/secure/clients/id/' + $scope.response._id, inDataClient).success(function(response) {
-  //   })
-  //   $route.reload();
-  // })
+  $scope.ClientDraft=false;
 }
-
-$scope.ClientStatusReject=function () {
-  console.log("reject clint");
-  $scope.visitEmp= true;
-}
-
    //add vmanager
    $scope.AddVmanager=function(){
     $scope.visits.anchor = $scope.anchorman;
@@ -1183,7 +1203,7 @@ $scope.ClientStatusReject=function () {
    $location.path("visits/list"); 
  }
  $scope.closeVisit=function(status){
-  console.log(status);
+  // console.log(status);
   $scope.status = status;
   $scope.status="complete";
 
@@ -1253,7 +1273,7 @@ $scope.isDataValid=function(schedule){
       });
     }
     else {
-      console.log(isValid);
+      // console.log(isValid);
       $scope.err = isValid;
       $scope.subdis= true;
       $timeout(function () { $scope.err = ''; }, 5000);}
@@ -1270,6 +1290,8 @@ $scope.isDataValid=function(schedule){
       if (schedules.length == 0)
       {
         $scope.subdis= true;
+        $scope.closeNoteTipSch=true;
+
       }else{
         $scope.subdis= false;}
       };
@@ -1287,7 +1309,7 @@ $scope.isDatevalidBOD =  function(bodDef) {
     if (bodDef === "" || bodDef === undefined || bodDef === null)
       return "Data undefined !";
 
-    if (bodDef.tcvName === "" || bodDef.tcvName === undefined || bodDef.tcvName === null)
+    if (bodDef.tcv === "" || bodDef.tcv === undefined || bodDef.tcv === null)
       return "TCV name not valid !";
 
     if (bodDef.duration === "" || bodDef.duration ===  undefined || bodDef.duration ===  null)
@@ -1303,7 +1325,7 @@ $scope.isDatevalidBOD =  function(bodDef) {
   }
 
   $scope.addBod = function (bodDef) {
-  //  console.log(bodDef.tcvName);
+  //  console.log(bodDef.tcv);
     //console.log(bodDef);
 
     var isValid = $scope.isDatevalidBOD(bodDef);
@@ -1312,7 +1334,7 @@ $scope.isDatevalidBOD =  function(bodDef) {
     {
       $scope.bodDef = false;
       $scope.bods.push ({
-        tcvName: bodDef.tcvName,
+        tcv: bodDef.tcv,
         duration: bodDef.duration,
         offerings: bodDef.offerings,
         teamSize: bodDef.teamSize
@@ -1323,7 +1345,7 @@ $scope.isDatevalidBOD =  function(bodDef) {
       $scope.err = isValid;
       $timeout(function () { $scope.err = ''; }, 5000);}
 
-      bodDef.tcvName = '';
+      bodDef.tcv = '';
       bodDef.duration = '';
       bodDef.offerings = '';
       bodDef.teamSize = '';
@@ -1334,10 +1356,17 @@ $scope.isDatevalidBOD =  function(bodDef) {
     };
 
 
+    $scope.editBod = function(index,bodDef){
+      $scope.showKey=true;
+      // console.log(bodDef);
+      $scope.bodDef= bodDef;
+      $scope.bods.splice(index, 1);
+
+    };
 
  // Visit keynote table
  $scope.isDataValidkey=function(keynoteDef){
-  console.log(keynoteDef);
+  // console.log(keynoteDef);
   if(keynoteDef === "" || keynoteDef === undefined)
     return "Data undefined !";
 
@@ -1467,7 +1496,7 @@ function toTitleCase(string)
      if ($scope.visitors.length == 0)
      {
        $scope.visvalid=true;
-
+       $scope.closeNoteTipVis=true;
      }else{
        $scope.visvalid=false;
 
@@ -1485,12 +1514,12 @@ function toTitleCase(string)
   // Visit visitor table
   // //id
   $scope.callClientId=function() {
-    console.log("im here in callClientId lucky u");
+    // console.log("im here in callClientId lucky u");
     $http.get('/api/v1/secure/clients/find?query=' + $scope.visits.client+"&subQuery="+$scope.visits.subName+"&industry="+$scope.visits.industry+"&regions="+$scope.visits.regions+"&id=").success(function(response) {
       console.log(response);
-      if (response.id!="null") {
+      if (response.id!= null) {
         $scope.clientId= response.id;
-        console.log($scope.clientId);
+        // console.log($scope.clientId);
       }
 
     })
@@ -1589,16 +1618,16 @@ function toTitleCase(string)
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
-    }
+}
 
-    if(visitorDef.visitorId==null)
-    {
-      $scope.showFlag = "notRegisteredUser";
-      $scope.emailId = emailid;
-      $scope.influencedata = influencedata;
-      $scope.designationdata = designationdata;
-      $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
-    }  
+if(visitorDef.visitorId==null)
+{
+  $scope.showFlag = "notRegisteredUser";
+  $scope.emailId = emailid;
+  $scope.influencedata = influencedata;
+  $scope.designationdata = designationdata;
+  $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
+}  
 // .error(function(response, status){
 
 //   $scope.showFlag = "notRegisteredUser";
@@ -1631,7 +1660,7 @@ function toTitleCase(string)
     if (visitors.length == 0)
     {
      $scope.visvalid=true;
-     
+     $scope.closeNoteTipVis=true;
    }else{
      $scope.visvalid=false;
 
@@ -1901,56 +1930,123 @@ $scope.regionClientChanged = function(str) {
     $scope.regionClient = true;
     $scope.errregionMsg = "Region is Mandatory field";
   }
+} //sfdcid
+
+$scope.sfdcidClientChanged = function(str) {
+  $scope.sfdcidClientString = str;
+
+  if($scope.sfdcidClientString!=null || $scope.sfdcidClientString!="")
+  {
+    $scope.sfdcidClient = false;
+    $scope.errsfdcidMsg = "";
+  }
+
+  if($scope.sfdcidClientString==null || $scope.sfdcidClientString=="")
+  {
+    $scope.sfdcidClient = true;
+    $scope.errsfdcidMsg = "sfdcid is Mandatory field";
+  }
 } 
+
+$scope.addClientLogo = function(ev) {
+  $mdDialog.show({
+    templateUrl: '/public/mods/clients/clientLogoDialog.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
+
+  })
+};
+
+$scope.addlogo = function (dataUrl) {
+  Upload.upload({
+    url: '/api/v1/upload/visits',
+    data: {
+      file: Upload.dataUrltoBlob(dataUrl),
+    },
+  }).then(function (response) {
+    $scope.userdata ='';
+    $scope.result = response.data;
+    var filepath = response.data.file.path;
+    var imagepath = '/'+ filepath.replace(/\\/g , "/");
+    $scope.avatarVisit = imagepath;
+    $scope.showAvatar = true;
+    $mdDialog.hide();
+  });
+
+};
+
+$scope.hide = function() {
+  $mdDialog.hide();
+};
+$scope.canceldialog = function() {
+  $mdDialog.cancel();
+};
+$scope.answer = function(answer) {
+  $mdDialog.hide(answer);
+};
+$scope.getLogo=function(){
+  if($scope.parentClient ==true || $scope.childClient ==true || $scope.industryClient ==true || $scope.regionClient ==true) {
+    $scope.Addlogovisit=false;
+    $scope.removelogovisit=false;
+    $scope.showAvatar=false;
+  }
+  else{
+    var inDataClient={};
+    if ($scope.visits.clientName!=undefined) 
+      {inDataClient.name =$scope.visits.clientName;}
+    else inDataClient.name = $scope.parentSelected;
+
+    if ($scope.visits.subName!=undefined) 
+      {inDataClient.subName =$scope.visits.subName;}
+    else inDataClient.subName = $scope.childSelected;
+
+    if ($scope.visits.industry!=undefined) 
+      {inDataClient.industry =$scope.visits.industry;}
+    else inDataClient.industry = $scope.industrySelected;
+
+    if ($scope.visits.regions!=undefined) 
+      { inDataClient.regions =$scope.visits.regions;}
+    else inDataClient.regions = $scope.regionsSelected;
+
+    if ($scope.visits.sfdcid!=undefined) 
+      { inDataClient.sfdcid =$scope.visits.sfdcid;}
+    else inDataClient.sfdcid = $scope.sfdcidSelected;
+
+    $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
+      console.log(response);
+      if (response.logo!= null) {
+        $scope.avatarVisit=response.logo;
+        $scope.showAvatar=true;
+      }
+      else{
+        $scope.Addlogovisit=true;
+        $scope.removelogovisit=true;
+        $scope.showAvatar=false;
+      }
+    })
+  }
+}
+
+$scope.removeLogo=function(){
+  $scope.showAvatar=false;
+}
+
+$scope.closeNotecscP=function(){
+  $scope.closeNote= false;
+}
+$scope.closeNoteTipST=function(){
+  $scope.closeNoteTipSch=false;
+}
+$scope.closeNoteTipV=function(){
+  $scope.closeNoteTipVis=false;
+}
+$scope.closeNotecscPrs=function(){
+  $scope.closeNote= true;
+}
 }])
 
-//Autocompleate - Directive '$timeout', function($timeout)
-// visitsApp.directive("autocomplete", ["AutoCompleteService", "$timeout", function (AutoCompleteService,$timeout) {
-//   return {
-//     restrict: "A",              //Taking attribute value
-//     link: function (scope, elem, attr, ctrl) {
-//       elem.autocomplete({
-//         source: function (searchTerm, response) {
-//           AutoCompleteService.search(searchTerm.term).then(function (autocompleteResults) {
-//             if(autocompleteResults == undefined || autocompleteResults == ''){
-//               scope.autoFail=true;
-//               scope.clientNotFound="Client not found!!!"
-//               // $timeout(function () { scope.clientNotFound = ''; }, 5000);
-//             }
-//             else{
-//               response($.map(autocompleteResults, function (autocompleteResult) {
-//                 console.log(autocompleteResult)
-//                 return {
-//                   label: autocompleteResult.name,
-//                   value: autocompleteResult.name,
-//                   id: autocompleteResult._id,
-                  // salesExecId: autocompleteResult.cscPersonnel.salesExec,
-                  // accountGMId: autocompleteResult.cscPersonnel.accountGM,
-                  // industryExecId: autocompleteResult.cscPersonnel.industryExec,
-                  // globalDeliveryId: autocompleteResult.cscPersonnel.globalDelivery,
-//                   // creId: autocompleteResult.cscPersonnel.cre
-//                 }
-//               }))
-//             }
-//           });
-// },
-// minLength: 3,
-// select: function (event, selectedItem) {
-//   scope.clientName= selectedItem.item.value;
-//   scope.clientId= selectedItem.item.id;
-  // scope.salesExecId = selectedItem.item.salesExecId;
-  // scope.accountGMId= selectedItem.item.accountGMId;
-  // scope.industryExecId = selectedItem.item.industryExecId;
-  // scope.globalDeliveryId = selectedItem.item.globalDeliveryId;
-  // scope.creId= selectedItem.item.creId;
-//   scope.autoFail=false;
-//   scope.$apply();
-//   event.preventDefault();
-// }
-// });
-// }
-// };
-// }]);
 //Autocompleate - Directive
 visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (FeedbackService,$timeout) {
   return {
@@ -1983,8 +2079,8 @@ visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (Feedba
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //Autocompleate - Directive
 visitsApp.directive("session", ["SessionService", "$timeout", function (SessionService,$timeout) {
@@ -2052,8 +2148,8 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
@@ -2088,8 +2184,8 @@ visitsApp.directive('uiDate', function() {
   };
 });
 
-visitsApp.filter('reverse', function() {
-  return function(items) {
-    return items.slice().reverse();
-  };
-});
+// visitsApp.filter('reverse', function() {
+//   return function(items) {
+//     return items.slice().reverse();
+//   };
+// });

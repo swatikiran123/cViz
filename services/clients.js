@@ -93,11 +93,16 @@ function getWithQuery(query, fields, maxRecs, sortEx){
     var industryDesig = [];
     
     var regionsArray = [];
-    var regionsDesig = [];var m=0;
+    var regionsDesig = [];
+    
+    var sfdcidArray = [];
+    var sfdcidDesig = [];
+    var logo='';
+    var m=0;
     model
     .find(query)
     .limit(maxRecs)
-    .select('name subName industry regions _id')
+    .select('name subName industry regions sfdcid logo _id')
     .sort(sortEx)
     .exec(function(err, list){
         if(err) {
@@ -121,6 +126,9 @@ function getWithQuery(query, fields, maxRecs, sortEx){
             if(regionsArray.indexOf(list[i].regions) === -1){
                 regionsArray.push(list[i].regions);
             }
+            if(sfdcidArray.indexOf(list[i].name) === -1){
+                sfdcidArray.push(list[i].name);
+            } 
         }   
         console.log(clientArray);
         console.log(childArray);
@@ -128,7 +136,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
         var data1 = childArray;
         var data2= industryArray;
         var data3= regionsArray;
-        
+        var data4= sfdcidArray;
         for (var i = 0; i < data.length; i++) {
             clientDesig.push({'parentClient':data[i]});
         }
@@ -145,20 +153,27 @@ function getWithQuery(query, fields, maxRecs, sortEx){
         {
             regionsDesig.push({'regionClient':data3[m]});
         }
-        // console.log(list[m]._id);
+        for(var j=0; j<data4.length;j++)
+        {
+            sfdcidDesig.push({'sfdcidClient':data4[j]});
+        }
+        // console.log(list[0].logo);
         if(list[0]!= undefined ){
-                var id=list[0].id;}else var id ="null";
+            var id=list[0].id;
+            var logo=list[0].logo;}else {var id = null; var logo = null;}
 
-        console.log(clientDesig.length);
-        deferred.resolve
-        ({
-            "items": clientDesig,
-            "items1": childDesig,
-            "items2": industryDesig,
-            "items3": regionsDesig,
-            "id": id
+            console.log(clientDesig.length);
+            deferred.resolve
+            ({
+                "items": clientDesig,
+                "items1": childDesig,
+                "items2": industryDesig,
+                "items3": regionsDesig,
+                "items4": sfdcidDesig,
+                "id": id,
+                "logo":logo
+            });
         });
-    });
 return deferred.promise;
 } // getAll method ends
 

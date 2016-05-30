@@ -1,9 +1,20 @@
 <!--visitors-->
 <form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
   {{check=true;""}}
-<!-- {{$parent.submitAddVisitor=true;""}} -->
-<!-- {{submitAddVisitor}} {{submitAddEmail}} -->
-  <div ng-if="visvalid" class="error text-info">Atleast a visitor needs to be added.</div>
+  <!-- {{$parent.submitAddVisitor=true;""}} -->
+  <!-- {{submitAddVisitor}} {{submitAddEmail}}-->
+  <!--visvalid to validate if Atleast a visitor added/not -->
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+      <div class="well" ng-show="closeNoteTipVis">
+        Note: Atleast a visitor needs to be added.
+        <div class=" pull-right closeicon">
+          <a class="table-btn" ng-click="closeNoteTipV()"><li class="fa fa-times fa-lg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
   <br>
   <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
     <thead class="data-grid-header">
@@ -61,200 +72,200 @@
      <td ng-if="designationAuto!=null"><!-- {{$parent.submitAddVisitor=false;""}} --><input class="form-control" ng-model="designationAuto"></input>
      </td>
 <!--      <td ng-if="designationAuto==null"><input class="form-control" 
-     ng-model="designationAuto"></input></td> -->
+ ng-model="designationAuto"></input></td> -->
 
-     <td ng-if="designationAuto==null">
-     <!-- {{$parent.submitAddVisitor=true;""}} -->
-      <div angucomplete-alter
-      id="ex24"
-      placeholder="Select Designation or Add Designation"
-      pause="500"
-      selected-object="selectedDesignation1"
-      remote-url="/api/v1/secure/admin/users/findAll/data?query="
-      remote-url-data-field="items"
-      title-field="designation"
-      minlength="3" 
-      input-class="form-control form-control-small"
-      match-class="highlight"
-      input-changed="inputChanged1"
-      template-url="/my-custom-template1.html"
-      box-type="nonmd" required>
-      </div>
-      {{visitorDef.autoDesignation=selectedDesignation1.originalObject.designation;""}}
-      </td>
-     <td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');callFun(designationAuto);" ng-disabled="visitorForm.$invalid || submitAddEmail">Add visitor</button></td>
+ <td ng-if="designationAuto==null">
+   <!-- {{$parent.submitAddVisitor=true;""}} -->
+   <div angucomplete-alter
+   id="ex24"
+   placeholder="Select Designation or Add Designation"
+   pause="500"
+   selected-object="selectedDesignation1"
+   remote-url="/api/v1/secure/admin/users/findAll/data?query="
+   remote-url-data-field="items"
+   title-field="designation"
+   minlength="3" 
+   input-class="form-control form-control-small"
+   match-class="highlight"
+   input-changed="inputChanged1"
+   template-url="/my-custom-template1.html"
+   box-type="nonmd" required>
+ </div>
+ {{visitorDef.autoDesignation=selectedDesignation1.originalObject.designation;""}}
+</td>
+<td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');callFun(designationAuto);" ng-disabled="visitorForm.$invalid || submitAddEmail">Add visitor</button></td>
 
-     <div class="large-padded-row">
-      <div class="padded-row">
-        <script type="text/ng-template" id="/my-custom-template1.html">
-          <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-            <input ng-model="searchStr"
-            ng-disabled="disableInput"
-            type="text"
-            placeholder="{{placeholder}}"
-            ng-focus="onFocusHandler()"
-            class="{{inputClass}}"
-            ng-focus="resetHideResults()"
-            ng-blur="hideResults($event)"
-            autocapitalize="off"
-            autocorrect="off"
-            autocomplete="off"
-            ng-change="inputChangeHandler(searchStr)"/>
-            <div class="angucomplete-dropdown1" ng-show="showDropdown">
-              <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-              <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-              <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-                <div ng-if="imageField" class="angucomplete-image-holder">
-                  <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-                  <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-                </div>
-                <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-                <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-                <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-                <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-              </div>
-              <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-                <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
-              </div>
-            </div>
-          </div>
-        </script>
-      </div>
+<div class="large-padded-row">
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom-template1.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown1" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
     </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
 
-   </form>
- </tr>
- <td colspan="4" ng-if="showFlag == 'notRegisteredUser'">
-   <!-- {{emailId}}  -->
-   {{message}}
-   <!-- {{influencedata}} -->
-   <br>
-   <br>
-   <br>
-   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-           <form name="profileForm">
-             <div class="row">
+</form>
+</tr>
+<td colspan="4" ng-if="showFlag == 'notRegisteredUser'">
+ <!-- {{emailId}}  -->
+ {{message}}
+ <!-- {{influencedata}} -->
+ <br>
+ <br>
+ <br>
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+         <form name="profileForm">
+           <div class="row">
 
-              <div class="col-md-4 text-center">
-                <br>
-                <br>
-                <img ng-if="showAvatar == false" ng-src="/public/assets/g/imgs/avatar.jpg" width="122" height="122" 
-                />
-                <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
-                style="background-size:cover;"/>
-                <div>
-                 <md-button class="md-primary md-raised" 
-                 ng-click="showProfileButton($event)">
-                 change picture
-               </md-button>
-             </div>
+            <div class="col-md-4 text-center">
+              <br>
+              <br>
+              <img ng-if="showAvatar == false" ng-src="/public/assets/g/imgs/avatar.jpg" width="122" height="122" 
+              />
+              <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+              style="background-size:cover;"/>
+              <div>
+               <md-button class="md-primary md-raised" 
+               ng-click="showProfileButton($event)">
+               change picture
+             </md-button>
            </div>
+         </div>
 
-           
-           
-           <div class="col-md-8">
-            <div layout-gt-sm="row">
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>First Name</label>
-              <input md-maxlength="20" required name="first" 
-              ng-model="userdata.name.first">
-              <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
-               <div class="messagenotify">
-                <div ng-message='required'>First Name is mandatory field.</div>
-                <div ng-message="md-maxlength">The first name has to be less than 20 characters long.</div>
-                <div ng-message="minlength">The first name should contain minimum 5 characters</div></div></div>
-              </md-input-container>
-              
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Middle Name</label>
-              <input name="middle" 
-              ng-model="userdata.name.middle">
-              <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
-               <div class="messagenotify">
-                <div ng-message='required'>Middle Name is mandatory field.</div>
-                <div ng-message="md-maxlength">The middle name has to be less than 10 characters long.</div>
-                <div ng-message="minlength">The middle name should contain minimum 5 characters</div></div></div>
-              </md-input-container>  
-              
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Last Name</label>
-              <input md-maxlength="20" required name="last" 
-              ng-model="userdata.name.last">
-              <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
-               <div class="messagenotify">
-                <div ng-message='required'>Last Name is mandatory field.</div>
-                <div ng-message="md-maxlength">The last name has to be less than 20 characters long.</div>
-                <div ng-message="minlength">The last name should contain minimum 5 characters</div></div></div>
-              </md-input-container>
-            </div>
 
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Email</label>
-              <input type="email" md-maxlength="255" minlength="8" required name="email" 
-              ng-model="emailId">
-              <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
-               <div class="messagenotify">
-                <div ng-message='email'>Email Address is mandatory field.</div>
-                <div ng-message="md-maxlength">The email has to be less than 255 characters long.</div>
-                <div ng-message="minlength">The email should contain minimum 8 characters</div></div></div>
-              </md-input-container>
-            </div>
 
-            <div>
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Password</label>
-              <input type="password" md-maxlength="15" minlength="8" required name="password" 
-              ng-model="userdata.local.password">
-              <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
-               <div class="messagenotify">
-                <div ng-message='required'>Password is mandatory field.</div>
-                <div ng-message="md-maxlength">The password has to be less than 15 characters long.</div>
-                <div ng-message="minlength">The password should contain minimum 8 characters</div></div></div>
-              </md-input-container>
-            </div>
-            
+         <div class="col-md-8">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input md-maxlength="20" required name="first" 
+            ng-model="userdata.name.first">
+            <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>First Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The first name has to be less than 20 characters long.</div>
+              <div ng-message="minlength">The first name should contain minimum 5 characters</div></div></div>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Middle Name</label>
+            <input name="middle" 
+            ng-model="userdata.name.middle">
+            <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Middle Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The middle name has to be less than 10 characters long.</div>
+              <div ng-message="minlength">The middle name should contain minimum 5 characters</div></div></div>
+            </md-input-container>  
+
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input md-maxlength="20" required name="last" 
+            ng-model="userdata.name.last">
+            <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Last Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The last name has to be less than 20 characters long.</div>
+              <div ng-message="minlength">The last name should contain minimum 5 characters</div></div></div>
+            </md-input-container>
           </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Contact No</label>
-              <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
-              ng-model="userdata.contactNumber">
-              <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
-               <div class="messagenotify">
-                <div ng-message='required'>Contact No is mandatory field.</div>
-                <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
-                <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
-              </md-input-container>
-            </div>
-            <div class="col-md-6">
-              <md-input-container class="md-block" flex-gt-sm>
-              <label>Designation</label>
-              <angucomplete-alt
-              id="ex14"
-              placeholder="Select Designation or Add Designation"
-              pause="500"
-              selected-object="selectedDesignation"
-              remote-url="/api/v1/secure/admin/users/findAll/data?query="
-              remote-url-data-field="items"
-              title-field="designation"
-              minlength="3" 
-              input-class="form-control form-control-small"
-              match-class="highlight"
-              template-url="/my-custom-template.html"
-              input-changed="inputChanged"
-              initial-value ="designationdata"
-              box-type="md"/>
+          <div>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input type="email" md-maxlength="255" minlength="8" required name="email" 
+            ng-model="emailId">
+            <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
+             <div class="messagenotify">
+              <div ng-message='email'>Email Address is mandatory field.</div>
+              <div ng-message="md-maxlength">The email has to be less than 255 characters long.</div>
+              <div ng-message="minlength">The email should contain minimum 8 characters</div></div></div>
             </md-input-container>
-          </div> 
+          </div>
+
+          <div>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Password</label>
+            <input type="password" md-maxlength="15" minlength="8" required name="password" 
+            ng-model="userdata.local.password">
+            <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Password is mandatory field.</div>
+              <div ng-message="md-maxlength">The password has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The password should contain minimum 8 characters</div></div></div>
+            </md-input-container>
+          </div>
 
         </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Contact No</label>
+            <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+            ng-model="userdata.contactNumber">
+            <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Contact No is mandatory field.</div>
+              <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+            </md-input-container>
+          </div>
+          <div class="col-md-6">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Designation</label>
+            <angucomplete-alt
+            id="ex14"
+            placeholder="Select Designation or Add Designation"
+            pause="500"
+            selected-object="selectedDesignation"
+            remote-url="/api/v1/secure/admin/users/findAll/data?query="
+            remote-url-data-field="items"
+            title-field="designation"
+            minlength="3" 
+            input-class="form-control form-control-small"
+            match-class="highlight"
+            template-url="/my-custom-template.html"
+            input-changed="inputChanged"
+            initial-value ="designationdata"
+            box-type="md"/>
+          </md-input-container>
+        </div> 
+
+      </div>
 <!--         <div class="col-md-12">
           <md-input-container class="md-block" flex-gt-sm>
           <label>Job Title</label>
@@ -371,12 +382,12 @@
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="saveVisitorsData()" ng-disabled="visitsForm.$invalid || visvalid">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid">Submit
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
   <button type="submit" class="btn btn-info"
-  ng-click="saveDraft();" ng-disabled="visitsForm.$invalid || visvalid">Save to Draft
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton ">Save to Draft
 </button>
 </div>
 </div>
