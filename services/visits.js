@@ -400,6 +400,7 @@ function getOneById(id){
 	.populate('secondaryVmanager')
 	.populate('createBy')
 	.populate('client')
+	.populate('comments')
 	.populate('feedbackTmpl')
 	.populate('sessionTmpl')
 	.populate({path:'cscPersonnel.salesExec'})

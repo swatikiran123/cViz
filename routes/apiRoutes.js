@@ -23,7 +23,8 @@ var teasers					=	require(constants.paths.controllers + '/api/teasers');
 var contactList			=	require(constants.paths.controllers + '/api/contactList');
 var feedbacks				=	require(constants.paths.controllers + '/api/feedbacks');
 var emails					=	require(constants.paths.controllers + '/api/emails');
-var meetingPlaces 			= 	require(constants.paths.controllers + '/api/meetingPlaces')
+var meetingPlaces 			= 	require(constants.paths.controllers + '/api/meetingPlaces');
+var comments 				= 	require(constants.paths.controllers + '/api/comments');
 
 /*
  * Routes that can be accessed by any one
@@ -171,5 +172,12 @@ router.get('/api/v1/secure/meetingPlaces/:id', meetingPlaces.getOneById);
 router.post('/api/v1/secure/meetingPlaces', meetingPlaces.create);
 router.put('/api/v1/secure/meetingPlaces/:id', meetingPlaces.updateById);
 router.delete('/api/v1/secure/meetingPlaces/:id', meetingPlaces.deleteById);
+
+// List of service routes for comments
+router.get('/api/v1/secure/comments',comments.getAll);
+router.get('/api/v1/secure/comments/:id',comments.getOneById);
+router.post('/api/v1/secure/comments',comments.create);
+router.put('/api/v1/secure/comments/:id',comments.updateById);
+router.delete('/api/v1/secure/comments/:id',comments.deleteById);
 
 module.exports = router;

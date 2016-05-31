@@ -1,0 +1,132 @@
+<style>
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+.detailBox {
+    width:900px;
+    border:1px solid #bbb;
+    margin:50px;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:100%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:100%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:700px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:50px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+</style>
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Comment Box</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="canceldialog()">
+          <md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <br>
+    <md-dialog-content>
+       <div class="detailBox">
+    <div class="titleBox">
+    <textarea ng-model="txtcomment" placeholder="Your Comment" style='width:870px;height:90px;resize: none;'></textarea>
+                    <button class="btn btn-primary" ng-click='btn_add(txtcomment);txtcomment=null;' style='margin-top:10px;'>Post Comment</button> 
+                    <br><br>
+      <label>Comments</label>
+      <!-- <label class="pull-right">Dates</label> -->
+      <select name="singleSelect" id="singleSelect" class="pull-right" ng-model="valueComment">
+          <option value="opt1"><label>Oldest</label></option> <!-- interpolation -->
+          <option value="opt2"><label>Latest</label></option>
+      </select>
+    </div>
+    {{mode="bulletsmallonly";""}}
+    <div ng-if="valueComment=='opt2'">
+    <div class="actionBox">
+        <ul class="commentList">
+            <li ng-repeat="comnt in comment | orderBy:'-'">
+                <div class="commenterImage">
+                  <!-- <img src="http://lorempixel.com/50/50/people/6" /> -->
+                  <div userdisplay view-mode="mode" user-id="comnt.givenBy"></div>
+                </div>
+                <div class="commentText">
+                    <p class="">{{comnt.comment}}</p> <span class="date sub-text">on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+                </div>
+                <hr>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div ng-if="valueComment=='opt1'">
+    <div class="actionBox">
+        <ul class="commentList">
+            <li ng-repeat="comnt in comment">
+                <div class="commenterImage">
+                  <!-- <img src="http://lorempixel.com/50/50/people/6" /> -->
+                  <div userdisplay view-mode="mode" user-id="comnt.givenBy"></div>
+              </div>
+              <div class="commentText">
+                <p class="">{{comnt.comment}}</p> <span class="date sub-text">on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+            </div>
+            <hr>
+        </li>
+    </ul>
+    </div>
+    </div>
+</div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
