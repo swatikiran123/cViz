@@ -777,7 +777,6 @@
         // scope.aman = dd;
         // console.log(elem[0]);
         var dd = elem[0].querySelector('.angucomplete-dropdown');
-        console.log(dd);
         if(dd!=null)
         {
           var css = getComputedStyle(dd);
