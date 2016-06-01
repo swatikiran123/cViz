@@ -72,16 +72,42 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
       }
       else
       {
-        $scope.regions.push($scope.newRegionsValue);
-        var obj ={} ;
-        obj.values = $scope.regions;
 
-        $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
-        {
-          console.log(response);
-          growl.info(parse("New Region [%s]<br/>added successfully",$scope.newRegionsValue));
-          $scope.newRegionsValue = '';
-        });
+        // //console.log($scope.regions);
+        // for (var i = 0; i < $scope.regions.length; i++)
+        // {
+        //   var str1 = $scope.regions[i];
+        //   var str2 = $scope.newRegionsValue;
+
+        //   if (str1.localeCompare(str2) == 0) {
+        //     growl.info(parse("Region [%s]<br/>already exists",$scope.newRegionsValue));
+        //     break;
+        //   }
+        //   else
+        //   {
+        //     $scope.regions.push($scope.newRegionsValue);
+        //     var obj ={} ;
+        //     obj.values = $scope.regions;
+        //     $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
+        //     {
+        //       console.log(response);
+        //       growl.info(parse("New Region [%s]<br/>added successfully",$scope.newRegionsValue));
+        //       $scope.newRegionsValue = '';
+        //     });
+
+        //     break;
+        //   }
+        // }
+          $scope.regions.push($scope.newRegionsValue);
+          var obj ={} ;
+          obj.values = $scope.regions;
+
+          $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
+          {
+            console.log(response);
+            growl.info(parse("New Region [%s]<br/>added successfully",$scope.newRegionsValue));
+            $scope.newRegionsValue = '';
+          });
       }
     }
 

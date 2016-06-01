@@ -97,3 +97,39 @@ function deleteByName(name) {
 
     return deferred.promise;
 }
+
+function getvalidationByName(name, data){
+    var deferred = Q.defer();
+    var errMessgs=[];
+    model
+    .findOneAndUpdate(name)
+    .exec(function (err, item) {
+        if(err) {
+            console.log(err);
+            deferred.reject(err);
+        }
+        else {
+
+            if(item.regions === "" || item.regions === undefined || item.regions === null){
+                errMessgs.push("Feedback Template needs to be defined.");
+            }
+            if(item.regions === "" || item.regions === undefined || item.regions === null){
+                errMessgs.push("Session Template needs to be defined.");
+
+            }       
+            if(item.keynote.length != 0 || item.keynote.length == 0 ){
+                var count=0;
+                for (var i=0; i<item.keynote.length; i++){
+                    if(item.keynote[i].context === 'welcome')
+                    {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    errMessgs.push("There should be Atleast one welcome message in the keynote.");
+                }
+            }
+        }
+    });
+    return deferred.promise;
+}

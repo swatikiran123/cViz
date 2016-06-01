@@ -215,15 +215,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	$scope.endHourGreatTime = end_time;
     };
 
-	  $scope.deleteSession = function(schedule) {
-	    $http.delete('/api/v1/secure/visitSchedules/' + schedule._id).success(function(response) {
-	      growl.info(parse("Title: [%s]<br/>Session schedule deleted successfully", schedule.session.title));
-	      refresh();
-	    })
-	    .error(function(data, status) {
-	      growl.error("Error deleting visitSchedule");
-	    }); // http delete visitSchedule ends
-	  }; // delete method ends
 
 	  $scope.save = function() {
 	    $scope.schedule.scheduleDate = $scope.entryDate;
@@ -295,12 +286,23 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	        break;
 	    } // end of switch scope.mode ends
 	  } // end of save method
+
+
 	  $scope.create = function() {
 	    $http.post('/api/v1/secure/visitSchedules', $scope.schedule).success(function(response) {
-	      console.log(response);
-	      growl.info(parse("Title: [%s]<br/>New session schedule added", $scope.schedule.session.title));
-				$mdDialog.hide();
+	    console.log(response);
+		    if($scope.schedule.session.title === "" || $scope.schedule.session.title === null || $scope.schedule.session.title === undefined )
+			{
+			growl.info(parse("New session schedule added"));
+			}
+			else
+			{
+				growl.info(parse("Title: [%s]<br/>New session schedule added", $scope.schedule.session.title));
+			}
+
+			$mdDialog.hide();
 	    })
+
 	    .error(function(data, status) {
 	      growl.error("Error adding visitSchedule");
 	    }); // http post visitSchedule ends
@@ -308,14 +310,41 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 	  $scope.update = function() {
 	    $http.put('/api/v1/secure/visitSchedules/' + $scope.schedule._id, $scope.schedule).success(function(response) {
-	      growl.info(parse("Title: [%s]<br/>Session schedule updated successfully", $scope.schedule.session.title));
-	           $mdDialog.hide();
-				//refresh();
+			if($scope.schedule.session.title === "" || $scope.schedule.session.title === null || $scope.schedule.session.title === undefined )
+			{
+				growl.info(parse("Session schedule updated successfully"));
+			}
+			else
+			{
+				growl.info(parse("Title: [%s]<br/>Session schedule updated successfully", $scope.schedule.session.title));
+			}
+
+           $mdDialog.hide();
+			//refresh();
 	    })
 	    .error(function(data, status) {
 	    	growl.error("Error updating visitSchedule");
 	    }); // http put visitSchedule ends
 	  }; // update method ends
+
+
+	  $scope.deleteSession = function(schedule) {
+		$http.delete('/api/v1/secure/visitSchedules/' + schedule._id).success(function(response) {
+			if(schedule.session.title === "" || schedule.session.title === null || schedule.session.title === undefined )
+			{
+				growl.info(parse("Session schedule deleted successfully"));
+			}
+			else
+			{
+				growl.info(parse("Title: [%s]<br/>Session schedule deleted successfully", schedule.session.title));
+			}
+	  refresh();
+	})
+	.error(function(data, status) {
+	  growl.error("Error deleting visitSchedule");
+	}); // http delete visitSchedule ends
+	}; // delete method ends
+
 
 	  // type field dropdown list
 	  // $scope.prTypes = ['Presentation','Discussion','Breakfast','Tea-Break','Lunch','Dinner','Floor-Walk', 'Visit-Wrap-Up'];
