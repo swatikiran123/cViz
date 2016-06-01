@@ -120,6 +120,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.closeNoteTipVis=true;
   $scope.saveDrafButton=true;
   // $scope.sessiondbId = "";
+  $scope.editScheduleRow = []; // flag for edit schedule functionality
+  $scope.addScheduleRow = true; /// flag for add schedule functionality
 
   $scope.cscPersonnel={};
 
@@ -1285,6 +1287,7 @@ $scope.isDataValid=function(schedule){
 } 
   // Visit schedule table
   $scope.addSchedule=function(schedule){
+    //$scope.schedules=[];
     var isValid = $scope.isDataValid(schedule);
     if(isValid === "OK"){
       var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
@@ -1310,7 +1313,6 @@ $scope.isDataValid=function(schedule){
     };
 
     $scope.removeSchedule = function(index,schedules){
-
       $scope.schedules.splice(index, 1);
       if (schedules.length == 0)
       {
@@ -1321,10 +1323,34 @@ $scope.isDataValid=function(schedule){
         $scope.subdis= false;}
       };
 
-    // $scope.editSchedule = function(index,schedule){
-    //   $scope.schedule= schedule;
-    //   $scope.schedules.splice(index, 1);
-    // };
+     $scope.editSchedule = function(index,schedule){
+      $scope.editScheduleRow[index] = true;
+      $scope.addScheduleRow = false;
+      schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
+      schedule.endDate = $filter('date')(schedule.endDate, "MM/dd/yyyy");
+     };
+
+    $scope.cancelSchedule = function(index){
+     $scope.editScheduleRow[index] = false;
+    };
+
+    $scope.updateSchedule = function(index,schedule){
+      $scope.newItem=[];
+      var isValid = $scope.isDataValid(schedule);
+      if(isValid === "OK"){
+        var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+        var endDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+        $scope.subdis= false;
+        $scope.newItem = {
+          startDate: startDate,
+          endDate: endDate,
+          location: schedule.location
+        };
+        $scope.schedule = [];
+        $scope.schedule.splice(index, 0, $scope.newItem);
+        $scope.editScheduleRow[index] = false;
+      }
+    };
 // Visit schedule table end
 
 //BOD Table
@@ -2358,7 +2384,8 @@ visitsApp.directive('uiDate', function() {
           };
         } else {
           $scope.uiDate.onSelect = updateModel;
-        }
+        }       
+
         originalRender = controller.$render;
         controller.$render = function() {
           originalRender();
