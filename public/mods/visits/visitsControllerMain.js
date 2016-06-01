@@ -145,6 +145,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.submitVisitsUsers = false;
   $scope.submitAddVisitor = true;
   $scope.submitAddEmail = true;
+  $scope.myData = [];
+  $scope.valueComment = "opt1";
 
   $scope.nextTab = function(data) {
     $location.path('/visits/'+data+'/edit');
@@ -214,6 +216,25 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.agmId = "";
   $scope.agmEmail = "";
   $scope.agmUser =  "";
+  $scope.comment = [];
+
+  var refresh1 = function()
+  { 
+    console.log($scope.visitid);
+
+    $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+    {
+      $scope.comment = response.comments;
+      console.log($scope.comment);
+
+      for(var i=0;i<$scope.comment.length;i++)
+      {
+        $scope.myData.push($scope.comment[i]._id);
+      }
+    });
+  }
+
+  refresh1();
 
   var refresh = function() {
 
@@ -506,14 +527,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.session= response.sessionTmpl.title;//auto fill with reff feedback db
         }
 
-        for (var i =0; i<visits.keynote.length;i++) {
-          $scope.keynotes.push({
-            note: visits.keynote[i].note._id,
-            noteName: visits.keynote[i].note.title, 
-            context: visits.keynote[i].context,
-            order: visits.keynote[i].order
-          });
-        };
         if (response.competitorVisit!=undefined) {
          $scope.vCompetitor= "no";
          $scope.checked1 = false;
@@ -610,6 +623,14 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         }
       }
 
+      for (var i =0; i<visits.keynote.length;i++) {
+        $scope.keynotes.push({
+          note: visits.keynote[i].note._id,
+          noteName: visits.keynote[i].note.title, 
+          context: visits.keynote[i].context,
+          order: visits.keynote[i].order
+        });
+      };
             // Reformat date fields to avoid type compability issues with <input type=date on ng-model
             $scope.visits.createdOn = new Date($scope.visits.createdOn);
           });
@@ -827,13 +848,15 @@ break;
   }; // Delete method ends
 
   $scope.update = function() {
-
+    console.log($scope.commentsData);
     console.log($scope.visits);
     // console.log($scope.visits.clientIdData)
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
     inData.createBy=$scope.createBy;
     inData.cscPersonnel =$scope.cscPersonnel;
+    inData.comments = $scope.commentsData;
+    console.log(inData.comments);
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
 
@@ -923,6 +946,7 @@ $scope.updateClientStatus=function () {
     inData.keynote = $scope.keynotes;
     inData.createBy=$scope.createBy;
     inData.cscPersonnel =$scope.cscPersonnel;
+    inData.comments = $scope.commentsData;
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
 
@@ -985,6 +1009,7 @@ $scope.updateClientStatus=function () {
 
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
+    inData.comments = $scope.commentsData;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
      growl.info(parse("Visit Manager Added successfully"));
      $scope.nextTab($scope.visits._id);
@@ -1016,7 +1041,7 @@ $scope.updateClientStatus=function () {
 
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
-
+    inData.comments = $scope.commentsData;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
       $scope.nextTab($scope.visits._id);
@@ -1045,7 +1070,7 @@ $scope.updateClientStatus=function () {
 
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
-
+    inData.comments = $scope.commentsData;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
       $location.path("visits/list"); 
@@ -1073,7 +1098,7 @@ $scope.updateClientStatus=function () {
 
     var inData     = $scope.visits;
     inData.keynote = $scope.keynotes;
-    
+    inData.comments = $scope.commentsData;
     $scope.errinData=[];
     $http.put('/api/v1/secure/visits/validation/finalize/'+ $scope.visits._id,inData).success(function(response) {
       console.log(response)
@@ -1163,7 +1188,7 @@ $scope.updateClientStatus=function () {
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.cscPersonnel=$scope.cscPersonnel;
     $scope.visits.createBy = $scope.createBy;
-
+    $scope.visits.comments = $scope.commentsData;
     // $scope.dataOne=[];
 
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, $scope.visits).success(function(response) {
@@ -1228,7 +1253,7 @@ $scope.updateClientStatus=function () {
 
   var inData       = $scope.visits;
   inData.keynote = $scope.keynotes;
-
+  inData.comments = $scope.commentsData;
   $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
     growl.info(parse("notifications stage compleated successfully"));
     $scope.nextTab($scope.visits._id);
@@ -2045,6 +2070,167 @@ $scope.closeNoteTipV=function(){
 $scope.closeNotecscPrs=function(){
   $scope.closeNote= true;
 }
+
+$scope.comment11 = [];
+$scope.btn_add = function(comment1) {
+  
+  if(comment1 !=''){
+    $scope.comment11.push({
+      comment: comment1,
+      givenBy: $rootScope.user._id
+    });
+  
+    $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
+      // console.log(response);
+      $scope.commentid = response._id;
+      $scope.myData.push($scope.commentid);
+    });
+    // refresh1();
+
+    $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+    {
+      $scope.visits = response;
+      var inData = $scope.visits;
+      inData.client=$scope.visits.client._id;
+      inData.createBy = $scope.visits.createBy._id;
+      if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+      {
+        inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+      }
+
+      if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+      {
+        inData.cscPersonnel.salesExec = null;
+      }
+
+      if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+      {
+        inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+      }
+
+      if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+      {
+        inData.cscPersonnel.accountGM = null;
+      }
+
+      if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+      {
+        inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+      }
+
+      if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+      {
+        inData.cscPersonnel.industryExec = null;
+      }
+
+      if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+      {
+        inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+      }
+
+      if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+      {
+        inData.cscPersonnel.globalDelivery = null;
+      }
+
+      if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+      {
+        inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+      } 
+
+      if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+      {
+        inData.cscPersonnel.cre = null;
+      }
+
+      if(inData.anchor!=null || inData.anchor != undefined)
+      {
+        inData.anchor = $scope.visits.anchor._id;
+      }
+
+      if(inData.anchor==null || inData.anchor == undefined)
+      {
+        inData.anchor = null;
+      }
+
+      if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+      {
+        inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+      }
+
+      if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+      {
+        inData.secondaryVmanager = null;
+      }
+
+      if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+      {
+          inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+      }  
+
+      if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+      {
+          inData.feedbackTmpl = null;
+      }  
+      
+      if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+      {
+        inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+      }  
+
+      if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+      {
+          inData.sessionTmpl = null;
+      }  
+      console.log($scope.keynotes);
+      console.log($scope.visits.keynote);
+      // inData.keynote = $scope.visits.keynote;
+        inData.keynote = $scope.keynotes;
+
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      console.log(inData);
+      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+      
+          $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+          {
+            $scope.comment = response.comments;
+            $scope.oneData = [];
+            for(var i=0;i<$scope.comment.length;i++)
+            {
+              $scope.oneData.push($scope.comment[i]._id);
+              $scope.commentsData = $scope.oneData;
+            }
+          }).then(function() {
+      console.log($scope.commentsData);
+    });
+          
+      });
+
+    })
+    
+    $scope.txtcomment = "";
+    $scope.comment11 = [];
+
+  }
+}
+
+// Show Profile Dialog for non-registered users
+$scope.showChatBox = function(ev) {
+  $mdDialog.show({
+    templateUrl: '/public/mods/visits/visitsComments.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
+  })
+  .then(function(answer) {
+    $scope.status = 'You said the information was "' + answer + '".';
+  }, function() {
+    $scope.status = 'You cancelled the dialog.';
+  });
+
+};
 }])
 
 //Autocompleate - Directive

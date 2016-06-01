@@ -72,7 +72,8 @@ var visitSchema = new mongoose.Schema({
 	},
 	competitors 					: [{ type: String, trim: true }],
 	netPromoter						: { type: Number },
-	visitorType						: { type: String, trim: true }
+	visitorType						: { type: String, trim: true },
+	comments						: [{type: Schema.Types.ObjectId, ref: 'comments'}]
 
 });
 
