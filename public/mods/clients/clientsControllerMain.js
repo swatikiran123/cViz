@@ -261,21 +261,87 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
 
     inData.logo=$scope.avatar;
 
-    if ($scope.clients.name!=undefined) 
-      {inData.name =$scope.clients.name;}
-    else inData.name = $scope.parentSelected;
+    // if ($scope.parentClientString==null) 
+    // {
+    //   inData.name =$scope.clients.name;
+    // }
+    // else if ($scope.parentClientString!=null)  
+    // {
+    //   inData.name = $scope.parentClientString;
+    // }
+    // else inData.name = $scope.parentSelected;
 
-    if ($scope.clients.subName!=undefined) 
-      {inData.subName =$scope.clients.subName;}
-    else inData.subName = $scope.childSelected;
+    // if ($scope.childClientString==null) 
+    // {
+    //   inData.subName =$scope.clients.subName;
+    // }
+    // else if ($scope.childClientString!=null)  
+    // {
+    //   inData.subName = $scope.childClientString;
+    // }
+    // else inData.subName = $scope.childSelected;
 
-    if ($scope.clients.industry!=undefined) 
-      {inData.industry =$scope.clients.industry;}
-    else inData.industry = $scope.industrySelected;
+    // if ($scope.indusrtyClientString==null) 
+    // {
+    //   inData.industry =$scope.clients.industry;
+    // }
+    // else if ($scope.industryClientString!=null)  
+    // {
+    //   inData.industry = $scope.industryClientString;
+    // }
+    // else inData.industry = $scope.industrySelected;
 
-    if ($scope.clients.regions!=undefined) 
-      { inData.regions =$scope.clients.regions;}
-    else inData.regions = $scope.regionsSelected;
+        if ($scope.clients.name!=null) 
+    {
+       inData.name = $scope.clients.name;
+    }
+    if ($scope.clients.name==null)  
+    {
+       inData.name = $scope.parentClientString;
+    }
+    // else client.name = $scope.parentSelected;
+
+    if ($scope.clients.subName!=null) 
+    {
+      inData.subName =$scope.clients.subName;
+    }
+    if ($scope.clients.subName==null)  
+    {
+      inData.subName = $scope.childClientString;
+    }
+    // else client.subName = $scope.childSelected;
+
+    if ($scope.clients.industry!=null) 
+    {
+      inData.industry =$scope.clients.industry;
+    }
+    if ($scope.clients.industry==null)  
+    {
+      inData.industry = $scope.industryClientString;
+    }
+    // else client.industry = $scope.industrySelected;
+
+        if(inData.name == null)
+        {
+          inData.name = $scope.parentSelected;
+        }
+
+        if(inData.subName == null)
+        {
+          inData.subName = $scope.childSelected;
+        }
+
+        if(inData.industry == null)
+        {
+          inData.industry = $scope.industrySelected;
+        }
+    // if ($scope.clients.industry!=undefined) 
+    //   {inData.industry =$scope.clients.industry;}
+    // else inData.industry = $scope.industrySelected;
+
+    // if ($scope.clients.regions!=undefined) 
+    //   { inData.regions =$scope.clients.regions;}
+    // else inData.regions = $scope.regionsSelected;
 
     console.log(inData);
 
@@ -284,9 +350,16 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     // console.log(inData.cscPersonnel);
     $http.put('/api/v1/secure/clients/id/' + $scope.clients._id, inData).success(function(response) {
       refresh();
-      // console.log($scope.clients.name);
-      if ($scope.clients.name!=undefined) {
-      growl.info(parse("client [%s]<br/>Edited successfully", $scope.clients.name));}
+      console.log($scope.clients.name);
+      console.log($scope.parentSelected);
+      if ($scope.parentClientString==null) 
+      {
+      growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
+      }
+      else if ($scope.parentClientString!=null)  
+      {
+        growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentClientString));
+      }
       else
       growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
 
