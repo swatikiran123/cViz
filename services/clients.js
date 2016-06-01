@@ -98,7 +98,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
     var sfdcidArray = [];
     var sfdcidDesig = [];
     var logo='';
-    var m=0;
+    var m=0;var j=0;
     model
     .find(query)
     .limit(maxRecs)
@@ -126,11 +126,11 @@ function getWithQuery(query, fields, maxRecs, sortEx){
             if(regionsArray.indexOf(list[i].regions) === -1){
                 regionsArray.push(list[i].regions);
             }
-            if(sfdcidArray.indexOf(list[i].name) === -1){
-                sfdcidArray.push(list[i].name);
+            if(sfdcidArray.indexOf(list[i].sfdcid) === -1){
+                sfdcidArray.push(list[i].sfdcid);
             } 
         }   
-        console.log(clientArray);
+        console.log(sfdcidArray);
         console.log(childArray);
         var data = clientArray;
         var data1 = childArray;

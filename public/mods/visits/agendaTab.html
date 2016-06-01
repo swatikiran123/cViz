@@ -167,7 +167,7 @@
     <label>SFDC Id</label>
     <input name="sfdcid" ng-model="visits.sfdcid">
   </md-input-container> -->
-
+<!-- {{visits.clientName}} -->
   <md-input-container class="md-block" flex-gt-sm>
   <label>SFDC Id</label>
   <angucomplete-alt
@@ -192,7 +192,7 @@
 </md-input-container>
 <md-input-container class="md-block" flex-gt-sm>
 <label>Net Promoter Score</label>
-<input type="text" name=" netPromoter" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="visits.netPromoter "><span  ng-show="visitsForm.netPromoter.$error.pattern">Net promoter Score should be a number !</span>
+<input type="text" name=" netPromoter" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="visits.netPromoter "><span  ng-show="visitsForm.netPromoter.$error.pattern" class="text-danger">Net promoter Score should be a number !</span>
 </md-input-container>
 <md-input-container class="md-block" flex-gt-sm>
 <label>Current Competitor</label>

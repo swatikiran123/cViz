@@ -72,19 +72,23 @@
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
-            <!-- <div ng-if="visit.status === 'tentative draft' || visit.status === 'confirm draft' || visitGrid">{{visitEmp=true;""}} -->
-           <a class="table-btn" href="#/visits/{{visit._id}}/edit" ng-if="visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || visit.status === 'tentative' || visit.status === 'confirm'" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
+            <div  ng-if="visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || (visit.status === 'tentative' && visit.visitors.length < 1) || (visit.status === 'confirm' && visit.visitors.length < 1)">
 
-           <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
-            yes-text="Ok" no-text="Cancel" ng-if="visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || visit.status === 'tentative' || visit.status === 'confirm'"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
+             <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
+
+             <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
+              yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
 
               <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid" 
               tooltips tooltip-template="Add Sessions"><span class="fa fa-calendar fa-lg" /></a>
               <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid" tooltips tooltip-template="View Feedbacks"><span class="fa fa-comments fa-lg"/></a>
-            <!-- </div> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </div>
+
+            <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-paperclip fa-lg"/></a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>

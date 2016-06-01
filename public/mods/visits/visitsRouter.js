@@ -39,6 +39,11 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
+      .when('/visits/:id/uploadFiles', {
+        templateUrl: '/public/mods/visits/uploadFiles.html',
+        controller: 'visitsControllerMain'
+      })
+
 			.otherwise({
 				redirectTo: '/visits/list'
 			})
