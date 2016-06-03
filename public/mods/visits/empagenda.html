@@ -1,0 +1,1397 @@
+
+<!-- page header/subheader -->
+<div ng-if="mode=='add'" class="page-header">
+  Visit Planner - Add New Visit
+  <!-- <div class="sub-header">Highlevel planning for the visit -->
+</div>
+</div>
+
+<div ng-if="mode=='edit'" class="page-header">
+  <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
+  </button>
+  Visit Planner - Edit Visit
+  <div class="sub-header">Edit {{visits.title}}
+  </div>
+</div>
+
+<div class= "page-toolbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+      <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
+       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft"> 
+        <div ng-if="mode=='edit' && adminInitVman && !ClientDraft">
+          <div ng-if="visitGrid"><!--checking if visit manager or not-->
+            <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+              </div>
+              <b>Visit Managers</b>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+             <b>Primary Visit Manager</b>
+           </div>
+           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+             <select ng-change="sendAnchor(anchor,visits.status)" ng-model="anchor" ng-options="d._id as d.name.prefix+' '+d.name.first+' '+d.name.last for d in data">  
+             </select>
+           </div>
+
+
+           <button class="btn btn-success" ng-click="AddVmanager()">Assign</button>
+
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
+           <b>Secondary Visit Manager</b>
+         </div>
+         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
+           <select ng-change="sendSecVman(secondaryVmanager,visits.status)" ng-model="secondaryVmanager" ng-options="d.response._id as d.response.name.prefix+' '+d.response.name.first+' '+d.response.name.last for d in dataOne">   
+           </select>
+           <spam tooltips tooltip-template="Delete Secondary Manager"><i class="fa fa-times" aria-hidden="true" ng-click="removeVman();addSecMan();"  confirm-dialog header-text="Delete Secondary Visit Manager" content="Are you sure you want to delete the Secondary Visit Manager</b>"
+            yes-text="Ok" no-text="Cancel"></i></spam>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
+            <b>Do you want to add Secondary Visit Manager</b>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
+            <a class="fa fa-user-plus fa-lg" aria-hidden="true" ng-click="yes(anchor);optionsec();" tooltips tooltip-template="Add Secondary Manager"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="well" ng-if="mode=='edit' && adminInitVman && ClientDraft "> 
+    <center>New client as been added {{parentSelected}} -{{childSelected}}&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-success" ng-click="updateClientStatus()">Approve</button>
+      <!-- <button class="btn btn-success" ng-click="ClientStatusReject()">Reject</button> -->
+    </center>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- <div ng-include src="'/public/mods/visits/visitAdd.html'"></div>
+ -->
+<div ng-controller="visitsControllerMain">
+
+  <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+  <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;"></div>
+
+  <!--Basic Information TAB ONE-->
+  <md-tab label="Visit Details" ng-if="agendaTab">
+  <md-content class="md-padding">
+  
+
+
+
+
+
+
+<div ng-controller="visitsControllerMain">
+
+  <div class="panel-group">
+    <!-- <md-content class="md-padding"> -->
+    <div class="data-form">
+
+      <form name="visitsForm" id="visitsForm" class="form-vertical" >
+        <fieldset ng-disabled= "true">
+          <!--panel-one-->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> <b>Info about the client's visit agenda...</b></h3>
+            </div>
+            <div class = "panel-subheader pull-right">
+            </div>
+            <div class="panel-body">
+
+              <!-- visits title input-->
+              <md-input-container class="md-block">
+              <label>Title</label>
+              <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
+              <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
+               <div class="messagenotify">
+                <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+                <div ng-message="minlength">The title should contain minimum 5 characters</div>
+              </div>
+            </div>
+          </md-input-container>
+          <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
+          <!--client input-->
+<!--         <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <span class="error text-info"> Note - All the fields are mandatory except SFDC ID please fill all the fields.</span>
+          </div>
+        </div> addClientLogo -->
+        <br>
+        <div class="row">
+
+
+          <div class="col-md-4 text-center">
+            <br>
+            <br>
+            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
+            />
+            <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" width="122" height="122"
+            style="background-size:cover;"/>
+            <div>
+              <a class="btn btn-info" 
+              ng-click="getLogo()" ng-disabled="parentClient || childClient || industryClient || regionClient">
+              Check Logo
+            </a>
+            <a class="btn btn-success" 
+            ng-click="addClientLogo($event)" ng-if="Addlogovisit">
+            Add
+          </a>
+          <a class="btn btn-warning" 
+          ng-click="removeLogo()" ng-if="removelogovisit">
+          Remove
+        </a>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div layout-gt-sm="row">
+
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Parent Account Name </label>
+        <angucomplete-alt
+        id="ex14"
+        placeholder="Select Client or Add Client"
+        pause="500"
+        selected-object="visitsSelectedClient"
+        remote-url="/api/v1/secure/clients/find?query="
+        remote-url-data-field="items"
+        title-field="parentClient"
+        minlength="3" 
+        input-class="form-control form-control-small"
+        match-class="highlight"
+        template-url="/my-custom-template.html"
+        initial-value="parentSelected"
+        box-type="md"
+        input-changed="parentClientChanged"
+        />
+        <div class="messagenotify">
+          <div class="text-danger">{{errparentMsg}}</div>
+        </div>   
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+      <label>Child Account Name </label>
+      <angucomplete-alt
+      id="ex14"
+      placeholder="Select Child Client or Add Client"
+      pause="500"
+      selected-object="visitsSelectedchildClient"
+      remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery="
+      remote-url-data-field="items1"
+      title-field="childClient"
+      minlength="3" 
+      input-class="form-control form-control-small"
+      match-class="highlight"
+      template-url="/my-custom1-template.html"
+      initial-value="childSelected"
+      box-type="md"
+      input-changed="childClientChanged"
+      />
+      <div class="messagenotify">
+        <div class="text-danger">{{errchildMsg}}</div>
+      </div>  
+    </md-input-container>
+
+  </div>
+
+  <div>
+
+    <md-input-container class="md-block" flex-gt-sm>
+    <label>Industry</label>
+    <angucomplete-alt
+    id="ex14"
+    placeholder="Select Industry type or Add Industry type"
+    pause="500"
+    selected-object="visitsSelectedindustryClient"
+    remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery={{visits.subName}}&industry="
+    remote-url-data-field="items2"
+    title-field="IndustryClient"
+    minlength="3" 
+    input-class="form-control form-control-small"
+    match-class="highlight"
+    template-url="/my-custom3-template.html"
+    initial-value="industrySelected"
+    box-type="md"
+    input-changed="industryClientChanged"
+    />
+    <div class="messagenotify">
+      <div class="text-danger">{{errindustryMsg}}</div>
+    </div> 
+  </md-input-container>
+
+</div>
+<div>
+  <md-input-container class="md-block" flex-gt-sm>
+  <label>Region</label>
+  <angucomplete-alt
+  id="ex14"
+  placeholder="Select Region or Add Region"
+  pause="500"
+  selected-object="visitsSelectedregionsClient"
+  remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery={{visits.subName}}&industry={{visits.industry}}&regions="
+  remote-url-data-field="items3"
+  title-field="regionClient"
+  minlength="3" 
+  input-class="form-control form-control-small"
+  match-class="highlight"
+  template-url="/my-custom4-template.html"
+  initial-value="regionsSelected"
+  box-type="md"
+  input-changed="regionClientChanged"
+  />
+  <div class="messagenotify">
+    <div class="text-danger">{{errregionMsg}}</div>
+  </div> 
+</md-input-container>
+<div class="md-block" flex-gt-sm layout-gt-sm="row">
+<!--     <md-input-container class="md-block" flex-gt-sm>
+    <label>SFDC Id</label>
+    <input name="sfdcid" ng-model="visits.sfdcid">
+  </md-input-container> -->
+  <!-- {{visits.clientName}} -->
+  <md-input-container class="md-block" flex-gt-sm>
+  <label>SFDC Id</label>
+  <angucomplete-alt
+  id="ex14"
+  placeholder="Select SFDC Id or Add SFDC Id"
+  pause="500"
+  selected-object="visitsSelectedSFDCClient"
+  remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery={{visits.subName}}&industry={{visits.industry}}&regions={{visits.regions}}&sfdcid="
+  remote-url-data-field="items4"
+  title-field="sfdcidClient"
+  minlength="3" 
+  input-class="form-control form-control-small"
+  match-class="highlight"
+  template-url="/my-custom5-template.html"
+  initial-value="sfdcidSelected"
+  box-type="md"
+  input-changed="sfdcidClientChanged"
+  />
+  <div class="messagenotify">
+    <div class="text-danger">{{errsfdcidMsg}}</div>
+  </div> 
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+<label>Net Promoter Score</label>
+<input type="text" name=" netPromoter" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="visits.netPromoter "><span  ng-show="visitsForm.netPromoter.$error.pattern" class="text-danger">Net promoter Score should be a number !</span>
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+<label>Current Competitor</label>
+<input name=" competitors" ng-model="visits.competitors">
+</md-input-container> 
+</div>
+</div>
+</div>
+</div>
+<br>
+
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    class="md-block"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { parentClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.clientName=visitsSelectedClient.originalObject.parentClient;""}}
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom1-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    class="md-block"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { childClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Child Client '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.subName=visitsSelectedchildClient.originalObject.childClient;""}}
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom3-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    class="md-block"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { IndustryClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client Industry'{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.industry=visitsSelectedindustryClient.originalObject.IndustryClient;""}}
+
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom4-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    class="md-block"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { regionClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client Region'{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.regions=visitsSelectedregionsClient.originalObject.regionClient;""}}
+
+<div class="large-padded-row">
+
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom5-template.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    class="md-block"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { sfdcidClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New Client sfdcid'{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+{{visits.sfdcid=visitsSelectedSFDCClient.originalObject.sfdcidClient;""}}
+<!-- {{visitsSelectedregionsClient.originalObject.id}} -->
+
+<!--client input end-->
+<!-- {{visitsSelectedClient}} 
+
+<div class="result">
+  <div ng-show="visitsSelectedClient">
+    <span ng-if="!selectedClient.originalObject.custom">
+      You selected <span class="bold-span">
+      {{selectedClient.originalObject.parentClient}}</span> which has a country code of <span class="bold-span">{{selectedClient.originalObject.code}}</span>
+    </span>
+    <span ng-if="visitsSelectedClient.originalObject.custom">
+      You selected a custom country <span class="bold-span">{{selectedClient.originalObject.parentClient}}</span>
+    </span>
+  </div>
+</div> -->
+<div class="row">
+  <div class="form-group col-xs-3">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
+      <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Visitor Type </label>
+      <select name="type" ng-model="visits.visitorType" ng-dropdown>
+        <option ng-option ng-selected="Elite == visitorType" value="Elite"><span tooltips tooltip-template=" CEO/CXO/CIO level – select Elite"></span>Elite</option>
+        <option ng-option ng-selected="Preferred == visitorType" value="Preferred">Preferred</option>
+        <option ng-option ng-selected="Premier == visitorType" value="Premier">Premier</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group col-xs-3">
+    <div class="form-group">
+      <label>Business Type</label>
+      <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
+        <option ng-option value="new">New</option>
+        <option ng-option value="existing">Existing</option>
+      </select>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- <div class="col-xs-4"></div> -->
+  <!-- <div class="col-xs-4"></div> -->
+  <!-- visits visitType-->
+  <div class="form-group col-xs-5">
+    <div id="new" ng-if="visits.interest.businessType == 'new'">
+      <label>Say More&nbsp;&nbsp; </label>
+      <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+        <option ng-option value="duediligence">Due Diligence</option>
+        <option ng-option value="exploratory">Exploratory</option>
+        <option ng-option value="planning">Planning</option>
+      </select>
+    </div>
+    <div id="existing" ng-if="visits.interest.businessType == 'existing'">
+      <label>Visit Type-Existing&nbsp;&nbsp;</label>
+      <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
+        <option ng-option value="operationsreview">Meeting &amp; Operations Review</option>
+        <option ng-option value="renewals">Renewals</option>
+        <option ng-option value="newBusiness">New Business</option>
+        <option ng-option value="strategic">Exploratory</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<!--   <div class="form-group col-xs-3">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
+      <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Visitor Type </label>
+      <select name="type" ng-model="visits.visitorType" ng-dropdown>
+        <option ng-option ng-selected="Elite == visitorType" value="Elite"><span tooltips tooltip-template=" CEO/CXO/CIO level – select Elite"></span>Elite</option>
+        <option ng-option ng-selected="Preferred == visitorType" value="Preferred">Preferred</option>
+        <option ng-option ng-selected="Premier == visitorType" value="Premier">Premier</option>
+      </select>
+    </div>
+  </div> -->
+  <div class="form-group col-xs-9">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
+      <label>Offerings &nbsp;&nbsp; </label>
+      <multiple-autocomplete ng-model="selectedList"
+      suggestions-arr="offerings">
+    </multiple-autocomplete>
+  </div>
+</div>
+</div>
+<style type="text/css">
+.closeicon{padding-top: 1px;}
+</style>
+<!-- CSC Personnel input-->
+<!--salesExec-CSCPersonnel-->
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">CSC Personnel's
+      <a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+          <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+            <div class="well" ng-show="closeNote">
+              {{errMessage="Industry Executive and Global Delivery Contact are Mandatory Fields.";""}}
+              <span class="error text-info">&nbsp;&nbsp;Note: {{errMessage}}</span>
+              <div class=" pull-right closeicon">
+                <a class="table-btn" ng-click="closeNotecscP()"><li class="fa fa-times fa-lg" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group col-xs-4">
+          <md-input-container class="md-block">
+          <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
+            <label>Select Sales Executive &nbsp;&nbsp; :</label>
+            <div userauto type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee" title="Sales Executive"></div>
+          </div>
+        </md-input-container>
+      </div>
+      <!--accountGM-CSCPersonnel-->
+      <div class="form-group col-xs-4">
+        <md-input-container class="md-block">
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
+          <label>Select Account General Manager &nbsp;&nbsp; :</label>
+          <div userauto type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee" title="Account General Manager"></div>
+        </div>
+      </md-input-container>
+    </div>
+    <!--industryExec-CSCPersonnel-->
+    <div class="form-group col-xs-4">
+      <md-input-container class="md-block">
+      <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
+        <label>Select Industry Executive &nbsp;&nbsp; :</label>
+        <div userauto type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee" title="Industry Executive"></div>
+      </div>
+    </md-input-container>
+  </div>
+</div>
+<!-- globalDelivery-CSCPersonnel -->
+<div class="row">
+  <div class="form-group col-xs-6">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
+      <label >Select Global Delivery &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee" title="Global Delivery"></div>
+    </div>
+  </md-input-container></div>
+
+  <!-- cre-CSCPersonnel -->
+  <div class="form-group col-xs-6">
+    <md-input-container class="md-block">
+    <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
+      <label>Select CRE &nbsp;&nbsp; :</label>
+      <div userauto type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee" title="CRE"></div>
+    </div>
+  </md-input-container>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+
+  <div ng-if="industryExecId==null && globalDeliveryId==null">
+    {{$parent.submitVisitsUsers=true;""}}
+  </div>
+  <div ng-if="salesExecId == null && accountGMId == null && creId==null && industryExecId!=null && globalDeliveryId!=null">
+    {{$parent.submitVisitsUsers=false;""}}
+  </div> 
+
+  <div ng-if="salesExecId!=accountGMId && salesExecId!=industryExecId && salesExecId!=globalDeliveryId &&salesExecId!=creId && industryExecId!=null && globalDeliveryId!=null && salesExecId!=null" >
+    {{$parent.submitVisitsUsers=false;""}}
+  </div>
+
+  <div ng-if="accountGMId!=industryExecId && accountGMId!=globalDeliveryId && accountGMId!=creId &&industryExecId!=null && globalDeliveryId!=null && accountGMId!=null" >
+    {{$parent.submitVisitsUsers=false;""}}
+  </div>
+
+  <div ng-if="industryExecId!=globalDeliveryId && industryExecId!=creId  && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+    {{$parent.submitVisitsUsers=false;""}}
+  </div>
+
+  <div ng-if="globalDeliveryId!=creId && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+    {{$parent.submitVisitsUsers=false;""}}
+  </div>
+
+  <div ng-if="(salesExecId==accountGMId || salesExecId==industryExecId || salesExecId==globalDeliveryId || salesExecId==creId)  && (salesExecId != null)">
+    {{$parent.submitVisitsUsers=true;""}}
+    {{errMessage="Sales Executive and other client Representatives should not be same.";""}}
+    <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+  </div> 
+  
+  <div ng-if="(accountGMId==industryExecId || accountGMId==globalDeliveryId || accountGMId==creId)
+  && (accountGMId != null)">
+  {{$parent.submitVisitsUsers=true;""}}
+  {{errMessage="Account GM and other client Representatives should not be same.";""}}
+  <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+</div>
+
+<div ng-if="(industryExecId==globalDeliveryId || industryExecId==creId)  && (industryExecId!=null)">
+  {{$parent.submitVisitsUsers=true;""}}
+  {{errMessage="Industry Executive  and other client Representatives should not be same.";""}}
+  <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+</div> 
+
+<div ng-if="(globalDeliveryId==creId)  && (globalDeliveryId!=null)">
+  {{$parent.submitVisitsUsers=true;""}}
+  {{errMessage="Global Delivery  and other client  Representatives should not be same.";""}}
+  <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
+</div>  
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Business Opportunity Details</b></h3>
+  </div>
+  <div class="panel-body">
+    <!--including visit Schedule-->
+    <div ng-include src="'/public/mods/visits/businessOppDetails.html'"></div>
+  </div> 
+</div>
+<br>
+
+<!-- visits agenda-->
+<md-input-container class="md-block">
+<label ng-show="visits.agenda" class="show-hide">Agenda</label>
+<text-angular
+ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." required /></text-angular>
+<div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
+  <div class="messagenotify">
+    <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  </div>
+</div>
+</md-input-container>
+
+</div>
+</div>
+
+
+<!--panel-two-->
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Key personnel for the visit...</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+
+    <!-- visits AGM By input-->
+<!--     <div class="row">
+      <div class="form-group col-xs-5">
+
+        <md-input-container class="md-block">
+        <div class="form-group" ng-class="{ 'has-error': visitsForm.agmUser.$touched && !visitsForm.agmUser.$invalid }">
+          <label>Sponsor</label>
+          <div user type="picker" user-model="agmUser" user-id="agmId" user-email="agmEmail" view-type="small" switch-mode="mode" user-type="employee" module-type="keynotes"></div>
+        </div>
+      </md-input-container>
+    </div>
+    <div class="form-group col-xs-5">
+    </div>
+  </div>
+</div>
+</div> --> 
+
+<!--panel-three-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Visit Schedule...</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+
+    <!--including visit Schedule-->
+    <div ng-include src="'/public/mods/visits/scheduleViewAdd.html'"></div>
+    <br>
+  </div>
+</div>
+
+<!--panel-four-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>CSC's key take away from the visit...</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+
+    <!--billable-->
+    <div class="row">
+      <div class="col-xs-8">
+        <div class="form-group">
+          <md-input-container class="md-block">
+          <md-radio-group name="billable" id="billable" ng-model="visits.billable" required class="">
+          <div class="row">
+            <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+              <md-radio-button value="billable"  ng-click="checkedBill()"> Billable</md-radio-button></div>
+              <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                <md-radio-button value="non-billable" ng-click="checkednonBill()"> Non-Billable</md-radio-button></div>
+              </md-radio-group></div>
+              <div ng-messages="visitsForm.billable.$error" ng-show="visitsForm.billable.$touched || !visitsForm.billable.$pristine">
+                <div class="messagenotify">
+                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                </div>
+              </div>
+            </md-input-container>
+
+            <div>
+              <div class="check-element animate-show"  ng-if="checked && mode=='add'">
+                <!-- visits wbsCode input-->
+                <md-input-container class="md-block">
+                <label><h5>WBS Code</h5></label>
+                <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
+                <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
+                 <div class="messagenotify">
+                  <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                  <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
+                  <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
+                </md-input-container>
+                <br>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"> <b>Attach IWO File</b></h3>
+                  </div>
+                  <div class = "panel-subheader pull-right">
+                  </div>
+                  <div class="panel-body">
+                   <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                   <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
+                   file-type="singleFile"/>
+                 </div>
+                 {{$parent.arrayiwo=arrayiwo;""}}
+               </div>
+             </div>
+
+             <div class="check-element animate-show"  ng-if="checked && mode=='edit'">
+              <!-- visits wbsCode input-->
+              <md-input-container class="md-block">
+              <label><h5>WBS Code</h5></label>
+              <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
+              <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
+               <div class="messagenotify">
+                <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                <div ng-message="md-maxlength">The wbsCode  has to be less than 30 characters long.</div>
+                <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
+              </md-input-container>
+              <br>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"> <b>Attach IWO File</b></h3>
+                </div>
+                <div class = "panel-subheader pull-right">
+                </div>
+                <div class="panel-body">
+                  {{arrayiwo=$parent.arrayiwo;""}} 
+                  <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                  <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
+                  file-type="singleFile"/>
+                </div>
+                {{$parent.arrayiwo=arrayiwo;""}}
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="check-element animate-show" ng-if="!checked">
+             <!-- visits chargeCode input-->
+             <md-input-container class="md-block">
+             <label>Charge Code</label>
+             <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
+             <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
+               <div class="messagenotify">
+                <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                <div ng-message="md-maxlength">The chargeCode  has to be less than 30 characters long.</div>
+                <div ng-message="minlength">The chargeCode should contain minimum 5 characters</div></div></div>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--vist Interest interest. businessType visitType objective-->
+
+      <!-- visits businessType-->
+      <!-- <div class="col-xs-4"></div> -->
+      <div class="col-xs-4">
+        <label>&nbsp;&nbsp; Visiting any Competitor</label>
+        <md-input-container class="md-block">
+        <md-radio-group name="vCompetitor" id="vCompetitor" ng-model="vCompetitor" required>
+        <div class="row">
+          <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+            <md-radio-button value="no"  ng-click="vCompetitorUncheck()">Yes</md-radio-button>
+          </div>
+          <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+            <md-radio-button value="yes" ng-click="vCompetitorCheck()">No</md-radio-button>
+          </div> 
+        </div>
+      </md-radio-group>
+    </md-input-container>
+
+    <div class="check-element animate-show" ng-if="!checked1">
+     <md-input-container class="md-block">
+     <label>Competitor Name</label>
+     <input md-maxlength="30" minlength="5" name="competitorName" ng-model="visits.competitorVisit" required>
+     <div ng-messages="visitsForm.competitorVisit.$error" ng-show="visitsForm.competitorVisit.$touched || !visitsForm.competitorVisit.$pristine">
+      <div class="messagenotify">
+        <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        <div ng-message="md-maxlength">The competitorVisit  has to be less than 30 characters long.</div>
+        <div ng-message="minlength">The competitorVisit should contain minimum 5 characters</div>
+      </div>
+    </div>
+  </md-input-container>
+</div>
+</div>
+
+</div>
+
+<!-- visits objective -->
+
+<md-input-container class="md-block">
+<label ng-show="visits.interest.objective" class="show-hide">Visits Objective</label>
+<text-angular
+ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
+<div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
+  <div class="messagenotify">
+    <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  </div>
+</div>
+</md-input-container>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Attachments</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+   <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
+   <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
+ </div>
+</div>
+
+<!-- visits status input-->
+<div ng-show=" status == null || status == 'confirm' || status == 'tentative' ">
+  <label><h4><b>Status</b></h4></label>
+  <md-input-container class="md-block">
+  <md-radio-group name="status" id="status" ng-model="status" required class="">
+  <div class="row">
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
+  </md-radio-group></div>
+  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+    <div class="messagenotify">
+      <div ng-messages-include="/public/mods/partials/messages.html"></div>
+    </div>
+  </div>
+</md-input-container>
+</div>
+
+<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+{{agendaEdit=true;""}}
+<!--buttons-->
+<div class="form-group">
+  <div class="pull-left">
+    <button type="submit" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient">Save &amp; Continue 
+  </button>
+  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+  yes-text="Ok" no-text="Cancel">Cancel</button>
+  <button type="submit" class="btn btn-info"
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton">Save to Draft
+</button>
+</div>
+</div>
+</fieldset>
+</form>
+
+</div>
+</div>
+</div>
+  </md-content>
+  </md-tab>
+
+  <!--Add Visitors TAB TWO-->
+  <md-tab label="Add Visitors" ng-if="visitorsTab" md-active="agendaSave">
+  <md-content class="md-padding">
+  <!--visitors-->
+<form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
+  <fieldset ng-disabled= "true">
+    {{check=true;""}}
+    <!-- {{$parent.submitAddVisitor=true;""}} -->
+    <!-- {{submitAddVisitor}} {{submitAddEmail}}-->
+    <!--visvalid to validate if Atleast a visitor added/not -->
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+      <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+        <div class="well" ng-show="closeNoteTipVis">
+          Note: Atleast a visitor needs to be added.
+          <div class=" pull-right closeicon">
+            <a class="table-btn" ng-click="closeNoteTipV()"><li class="fa fa-times fa-lg" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+      <thead class="data-grid-header">
+        <tr>
+          <th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+          <th><span  class="glyphicon"></span>Influence</th>
+          <th><span  class="glyphicon"></span>Designation</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="data-grid-data">
+        <tr>
+<!--       <td>
+        <form name="visitorForm">
+        <input type="email" name="email" ng-model="visitorDef.visitorId" class="form-control" required>
+        <br>
+        <span class="error text-danger" ng-show="visitorForm.email.$error.email">
+          Not valid email!</span>
+          <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>  
+        </td> -->
+
+        <td>
+          {{visitorDef.visitorId=selectedUser.originalObject.email;""}}
+          <!-- {{visitorDef.visitorId}} -->
+
+          <div angucomplete-alter
+          id="ex5"
+          placeholder="User"
+          pause="500"
+          selected-object="selectedUser"
+          remote-url="/api/v1/secure/admin/users/find/find?query="
+          remote-url-data-field="items1"
+          title-field="firstName,lastName"
+          description-field="email"
+          minlength="3"
+          image-field="avatar"
+          input-class="form-control form-control-small"
+          match-class="highlight"
+          input-changed="inputChanged2"
+          box-type="nonmd"
+          >
+        </div>
+
+        {{designationAuto=selectedUser.originalObject.jobTitle;""}}
+        <br>
+        <span class="error text-danger" ng-show="visitorForm.email.$error.email">
+          Not valid email!</span>
+          <span ng-show="showFlag == 'noUser'" class="error text-danger">{{message}}</span>  
+        </td>
+        <td><select 
+         ng-model="visitorDef.influence" 
+         ng-options="data for data in influence" class="form-control" required>
+       </select>
+     </td>
+     <td ng-if="designationAuto!=null"><!-- {{$parent.submitAddVisitor=false;""}} --><input class="form-control" ng-model="designationAuto"></input>
+     </td>
+<!--      <td ng-if="designationAuto==null"><input class="form-control" 
+ ng-model="designationAuto"></input></td> -->
+
+ <td ng-if="designationAuto==null">
+   <!-- {{$parent.submitAddVisitor=true;""}} -->
+   <div angucomplete-alter
+   id="ex24"
+   placeholder="Select Designation or Add Designation"
+   pause="500"
+   selected-object="selectedDesignation1"
+   remote-url="/api/v1/secure/admin/users/findAll/data?query="
+   remote-url-data-field="items"
+   title-field="designation"
+   minlength="3" 
+   input-class="form-control form-control-small"
+   match-class="highlight"
+   input-changed="inputChanged1"
+   template-url="/my-custom-template1.html"
+   box-type="nonmd" required>
+ </div>
+ {{visitorDef.autoDesignation=selectedDesignation1.originalObject.designation;""}}
+</td>
+<td><button class="btn btn-primary" ng-click="addvisitor(visitorDef);selectedobject=null;selectedUser=null;clearInput('ex5');clearInput1('ex24');callFun(designationAuto);" ng-disabled="visitorForm.$invalid || submitAddEmail">Add visitor</button></td>
+
+<div class="large-padded-row">
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom-template1.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input ng-model="searchStr"
+    ng-disabled="disableInput"
+    type="text"
+    placeholder="{{placeholder}}"
+    ng-focus="onFocusHandler()"
+    class="{{inputClass}}"
+    ng-focus="resetHideResults()"
+    ng-blur="hideResults($event)"
+    autocapitalize="off"
+    autocorrect="off"
+    autocomplete="off"
+    ng-change="inputChangeHandler(searchStr)"/>
+    <div class="angucomplete-dropdown1" ng-show="showDropdown">
+    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+    <div ng-if="imageField" class="angucomplete-image-holder">
+    <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+    <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+    </div>
+    <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+    <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+    <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+    <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+    </div>
+    <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+    <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
+    </div>
+    </div>
+    </div>
+    </script>
+  </div>
+</div>
+
+</form>
+</tr>
+<td colspan="4" ng-if="showFlag == 'notRegisteredUser'">
+ <!-- {{emailId}}  -->
+ {{message}}
+ <!-- {{influencedata}} -->
+ <br>
+ <br>
+ <br>
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+         <form name="profileForm">
+           <div class="row">
+
+            <div class="col-md-4 text-center">
+              <br>
+              <br>
+              <img ng-if="showAvatar == false" ng-src="/public/assets/g/imgs/avatar.jpg" width="122" height="122" 
+              />
+              <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+              style="background-size:cover;"/>
+              <div>
+               <md-button class="md-primary md-raised" 
+               ng-click="showProfileButton($event)">
+               change picture
+             </md-button>
+           </div>
+         </div>
+
+
+
+         <div class="col-md-8">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input md-maxlength="20" required name="first" 
+            ng-model="userdata.name.first">
+            <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>First Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The first name has to be less than 20 characters long.</div>
+              <div ng-message="minlength">The first name should contain minimum 5 characters</div></div></div>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Middle Name</label>
+            <input name="middle" 
+            ng-model="userdata.name.middle">
+            <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Middle Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The middle name has to be less than 10 characters long.</div>
+              <div ng-message="minlength">The middle name should contain minimum 5 characters</div></div></div>
+            </md-input-container>  
+
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input md-maxlength="20" required name="last" 
+            ng-model="userdata.name.last">
+            <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Last Name is mandatory field.</div>
+              <div ng-message="md-maxlength">The last name has to be less than 20 characters long.</div>
+              <div ng-message="minlength">The last name should contain minimum 5 characters</div></div></div>
+            </md-input-container>
+          </div>
+
+          <div>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input type="email" md-maxlength="255" minlength="8" required name="email" 
+            ng-model="emailId">
+            <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
+             <div class="messagenotify">
+              <div ng-message='email'>Email Address is mandatory field.</div>
+              <div ng-message="md-maxlength">The email has to be less than 255 characters long.</div>
+              <div ng-message="minlength">The email should contain minimum 8 characters</div></div></div>
+            </md-input-container>
+          </div>
+
+          <div>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Password</label>
+            <input type="password" md-maxlength="15" minlength="8" required name="password" 
+            ng-model="userdata.local.password">
+            <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Password is mandatory field.</div>
+              <div ng-message="md-maxlength">The password has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The password should contain minimum 8 characters</div></div></div>
+            </md-input-container>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Contact No</label>
+            <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+            ng-model="userdata.contactNumber">
+            <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Contact No is mandatory field.</div>
+              <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+            </md-input-container>
+          </div>
+          <div class="col-md-6">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Designation</label>
+            <angucomplete-alt
+            id="ex14"
+            placeholder="Select Designation or Add Designation"
+            pause="500"
+            selected-object="selectedDesignation"
+            remote-url="/api/v1/secure/admin/users/findAll/data?query="
+            remote-url-data-field="items"
+            title-field="designation"
+            minlength="3" 
+            input-class="form-control form-control-small"
+            match-class="highlight"
+            template-url="/my-custom-template.html"
+            input-changed="inputChanged"
+            initial-value ="designationdata"
+            box-type="md"/>
+          </md-input-container>
+        </div> 
+
+      </div>
+<!--         <div class="col-md-12">
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Job Title</label>
+          <input md-maxlength="40" minlength="5" required name="jobTitle" 
+          ng-model="userdata.jobTitle">
+          <div ng-messages="profileForm.jobTitle.$error" ng-show="profileForm.jobTitle.$touched || !profileForm.jobTitle.$pristine">
+           <div class="messagenotify">
+            <div ng-message='required'>Job Title is mandatory field.</div>
+            <div ng-message="md-maxlength">The Job Title has to be less than 40 characters long.</div>
+            <div ng-message="minlength">The Job Title should contain minimum 5 characters</div></div></div>
+          </md-input-container>
+        </div>
+      -->
+
+      <div class="col-md-12">
+        <md-input-container class="md-block" style="height: auto;">
+        <label>Client Bio</label>
+        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" required name="summary" 
+        rows="4" aria-multiline="true" style="height: 116px;"></textarea>
+        <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
+         <div class="messagenotify">
+          <div ng-message='required'>Client Bio is mandatory field.</div>
+          <div ng-message="md-maxlength">The Client Bio has to be less than 2000 characters long.</div>
+          <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div>
+        </md-input-container>
+      </div>       
+
+      <div class="large-padded-row">
+
+        <div class="padded-row">
+          <script type="text/ng-template" id="/my-custom-template.html">
+          <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+          <input ng-model="searchStr"
+          class="md-block" 
+          ng-disabled="disableInput"
+          type="text"
+          placeholder="{{placeholder}}"
+          ng-focus="onFocusHandler()"
+          class="{{inputClass}}"
+          ng-focus="resetHideResults()"
+          ng-blur="hideResults($event)"
+          autocapitalize="off"
+          autocorrect="off"
+          autocomplete="off"
+          ng-change="inputChangeHandler(searchStr)"/>
+          <div class="angucomplete-dropdown" ng-show="showDropdown">
+          <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+          <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+          <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+          <div ng-if="imageField" class="angucomplete-image-holder">
+          <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+          <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+          </div>
+          <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+          <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+          <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+          <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+          </div>
+          <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { designation: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+          <div class="angucomplete-title">Add New designation '{{ searchStr }}'</div>
+          </div>
+          </div>
+          </div>
+          </script>
+        </div>
+      </div>
+
+
+
+      {{userdata.jobTitle=selectedDesignation.originalObject.designation;""}}
+<!--       <div class="result">
+        <div ng-show="selectedDesignation">
+          <span ng-if="!selectedDesignation.originalObject.custom">
+            You selected <span class="bold-span">{{selectedDesignation.originalObject.designation}}</span> which has a country code of <span class="bold-span">{{selectedDesignation.originalObject.code}}</span>
+          </span>
+          <span ng-if="selectedDesignation.originalObject.custom">
+            You selected a custom country <span class="bold-span">{{selectedDesignation.originalObject.designation}}</span>
+          </span>
+        </div>
+      </div> -->
+    </div>
+    <md-button class="md-warn md-raised pull-right" 
+    ng-click="cancelButton()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding visitor? </b>"
+    yes-text="Ok" no-text="Cancel">
+    <i class="fa fa-floppy-o"></i>  Cancel
+  </md-button> 
+
+  <md-button class="md-primary md-raised pull-right" ng-click="addvisitordata(userdata,emailId,influencedata,avatar)" ng-disabled="profileForm.$invalid">
+  <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Add Visitor
+</md-button>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+{{mode="association";""}}
+<!-- {{visitorsData=visitors|orderBy:mySort}} -->
+<tr ng-repeat="visitorDef in visitors | orderBy:mySort">
+  <td colspan="4"> <div>
+    <div>{{visitorDef.influence}}&nbsp;<userdisplay view-mode="mode" user-id="visitorDef.visitor"></div>
+    <div class="pull-right"><a class="table-btn" ng-click="removevisitor(visitorDef,visitors)"><span class="fa fa-trash fa-lg" /></a>
+      <!-- <a ng-if="mode=='edit'" class="table-btn" ng-click="editvisitor($index,visitorDef)"><span class="fa fa-edit fa-lg" /></a> -->
+    </div>
+  </div>
+  <userprofile user-model="visitorDef.visitorUser" user-id="visitorDef.visitor" show="noSaveProfile"/></td>
+</td>
+</tr>
+</tbody>
+</table><br>
+<div class="form-group">
+  <div class="pull-left">
+    <button type="submit" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
+  </button>
+  <button type="submit" class="btn btn-success"
+  ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" ng-if="visitGrid">Submit
+</button>
+<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+yes-text="Ok" no-text="Cancel">Cancel</button>
+<button type="submit" class="btn btn-info"
+ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton ">Save to Draft
+</button>
+</div>
+</div>
+</fieldset>
+
+</form>
+  </md-content>
+  </md-tab>
+
+</div>
+
