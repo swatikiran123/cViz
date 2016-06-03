@@ -73,7 +73,7 @@ router.get('/api/v1/secure/lov/:name', lov.getOneByName);
 router.post('/api/v1/secure/lov', lov.create);
 router.put('/api/v1/secure/lov/:name', lov.updateByName);
 router.delete('/api/v1/secure/lov/:name', lov.deleteByName);
-router.put('/api/v1/secure/lov/:name', lov.getvalidationByName);
+//router.put('/api/v1/secure/lov/:name', lov.getvalidationByName);
 
 // List of service routes for facts
 router.get('/api/v1/secure/facts', facts.getAll);
