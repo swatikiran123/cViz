@@ -44,7 +44,11 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
-			.otherwise({
+      .when('/visits/:id/emp', {
+        templateUrl: '/public/mods/visits/empagenda.html',
+        controller: 'visitsControllerMain'
+      })
+  		.otherwise({
 				redirectTo: '/visits/list'
 			})
 

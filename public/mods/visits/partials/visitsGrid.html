@@ -86,6 +86,7 @@
 
             <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-paperclip fa-lg"/></a>
 
+            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-edit fa-lg"/></a>
           </td>
         </tr>
       </tbody>
