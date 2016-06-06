@@ -253,14 +253,24 @@ height: 30px;
 }
 
 /*message  notifications  styles */
+.growl-container.growl-fixed.top-center {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    margin-left: -200px;
+}
 .growl-container.growl-fixed {
+
   position: absolute;
-  float: right;
+  z-index: 9999;
+  
+
+
   width: 180%;
   max-width: 400px;
   z-index: 9999;
-  padding-top:50px;
-
+  /*padding-top: 200px;*/
+  /*top: 60px;*/
 }
 
 /*callouts--right styles */
