@@ -876,12 +876,12 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient">Save &amp; Continue 
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'reject'">Save &amp; Continue 
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
   <button type="submit" class="btn btn-info"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton">Save to Draft
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'reject'">Save to Draft
 </button>
 </div><br><br><br>
 </div>

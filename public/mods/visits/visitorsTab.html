@@ -379,19 +379,19 @@
 </tr>
 </tbody>
 </table><br>
-<div class="form-group">
+<div class="form-group">{{status}}
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
   yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
   </button>
       <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" ng-if="visitGrid">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" ng-if="visitGrid">Submit
   </button>
   <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
   yes-text="Ok" no-text="Cancel">Cancel</button>
   <button type="submit" class="btn btn-info"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton ">Save to Draft
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton || status == 'reject'">Save to Draft
 </button>
 </div>
 </div>

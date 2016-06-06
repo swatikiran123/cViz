@@ -507,10 +507,13 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           $scope.visitorType = response.visitorType; // response from visitor type
         else
           $scope.visitorType = '';
-
-        if ( visits.status == "confirm draft") {
+        if ($rootScope.user.groups=="user" && visits.status == "reject") {
           $scope.saveDrafButton=true;
-          $scope.status = "confirm";
+          $scope.status = null;
+        }
+        else if ( visits.status == "confirm draft") {
+          $scope.saveDrafButton=true;
+          $scope.status = null;
         }
         else if (visits.status == "tentative draft") {
           $scope.saveDrafButton=true;
@@ -2276,6 +2279,7 @@ $scope.hide = function() {
 $scope.canceldialog = function() {
   $mdDialog.cancel();
   $route.reload();
+  $scope.btn_add();
 };
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
@@ -2458,6 +2462,7 @@ $scope.btn_add = function(comment1) {
       console.log($scope.rejectValue);
       if ($scope.rejectValue == true) {
         inData.status= "reject";
+      growl.info(parse("Rejected the visit"));
       }else
       inData.status=$scope.visits.status;
       console.log(inData.status);
