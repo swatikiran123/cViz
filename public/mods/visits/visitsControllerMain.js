@@ -119,6 +119,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.closeNoteTipSch=true;
   $scope.closeNoteTipVis=true;
   $scope.saveDrafButton=true;
+  $scope.rejectValue= false;
   // $scope.sessiondbId = "";
   $scope.editScheduleRow = []; // flag for edit schedule functionality
   $scope.addScheduleRow = true; /// flag for add schedule functionality
@@ -220,26 +221,26 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.agmUser =  "";
   $scope.comment = [];
 
-    if($scope.mode == 'edit')
+  if($scope.mode == 'edit')
   {
-  var refresh1 = function()
-  { 
-    console.log($scope.visitid);
+    var refresh1 = function()
+    { 
+      console.log($scope.visitid);
 
-    $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
-    {
-      $scope.comment = response.comments;
-      console.log($scope.comment);
-
-      for(var i=0;i<$scope.comment.length;i++)
+      $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
       {
-        $scope.myData.push($scope.comment[i]._id);
-      }
-    });
-  }
+        $scope.comment = response.comments;
+        console.log($scope.comment);
 
-  refresh1();
- }
+        for(var i=0;i<$scope.comment.length;i++)
+        {
+          $scope.myData.push($scope.comment[i]._id);
+        }
+      });
+    }
+
+    refresh1();
+  }
   var refresh = function() {
 
     $scope.setTimeline = function(time){
@@ -426,6 +427,14 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
    break;
 
    case "tentative draft": 
+   $scope.agendaTab= true;
+   $scope.visitorsTab= true;
+   $scope.finalizeTab= false;
+   $scope.notifyTab= false;
+   $scope.agendaSave=1;
+   break;
+
+   case "reject": 
    $scope.agendaTab= true;
    $scope.visitorsTab= true;
    $scope.finalizeTab= false;
@@ -846,14 +855,14 @@ break;
           //   { inDataClient.sfdcid =$scope.visits.sfdcid;}
           // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
-        if ($scope.visits.clientName!=null) 
-        {
-          inDataClient.name = $scope.visits.clientName;
-        }
-        if($scope.visits.clientName==null)  
-        {
-          inDataClient.name = $scope.parentClientString;
-        }
+          if ($scope.visits.clientName!=null) 
+          {
+            inDataClient.name = $scope.visits.clientName;
+          }
+          if($scope.visits.clientName==null)  
+          {
+            inDataClient.name = $scope.parentClientString;
+          }
         // else inDataClient.name = $scope.parentSelected;
 
         if ($scope.visits.subName!=null) 
@@ -924,33 +933,33 @@ break;
           inDataClient.sfdcid = $scope.sfdcidSelected;
         }
 
-          if ($rootScope.user.groups.indexOf("admin") > -1 ) {
-            inDataClient.status="final";
-          }else inDataClient.status="draft";
+        if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+          inDataClient.status="final";
+        }else inDataClient.status="draft";
 
-          inDataClient.netPromoter =$scope.visits.netPromoter;
-          inDataClient.competitors =$scope.visits.competitors;
+        inDataClient.netPromoter =$scope.visits.netPromoter;
+        inDataClient.competitors =$scope.visits.competitors;
 
-          if ($scope.avatarVisit!=undefined) {
-            inDataClient.logo=$scope.avatarVisit;}
-            console.log(inDataClient)
+        if ($scope.avatarVisit!=undefined) {
+          inDataClient.logo=$scope.avatarVisit;}
+          console.log(inDataClient)
 
-            $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
-             $scope.visits.client = response._id;
-             switch($scope.mode){
-              case "add":
-              $scope.create();
-              break;
+          $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
+           $scope.visits.client = response._id;
+           switch($scope.mode){
+            case "add":
+            $scope.create();
+            break;
 
-              case "edit":
-              $scope.update();
-              $route.reload();
-              break;
+            case "edit":
+            $scope.update();
+            $route.reload();
+            break;
 
-            }
-          })
           }
         })
+        }
+      })
         } // End of save method
 
         $scope.create = function() {
@@ -1115,12 +1124,12 @@ break;
         }
         // else client.sfdcid = $scope.sfdcidSelected;
 
-    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
-      client.status="final";
-    }
+        if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+          client.status="final";
+        }
 
-    if ($scope.avatarVisit!=undefined) {
-      client.logo=$scope.avatarVisit;}
+        if ($scope.avatarVisit!=undefined) {
+          client.logo=$scope.avatarVisit;}
 
       // console.log(client);
       $http.put('/api/v1/secure/clients/id/' + inData.client, client).success(function(response) {
@@ -1218,8 +1227,8 @@ $scope.updateClientStatus=function () {
       .error(function(data, status){
         growl.error("Error updating client");
     }); // http put keynoges ends
-  })
-  $scope.ClientDraft=false;
+    })
+$scope.ClientDraft=false;
 }
    //add vmanager
    $scope.AddVmanager=function(){
@@ -1556,18 +1565,18 @@ $scope.isDataValid=function(schedule){
         $scope.subdis= false;}
       };
 
-     $scope.editSchedule = function(index,schedule){
-      $scope.editScheduleRow[index] = true;
-      $scope.addScheduleRow = false;
-      schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
-      schedule.endDate = $filter('date')(schedule.endDate, "MM/dd/yyyy");
+      $scope.editSchedule = function(index,schedule){
+        $scope.editScheduleRow[index] = true;
+        $scope.addScheduleRow = false;
+        schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
+        schedule.endDate = $filter('date')(schedule.endDate, "MM/dd/yyyy");
+      };
+
+      $scope.cancelSchedule = function(index){
+       $scope.editScheduleRow[index] = false;
      };
 
-    $scope.cancelSchedule = function(index){
-     $scope.editScheduleRow[index] = false;
-    };
-
-    $scope.updateSchedule = function(index,schedule){
+     $scope.updateSchedule = function(index,schedule){
       $scope.newItem=[];
       var isValid = $scope.isDataValid(schedule);
       if(isValid === "OK"){
@@ -2171,21 +2180,21 @@ $scope.parentClientChanged = function(str) {
 $scope.childClientChanged = function(str) {
   $scope.childClientString = str;
     // console.log($scope.childClientString);
-  if($scope.childClientString!=null || $scope.childClientString!="")
-  {
-    $scope.childClient = false;
-    $scope.errchildMsg = "";
-  }
+    if($scope.childClientString!=null || $scope.childClientString!="")
+    {
+      $scope.childClient = false;
+      $scope.errchildMsg = "";
+    }
 
-  if($scope.childClientString==null || $scope.childClientString=="")
-  {
-    $scope.childClient = true;
-    $scope.errchildMsg = "Child Account Name is Mandatory field";
-  }
-} 
+    if($scope.childClientString==null || $scope.childClientString=="")
+    {
+      $scope.childClient = true;
+      $scope.errchildMsg = "Child Account Name is Mandatory field";
+    }
+  } 
 
-$scope.industryClientChanged = function(str) {
-  $scope.industryClientString = str;
+  $scope.industryClientChanged = function(str) {
+    $scope.industryClientString = str;
   // console.log($scope.industryClientString);
   if($scope.industryClientString!=null || $scope.industryClientString!="")
   {
@@ -2266,6 +2275,7 @@ $scope.hide = function() {
 };
 $scope.canceldialog = function() {
   $mdDialog.cancel();
+  $route.reload();
 };
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
@@ -2332,13 +2342,13 @@ $scope.closeNotecscPrs=function(){
 
 $scope.comment11 = [];
 $scope.btn_add = function(comment1) {
-  
+
   if(comment1 !=''){
     $scope.comment11.push({
       comment: comment1,
       givenBy: $rootScope.user._id
     });
-  
+
     $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
       // console.log(response);
       $scope.commentid = response._id;
@@ -2424,12 +2434,12 @@ $scope.btn_add = function(comment1) {
 
       if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
       {
-          inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+        inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
       }  
 
       if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
       {
-          inData.feedbackTmpl = null;
+        inData.feedbackTmpl = null;
       }  
       
       if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
@@ -2439,39 +2449,45 @@ $scope.btn_add = function(comment1) {
 
       if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
       {
-          inData.sessionTmpl = null;
+        inData.sessionTmpl = null;
       }  
       console.log($scope.keynotes);
       console.log($scope.visits.keynote);
       // inData.keynote = $scope.visits.keynote;
-        inData.keynote = $scope.keynotes;
-
+      inData.keynote = $scope.keynotes;
+      console.log($scope.rejectValue);
+      if ($scope.rejectValue == true) {
+        inData.status= "reject";
+      }else
+      inData.status=$scope.visits.status;
+      console.log(inData.status);
       inData.comments = $scope.myData;
       $scope.commentsData = [];
       console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-      
-          $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+
+        $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+        {
+          $scope.comment = response.comments;
+          $scope.oneData = [];
+          for(var i=0;i<$scope.comment.length;i++)
           {
-            $scope.comment = response.comments;
-            $scope.oneData = [];
-            for(var i=0;i<$scope.comment.length;i++)
-            {
-              $scope.oneData.push($scope.comment[i]._id);
-              $scope.commentsData = $scope.oneData;
-            }
-          }).then(function() {
-      console.log($scope.commentsData);
-    });
-          
+            $scope.oneData.push($scope.comment[i]._id);
+            $scope.commentsData = $scope.oneData;
+          }
+        }).then(function() {
+          console.log($scope.commentsData);
+        });
+
       });
 
     })
-    
-    $scope.txtcomment = "";
-    $scope.comment11 = [];
 
-  }
+$scope.txtcomment = "";
+$scope.comment11 = [];
+$route.reload();
+refresh();
+}
 }
 
 // Show Profile Dialog for non-registered users
@@ -2490,6 +2506,9 @@ $scope.showChatBox = function(ev) {
   });
 
 };
+$scope.reject=function(){
+  $scope.rejectValue= true;
+}
 }])
 
 //Autocompleate - Directive

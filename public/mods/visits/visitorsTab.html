@@ -395,4 +395,18 @@
 </button>
 </div>
 </div>
+<br><br><br>
+<div class="panel panel-default" ng-if="adminInitVman && (status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' ||status === 'reject')">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Reject Visit</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+   If you want to Reject this Visit, please click <b>Reject</b>
+   <div class="pull-right"><button type="submit" class="btn btn-warning pull-right"
+   ng-if="adminInitVman" ng-click="reject();showChatBox($event);" confirm-dialog header-text="Reject Visit" content="Are you sure you want to Reject this form ?"
+  yes-text="Ok" no-text="Cancel">Reject</button></div>
+ </div>
+</div>
 </form>
