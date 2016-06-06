@@ -2279,10 +2279,7 @@ $scope.hide = function() {
 $scope.canceldialog = function() {
   $mdDialog.cancel();
   $route.reload();
-<<<<<<< HEAD
-=======
   $scope.btn_add();
->>>>>>> Reject visit functionality added  for admin.
 };
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
