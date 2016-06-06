@@ -121,8 +121,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.saveDrafButton=true;
   $scope.rejectValue= false;
   // $scope.sessiondbId = "";
-  $scope.editScheduleRow = []; // flag for edit schedule functionality
-  $scope.addScheduleRow = true; /// flag for add schedule functionality
+  //$scope.editScheduleRow = [];  flag for edit schedule functionality
+ // $scope.addScheduleRow = true;  flag for add schedule functionality
 
   $scope.cscPersonnel={};
 
@@ -1569,7 +1569,7 @@ $scope.isDataValid=function(schedule){
         $scope.subdis= false;}
       };
 
-     $scope.editSchedule = function(index,schedule){
+     /*$scope.editSchedule = function(index,schedule){
       $scope.editScheduleRow[index] = true;
       $scope.addScheduleRow = false;
       schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
@@ -1581,11 +1581,6 @@ $scope.isDataValid=function(schedule){
     };
 
     $scope.updateSchedule = function(index,schedule){
-      /*console.log('update schedule');
-      console.log('start date '+schedule.startDate);
-      console.log('updated S date '+moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
-      console.log('end date '+schedule.endDate);
-      console.log('updated e date '+moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS'));*/
       $scope.newItem=[];
       var isValid = $scope.isDataValid(schedule);
       if(isValid === "OK"){
@@ -1601,7 +1596,7 @@ $scope.isDataValid=function(schedule){
         $scope.schedule.splice(index, 0, $scope.newItem);
         $scope.editScheduleRow[index] = false;
       }
-    };
+    };*/
 // Visit schedule table end
 
 //BOD Table
