@@ -1530,7 +1530,8 @@ $scope.isDataValid=function(schedule){
 
   return "OK";
 } 
-  // Visit schedule table
+
+// Visit schedule table
   $scope.addSchedule=function(schedule){
     //$scope.schedules=[];
     var isValid = $scope.isDataValid(schedule);
@@ -1568,24 +1569,39 @@ $scope.isDataValid=function(schedule){
         $scope.subdis= false;}
       };
 
-      $scope.editSchedule = function(index,schedule){
-        $scope.editScheduleRow[index] = true;
-        $scope.addScheduleRow = false;
-        schedule.startDate =moment(schedule.startDate).format('MM/DD/YYYY');
-         schedule.endDate =moment(schedule.endDate).format('MM/DD/YYYY');
-       };
+     $scope.editSchedule = function(index,schedule){
+      $scope.editScheduleRow[index] = true;
+      $scope.addScheduleRow = false;
+      schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
+      schedule.endDate = $filter('date')(schedule.endDate, "MM/dd/yyyy");
+     };
 
-       $scope.cancelSchedule = function(index){
-         $scope.editScheduleRow[index] = false;
-       };
+    $scope.cancelSchedule = function(index){
+     $scope.editScheduleRow[index] = false;
+    };
 
-       $scope.updateSchedule = function(index,schedule){
-        console.log(schedule);
-        $scope.addSchedule(schedule);
-        $scope.schedules.splice(index, 1);
+    $scope.updateSchedule = function(index,schedule){
+      /*console.log('update schedule');
+      console.log('start date '+schedule.startDate);
+      console.log('updated S date '+moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+      console.log('end date '+schedule.endDate);
+      console.log('updated e date '+moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS'));*/
+      $scope.newItem=[];
+      var isValid = $scope.isDataValid(schedule);
+      if(isValid === "OK"){
+        var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+        var endDate = moment(schedule.endDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
+        $scope.subdis= false;
+        $scope.newItem = {
+          startDate: startDate,
+          endDate: endDate,
+          location: schedule.location
+        };
+        $scope.schedule = [];
+        $scope.schedule.splice(index, 0, $scope.newItem);
         $scope.editScheduleRow[index] = false;
       }
-    // };
+    };
 // Visit schedule table end
 
 //BOD Table
