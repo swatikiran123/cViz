@@ -1571,31 +1571,21 @@ $scope.isDataValid=function(schedule){
       $scope.editSchedule = function(index,schedule){
         $scope.editScheduleRow[index] = true;
         $scope.addScheduleRow = false;
-        schedule.startDate = $filter('date')(schedule.startDate, "MM/dd/yyyy");
-        schedule.endDate = $filter('date')(schedule.endDate, "MM/dd/yyyy");
-      };
+        schedule.startDate =moment(schedule.startDate).format('MM/DD/YYYY');
+         schedule.endDate =moment(schedule.endDate).format('MM/DD/YYYY');
+       };
 
-      $scope.cancelSchedule = function(index){
-       $scope.editScheduleRow[index] = false;
-     };
+       $scope.cancelSchedule = function(index){
+         $scope.editScheduleRow[index] = false;
+       };
 
-     $scope.updateSchedule = function(index,schedule){
-      $scope.newItem=[];
-      var isValid = $scope.isDataValid(schedule);
-      if(isValid === "OK"){
-        var startDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-        var endDate = moment(schedule.startDate).format('YYYY-MM-DDTHH:mm:ss.SSSS');
-        $scope.subdis= false;
-        $scope.newItem = {
-          startDate: startDate,
-          endDate: endDate,
-          location: schedule.location
-        };
-        $scope.schedule = [];
-        $scope.schedule.splice(index, 0, $scope.newItem);
+       $scope.updateSchedule = function(index,schedule){
+        console.log(schedule);
+        $scope.addSchedule(schedule);
+        $scope.schedules.splice(index, 1);
         $scope.editScheduleRow[index] = false;
       }
-    };
+    // };
 // Visit schedule table end
 
 //BOD Table
@@ -2462,7 +2452,7 @@ $scope.btn_add = function(comment1) {
       console.log($scope.rejectValue);
       if ($scope.rejectValue == true) {
         inData.status= "reject";
-      growl.info(parse("Rejected the visit"));
+        growl.info(parse("Rejected the visit"));
       }else
       inData.status=$scope.visits.status;
       console.log(inData.status);
