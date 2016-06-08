@@ -15,6 +15,7 @@ controller.deleteById = deleteById;
 
 controller.getWithAction = getWithAction;
 controller.getvalidationById = getvalidationById;
+controller.getVisitStats = getVisitStats;
 // controller.getSessionsById = getSessionsById;
 // controller.getSchedulesById=getSchedulesById;
 // controller.getExecsById = getExecsById;
@@ -81,17 +82,18 @@ function getWithAction(req, res){
 			getExecsById(req, res);
 			break;
 
-    case "keynotes":
-        getKeynotesById(req,res);
-        break;
+        case "keynotes":
+            getKeynotesById(req,res);
+            break;
 
 		case "pushsession":
-				pushSession(req,res);
-				break;
+			pushSession(req,res);
+			break;
 
         case "getlocations":
-        getLocationsById(req,res);
-        break;   
+            getLocationsById(req,res);
+            break;
+
 
 		default:
 			res.send("Invalid action");
@@ -244,6 +246,23 @@ function getLocationsById(req,res){
         res.status(500).send(err);
     });
 }
+
+
+function getVisitStats(req,res){
+  dataService.getVisitStats()
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
 
 function create(req, res) {
   dataService.create(req.body,res)
