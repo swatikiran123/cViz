@@ -16,6 +16,11 @@ angular.module('inviteesDirective', [])
   $scope.array=[];
   $scope.invite='';
   var j=[];
+  //variables for collecting checkbox
+  $scope.collectlist=[];
+  $scope.collectlistarray=[];
+  var l=[];
+  $scope.checkFlg='';
 
   $scope.addInvitees=function(invite){
 
@@ -33,7 +38,7 @@ angular.module('inviteesDirective', [])
          $scope.checked = false;
 
          for (var i =0 ;i<$scope.array.length;  i++) {
-           j =$scope.array[i].invite; 
+           j =$scope.array[i].invite;
          };
 
          $scope.arraydata.push(j);
@@ -79,6 +84,13 @@ angular.module('inviteesDirective', [])
     $scope.arraydata.splice(index, 1);
   };
 
+  $scope.collectFeedback = function(feedElg, index){
+    if($scope.collectlist.hasOwnProperty(index))
+      $scope.collectlist.splice(index, 1, feedElg);
+    else
+      $scope.collectlist.push(feedElg);
+  };
+
 }])
 
 .directive('invitees', function() {
@@ -88,7 +100,8 @@ angular.module('inviteesDirective', [])
     scope: {
       arraydata: "=arraydata",
       switchMode: "=switchMode",
-      userType: "@userType"
+      userType: "@userType",
+      collectlist: "=collectlist"
     },
 
     link : function(scope,element,attrs)
