@@ -192,6 +192,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
 				$scope.arraydata = $scope.schedule.invitees;
+				$scope.collectlist = $scope.schedule.feedbackElg;
 	      $scope.showAdvanced(ev);
 	    }); // get visitSchedule call back ends
 	  }
@@ -217,10 +218,11 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 
 	  $scope.save = function() {
-	    $scope.schedule.scheduleDate = $scope.entryDate;
+	  	$scope.schedule.scheduleDate = $scope.entryDate;
 	    $scope.schedule.visit = $scope.visit._id;
 	    $scope.schedule.client = $scope.visit.client._id;
 	    $scope.schedule.invitees = $scope.arraydata;
+	    $scope.schedule.feedbackElg = $scope.collectlist;
 	   // $scope.schedule.session.location = $scope.meetingPlacesData;
 			//session invitees to be added
 
