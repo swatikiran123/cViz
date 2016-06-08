@@ -106,6 +106,23 @@ DateReplaceTime = function(date, time){
 	return dt.toString();
 }
 
+getDayRange = function(date){
+
+	var dt1 = moment(date);
+	var dt2 = moment(date);
+
+	dt1.hour('00');
+	dt1.minute('00');
+	dt1.second('00');
+
+
+	dt2.hour('23');
+	dt2.minute('59');
+	dt2.second('59');
+
+	return (moment.range(dt1,dt2));
+}
+
 DateGetTime = function(date){
 	return moment(date).format("HH:mm");
 }

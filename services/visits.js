@@ -33,6 +33,8 @@ service.pushSession = pushSession;
 service.getLocationsById = getLocationsById;
 service.getvalidationById = getvalidationById;
 
+service.getVisitStats = getVisitStats;
+
 module.exports = service;
 
 function getAll(){
@@ -261,31 +263,41 @@ function getMyVisits(thisUser, timeline, limit){
 logger.dump('test', 3,'-------- end of all visits')
 
 var today = moment();
+//console.log(today.format("DD-MM-YYYY"));
 
-var	thisWeekBeginsOn = moment(today).startOf('isoweek').isoWeekday(0);
-var thisWeekEndsOn = moment(today).endOf('isoweek').isoWeekday(6);
+var	thisWeekBeginsOn = moment.utc(today).startOf('isoweek').isoWeekday(0);
+var thisWeekEndsOn = moment.utc(today).endOf('isoweek').isoWeekday(6);
 
-var lastWeekEndsOn = moment(thisWeekBeginsOn).subtract(1,'days');
-var lastWeekBeginsOn = moment(lastWeekEndsOn).subtract(7,'days');
-var beforelastWeek = moment(lastWeekBeginsOn).subtract(1,'days');
+var lastWeekEndsOn = moment.utc(thisWeekBeginsOn).subtract(1,'days');
+var lastWeekBeginsOn = moment.utc(lastWeekEndsOn).subtract(7,'days');
+var beforelastWeek = moment.utc(lastWeekBeginsOn).subtract(1,'days');
 
-var nextWeekBeginsOn = moment(thisWeekEndsOn).add(1,'days');
-var nextWeekEndsOn = moment(nextWeekBeginsOn).add(7,'days');
-var afterNextWeek = moment(nextWeekEndsOn).add(1,'days');
+var nextWeekBeginsOn = moment.utc(thisWeekEndsOn).add(1,'days');
+var nextWeekEndsOn = moment.utc(nextWeekBeginsOn).add(7,'days');
+var afterNextWeek = moment.utc(nextWeekEndsOn).add(1,'days');
 
-var pastBegin = moment(lastWeekBeginsOn).subtract(3,'years');
-var furtherEnd = moment(afterNextWeek).add(1,'years');
+var pastBegin = moment.utc(lastWeekBeginsOn).subtract(3,'years');
+var furtherEnd = moment.utc(afterNextWeek).add(1,'years');
 
 var thisWeek = today.range("week");
-var thisDay = moment.range(today, today);
+//var thisDay = moment.range(today, today);
+//var thisDay = moment.range(DateReplaceTime(today, "00:00:00"), DateReplaceTime(today, "23:59:59"));
+
+var thisDay = getDayRange(today);
+// console.log(thisDay.start._d);
+// console.log(thisDay.end._d);
+
+var todayRange = moment.range(thisDay.start._d, thisDay.end._d);
+
+
 var lastWeek = moment.range(lastWeekBeginsOn, lastWeekEndsOn);
 var nextWeek = moment.range(nextWeekBeginsOn, nextWeekEndsOn);
 var past = moment.range(pastBegin, beforelastWeek);
 var further = moment.range(afterNextWeek, furtherEnd);
-var nextOne = moment.range(today, nextWeekEndsOn)
+var nextOne = moment.range(thisDay.start._d, nextWeekEndsOn)
 
 console.log("---- Date ranges ----")
-console.log("today: " + today.format("ddd D-MMM-YYYY"));
+console.log("today: " + today.format("ddd D-MMM-YYYY") + " >> " + todayRange.toString());
 console.log("this week:" + thisWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
 	thisWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + thisWeek.toString());
 console.log("last week:" + lastWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
@@ -319,9 +331,9 @@ visitsByTimeline = {
 	},
 
 	"today":{
-		start: today,
-		end: today,
-		visits: ((timeline.contains("today")||timeline.contains('all'))?filterByRange(visitsSorted, thisDay): null)
+		start: thisDay.start._d,
+		end: thisDay.end._d,
+		visits: ((timeline.contains("today")||timeline.contains('all'))?filterByRange(visitsSorted, todayRange): null)
 	},
 
 	"next-week":{
@@ -337,7 +349,7 @@ visitsByTimeline = {
 	},
 
 	"next-one":{
-		start: today,
+		start: thisDay.start._d,
 		end: nextWeekEndsOn,
 		visits: ((timeline.contains("next-one")||timeline.contains('all'))? filterByRange(visitsSorted, nextOne)[0] : null)
 	}
@@ -924,4 +936,58 @@ function pushSession(sessionId, time){
 		}); // end of find schedule
 
 	return deferred.promise;
+}
+
+
+function getVisitStats() {
+	var deferred = Q.defer();
+
+	var visitStats = [];
+
+	var today = new Date();
+	console.log(today);
+
+	model.find({$and: [
+					{"anchor": {$exists: true, $ne: null}},
+					{"startDate": {$gte: today, $exists: true, $ne: null}}
+					]})
+		.populate('anchor')
+		.populate('client')
+		.exec(function(err, list){
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else
+		{
+			// deferred.resolve(list);
+			// console.log(list);
+			for (var i=0; i<list.length; i++){
+				visitStats.push(transformVisitStats(list[i]));
+			}
+			deferred.resolve(visitStats);
+		}
+	});
+	return deferred.promise;
+}
+
+function transformVisitStats(visitStats) {
+	if (visitStats==null) {
+			console.log("error in adding");
+		}
+
+	else {
+		var visitStatsData = {
+			client: visitStats.client,
+			visitManager: visitStats.anchor,
+			startDate: visitStats.startDate,
+			endDate: visitStats.endDate,
+			locations: visitStats.locations
+		}
+
+		console.log("******************************");
+		console.log(visitStatsData);
+		console.log("******************************");
+		return visitStatsData;
+	}
 }
