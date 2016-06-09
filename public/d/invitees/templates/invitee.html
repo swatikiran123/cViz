@@ -45,21 +45,19 @@
 </div>
 <div><span ng-show="checked" class="error text-danger">{{message}}</span></div>  
 
-<div ng-repeat="special in arraydata">
+<div ng-repeat="special in arraydata track by $index">
     <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6">
      <userdisplay view-mode="medium" user-id="special">
       <div class="closeicon pull-right">
         <a class="table-btn" ng-click="removeInviteesdata($index)"><li class="fa fa-times fa-lg"/></a>
       </div>
       <div ng-if="collectlist">
-        <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" value ="{{val.feedbackElg}}" ng-change="collectFeedback(feedElg, $index)">
-        <div ng-repeat="val in collectlist">
-          <span>Feedback elgibility : {{val.feedbackElg}}</span>
+        <div>
+          <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" ng-checked="{{collectlist[$index]}}" ng-click="collectFeedback(feedElg, $index)">
         </div>
-      </div>
+      </div>  
     </userdisplay>
     </div>
-
 </div><!-- ng-repeat div end-->
 
 
