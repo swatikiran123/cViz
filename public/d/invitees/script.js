@@ -11,13 +11,14 @@ angular.module('inviteesDirective', [])
   if($scope.switchMode == 'add')
   {  
     $scope.arraydata=[];
+    $scope.collectlist=[];
   }
 
   $scope.array=[];
   $scope.invite='';
   var j=[];
   //variables for collecting checkbox
-  $scope.collectlist=[];
+
   $scope.collectlistarray=[];
   var l=[];
   $scope.checkFlg='';

@@ -174,6 +174,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	    $http.get('/api/v1/secure/visitSchedules/' + id ).success(function(response) {
 	      $scope.schedule = response;
 				// reassign data
+		console.log('edit session '+$scope.schedule.feedbackElg);
 	      $scope.startTime = DateGetTime($scope.schedule.session.startTime);
 	      $scope.endTime = DateGetTime($scope.schedule.session.endTime);
 	      $scope.startHourTime = $scope.startTime.split(":")[0];
@@ -192,8 +193,9 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
 				$scope.arraydata = $scope.schedule.invitees;
-				$scope.collectlist = $scope.schedule.feedbackElg;
-	      $scope.showAdvanced(ev);
+				$scope.collectlistData = $scope.schedule.feedbackElg;
+				$scope.collectlist = $scope.collectlistData.split(',');
+		$scope.showAdvanced(ev);
 	    }); // get visitSchedule call back ends
 	  }
 
