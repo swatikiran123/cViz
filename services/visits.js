@@ -944,13 +944,34 @@ function getVisitStats() {
 
 	var visitStats = [];
 
-	var today = new Date();
+	var today = moment().startOf('day');
 	console.log(today);
 
-	model.find({$and: [
-					{"anchor": {$exists: true, $ne: null}},
-					{"startDate": {$gte: today, $exists: true, $ne: null}}
-					]})
+	model.find(
+				{$and:
+					[
+						{"anchor": {$exists: true, $ne: null}},
+				
+						{$or:
+							[
+								{$and: 
+									[
+										{"startDate": {$lte: today, $exists: true, $ne: null}},
+										{"endDate": {$gte: today, $exists: true, $ne: null}}
+									]
+								},
+								
+								{$and: 
+									[
+										{"startDate": {$gte: today, $exists: true, $ne: null}},
+										{"endDate": {$gte: today, $exists: true, $ne: null}}
+									]
+								}
+							]
+						}
+					]
+				}
+			)
 		.populate('anchor')
 		.populate('client')
 		.exec(function(err, list){
