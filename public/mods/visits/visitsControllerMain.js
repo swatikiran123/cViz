@@ -257,16 +257,30 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
       Object.keys($scope.allVisits).forEach(function (key) {
 
        var value = $scope.allVisits[key]
-       if(key === "today" || key === "next-week" || key === "further" || key === "next-on"){
+       if(key === "today" || key === "further" || key === "past"){
         allVisits.push.apply(allVisits, value.visits);
-        // console.log(value.visits.length, allVisits.length);
+        //console.log(value.visits.length, allVisits.length);
+
       }
     })
+
+
+      var uniqueIDs = [];
+      var uniqueArray = [];
+
+      for(var i = 0; i < allVisits.length; i++){
+
+        if(uniqueIDs.indexOf(allVisits[i]._id) === -1){
+          uniqueArray.push(allVisits[i])
+          uniqueIDs.push(allVisits[i]._id);
+        }
+      }
+
 
       $scope.allVisits["all"] = {
         "start" : "begin",
         "end": "end",
-        "visits": allVisits
+        "visits": uniqueArray
       };
 
       

@@ -262,26 +262,35 @@ function getMyVisits(thisUser, timeline, limit){
 				}) // end of visit loop
 logger.dump('test', 3,'-------- end of all visits')
 
-var today = moment();
+var today = moment().startOf('day');
 //console.log(today.format("DD-MM-YYYY"));
 
 var	thisWeekBeginsOn = moment.utc(today).startOf('isoweek').isoWeekday(0);
 var thisWeekEndsOn = moment.utc(today).endOf('isoweek').isoWeekday(6);
 
-var lastWeekEndsOn = moment.utc(thisWeekBeginsOn).subtract(1,'days');
-var lastWeekBeginsOn = moment.utc(lastWeekEndsOn).subtract(7,'days');
-var beforelastWeek = moment.utc(lastWeekBeginsOn).subtract(1,'days');
+// var lastWeekEndsOn = moment.utc(thisWeekBeginsOn).subtract(1,'days');
+// var lastWeekBeginsOn = moment.utc(lastWeekEndsOn).subtract(7,'days');
+// var beforelastWeek = moment.utc(lastWeekBeginsOn).subtract(1,'days');
 
 var nextWeekBeginsOn = moment.utc(thisWeekEndsOn).add(1,'days');
 var nextWeekEndsOn = moment.utc(nextWeekBeginsOn).add(7,'days');
-var afterNextWeek = moment.utc(nextWeekEndsOn).add(1,'days');
+//var afterNextWeek = moment.utc(nextWeekEndsOn).add(1,'days');
 
-var pastBegin = moment.utc(lastWeekBeginsOn).subtract(3,'years');
-var furtherEnd = moment.utc(afterNextWeek).add(1,'years');
+//var pastBegin = moment.utc(lastWeekBeginsOn).subtract(3,'years');
+//var furtherEnd = moment.utc(afterNextWeek).add(1,'years');
+
+
+var pastEnd = moment.utc(today).subtract(1, 'days');
+var pastBegin = moment.utc(pastEnd).subtract(3,'years');
+
+var furtherStart = moment.utc(today).add(1, 'days');
+var furtherEnd = moment.utc(furtherStart).add(1,'years');
+
 
 var thisWeek = today.range("week");
+
+
 //var thisDay = moment.range(today, today);
-//var thisDay = moment.range(DateReplaceTime(today, "00:00:00"), DateReplaceTime(today, "23:59:59"));
 
 var thisDay = getDayRange(today);
 // console.log(thisDay.start._d);
@@ -289,46 +298,63 @@ var thisDay = getDayRange(today);
 
 var todayRange = moment.range(thisDay.start._d, thisDay.end._d);
 
-
-var lastWeek = moment.range(lastWeekBeginsOn, lastWeekEndsOn);
-var nextWeek = moment.range(nextWeekBeginsOn, nextWeekEndsOn);
-var past = moment.range(pastBegin, beforelastWeek);
-var further = moment.range(afterNextWeek, furtherEnd);
+var past = moment.range(pastBegin, pastEnd);
+var further = moment.range(furtherStart, furtherEnd);
 var nextOne = moment.range(thisDay.start._d, nextWeekEndsOn)
+
+
+// var lastWeek = moment.range(lastWeekBeginsOn, lastWeekEndsOn);
+// var nextWeek = moment.range(nextWeekBeginsOn, nextWeekEndsOn);
+// var past = moment.range(pastBegin, beforelastWeek);
+// var further = moment.range(afterNextWeek, furtherEnd);
+// var nextOne = moment.range(thisDay.start._d, nextWeekEndsOn)
 
 console.log("---- Date ranges ----")
 console.log("today: " + today.format("ddd D-MMM-YYYY") + " >> " + todayRange.toString());
-console.log("this week:" + thisWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
-	thisWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + thisWeek.toString());
-console.log("last week:" + lastWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
-	lastWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + lastWeek.toString());
-console.log("next week:" + nextWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
-	nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextWeek.toString());
-console.log("past: " + pastBegin.format("ddd D-MMM-YYYY") + " - " +
-	beforelastWeek.format("ddd D-MMM-YYYY") + " >> " + past.toString());
-console.log("further: "+ afterNextWeek.format("ddd D-MMM-YYYY") + " - " +
-	furtherEnd.format("ddd D-MMM-YYYY") + " >> " + further.toString());
-console.log("next one: "+ today.format("ddd D-MMM-YYYY") + " - " +
-	nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextOne.toString());
+// console.log("this week:" + thisWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+// 	thisWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + thisWeek.toString());
+// console.log("last week:" + lastWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+// 	lastWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + lastWeek.toString());
+// console.log("next week:" + nextWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
+// 	nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextWeek.toString());
+// console.log("past: " + pastBegin.format("ddd D-MMM-YYYY") + " - " +
+// 	beforelastWeek.format("ddd D-MMM-YYYY") + " >> " + past.toString());
+// console.log("further: "+ afterNextWeek.format("ddd D-MMM-YYYY") + " - " +
+// 	furtherEnd.format("ddd D-MMM-YYYY") + " >> " + further.toString());
+// console.log("next one: "+ today.format("ddd D-MMM-YYYY") + " - " +
+// 	nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextOne.toString());
+
+console.log("past: "+ 
+	pastBegin.format("ddd D-MMM-YYYY") + " - " + pastEnd.format("ddd D-MMM-YYYY") + 
+	" >> " + past.toString());
+
+console.log("further: "+ 
+	furtherStart.format("ddd D-MMM-YYYY") + " - " + furtherEnd.format("ddd D-MMM-YYYY") + 
+	" >> " + further.toString());
+
+console.log("next one: "+ 
+	today.format("ddd D-MMM-YYYY") + " - " + nextWeekEndsOn.format("ddd D-MMM-YYYY") + 
+	" >> " + nextOne.toString());
+
 
 visitsByTimeline = {
 	"past":{
 		start: pastBegin,
-		end: beforelastWeek,
+		end: pastEnd,
 		visits: ((timeline.contains('past')||timeline.contains('all'))? filterByRange(visitsSorted, past) : null)
 	},
 
-	"last-week" : {
-		start: lastWeekBeginsOn,
-		end: lastWeekEndsOn,
-		visits: ((timeline.contains("last-week")||timeline.contains('all'))? filterByRange(visitsSorted, lastWeek) : null)
-	},
+	// "last-week" : {
+	// 	start: lastWeekBeginsOn,
+	// 	end: lastWeekEndsOn,
+	// 	visits: ((timeline.contains("last-week")||timeline.contains('all'))? filterByRange(visitsSorted, lastWeek) : null)
+	// },
 
-	"this-week":{
-		start: thisWeekBeginsOn,
-		end: thisWeekEndsOn,
-		visits: ((timeline.contains("this-week")||timeline.contains('all'))? filterByRange(visitsSorted, thisWeek): null)
-	},
+	// "this-week":{
+	// 	start: thisWeekBeginsOn,
+	// 	end: thisWeekEndsOn,
+	// 	visits: ((timeline.contains("this-week")||timeline.contains('all'))? filterByRange(visitsSorted, thisWeek): null)
+	// },
 
 	"today":{
 		start: thisDay.start._d,
@@ -336,14 +362,14 @@ visitsByTimeline = {
 		visits: ((timeline.contains("today")||timeline.contains('all'))?filterByRange(visitsSorted, todayRange): null)
 	},
 
-	"next-week":{
-		start: nextWeekBeginsOn,
-		end: nextWeekEndsOn,
-		visits: ((timeline.contains("next-week")||timeline.contains('all'))? filterByRange(visitsSorted, nextWeek): null)
-	},
+	// "next-week":{
+	// 	start: nextWeekBeginsOn,
+	// 	end: nextWeekEndsOn,
+	// 	visits: ((timeline.contains("next-week")||timeline.contains('all'))? filterByRange(visitsSorted, nextWeek): null)
+	// },
 
 	"further":{
-		start: afterNextWeek,
+		start: furtherStart,
 		end: furtherEnd,
 		visits: ((timeline.contains("further")||timeline.contains('all'))? filterByRange(visitsSorted, further) : null)
 	},
