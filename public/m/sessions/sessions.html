@@ -84,9 +84,8 @@
                                             <!--div ng-if="group=='customer' || group=='exec'">
 											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
-											</span></div-->
-											<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}"></div>
-
+													</span></div{{session.feedbackElg}}-->
+													<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}" feedback-elg="{{finalData}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}"></div>
                                              {{session.status}}
                                        
                                              <div ng-if="group=='admin' || group=='vManager'">

@@ -2,21 +2,23 @@ var feedback=angular.module('overallFeedback', ['ngRoute'])
 feedback.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
 
- .when('/feedback', {
+  .when('/feedback', {
     templateUrl: '/public/m/overallFeedback/overallFeedback.html',
     controller: 'overallFeedbackCtrl'
 })
- .when('/thankyou', {
+  .when('/thankyou', {
     templateUrl: '/public/m/overallFeedback/thankyou.html',
     controller: 'thankyouCtrl'
-  })
+})
 
 }])
-   feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $filter, $location, $routeParams,$http,$rootScope) {
+feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $filter, $location, $routeParams,$http,$rootScope) {
     $scope.order = 0;
-     $scope.counter = 0;
+    $scope.counter = 0;
     console.log($rootScope.user._id);
     $scope.showSaveNext = true;
+    $scope.finalFeedback=false;
+
     $scope.form_id = "form-" +  $scope.order;
     //$scope.feedbackModel = '';
     $http.get('/api/v1/secure/visits/all/activeVisit',{
@@ -25,6 +27,14 @@ feedback.config(['$routeProvider', function ($routeProvider) {
                 // console.log(response.visits.feedbackTmpl);
                 $scope.overallFeedbackTmpl = response.visits.feedbackTmpl;
                 $scope.visitId = response.visits._id;
+                // console.log(response.visits.overallfeedback);
+                for (var i = 0; i < response.visits.overallfeedback.length; i++) {
+                    // console.log(response.visits.overallfeedback[i].id+"-"+$rootScope.user._id);
+                    if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
+                    {
+                        $scope.finalFeedback=true;
+                    }
+                };
                 $http.get('/api/v1/secure/feedbackDefs/id/'+ $scope.overallFeedbackTmpl).success(function(response) {
                     $scope.items = response.item;
                     $scope.length = response.item.length - 1;
@@ -35,12 +45,12 @@ feedback.config(['$routeProvider', function ($routeProvider) {
                 $http.get('/api/v1/secure/feedbacks/').success(function(response) {
                     $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, feedbackOn: "visit" ,providedBy:$rootScope.user._id });
                 });
-    });
+            });
 
-    $scope.orderIncrement = function()
-    {   
+$scope.orderIncrement = function()
+{   
 
-        $scope.order = $scope.order + 1;
+    $scope.order = $scope.order + 1;
         // console.log($scope.order,$scope.length);
         if($scope.order == $scope.length)
         {
@@ -63,8 +73,8 @@ feedback.config(['$routeProvider', function ($routeProvider) {
         }
         else
         {
-        $scope.order = $scope.order - 1;
-        $scope.showSaveNext = true;
+            $scope.order = $scope.order - 1;
+            $scope.showSaveNext = true;
         }
         // if($scope.order < $scope.length)
         // {
@@ -72,74 +82,74 @@ feedback.config(['$routeProvider', function ($routeProvider) {
         // }
     }
 
-        var form_div = angular.element('.form-div');
-        var max_forms = form_div.length;
+    var form_div = angular.element('.form-div');
+    var max_forms = form_div.length;
 
-        $interval(function() {
-            if (angular.element('.form-div').first().hasClass('active')) {
-                angular.element('.prev-button').addClass('disabled');
-            } else {
-                angular.element('.prev-button').removeClass('disabled');
-            }
-            if (angular.element('.form-div').last().hasClass('active')) {
-                angular.element('.save-exit-button').show();
-                angular.element('.save-next-button').hide();
-            } else {
-                angular.element('.save-exit-button').hide();
-                angular.element('.save-next-button').show();
-            }
-        }, 1);
+    $interval(function() {
+        if (angular.element('.form-div').first().hasClass('active')) {
+            angular.element('.prev-button').addClass('disabled');
+        } else {
+            angular.element('.prev-button').removeClass('disabled');
+        }
+        if (angular.element('.form-div').last().hasClass('active')) {
+            angular.element('.save-exit-button').show();
+            angular.element('.save-next-button').hide();
+        } else {
+            angular.element('.save-exit-button').hide();
+            angular.element('.save-next-button').show();
+        }
+    }, 1);
 
-        $scope.progress_percentage = 100 / max_forms;
-        angular.element('.progress-bar').css('width', $scope.progress_percentage + "%");
-        var count = 1;
+    $scope.progress_percentage = 100 / max_forms;
+    angular.element('.progress-bar').css('width', $scope.progress_percentage + "%");
+    var count = 1;
 
-        var device_width,
-            corousel_inner_width,
-            minusWidth;
+    var device_width,
+    corousel_inner_width,
+    minusWidth;
 
+    changeWidth();
+
+    $(window).resize(function() {
         changeWidth();
+    });
 
-        $(window).resize(function() {
-            changeWidth();
-        });
+    function changeWidth() {
+        device_width = angular.element(document).width();
+        minusWidth = "-" + device_width;
+        corousel_inner_width = device_width * max_forms;
+        angular.element('.corousel-inner').css('width', corousel_inner_width + "px");
+        form_div.css('width', device_width - 20 + "px");
+    }
 
-        function changeWidth() {
-            device_width = angular.element(document).width();
-            minusWidth = "-" + device_width;
-            corousel_inner_width = device_width * max_forms;
-            angular.element('.corousel-inner').css('width', corousel_inner_width + "px");
-            form_div.css('width', device_width - 20 + "px");
-        }
+    function deleteData() {
+        delete $scope.feedbackModel._id;
+        delete $scope.feedbackModel.createBy;
+        delete $scope.feedbackModel.title;
+        delete $scope.feedbackModel.createOn;
+    }
 
-        function deleteData() {
-            delete $scope.feedbackModel._id;
-            delete $scope.feedbackModel.createBy;
-            delete $scope.feedbackModel.title;
-            delete $scope.feedbackModel.createOn;
-        }
-
-        $scope.next = function(order) {
-            deleteData();
-            var providedById = $rootScope.user._id;
-            $scope.feedbackModel.visitid = $scope.visitId;
-            $scope.feedbackModel.template = $scope.overallFeedbackTmpl;
-            $scope.feedbackModel.providedBy = providedById;
-            $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
-            $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
-            $scope.feedbackModel.item[$scope.order].providedBy =  providedById;
+    $scope.next = function(order) {
+        deleteData();
+        var providedById = $rootScope.user._id;
+        $scope.feedbackModel.visitid = $scope.visitId;
+        $scope.feedbackModel.template = $scope.overallFeedbackTmpl;
+        $scope.feedbackModel.providedBy = providedById;
+        $scope.feedbackModel.feedbackOn = $scope.feedbackModel.type;
+        $scope.feedbackModel.item[$scope.order].answer = $scope.items[$scope.order].answer;
+        $scope.feedbackModel.item[$scope.order].providedBy =  providedById;
             // console.log($scope.feedbackModel);
             
             $http.put('/api/v1/secure/feedbacks/'+ $scope.overallFeedbackTmpl , $scope.feedbackModel,{
-        cache: true
-    }).success(function(response) {
+                cache: true
+            }).success(function(response) {
               // console.log(response);
-            })    
-   $scope.counter++;
-       
+          })    
+            $scope.counter++;
+
 
             $scope.orderIncrement();
-             
+
 
             // if (!(angular.element('.form-div').last().hasClass('active'))) {
             //     var cur_active = angular.element('.form-div.active');
@@ -160,7 +170,7 @@ feedback.config(['$routeProvider', function ($routeProvider) {
                 angular.element('.progress-bar').css('width', $scope.progress_percentage * count + "%");
                 angular.element(".corousel-inner").css("transform", "translateX(" + (count - 1) * minusWidth + "px)");
             }*/
-             $scope.counter--;
+            $scope.counter--;
         };
 
         $scope.submitAndExitForm = function() {
@@ -174,12 +184,12 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             console.log($scope.feedbackModel);
             
             $http.post('/api/v1/secure/feedbacks/', $scope.feedbackModel,{
-        cache: true
-    }).success(function(response) {
+                cache: true
+            }).success(function(response) {
               // console.log(response);
-            })
+          })
             $location.path('/thankyou');
-             
+
         };
 
         var arrayContains = Array.prototype.indexOf ?
@@ -224,14 +234,14 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             return intersection;
         }
 
-         $scope.selection = [];
+        $scope.selection = [];
          // toggle selection for a given choice by name
          $scope.toggleSelection = function toggleSelection(choice,index) {
             // console.log(index);
 
             var idx = $scope.selection.indexOf(choice);
             // is currently selected
-              if (idx > -1) {
+            if (idx > -1) {
                 $scope.selection.splice(idx, 1);
             }
 
@@ -243,12 +253,12 @@ feedback.config(['$routeProvider', function ($routeProvider) {
             var answerChoice = arrayIntersection($scope.feedbackModel.item[index].choices.toString().split(","),$scope.selection.toString().split(","));
             // console.log(answerChoice.toString());
             $scope.feedbackModel.item[index].answer = answerChoice.toString();
-      };
+        };
 
     });
 
 
- feedback.controller('thankyouCtrl', ['$scope', '$location', '$http',  function ($scope, location, $http) {
+feedback.controller('thankyouCtrl', ['$scope', '$location', '$http',  function ($scope, location, $http) {
     console.log("Thank You Controller Running");
     $scope.order = 0;
     $http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {

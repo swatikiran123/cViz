@@ -1,125 +1,132 @@
 angular.module('sessions')
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope) {
-	//console.log($rootScope.user.groups);
 	$scope.group=$rootScope.user.groups;
 	$scope.current = new Date();
 
-  /*$http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
-		cache: true
-	}).success(function(response) {
-    $scope.scheduleList = response;
+	$scope.mix=[];
+	$scope.invitee=[];
+	var refresh = function() {
+		$http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+		}).success(function(response) {
+			$scope.scheduleList = response;
+			for (var i = 0; i < $scope.scheduleList.length; i++) {
+				if ($scope.scheduleList[i].sessions[i]!=undefined && $scope.scheduleList[i].sessions[i].invitees[i]!=undefined) {
+					var str= String($scope.scheduleList[i].sessions[i].feedbackElg);
+					$scope.feedbackElg = str.split(/[ ,]+/);
+					for (var j = 0; j < $scope.scheduleList[i].sessions[i].invitees.length; j++) {
 
-  });
-	  $http.get('/api/v1/secure/visits/' + $routeParams.id ,{
-		cache: true
-	}).success(function(response) {
-    $scope.visittitle = response;
-    $scope.visittitles = $scope.visittitle.title;
-     });*/
-	
-
-  //console.log($scope.range)
-var refresh = function() {
-  $http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+						$scope.invitee.push($scope.scheduleList[i].sessions[i].invitees[j]);
+					}
+					for (var i = 0; i < $scope.feedbackElg.length; i++) {
+						$scope.mix.push({
+							invite: $scope.invitee[i],
+							feedbackElg:$scope.feedbackElg[i]
+						})
+					}
+				}
+			}
+			$scope.finalData=false;
+			for (var i = 0; i < $scope.mix.length; i++) {
+				if ($rootScope.user._id === $scope.mix[i].invite) {
+					$scope.finalData =$scope.mix[i].feedbackElg;
+				}
+			};
+		});
+		$http.get('/api/v1/secure/visits/' + $routeParams.id ,{
 		//cache: true
 	}).success(function(response) {
-    $scope.scheduleList = response;
-    console.log($scope.scheduleList)
-  });
-	  $http.get('/api/v1/secure/visits/' + $routeParams.id ,{
-		//cache: true
-	}).success(function(response) {
-    $scope.visittitle = response;
-    $scope.visittitles = $scope.visittitle.title;
-     })
-console.log('refresh');
+		$scope.visittitle = response;
+		$scope.visittitles = $scope.visittitle.title;
+	})
+	console.log('refresh');
+
 };
-	
-	refresh();
 
-	$scope.pushSession = function(sessionId,rtime){
+refresh();
+
+$scope.pushSession = function(sessionId,rtime){
 		//console.log(sessionId)
 		//$window.location.reload();
-         console.log(sessionId);
-         console.log(rtime);
+		console.log(sessionId);
+		console.log(rtime);
 
 		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime).success(function(response) {
-		  $scope.sessiontime = response;
-		
-		  refresh();
+			$scope.sessiontime = response;
+
+			refresh();
 
 		});
 	}
 	$scope.drop = function(sessionId){
-			$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
-			{
-				console.log(response);
-				$scope.response = response;
-						$console.log($scope.response);
-							$scope.response.status = "cancelled";
-							$console.log($scope.response.status);
-						
+		$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
+		{
+			console.log(response);
+			$scope.response = response;
+			$console.log($scope.response);
+			$scope.response.status = "cancelled";
+			$console.log($scope.response.status);
+
             // $scope.status = "cancelled";
             // console.log(sessionId);console.log(status);
             $http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
             	console.log(response);
 
             });
-             	if ($scope.response.status === "cancelled"){
-								   angular.element('#cancel-session').addClass('agenda-cancel-session');
-								   console.log('hellow')
-							}
+            if ($scope.response.status === "cancelled"){
+            	angular.element('#cancel-session').addClass('agenda-cancel-session');
+            	console.log('hellow')
+            }
 
-			});
+        });
 
 
 	}
 
 
-	     $scope.getClass = function (strValue) {
-                    if (strValue == ("cancelled"))
-                        return "agenda-block-sub-div-cancel";
-                    else{
-                  return "agenda-block-sub-div";}
-                }
-       
-            $scope.getdiv = function (strValue) {
-                    if (strValue == ("cancelled"))
-                        return "feed";
-                    else{
-                  return "feedback-link";}
-                }
+	$scope.getClass = function (strValue) {
+		if (strValue == ("cancelled"))
+			return "agenda-block-sub-div-cancel";
+		else{
+			return "agenda-block-sub-div";}
+		}
+
+		$scope.getdiv = function (strValue) {
+			if (strValue == ("cancelled"))
+				return "feed";
+			else{
+				return "feedback-link";}
+			}
   //  console.log($location.search()["day"]);
   //  console.log($location.search()["s"]);
 
-    $scope.visit_id = $routeParams.id;
-    $scope.vmtab = $location.search()["day"];
-    if($scope.vmtab === undefined)
-    {
-			$scope.selectedIndex = 0;
+  $scope.visit_id = $routeParams.id;
+  $scope.vmtab = $location.search()["day"];
+  if($scope.vmtab === undefined)
+  {
+  	$scope.selectedIndex = 0;
 
-				$scope.itemClicked = function ($index) {
-					$scope.selectedIndex = $index;
-				}
-		}
-	  else{
-	  $scope.selectedIndex = $scope.vmtab-1;
+  	$scope.itemClicked = function ($index) {
+  		$scope.selectedIndex = $index;
+  	}
+  }
+  else{
+  	$scope.selectedIndex = $scope.vmtab-1;
 
-	     $scope.itemClicked = function ($index) {
-				 $scope.selectedIndex = $index;
-			}
-		}
-
-
+  	$scope.itemClicked = function ($index) {
+  		$scope.selectedIndex = $index;
+  	}
+  }
 
 
-		$scope.setTab = function(){
-			if($location.search()["day"] === undefined)
-				return 1;
-			else
-				return $location.search()["day"]-0;
-		}
+
+
+  $scope.setTab = function(){
+  	if($location.search()["day"] === undefined)
+  		return 1;
+  	else
+  		return $location.search()["day"]-0;
+  }
 
 
 		// if ($location.hash() !== newHash) {
@@ -159,7 +166,7 @@ console.log('refresh');
 			$window.location.reload();
 			$location.path(path);
 		}
-})
+	})
 
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
 	$scope.arrayData=[];
@@ -176,18 +183,18 @@ console.log('refresh');
 		$scope.arrayData.push($scope.owner);
 	});
 
-  $scope.collapseDiv = function(index, text) {
-      var ele = angular.element(document.getElementById(text + index));
-      ele.toggle();
-      var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
-      if (status === "block") {
-          ele.prev().addClass('chevron-down-arrow');
-          ele.addClass('active');
-      } else if (status === "none") {
-          ele.prev().removeClass('chevron-down-arrow');
-          ele.removeClass('active');
-      }
-  };
+	$scope.collapseDiv = function(index, text) {
+		var ele = angular.element(document.getElementById(text + index));
+		ele.toggle();
+		var status = window.getComputedStyle(ele[0], null).getPropertyValue("display");
+		if (status === "block") {
+			ele.prev().addClass('chevron-down-arrow');
+			ele.addClass('active');
+		} else if (status === "none") {
+			ele.prev().removeClass('chevron-down-arrow');
+			ele.removeClass('active');
+		}
+	};
 
 
 	$scope.hideFeeedbackDiv = true;
@@ -200,7 +207,7 @@ console.log('refresh');
 .controller('agendaCtrl', function($rootScope, $location, appService) {
 	appService.activeVisit().then(function(avisit){
 		$location.path("sessions/" + avisit._id);
- 	})
+	})
 })
 
 .controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {

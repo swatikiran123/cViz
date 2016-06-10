@@ -1,0 +1,28 @@
+<!-- page header/subheader -->
+<div class="page-header">
+	Overall Feedback - {{visits.title}}
+	<div class="sub-header">
+	</div>
+</div>
+<div class="container">
+	<!-- {{j}} -->
+	<div class="form-inline has-feedback filter-header">
+		<table class="table table-striped table-condensed table-responsive table-hover">
+			<thead class="data-grid-header">
+				<tr>
+					<th>Names</th>
+					<th>Role</th>
+					<th>Tick if eligible to give feedback</th>
+				</tr>
+			</thead>
+			<tbody class="data-grid-data">
+				<tr ng-repeat="visit in j | filter: search |orderBy:orderByField:reverseSort track by $index">
+					<td><div userdisplay view-mode="nameonly" user-id="visit.id"/></td>
+					<td>{{visit.role}}</td>
+					<td><input type="checkbox" ng-model="visit.feedbackElg" ng-checked="visit.feedbackElg"></td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit" class="btn btn-success" ng-click="saveoverallfeed()">Save</button>
+	</div>
+</div>
