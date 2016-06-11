@@ -36,7 +36,8 @@ fb.directive('ssnfbdir', function() {
       sessionId: '@',
       status: '@',
       type: '@',
-      starttime:'@'
+      starttime:'@',
+      feedbackElg: '@'
     },
 
 }

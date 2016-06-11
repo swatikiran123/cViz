@@ -48,6 +48,10 @@ angular.module('visits')
         templateUrl: '/public/mods/visits/empagenda.html',
         controller: 'visitsControllerMain'
       })
+      .when('/visits/:id/overallFeedbacks', {
+        templateUrl: '/public/mods/visits/overallFeedbacks.html',
+        controller: 'visitsControllerMain'
+      })
   		.otherwise({
 				redirectTo: '/visits/list'
 			})

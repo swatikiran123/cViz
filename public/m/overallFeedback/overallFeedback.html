@@ -81,10 +81,9 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
 
 <div header showprofile="false" icon="fa fa-line-chart" title1="Visit Feedback" title2="feedback for visit">
     Feedback Visit
-</div>
-<br>
-<br>
-<div class="divtop">
+<!-- <br>
+<br> -->
+<div class="divtop" ng-if=" finalFeedback ==true">
 <div ng-if="feedbackSamplelist==''">
 <div class="sessionfeedback">
 <div feedback feedback-id="overallFeedbackTmpl" visit-id="visitId" feedback-model type="visit"></div>
@@ -96,6 +95,10 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
  fbid="feedbackSamplelist[0]._id"></div>
 </div>
 </div>
+</div>
+
+<div class="divtop" ng-if="finalFeedback!= true">
+    <b><i>Not authorized to give feedback..</i></b> 
 </div>
 <!-- <div class="divtop">  
     <div id="overall-feedback-page">

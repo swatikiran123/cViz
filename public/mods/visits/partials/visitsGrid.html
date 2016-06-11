@@ -82,11 +82,17 @@
               <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid" 
               tooltips tooltip-template="Add Sessions"><span class="fa fa-calendar fa-lg" /></a>
               <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid" tooltips tooltip-template="View Feedbacks"><span class="fa fa-comments fa-lg"/></a>
+
+              <a class="table-btn" href="#/visits/{{visit._id}}/overallFeedbacks" ng-if="visitGrid" tooltips tooltip-template="overall Feedbacks"><span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+              </span></a>
+            
             </div>
 
             <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-paperclip fa-lg"/></a>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-edit fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close'))"><span class="fa fa-edit fa-lg"/></a>
           </td>
         </tr>
       </tbody>
