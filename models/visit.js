@@ -30,7 +30,7 @@ var visitSchema = new mongoose.Schema({
 		tcv							: {type: String, trim: true },
 		duration					: {type: String, trim: true },
 		offerings					: {type: String, trim: true },
-		teamSize					: {type: Number, trim: true }
+		teamSize					: {type: String, trim: true }
 	}],
 	billable						: { type: String, lowercase: true, trim: true, enum: ['billable', 'non-billable']},
 	competitorVisit					: { type: String, trim: true },

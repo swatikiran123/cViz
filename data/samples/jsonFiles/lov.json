@@ -5,13 +5,13 @@
 		"name"						: "regions",
 		"values"					: 
 			[
-				"America",
-				"Australia",
-				"Nordic and Baltic Region",
-				"UK, Ireland & Netherlands",
-				"Asia, Middle East, Africa",
+				"Americas",
+				"Nordics",
+				"UK & I",
+				"South & West Europe",
 				"Central and Eastern Europe",
-				"South and West Europe"
+				"AMEA",
+				"Australia"
 			]
 	},
 	
@@ -21,24 +21,16 @@
 		"name"						: "offerings",
 		"values"					: 
 			[
-				"Big Data Analytics",
-				"Aerospace & Defense",
-				"Rapid-Deployment Solutions (RDS)",
-				"SAP Global VAR License Reseller Services",
-				"SAP Managed Cloud as a Service (MCaaS)",
-				"Certified Systems Integrator, Hosting, Cloud and Apps Management Services",
-				"ERP Industry Solutions Template",
-				"Customer Relationship Management (CRM)",
-				"Human Capital Management (HCM)",
-				"Supply Chain Management (SCM)",
-				"Supplier Relationship Management (SRM)",
-				"Mobility Solutions",
-				"Business Intelligence Solutions",
-				"HANA",
-				"Environmental, Health and Safety (EH&S) Solutions",
+				"Digital Insurance",
+				"Digital Banking",
+				"Digital Health",
+				"GIS",
+				"Digital Applications Services",
+				"Cloud",
+				"Consulting",
 				"Cybersecurity",
-				"Upgrade Toolkit",
-				"Full Breadth of Business and Technology Consulting"
+				"Big Data & Analytics",
+				"Mobility & Social"
 			]
 	},
 
@@ -64,13 +56,17 @@
 		"values"					: 
 			[
 
+				"Noida",
+				"Bangalore",
 				"Chennai",
 				"Hyderabad",
-				"Bangalore",
-				"Noida",
-				"Vadodara",
 				"Indore",
-				"Mumbai"
+				"Vadodara",
+				"Mumbai",
+				"Solan",
+				"Shimoga",
+				"Gurgaon",
+				"Pune"
 
 			]
 	},
@@ -81,13 +77,27 @@
 		"name"						: "vertical",
 		"values"					: 
 			[
-				"Automobile",
-				"Telecommunications",
-				"Finance",
-				"Media",
+				"Aerospace & Defense",
+				"Automotive",
 				"Banking",
-				"Insurance",
-				"Manufacturing"
+				"Chemicals",
+				"Communications",
+				"Consumer & Retail",
+				"Credit Services",
+				"Energy",
+				"Health Delivery",
+				"Health Plans",
+				"High Tech",
+				"Industrial Manufacturing",
+				"Intl. Public Sector",
+				"Investment Services",
+				"Life Insurance",
+				"Life Sciences",
+				"NA Public Sector",
+				"Natural Resources",
+				"P&C Insurance",
+				"Travel & Transport",
+				"Utilities"
 			]
 	},
 	

@@ -30,7 +30,7 @@
                   <option ng-option value="other"> Other </option>
                 </select> -->
               </td>
-              <td><input type="text" name = "teamSize" placeholder="Team Size" ng-model="bodDef.teamSize" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" class="form-control"> <span  ng-show="BOD-form.teamSize.$error.pattern">Team Size should be a number !</span></td>
+              <td><!--input type="text" name = "teamSize" placeholder="Team Size" ng-model="bodDef.teamSize" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" class="form-control"--> <input type="text" name = "teamSize" placeholder="Team Size" ng-model="bodDef.teamSize" class="form-control"><span  ng-show="BOD-form.teamSize.$error.pattern">Team Size should be a number !</span></td>
               
               <!-- <td><a class="btn btn-primary" ng-click="addkeynote(keynoteDef)" ng-disabled="keynoteForm.$invalid || autoFailkey">Add Keynote</a></td> -->
               <td><a class="table-btn" ng-click="addBod(bodDef)" ><span class="fa fa-plus fa-lg" /></a></td>
