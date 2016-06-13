@@ -6,27 +6,30 @@
 		"values"					: 
 			[
 				"Americas",
+				"Nordics",
+				"UK & I",
+				"South & West Europe",
+				"Central and Eastern Europe",
 				"AMEA",
-				"ANZ",
-				"UKI & N",
-				"NORDICS",
-				"C & EE",
-				"S & WE"
+				"Australia"
 			]
 	},
-	
 	
 	{
 		"_id"							: ObjectId("A09234567892345678900002"),
 		"name"						: "offerings",
 		"values"					: 
 			[
-				"Big Data & Analytics",
-				"GBS - Digital application",
-				"GBS – Consulting",
-				"GBS – IS&S",
+				"Digital Insurance",
+				"Digital Banking",
+				"Digital Health",
 				"GIS",
-				"Other"
+				"Digital Applications Services",
+				"Cloud",
+				"Consulting",
+				"Cybersecurity",
+				"Big Data & Analytics",
+				"Mobility & Social"
 			]
 	},
 
@@ -51,15 +54,17 @@
 		"name"						: "locations",
 		"values"					: 
 			[
-
+				"Noida",
+				"Bangalore",
 				"Chennai",
 				"Hyderabad",
-				"Bangalore",
-				"Noida",
-				"Vadodara",
 				"Indore",
-				"Mumbai"
-
+				"Vadodara",
+				"Mumbai",
+				"Solan",
+				"Shimoga",
+				"Gurgaon",
+				"Pune"
 			]
 	},
 	
@@ -68,13 +73,27 @@
 		"name"						: "vertical",
 		"values"					: 
 			[
-				"Automobile",
-				"Telecommunications",
-				"Finance",
-				"Media",
+				"Aerospace & Defense",
+				"Automotive",
 				"Banking",
-				"Insurance",
-				"Manufacturing"
+				"Chemicals",
+				"Communications",
+				"Consumer & Retail",
+				"Credit Services",
+				"Energy",
+				"Health Delivery",
+				"Health Plans",
+				"High Tech",
+				"Industrial Manufacturing",
+				"Intl. Public Sector",
+				"Investment Services",
+				"Life Insurance",
+				"Life Sciences",
+				"NA Public Sector",
+				"Natural Resources",
+				"P&C Insurance",
+				"Travel & Transport",
+				"Utilities"
 			]
 	},
 	
