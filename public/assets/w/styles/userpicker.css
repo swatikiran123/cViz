@@ -48,3 +48,76 @@
   width:50px;
   height:45px;
 }
+
+
+/*** bucketization css Start***/
+.visdetail-panel{
+    background-color: #FFF;
+    border: 2px solid #A2BAE6;
+    margin-bottom: 20px !important;
+    margin-top: 28px !important;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 1px 1px #CCC;
+    -moz-box-shadow: 0 0 1px 1px #fff;
+    box-shadow: 0 0 1px 1px #CCC;
+}
+.visdetail-panelheader{
+    /*border: 1px solid rgb(0, 0, 0);*/
+    background-color: #FFF !important;
+    margin-top: -22px;
+    margin-left: 14px;
+    display: inline-block;
+    width: auto;
+    position: absolute;
+}
+
+.visdetail-panelheader h3 {
+    color: #1B5FD5;
+    display: inline-block;
+    clear: both;
+    width: auto;
+    position: relative;
+    margin-top: -15px;
+}
+.visdetail-panel .well{
+  min-height: 20px;
+  padding: 8px;
+  margin-bottom: 0px !important;
+  background-color: inherit !important;
+  border: 1px solid #E3E3E3 !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
+.personNote span{
+  color: #000 !important;
+}
+.statusBlock{
+  margin: 0px 5px;
+}
+
+.visTypeSelect {
+    margin-bottom: 5px !important;
+}
+.visScheduleWrapper{
+  margin-bottom: 35px;
+}
+
+.visLabel{
+    color: rgba(0, 0, 0, 0.26);
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11px;
+}
+
+.visIndBlock{
+  margin: 0px 0px 0px -12px;
+}
+
+.visOfferingBlock{
+  margin: 17px 0 7px -12px;
+}
+.oppDetailsPanel{
+  margin: 4px;
+}
+/*** bucketization css End***/

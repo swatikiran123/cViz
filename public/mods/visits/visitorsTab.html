@@ -145,7 +145,10 @@
  <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default visdetail-panel">
+        <div class="panel-heading visdetail-panelheader">
+          <h3 class="panel-title"> <b>Visior Information</b></h3>
+        </div>
         <div class="panel-body">
          <form name="profileForm">
            <div class="row">
@@ -283,13 +286,13 @@
       <div class="col-md-12">
         <md-input-container class="md-block" style="height: auto;">
         <label>Client Bio</label>
-        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" required name="summary" 
+        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" name="summary" 
         rows="4" aria-multiline="true" style="height: 116px;"></textarea>
-        <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
+        <!--div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
          <div class="messagenotify">
           <div ng-message='required'>Client Bio is mandatory field.</div>
           <div ng-message="md-maxlength">The Client Bio has to be less than 2000 characters long.</div>
-          <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div>
+          <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div-->
         </md-input-container>
       </div>       
 
