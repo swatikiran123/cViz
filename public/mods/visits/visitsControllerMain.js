@@ -198,7 +198,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
           for (var i =0 ;i<$scope.cscData.length;  i++) {
            $scope.j.push({
             id: $scope.cscData[i]._id,
-            role:'Org employee',
+            role:'Employee',
             feedbackElg: false});
          };
          for (var i =0 ;i<$scope.clientData.length;  i++) {
