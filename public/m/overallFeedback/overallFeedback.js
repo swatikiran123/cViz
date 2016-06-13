@@ -32,7 +32,9 @@ feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval,
                     // console.log(response.visits.overallfeedback[i].id+"-"+$rootScope.user._id);
                     if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
                     {
-                        $scope.finalFeedback=true;
+                       if (response.visits.overallfeedback[i].feedbackElg == "true") {
+                            $scope.finalFeedback=true;
+                        } 
                     }
                 };
                 $http.get('/api/v1/secure/feedbackDefs/id/'+ $scope.overallFeedbackTmpl).success(function(response) {

@@ -30,6 +30,7 @@
           </div> 
           <div class="col-xs-12">
             <div class="scheduledates">
+            <a ng-if = "isSaving" href ng-click="visitAllvMan()">Visits List </a>&nbsp;&nbsp;
             <a href ng-click="setTimeline('all')">All ({{allVisits["all"].visits.length}})</a>&nbsp;&nbsp;
             <a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a>&nbsp;&nbsp;
             <!-- <a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a>&nbsp;&nbsp; -->

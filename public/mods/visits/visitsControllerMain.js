@@ -95,6 +95,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.agendaEdit= false;
   $scope.showKey=false;
   $scope.subdis= true;
+  $scope.allViei=false;
   $scope.stdate= true;
   
   $scope.agendaTab=true;
@@ -120,9 +121,37 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.closeNoteTipVis=true;
   $scope.saveDrafButton=true;
   $scope.rejectValue= false;
+
   $scope.overallfeedback=[];
 
   $scope.cscPersonnel={};
+  $scope.VisitVmag = false;
+  // $scope.sessiondbId = "";
+  //$scope.editScheduleRow = [];  flag for edit schedule functionality
+ // $scope.addScheduleRow = true;  flag for add schedule functionality
+
+ $scope.cscPersonnel={};
+
+  // $scope.salesExecId = "";
+  // $scope.salesExecEmail = "";
+  // $scope.salesExecUser =  "";
+
+  // $scope.accountGMId = "";
+  // $scope.accountGMEmail = "";
+  // $scope.accountGMUser =  "";
+
+  // $scope.industryExecId = "";
+  // $scope.industryExecEmail = "";
+  // $scope.industryExecUser =  "";
+
+  // $scope.globalDeliveryId = "";
+  // $scope.globalDeliveryEmail = "";
+  // $scope.globalDeliveryUser =  "";
+
+  // $scope.creId = "";
+  // $scope.creEmail = "";
+  // $scope.creUser =  "";
+
   $scope.submitVisitsUsers = false;
   $scope.submitAddVisitor = true;
   $scope.submitAddEmail = true;
@@ -179,6 +208,29 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.regions=response.values;
   });
 
+
+  // $http.get('/api/v1/secure/visits').success(function(response) {
+  //   $scope.VisitsAll = response;
+  // });
+
+  $scope.visitAllvMan = function() {
+    $scope.VisitVmag = true;
+    // var today = new Date();
+    // console.log(today);
+    $http.get('/api/v1/secure/visits').success(function(response) {
+      //$scope.VisitsAllList = response;
+
+      // for (var i = 0; i < response.length; i++) {
+      //   if((response[i].startDate <= today && response[i].endDate >= today) || (response[i].startDate >= today && response[i].endDate >= today)) {
+          $scope.VisitsAllList = response;
+        //   console.log($scope.VisitsAllList)
+        // }
+     // }
+      //console.log($scope.VisitsAllList)
+    });
+
+  }
+  // console.log($scope.mode);
 
   if($scope.mode == 'edit')
   {
@@ -263,9 +315,11 @@ if($scope.mode == 'edit')
   refresh1();
 }
 var refresh = function() {
-
-  $scope.setTimeline = function(time){
-    $scope.timeline = time;
+    $scope.setTimeline = function(time){
+      $scope.VisitVmag = false;
+      $scope.allViei=true;
+      //console.log("im here")
+      $scope.timeline = time;
       // console.log("setting timeline to " + $scope.timeline )
       $scope.visitBatch = $scope.allVisits[$scope.timeline];
     }
@@ -496,9 +550,9 @@ var refresh = function() {
   $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
 // })
 
-  $scope.selectedList = visits.offerings;
-  if(response.status == "draft"){
-    $scope.ClientDraft= true;
+$scope.selectedList = visits.offerings;
+if(response.status == "draft"){
+  $scope.ClientDraft= true;
     // console.log("draft");
     if (response.logo!= null) {
       $scope.showAvatar =true;
@@ -1148,8 +1202,8 @@ break;
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
       }
     })
-.error(function(data, status){
-  growl.error("Error updating visit");
+      .error(function(data, status){
+        growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
@@ -1211,7 +1265,7 @@ $scope.updateClientStatus=function () {
         growl.error("Error updating client");
     }); // http put keynoges ends
     })
-$scope.ClientDraft=false;
+  $scope.ClientDraft=false;
 }
    //add vmanager
    $scope.AddVmanager=function(){
@@ -1895,16 +1949,34 @@ function toTitleCase(string)
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
-}
+    }
 
-if(visitorDef.visitorId==null)
-{
-  $scope.showFlag = "notRegisteredUser";
-  $scope.emailId = emailid;
-  $scope.influencedata = influencedata;
-  $scope.designationdata = designationdata;
-  $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
-}  
+
+    if(visitorDef.visitorId==null)
+    {
+      $scope.showFlag = "notRegisteredUser";
+      $scope.emailId = emailid;
+      $scope.influencedata = influencedata;
+      $scope.designationdata = designationdata;
+      $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
+    }  
+// .error(function(response, status){
+
+//   $scope.showFlag = "notRegisteredUser";
+//   if(status===404)
+//   { 
+//     console.log(influencedata);
+//     $scope.emailId = emailid;
+//     $scope.influencedata = influencedata;
+//     console.log($scope.emailId); 
+//     $scope.message = "User not found plz register";
+//   }
+//   else
+//     console.log("error with user directive");
+// });
+
+
+
     //if not found add visitor-post that and get id
     visitorDef.influence='';
     visitorDef.visitorId='';
@@ -2655,8 +2727,8 @@ visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (Feedba
           event.preventDefault();
         }
       });
-}
-};
+    }
+  };
 }]);
 //Autocompleate - Directive
 visitsApp.directive("session", ["SessionService", "$timeout", function (SessionService,$timeout) {
@@ -2724,8 +2796,8 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
           event.preventDefault();
         }
       });
-}
-};
+    }
+  };
 }]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
