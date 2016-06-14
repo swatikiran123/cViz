@@ -5,7 +5,7 @@
 				<select name="sessionmode" ng-model="sessionId" ng-dropdown ng-change="haschange()">
 					<option value=""></option>
 					<option ng-repeat="ty in sessiondbId" value="{{ty._id}}" 
-					ng-if = "ty.session.type == 'Presentation' || ty.session.type == 'Discussion' || ty.session.type == 'Floor-Walk' || ty.session.type == 'presentation' || ty.session.type == 'discussion' || ty.session.type == 'floor-walk'">
+					ng-if = "ty.session.type != 'lunch' && ty.session.type != 'breakfast' && ty.session.type != 'dinner' && ty.session.type != 'tea-break' ">
 					{{ty.session.title}}
 				</option>
 			</select>

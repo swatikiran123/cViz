@@ -63,24 +63,15 @@ $scope.pushSession = function(sessionId,rtime){
 		{
 			console.log(response);
 			$scope.response = response;
-			$console.log($scope.response);
 			$scope.response.status = "cancelled";
-			$console.log($scope.response.status);
-
-            // $scope.status = "cancelled";
-            // console.log(sessionId);console.log(status);
-            $http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
-            	console.log(response);
-
-            });
-            if ($scope.response.status === "cancelled"){
-            	angular.element('#cancel-session').addClass('agenda-cancel-session');
-            	console.log('hellow')
-            }
-
-        });
-
-
+			$http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
+				console.log(response);
+				if ($scope.response.status === "cancelled"){
+					angular.element('#cancel-session').addClass('agenda-cancel-session');
+				}
+				refresh();
+			});
+		});
 	}
 
 

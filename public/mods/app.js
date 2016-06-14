@@ -6,7 +6,7 @@ angular.module('cviz-customize',
 	['userprofileDirective','userDirective','userdisplayDirective',
 	'appFilters',
 	'datePicker',
-	'keynotes','facts','feedback','teasers','lovs', 'confirmDialogDirective','contactList','richTextDirective','ngRateIt','feedbackDirective','dropzone','meetingPlaces', 'tooltips','angucomplete','userAutoDirective','angucomplete-alt']);
+	'keynotes','facts','feedback','teasers','lovs', 'confirmDialogDirective','contactList','richTextDirective','ngRateIt','feedbackDirective','dropzone','meetingPlaces', 'tooltips','angucomplete','userAutoDirective','angucomplete-alt','angucomplete-alter']);
 
 angular.module('cviz-manage',
 	['userprofileDirective','userDirective','userdisplayDirective', 'clientDisplayDirective', 'inviteesDirective',

@@ -2,13 +2,16 @@
 
 angular.module('feedbackDirective', ['ngRateIt','ngAnimate', 'toaster'])
 
-.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope','$timeout','toaster','$location', function($scope, $http, $rootScope,$timeout,toaster,$location) {
-
+.controller('feedbackDirectiveControllerMain', ['$scope', '$http','$rootScope','$timeout','toaster','$location','$window', function($scope, $http, $rootScope,$timeout,toaster,$location,$window) {
+// console.log($scope.feedbackModel);
+console.log($scope.fbid);
   if($scope.feedbackModel === undefined || $scope.feedbackModel === "")
     $scope.showFlag = "none";
   else
     $scope.showFlag = "feedback";
 
+if($scope.fbid == undefined || $scope.fbid == '' || $scope.fbid == null)
+{
   $scope.getFeedback = function(){
     if($scope.feedbackId===""){
       $scope.showFlag = "none";
@@ -29,6 +32,35 @@ angular.module('feedbackDirective', ['ngRateIt','ngAnimate', 'toaster'])
         console.log("error with feedback directive");
     });
   }
+}
+
+if($scope.fbid != undefined)
+{
+  $scope.selection = [];
+  console.log('edit');
+  console.log($scope.fbid);
+  $scope.getFeedback = function(){
+  $http.get('/api/v1/secure/feedbacks/'+ $scope.fbid).success(function(response) {
+    $scope.feedbackModel = response;
+    $scope.showFlag = "feedback";
+    // console.log($scope.feedbackModel);
+    console.log($scope.feedbackModel.item)
+    for(var i=0;i<$scope.feedbackModel.item.length;i++)
+    {
+      if($scope.feedbackModel.item[i].mode=="multi-choice")
+      {
+        console.log($scope.feedbackModel.item[i].answer.split(","));
+        var data = $scope.feedbackModel.item[i].answer.split(",");
+        for(var k =0;k<data.length;k++)
+        {
+          $scope.selection.push(data[k]);  
+        }
+        // $scope.selection.push($scope.feedbackModel.item[i].answer.toString().split(","));
+      }
+    }
+  });
+}
+}
 
 var arrayContains = Array.prototype.indexOf ?
     function(arr, val) {
@@ -135,17 +167,29 @@ function arrayIntersection() {
       $scope.feedbackModel.item[index].answer = answerChoice.toString();
     };
 
+if($scope.fbid == undefined || $scope.fbid == '' || $scope.fbid == null)
+{
 $scope.showSuccessMessage= function()
 {
   toaster.pop({title: "Thank You Note", body:"Thank you for your valuable feedback."});
   $timeout(callSubmit,5000);
- 
+}
 }
 
+if($scope.fbid != undefined)
+{
+$scope.showSuccessMessage= function()
+{
+  toaster.pop({title: "Thank You Note", body:"Your feedback has been updated successfully."});
+  $timeout(callSubmit,5000);
+}
+}
 
 function callSubmit() {
     window.history.back();
 }
+
+
 }])
 
 .directive('feedback', function() {

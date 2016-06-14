@@ -22,7 +22,7 @@ var feedbackSchema = new mongoose.Schema({
 		mode						: { type: String, lowercase: true, trim: true, required:true,
 		 									enum: ['freetext', 'single-choice', 'multi-choice', 'star-rating']},
 		choices						: [ { type: String, trim: true, required:true } ],
-		answer						: { type: String, trim: true, required:true },
+		answer						: { type: String, trim: true },
 		providedBy					: { type: Schema.Types.ObjectId, ref: 'User', required:true }
 	}]
 });

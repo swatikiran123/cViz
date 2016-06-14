@@ -1,6 +1,9 @@
   <br>
     <div class="panel panel-default" ng-if="userModel!=null">
     {{title}}
+    <div class="closeicon pull-right">
+      <a class="table-btn" ng-click="clearInput('ex15')" tooltips tooltip-template="Remove {{title}}"><li class="fa fa-times fa-lg" /></a>
+    </div>
         <div class="panel-body">
 
             <div class="pull-left">

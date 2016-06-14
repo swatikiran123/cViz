@@ -250,6 +250,29 @@ span.menuName {
   font-family: workSansBold;
 }
 
+
+
+.logout{
+  background: url("") #ac3939 no-repeat 50% 50%;
+  background-size: 45px;
+}
+.logout:before{
+  font-family:FontAwesome;
+  content:"\f08b";
+  color: white;
+  font-size: 40px;
+
+}
+
+.logout-text {
+  color: #4E1C3D;
+  padding-top: 13px;
+  font-family: workSansBold;
+}
+
+
+
+
 .exec-bio {
   background: url('') #003F60 no-repeat 50% 50%;
   background-size: 45px;
@@ -360,6 +383,9 @@ div#profile-details {
   .spoc-icon:before{
     font-size: 25px;
   }
+   .logout-icon:before{
+    font-size: 25px;
+  }
   .visit-icon:before{
     font-size: 25px;
   }
@@ -392,6 +418,9 @@ div#profile-details {
     font-size: 27px;
   }
   .spoc-icon:before{
+    font-size: 27px;
+  }
+   .logout-icon:before{
     font-size: 27px;
   }
   .visit-icon:before{
@@ -461,6 +490,9 @@ div#profile-details {
   .spoc-icon:before{
     font-size: 29px;
   }
+    .logout-icon:before{
+    font-size: 29px;
+  }
   .visit-icon:before{
     font-size: 29px;
   }
@@ -521,6 +553,9 @@ div#profile-details {
   .spoc-icon:before{
     font-size: 30px;
   }
+    .logout-icon:before{
+    font-size: 29px;
+  }
   .visit-icon:before{
     font-size: 30px;
   }
@@ -564,6 +599,9 @@ div#profile-details {
     font-size: 29px;
   }
   .spoc-icon:before{
+    font-size: 29px;
+  }
+    .logout-icon:before{
     font-size: 29px;
   }
   .visit-icon:before{
@@ -615,6 +653,3 @@ div#profile-details {
       margin-bottom: -50px;
     }
   }
-
-
-

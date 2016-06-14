@@ -93,9 +93,9 @@ contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$rou
     $scope.contactList.user = $scope.contactId;
     $http.put('/api/v1/secure/contactList/' + $scope.contactList._id, $scope.contactList).success(function(response) {
       refresh();
-      $scope.contactUser="";
-      $scope.contactEmail="";
-      $scope.contactId="";
+      // $scope.contactUser="";
+      // $scope.contactEmail="";
+      // $scope.contactId="";
       $scope.action = "none";
       $scope.hideAddRow = true;
     })

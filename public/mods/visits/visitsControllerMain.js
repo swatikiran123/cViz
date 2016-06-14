@@ -173,8 +173,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   }
   if ($rootScope.user.groups.indexOf("admin") > -1) {
     $scope.adminInitVman= true;
-  }
+    
 
+  }
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
     var i= 0;
@@ -281,23 +282,23 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
         // console.log($scope.j)
       }
     })
-}
+  }
 
-$scope.selectedList = [];
+  $scope.selectedList = [];
 
-$scope.visitorId = "";
-$scope.visitor = "";
-$scope.visitorUser =  "";
+  $scope.visitorId = "";
+  $scope.visitor = "";
+  $scope.visitorUser =  "";
 
-$scope.agmId = "";
-$scope.agmEmail = "";
-$scope.agmUser =  "";
-$scope.comment = [];
+  $scope.agmId = "";
+  $scope.agmEmail = "";
+  $scope.agmUser =  "";
+  $scope.comment = [];
 
-if($scope.mode == 'edit')
-{
-  var refresh1 = function()
-  { 
+  if($scope.mode == 'edit')
+  {
+    var refresh1 = function()
+    { 
     // console.log($scope.visitid);
 
     $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
@@ -1781,7 +1782,7 @@ function toTitleCase(string)
       }
     }
   //adding visitor data if not registered user
-  $scope.addvisitordata = function(userdata,emailId,influencedata,avatar)
+  $scope.addvisitordata = function(userdata,firstName,emailId,influencedata,avatar)
   { 
     $scope.contactNo = [];
 
@@ -1800,9 +1801,17 @@ function toTitleCase(string)
     }
     userdata.email = emailId;
     userdata.local.email = emailId;
+    userdata.name.first = firstName;
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
     userdata.orgRef = $scope.visits.client._id;
+
+    $http.get('/api/v1/secure/clients/id/' + userdata.orgRef).success(function(response5) {
+      $scope.orgName = response5.name;
+      userdata.organization = $scope.orgName;
+    })
+
+    // userdata.organization = $scope.orgName;
     if(userdata.jobTitle!=null)
     {
       userdata.jobTitle = toTitleCase(userdata.jobTitle);
@@ -1813,6 +1822,7 @@ function toTitleCase(string)
       userdata.jobTitle = toTitleCase($scope.designationdata);
       // userdata.jobTitle = toTitleCase($scope.jobTitle);
     }
+    console.log(userdata);
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
     // "complete" code here
@@ -1863,6 +1873,7 @@ function toTitleCase(string)
     $scope.showFlag='';
     $scope.message='';
     $scope.emailId = '';
+    $scope.firstName = '';
     var influence= visitorDef.influence;
     var emailid = visitorDef.visitorId;
     var influencedata = visitorDef.influence;
@@ -1951,32 +1962,24 @@ function toTitleCase(string)
   })
     }
 
-
     if(visitorDef.visitorId==null)
     {
       $scope.showFlag = "notRegisteredUser";
-      $scope.emailId = emailid;
+      var substring = "@";
+      console.log(emailid.indexOf(substring));
+      if(emailid.indexOf(substring) == -1)
+      {
+        $scope.firstName = emailid;
+      }
+      if(emailid.indexOf(substring) > -1)
+      {
+        $scope.emailId = emailid;
+      }
+
       $scope.influencedata = influencedata;
       $scope.designationdata = designationdata;
       $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
     }  
-// .error(function(response, status){
-
-//   $scope.showFlag = "notRegisteredUser";
-//   if(status===404)
-//   { 
-//     console.log(influencedata);
-//     $scope.emailId = emailid;
-//     $scope.influencedata = influencedata;
-//     console.log($scope.emailId); 
-//     $scope.message = "User not found plz register";
-//   }
-//   else
-//     console.log("error with user directive");
-// });
-
-
-
     //if not found add visitor-post that and get id
     visitorDef.influence='';
     visitorDef.visitorId='';
@@ -2692,7 +2695,7 @@ $scope.saveoverallfeed=function(){
       growl.info(parse("Overall Feedback submitted successfully for visit: "+inData.title));
       $location.path("visits/list"); 
     })
-}
+  }
 }])
 
 //Autocompleate - Directive

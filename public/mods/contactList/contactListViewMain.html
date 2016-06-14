@@ -67,8 +67,8 @@
 <td><span ng-hide="hideAddRow"><div user type="picker" user-model="contactUser" view-type="medium" user-id="contactId" user-email="contactEmail" user-type="employee"></div></span></td>
 <td>
 	<span ng-hide="hideAddRow">
-		<a class="table-btn" ng-click="save()"><span class="glyphicon glyphicon-ok"/></a>
-		<a class="table-btn" ng-click="deselect()"><span class="glyphicon glyphicon-remove"/></a>
+		<a class="table-btn" ng-click="save();contactUser=null;contactId=null;contactEmail=null;"><span class="glyphicon glyphicon-ok"/></a>
+		<a class="table-btn" ng-click="deselect();contactUser=null;contactId=null;contactEmail=null;"><span class="glyphicon glyphicon-remove"/></a>
 	</span>
 </td>
 </tr>
@@ -80,8 +80,10 @@
 		<td>{{contactList.type}}</td>
 		<td><div userdisplay view-mode="nameonly" user-id="contactList.user"></td>
 		<td ng-if="!visitGrid">
-			<a class="table-btn" ng-click="edit(contactList._id)" tooltips tooltip-template="Edit Contact"><span class="fa fa-pencil-square-o fa-lg" /></a>
-			<a class="table-btn" ng-click="remove(contactList)" tooltips tooltip-template="Delete Contact"><span class="fa fa-trash-o fa-lg" /></a>
+			<a class="table-btn" 
+			ng-click="edit(contactList._id);" tooltips tooltip-template="Edit Contact"><span class="fa fa-pencil-square-o fa-lg" /></a>
+			<a class="table-btn" 
+			ng-click="remove(contactList);" tooltips tooltip-template="Delete Contact"><span class="fa fa-trash-o fa-lg" /></a>
 		</td>
 	</tr>
 </tbody>

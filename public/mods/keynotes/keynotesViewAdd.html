@@ -46,6 +46,9 @@
       ng-model="keynotes.noteText" name="note"/>
     </text-angular></div>
     <!-- {{noteById=$parent.noteById;""}}{{noteById1=$parent.noteById;""}}{{noteById2=$parent.noteById;""}}-->
+    <span class="error text-info">*Note - Signatory is mandatory field.</span>
+    <br>
+    <br>
     <div class="row">
       <div class="form-group col-xs-4">
         <md-input-container class="form-group md-block">
@@ -123,7 +126,15 @@
           {{$parent.submitKeynotes=false;""}}
         </div>
 
-        <div ng-if="noteById == null || noteById1 == null || noteById2 == null">
+        <div ng-if="noteById == null">
+          {{$parent.signatory1Submit=true;""}}
+        </div> 
+
+        <div ng-if="noteById != null">
+          {{$parent.signatory1Submit=false;""}}
+        </div> 
+
+        <div ng-if="noteById1 == null || noteById2 == null">
           {{$parent.submitKeynotes=false;""}}
         </div> 
       <!-- </div> -->
@@ -150,10 +161,12 @@
         delete-hint="Press delete to remove tag"
         secondary-placeholder="+Tag"></md-chips-->
         <br>
+        <!-- {{noteById}} -->
+        <!-- {{signatory1Submit}} -->
         <div class="form-group">
           <div class="pull-left">
             <button type="submit" class="btn btn-success" 
-            ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone || submitKeynotes">Submit
+            ng-click="save()" ng-disabled="keynotesForm.$invalid || keyTruedone || submitKeynotes || signatory1Submit">Submit
           </button>
           <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
           yes-text="Ok" no-text="Cancel">Cancel</button>
