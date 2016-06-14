@@ -25,6 +25,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.medium = "medium";
 	$scope.arrayData=[];
 
+	var refresh = function() {
 		$http.get('/api/v1/secure/visits/current/keynotes',{
 			cache: true
 		}).success(function(response) {
@@ -72,7 +73,9 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 			})
 		});
 	})
+	}
 
+	refresh();
 
 	$scope.orderIncrement = function()
 	{
