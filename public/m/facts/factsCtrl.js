@@ -1,6 +1,6 @@
 var app=angular.module('facts');
 
-app.controller('factsCtrl', function($scope, $rootScope, $location, $uibModal, $http,$routeParams) {
+app.controller('factsCtrl', function($scope, $rootScope, $location, $http,$routeParams) {
 			console.log("fact controller running");
 
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {

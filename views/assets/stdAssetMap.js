@@ -11,11 +11,11 @@ module.exports = {
 		"profile": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-dropzone"],
 	    
 	    "m-general" : ["jquery","bootstrap","font-awesome","utils"],
-		"m-angular" : ["jquery","angular-core","angular-growl"],
-		"m-home": ["bootstrap"],
-		"m-facts": ["jquery","angular-bootstrap","angular-map"],
-		"m-visits": ["jquery","angular-bootstrap","angular-animate"],
-		"m-visitAdd":["jquery","angular-bootstrap","angular-wizard"]
+		"m-angular" : ["angular-core","angular-growl"],
+		"m-home": [],
+		"m-facts": ["angular-map"],
+		"m-visits": ["angular-animate"],
+		"m-visitAdd":["angular-wizard"]
 		
 	}
 }
