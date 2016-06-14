@@ -12,12 +12,16 @@
   overflow-x:hidden;
 }
 
+.agenda-list a{
+  color: black;
+}
+
   .agenda-block-sub-div-cancel {
     background-color: #d3d3d3;
     border-left: 1px solid #000;
     margin-left: 20px;
     padding: 10px 0;
-    border-bottom: 1px solid purple; }
+    border-bottom: 1px solid red; }
   
   .feed{
     display: none;
@@ -50,7 +54,7 @@
   font-size: 1.4em !important;
 }
 .agenda-list a.active{
-    border-bottom: 3px solid purple;
+    border-bottom: 3px solid red;
     font-size: 1.6em;
     height: 35px;
     vertical-align: top;
@@ -72,10 +76,11 @@
 
 .agenda-list a:focus {
 
-  border-bottom: 3px solid purple;
+  border-bottom: 3px solid red;
     font-size: 1.6em;
     height: 35px;
     vertical-align: top;
+    color: black;
   }
 
 .agenda-header-div ul {
@@ -171,6 +176,9 @@
     color: black;
     font-family: workSansMedium;
     font-size: 12px;
+  }
+  .agenda-session-overview a{
+    color: black;
   }
 .agenda-session-feedback-div {
     background-color: #f8f8f8;
