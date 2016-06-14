@@ -208,7 +208,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
     $scope.regions=response.values;
   });
-
+  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
+    $scope.vertical = response.values;
+  });
 
   // $http.get('/api/v1/secure/visits').success(function(response) {
   //   $scope.VisitsAll = response;
@@ -538,8 +540,8 @@ var refresh = function() {
  $scope.clientIdData=visits.client._id;
  $scope.parentSelected= visits.client.name;
  $scope.childSelected= visits.client.subName;
- $scope.industrySelected= visits.client.industry;
- $scope.regionsSelected= visits.client.regions;
+visits.industry= visits.client.industry;
+visits.regions= visits.client.regions;
  $scope.sfdcidSelected= visits.client.sfdcid;
  if (visits.client.logo!= null) {
   $scope.showAvatar =true;
@@ -2238,7 +2240,7 @@ $scope.childClientChanged = function(str) {
 
   $scope.industryClientChanged = function(str) {
     $scope.industryClientString = str;
-  // console.log($scope.industryClientString);
+  console.log($scope.industryClientString);
   if($scope.industryClientString!=null || $scope.industryClientString!="")
   {
     $scope.industryClient = false;

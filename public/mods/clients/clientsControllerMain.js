@@ -6,9 +6,6 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
 
     var id = $routeParams.id;
-    $http.get('/api/v1/secure/lov/locations').success(function(response) {
-      $scope.location=response.values;
-    });
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.hideFilter = true;
@@ -18,10 +15,14 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.parentClient = true;
   $scope.childClient = true;
   $scope.industryClient = true;
-  $scope.regionClient = true;
+  $scope.regionDataClient = true;
+  // $scope.regionClient = true;
   //regions - Http get for drop-down
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
     $scope.regions=response.values;
+  });
+  $http.get('/api/v1/secure/lov/vertical').success(function(response) {
+    $scope.vertical = response.values;
   });
   $scope.isSaving=false;
   if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
@@ -43,13 +44,13 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
        $scope.parentClient = false;
        $scope.childClient = false;
        $scope.industryClient = false;
-       $scope.regionClient = false;
+       // $scope.regionClient = false;
        $scope.clients = $http.get('/api/v1/secure/clients/id/' + id).success(function(response){
         $scope.clients = response;
         $scope.parentSelected= $scope.clients.name;
         $scope.childSelected= $scope.clients.subName;
-        $scope.industrySelected= $scope.clients.industry;
-        $scope.regionsSelected= $scope.clients.regions;
+        // $scope.industrySelected= $scope.clients.industry;
+        // $scope.regionsSelected= $scope.clients.regions;
 
         // $scope.selected-object= $scope.clients.name;
 
@@ -291,14 +292,14 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     // }
     // else inData.industry = $scope.industrySelected;
 
-        if ($scope.clients.name!=null) 
+    if ($scope.clients.name!=null) 
     {
-       inData.name = $scope.clients.name;
-    }
-    if ($scope.clients.name==null)  
-    {
-       inData.name = $scope.parentClientString;
-    }
+     inData.name = $scope.clients.name;
+   }
+   if ($scope.clients.name==null)  
+   {
+     inData.name = $scope.parentClientString;
+   }
     // else client.name = $scope.parentSelected;
 
     if ($scope.clients.subName!=null) 
@@ -321,20 +322,20 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     }
     // else client.industry = $scope.industrySelected;
 
-        if(inData.name == null)
-        {
-          inData.name = $scope.parentSelected;
-        }
+    if(inData.name == null)
+    {
+      inData.name = $scope.parentSelected;
+    }
 
-        if(inData.subName == null)
-        {
-          inData.subName = $scope.childSelected;
-        }
+    if(inData.subName == null)
+    {
+      inData.subName = $scope.childSelected;
+    }
 
-        if(inData.industry == null)
-        {
-          inData.industry = $scope.industrySelected;
-        }
+    if(inData.industry == null)
+    {
+      inData.industry = $scope.industrySelected;
+    }
     // if ($scope.clients.industry!=undefined) 
     //   {inData.industry =$scope.clients.industry;}
     // else inData.industry = $scope.industrySelected;
@@ -354,14 +355,14 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
       console.log($scope.parentSelected);
       if ($scope.parentClientString==null) 
       {
-      growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
+        growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
       }
       else if ($scope.parentClientString!=null)  
       {
         growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentClientString));
       }
       else
-      growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
+        growl.info(parse("client [%s]<br/>Edited successfully", $scope.parentSelected));
 
     })
     .error(function(data, status){
@@ -453,33 +454,35 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   } 
 
   $scope.industryClientChanged = function(str) {
-    $scope.industryClientString = str;
-
-    if($scope.industryClientString!=null || $scope.industryClientString!="")
+    $scope.industry = str;
+    console.log($scope.industry)
+    if($scope.industry!=null || $scope.industry!="")
     {
       $scope.industryClient = false;
       $scope.errindustryMsg = "";
     }
 
-    if($scope.industryClientString==null || $scope.industryClientString=="")
+    if($scope.industry==null || $scope.industry=="" || $scope.industry == undefined)
     {
       $scope.industryClient = true;
       $scope.errindustryMsg = "Industry is Mandatory field";
     }
   } 
 
-  $scope.regionClientChanged = function() {
+  // $scope.regionClientChanged = function(str) {
+  //   $scope.regions = str;
+  //   console.log($scope.regions)
 
-    if($scope.regions!=null || $scope.regions!="")
-    {
-      $scope.regionClient = false;
-      $scope.errregionMsg = "";
-    }
+  //   if($scope.regions!=null || $scope.regions!="")
+  //   {
+  //     $scope.regionClient = false;
+  //     $scope.errregionMsg = "";
+  //   }
 
-    if($scope.regions==null || $scope.regions=="" || $scope.regions == undefined)
-    {
-      $scope.regionClient = true;
-      $scope.errregionMsg = "Region is Mandatory field";
-    }
-  } 
+  //   if($scope.regions==null || $scope.regions=="" || $scope.regions == undefined)
+  //   {
+  //     $scope.regionClient = true;
+  //     $scope.errregionMsg = "Region is Mandatory field";
+  //   }
+  // } 
 }]);﻿ // controller ends
