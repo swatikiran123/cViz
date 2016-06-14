@@ -9,7 +9,7 @@ angular.module('mviz-visits', [
 ]);
 
 angular.module('mviz-facts', [
-	'ngMap','ui.bootstrap',
+	'ngMap',
 	'appFilters',
 	'facts','header','scroll'
 ]);

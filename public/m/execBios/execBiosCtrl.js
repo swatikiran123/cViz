@@ -16,13 +16,18 @@ bios.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 bios.controller('execBiosBlankCtrl', function($rootScope, $location, appService) {
+
 	appService.activeVisit().then(function(avisit){
 		$location.path("execBios/" + avisit._id);
 	})
+
 });
 
-bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http) {
-	$scope.title= $rootScope.activeVisit.title;
+bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http, appService) {
+	appService.activeVisit().then(function(avisitt){
+$scope.title = avisitt.title;
+
+	});
 
 	$http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
 		cache: true
