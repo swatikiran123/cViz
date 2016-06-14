@@ -11,7 +11,7 @@ module.exports = {
 		"profile": ["angular-material","angular-text","angular-forms","angular-fileupload","angular-image","angular-dialog","angular-dropzone"],
 
 		"m-general" : ["jquery","bootstrap","font-awesome","utils"],
-		"m-angular" : ["jquery","angular-core","angular-growl"],
+		"m-angular" : ["jquery","angular-core","bootstrap","angular-growl"],
 		"m-home": [],
 		"m-facts": ["angular-bootstrap","angular-map"],
 		"m-visits": ["angular-bootstrap","angular-animate"],
