@@ -840,16 +840,24 @@ function getParticipantsById(id){
 		}
 		else{
 			// push all client executives
-			console.log("ok");
-			console.log(visit.client)
-			console.log(visit.client.cscPersonnel.industryExec);
-			console.log("ok")
 
-			arrAddItem(emp, visit.client.cscPersonnel.salesExec);
-			arrAddItem(emp, visit.client.cscPersonnel.accountGM);
-			arrAddItem(emp, visit.client.cscPersonnel.industryExec);
-			arrAddItem(emp, visit.client.cscPersonnel.globalDelivery);
-			arrAddItem(emp, visit.client.cscPersonnel.cre);
+			if (visit.client!= null){
+				if (visit.client.cscPersonnel.salesExec!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.salesExec);
+				};
+				if (visit.client.cscPersonnel.accountGM!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.accountGM);
+				};
+				if (visit.client.cscPersonnel.industryExec!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.industryExec);
+				}
+				if (visit.client.cscPersonnel.globalDelivery!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.globalDelivery);
+				}
+				if (visit.client.cscPersonnel.cre!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.cre);
+				}
+			}
 
 			// push all client side visitors
 			visit.visitors.forEach(function(v){

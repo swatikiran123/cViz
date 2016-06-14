@@ -226,227 +226,213 @@
       </div>
     </div>
 
+<div class="large-padded-row">
 
-    <div class="large-padded-row">
+	<div class="padded-row">
+		<script type="text/ng-template" id="/my-custom-template.html">
+		<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+		<input ng-model="searchStr"
+		class="md-block"
+		ng-disabled="disableInput"
+		type="text"
+		placeholder="{{placeholder}}"
+		ng-focus="onFocusHandler()"
+		class="{{inputClass}}"
+		ng-focus="resetHideResults()"
+		ng-blur="hideResults($event)"
+		autocapitalize="off"
+		autocorrect="off"
+		autocomplete="off"
+		ng-change="inputChangeHandler(searchStr)"/>
+		<div class="angucomplete-dropdown" ng-show="showDropdown">
+		<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+		<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+		<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+		<div ng-if="imageField" class="angucomplete-image-holder">
+		<img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+		<div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+		</div>
+		<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+		<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+		<div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+		<div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+		</div>
+		<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { parentClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+		<div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
+		</div>
+		</div>
+		</div>
+		</script>
+	</div>
+</div>
+{{visits.clientName=visitsSelectedClient.originalObject.parentClient;""}}
 
-      <div class="padded-row">
-      <script type="text/ng-template" id="/my-custom-template.html">
-      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-      <input ng-model="searchStr"
-      class="md-block"
-      ng-disabled="disableInput"
-      type="text"
-      placeholder="{{placeholder}}"
-      ng-focus="onFocusHandler()"
-      class="{{inputClass}}"
-      ng-focus="resetHideResults()"
-      ng-blur="hideResults($event)"
-      autocapitalize="off"
-      autocorrect="off"
-      autocomplete="off"
-      ng-change="inputChangeHandler(searchStr)"/>
-      <div class="angucomplete-dropdown" ng-show="showDropdown">
-      <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-      <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-      <div ng-if="imageField" class="angucomplete-image-holder">
-      <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-      <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-      </div>
-      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-      <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-      <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-      </div>
-      <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { parentClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-      <div class="angucomplete-title">Add New Client '{{ searchStr }}'</div>
-      </div>
-      </div>
-      </div>
-      </script>
-      </div>
-    </div>
-    {{visits.clientName=visitsSelectedClient.originalObject.parentClient;""}}
+<div class="large-padded-row">
 
-    <div class="large-padded-row">
+	<div class="padded-row">
+		<script type="text/ng-template" id="/my-custom1-template.html">
+		<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+		<input ng-model="searchStr"
+		class="md-block"
+		ng-disabled="disableInput"
+		type="text"
+		placeholder="{{placeholder}}"
+		ng-focus="onFocusHandler()"
+		class="{{inputClass}}"
+		ng-focus="resetHideResults()"
+		ng-blur="hideResults($event)"
+		autocapitalize="off"
+		autocorrect="off"
+		autocomplete="off"
+		ng-change="inputChangeHandler(searchStr)"/>
+		<div class="angucomplete-dropdown" ng-show="showDropdown">
+		<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+		<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+		<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+		<div ng-if="imageField" class="angucomplete-image-holder">
+		<img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+		<div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+		</div>
+		<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+		<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+		<div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+		<div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+		</div>
+		<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { childClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+		<div class="angucomplete-title">Add New Child Client '{{ searchStr }}'</div>
+		</div>
+		</div>
+		</div>
+		</script>
+	</div>
+</div>
+{{visits.subName=visitsSelectedchildClient.originalObject.childClient;""}}
 
-      <div class="padded-row">
-      <script type="text/ng-template" id="/my-custom1-template.html">
-      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-      <input ng-model="searchStr"
-      class="md-block"
-      ng-disabled="disableInput"
-      type="text"
-      placeholder="{{placeholder}}"
-      ng-focus="onFocusHandler()"
-      class="{{inputClass}}"
-      ng-focus="resetHideResults()"
-      ng-blur="hideResults($event)"
-      autocapitalize="off"
-      autocorrect="off"
-      autocomplete="off"
-      ng-change="inputChangeHandler(searchStr)"/>
-      <div class="angucomplete-dropdown" ng-show="showDropdown">
-      <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-      <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-      <div ng-if="imageField" class="angucomplete-image-holder">
-      <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-      <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-      </div>
-      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-      <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-      <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-      </div>
-      <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { childClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-      <div class="angucomplete-title">Add New Child Client '{{ searchStr }}'</div>
-      </div>
-      </div>
-      </div>
-      </script>
-      </div>
-    </div>
-    {{visits.subName=visitsSelectedchildClient.originalObject.childClient;""}}
+		<!-- <div class="large-padded-row">
 
-    <div class="large-padded-row">
-
-      <div class="padded-row">
-      <script type="text/ng-template" id="/my-custom3-template.html">
-      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-      <input ng-model="searchStr"
-      class="md-block"
-      ng-disabled="disableInput"
-      type="text"
-      placeholder="{{placeholder}}"
-      ng-focus="onFocusHandler()"
-      class="{{inputClass}}"
-      ng-focus="resetHideResults()"
-      ng-blur="hideResults($event)"
-      autocapitalize="off"
-      autocorrect="off"
-      autocomplete="off"
-      ng-change="inputChangeHandler(searchStr)"/>
-      <div class="angucomplete-dropdown" ng-show="showDropdown">
-      <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-      <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-      <div ng-if="imageField" class="angucomplete-image-holder">
-      <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-      <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-      </div>
-      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-      <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-      <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-      </div>
-      <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { IndustryClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-      <div class="angucomplete-title">Add New Client Industry'{{ searchStr }}'</div>
-      </div>
-      </div>
-      </div>
-      </script>
-      </div>
-    </div>
-    {{visits.industry=visitsSelectedindustryClient.originalObject.IndustryClient;""}}
+		  <div class="padded-row">
+			<script type="text/ng-template" id="/my-custom3-template.html">
+			<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+			<input ng-model="searchStr"
+			class="md-block"
+			ng-disabled="disableInput"
+			type="text"
+			placeholder="{{placeholder}}"
+			ng-focus="onFocusHandler()"
+			class="{{inputClass}}"
+			ng-focus="resetHideResults()"
+			ng-blur="hideResults($event)"
+			autocapitalize="off"
+			autocorrect="off"
+			autocomplete="off"
+			ng-change="inputChangeHandler(searchStr)"/>
+			<div class="angucomplete-dropdown" ng-show="showDropdown">
+			<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+			<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+			<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+			<div ng-if="imageField" class="angucomplete-image-holder">
+			<img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+			<div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+			</div>
+			<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+			<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+			<div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+			<div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+			</div>
+			<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { IndustryClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+			<div class="angucomplete-title">Add New Client Industry'{{ searchStr }}'</div>
+			</div>
+			</div>
+			</div>
+			</script>
+		  </div>
+		</div>
+		{{visits.industry=visitsSelectedindustryClient.originalObject.IndustryClient;""}}
 
 
-    <div class="large-padded-row">
+		<div class="large-padded-row">
 
-      <div class="padded-row">
-      <script type="text/ng-template" id="/my-custom4-template.html">
-      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-      <input ng-model="searchStr"
-      class="md-block"
-      ng-disabled="disableInput"
-      type="text"
-      placeholder="{{placeholder}}"
-      ng-focus="onFocusHandler()"
-      class="{{inputClass}}"
-      ng-focus="resetHideResults()"
-      ng-blur="hideResults($event)"
-      autocapitalize="off"
-      autocorrect="off"
-      autocomplete="off"
-      ng-change="inputChangeHandler(searchStr)"/>
-      <div class="angucomplete-dropdown" ng-show="showDropdown">
-      <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-      <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-      <div ng-if="imageField" class="angucomplete-image-holder">
-      <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-      <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-      </div>
-      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-      <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-      <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-      </div>
-      <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { regionClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-      <div class="angucomplete-title">Add New Client Region'{{ searchStr }}'</div>
-      </div>
-      </div>
-      </div>
-      </script>
-      </div>
-    </div>
-    {{visits.regions=visitsSelectedregionsClient.originalObject.regionClient;""}}
+		  <div class="padded-row">
+			<script type="text/ng-template" id="/my-custom4-template.html">
+			<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+			<input ng-model="searchStr"
+			class="md-block"
+			ng-disabled="disableInput"
+			type="text"
+			placeholder="{{placeholder}}"
+			ng-focus="onFocusHandler()"
+			class="{{inputClass}}"
+			ng-focus="resetHideResults()"
+			ng-blur="hideResults($event)"
+			autocapitalize="off"
+			autocorrect="off"
+			autocomplete="off"
+			ng-change="inputChangeHandler(searchStr)"/>
+			<div class="angucomplete-dropdown" ng-show="showDropdown">
+			<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+			<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+			<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+			<div ng-if="imageField" class="angucomplete-image-holder">
+			<img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+			<div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+			</div>
+			<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+			<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+			<div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+			<div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+			</div>
+			<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { regionClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+			<div class="angucomplete-title">Add New Client Region'{{ searchStr }}'</div>
+			</div>
+			</div>
+			</div>
+			</script>
+		  </div>
+		</div>
+		{{visits.regions=visitsSelectedregionsClient.originalObject.regionClient;""}} -->
 
-    <div class="large-padded-row">
+		<div class="large-padded-row">
 
-      <div class="padded-row">
-      <script type="text/ng-template" id="/my-custom5-template.html">
-      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
-      <input ng-model="searchStr"
-      class="md-block"
-      ng-disabled="disableInput"
-      type="text"
-      placeholder="{{placeholder}}"
-      ng-focus="onFocusHandler()"
-      class="{{inputClass}}"
-      ng-focus="resetHideResults()"
-      ng-blur="hideResults($event)"
-      autocapitalize="off"
-      autocorrect="off"
-      autocomplete="off"
-      ng-change="inputChangeHandler(searchStr)"/>
-      <div class="angucomplete-dropdown" ng-show="showDropdown">
-      <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
-      <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-      <div ng-if="imageField" class="angucomplete-image-holder">
-      <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
-      <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
-      </div>
-      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
-      <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
-      <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
-      </div>
-      <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { sfdcidClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
-      <div class="angucomplete-title">Add New Client sfdcid'{{ searchStr }}'</div>
-      </div>
-      </div>
-      </div>
-      </script>
-      </div>
-    </div>
-    {{visits.sfdcid=visitsSelectedSFDCClient.originalObject.sfdcidClient;""}}
-    <!-- {{visitsSelectedregionsClient.originalObject.id}} -->
+			<div class="padded-row">
+				<script type="text/ng-template" id="/my-custom5-template.html">
+				<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+				<input ng-model="searchStr"
+				class="md-block"
+				ng-disabled="disableInput"
+				type="text"
+				placeholder="{{placeholder}}"
+				ng-focus="onFocusHandler()"
+				class="{{inputClass}}"
+				ng-focus="resetHideResults()"
+				ng-blur="hideResults($event)"
+				autocapitalize="off"
+				autocorrect="off"
+				autocomplete="off"
+				ng-change="inputChangeHandler(searchStr)"/>
+				<div class="angucomplete-dropdown" ng-show="showDropdown">
+				<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+				<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+				<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+				<div ng-if="imageField" class="angucomplete-image-holder">
+				<img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+				<div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+				</div>
+				<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+				<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+				<div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+				<div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+				</div>
+				<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { sfdcidClient: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+				<div class="angucomplete-title">Add New Client sfdcid'{{ searchStr }}'</div>
+				</div>
+				</div>
+				</div>
+				</script>
+			</div>
+		</div>
+		{{visits.sfdcid=visitsSelectedSFDCClient.originalObject.sfdcidClient;""}}
+		<!-- {{visitsSelectedregionsClient.originalObject.id}} -->
 
-    <!--client input end-->
-    <!-- {{visitsSelectedClient}} 
-    <div class="result">
-      <div ng-show="visitsSelectedClient">
-      <span ng-if="!selectedClient.originalObject.custom">
-        You selected <span class="bold-span">
-        {{selectedClient.originalObject.parentClient}}</span> which has a country code of <span class="bold-span">{{selectedClient.originalObject.code}}</span>
-      </span>
-      <span ng-if="visitsSelectedClient.originalObject.custom">
-        You selected a custom country <span class="bold-span">{{selectedClient.originalObject.parentClient}}</span>
-      </span>
-      </div>
-    </div> -->
 
     <!-- CSC Personnel input-->
     <!--salesExec-CSCPersonnel-->
