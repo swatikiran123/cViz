@@ -57,9 +57,7 @@
 									</span>
 									<span class="agenda-session-name">
 									<span ng-switch on="session.session.type.toLowerCase()">
-									<a ng-switch-when="presentation" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
-									<a ng-switch-when="discussion" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
-									<a  ng-switch-when="floor-walk" href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
+									<a ng-switch-default href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
 									<a ng-switch-when="dinner" href="#/sessions/{{session._id}}/details" >Dinner</a>
 									<a ng-switch-when="lunch" href="#/sessions/{{session._id}}/details" >Lunch</a>
 									<a  ng-switch-when="tea-break" href="#/sessions/{{session._id}}/details" >Tea-Break</a>
@@ -86,7 +84,7 @@
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
 													</span></div{{session.feedbackElg}}-->
 													<div ssnfbdir visit-id="{{visit_id}}" ftmplate="{{session.feedbackTemplate}}"session-id="{{session._id}}" feedback-elg="{{finalData}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}"></div>
-                                             {{session.status}}
+                                             {{session.status.toUpperCase()}}
                                        
                                              <div ng-if="group=='admin' || group=='vManager'">
                                              <span ng-class="[getdiv(session.status)]" data-toggle="modal" data-target="#myModal{{session._id}}">Move Session</span>
@@ -104,9 +102,9 @@
 											            </div>
 											           <div class="modal-body">
                                                             <form  align="center">
-				                                 -45m&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" ng-model="rtime">&nbsp;45m  &nbsp;&nbsp;
+				                                 -45min&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" ng-model="rtime">&nbsp;45min  &nbsp;&nbsp;
 				                                 <br>
-				                                 {{rtime}} timeeeee
+				                                 {{rtime}} min
 				                           </form>
                                                        </div>
 											            <div class="modal-footer">

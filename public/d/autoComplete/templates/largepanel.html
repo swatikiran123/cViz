@@ -2,12 +2,14 @@
   <br>
   <div class="panel panel-default" ng-if="userModel!=null">
   {{title}}
+  <div class="closeicon pull-right">
+  <a class="table-btn" ng-click="clearInput('ex15')" tooltips tooltip-template="Remove {{title}}"><li class="fa fa-times fa-lg" /></a>
+  </div>
         <div class="panel-body ">
 
             <div class="pull-left">
              <img ng-src="{{userModel.avatar}}" class="img-circle userpiclg"> </div>
             <div class="panelpdlg">
-            
               <div class="text-highlight">{{userModel.name.first}} {{userModel.name.last}}</div>
               <div class="text-xsmall">{{userModel.email}}</div>
               <div class="text-xsmall">{{userModel.jobTitle}}</div>

@@ -175,7 +175,7 @@
             <md-input-container class="md-block" flex-gt-sm>
             <label>First Name</label>
             <input md-maxlength="20" required name="first" 
-            ng-model="userdata.name.first">
+            ng-model="firstName">
             <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
              <div class="messagenotify">
               <div ng-message='required'>First Name is mandatory field.</div>
@@ -356,7 +356,7 @@
     <i class="fa fa-floppy-o"></i>  Cancel
   </md-button> 
 
-  <md-button class="md-primary md-raised pull-right" ng-click="addvisitordata(userdata,emailId,influencedata,avatar)" ng-disabled="profileForm.$invalid">
+  <md-button class="md-primary md-raised pull-right" ng-click="addvisitordata(userdata,firstName,emailId,influencedata,avatar)" ng-disabled="profileForm.$invalid">
   <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Add Visitor
 </md-button>
 </div>

@@ -142,6 +142,18 @@ angular.module('userAutoDirective', [])
       console.log($scope.console10);
     }
 
+    $scope.clearInput = function (id) {
+      if (id) {
+        $scope.$broadcast('angucomplete-alt:clearInput', id);
+        $scope.userModel = null;
+        $scope.userEmail = null;
+        $scope.userId = null;
+      }
+      else{
+        $scope.$broadcast('angucomplete-alt:clearInput');
+      }
+    }
+
     $scope.selectedUser = function(selected) {
       if (selected) {
         // window.alert('You have selected ' + selected.originalObject.email);
