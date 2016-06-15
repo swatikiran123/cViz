@@ -176,11 +176,6 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $scope.adminInitVman= true;
   }
 
-  //for password visibility
-  $http.get('/api/v1/secure/admin/groups/'+$scope.groupId).success(function(response) {
-    $scope.groupName = response.name;
-  });
-
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
     var i= 0;
@@ -1807,7 +1802,7 @@ function toTitleCase(string)
       userdata.avatar = avatar;
     }
     userdata.email = emailId;
-    userdata.local.email = emailId;
+    // userdata.local.email = emailId;
     userdata.name.first = firstName;
     userdata.association = 'customer';
     userdata.contactNo = $scope.contactNo;
