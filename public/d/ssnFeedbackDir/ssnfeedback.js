@@ -19,6 +19,7 @@ fb.controller('ssnfbCtrl',function($scope, $routeParams, $http,$filter, $locatio
 
   $http.get('/api/v1/secure/feedbacks/').success(function(response) {
     $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, sessionid: $scope.sessionId, feedbackOn: "session",providedBy:$rootScope.user._id });
+    console.log($scope.feedbackSamplelist);
   });
 });
 

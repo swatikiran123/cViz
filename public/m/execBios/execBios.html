@@ -22,8 +22,9 @@
 <div class="divtop">
 
     <div class="client-rep">
+    <!-- {{(clientData|filter:query).length}} -->
         <div class="heading">CLIENT REPRESENTATIVES:   </div>
-
+            <div ng-show="(clientData|filter:query).length==0">No Client Representatives Found</div>
             <div class="list-group">
                 <div href="#" class="list-group-item" ng-repeat="clientRep in clientData | filter:query" ng-click="collapseDiv($index,'client')">
                     <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
@@ -41,7 +42,9 @@
     </div>
 </div>
 <div class="client-rep">
+    <!-- {{(cscData|filter:query).length}} -->
     <div class="heading">CSC REPRESENTATIVES</div>
+    <div ng-show="(cscData|filter:query).length==0">No CSC Representatives Found</div>
     <div class="list-group">
         <div href="#" class="list-group-item" ng-repeat="cscRep in cscData | filter:query" ng-click="collapseDiv($index,'cscRep')">
             <div class="representative-pic col-xs-2 col-sm-1 col-md-1">

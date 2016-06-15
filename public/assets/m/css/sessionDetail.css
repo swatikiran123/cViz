@@ -24,6 +24,9 @@ position: relative;
     width: 100%;
 }
 
+#session-details-page a {
+  color: black;
+}
 .session-time {
      color: #850057;
      float: left;
@@ -92,7 +95,7 @@ position: relative;
 }
 .session-heading {
 
-    color: purple;
+    color: black;
     font-family: workSansLight;
     font-size: 1.4em;
     font-weight: bold;

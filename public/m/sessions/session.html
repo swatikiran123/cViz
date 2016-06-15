@@ -5,18 +5,28 @@
 <div class="divtop">
 <div id="session-details-page">
 
-    <div class="session-header">
+<!--     <div class="session-header">
         <div class="time-session-name-div">
-            <div class="session-time">{{session.session.startTime | date : "dd MMM yyyy"}}</div>
-            <div class="session-name">{{session.session.title | uppercase}}</div>
+        <br>
+            <div class="session-time" class="pull-left">{{session.session.startTime | date : "dd MMM yyyy"}}</div>
         </div>
         <br>
         <div class="venue-feedback-div">
             <div class="session-venue"><i class="fa fa-map-marker"></i>{{session.session.location}}</div>
-            <div class="feedback-button">Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
+            <div class="feedback-button" >Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
         </div>
-    </div>
+    </div> -->
 
+    <div>
+    <br>
+    <span class="pull-left" style="color: black;font-size: 15px;">&nbsp;&nbsp;{{session.session.startTime | date : "dd MMM yyyy"}}</span>
+    <span class="pull-right" style="color: black;font-size: 15px;" ><i class="fa fa-map-marker"></i>&nbsp;{{session.session.location}}</span>
+    <br>
+     <br>
+       <span class="pull-right" ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{session.feedbackElg}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}" visit-id="{{session.visit}}"></span>
+  
+
+    </div>
     <div class="session-contents">
         <div class="session-description-div">
             <div class="session-heading">

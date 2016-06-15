@@ -78,7 +78,7 @@
 											<userview user-id="session.session.owner" user-model view-mode="bullet-small"></userview>
 											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
-											+{{session.invitees.length}}
+											<label ng-if="session.invitees.length > 0">+{{session.invitees.length}}</label>
                                             <!--div ng-if="group=='customer' || group=='exec'">
 											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
