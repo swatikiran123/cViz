@@ -89,6 +89,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.clientId='';
   $scope.isSaving= false;
   $scope.j=[];
+  $scope.kData=[];
 
   $scope.visitGrid=false;
   $scope.navVisit ='';
@@ -221,8 +222,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   //   $scope.VisitsAll = response;
   // });
 
-  $scope.visitAllvMan = function() {
-    $scope.VisitVmag = true;
+$scope.visitAllvMan = function() {
+  $scope.VisitVmag = true;
     // var today = new Date();
     // console.log(today);
     $http.get('/api/v1/secure/visits').success(function(response) {
@@ -230,7 +231,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
       // for (var i = 0; i < response.length; i++) {
       //   if((response[i].startDate <= today && response[i].endDate >= today) || (response[i].startDate >= today && response[i].endDate >= today)) {
-          $scope.VisitsAllList = response;
+        $scope.VisitsAllList = response;
         //   console.log($scope.VisitsAllList)
         // }
      // }
@@ -264,48 +265,90 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
          for (var i =0 ;i<$scope.clientData.length;  i++) {
            $scope.j.push({
             id: $scope.clientData[i]._id,role:'Client',
-            feedbackElg: false
+            feedbackElg: true
           });
          };
-         // console.log($scope.j);
+         console.log($scope.j);
+
        })
-      }else {
-        //if exists 
-        // console.log(response.overallfeedback);
-        for (var i =0 ;i<response.overallfeedback.length;  i++) {
-          if (response.overallfeedback[i].feedbackElg==="true" ) {
-                    // console.log("response.overallfeedback[i].feedbackElg is true")
-                    $scope.feedbackElg =true;
-                  }else
-                  $scope.feedbackElg =false;
-
-                  $scope.j.push({
-                    id: response.overallfeedback[i].id,
-                    role:response.overallfeedback[i].role,
-                    feedbackElg: $scope.feedbackElg
-                  });
-                };
-        // $scope.j = response.overallfeedback;
-        // console.log($scope.j)
       }
-    })
-  }
 
-  $scope.selectedList = [];
+      else if(response.overallfeedback.length !=0){
+        //first time 
+        $scope.checkOverLaa=response.overallfeedback;
+        
+        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+          cache: true
+        }).success(function(response) {
+          console.log(response)
+          $scope.cscData = response["employees"];
+          $scope.clientData = response["clients"];
+          
+          for (var i =0 ;i<$scope.cscData.length;  i++) {
+           $scope.kData.push({
+            id: $scope.cscData[i]._id,
+            role:'Employee',
+            feedbackElg: false});
+         };
 
-  $scope.visitorId = "";
-  $scope.visitor = "";
-  $scope.visitorUser =  "";
+         for (var i =0 ;i<$scope.clientData.length;  i++) {
+           $scope.kData.push({
+            id: $scope.clientData[i]._id,role:'Client',
+            feedbackElg: true
+          });
+         };
 
-  $scope.agmId = "";
-  $scope.agmEmail = "";
-  $scope.agmUser =  "";
-  $scope.comment = [];
+         console.log($scope.kData);//all ppl are here
 
-  if($scope.mode == 'edit')
-  {
-    var refresh1 = function()
-    { 
+         for (var i = 0; i < $scope.kData.length; i++) {
+          if ($scope.kData[i].id != ($scope.checkOverLaa[i]== null|| $scope.checkOverLaa[i]== undefined)) 
+          {
+           $scope.j.push({
+            id: $scope.kData[i].id,
+            role:$scope.kData[i].role,
+            feedbackElg: $scope.kData[i].feedbackElg
+          });
+         }
+          else if ($scope.kData[i].id === $scope.checkOverLaa[i].id ) {
+            if ($scope.checkOverLaa[i].feedbackElg==="true" ) {
+              $scope.feedbackElg =true;
+              $scope.j.push({
+                id: $scope.checkOverLaa[i].id,
+                role:$scope.checkOverLaa[i].role,
+                feedbackElg: $scope.feedbackElg
+              });
+            }
+            else{
+              $scope.feedbackElg =false;
+              $scope.j.push({
+                id: $scope.checkOverLaa[i].id,
+                role:$scope.checkOverLaa[i].role,
+                feedbackElg: $scope.feedbackElg
+              });
+            }
+          }
+       };
+     })
+}
+
+})
+}
+
+$scope.selectedList = [];
+
+$scope.visitorId = "";
+$scope.visitor = "";
+$scope.visitorUser =  "";
+
+$scope.agmId = "";
+$scope.agmEmail = "";
+$scope.agmUser =  "";
+$scope.comment = [];
+
+if($scope.mode == 'edit')
+{
+  var refresh1 = function()
+  { 
     // console.log($scope.visitid);
 
     $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
@@ -323,9 +366,9 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   refresh1();
 }
 var refresh = function() {
-    $scope.setTimeline = function(time){
-      $scope.VisitVmag = false;
-      $scope.allViei=true;
+  $scope.setTimeline = function(time){
+    $scope.VisitVmag = false;
+    $scope.allViei=true;
       //console.log("im here")
       $scope.timeline = time;
       // console.log("setting timeline to " + $scope.timeline )
@@ -545,8 +588,8 @@ var refresh = function() {
  $scope.clientIdData=visits.client._id;
  $scope.parentSelected= visits.client.name;
  $scope.childSelected= visits.client.subName;
-visits.industry= visits.client.industry;
-visits.regions= visits.client.regions;
+ visits.industry= visits.client.industry;
+ visits.regions= visits.client.regions;
  $scope.sfdcidSelected= visits.client.sfdcid;
  if (visits.client.logo!= null) {
   $scope.showAvatar =true;
@@ -558,9 +601,9 @@ visits.regions= visits.client.regions;
   $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
 // })
 
-$scope.selectedList = visits.offerings;
-if(response.status == "draft"){
-  $scope.ClientDraft= true;
+  $scope.selectedList = visits.offerings;
+  if(response.status == "draft"){
+    $scope.ClientDraft= true;
     // console.log("draft");
     if (response.logo!= null) {
       $scope.showAvatar =true;
@@ -1210,8 +1253,8 @@ break;
         $location.path("/visits/"+$scope.visits._id+"/edit"); 
       }
     })
-      .error(function(data, status){
-        growl.error("Error updating visit");
+.error(function(data, status){
+  growl.error("Error updating visit");
     }); // Http put visit ends
   }; // Update method ends
 
@@ -1273,7 +1316,7 @@ $scope.updateClientStatus=function () {
         growl.error("Error updating client");
     }); // http put keynoges ends
     })
-  $scope.ClientDraft=false;
+$scope.ClientDraft=false;
 }
    //add vmanager
    $scope.AddVmanager=function(){
@@ -1967,26 +2010,26 @@ function toTitleCase(string)
       $timeout(function () { $scope.message = ''; }, 3000);
     }
   })
-    }
+}
 
-    if(visitorDef.visitorId==null)
-    {
-      $scope.showFlag = "notRegisteredUser";
-      var substring = "@";
-      console.log(emailid.indexOf(substring));
-      if(emailid.indexOf(substring) == -1)
-      {
-        $scope.firstName = emailid;
-      }
-      if(emailid.indexOf(substring) > -1)
-      {
-        $scope.emailId = emailid;
-      }
+if(visitorDef.visitorId==null)
+{
+  $scope.showFlag = "notRegisteredUser";
+  var substring = "@";
+  console.log(emailid.indexOf(substring));
+  if(emailid.indexOf(substring) == -1)
+  {
+    $scope.firstName = emailid;
+  }
+  if(emailid.indexOf(substring) > -1)
+  {
+    $scope.emailId = emailid;
+  }
 
-      $scope.influencedata = influencedata;
-      $scope.designationdata = designationdata;
-      $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
-    }  
+  $scope.influencedata = influencedata;
+  $scope.designationdata = designationdata;
+  $scope.message = "Client Does Not Exist.Please Add new client for this visit.";
+}  
     //if not found add visitor-post that and get id
     visitorDef.influence='';
     visitorDef.visitorId='';
@@ -2245,22 +2288,22 @@ $scope.childClientChanged = function(str) {
 
   $scope.industryClientChanged = function(str) {
     $scope.industryClientString = str;
-  console.log($scope.industryClientString);
-  if($scope.industryClientString!=null || $scope.industryClientString!="")
-  {
-    $scope.industryClient = false;
-    $scope.errindustryMsg = "";
-  }
+    console.log($scope.industryClientString);
+    if($scope.industryClientString!=null || $scope.industryClientString!="")
+    {
+      $scope.industryClient = false;
+      $scope.errindustryMsg = "";
+    }
 
-  if($scope.industryClientString==null || $scope.industryClientString=="")
-  {
-    $scope.industryClient = true;
-    $scope.errindustryMsg = "Industry is Mandatory field";
-  }
-} 
+    if($scope.industryClientString==null || $scope.industryClientString=="")
+    {
+      $scope.industryClient = true;
+      $scope.errindustryMsg = "Industry is Mandatory field";
+    }
+  } 
 
-$scope.regionClientChanged = function(str) {
-  $scope.regionClientString = str;
+  $scope.regionClientChanged = function(str) {
+    $scope.regionClientString = str;
   // console.log($scope.regionClientString);
   if($scope.regionClientString!=null || $scope.regionClientString!="")
   {
@@ -2702,7 +2745,7 @@ $scope.saveoverallfeed=function(){
       growl.info(parse("Overall Feedback submitted successfully for visit: "+inData.title));
       $location.path("visits/list"); 
     })
-  }
+}
 }])
 
 //Autocompleate - Directive
@@ -2737,8 +2780,8 @@ visitsApp.directive("feedback", ["FeedbackService", "$timeout", function (Feedba
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //Autocompleate - Directive
 visitsApp.directive("session", ["SessionService", "$timeout", function (SessionService,$timeout) {
@@ -2806,8 +2849,8 @@ visitsApp.directive("keynote", ["KeynoteService", "$timeout", function (KeynoteS
           event.preventDefault();
         }
       });
-    }
-  };
+}
+};
 }]);
 //ui-date picker - Directive
 visitsApp.directive('uiDate', function() {
