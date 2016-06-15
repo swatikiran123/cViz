@@ -162,6 +162,7 @@ $scope.pushSession = function(sessionId,rtime){
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
 	$scope.arrayData=[];
 	console.log($rootScope.user);
+
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
 		cache: true
 	}).success(function(response) {
@@ -171,9 +172,12 @@ $scope.pushSession = function(sessionId,rtime){
 		$scope.supporter =$scope.session.session.supporter;
 		// console.log($scope.session.session.owner);
 		// console.log($scope.owner);
+		if($scope.owner!=null)
+		{
 		$scope.arrayData.push($scope.owner);
+		}
 	});
-
+	// $scope.visitDataId = $routeParams.id;
 	$scope.collapseDiv = function(index, text) {
 		var ele = angular.element(document.getElementById(text + index));
 		ele.toggle();
