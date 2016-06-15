@@ -246,6 +246,10 @@ $scope.visitAllvMan = function() {
     $http.get('/api/v1/secure/visitSchedules/visit/'+$routeParams.id).success(function(response) {
       $scope.sessiondbId = response;
     }); 
+  }
+  if($scope.mode == 'edit')
+  {
+
     $http.get('/api/v1/secure/visits/' + id).success(function(response){
 
       if(response.overallfeedback.length=== 0){
@@ -301,34 +305,47 @@ $scope.visitAllvMan = function() {
          console.log($scope.kData);//all ppl are here
 
          for (var i = 0; i < $scope.kData.length; i++) {
-          if ($scope.kData[i].id != ($scope.checkOverLaa[i]== null|| $scope.checkOverLaa[i]== undefined)) 
+          if ($scope.checkOverLaa[i]== null || $scope.checkOverLaa[i]== undefined) 
           {
-           $scope.j.push({
-            id: $scope.kData[i].id,
-            role:$scope.kData[i].role,
-            feedbackElg: $scope.kData[i].feedbackElg
-          });
-         }
-          else if ($scope.kData[i].id === $scope.checkOverLaa[i].id ) {
-            if ($scope.checkOverLaa[i].feedbackElg==="true" ) {
-              $scope.feedbackElg =true;
-              $scope.j.push({
-                id: $scope.checkOverLaa[i].id,
-                role:$scope.checkOverLaa[i].role,
-                feedbackElg: $scope.feedbackElg
-              });
+            // console.log("im in kData[i].id != ($scope.checkOverLaa")
+             $scope.j.push({
+              id: $scope.kData[i].id,
+              role:$scope.kData[i].role,
+              feedbackElg: $scope.kData[i].feedbackElg
+            });
+           }
+           else if ($scope.kData[i].id === $scope.checkOverLaa[i].id ) {
+            // console.log("im in kData[i].id == ($scope.checkOverLaa")
+
+              if ($scope.checkOverLaa[i].feedbackElg === "true" ) {
+                $scope.feedbackElg =true;
+                $scope.j.push({
+                  id: $scope.checkOverLaa[i].id,
+                  role:$scope.checkOverLaa[i].role,
+                  feedbackElg: $scope.feedbackElg
+                });
+              }
+              else{
+                $scope.feedbackElg =false;
+                $scope.j.push({
+                  id: $scope.checkOverLaa[i].id,
+                  role:$scope.checkOverLaa[i].role,
+                  feedbackElg: $scope.feedbackElg
+                });
+              }
             }
             else{
+              // console.log($scope.kData[i].id+ "im in else"+$scope.checkOverLaa[i].id);
+
               $scope.feedbackElg =false;
               $scope.j.push({
-                id: $scope.checkOverLaa[i].id,
-                role:$scope.checkOverLaa[i].role,
-                feedbackElg: $scope.feedbackElg
+                id: $scope.kData[i].id,
+                role:$scope.kData[i].role,
+                feedbackElg: $scope.kData[i].feedbackElg
               });
             }
-          }
-       };
-     })
+          };
+        })
 }
 
 })
