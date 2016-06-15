@@ -51,8 +51,8 @@
       <td><!-- <div ng-repeat="regions in clients.regions track by $index"> -->{{clients.regions}}</td>
       <!--       <td> <div ng-repeat="offerings in clients.offerings track by $index">{{offerings}}</div></td> -->
       <td>
-        <!-- <a class="table-btn" href="#/clients/{{clients._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
-        <a class="table-btn" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="Edit Client"><span class="fa fa-edit fa-lg"/></a>
+        <a class="table-btn" ng-if="isSaving" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="View Client"><span class="fa fa-eye fa-lg" /></a>
+        <a class="table-btn" ng-if="!isSaving" href="#/clients/{{clients._id}}/edit" tooltips tooltip-template="Edit Client"><span class="fa fa-edit fa-lg"/></a>
         <!-- <div ng-if="!visitGrid"> --><a class="table-btn" ng-click="delete(clients)" confirm-dialog header-text="Delete Client" content="Are you sure you want to delete the client with client name <b>{{clients.name}} ? </b>"
         yes-text="Ok" no-text="Cancel" ng-if="!isSaving"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Client"/></a></div>
       </td>

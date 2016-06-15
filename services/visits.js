@@ -70,6 +70,8 @@ function getMyVisits(thisUser, timeline, limit){
 
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
+	var drafts_filter = {};
+	var user_filter = {};
 	var userId = thisUser._id;
 	var userSessions = "";
 
@@ -95,10 +97,47 @@ function getMyVisits(thisUser, timeline, limit){
 				logger.dump('test', 2,"Found exec!!!");
 			}
 			else if(secure.isInAnyGroups(thisUser, "admin")){
-				logger.dump('test', 2,"Found vManager!!!");
+
+				logger.dump('test', 2,"Found admin!!!");
+				//console.log(test._id);
+				// filter = {
+				// 	_id:
+				// 		{ $nin:
+				// 			[
+				// 				'_id',
+
+				// 				{
+				// 					$and:
+				// 					[
+				// 						{createBy: {$ne: userId}},
+				// 						{status: {$regex: /draft/, $options: 'm'}} // like draft
+				// 					]
+				// 				}
+				// 			]
+				// 		}
+
+
+				// 	// 	{$or:
+				// 	// 		[
+				// 	// 			{agm: userId}
+				// 	// 			, {anchor: userId}
+				// 	// 			, {secondaryVmanager: userId}
+				// 	// 			, {'client.salesExec': userId}
+				// 	// 			, {'client.accountGM': userId}
+				// 	// 			, {'client.industryExec': userId}
+				// 	// 			, {'client.globalDelivery': userId}
+				// 	// 			, {'client.cre': userId}
+				// 	// 			, {'_id': { $in: sessionVisits }}
+				// 	// 			, {'invitees': userId }
+				// 	// 		]
+				// 	// 	}
+				// 	// ]
+				// };
+				// //console.log(_id);
+				// console.log(filter);
 			}
-			else if( secure.isInAnyGroups(thisUser, "user,vManager")){
-				logger.dump('test', 2, "Found user!!!");
+			else if( secure.isInAnyGroups(thisUser, "vManager")){
+				logger.dump('test', 2, "Found vManager!!!");
 				filter = {
 					$or: [
 					{createBy: userId}
@@ -115,8 +154,28 @@ function getMyVisits(thisUser, timeline, limit){
 					]
 				};
 			} // end of secure if
+			else if( secure.isInAnyGroups(thisUser, "user")){
+				logger.dump('test', 2, "Found user!!!");
+				filter = {
+					$or: [
+					{createBy: userId}
+					, {agm: userId}
+					, {anchor: userId}
+					, {secondaryVmanager: userId}
+					, {'client.salesExec': userId}
+					, {'client.accountGM': userId}
+					, {'client.industryExec': userId}
+					, {'client.globalDelivery': userId}
+					, {'client.cre': userId}
+					, {'_id': { $in: sessionVisits }}
+					, {'invitees': userId }
+					]
+				};
+			}
+
 
 			logger.dump('test', 0, "Find visits with filter");
+
 			logger.dump('test', filter);
 
 			var visitsByTimeline = new Array();
