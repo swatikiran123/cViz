@@ -56,8 +56,8 @@
       <td><div userdisplay view-mode="nameonly" user-id="feedback.createBy"></div></td>
       <td>{{feedback.createOn | date:'dd MMM yyyy'}}</td>
       <td>
-       <!--  <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/show"><span class="fa fa-eye fa-lg" /></a> -->
-        <a class="table-btn" href="#/feedbackTmpl/{{feedback._id}}/edit" tooltips tooltip-template="Edit Template"><span class="fa fa-edit fa-lg" /></a>
+        <a class="table-btn" ng-if="isSaving" href="#/feedbackTmpl/{{feedback._id}}/edit" tooltips tooltip-template="View Template"><span class="fa fa-eye fa-lg" /></a>
+        <a class="table-btn" ng-if="!isSaving" href="#/feedbackTmpl/{{feedback._id}}/edit" tooltips tooltip-template="Edit Template"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(feedback)" confirm-dialog header-text="Delete Feedback" content="Are you sure you want to delete the feedback with feedback title <b>{{feedback.title}} ? </b>" 
         yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Template" ng-if="!isSaving"/></a>
         <a class="table-btn" ng-click="showFeedbackTemp($event,feedback._id)" tooltips tooltip-template="View Template" ng-if="!isSaving"><span class="fa fa-comments fa-lg"/></a>

@@ -69,8 +69,8 @@
       <td class="hidden-xs">{{keynote.createOn | DateFormat:"ddd, DD MMM YYYY" }}</td>
       <td class="hidden-xs">ToBeDefined</td>
       <td>
-       <!--  <a class="table-btn" href="#/keynotes/{{keynote._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
-        <a class="table-btn" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="Edit Keynote"><span class="fa fa-edit fa-lg" /></a>
+        <a class="table-btn" ng-if="isSaving" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="View Keynote"><span class="fa fa-eye fa-lg" /></a>
+        <a class="table-btn" ng-if="!isSaving" href="#/keynotes/{{keynote._id}}/edit" tooltips tooltip-template="Edit Keynote"><span class="fa fa-edit fa-lg" /></a>
         <a class="table-btn" ng-click="delete(keynote)" confirm-dialog header-text="Delete Keynote" content="Are you sure you want to delete the keynote with keynote title <b>{{keynote.title}} ? </b>" 
         yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Keynote"/ ng-if="!isSaving"></a>
         <a class="table-btn" ng-click="copy(keynote)" tooltips tooltip-template="Copy Keynote" ng-if="!isSaving"><span class="fa fa-files-o fa-lg" /></a>

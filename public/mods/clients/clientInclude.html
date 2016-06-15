@@ -238,6 +238,7 @@ ng-options="data1 for data1 in regions" class="form-control">
         </div>
       </div> -->
       <!-- Button -->
+
       {{regionData=clients.regions;""}}
       
 <div ng-if="regionData == null">
@@ -248,13 +249,13 @@ ng-options="data1 for data1 in regions" class="form-control">
   {{$parent.regionDataClient=false;""}}
 </div> 
 
-      <div class="form-group pull-right" ng-if="clientModule" >
-        <button type="reset" class="btn btn-warning pull-right" ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
-          yes-text="Ok" no-text="Cancel">Cancel</button>&nbsp;&nbsp;
 
-          <button type="submit" class="btn btn-success pull-right" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionDataClient">
-            Submit
-          </button><!-- {{industryClient}}{{industry}}{{regions}} -->
+      <br>
+      <div class="pull-right" ng-if="clientModule" >
+        <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
+          yes-text="Ok" no-text="Cancel">Cancel</button> 
+
+          <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionClient"> Submit</button><!-- {{industryClient}}{{industry}}{{regions}} -->
         </div>
       </fieldset>
     </form>
