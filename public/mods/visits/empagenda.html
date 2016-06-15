@@ -100,6 +100,7 @@
     <div class="data-form">
 
      <form name="visitsForm" id="visitsForm" class="form-vertical" >
+          <fieldset ng-disabled="true">
 
         <!--panel-one-->
         <div class="panel panel-default visdetail-panel">
@@ -133,7 +134,7 @@
         </div> addClientLogo -->
         <br>
         <div class="row">
-          <fieldset ng-disabled="isSaving && mode ==='edit'">
+          <!-- <fieldset ng-disabled="true"> -->
 
             <div class="col-md-4 text-center">
               <br>
@@ -236,7 +237,7 @@
 </div>  
 </div>
 </div>
-</fieldset>
+<!-- </fieldset> -->
 
 
 <div class="large-padded-row">
@@ -874,6 +875,8 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
      yes-text="Ok" no-text="Cancel">Reject</button></div>
    </div>
  </div>
+          </fieldset>
+
 </form>
 
 </div>
@@ -889,32 +892,32 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 <form name="visitorForm" id="visitorForm" class="form-vertical" novalidate>
   <fieldset ng-disabled= "true">
     {{check=true;""}}
-    <!-- {{$parent.submitAddVisitor=true;""}} -->
-    <!-- {{submitAddVisitor}} {{submitAddEmail}}-->
-    <!--visvalid to validate if Atleast a visitor added/not -->
-    <div class="row">
-      <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
-      <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
-        <div class="well" ng-show="closeNoteTipVis">
-          Note: Atleast a visitor needs to be added.
-          <div class=" pull-right closeicon">
-            <a class="table-btn" ng-click="closeNoteTipV()"><li class="fa fa-times fa-lg" /></a>
-          </div>
+  <!-- {{$parent.submitAddVisitor=true;""}} -->
+  <!-- {{submitAddVisitor}} {{submitAddEmail}}-->
+  <!--visvalid to validate if Atleast a visitor added/not -->
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+      <div class="well" ng-show="closeNoteTipVis">
+        Note: Atleast a visitor needs to be added.
+        <div class=" pull-right closeicon">
+          <a class="table-btn" ng-click="closeNoteTipV()"><li class="fa fa-times fa-lg" /></a>
         </div>
       </div>
     </div>
-    <br>
-    <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
-      <thead class="data-grid-header">
-        <tr>
-          <th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
-          <th><span  class="glyphicon"></span>Influence</th>
-          <th><span  class="glyphicon"></span>Designation</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="data-grid-data">
-        <tr>
+  </div>
+  <br>
+  <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
+    <thead class="data-grid-header">
+      <tr>
+        <th><span  class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Visitor Email-Id</th>
+        <th><span  class="glyphicon"></span>Influence</th>
+        <th><span  class="glyphicon"></span>Designation</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="data-grid-data">
+      <tr>
 <!--       <td>
         <form name="visitorForm">
         <input type="email" name="email" ng-model="visitorDef.visitorId" class="form-control" required>
@@ -1033,7 +1036,10 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
  <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default visdetail-panel">
+        <div class="panel-heading visdetail-panelheader">
+          <h3 class="panel-title"> <b>Visior Information</b></h3>
+        </div>
         <div class="panel-body">
          <form name="profileForm">
            <div class="row">
@@ -1060,7 +1066,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
             <md-input-container class="md-block" flex-gt-sm>
             <label>First Name</label>
             <input md-maxlength="20" required name="first" 
-            ng-model="userdata.name.first">
+            ng-model="firstName">
             <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
              <div class="messagenotify">
               <div ng-message='required'>First Name is mandatory field.</div>
@@ -1171,13 +1177,13 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
       <div class="col-md-12">
         <md-input-container class="md-block" style="height: auto;">
         <label>Client Bio</label>
-        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" required name="summary" 
+        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" name="summary" 
         rows="4" aria-multiline="true" style="height: 116px;"></textarea>
-        <div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
+        <!--div ng-messages="profileForm.summary.$error" ng-show="profileForm.summary.$touched || !profileForm.summary.$pristine">
          <div class="messagenotify">
           <div ng-message='required'>Client Bio is mandatory field.</div>
           <div ng-message="md-maxlength">The Client Bio has to be less than 2000 characters long.</div>
-          <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div>
+          <div ng-message="minlength">The Client Bio should contain minimum 30 characters</div></div></div-->
         </md-input-container>
       </div>       
 
@@ -1241,7 +1247,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
     <i class="fa fa-floppy-o"></i>  Cancel
   </md-button> 
 
-  <md-button class="md-primary md-raised pull-right" ng-click="addvisitordata(userdata,emailId,influencedata,avatar)" ng-disabled="profileForm.$invalid">
+  <md-button class="md-primary md-raised pull-right" ng-click="addvisitordata(userdata,firstName,emailId,influencedata,avatar)" ng-disabled="profileForm.$invalid">
   <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Add Visitor
 </md-button>
 </div>
@@ -1270,18 +1276,32 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
-    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+  yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
   </button>
-  <button type="submit" class="btn btn-success"
-  ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid" ng-if="visitGrid">Submit
-</button>
-<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-yes-text="Ok" no-text="Cancel">Cancel</button>
-<button type="submit" class="btn btn-info"
-ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton ">Save to Draft
+      <button type="submit" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" ng-if="visitGrid">Submit
+  </button>
+  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+  yes-text="Ok" no-text="Cancel">Cancel</button>
+  <button type="submit" class="btn btn-info"
+  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton || status == 'reject'">Save to Draft
 </button>
 </div>
+</div>
+<br><br><br>
+<div class="panel panel-default" ng-if="adminInitVman && (status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' ||status === 'reject')">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Reject Visit</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+   If you want to Reject this Visit, please click <b>Reject</b>
+   <div class="pull-right"><button type="submit" class="btn btn-warning pull-right"
+   ng-if="adminInitVman" ng-click="reject();showChatBox($event);" confirm-dialog header-text="Reject Visit" content="Are you sure you want to Reject this form ?"
+  yes-text="Ok" no-text="Cancel">Reject</button></div>
+ </div>
 </div>
 </fieldset>
 
