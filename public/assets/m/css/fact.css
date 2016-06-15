@@ -272,17 +272,19 @@ padding-bottom: 20px;
 .markerText1 {
   font-family: workSansMedium;
   font-weight: bold;
-  bottom: -1px;
+  bottom: -3px;
   left: -2px;
   position: absolute;
  color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
-
+.markerText2{
+  left: 3px;
+}
 .markerText2, .markerText4, .markerText5 {
    font-family: workSansMedium;
   font-weight: bold;
-  bottom: -2px;
+  bottom: -3px;
   position: absolute;
 
     color: black;
@@ -292,8 +294,8 @@ padding-bottom: 20px;
 .markerText3 {
    font-family: workSansMedium;
   font-weight: bold;
-  bottom: -7px;
-  left: -21px;
+  bottom: -3px;
+  left: -30px;
   position: absolute;
  color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -302,7 +304,7 @@ padding-bottom: 20px;
 .markerText6 {
    font-family: workSansMedium;
   font-weight: bold;
-  bottom: -10px;
+  bottom: -3px;
   position: absolute;
   right: 5px;
    color: black;
@@ -312,7 +314,7 @@ padding-bottom: 20px;
 .markerText7 {
    font-family: workSansMedium;
   font-weight: bold;
-  bottom: -10px;
+  bottom: -3px;
   left: -2px;
   position: absolute;
      color: black;
