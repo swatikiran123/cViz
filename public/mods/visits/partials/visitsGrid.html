@@ -83,10 +83,13 @@
               tooltips tooltip-template="Add Sessions"><span class="fa fa-calendar fa-lg" /></a>
               <a class="table-btn" href="#/visits/{{visit._id}}/viewFeedbacks" ng-if="visitGrid" tooltips tooltip-template="View Feedbacks"><span class="fa fa-comments fa-lg"/></a>
 
-              <a class="table-btn" href="#/visits/{{visit._id}}/overallFeedbacks" ng-if="visitGrid" tooltips tooltip-template="Overall Feedbacks"><span class="fa-stack fa-lg">
+              <a class="table-btn" href="#/visits/{{visit._id}}/overallFeedbacks" ng-if="visitGrid" tooltips tooltip-template="Overall Feedbacks">
+                <span class="fa fa-flag fa-lg"/>
+              <!--span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-              </span></a>
+              </span-->
+            </a>
             
             </div>
 
