@@ -173,9 +173,13 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   }
   if ($rootScope.user.groups.indexOf("admin") > -1) {
     $scope.adminInitVman= true;
-    
-
   }
+
+  //for password visibility
+  $http.get('/api/v1/secure/admin/groups/'+$scope.groupId).success(function(response) {
+    $scope.groupName = response.name;
+  });
+
   //visit manager group- HTTP get for drop-down
   $http.get('/api/v1/secure/admin/groups/vManager/users').success(function(response) {
     var i= 0;

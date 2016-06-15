@@ -219,7 +219,7 @@
             </md-input-container>
           </div>
 
-          <div>
+          <div ng-if="groupName == 'Admin Group' || groupName == 'Visit Manager Group'">
             <md-input-container class="md-block" flex-gt-sm>
             <label>Password</label>
             <input type="password" md-maxlength="15" minlength="8" required name="password" 
