@@ -1,30 +1,26 @@
-.sb-profile{
-  padding-top: 0px;
+.paddg{
+  padding-top: 45px;
 }
-.pg-content{
+.container{
+ 
+ 
+  width: 98%;
+}
 
-  width: 100%;
-}
-.leftbg{
-  width:100%;
-  height: 4% !important;
-
-}
-#page {
+#wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    overflow: scroll;
 
 }
 
-#page.toggled {
+#wrapper.toggled {
     padding-left: 250px;
 }
 
-#sb-wrapper {
+#sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     left: 250px;
@@ -40,48 +36,33 @@
     transition: all 0.5s ease;
 }
 
-#page.toggled #sb-wrapper {
+#wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
 
-#pg-content-wrapper {
+#page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 5px;
+    padding: 15px;
 }
 
-#page.toggled #pg-content-wrapper {
-    position: fixed;
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
     margin-right: -250px;
-      overflow-wrap: none;
 }
 
-#ng-content{
-  position: relative;
-
-}
-.sb-menu {
+.sidebar-nav {
     position: relative;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.sb-menu ul {
-
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 2px;
-
-}
-
-.sb-menu  ul{
+.sidebar-nav  ul{
     list-style: none;
 }
 
-.sb-menu  ul li {
+.sidebar-nav  ul li {
   border-bottom: 1px solid #ddd;
 }
 .icon-dashboard{
@@ -96,7 +77,6 @@
   width: 100%;
   padding-bottom: 5px;
 }
-
 .sidebar-item a {
   display: block;
   padding: 12px;
@@ -113,26 +93,20 @@
   display: inline-block;
   margin-right: 15px;
 }
-.menu-profile-name{
-    background: rgba(0, 0, 0, 0.5);
-}
+
 .menu-profile-pic,
 .menu-profile-name {
   text-align: center;
-  padding: 0px;
-  
+  padding: 10px;
+
   font-family: workSansRegular;
   font-size: 1.3em;
-  color: #f3f5fd;
-  font-weight: bold;
+  color: #606060;
 }
-.menu-profile-name span{
-   color: #f3f5fd;
-}
+
 .menu-profile-pic img {
     width: 75px;
     height: 75px;
-
     border-radius: 150px;
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px;
@@ -141,10 +115,37 @@
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
 }
-.sb-profile{
- background-image: url("/public/assets/m/img/bg/left-panel.jpg");
- background-size: 100% 100%;
-}
+
 .menu-profile-name {
   padding-top: 7px;
+}
+
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 10px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }

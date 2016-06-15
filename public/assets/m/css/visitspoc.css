@@ -24,7 +24,7 @@
     }
         .heading1 {
             padding-top: 30px;
-            color: #ef2525;
+            color: black;
             font-family: workSansLight;
             font-size: 1.4em;
             padding-bottom: 5px;
@@ -35,7 +35,15 @@
             img {
                 width: 60px;
             }*/
-      
+      .dropdown-menu{
+        background-color: white;
+
+      }
+      .dropdown-menu  a {
+        display: block;
+        color: black;
+        padding: 5px 20px;
+}
         .spoc-bios-div {
             padding-left: 20px;
             padding-right: 0;
@@ -64,7 +72,7 @@
                 border-bottom: 1px solid #d0d0d0;
                 display: inline-block;
                 width: 100%;
-                color: #ef2525;
+                color: black;
                 font-family: workSansLight;
                 font-size: 1.2em;
                 padding-top: 10px;
@@ -98,7 +106,7 @@
                 padding-top: 15px;
                 padding-bottom: 20px;
                 word-spacing: -8px;
-                color: red;}
+                color: black;}
 
                 .download-text {
                     color: #4D4D4D;

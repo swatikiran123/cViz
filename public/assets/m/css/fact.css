@@ -11,7 +11,10 @@
   height: auto;
   width: auto;
 }
+  .dropdown-menu{
+        background-color: white;
 
+      }
 .factsheet-menu-block {
   width: 100%;
   background-color: #fff;
@@ -257,6 +260,8 @@ padding-bottom: 20px;
   position: absolute;
 }
 
+
+
 .marker {
   width: 15px;
   height: 24px;
@@ -265,32 +270,53 @@ padding-bottom: 20px;
 }
 
 .markerText1 {
-  bottom: -15px;
-  left: -5px;
+  font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -1px;
+  left: -2px;
   position: absolute;
+ color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .markerText2, .markerText4, .markerText5 {
+   font-family: workSansMedium;
+  font-weight: bold;
   bottom: -2px;
   position: absolute;
+
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .markerText3 {
-  bottom: -15px;
-  left: 1px;
+   font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -7px;
+  left: -21px;
   position: absolute;
+ color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .markerText6 {
-  bottom: -15px;
+   font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -10px;
   position: absolute;
-  right: 10px;
+  right: 5px;
+   color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .markerText7 {
-  bottom: -15px;
-  left: -5px;
+   font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -10px;
+  left: -2px;
   position: absolute;
+     color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .menuBtn {
