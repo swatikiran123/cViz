@@ -219,7 +219,7 @@
             </md-input-container>
           </div>
 
-          <div ng-if="groupName == 'Admin Group' || groupName == 'Visit Manager Group'">
+          <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
             <md-input-container class="md-block" flex-gt-sm>
             <label>Password</label>
             <input type="password" md-maxlength="15" minlength="8" required name="password" 
@@ -232,10 +232,7 @@
             </md-input-container>
           </div>
 
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
+          <div ng-if="groupMember == 'user'">
             <md-input-container class="md-block" flex-gt-sm>
             <label>Contact No</label>
             <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
@@ -247,7 +244,25 @@
               <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
             </md-input-container>
           </div>
+
+        </div>
+
+        <div class="row">
           <div class="col-md-6">
+          <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Contact No</label>
+            <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+            ng-model="userdata.contactNumber">
+            <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+             <div class="messagenotify">
+              <div ng-message='required'>Contact No is mandatory field.</div>
+              <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+              <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+            </md-input-container>
+          </div>  
+          </div>
+          <div ng-if="groupMember == 'admin' || groupMember == 'vManager'" class="col-md-6">
             <md-input-container class="md-block" flex-gt-sm>
             <label>Designation</label>
             <angucomplete-alt
@@ -267,6 +282,27 @@
             box-type="md"/>
           </md-input-container>
         </div> 
+
+        <div ng-if="groupMember == 'user'" class="col-md-12">
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Designation</label>
+          <angucomplete-alt
+          id="ex14"
+          placeholder="Select Designation or Add Designation"
+          pause="500"
+          selected-object="selectedDesignation"
+          remote-url="/api/v1/secure/admin/users/findAll/data?query="
+          remote-url-data-field="items"
+          title-field="designation"
+          minlength="3" 
+          input-class="form-control form-control-small"
+          match-class="highlight"
+          template-url="/my-custom-template.html"
+          input-changed="inputChanged"
+          initial-value ="designationdata"
+          box-type="md"/>
+        </md-input-container>
+      </div>
 
       </div>
 <!--         <div class="col-md-12">
