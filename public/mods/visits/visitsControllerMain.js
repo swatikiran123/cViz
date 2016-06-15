@@ -165,6 +165,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
 
   var user= $rootScope.user._id; 
   var group = $rootScope.user.memberOf;
+  $scope.groupMember = $rootScope.user.groups;
   if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
     $scope.visitGrid= true;
   }
