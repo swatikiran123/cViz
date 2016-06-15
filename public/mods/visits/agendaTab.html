@@ -14,7 +14,7 @@
           <div class = "panel-subheader pull-right">
           </div>
           <div class="panel-body">
-
+          <!-- {{groupMember}} -->
             <!-- visits title input-->
             <md-input-container class="md-block">
             <label>Title</label>
@@ -37,7 +37,7 @@
           </div>
         </div> addClientLogo -->
         <br>
-        <div class="row">
+        <div ng-if="groupMember=='admin' || groupMember=='vManager'" class="row">
           <fieldset ng-disabled="isSaving && mode ==='edit'">
 
             <div class="col-md-4 text-center">
@@ -131,18 +131,101 @@
 </div>
 </div>
 
-<div class="form-group col-xs-11 visOfferingBlock">
+<div class="form-group col-xs-12 visOfferingBlock">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
     <label class="visLabel">Offerings &nbsp;&nbsp; </label>
-    <multiple-autocomplete ng-model="selectedList"
+    <multiple-autocomplete ng-model="$parent.selectedList"
     suggestions-arr="offerings">
   </multiple-autocomplete>
 </div>
 </div>  
 </div>
+</fieldset>
+</div>
+
+<div ng-if="groupMember=='user'" class="row">
+          <fieldset ng-disabled="isSaving && mode ==='edit'">
+
+      <div class="col-md-12">
+        <div layout-gt-sm="row">
+
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Parent Account Name  {{industryClient}} {{regionClient}}</label>
+          <angucomplete-alt
+          id="ex14"
+          placeholder="Select Client or Add Client"
+          pause="500"
+          selected-object="visitsSelectedClient"
+          remote-url="/api/v1/secure/clients/find?query="
+          remote-url-data-field="items"
+          title-field="parentClient"
+          minlength="3" 
+          input-class="form-control form-control-small"
+          match-class="highlight"
+          template-url="/my-custom-template.html"
+          initial-value="parentSelected"
+          box-type="md"
+          input-changed="parentClientChanged"
+          />
+          <div class="messagenotify">
+            <div class="text-danger">{{errparentMsg}}</div>
+          </div>   
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Child Account Name </label>
+        <angucomplete-alt
+        id="ex14"
+        placeholder="Select Child Client or Add Client"
+        pause="500"
+        selected-object="visitsSelectedchildClient"
+        remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery="
+        remote-url-data-field="items1"
+        title-field="childClient"
+        minlength="3" 
+        input-class="form-control form-control-small"
+        match-class="highlight"
+        template-url="/my-custom1-template.html"
+        initial-value="childSelected"
+        box-type="md"
+        input-changed="childClientChanged"
+        />
+        <div class="messagenotify">
+          <div class="text-danger">{{errchildMsg}}</div>
+        </div>  
+      </md-input-container>
+
+    </div>
+    <div class="form-group visIndBlock">
+      <div class="col-md-6">
+       <label>Industry</label>
+       <select
+       ng-model="visits.industry" ng-change="industryClientChanged(visits.industry)"
+       ng-options="data for data in vertical" class="form-control">
+     </select>
+   </div>
+
+   <div class="col-md-6">
+    <label>Regions</label>
+    <select
+    ng-model="visits.regions" 
+    ng-options="data1 for data1 in regions" class="form-control">
+  </select> 
+
+</div>
+</div>
+
+<div class="form-group col-xs-12 visOfferingBlock">
+  <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
+    <label class="visLabel">Offerings &nbsp;&nbsp; </label>
+    <multiple-autocomplete ng-model="$parent.selectedList"
+    suggestions-arr="offerings">
+  </multiple-autocomplete>
+</div>
+</div>  
 </div>
 </fieldset>
-
+</div>
 
 <div class="large-padded-row">
   <div class="md-block" flex-gt-sm layout-gt-sm="row">
