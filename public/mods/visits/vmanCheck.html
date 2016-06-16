@@ -43,8 +43,8 @@
 				</thead>
 				<tbody class="data-grid-data">
 					<tr ng-repeat="visit in checkVisit | filter: search |orderBy:orderByField:reverseSort">
-						<td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:'dd MMM yyyy'}}</td>
-						<td><div userdisplay view-mode="nameonly" user-id="visit.visitManager._id"></td>
+						<td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:'dd MMM yyyy'}}</td> 
+						<td> <div ng-repeat="visitMang in visit.visitManager"> <div userdisplay view-mode="nameonly"  user-id="visitMang._id"></div> </div> </td>
 						<td><div clientdisplay view-mode="clientnameonly" client-id="visit.client._id"></div></td>
 						<td>{{visit.locations}}</td>
 					</tr>
