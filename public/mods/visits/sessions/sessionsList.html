@@ -93,6 +93,10 @@
   <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
 
   <a class="btn btn-default btn-sm pull-right" ng-if="showFiltered" ng-click="addSchedule1($event)">Add New Schedule</a>
+  
+  <!--a class="btn btn-default btn-sm pull-right" ng-if="showFiltered == false" href="#/visits/{{visit._id}}/session/print" target="new">Print Agenda</a-->
+  <a class="btn btn-default btn-sm pull-right" ng-if="showFiltered == false" ng-click="printToCard('printAgenda')"><i class="fa fa-print" aria-hidden="true"></i>
+ Print</a>
 </div>
 
 <div class="scheduledates">
@@ -196,3 +200,6 @@
   </tbody>
 </table>
 
+<div id="printAgenda" style="display:none;">
+  <div ng-include src="'/public/mods/visits/sessions/printAgenda.html'"></div>
+</div>

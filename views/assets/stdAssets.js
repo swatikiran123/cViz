@@ -205,6 +205,17 @@ module.exports = {
 		"/public/libs/moment/moment.js",
 		"/public/libs/moment-range/dist/moment-range.js"
 		],
+	},
+
+	"angular-filter": {
+		"cdn": [
+		],
+		"dev":[
+		"/public/libs/angular-filter/dist/angular-filter.min.js",
+		"/public/libs/angular-filter/dist/angular-filter.js"
+		],
+		"prod":[
+		]
 	}
 
 }
