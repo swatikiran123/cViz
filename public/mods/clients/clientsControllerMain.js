@@ -16,6 +16,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $scope.childClient = true;
   $scope.industryClient = true;
   $scope.regionDataClient = true;
+  $scope.err="";
+  $scope.closeNoteTipSch= false;
+  $scope.closeNoteTipNote= true;
+
   // $scope.regionClient = true;
   //regions - Http get for drop-down
   $http.get('/api/v1/secure/lov/regions').success(function(response) {
@@ -160,21 +164,70 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   }; // refresh method ends
 
   refresh();
+  $scope.closeNoteTipST=function(){
+    $scope.closeNoteTipSch= false;
+  }
+  $scope.closeNoteTipNotefun=function(){
+    $scope.closeNoteTipNote= false;
+  }
 
   $scope.save = function(){
-    // console.log();
-    // set noteBy based on the user picker value
-    switch($scope.mode)    {
-      case "add":
-      $scope.create();
-      break;
+    var inDataClient = $scope.clients;
+    if(inDataClient.name!=null)
+    {
+      inDataClient.name = $scope.clients.name;
+    }
 
-      case "edit":
-      $scope.update();
-      break;
-      } // end of switch scope.mode ends
+    if(inDataClient.name==null)
+    {
+      inDataClient.name = $scope.parentClientString;
+    }
 
-      $location.path("clients/list");
+    if(inDataClient.subName!=null)
+    {
+      inDataClient.name = $scope.clients.subName;
+    }
+
+    if(inDataClient.subName==null)
+    {
+      inDataClient.subName = $scope.childClientString;
+    }
+
+    if(inDataClient.regions!=null)
+    {
+      inDataClient.regions = $scope.clients.regions;
+    }
+
+    $http.get('/api/v1/secure/clients/find?query=' +inDataClient.name +"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
+      console.log(response.id);
+      $scope.responseId=response.id;
+      if ($scope.responseId != null) {
+        console.log($scope.responseId);
+        $scope.closeNoteTipSch= true;
+        console.log("im here");
+        $scope.err= "This client already exists..!!";
+      }
+      else{
+        console.log("im here yop in else no id so save");
+        console.log($scope.responseId);
+
+        switch($scope.mode){
+          case "add":
+          $scope.create();
+          break;
+
+          case "edit":
+          $scope.update();
+          break;
+            } // end of switch scope.mode ends
+            $location.path("clients/list");
+          }
+
+        })
+    // console.log($scope.clients);
+    // $location.path("clients/list");
+  // }
+
   } // end of save method
 
   $scope.create = function() {

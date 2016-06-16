@@ -4,32 +4,50 @@
       <fieldset ng-disabled="isSaving">
 
         <br>
-        <div class="row">
-          <div class="col-md-4">
+        <div div class="row">
+          <div class="col-md-2">
           </div>
-          <div class="col-md-8">
-            <span class="error text-info"> Note - All the fields are mandatory except SFDC ID please fill all the fields.</span>
-
+          <div class="form-group col-xs-8">
+            <div class="well error text-info" ng-show="closeNoteTipNote">
+             Note - All the fields are mandatory except SFDC ID.
+             <div class=" pull-right closeicon">
+              <a class="table-btn" ng-click="closeNoteTipNotefun()"><li class="fa fa-times fa-lg" /></a>
+            </div>
           </div>
         </div>
-        <br>
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <br>
-            <br>
-            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
-            />
-            <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
-            style="background-size:cover;"/>
-            <div>
-             <md-button class="md-primary md-raised" 
-             ng-click="addClientLogo($event)">
-             Add Logo
-           </md-button>
-         </div>
+      </div>
+
+      <div div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="form-group col-xs-8">
+          <div class="well error text-danger" ng-show="closeNoteTipSch">
+            {{err}}
+            <div class=" pull-right closeicon">
+              <a class="table-btn" ng-click="closeNoteTipST()"><li class="fa fa-times fa-lg" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <br>
+          <br>
+          <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
+          />
+          <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+          style="background-size:cover;"/>
+          <div>
+           <md-button class="md-primary md-raised" 
+           ng-click="addClientLogo($event)">
+           Add Logo
+         </md-button>
        </div>
-       <div class="col-md-8">
-        <div layout-gt-sm="row">
+     </div>
+     <div class="col-md-8">
+      <div layout-gt-sm="row">
 <!--         <md-input-container class="md-block" flex-gt-sm>
         <label>Parent Account Name </label>
         <input md-maxlength="30" minlength="5" required name="name" ng-model="clients.name">
@@ -241,13 +259,13 @@ ng-options="data1 for data1 in regions" class="form-control">
 
       {{regionData=clients.regions;""}}
       
-<div ng-if="regionData == null">
-  {{$parent.regionDataClient=true;""}}
-</div> 
+      <div ng-if="regionData == null">
+        {{$parent.regionDataClient=true;""}}
+      </div> 
 
-<div ng-if="regionData != null">
-  {{$parent.regionDataClient=false;""}}
-</div> 
+      <div ng-if="regionData != null">
+        {{$parent.regionDataClient=false;""}}
+      </div> 
 
 
       <br>
