@@ -127,61 +127,8 @@
          <div ng-message="minlength">The title should contain minimum 5 characters</div></div></div>
       </md-input-container>
 
-         <!--location have to pic from User -->
-         <!-- {{meetingPlacesData}} -->
-         <!-- <md-input-container class="md-block" ng-if="mode=='add'">
-         <label>Location</label>
-         <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
-         ng-blur="sendMeetingPlace(meetingPlacesData)">
-         <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-           <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-            <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-            <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-          </md-input-container>
-
-          <md-input-container class="md-block" ng-if="mode=='edit'">
-          <label>Location</label>
-          <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
-          ng-blur="sendMeetingPlace(meetingPlaceData)">
-          <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-           <div class="messagenotify">
-            <div ng-messages-include="/public/mods/partials/messages.html"></div>
-            <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-            <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-          </md-input-container> -->
-
-    <!-- {{schedule.session.location}} -->
-<!--     <select  id="meetingPlace" ng-model="schedule.session.location">
-      <option value=""></option>
-      <option class="col-xs-6" ng-repeat="ty in rooms">{{ty}}</option>
-    </select>
- -->
-
-
-
-<!--    <div layout="row">
-      <md-input-container style="margin-right: 10px;">
-        <label>Size</label>
-        <md-select ng-model="schedule.session.location">
-          <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <label>Topping</label>
-        <md-select ng-model="selectedToppings" multiple>
-          <md-optgroup label="Meats">
-            <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'meat' }">{{topping.name}}</md-option>
-          </md-optgroup>
-          <md-optgroup label="Veggies">
-            <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'veg' }">{{topping.name}}</md-option>
-          </md-optgroup>
-        </md-select>
-      </md-input-container>
-    </div> -->
-
          <!--desc have to pic from User -->
-             <md-input-container class="md-block">
+<!--              <md-input-container class="md-block">
         <label>Description</label>
         <textarea md-maxlength="3000" minlength="30" required name="desc" ng-model="schedule.session.desc"></textarea>
         <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
@@ -189,7 +136,20 @@
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The description  has to be less than 3000 characters long.</div>
          <div ng-message="minlength">The description should contain minimum 30 characters</div></div></div>
-      </md-input-container>
+      </md-input-container> -->
+
+      <md-input-container class="md-block">
+      <label ng-show="schedule.session.desc" class="show-hide">Session Descritpiton</label>
+      <text-angular
+      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
+      ng-model="schedule.session.desc" name="desc" placeholder="Session Descritpiton" required /></text-angular>
+      <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched && !sessionAddForm.desc.$pristine">
+        <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+        </div>
+      </div>
+    </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='add'">
       <label>Session Feedback Template</label>
