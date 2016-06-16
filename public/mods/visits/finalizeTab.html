@@ -12,8 +12,8 @@
       <div class="panel-body">
 
         <!-- visits Feedback input-->
-        <md-input-container class="md-block">
-        <label>Feedback Template</label>
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Feedback Template <span class="asterrisk">*</span></label>
         <input name="feedback" ng-model="feedback" feedback required>
         <div ng-show="autoFailfed" class="error text-danger" >{{feedbackNotFound}}</div>  
         <div ng-messages="finalizeForm.feedback.$error" ng-show="finalizeForm.feedback.$touched || !finalizeForm.feedback.$pristine">
@@ -26,7 +26,7 @@
       <!-- <div ng-include src="'/public/mods/visits/keynotesVisitAdd.html'"></div> -->
       <form name="keynoteForm" id="keynoteForm" class="form-vertical" >
 
-        <b>Add - Keynotes</b><br>
+        <b>Add - Keynotes <span class="asterrisk">*</span></b><br>
         <table class="table boldtable table-responsive table-bordered table-hover" width="100"> 
           <thead class="data-grid-header">
             <tr>
@@ -87,8 +87,8 @@
   </div>
   <div class="panel-body">
     <!-- visits session input-->
-    <md-input-container class="md-block">
-    <label>Session Template</label>
+    <md-input-container class="md-block" flex-gt-sm>
+    <label>Session Template <span class="asterrisk">*</span></label>
     <input name="session" ng-model="session" session required>
     <div ng-show="autoFailsec" class="error text-danger" >{{sessionNotFound}}</div>  
     <div ng-messages="finalizeForm.session.$error" ng-show="finalizeForm.session.$touched || !finalizeForm.session.$pristine">

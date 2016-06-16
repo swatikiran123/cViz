@@ -173,7 +173,7 @@
          <div class="col-md-8">
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>First Name</label>
+            <label>First Name <span class="asterrisk">*</span></label>
             <input md-maxlength="20" required name="first" 
             ng-model="firstName">
             <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
@@ -184,7 +184,7 @@
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Middle Name</label>
+            <label>Middle Name <span class="asterrisk">*</span></label>
             <input name="middle" 
             ng-model="userdata.name.middle">
             <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
@@ -195,7 +195,7 @@
             </md-input-container>  
 
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Last Name</label>
+            <label>Last Name <span class="asterrisk">*</span></label>
             <input md-maxlength="20" required name="last" 
             ng-model="userdata.name.last">
             <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
@@ -208,7 +208,7 @@
 
           <div>
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Email</label>
+            <label>Email <span class="asterrisk">*</span></label>
             <input type="email" md-maxlength="255" minlength="8" required name="email" 
             ng-model="emailId">
             <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
@@ -221,7 +221,7 @@
 
           <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Password</label>
+            <label>Password <span class="asterrisk">*</span></label>
             <input type="password" md-maxlength="15" minlength="8" required name="password" 
             ng-model="userdata.local.password">
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
@@ -234,7 +234,7 @@
 
           <div ng-if="groupMember == 'user'">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Contact No</label>
+            <label>Contact No <span class="asterrisk">*</span></label>
             <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
             ng-model="userdata.contactNumber">
             <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
@@ -251,7 +251,7 @@
           <div class="col-md-6">
           <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Contact No</label>
+            <label>Contact No <span class="asterrisk">*</span></label>
             <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
             ng-model="userdata.contactNumber">
             <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
@@ -264,7 +264,7 @@
           </div>
           <div ng-if="groupMember == 'admin' || groupMember == 'vManager'" class="col-md-6">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Designation</label>
+            <label>Designation <span class="asterrisk">*</span></label>
             <angucomplete-alt
             id="ex14"
             placeholder="Select Designation or Add Designation"
@@ -285,7 +285,7 @@
 
         <div ng-if="groupMember == 'user'" class="col-md-12">
           <md-input-container class="md-block" flex-gt-sm>
-          <label>Designation</label>
+          <label>Designation <span class="asterrisk">*</span></label>
           <angucomplete-alt
           id="ex14"
           placeholder="Select Designation or Add Designation"
