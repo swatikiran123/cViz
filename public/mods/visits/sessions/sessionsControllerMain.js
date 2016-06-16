@@ -38,6 +38,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.submitOwnerSupporter = true;
 		$scope.checkTimeVar = false;
 		$scope.nameonly = "nameonly";
+		$scope.meetingLocations =[];
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -52,10 +53,14 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 				$scope.meetingPlaces.push($scope.visit.schedule[i].meetingPlace);
 				$scope.meetingPlacesData = $scope.meetingPlaces.toString();//pushing all meeting location data to meetingPlacesData
 				}
+				$scope.clientId = $scope.visit.client;
 			});
 
 			$http.get("/api/v1/secure/visits/" + $scope.visitId + "/getLocations").success(function(response) {
 				$scope.location = response;
+				for(var i=0;i<$scope.location.length;i++){
+					$scope.meetingLocations.push($scope.location[i]);
+				}
 			});
 		}
 
@@ -402,6 +407,13 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			$mdDialog.hide(answer);
 		};
 
+		$scope.printToCard = function(printSectionId) {
+			$scope.innerContents = angular.element('#'+printSectionId).html();
+			var popupWinindow = window.open('', '_blank', 'width=1000,height=700,scrollbars=yes,menubar=yes,toolbar=no,location=no,status=no,titlebar=no');
+            popupWinindow.document.open();
+            popupWinindow.document.write('<link rel="stylesheet" href="/public/assets/w/styles/dataview-table.css" /><link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.css"/><link rel="stylesheet" media="print" href="/public/assets/w/styles/print.css" type="text/css" /><link rel="stylesheet" href="/public/assets/w/styles/printCustom.css" /><body onload="window.print()">' + $scope.innerContents + '</body>');
+            popupWinindow.document.close();
+        }
 	}
 
 ]);

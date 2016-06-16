@@ -1,0 +1,5 @@
+.data-grid-data a{pointer-events: none;cursor: default; color: #000; font-weight: normal;}
+
+.dateHeader{margin: 10px 0 10px;}
+
+.row{display:block;clear:both; margin: 0 5px 10px;}
