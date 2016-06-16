@@ -171,7 +171,7 @@ if($scope.fbid == undefined || $scope.fbid == '' || $scope.fbid == null)
 {
 $scope.showSuccessMessage= function()
 {
-  toaster.pop({title: "Thank You Note", body:"Thank you for your valuable feedback."});
+  toaster.pop({body:"Thank you for your valuable feedback."});
   $timeout(callSubmit,5000);
 }
 }
@@ -180,7 +180,7 @@ if($scope.fbid != undefined)
 {
 $scope.showSuccessMessage= function()
 {
-  toaster.pop({title: "Thank You Note", body:"Your feedback has been updated successfully."});
+  toaster.pop({body:"Your feedback has been updated successfully."});
   $timeout(callSubmit,5000);
 }
 }
