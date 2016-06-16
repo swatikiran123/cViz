@@ -100,6 +100,9 @@ copy: {
       {src: ['public/libs/angular-cookies/angular-cookies.min.js.map'], dest: 'dist/public/libs/angular-cookies/angular-cookies.min.js.map'},
       {src: ['public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'], dest: 'dist/public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'},
       {src: ['public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'], dest: 'dist/public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'},
+      {src: ['public/libs/angular-multiple-select/build/multiple-select.min.css'], dest: 'dist/public/libs/angular-multiple-select/build/multiple-select.min.css'},
+      {src: ['public/libs/angular-multiple-select/build/multiple-select.min.js'], dest: 'dist/public/libs/angular-multiple-select/build/multiple-select.min.js'},
+
       ],
     },
     images: {
