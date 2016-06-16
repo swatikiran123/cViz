@@ -1072,6 +1072,7 @@ function getVisitStats() {
 			)
 		.populate('anchor')
 		.populate('client')
+		.populate('secondaryVmanager')
 		.exec(function(err, list){
 		if(err) {
 			console.log(err);
@@ -1096,14 +1097,27 @@ function transformVisitStats(visitStats) {
 		}
 
 	else {
-		var visitStatsData = {
-			client: visitStats.client,
-			visitManager: visitStats.anchor,
-			startDate: visitStats.startDate,
-			endDate: visitStats.endDate,
-			locations: visitStats.locations
+		if(!(visitStats.secondaryVmanager == null || visitStats.secondaryVmanager == undefined ))
+		{
+			var visitStatsData = {
+				client: visitStats.client,
+				visitManager: [visitStats.anchor, visitStats.secondaryVmanager],
+				// secVmanager: visitStats.secondaryVmanager,
+				startDate: visitStats.startDate,
+				endDate: visitStats.endDate,
+				locations: visitStats.locations
+			}
 		}
-
+		else if (visitStats.secondaryVmanager == null || visitStats.secondaryVmanager == undefined)
+		{
+			var visitStatsData = {
+				client: visitStats.client,
+				visitManager: [visitStats.anchor],
+				startDate: visitStats.startDate,
+				endDate: visitStats.endDate,
+				locations: visitStats.locations
+			}
+		}
 		console.log("******************************");
 		console.log(visitStatsData);
 		console.log("******************************");
