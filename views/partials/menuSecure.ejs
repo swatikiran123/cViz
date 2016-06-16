@@ -3,11 +3,11 @@
 <ul class="nav navbar-nav">
   <!-- li class="active"><a href="/home">Dashboard</a></li -->
   <li class="active"><a href="/manage/#/visits/list">Visit Planner</a></li>
-  <li>
+  <!--li>
     <a href="/manage/#/visits/add">
       Add Visit
     </a>
-  </li>
+  </li-->
 
   <!-- Additional pull down starts here -->
   <li class="dropdown" ng-if="<%=locals.user.get('groups').indexOf("admin") > -1%> || <%=locals.user.get('groups').indexOf("vManager") > -1%>">
