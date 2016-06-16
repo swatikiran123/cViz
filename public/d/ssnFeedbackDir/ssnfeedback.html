@@ -17,7 +17,7 @@
 </div> -->
 <ANY ng-switch on="type.toLowerCase()">
 <ANY ng-switch-default>
-  <div ng-if="(group=='customer' || group=='exec' || (group=='user' && feedbackElg === 'true')) && (starttime | date:'HH:mm' <= current | date:'HH:mm')">
+  <div ng-if="(group=='customer' || group=='exec' || (group=='user' && feedbackElg === 'true')) && ((current | date : 'dd MMM yyyy HH:mm:ss') >= (starttime | date : 'dd MMM yyyy HH:mm:ss'))">
 <div ng-if="feedbackSamplelist==''">
   	<div ng-class="[getfeedback(status)]">
   		<a href="/m/visits/#/sessionFeedback/{{ftmplate}}/{{sessionId}}/{{visitId}}">Give Feedback</a>
