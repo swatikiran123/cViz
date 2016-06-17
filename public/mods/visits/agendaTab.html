@@ -551,8 +551,8 @@
         <div id="existing" ng-if="visits.interest.businessType == 'existing'">
           <label>Visit Type-Existing <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
-            <option ng-option value="operationsreview">Meeting &amp; Operations Review</option>
-            <option ng-option value="renewals">Renewals</option>
+            <option ng-option value="operationsreview">Operational Review</option>
+            <option ng-option value="renewals">Contract Renewal</option>
             <option ng-option value="newBusiness">New Business</option>
             <option ng-option value="strategic">Exploratory</option>
           </select>
@@ -590,7 +590,7 @@
   <md-input-container class="md-block statusBlock">
   <md-radio-group name="status" id="status" ng-model="status" required class="">
   <div class="row">
-    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirm</md-radio-button></div>
+    <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirmed</md-radio-button></div>
     <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
   </md-radio-group></div>
   <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
@@ -615,7 +615,7 @@
 
 <!-- visits agenda-->
 <md-input-container class="md-block">
-<label ng-show="visits.agenda" class="show-hide">Client objectives <span class="asterrisk">*</span></label>
+<label class="show-hide">Client objectives <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
@@ -629,7 +629,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 
 <!-- visits objective -->
 <md-input-container class="md-block">
-<label ng-show="visits.interest.objective" class="show-hide">CSC Objective <span class="asterrisk">*</span></label>
+<label class="show-hide">CSC Objective <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
@@ -701,7 +701,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
     <div class="row">
       <div class="col-xs-8">
         <div class="form-group">
-          <!--label><span class="asterrisk">*</span></label-->
+          <label>Visit Expenses <span class="asterrisk">*</span></label>
           <md-input-container class="md-block statusBlock">
           <md-radio-group name="billable" id="billable" ng-model="visits.billable" required class="">
           <div class="row">
