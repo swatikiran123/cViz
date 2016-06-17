@@ -1,59 +1,99 @@
   <link rel="stylesheet" href="/public/assets/m/css/thankyou.css">
-<div  class="headerwelT">
-  <br>
+<div class="thankyoupage">
+    <div  class="headerwelT">
+      <br>
 
-<img src="/public/assets/g/imgs/csclogo.png" class="lo">
-                
-<span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Thank You !
-                    
- </span>
- </div>
- <br>
+      <img src="/public/assets/g/imgs/csclogo.png" class="lo">
+      <img ng-src="{{clientLogo}}" class="lo1">
+      <br>
+      <label style="padding-top: 10px">Dear {{customerName}}</label>
+<!--       <span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Thank You !
 
-<div class="detailsT">
-  {{url=thankyouResponse[order].attachment;""}}
-  {{fileExt=url.split(".").pop();""}}
+      </span> -->
+    </div>
+    <br>
 
-  <div ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'">
-    <video id="thankyou"  controls  autoplay muted ng-src="{{url}}" 
-    type="video/fileExt">
-    </video>
-  </div>
+    <div class="detailsT">
+      {{url=thankyouResponse[order].attachment;""}}
+      {{fileExt=url.split(".").pop();""}}
 
-  <div ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'">
-    <img ng-src="{{url}}" class="image1" />
-  </div>
+      <div ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'">
+        <video id="thankyou"  controls  autoplay muted ng-src="{{url}}" 
+        type="video/fileExt">
+      </video>
+    </div>
 
-  <div ng-if="fileExt =='mp3' || fileExt=='wav' || fileExt=='aac'">
-    <audio id="audio"  controls  autoplay muted ng-src="{{url}}" 
-    type="audio/fileExt">
+    <div  ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'">
+      <img ng-src="{{url}}" class="imageT" />
+    </div>
+
+    <div ng-if="fileExt =='mp3' || fileExt=='wav' || fileExt=='aac'">
+      <audio id="audio"  controls  autoplay muted ng-src="{{url}}" 
+      type="audio/fileExt">
     </audio>
   </div>
 
-        
-     <div class="richtextT">
-       <richtext class="text" body-text="thankyouResponse[order].noteText">
-       </richtext>
-     </div>
-  
-    <hr>
+  <div class="richtextT">
+   <richtext class="text" body-text="thankyouResponse[order].noteText">
+   </richtext>
+ </div>
 
-    <div class="profileT">
-        <div class="pull-left">
-            <img ng-src="{{user.avatar}}" class="img-thumbnail userpicT"> 
-        </div>
-        <div class="panelpdmdT">
-            <div class="text-highlight">{{user.name.first}} {{user.name.last}}</div>
-            <div class="text-xsmall">{{user.email}}</div>
-            <div class="text-xsmall">{{user.jobTitle}}</div>
-            <div class="text-xsmall">{{user.organization}}</div>
-        </div>       
+<br>
+
+<div class="row">
+ <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+  <div ng-if="user1!=null">
+    <div class="profile">
+      <div  ng-if="user1.avatar!=null" class="pull-left">
+        <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
+      </div>
+      <div  ng-if="user1.avatar==null" class="pull-left">
+      </div>
+      <div class="panelpdmd">
+        <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
+        <div class="text-xsmall">{{user1.jobTitle}} </div>
+      </div>       
     </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+  <div ng-if="user2!=null">
+    <div class="profile">
+      <div  ng-if="user2.avatar!=null" class="pull-left">
+        <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
+      </div>
+      <div  ng-if="user2.avatar==null" class="pull-left">
+      </div>
+      <div class="panelpdmd">
+        <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
+        <div class="text-xsmall">{{user2.jobTitle}} </div>
+      </div>       
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
 
-<a href="/m/main/"><button class="buttonT" type="button"  class="btn btn-default">continue1&nbsp;<i class="fa fa-angle-right"></i></button></a>
+  <div ng-if="user3!=null">
+    <div class="profile">
+      <div ng-if="user3.avatar!=null" class="pull-left">
+        <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
+      </div>
+      <div  ng-if="user3.avatar==null" class="pull-left">
+      </div>
+      <div class="panelpdmd">
+        <div class="text-highlight">{{user3.name.first}} {{user3.name.last}}</div>
+        <div class="text-xsmall">{{user3.jobTitle}} </div>
+      </div>       
+    </div>
+  </div>
+
+</div>
+</div>
+<br>
+<a href="/m/main/" style="padding-left: 60%"><button type="button" class="btn btn-default">Continue<i class="fa fa-angle-right"></i></button></a>
+</div>
 </div>
 
 
 
 
-</div>

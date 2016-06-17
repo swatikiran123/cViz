@@ -1,21 +1,92 @@
-<div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
+<style>
 
+.modal-dialog   {
+  height: 80%;
+  width: 85%;
+  padding-top: 70px;
+  padding-right: 10px;
+}
+
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+/*.detailBox {
+    width:900px;
+    border:1px solid #bbb;
+    margin:50px;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}*/
+
+/*.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:100%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:100%;
+}*/
+
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:300px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:50px;
+    margin-right:5px;
+    height:100%;
+    /*float:left;*/
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+    overflow-x: auto;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+</style>
+
+<div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
+<label data-toggle="modal" data-target="#myModal{{session._id}}">Session Notes</label>
 </div>
 
 <div class="divtop">
 <div id="session-details-page">
-
-<!--     <div class="session-header">
-        <div class="time-session-name-div">
-        <br>
-            <div class="session-time" class="pull-left">{{session.session.startTime | date : "dd MMM yyyy"}}</div>
-        </div>
-        <br>
-        <div class="venue-feedback-div">
-            <div class="session-venue"><i class="fa fa-map-marker"></i>{{session.session.location}}</div>
-            <div class="feedback-button" >Feedback&nbsp;<i class="fa fa-chevron-down"></i></div>
-        </div>
-    </div> -->
 
     <div>
     <br>
@@ -87,4 +158,61 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal{{session._id}}" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog   mwidth vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <i class="fa fa-times pull-right" aria-hidden="true" class="close" data-dismiss="modal"></i>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Session Notes</h4>
+
+      </div>
+      <div class="modal-body">
+        <form  align="center">
+                 <div class="detailBox">
+        
+    <div class="titleBox">
+    <textarea ng-model="txtcomment" placeholder="Your Note" style='width:90%;height:50px;resize: none;'></textarea>
+                   <!--  <button class="btn btn-primary pull-left" ng-click='btn_add(txtcomment);txtcomment=null;' style='margin-top:10px;'>
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Post Note</button>  -->
+                    <a class="table-btn" style='margin-top:10px;' ng-click='btn_add(txtcomment);txtcomment=null;'><span class="fa fa-paper-plane fa-lg"/></a>
+                    <!-- <br><br><br> -->
+<!--       <label>Notes</label>
+      <select name="singleSelect" id="singleSelect" class="pull-right" ng-model="valueComment">
+          <option value="opt1"><label>Oldest</label></option>
+          <option value="opt2"><label>Latest</label></option>
+      </select> -->
+    </div>
+
+</div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+      {{mode="bulletsmallonly";""}}
+          <div class="actionBox">
+            <ul class="commentList">
+              <li ng-repeat="comnt in comment">
+                <div class="commenterImage pull-left">
+                   <!-- <userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></userview> -->
+                   <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
+                </div>
+                <div class="commentText">
+                  <p>{{comnt.comment}} <span class="sub-text">&nbsp;on {{comnt.givenOn | date:'dd MMM yyyy'}}</span></p>
+                </div>
+                <hr>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

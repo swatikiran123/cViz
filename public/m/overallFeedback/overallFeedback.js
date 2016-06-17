@@ -260,17 +260,34 @@ $scope.orderIncrement = function()
     });
 
 
-feedback.controller('thankyouCtrl', ['$scope', '$location', '$http',  function ($scope, location, $http) {
+feedback.controller('thankyouCtrl', ['$scope', '$location', '$http','appService','$rootScope',  function ($scope, location, $http,appService,$rootScope) {
     console.log("Thank You Controller Running");
     $scope.order = 0;
     $http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
-        console.log(response[1]);
         $scope.thankyouResponse = response[1];
-        // $scope.length = $scope.welcomeResponse.length - 1;
-        $scope.user_id = $scope.thankyouResponse[0].noteBy;
-        $http.get('/api/v1/secure/admin/users/' + $scope.user_id).success(function(response)
+        $scope.customerName = $rootScope.user.name.first;
+        $scope.user1_id = $scope.thankyouResponse[0].noteBy;
+        $scope.user2_id = $scope.thankyouResponse[0].noteBy1;
+        $scope.user3_id = $scope.thankyouResponse[0].noteBy2;
+        $http.get('/api/v1/secure/admin/users/' + $scope.user1_id).success(function(response)
         {
-            $scope.user = response;
+            $scope.user1 = response;
         })
+        $http.get('/api/v1/secure/admin/users/' + $scope.user2_id).success(function(response)
+        {
+            $scope.user2 = response;
+        })
+        $http.get('/api/v1/secure/admin/users/' + $scope.user3_id).success(function(response)
+        {
+            $scope.user3 = response;
+        })
+
+        appService.activeVisit().then(function(avisit){
+            $http.get('/api/v1/secure/visits/'+avisit._id,{
+                cache: true
+            }).success(function(response) {
+                $scope.clientLogo = response.client.logo;
+            })
+        });
     })
 }]);

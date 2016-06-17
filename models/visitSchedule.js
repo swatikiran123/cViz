@@ -25,7 +25,8 @@ var visitScheduleSchema = new mongoose.Schema({
 	invitees						: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	feedbackElg						: { type: String, trim: true },
 	feedbackTemplate				: { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
-	status							: { type: String, trim: true, enum: ['active', 'cancelled']}
+	status							: { type: String, trim: true, enum: ['active', 'cancelled']},
+	comments						: [{type: Schema.Types.ObjectId, ref: 'comments'}]
 
 });
 

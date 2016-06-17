@@ -161,8 +161,27 @@ $scope.pushSession = function(sessionId,rtime){
 
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
 	$scope.arrayData=[];
+	$scope.comment = [];
+	$scope.comment11 = [];
+	$scope.myData = [];
 	console.log($rootScope.user);
+	var refresh1 = function()
+	{ 
+    // console.log($scope.visitid);
 
+    $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+    {
+    	$scope.comment = response.comments;
+      // console.log($scope.comment);
+
+      for(var i=0;i<$scope.comment.length;i++)
+      {
+      	$scope.myData.push($scope.comment[i]._id);
+      }
+  });
+}
+
+refresh1();
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
 		cache: true
 	}).success(function(response) {
@@ -197,6 +216,57 @@ $scope.pushSession = function(sessionId,rtime){
 		$scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
 		$event.stopPropagation();
 	};
+
+
+$scope.btn_add = function(comment1) {
+
+  if(comment1 !=''){
+    $scope.comment11.push({
+      comment: comment1,
+      givenBy: $rootScope.user._id
+    });
+
+    $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
+      // console.log(response);
+      $scope.commentid = response._id;
+      $scope.myData.push($scope.commentid);
+    });
+    // refresh1();
+
+    $http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response)
+    {
+      $scope.visitSchedule = response;
+      var inData = $scope.visitSchedule;
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      console.log(inData);
+      $http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
+
+        $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+        {
+          $scope.comment = response.comments;
+          console.log($scope.comment);
+          $scope.oneData = [];
+          for(var i=0;i<$scope.comment.length;i++)
+          {
+            $scope.oneData.push($scope.comment[i]._id);
+            $scope.commentsData = $scope.oneData;
+          }
+        }).then(function() {
+          console.log($scope.commentsData);
+        });
+
+      });
+
+    })
+
+$scope.txtcomment = "";
+$scope.comment11 = [];
+// $route.reload();
+// refresh();
+}
+}
+
 })
 
 .controller('agendaCtrl', function($rootScope, $location, appService) {
