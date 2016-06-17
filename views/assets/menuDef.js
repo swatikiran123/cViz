@@ -1,7 +1,7 @@
 module.exports = {
 	items :[
 		{
-			name: "Welcome",
+			name: "Home",
 			link: "/m/main/",
 			icon: "fa-home",
 			roles: "customer"
