@@ -24,6 +24,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.showContinue = true;
 	$scope.medium = "medium";
 	$scope.arrayData=[];
+	$scope.customerName = $rootScope.user.name.first;
 
 	var refresh = function() {
 		$http.get('/api/v1/secure/visits/current/keynotes',{

@@ -44,6 +44,7 @@ function getOneById(id){
         // .populate('session.owner')
         // .populate('session.supporter')
         // .populate('invitees')
+           .populate('comments') 
         .exec(function (err, item) {
             if(err) {
                 console.log(err);
