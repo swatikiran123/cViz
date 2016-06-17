@@ -60,38 +60,42 @@
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <a href="/m/visits/#/execBios">
                     <div class="menu-circle-icon exec-bio exec-icon"></div>
-                    <div class="exec-bio-text">EXECUTIVE BIO'S</div>
+                    <div class="exec-bio-text">EXECUTIVE BIO'S {{finalFeedback }}</div>
                 </a>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/#/feedback">
-                    <div class="menu-circle-icon feedback feedback-icon"></div>
-                    <div class="feedback-text">FEEDBACK</div>
-                </a>
-            </div>
-        </div>
 
-        <div class="row">
-          <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="col-xs-4 col-sm-4 col-md-4">
             <a href="/m/visits/#/contacts">
               <div class="menu-circle-icon spoc spoc-icon"></div>
               <div class="spoc-text">CONTACT SPOC</div>
             </a>
 
           </div>
-          <div class="col-xs-4 col-sm-4 col-md-4">
+        </div>
+        <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4">
            <a href="/m/facts/">
             <div class="menu-circle-icon factsheet factsheet-icon"></div>
             <div class="factsheets-text">FACTSHEETS</div>
           </a>
 
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
+        
+       
+             <div class="col-xs-4 col-sm-4 col-md-4">
           <a href="/logout">
             <div class="menu-circle-icon logout logout-icon"></div>
             <div class="logout-text">LOGOUT</div>
           </a>
         </div>
+  
+      
+           <div class="col-xs-4 col-sm-4 col-md-4" ng-if="finalFeedback ==true">
+                <a href="/m/visits/#/feedback">
+                    <div class="menu-circle-icon feedback feedback-icon"></div>
+                    <div class="feedback-text">FEEDBACK</div>
+                </a>
+            </div>
       </div>
     </div>
 </div>
