@@ -103,20 +103,34 @@
   margin-bottom: 35px;
 }
 
-.visLabel{
+/*.visLabel{
     color: rgba(0, 0, 0, 0.26);
     font-weight: normal;
     font-style: italic;
     font-size: 11px;
+}*/
+
+.visdetail-panel label{
+    color: rgba(0, 0, 0, 0.60);
+    font-weight: normal;
+    font-style: italic;
+}
+.visdetail-panel md-input-container:not(.md-input-focused) label{
+    font-size: 14px;
+    transform:unset !important;
 }
 
+.visActGroup {
+    margin: 0px 0px 0px -9px;
+}
 .visIndBlock{
-  margin: 0px 0px 0px -12px;
+  margin: 0px 0px 0px -21px;
 }
 
 .visOfferingBlock{
-  margin: 17px 0 7px -12px;
+  margin: 17px 0 7px -21px;
 }
+
 .oppDetailsPanel{
   margin: 4px;
 }

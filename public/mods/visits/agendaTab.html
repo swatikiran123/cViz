@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div layout-gt-sm="row">
+        <div layout-gt-sm="row" class="visActGroup">
 
           <md-input-container class="md-block" flex-gt-sm>
           <label>Parent Account Name  <span class="asterrisk">*</span></label>
@@ -417,7 +417,7 @@
     <div class="form-group col-xs-4">
       <md-input-container class="md-block">
       <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
-        <label>Select Sales Executive <span class="asterrisk">*</span>:</label>
+        <label>Sales Executive Name <span class="asterrisk">*</span>:</label>
         <div userauto type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee" title="Sales Executive"></div>
       </div>
     </md-input-container>
@@ -427,7 +427,7 @@
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
-      <label>Select Industry Executive <span class="asterrisk">*</span>:</label>
+      <label>Industry Executive Name <span class="asterrisk">*</span>:</label>
       <div userauto type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee" title="Industry Executive"></div>
     </div>
   </md-input-container>
@@ -437,7 +437,7 @@
 <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
-    <label >Select Global Delivery <span class="asterrisk">*</span> :</label>
+    <label>Global Delivery Contact <span class="asterrisk">*</span> :</label>
     <div userauto type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee" title="Global Delivery"></div>
   </div>
 </md-input-container>
@@ -449,7 +449,7 @@
   <div class="form-group col-xs-6">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
-      <label>Select Account General Manager &nbsp;&nbsp; :</label>
+      <label>Account General Manager &nbsp;&nbsp; :</label>
       <div userauto type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee" title="AGM"></div>
     </div>
   </md-input-container>
@@ -459,7 +459,7 @@
 <div class="form-group col-xs-6">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
-    <label>Select CRE &nbsp;&nbsp; :</label>
+    <label>Customer Relationship Executive &nbsp;&nbsp; :</label>
     <div userauto type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee" title="CRE"></div>
   </div>
 </md-input-container>
@@ -721,7 +721,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
               <div class="check-element animate-show"  ng-if="checked && mode=='add'">
                 <!-- visits wbsCode input-->
                 <md-input-container class="md-block">
-                <label><h5>WBS Code <span class="asterrisk">*</span></h5></label>
+                <label>WBS Code <span class="asterrisk">*</span></label>
                 <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
                 <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                  <div class="messagenotify">
@@ -743,7 +743,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
               <div class="check-element animate-show"  ng-if="checked && mode=='edit'">
                 <!-- visits wbsCode input-->
                 <md-input-container class="md-block">
-                <label><h5>WBS Code</h5></label>
+                <label>WBS Code</label>
                 <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
                 <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                  <div class="messagenotify">
