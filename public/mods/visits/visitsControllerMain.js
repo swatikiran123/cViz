@@ -2380,8 +2380,8 @@ $scope.hide = function() {
 };
 $scope.canceldialog = function() {
   $mdDialog.cancel();
-  $route.reload();
-  $scope.btn_add();
+  // $route.reload();
+  // $scope.btn_add();
 };
 $scope.canceldialogvMan = function() {
   $mdDialog.cancel();
@@ -2595,8 +2595,8 @@ $scope.btn_add = function(comment1) {
 
 $scope.txtcomment = "";
 $scope.comment11 = [];
-$route.reload();
-refresh();
+// $route.reload();
+// refresh();
 }
 }
 

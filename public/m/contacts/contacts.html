@@ -36,16 +36,16 @@
                 <div class="spoc-bios">{{anchor.summary}}</div>
                 <div class="reach-spoc-phone">
                     <div class="number">{{anchor.contactNo[0].contactNumber}}</div>
-                    <a class="email-text" ng-href="tel: {{anchor.contactNo[0].contactNumber}}">CALL</a>
-                    <!-- <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{anchor.contactNo[0].contactNumber}}">MESSAGE</a> -->
+                    <a class="col-xs-6 col-sm-6 col-md-6 call-text" ng-href="tel: {{anchor.contactNo[0].contactNumber}}">CALL</a>
+                    <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{anchor.contactNo[0].contactNumber}}">MESSAGE</a>
                 </div>
                 <div class="reach-spoc-email">
                     <div class="number">{{anchor.email}}</div>
                     <a class="email-text" ng-href="mailto: {{anchor.email}}">EMAIL</a>
                 </div>
-<!--                 <div class="download-contact glyphicon glyphicon-paperclip">
-                    <div class="download-text">Download Contact</div>
-                </div> -->
+                <div class="download-contact glyphicon glyphicon-paperclip">
+                    <div class="download-text"><a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.txt">Download Contact</a></div>
+                </div>
 
             </div>
 
@@ -62,17 +62,16 @@
                 <div class="spoc-bios">{{spoc.summary}}</div>
                 <div class="reach-spoc-phone">
                     <div class="number">{{spoc.contactNo}}</div>
-                    <a class="email-text" ng-href="tel: {{spoc.contactNo}}">CALL</a>
-                    <!-- <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{spoc.contactNo}}">MESSAGE</a> -->
+                    <a class="col-xs-6 col-sm-6 col-md-6 call-text" ng-href="tel: {{spoc.contactNo}}">CALL</a>
+                    <a class="col-xs-6 col-sm-6 col-md-6 message-text" ng-href="sms: {{spoc.contactNo}}">MESSAGE</a>
                 </div>
                 <div class="reach-spoc-email">
                     <div class="number">{{spoc.email}}</div>
                     <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
                 </div>
-<!--                 <div class="download-contact glyphicon glyphicon-paperclip">
-                    <div class="download-text">Download Contact</div>
-                </div> -->
-
+                <div class="download-contact glyphicon glyphicon-paperclip">
+                    <div class="download-text"><a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.txt">Download Contact</a></div>
+                </div>
             </div>
          
          </div>
