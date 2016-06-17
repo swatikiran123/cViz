@@ -929,6 +929,7 @@ function getParticipantsById(id){
 			arrAddItem(emp, visit.secondaryVmanager);
 			arrAddArray(emp, visit.invitees);
 
+
 			// push participants from visit schedules
 			scheduleModel
 			.find({visit: id})
@@ -948,14 +949,14 @@ function getParticipantsById(id){
 
 			userModel
 			.find({'_id': { $in: uEmp }})
-			.select('_id name email avatar summary jobTitle organization contactNo')
+			.select('_id name email avatar summary jobTitle organization contactNo association')
 			.exec(function(err, empsData){
 				if(err)
 					console.log(err);
 
 				userModel
 				.find({'_id': { $in: uClient }})
-				.select('_id name email avatar summary jobTitle organization contactNo')
+				.select('_id name email avatar summary jobTitle organization contactNo association')
 				.exec(function(err, clientsData){
 					if(err)
 						console.log(err);

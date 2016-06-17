@@ -34,6 +34,21 @@ $scope.title = avisitt.title;
 	}).success(function(response) {
 		$scope.cscData = response["employees"];
 		$scope.clientData = response["clients"];
+		$scope.uniClient = [];
+		//console.log($scope.clientData);
+		for (var i = 0; i < $scope.clientData.length; i++) {
+			if($scope.clientData[i].association == "customer" || $scope.clientData[i].association == "CUSTOMER"){
+				$scope.uniClient.push($scope.clientData[i]);
+			}
+		}
+
+		for (var i = 0; i < $scope.clientData.length; i++) {
+			if($scope.clientData[i].association == "employee" || $scope.clientData[i].association == "employee"){
+				$scope.cscData.push($scope.clientData[i]);
+			}
+		}
+		console.log($scope.uniClient);
+		console.log($scope.cscData);
 	})
 
   $scope.collapseDiv = function(index, text){

@@ -1,34 +1,38 @@
-<style>.scroll-outer1 {
-  overflow-x:hidden;
-}
-.scroll-inner1{
- font-size: 18px;
- font-weight: bold;
- color:black;
-  overflow-x: auto;
-  white-space: nowrap;
-  margin-bottom: -10px;
-  padding-bottom: 5px;
-  padding-right: 10px;
+<style>
+	.scroll-inner{
 
-}</style>
+		overflow-x: auto;
+		white-space: nowrap;
+		margin-bottom: -15px;
+		padding-bottom: 15px;
+	}
+
+	.scroll-outer {
+		overflow-x:hidden;
+	}
+
+	@media only screen and (min-device-width: 769px) and (max-device-width: 1600px) {
+
+
+	}
+</style>
 <div header showprofile="false" icon="fa fa-comments" title1="Feedback" title2=" Session Feedback">
-<div class="scroll-outer1">
-<div class="scroll-inner1">
-    {{sessionTitle}} Feedbacks
-    </div>
-    </div>
+	<div class="scroll-outer">
+		<div class ="scroll-inner">
+		{{sessionTitle}} Feedback
+		</div>
+	</div>
 </div>
 <div class="divtop">
-<div ng-if="feedbackId==''">
-<div class="sessionfeedback">
-<div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session"></div>
-</div>
-</div>
-<div ng-if="feedbackId!=''">
-<div class="sessionfeedback">
-<div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session" 
- fbid="feedbackId"></div>
-</div>
-</div>
+	<div ng-if="feedbackId==''">
+		<div class="sessionfeedback">
+			<div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session"></div>
+		</div>
+	</div>
+	<div ng-if="feedbackId!=''">
+		<div class="sessionfeedback">
+			<div feedback feedback-id="fbackTemp" visit-id="visitId" session-id="sessionId" feedback-model type="session" 
+			fbid="feedbackId"></div>
+		</div>
+	</div>
 </div>

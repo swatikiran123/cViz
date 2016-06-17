@@ -103,7 +103,8 @@ userSchema.pre('save', function(callback) {
 
 userSchema.post('init', function(doc) {
   if(doc.avatar === undefined){
-    doc.avatar = "/public/assets/g/imgs/avatar.jpg";
+    // doc.avatar = "/public/assets/g/imgs/avatar.jpg";
+    doc.avatar = "/public/assets/g/imgs/generic.png";
   }
 	doc.set('groups', secure.getGroups(doc),  { strict: false });
 });

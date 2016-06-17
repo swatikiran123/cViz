@@ -25,6 +25,8 @@ angular.module('visits')
 		$scope.timeline = time;
 		console.log("setting timeline to " + $scope.timeline )
 		$scope.visitBatch = $scope.allVisits[$scope.timeline];
+		$scope.pastVisitBatch = $scope.allVisits["past"];
+		$scope.futureVisitBatch = $scope.allVisits["further"];
 	}
 	  $scope.getSession = function(item1){
 	  	console.log('helow'+item1);
@@ -42,8 +44,10 @@ angular.module('visits')
 	}).success(function(response) {
 	    $scope.allVisits = response;
 			if($scope.timeline=="" || $scope.timeline===undefined){
-				$scope.timeline = "this-week";
+				$scope.timeline = "today";
 				$scope.visitBatch = $scope.allVisits[$scope.timeline];
+				$scope.pastVisitBatch = $scope.allVisits["past"];
+				$scope.futureVisitBatch = $scope.allVisits["further"];
 			}
 		}
 	)
