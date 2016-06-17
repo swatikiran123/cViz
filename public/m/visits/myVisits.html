@@ -6,7 +6,7 @@
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" ng-model="$parent.query" />
 
-            <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM"}} - {{visitBatch.end | date:"dd MMM"}} ({{visitBatch.visits.length}})
+            <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})
 
                 <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                     <i class="fa fa-th-large fonticon1"></i>
@@ -14,16 +14,19 @@
                 </div>
 
                 <ul class="dropdown-menu">
+                    <!-- <li><a href ng-click="setTimeline('all')">All ({{allVisits["all"].visits.length}})</a></li> -->
+                    <!-- <li class="divider"></li> -->
+
                     <li><a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a></li>
                     <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li>
-                    <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li>
-                    <li class="divider"></li>
+                    <!-- <li><a href ng-click="setTimeline('last-week')">Last Week ({{allVisits["last-week"].visits.length}})</a></li> -->
+                    <!-- <li class="divider"></li> -->
+                    <!-- <li><a href ng-click="setTimeline('this-week')">This Week ({{allVisits["this-week"].visits.length}})</a></li> -->
+                    <!-- <li class="divider"></li> -->
                     <li><a href ng-click="setTimeline('today')">Today ({{allVisits["today"].visits.length}})</a></li>
                     <li class="divider"></li>
-                    <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li>
-                    <li class="divider"></li>
+                    <!-- <li><a href ng-click="setTimeline('next-week')">Next Week ({{allVisits["next-week"].visits.length}})</a></li> -->
+                    <!-- <li class="divider"></li> -->
                     <li><a href ng-click="setTimeline('further')">Future ({{allVisits["further"].visits.length}})</a></li>
                 </ul>
 
@@ -54,11 +57,11 @@
                 </div>
 
             </div>
-            <p>
-                {{visit.agenda}}
-            </p>
 
-            <p>
+
+    <richtext class="text" body-text="visit.agenda">
+             </richtext>
+
                 <span ng-if="visit.status.toLowerCase() =='confirmed'" class="visit-status-confirmed">CONFIRMED</span>
                 <span ng-if="visit.status.toLowerCase() =='tentative'" class="visit-status-tentative">TENTATIVE</span>
             </p>

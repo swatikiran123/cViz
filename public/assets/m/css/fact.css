@@ -260,6 +260,30 @@ padding-bottom: 20px;
   position: absolute;
 }
 
+.loc8 {
+  left: 145px;
+  position: absolute;
+  top: 100px;
+}
+
+.loc9 {
+  bottom: 90px;
+  left: 140px;
+  position: absolute;
+}
+
+.loc10 {
+  left: 130px;
+  position: absolute;
+  top: 160px;
+}
+
+.loc11 {
+  left: 110px;
+  position: absolute;
+  top: 370px;
+}
+
 
 
 .marker {
@@ -273,7 +297,7 @@ padding-bottom: 20px;
   font-family: workSansMedium;
   font-weight: bold;
   bottom: -3px;
-  left: -2px;
+  left: 2px;
   position: absolute;
  color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -301,7 +325,19 @@ padding-bottom: 20px;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
-.markerText6 {
+.markerText4 {
+  font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -3px;
+  left: -25px;
+  position: absolute;
+
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+
+.markerText6  {
    font-family: workSansMedium;
   font-weight: bold;
   bottom: -3px;
@@ -319,6 +355,46 @@ padding-bottom: 20px;
   position: absolute;
      color: black;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.markerText8 {
+  font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -3px;
+  left: 0px;
+  position: absolute;
+ color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.markerText9{
+  position: absolute;
+  top: 7px;
+  left: -15px;
+  font-family: workSansMedium;
+  font-weight: bold;
+  color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.markerText10 {
+  font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -3px;
+  left: -15px;
+  position: absolute;
+  color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.markerText11 {
+  font-family: workSansMedium;
+  font-weight: bold;
+  bottom: -3px;
+  left: 2px;
+  position: absolute;
+  color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .menuBtn {
@@ -728,6 +804,26 @@ padding-bottom: 20px;
     bottom: 35px;
     left: 101px;
   }
+
+  .loc8 {
+    left: 75px;
+    top: 45px;
+  }
+
+  .loc9 {
+    bottom: 50px;
+    left: 70px;
+  }
+
+  .loc10 {
+    left: 70px;
+    top: 80px;
+  }
+
+  .loc11 {
+    left: 55px;
+    top: 180px;
+  }
     .ftb-year-class {
             left: 10%;
         }
@@ -880,6 +976,26 @@ padding-bottom: 20px;
   .loc7 {
     bottom: 47px;
     left: 148px;
+  }
+
+  .loc8 {
+    left: 100px;
+    top: 67px;
+  }
+
+  .loc9 {
+    bottom: 65px;
+    left: 102px;
+  }
+
+  .loc10 {
+    left: 100px;
+    top: 115px;
+  }
+
+  .loc11 {
+    left: 72px;
+    top: 260px;
   }
 
   .menuBtn {

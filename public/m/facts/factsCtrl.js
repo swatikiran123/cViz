@@ -34,6 +34,22 @@ app.controller('factsCtrl', function($scope, $rootScope, $location, $http,$route
             {
                 cityName: "Chennai",
                 id: 1264527
+            },
+            {
+                cityName: "Solan",
+                id: 1255851
+            },
+            {
+                cityName: "Shimoga",
+                id: 1256515
+            },
+            {
+                cityName: "Gurgaon",
+                id: 1270644
+            },
+            {
+                cityName: "Pune",
+                id: 10056371
             }];
 
         $scope.openGallery = function (cityName) {

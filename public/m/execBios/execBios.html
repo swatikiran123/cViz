@@ -24,9 +24,9 @@
     <div class="client-rep">
     <!-- {{(clientData|filter:query).length}} -->
         <div class="heading">CLIENT REPRESENTATIVES:   </div>
-            <div ng-show="(clientData|filter:query).length==0">No Client Representatives Found</div>
+            <div ng-show="(uniClient|filter:query).length==0">No Client Representatives Found</div>
             <div class="list-group">
-                <div href="#" class="list-group-item" ng-repeat="clientRep in clientData | filter:query" ng-click="collapseDiv($index,'client')">
+                <div href="#" class="list-group-item" ng-repeat="clientRep in uniClient | filter:query" ng-click="collapseDiv($index,'client')">
                     <div class="representative-pic col-xs-2 col-sm-1 col-md-1">
                      <userview user-model="clientRep" view-mode="bullet-small"></userview>
                  </div>
