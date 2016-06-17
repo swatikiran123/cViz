@@ -476,46 +476,46 @@
     {{$parent.submitVisitsUsers=false;""}}
   </div> 
 
-  <div ng-if="salesExecId!=accountGMId && salesExecId!=industryExecId && salesExecId!=globalDeliveryId &&salesExecId!=creId && industryExecId!=null && globalDeliveryId!=null && salesExecId!=null" >
+  <!--div ng-if="salesExecId!=accountGMId && salesExecId!=industryExecId && salesExecId!=globalDeliveryId &&salesExecId!=creId && industryExecId!=null && globalDeliveryId!=null && salesExecId!=null" >
     {{$parent.submitVisitsUsers=false;""}}
-  </div>
+  </div-->
 
-  <div ng-if="accountGMId!=industryExecId && accountGMId!=globalDeliveryId && accountGMId!=creId &&industryExecId!=null && globalDeliveryId!=null && accountGMId!=null" >
+  <!--div ng-if="accountGMId!=industryExecId && accountGMId!=globalDeliveryId && accountGMId!=creId &&industryExecId!=null && globalDeliveryId!=null && accountGMId!=null" >
     {{$parent.submitVisitsUsers=false;""}}
-  </div>
+  </div-->
 
-  <div ng-if="industryExecId!=globalDeliveryId && industryExecId!=creId  && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+  <!--div ng-if="industryExecId!=globalDeliveryId && industryExecId!=creId  && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
     {{$parent.submitVisitsUsers=false;""}}
-  </div>
+  </div-->
 
-  <div ng-if="globalDeliveryId!=creId && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
+  <!--div ng-if="globalDeliveryId!=creId && industryExecId!=null && globalDeliveryId!=null && creId!=null" >
     {{$parent.submitVisitsUsers=false;""}}
-  </div>
+  </div-->
 
-  <div ng-if="(salesExecId==accountGMId || salesExecId==industryExecId || salesExecId==globalDeliveryId || salesExecId==creId)  && (salesExecId != null)">
+  <!--div ng-if="(salesExecId==accountGMId || salesExecId==industryExecId || salesExecId==globalDeliveryId || salesExecId==creId)  && (salesExecId != null)">
     {{$parent.submitVisitsUsers=true;""}}
     {{errMessage="Sales Executive and other client Representatives should not be same.";""}}
     <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
-  </div> 
+  </div--> 
 
-  <div ng-if="(accountGMId==industryExecId || accountGMId==globalDeliveryId || accountGMId==creId)
+  <!--div ng-if="(accountGMId==industryExecId || accountGMId==globalDeliveryId || accountGMId==creId)
   && (accountGMId != null)">
   {{$parent.submitVisitsUsers=true;""}}
   {{errMessage="Account GM and other client Representatives should not be same.";""}}
   <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
-</div>
+</div-->
 
-<div ng-if="(industryExecId==globalDeliveryId || industryExecId==creId)  && (industryExecId!=null)">
+<!--div ng-if="(industryExecId==globalDeliveryId || industryExecId==creId)  && (industryExecId!=null)">
   {{$parent.submitVisitsUsers=true;""}}
   {{errMessage="Industry Executive  and other client Representatives should not be same.";""}}
   <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
-</div> 
+</div--> 
 
-<div ng-if="(globalDeliveryId==creId)  && (globalDeliveryId!=null)">
+<!--div ng-if="(globalDeliveryId==creId)  && (globalDeliveryId!=null)">
   {{$parent.submitVisitsUsers=true;""}}
   {{errMessage="Global Delivery  and other client  Representatives should not be same.";""}}
   <span class="text-danger">&nbsp;&nbsp;{{errMessage}}</span>
-</div>  
+</div-->  
 </div>
 </div>
 </div>
