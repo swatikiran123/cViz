@@ -38,7 +38,7 @@
           <div class="panel-body">
             <!-- {{groupMember}} -->
             <!-- visits title input-->
-            <md-input-container class="md-block">
+            <!--md-input-container class="md-block">
             <label>Title <span class="asterrisk">*</span></label>
             <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
             <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
@@ -48,7 +48,7 @@
               <div ng-message="minlength">The title should contain minimum 5 characters</div>
             </div>
           </div>
-        </md-input-container>
+        </md-input-container-->
         <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
         <!--client input-->
     <!--         <div class="row">
@@ -85,7 +85,7 @@
       </div>
     </div>
     <fieldset ng-disabled="isSaving && mode ==='edit'">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div layout-gt-sm="row" class="visActGroup">
 
           <md-input-container class="md-block" flex-gt-sm>

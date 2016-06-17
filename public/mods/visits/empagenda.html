@@ -10,7 +10,7 @@
   <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
   </button>
   Visit Planner - Edit Visit
-  <div class="sub-header">Edit {{visits.title}}
+  <div class="sub-header">Edit Visit {{parentSelected}}
   </div>
 </div>
 
@@ -117,7 +117,7 @@
           <div class="panel-body">
 
             <!-- visits title input-->
-            <md-input-container class="md-block">
+            <!--md-input-container class="md-block">
             <label>Title <span class="asterrisk">*</span></label>
             <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
             <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
@@ -127,7 +127,7 @@
               <div ng-message="minlength">The title should contain minimum 5 characters</div>
             </div>
           </div>
-        </md-input-container>
+        </md-input-container-->
         <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
         <!--client input-->
     <!--         <div class="row">

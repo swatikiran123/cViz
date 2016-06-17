@@ -9,6 +9,7 @@
 <div ng-if="mode=='edit'" class="page-header">
   <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
   </button>
+
   <div ng-if="mode=='edit' && (visits.status =='rejected') && !visitGrid">  <button class="btn btn-info pull-right"  ng-click="showChatBoxrejected($event,visits.rejectReason)">Check reasons for Visit Rejection
   </button></div>
   <div ng-if="mode=='edit' && visitGrid">
@@ -16,7 +17,7 @@
     yes-text="Ok" no-text="Cancel">Cancel Visit
   </button></div>
   Visit Planner - Edit Visit
-  <div class="sub-header">Edit {{visits.title}}
+  <div class="sub-header">Edit Visit - {{parentSelected}}
   </div>
 </div>
 

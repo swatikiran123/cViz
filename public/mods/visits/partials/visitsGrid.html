@@ -20,10 +20,10 @@
             <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Schedule Date</a>
           </th>
-          <th>
+          <!--th>
             <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
-          </th>
+          </th-->
           <th>
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='client'; reverseSort = !reverseSort">Client Name</a>
@@ -50,8 +50,8 @@
         <!-- table filter -->
         <tr ng-hide="hideFilter">
           <th><span ng-hide="hideFilter"></span></th>
-          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.client">--></span></th>
+          <!--th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th-->
+          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.client"></span>--></th>
           <th><span ng-hide="hideFilter"><input type="text" ng-model="search.locations"></span></th>
           <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.anchor"></span>--></th>
           <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.createBy"></span>--></th>
@@ -65,7 +65,7 @@
         <tr ng-repeat="visit in visitBatch.visits | filter: search |orderBy:orderByField:reverseSort">
           <!-- <td>{{visit.startDate | DateFormat:"ddd, DD MMM"}} - {{visit.endDate | DateFormat:"ddd, DD MMM"}}</td> -->
           <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:'dd MMM yyyy'}}</td>
-          <td>{{visit.title}}</td>
+          <!--td>{{visit.title}}</td-->
           <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client._id"></div></td>
           <td>{{visit.locations}}</td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
@@ -76,7 +76,7 @@
 
              <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
-             <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with visit title <b>{{visit.title}} ? </b>"
+             <a class="table-btn" ng-click="delete(visit)" confirm-dialog header-text="Delete Visit" content="Are you sure you want to delete the visit with <b>{{visit.client.name}} ? </b>"
               yes-text="Ok" no-text="Cancel"><span class="fa fa-trash fa-lg" tooltips tooltip-template="Delete Visit"/></a>
 
               <a class="table-btn" href="#/visits/{{visit._id}}/sessions" ng-if="visitGrid" 
@@ -123,10 +123,10 @@
             <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Schedule Date</a>
           </th>
-          <th>
+          <!--th>
             <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
-          </th>
+          </th-->
           <th>
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
             <a href="" ng-click="orderByField='client'; reverseSort = !reverseSort">Client Name</a>
@@ -153,8 +153,8 @@
         <!-- table filter -->
         <tr ng-hide="hideFilter">
           <th><span ng-hide="hideFilter"></span></th>
-          <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
-          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.client">--></span></th>
+          <!--th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th-->
+          <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.client"></span>--></th>
           <th><span ng-hide="hideFilter"><input type="text" ng-model="search.locations"></span></th>
           <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.anchor"></span>--></th>
           <th><!--<span ng-hide="hideFilter"><input type="text" ng-model="search.createBy"></span>--></th>
@@ -167,7 +167,7 @@
         <tr ng-show="isSaving && VisitVmag" ng-repeat="visit in VisitsAllList | filter: search |orderBy:orderByField:reverseSort">
           
           <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:'dd MMM yyyy'}}</td>
-          <td>{{visit.title}}</td>
+          <!--td>{{visit.title}}</td-->
           <td><div clientdisplay view-mode="clientnameonly" client-id="visit.client"></div></td>
           <td>{{visit.locations}}</td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
