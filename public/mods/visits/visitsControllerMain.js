@@ -2645,6 +2645,145 @@ $scope.showChatBoxrejected = function(ev,rejectReason) {
   });
 
 };
+$scope.cancelVisit=function(){
+ // console.log(rejectReason);
+ $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+ {
+  console.log($scope.visits);
+
+  // if (rejectReason!= undefined) {
+  //   console.log(rejectReason);
+
+    $scope.visits = response;
+    var inData = $scope.visits;
+    inData.client=$scope.visits.client._id;
+    inData.createBy = $scope.visits.createBy._id;
+    if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+    {
+      inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+    }
+
+    if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+    {
+      inData.cscPersonnel.salesExec = null;
+    }
+
+    if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+    {
+      inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+    }
+
+    if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+    {
+      inData.cscPersonnel.accountGM = null;
+    }
+
+    if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+    {
+      inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+    }
+
+    if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+    {
+      inData.cscPersonnel.industryExec = null;
+    }
+
+    if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+    {
+      inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+    }
+
+    if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+    {
+      inData.cscPersonnel.globalDelivery = null;
+    }
+
+    if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+    {
+      inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+    } 
+
+    if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+    {
+      inData.cscPersonnel.cre = null;
+    }
+
+    if(inData.anchor!=null || inData.anchor != undefined)
+    {
+      inData.anchor = $scope.visits.anchor._id;
+    }
+
+    if(inData.anchor==null || inData.anchor == undefined)
+    {
+      inData.anchor = null;
+    }
+
+    if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+    {
+      inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+    }
+
+    if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+    {
+      inData.secondaryVmanager = null;
+    }
+
+    if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+    {
+      inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+    }  
+
+    if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+    {
+      inData.feedbackTmpl = null;
+    }  
+
+    if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+    {
+      inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+    }  
+
+    if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+    {
+      inData.sessionTmpl = null;
+    }  
+      // console.log($scope.keynotes);
+      // console.log($scope.visits.keynote);
+      // inData.keynote = $scope.visits.keynote;
+      inData.keynote = $scope.keynotes;
+      // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        // inData.status= "rejected";
+        // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      // console.log(inData.status);
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      // console.log(rejectReason);
+
+      // inData.rejectReason = rejectReason;
+            // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        // inData.status= "rejected";
+        inData.status = "cancelled";
+                // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      console.log(inData);
+      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+        console.log(response);
+     // $scope.nextTab($scope.visitid);
+        // $scope.nextTab();
+      $location.path("visits/list"); 
+
+      });
+      
+      growl.info(parse("Cancelled visit successfully: "+inData.title));
+      
+   
+    })  
+}
 $scope.ReSave=function(){
  // console.log(rejectReason);
  $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
@@ -2654,7 +2793,7 @@ $scope.ReSave=function(){
   // if (rejectReason!= undefined) {
   //   console.log(rejectReason);
 
-  //   $scope.visits = response;
+    $scope.visits = response;
     var inData = $scope.visits;
     inData.client=$scope.visits.client._id;
     inData.createBy = $scope.visits.createBy._id;
