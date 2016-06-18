@@ -5,8 +5,8 @@ var mongoose = require('mongoose')
 
 var clientSchema = new mongoose.Schema({
 
-	name 							: { type: String, trim: true, required: true, lowercase: true },
-	subName 						: { type: String, trim: true, lowercase: true },
+	name 							: { type: String, trim: true, required: true },
+	subName 						: { type: String, trim: true},
 	// vertical						: { type: String, trim: true, required: true },clientsChildname
 	// profile							: { type: String, trim: true, required: true },
 	logo							: { type: String, trim: true },
