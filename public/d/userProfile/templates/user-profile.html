@@ -36,7 +36,7 @@
 
                   <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
-                    <label>First Name</label>
+                    <label>First Name <span class="asterrisk">*</span></label>
                     <div ng-if="show=='noSaveProfile'">
                     <input md-maxlength="20" name="first" 
                     ng-model="userModel.name.first" ng-readonly="true">
@@ -68,7 +68,7 @@
                     </md-input-container>  
                     
                     <md-input-container class="md-block" flex-gt-sm>
-                    <label>Last Name</label>
+                    <label>Last Name <span class="asterrisk">*</span></label>
                     <div ng-if="show=='noSaveProfile'">
                     <input md-maxlength="20" name="last" ng-readonly="true" 
                     ng-model="userModel.name.last">
@@ -87,7 +87,7 @@
 
                   <div>
                   <md-input-container class="md-block" flex-gt-sm>
-                  <label>Email</label>
+                  <label>Email <span class="asterrisk">*</span></label>
                   <div ng-if="show=='noSaveProfile'">
                   <input type="email" md-maxlength="255" minlength="8" name="email" 
                   ng-model="userModel.email" ng-readonly="true">
@@ -107,7 +107,7 @@
                   <div>
 
                     <md-input-container class="md-block" flex-gt-sm>
-                    <label>Contact No</label>
+                    <label>Contact No <span class="asterrisk">*</span></label>
                     <div ng-if="show=='noSaveProfile'">
                     <input type="number" ng-maxlength="15" ng-minlength="10" name="contactno" 
                     ng-model="cNo" ng-readonly="true">
@@ -129,7 +129,7 @@
 
                 <div class="col-md-12">
                   <md-input-container class="md-block" flex-gt-sm>
-                  <label>Designation</label>
+                  <label>Designation <span class="asterrisk">*</span></label>
                   <div ng-if="show=='noSaveProfile'">
                   <input md-maxlength="40" minlength="5" name="jobTitle" 
                   ng-model="userModel.jobTitle" ng-readonly="true">
