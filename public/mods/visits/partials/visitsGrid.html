@@ -72,7 +72,7 @@
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
-            <div  ng-if="(visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || (visit.status === 'tentative' && visit.visitors.length < 1) || (visit.status === 'confirm' && visit.visitors.length < 1) || visit.status === 'rejected') && visit.status != 'cancelled'">
+            <div  ng-if="(visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || (visit.status === 'tentative' && visit.visitors.length < 1) || (visit.status === 'confirm' && visit.visitors.length < 1) || visit.status === 'rejected' || visit.status === 'wip' || visit.status === 'finalize' || visit.status === 'complete') && visit.status != 'cancelled' && visit.status != 'close'">
 
              <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
@@ -97,7 +97,7 @@
 
             <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close' || visit.status ==='re-submitted' || visit.status == 'cancelled'))"><span class="fa fa-edit fa-lg"/></a>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/vman" tooltips tooltip-template="View Visit" ng-if="visitGrid && (( visit.status == 'cancelled'))"><span class="fa fa-edit fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/vman" tooltips tooltip-template="View Visit" ng-if="visitGrid && (( visit.status == 'cancelled' || visit.status == 'close'))"><span class="fa fa-edit fa-lg"/></a>
           </td>
         </tr>
 
