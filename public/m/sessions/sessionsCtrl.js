@@ -159,7 +159,7 @@ $scope.pushSession = function(sessionId,rtime){
 		}
 	})
 
-.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope) {
+.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval) {
 	$scope.arrayData=[];
 	$scope.comment = [];
 	$scope.comment11 = [];
@@ -182,6 +182,20 @@ $scope.pushSession = function(sessionId,rtime){
 }
 
 refresh1();
+
+// var c=0;
+// $scope.message="This DIV is refreshed "+c+" time.";
+// $interval(function(){
+
+// 	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+// 	{
+// 		$scope.comment = response.comments;
+// 	});
+
+
+// 	c++;
+// },10000);
+
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
 		cache: true
 	}).success(function(response) {
@@ -244,6 +258,7 @@ $scope.btn_add = function(comment1) {
 
         $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
         {
+          console.log(response)	;
           $scope.comment = response.comments;
           console.log($scope.comment);
           $scope.oneData = [];
@@ -262,8 +277,6 @@ $scope.btn_add = function(comment1) {
 
 $scope.txtcomment = "";
 $scope.comment11 = [];
-// $route.reload();
-// refresh();
 }
 }
 

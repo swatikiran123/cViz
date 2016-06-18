@@ -1868,11 +1868,21 @@ function toTitleCase(string)
     userdata.contactNo = $scope.contactNo;
     userdata.orgRef = $scope.visits.client._id;
 
+    // // userdata.organization = $scope.orgName;
+    // if(userdata.jobTitle!=null)
+    // {
+    //   userdata.jobTitle = toTitleCase(userdata.jobTitle);
+    // }
+
+    // if(userdata.jobTitle==null)
+    // {
+    //   userdata.jobTitle = toTitleCase($scope.designationdata);
+    //   // userdata.jobTitle = toTitleCase($scope.jobTitle);
+    // }
+    
     $http.get('/api/v1/secure/clients/id/' + userdata.orgRef).success(function(response5) {
       $scope.orgName = response5.name;
       userdata.organization = $scope.orgName;
-    })
-
     // userdata.organization = $scope.orgName;
     if(userdata.jobTitle!=null)
     {
@@ -1884,7 +1894,7 @@ function toTitleCase(string)
       userdata.jobTitle = toTitleCase($scope.designationdata);
       // userdata.jobTitle = toTitleCase($scope.jobTitle);
     }
-    console.log(userdata);
+    console.log(userdata);  
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
     // "complete" code here
@@ -1906,7 +1916,9 @@ function toTitleCase(string)
      }
    });
   });
-    $scope.avatar = '/public/assets/g/imgs/avatar.jpg';
+
+  });  
+    $scope.avatar = '/public/assets/g/imgs/generic.png';
   }
 
   $scope.cancelButton = function(){

@@ -9,37 +9,6 @@
 
 @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
-@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
-
-/*.detailBox {
-    width:900px;
-    border:1px solid #bbb;
-    margin:50px;
-}
-.titleBox {
-    background-color:#fdfdfd;
-    padding:10px;
-}
-.titleBox label{
-  color:#444;
-  margin:0;
-  display:inline-block;
-}*/
-
-/*.commentBox {
-    padding:10px;
-    border-top:1px dotted #bbb;
-}
-.commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:100%;
-}
-.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:100%;
-}*/
-
-.actionBox .form-group * {
-    width:100%;
-}
 .taskDescription {
     margin-top:10px 0;
 }
@@ -79,6 +48,14 @@
     border-top:1px dotted #bbb;
     padding:10px;
 }
+.ct{
+    text-align: justify;
+    text-justify: inter-word;
+    padding:0;
+    list-style:none;
+    max-height:300px;
+    overflow:auto;
+}
 </style>
 
 <div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
@@ -94,7 +71,7 @@
     <span class="pull-right" style="color: black;font-size: 15px;" ><i class="fa fa-map-marker"></i>&nbsp;{{session.session.location}}</span>
     <br>
      <br>
-       <span class="pull-right" ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{session.feedbackElg}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.startTime}}" visit-id="{{session.visit}}"></span>
+       <span class="pull-right" ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{session.feedbackElg}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.endTime}}" visit-id="{{session.visit}}"></span>
   
 
     </div>
@@ -191,27 +168,30 @@
           <option value="opt2"><label>Latest</label></option>
       </select> -->
     </div>
+ 
+
+    
 
 </div>
 
         </form>
       </div>
-      <div class="modal-footer">
+
+         <div class="modal-footer">
       {{mode="bulletsmallonly";""}}
           <div class="actionBox">
             <ul class="commentList">
-              <li ng-repeat="comnt in comment">
-                <div class="commenterImage pull-left">
+              <div  ng-repeat="comnt in comment">
+         <div class="commenterImage pull-left">
                    <!-- <userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></userview> -->
                    <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
-                </div>
-                <div class="commentText">
-                  <p>{{comnt.comment}} <span class="sub-text">&nbsp;on {{comnt.givenOn | date:'dd MMM yyyy'}}</span></p>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
+                   </div>
+        <div class="ct commentText">
+                  {{comnt.comment}} <span class="sub-text">&nbsp;<br>on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+                  </div>
+              
+              <hr>
+             
       </div>
     </div>
   </div>

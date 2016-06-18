@@ -23,7 +23,7 @@
 
            <div class="row">
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <i>Select Start Time</i><br>
+                <i>Select Start Time <span class="asterrisk">*</span></i><br>
                 <select ng-model="startHourTime" required ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
                   <option ng-option value="06">06</option>
@@ -64,7 +64,7 @@
               </div>
 
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <i>Select End Time</i>
+                <i>Select End Time <span class="asterrisk">*</span></i>
                 <br>
                 <select ng-model="endHourTime" required ng-dropdown ng-change="checkTime()">
                   <option value=""></option>
@@ -105,7 +105,7 @@
               </div>
 
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 slctsession">
-                <i>Select Session Type</i>
+                <i>Select Session Type <span class="asterrisk">*</span></i>
                 <br>
                 <select class="session-type" id="type" ng-model="schedule.session.type" required>
                  <option value="" disabled></option>
@@ -118,7 +118,7 @@
     <ANY ng-switch="schedule.session.type">
        <ANY ng-switch-default>
             <md-input-container class="md-block">
-        <label>Title</label>
+        <label>Title <span class="asterrisk">*</span></label>
         <input md-maxlength="30" minlength="5" required name="title" ng-model="schedule.session.title">
         <div ng-messages="sessionAddForm.title.$error" ng-show="sessionAddForm.title.$touched || !sessionAddForm.title.$pristine">
              <div class="messagenotify">
@@ -139,11 +139,11 @@
       </md-input-container> -->
 
       <md-input-container class="md-block">
-      <label ng-show="schedule.session.desc" class="show-hide">Session Descritpiton</label>
+      <label>Session Descritpiton <span class="asterrisk">*</span></label>
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="schedule.session.desc" name="desc" placeholder="Session Descritpiton" required /></text-angular>
+      ng-model="schedule.session.desc" name="desc" placeholder="Description for the Session" required /></text-angular>
       <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched && !sessionAddForm.desc.$pristine">
         <div class="messagenotify">
           <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -152,7 +152,7 @@
     </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='add'">
-      <label>Session Feedback Template</label>
+      <label>Session Feedback Template <span class="asterrisk">*</span></label>
       <input name="session" ng-model="session" session required ng-blur="sendFeedbackId(sessionId)">
       <div ng-messages="sessionAddForm.session.$error" ng-show="sessionAddForm.session.$touched || !sessionAddForm.session.$pristine">
        <div class="messagenotify">
@@ -162,7 +162,7 @@
       </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='edit'">
-      <label>Session Feedback Template</label>
+      <label>Session Feedback Template <span class="asterrisk">*</span></label>
 
       <input name="sessiondata" ng-model="sessiondata" sessiondata required ng-blur="sendFeedbackId(sessionId)">
       <div ng-messages="sessionAddForm.sessiondata.$error" ng-show="sessionAddForm.sessiondata.$touched || !sessionAddForm.sessiondata.$pristine">
@@ -173,7 +173,7 @@
       </md-input-container>
 
       <div>
-        <i>Select Meeting Place</i>
+        <i>Select Meeting Place <span class="asterrisk">*</span></i>
         <select id="meetingPlace" ng-model="schedule.session.location" required>
           <option value="" disabled></option>
           <option value="" disabled>==========================================================================================</option>
@@ -187,7 +187,7 @@
 				<div class="form-group col-xs-6">
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.ownerUser.$touched && sessionAddForm.ownerUser.$invalid }">
-						<label >Select Speaker &nbsp;&nbsp; :</label>
+						<label>Speaker <span class="asterrisk">*</span></label>
 						<div userauto type="picker" user-model="ownerUser" user-id="$parent.ownerId" view-type="small" user-email="ownerEmail" switch-mode="mode" user-type="employee" module-type="sessions" title="Speaker"></div>
 						</div>
 					</md-input-container>
@@ -196,7 +196,7 @@
 				<div class="form-group col-xs-6"><!-- ng-blur="seeOwnerSupporter()" -->
 					<md-input-container class="md-block">
 						<div class="form-group" ng-class="{ 'has-error': sessionAddForm.supporterUser.$touched && sessionAddForm.supporterUser.$invalid }">
-						<label >Select Supporter &nbsp;&nbsp; :</label>
+						<label >Supporter</label>
 						<div userauto type="picker" user-model="supporterUser" user-id="$parent.supporterId" view-type="small" user-email="supporterEmail" switch-mode="mode" user-type="employee" module-type="sessions" title="Supporter"></div>
 						</div>
 					</md-input-container>
@@ -212,8 +212,14 @@
           {{$parent.submitOwnerSupporter=false;""}}
         </div>
 
-        <div ng-if="ownerId == null || supporterId == null">
-          {{$parent.submitOwnerSupporter=false;""}}
+        <div ng-if="ownerId == null">
+          {{$parent.submitOwner=true;""}}
+        </div>
+        <div ng-if="ownerId != null">
+          {{$parent.submitOwner=false;""}}
+        </div> 
+        <div ng-if="supporterId == null">
+        {{$parent.submitOwnerSupporter=false;""}}
         </div> 
 			</div>
       <br>
@@ -222,7 +228,7 @@
         <!-- </div>   -->
         <md-dialog-actions layout="row">
         <md-button class="md-primary md-raised" ng-click="save()" 
-        ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar">
+        ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner">
         Submit
       </md-button>
       <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
@@ -256,7 +262,7 @@
         </md-input-container> -->
 
         <div class="row">
-          <i>Select Meeting Place</i>
+          <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>==========================================================================================</option>
@@ -315,7 +321,7 @@
           <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
         </md-input-container> -->
         <div class="row">
-          <i>Select Meeting Place</i>
+          <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>==========================================================================================</option>
@@ -353,7 +359,7 @@
       <ANY ng-switch-when="dinner">
 
         <div class="row">
-          <i>Select Meeting Place</i>
+          <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>==========================================================================================</option>
@@ -391,7 +397,7 @@
       <ANY ng-switch-when="breakfast">
 
         <div class="row">
-          <i>Select Meeting Place</i>
+          <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
             <option value="" disabled></option>
             <option value="" disabled>==========================================================================================</option>

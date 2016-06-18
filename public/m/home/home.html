@@ -60,7 +60,7 @@
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <a href="/m/visits/#/execBios">
                     <div class="menu-circle-icon exec-bio exec-icon"></div>
-                    <div class="exec-bio-text">EXECUTIVE BIO'S {{finalFeedback }}</div>
+                    <div class="exec-bio-text">EXECUTIVE BIO'S</div>
                 </a>
             </div>
 
@@ -72,8 +72,12 @@
 
           </div>
         </div>
-        <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4">
+        <!-- {{finalFeedback}} -->
+        <!-- {{current | date : 'dd MMM yyyy'}}{{endDate | date : 'dd MMM yyyy'}} -->
+        <!-- current | date : 'dd MMM yyyy HH:mm:ss') >= (starttime | date : 'dd MMM yyyy HH:mm:ss' -->
+        <!-- <div ng-if="finalFeedback==true && ((current | date : 'dd MMM yyyy') > (endDate | date : 'dd MMM yyyy'))" class="row"> -->
+        <div ng-if="finalFeedback==true" class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4">
            <a href="/m/facts/">
             <div class="menu-circle-icon factsheet factsheet-icon"></div>
             <div class="factsheets-text">FACTSHEETS</div>
@@ -81,21 +85,37 @@
 
         </div>
         
-       
-             <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="col-xs-4 col-sm-4 col-md-4">
+          <a href="/m/visits/#/feedback">
+            <div class="menu-circle-icon feedback feedback-icon"></div>
+            <div class="feedback-text">FEEDBACK</div>
+          </a>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4">
           <a href="/logout">
             <div class="menu-circle-icon logout logout-icon"></div>
             <div class="logout-text">LOGOUT</div>
           </a>
         </div>
-  
-      
-           <div class="col-xs-4 col-sm-4 col-md-4" ng-if="finalFeedback ==true">
-                <a href="/m/visits/#/feedback">
-                    <div class="menu-circle-icon feedback feedback-icon"></div>
-                    <div class="feedback-text">FEEDBACK</div>
-                </a>
-            </div>
       </div>
+
+      <!-- <div ng-if="finalFeedback==false || ((current | date : 'dd MMM yyyy') <= (endDate | date : 'dd MMM yyyy'))" class="row"> -->
+      <div ng-if="finalFeedback==false" class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+         <a href="/m/facts/">
+          <div class="menu-circle-icon factsheet factsheet-icon"></div>
+          <div class="factsheets-text">FACTSHEETS</div>
+        </a>
+      </div>
+
+
+      <div class="col-xs-6 col-sm-6 col-md-6">
+        <a href="/logout">
+          <div class="menu-circle-icon logout logout-icon"></div>
+          <div class="logout-text">LOGOUT</div>
+        </a>
+      </div>
+    </div>
     </div>
 </div>
