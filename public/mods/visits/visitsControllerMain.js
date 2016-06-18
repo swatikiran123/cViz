@@ -90,6 +90,8 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.isSaving= false;
   $scope.j=[];
   $scope.kData=[];
+  $scope.closeNoteTipReject= false;
+
 
   $scope.visitGrid=false;
   $scope.navVisit ='';
@@ -98,7 +100,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.subdis= true;
   $scope.allViei=false;
   $scope.stdate= true;
-  
+  $scope.rejectReason="";
   $scope.agendaTab=true;
   $scope.visitorsTab=false;
   $scope.finalizeTab=false;
@@ -587,7 +589,15 @@ var refresh = function() {
    $scope.agendaSave=1;
    break;
 
-   case "reject": 
+   case "rejected": 
+   $scope.agendaTab= true;
+   $scope.visitorsTab= true;
+   $scope.finalizeTab= false;
+   $scope.notifyTab= false;
+   $scope.agendaSave=1;
+   break;//re-submitted
+
+      case "re-submitted": 
    $scope.agendaTab= true;
    $scope.visitorsTab= true;
    $scope.finalizeTab= false;
@@ -595,27 +605,29 @@ var refresh = function() {
    $scope.agendaSave=1;
    break;
  };
- $scope.createBy= response.createBy._id;
- // console.log(visits.client);
- $scope.clientIdData=visits.client._id;
- $scope.parentSelected= visits.client.name;
- $scope.childSelected= visits.client.subName;
- visits.industry= visits.client.industry;
- visits.regions= visits.client.regions;
- $scope.sfdcidSelected= visits.client.sfdcid;
- if (visits.client.logo!= null) {
-  $scope.showAvatar =true;
-  $scope.avatarVisit=visits.client.logo;
-}else{ 
-  $scope.showAvatar =false;
-  $scope.Addlogovisit=true;
-  $scope.removelogovisit=true;}
-  $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
+ if (visits.rejectReason!= null || visits.rejectReason!= undefined || visits.rejectReason!="") {
+   $scope.rejectReason= visits.rejectReason;};
+   $scope.createBy= response.createBy._id;
+   console.log(visits.rejectReason);
+   $scope.clientIdData=visits.client._id;
+   $scope.parentSelected= visits.client.name;
+   $scope.childSelected= visits.client.subName;
+   visits.industry= visits.client.industry;
+   visits.regions= visits.client.regions;
+   $scope.sfdcidSelected= visits.client.sfdcid;
+   if (visits.client.logo!= null) {
+    $scope.showAvatar =true;
+    $scope.avatarVisit=visits.client.logo;
+  }else{ 
+    $scope.showAvatar =false;
+    $scope.Addlogovisit=true;
+    $scope.removelogovisit=true;}
+    $http.get('/api/v1/secure/clients/id/' +$scope.clientIdData).success(function(response) {
 // })
 
-  $scope.selectedList = visits.offerings;
-  if(response.status == "draft"){
-    $scope.ClientDraft= true;
+    $scope.selectedList = visits.offerings;
+    if(response.status == "draft"){
+      $scope.ClientDraft= true;
     // console.log("draft");
     if (response.logo!= null) {
       $scope.showAvatar =true;
@@ -628,23 +640,23 @@ var refresh = function() {
    // console.log("final");
  }
 })
-  for(var files=0;files<response.visitGallery.length;files++)
-  {
-    $scope.arrayClose.push(response.visitGallery[files])
-  }
+    for(var files=0;files<response.visitGallery.length;files++)
+    {
+      $scope.arrayClose.push(response.visitGallery[files])
+    }
 
-  $scope.bods = visits.bod;
-  $scope.visitors = visits.visitors;
-  if ($scope.visitors.length == 0)
-  {
-    $scope.visvalid= true;
-    $scope.closeNoteTipVis=true;
+    $scope.bods = visits.bod;
+    $scope.visitors = visits.visitors;
+    if ($scope.visitors.length == 0)
+    {
+      $scope.visvalid= true;
+      $scope.closeNoteTipVis=true;
 
-  }
-  else{
-    $scope.visvalid= false;
+    }
+    else{
+      $scope.visvalid= false;
 
-  }
+    }
         $scope.schedules = visits.schedule;//List of schedules
         if ($scope.schedules.length == 0)
         {
@@ -660,7 +672,7 @@ var refresh = function() {
           $scope.visitorType = response.visitorType; // response from visitor type
         else
           $scope.visitorType = '';
-        if ($rootScope.user.groups=="user" && visits.status == "reject") {
+        if ($rootScope.user.groups=="user" && visits.status == "rejected") {
           $scope.saveDrafButton=true;
           $scope.status = null;
         }
@@ -2564,12 +2576,12 @@ $scope.btn_add = function(comment1) {
       // console.log($scope.visits.keynote);
       // inData.keynote = $scope.visits.keynote;
       inData.keynote = $scope.keynotes;
-      // console.log($scope.rejectValue);
-      if ($scope.rejectValue == true) {
-        inData.status= "reject";
-        growl.info(parse("Rejected the visit"));
-      }else
-      inData.status=$scope.visits.status;
+      // // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+      //   inData.status= "reject";
+      //   growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
       // console.log(inData.status);
       inData.comments = $scope.myData;
       $scope.commentsData = [];
@@ -2616,8 +2628,439 @@ $scope.showChatBox = function(ev) {
   });
 
 };
-$scope.reject=function(){
-  $scope.rejectValue= true;
+
+$scope.showChatBoxrejected = function(ev,rejectReason) {
+  console.log(rejectReason);
+  $mdDialog.show({
+    templateUrl: '/public/mods/visits/visitsReject.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
+  })
+  .then(function(answer) {
+    $scope.status = 'You said the information was "' + answer + '".';
+  }, function() {
+    $scope.status = 'You cancelled the dialog.';
+  });
+
+};
+$scope.ReSave=function(){
+ // console.log(rejectReason);
+ $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+ {
+  // console.log(rejectReason);
+
+  // if (rejectReason!= undefined) {
+  //   console.log(rejectReason);
+
+  //   $scope.visits = response;
+    var inData = $scope.visits;
+    inData.client=$scope.visits.client._id;
+    inData.createBy = $scope.visits.createBy._id;
+    if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+    {
+      inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+    }
+
+    if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+    {
+      inData.cscPersonnel.salesExec = null;
+    }
+
+    if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+    {
+      inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+    }
+
+    if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+    {
+      inData.cscPersonnel.accountGM = null;
+    }
+
+    if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+    {
+      inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+    }
+
+    if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+    {
+      inData.cscPersonnel.industryExec = null;
+    }
+
+    if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+    {
+      inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+    }
+
+    if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+    {
+      inData.cscPersonnel.globalDelivery = null;
+    }
+
+    if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+    {
+      inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+    } 
+
+    if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+    {
+      inData.cscPersonnel.cre = null;
+    }
+
+    if(inData.anchor!=null || inData.anchor != undefined)
+    {
+      inData.anchor = $scope.visits.anchor._id;
+    }
+
+    if(inData.anchor==null || inData.anchor == undefined)
+    {
+      inData.anchor = null;
+    }
+
+    if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+    {
+      inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+    }
+
+    if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+    {
+      inData.secondaryVmanager = null;
+    }
+
+    if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+    {
+      inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+    }  
+
+    if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+    {
+      inData.feedbackTmpl = null;
+    }  
+
+    if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+    {
+      inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+    }  
+
+    if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+    {
+      inData.sessionTmpl = null;
+    }  
+      // console.log($scope.keynotes);
+      // console.log($scope.visits.keynote);
+      // inData.keynote = $scope.visits.keynote;
+      inData.keynote = $scope.keynotes;
+      // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        // inData.status= "rejected";
+        // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      // console.log(inData.status);
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      // console.log(rejectReason);
+
+      // inData.rejectReason = rejectReason;
+            // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        // inData.status= "rejected";
+        inData.status = "re-submitted";
+                // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      console.log(inData);
+      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+        console.log(response);
+     $scope.nextTab($scope.visitid);
+        // $scope.nextTab();
+      });
+      
+      growl.info(parse("Rejected visit successfully: "+inData.title));
+      
+   
+    })
+
+  // $scope.rejectValue= true;
+}
+
+$scope.checkAvailability= function(ev){
+  $http.get('/api/v1/secure/stats/visitstats').success(function(response) {
+    // console.log(response);
+    $scope.checkVisit= response;
+    // console.log($scope.checkVisit);
+    $mdDialog.show({
+      templateUrl: '/public/mods/visits/vmanCheck.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+
+    })
+  })
+}
+
+$scope.saveoverallfeed=function(){
+    // console.log($scope.overallfeedback);
+    $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+    {
+      $scope.visits = response;
+      var inData = $scope.visits;
+      inData.client=$scope.visits.client._id;
+      inData.createBy = $scope.visits.createBy._id;
+      if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+      {
+        inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+      }
+
+      if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+      {
+        inData.cscPersonnel.salesExec = null;
+      }
+
+      if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+      {
+        inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+      }
+
+      if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+      {
+        inData.cscPersonnel.accountGM = null;
+      }
+
+      if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+      {
+        inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+      }
+
+      if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+      {
+        inData.cscPersonnel.industryExec = null;
+      }
+
+      if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+      {
+        inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+      }
+
+      if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+      {
+        inData.cscPersonnel.globalDelivery = null;
+      }
+
+      if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+      {
+        inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+      } 
+
+      if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+      {
+        inData.cscPersonnel.cre = null;
+      }
+
+      if(inData.anchor!=null || inData.anchor != undefined)
+      {
+        inData.anchor = $scope.visits.anchor._id;
+      }
+
+      if(inData.anchor==null || inData.anchor == undefined)
+      {
+        inData.anchor = null;
+      }
+
+      if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+      {
+        inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+      }
+
+      if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+      {
+        inData.secondaryVmanager = null;
+      }
+
+      if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+      {
+        inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+      }  
+
+      if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+      {
+        inData.feedbackTmpl = null;
+      }  
+
+      if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+      {
+        inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+      }  
+
+      if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+      {
+        inData.sessionTmpl = null;
+      }  
+      // console.log($scope.keynotes);
+      // console.log($scope.visits.keynote);
+      // inData.status = "re-submitted";
+      inData.keynote = $scope.keynotes;
+
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      // console.log($scope.j);
+
+      inData.overallfeedback = $scope.j;
+      // console.log(inData);
+      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+        // console.log(response);
+      });
+      
+      growl.info(parse("Overall Feedback submitted successfully for visit: "+inData.title));
+      $location.path("visits/list"); 
+    }) 
+}
+$scope.closeNoteTipSTreject=function(){
+  $scope.closeNoteTipReject= false;
+}
+
+$scope.reject=function(rejectReason){
+  console.log(rejectReason);
+  $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+  {
+    console.log(rejectReason);
+
+    if (rejectReason!= undefined) {
+      console.log(rejectReason);
+
+      $scope.visits = response;
+      var inData = $scope.visits;
+      inData.client=$scope.visits.client._id;
+      inData.createBy = $scope.visits.createBy._id;
+      if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+      {
+        inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+      }
+
+      if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+      {
+        inData.cscPersonnel.salesExec = null;
+      }
+
+      if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+      {
+        inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+      }
+
+      if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+      {
+        inData.cscPersonnel.accountGM = null;
+      }
+
+      if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+      {
+        inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+      }
+
+      if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+      {
+        inData.cscPersonnel.industryExec = null;
+      }
+
+      if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+      {
+        inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+      }
+
+      if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+      {
+        inData.cscPersonnel.globalDelivery = null;
+      }
+
+      if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+      {
+        inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+      } 
+
+      if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+      {
+        inData.cscPersonnel.cre = null;
+      }
+
+      if(inData.anchor!=null || inData.anchor != undefined)
+      {
+        inData.anchor = $scope.visits.anchor._id;
+      }
+
+      if(inData.anchor==null || inData.anchor == undefined)
+      {
+        inData.anchor = null;
+      }
+
+      if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+      {
+        inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+      }
+
+      if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+      {
+        inData.secondaryVmanager = null;
+      }
+
+      if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+      {
+        inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+      }  
+
+      if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+      {
+        inData.feedbackTmpl = null;
+      }  
+
+      if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+      {
+        inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+      }  
+
+      if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+      {
+        inData.sessionTmpl = null;
+      }  
+      // console.log($scope.keynotes);
+      // console.log($scope.visits.keynote);
+      // inData.keynote = $scope.visits.keynote;
+      inData.keynote = $scope.keynotes;
+      // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        // inData.status= "rejected";
+        // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      // console.log(inData.status);
+      inData.comments = $scope.myData;
+      $scope.commentsData = [];
+      console.log(rejectReason);
+
+      inData.rejectReason = rejectReason;
+            // console.log($scope.rejectValue);
+      // if ($scope.rejectValue == true) {
+        inData.status= "rejected";
+        // growl.info(parse("Rejected the visit"));
+      // }else
+      // inData.status=$scope.visits.status;
+      console.log(inData);
+      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+        // console.log(response);
+      });
+      
+      growl.info(parse("Rejected visit successfully: "+inData.title));
+      $location.path("visits/list"); 
+    }else
+    {
+      $scope.closeNoteTipReject= true;
+        // console.log("im here");
+        $scope.err= "Please mention reasons for  rejecting the visit ..!!";
+      }
+    })
+
+  // $scope.rejectValue= true;
 }
 
 $scope.checkAvailability= function(ev){
@@ -2737,13 +3180,7 @@ $scope.saveoverallfeed=function(){
       // console.log($scope.visits.keynote);
       // inData.keynote = $scope.visits.keynote;
       inData.keynote = $scope.keynotes;
-      // console.log($scope.rejectValue);
-      if ($scope.rejectValue == true) {
-        inData.status= "reject";
-        growl.info(parse("Rejected the visit"));
-      }else
-      inData.status=$scope.visits.status;
-      // console.log(inData.status);
+
       inData.comments = $scope.myData;
       $scope.commentsData = [];
       // console.log($scope.j);

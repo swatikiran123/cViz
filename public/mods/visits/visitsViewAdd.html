@@ -9,6 +9,8 @@
 <div ng-if="mode=='edit'" class="page-header">
   <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
   </button>
+  <div ng-if="mode=='edit' && (visits.status =='rejected') && !visitGrid">  <button class="btn btn-info pull-right"  ng-click="showChatBoxrejected($event,visits.rejectReason)">Visit Rejected
+  </button></div>
 	Visit Planner - Edit Visit
 	<div class="sub-header">Edit {{visits.title}}
 	</div>
@@ -19,7 +21,7 @@
     <div class="row">
       <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
       <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
-       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft && (status !='reject')"> 
+       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft && (visits.status !='rejected')"> 
         <div ng-if="mode=='edit' && adminInitVman && !ClientDraft">
           <div ng-if="visitGrid"><!--checking if visit manager or not-->
             <div class="row">

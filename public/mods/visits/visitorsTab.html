@@ -249,18 +249,18 @@
 
         <div class="row">
           <div class="col-md-6">
-          <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
-            <md-input-container class="md-block" flex-gt-sm>
-            <label>Contact No <span class="asterrisk">*</span></label>
-            <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
-            ng-model="userdata.contactNumber">
-            <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
-             <div class="messagenotify">
-              <div ng-message='required'>Contact No is mandatory field.</div>
-              <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
-              <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
-            </md-input-container>
-          </div>  
+            <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
+              <md-input-container class="md-block" flex-gt-sm>
+              <label>Contact No <span class="asterrisk">*</span></label>
+              <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+              ng-model="userdata.contactNumber">
+              <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+               <div class="messagenotify">
+                <div ng-message='required'>Contact No is mandatory field.</div>
+                <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+                <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+              </md-input-container>
+            </div>  
           </div>
           <div ng-if="groupMember == 'admin' || groupMember == 'vManager'" class="col-md-6">
             <md-input-container class="md-block" flex-gt-sm>
@@ -304,7 +304,7 @@
         </md-input-container>
       </div>
 
-      </div>
+    </div>
 <!--         <div class="col-md-12">
           <md-input-container class="md-block" flex-gt-sm>
           <label>Job Title</label>
@@ -421,31 +421,23 @@
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
-  yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status != 'rejected')">Submit
   </button>
-      <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" ng-if="visitGrid">Submit
-  </button>
-  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-  yes-text="Ok" no-text="Cancel">Cancel</button>
-  <button type="submit" class="btn btn-info"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton || status == 'reject'">Save to Draft
+<!--   <button type="submit" class="btn btn-success"
+  ng-click="ReSave()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+  yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status === 'rejected')">Re-submit
+</button> -->
+
+<button type="submit" class="btn btn-success"
+ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" ng-if="visitGrid">Submit
+</button>
+<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+yes-text="Ok" no-text="Cancel">Cancel</button>
+<button type="submit" class="btn btn-info"
+ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || visits.status === 'rejected'" ng-show="mode ==='add'|| visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton || visits.status == 'rejected' || visit.status ==='re-submitted'">Save to Draft
 </button>
 </div>
 </div>
 <br><br><br>
-<div class="panel panel-default" ng-if="adminInitVman && (status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' ||status === 'reject')">
-  <div class="panel-heading">
-    <h3 class="panel-title"> <b>Reject Visit</b></h3>
-  </div>
-  <div class = "panel-subheader pull-right">
-  </div>
-  <div class="panel-body">
-   If you want to Reject this Visit, please click <b>Reject</b>
-   <div class="pull-right"><button type="submit" class="btn btn-warning pull-right"
-   ng-if="adminInitVman" ng-click="reject();showChatBox($event);" confirm-dialog header-text="Reject Visit" content="Are you sure you want to Reject this form ?"
-  yes-text="Ok" no-text="Cancel">Reject</button></div>
- </div>
-</div>
 </form>

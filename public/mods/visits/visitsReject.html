@@ -1,0 +1,23 @@
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+<form>
+	<md-toolbar>
+	<div class="md-toolbar-tools">
+		Rejected visit
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="canceldialogvMan()">
+		<md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+	</md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<br>
+<md-dialog-actions layout="row">
+<ul><b>Following are the reasons for visit Reject:<br></b>
+	<div class="text-xs"><richtext body-text="rejectReason"></richtext></div>
+</ul>
+</md-dialog-actions>
+<md-button class="md-primary md-raised pull-right" ng-click="canceldialogvMan()">
+OK
+</md-button>
+</form>
+</md-dialog>

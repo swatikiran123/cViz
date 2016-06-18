@@ -72,7 +72,7 @@
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
-            <div  ng-if="visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || (visit.status === 'tentative' && visit.visitors.length < 1) || (visit.status === 'confirm' && visit.visitors.length < 1) || visit.status === 'reject'">
+            <div  ng-if="visitGrid || visit.status === 'tentative draft' || visit.status === 'confirm draft' || (visit.status === 'tentative' && visit.visitors.length < 1) || (visit.status === 'confirm' && visit.visitors.length < 1) || visit.status === 'rejected'">
 
              <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
@@ -93,9 +93,9 @@
             
             </div>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1))"><span class="fa fa-paperclip fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1 || visit.status ==='re-submitted'))"><span class="fa fa-paperclip fa-lg"/></a>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close'))"><span class="fa fa-edit fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close' || visit.status ==='re-submitted'))"><span class="fa fa-edit fa-lg"/></a>
           </td>
         </tr>
 

@@ -14,7 +14,7 @@
           <div class = "panel-subheader pull-right">
           </div>
           <div class="panel-body">
-          <!-- {{groupMember}} -->
+            <!-- {{groupMember}} -->
             <!-- visits title input-->
             <md-input-container class="md-block">
             <label>Title <span class="asterrisk">*</span></label>
@@ -144,73 +144,73 @@
 </div>
 
 <div ng-if="groupMember=='user'" class="row">
-          <fieldset ng-disabled="isSaving && mode ==='edit'">
+  <fieldset ng-disabled="isSaving && mode ==='edit'">
 
-      <div class="col-md-12">
-        <div layout-gt-sm="row">
-
-          <md-input-container class="md-block" flex-gt-sm>
-          <label>Parent Account Name  {{industryClient}} {{regionClient}}</label>
-          <angucomplete-alt
-          id="ex14"
-          placeholder="Select Client or Add Client"
-          pause="500"
-          selected-object="visitsSelectedClient"
-          remote-url="/api/v1/secure/clients/find?query="
-          remote-url-data-field="items"
-          title-field="parentClient"
-          minlength="3" 
-          input-class="form-control form-control-small"
-          match-class="highlight"
-          template-url="/my-custom-template.html"
-          initial-value="parentSelected"
-          box-type="md"
-          input-changed="parentClientChanged"
-          />
-          <div class="messagenotify">
-            <div class="text-danger">{{errparentMsg}}</div>
-          </div>   
-        </md-input-container>
+    <div class="col-md-12">
+      <div layout-gt-sm="row">
 
         <md-input-container class="md-block" flex-gt-sm>
-        <label>Child Account Name </label>
+        <label>Parent Account Name  {{industryClient}} {{regionClient}}</label>
         <angucomplete-alt
         id="ex14"
-        placeholder="Select Child Client or Add Client"
+        placeholder="Select Client or Add Client"
         pause="500"
-        selected-object="visitsSelectedchildClient"
-        remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery="
-        remote-url-data-field="items1"
-        title-field="childClient"
+        selected-object="visitsSelectedClient"
+        remote-url="/api/v1/secure/clients/find?query="
+        remote-url-data-field="items"
+        title-field="parentClient"
         minlength="3" 
         input-class="form-control form-control-small"
         match-class="highlight"
-        template-url="/my-custom1-template.html"
-        initial-value="childSelected"
+        template-url="/my-custom-template.html"
+        initial-value="parentSelected"
         box-type="md"
-        input-changed="childClientChanged"
+        input-changed="parentClientChanged"
         />
         <div class="messagenotify">
-          <div class="text-danger">{{errchildMsg}}</div>
-        </div>  
+          <div class="text-danger">{{errparentMsg}}</div>
+        </div>   
       </md-input-container>
 
-    </div>
-    <div class="form-group visIndBlock">
-      <div class="col-md-6">
-       <label>Industry</label>
-       <select
-       ng-model="visits.industry" ng-change="industryClientChanged(visits.industry)"
-       ng-options="data for data in vertical" class="form-control">
-     </select>
-   </div>
+      <md-input-container class="md-block" flex-gt-sm>
+      <label>Child Account Name </label>
+      <angucomplete-alt
+      id="ex14"
+      placeholder="Select Child Client or Add Client"
+      pause="500"
+      selected-object="visitsSelectedchildClient"
+      remote-url="/api/v1/secure/clients/find?query={{visits.clientName}}&subQuery="
+      remote-url-data-field="items1"
+      title-field="childClient"
+      minlength="3" 
+      input-class="form-control form-control-small"
+      match-class="highlight"
+      template-url="/my-custom1-template.html"
+      initial-value="childSelected"
+      box-type="md"
+      input-changed="childClientChanged"
+      />
+      <div class="messagenotify">
+        <div class="text-danger">{{errchildMsg}}</div>
+      </div>  
+    </md-input-container>
 
-   <div class="col-md-6">
-    <label>Regions</label>
-    <select
-    ng-model="visits.regions" 
-    ng-options="data1 for data1 in regions" class="form-control">
-  </select> 
+  </div>
+  <div class="form-group visIndBlock">
+    <div class="col-md-6">
+     <label>Industry</label>
+     <select
+     ng-model="visits.industry" ng-change="industryClientChanged(visits.industry)"
+     ng-options="data for data in vertical" class="form-control">
+   </select>
+ </div>
+
+ <div class="col-md-6">
+  <label>Regions</label>
+  <select
+  ng-model="visits.regions" 
+  ng-options="data1 for data1 in regions" class="form-control">
+</select> 
 
 </div>
 </div>
@@ -585,7 +585,7 @@
 </div>
 
 <!-- visits status input-->
-<div ng-show=" status == null || status == 'confirm' || status == 'tentative' ||status === 'reject' ">
+<div ng-show=" status == null || status == 'confirm' || status == 'tentative' ||status === 'rejected' ">
   <label>Status <span class="asterrisk">*</span></label>
   <md-input-container class="md-block statusBlock">
   <md-radio-group name="status" id="status" ng-model="status" required class="">
@@ -835,34 +835,29 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 </div--><!--comment as per bucketization requirement -->
 
 <!--/div--><!--comment as per bucketization requirement -->
-
+<!-- status={{visits.status}}  {{visitGrid}} -->
 
 <!--buttons-->
 <div class="form-group">
   <div class="pull-left">
-    <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'reject'">Save &amp; Continue 
+    <button type="submit" ng-if="visitGrid" class="btn btn-success"
+    ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'rejected'">Save &amp; Continue 
   </button>
-  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-  yes-text="Ok" no-text="Cancel">Cancel</button>
-  <button type="submit" class="btn btn-info"
-  ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'reject'">Save to Draft
+  <button type="submit" ng-if="!visitGrid && (visits.status != 'rejected')" class="btn btn-success"
+  ng-click="save()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'rejected'">Save &amp; Continue 
+</button>
+<button type="submit" ng-if="!visitGrid && visits.status === 'rejected'" class="btn btn-success"
+ng-click="ReSave()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'rejected'">Re-submit 
+</button>
+
+<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+yes-text="Ok" no-text="Cancel">Cancel</button>
+
+<button type="submit" class="btn btn-info"
+ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient  || status === 'rejected'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'rejected'">Save to Draft
 </button>
 </div><br><br><br>
 </div>
-<div class="panel panel-default" ng-if="adminInitVman && (status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' ||status === 'reject')">
-  <div class="panel-heading">
-    <h3 class="panel-title"> <b>Reject Visit</b></h3>
-  </div>
-  <div class = "panel-subheader pull-right">
-  </div>
-  <div class="panel-body">
-   If you want to Reject this Visit, please click <b>Reject</b>
-   <div class="pull-right"><button type="submit" class="btn btn-warning pull-right"
-     ng-if="adminInitVman" ng-click="reject();showChatBox($event);" confirm-dialog header-text="Reject Visit" content="Are you sure you want to Reject this form ?"
-     yes-text="Ok" no-text="Cancel">Reject</button></div>
-   </div>
- </div>
 </form>
 
 <!--/div>
