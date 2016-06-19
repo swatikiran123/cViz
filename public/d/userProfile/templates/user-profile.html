@@ -38,7 +38,7 @@
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>First Name</label>
                     <div ng-if="show=='noSaveProfile'">
-                    <input md-maxlength="20" required name="first" 
+                    <input md-maxlength="20" name="first" 
                     ng-model="userModel.name.first" ng-readonly="true">
                     </div>
                     <div ng-if="show=='saveProfile'">
@@ -70,7 +70,7 @@
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Last Name</label>
                     <div ng-if="show=='noSaveProfile'">
-                    <input md-maxlength="20" required name="last" ng-readonly="true" 
+                    <input md-maxlength="20" name="last" ng-readonly="true" 
                     ng-model="userModel.name.last">
                     </div>
                     <div ng-if="show=='saveProfile'">
@@ -89,7 +89,7 @@
                   <md-input-container class="md-block" flex-gt-sm>
                   <label>Email</label>
                   <div ng-if="show=='noSaveProfile'">
-                  <input type="email" md-maxlength="255" minlength="8" required name="email" 
+                  <input type="email" md-maxlength="255" minlength="8" name="email" 
                   ng-model="userModel.email" ng-readonly="true">
                   </div>
                   <div ng-if="show=='saveProfile'">
@@ -109,7 +109,7 @@
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Contact No</label>
                     <div ng-if="show=='noSaveProfile'">
-                    <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
+                    <input type="number" ng-maxlength="15" ng-minlength="10" name="contactno" 
                     ng-model="cNo" ng-readonly="true">
                     </div>
                     <div ng-if="show=='saveProfile'">
@@ -131,7 +131,7 @@
                   <md-input-container class="md-block" flex-gt-sm>
                   <label>Designation</label>
                   <div ng-if="show=='noSaveProfile'">
-                  <input md-maxlength="40" minlength="5" required name="jobTitle" 
+                  <input md-maxlength="40" minlength="5" name="jobTitle" 
                   ng-model="userModel.jobTitle" ng-readonly="true">
                   </div>
                   <div ng-if="show=='saveProfile'">
@@ -151,7 +151,7 @@
                   <label ng-if="userModel.association=='customer'">Client Bio</label>
                   <label ng-if="userModel.association=='employee'">Summary</label>
                   <div ng-if="show=='noSaveProfile'">
-                  <textarea ng-model="userModel.summary" md-maxlength="2000" minlength="30" required name="summary" 
+                  <textarea ng-model="userModel.summary" md-maxlength="2000" minlength="30" name="summary" 
                   rows="4" aria-multiline="true" style="height: 116px;" ng-readonly="true"></textarea>
                   </div>
                   <div ng-if="show=='saveProfile'">
@@ -171,7 +171,7 @@
                 </div>
 
                 <div ng-if="show=='saveProfile'">
-                  <md-button  class="md-primary md-raised pull-right" ng-click="editprofile(userModel,userModel._id,cNo)">
+                  <md-button  class="md-primary md-raised pull-right" ng-click="editprofile(userModel,userModel._id,cNo)" ng-disabled="profileForm.$invalid">
                     <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Save Profile
                   </md-button>
                 </div>

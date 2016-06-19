@@ -5,7 +5,7 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 	$scope.finalFeedback=false;
-
+	$scope.current = new Date();
 	appService.activeVisit().then(function(avisit){
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
@@ -21,18 +21,16 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	$http.get('/api/v1/secure/visits/all/activeVisit',{
 		cache: true
 	}).success(function(response) {
-		console.log("overall feed here............");
-console.log(response)
-		for (var i = 0; i < response.visits.overallfeedback.length; i++) {
-			console.log(response.visits.overallfeedback[i].id+" = "+$rootScope.user._id)
-			if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
-			{
-				if (response.visits.overallfeedback[i].feedbackElg == "true") {
-					$scope.finalFeedback=true;
-				} 
-			}
-		};
+		$scope.endDate = response.visits.endDate;
+			for (var i = 0; i < response.visits.overallfeedback.length; i++) {
 
+				if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
+				{
+					if (response.visits.overallfeedback[i].feedbackElg == "true") {
+						$scope.finalFeedback=true;
+					} 
+				}
+			};
 	});
 });
 

@@ -39,6 +39,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.checkTimeVar = false;
 		$scope.nameonly = "nameonly";
 		$scope.meetingLocations =[];
+		$scope.submitOwner = true;
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -323,6 +324,21 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	  }; // create method ends
 
 	  $scope.update = function() {
+	  	$http.get('/api/v1/secure/visitSchedules/' + $scope.schedule._id).success(function(response)
+	  	{	
+	  		$scope.commentsData = [];
+	  		console.log(response);
+	  		$scope.comments = response.comments;
+	  		console.log($scope.comments);
+	  		if($scope.comments!=null)
+	  		{	
+	  			for(var i=0;i<$scope.comments.length;i++)
+	  			{
+	  				$scope.commentsData.push($scope.comments[i]._id);
+	  			}
+	  		$scope.schedule.comments = $scope.commentsData;
+	  		}
+
 	    $http.put('/api/v1/secure/visitSchedules/' + $scope.schedule._id, $scope.schedule).success(function(response) {
 			if($scope.schedule.session.title === "" || $scope.schedule.session.title === null || $scope.schedule.session.title === undefined )
 			{
@@ -339,6 +355,8 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	    .error(function(data, status) {
 	    	growl.error("Error updating visitSchedule");
 	    }); // http put visitSchedule ends
+	  	});
+	  	
 	  }; // update method ends
 
 
