@@ -608,7 +608,7 @@ var refresh = function() {
  if (visits.rejectReason!= null || visits.rejectReason!= undefined || visits.rejectReason!="") {
    $scope.rejectReason= visits.rejectReason;};
    $scope.createBy= response.createBy._id;
-   console.log(visits.rejectReason);
+   // console.log(visits.rejectReason);
    $scope.clientIdData=visits.client._id;
    $scope.parentSelected= visits.client.name;
    $scope.childSelected= visits.client.subName;
@@ -2402,40 +2402,106 @@ $scope.answer = function(answer) {
   $mdDialog.hide(answer);
 };
 $scope.getLogo=function(){
+
+  // console.log("im here")
   if($scope.parentClient ==true || $scope.childClient ==true || $scope.industryClient ==true || $scope.regionClient ==true) {
     $scope.Addlogovisit=false;
     $scope.removelogovisit=false;
     $scope.showAvatar=false;
+  // console.log("im here if")
+
   }
   else{
-    var inDataClient={};
-    if ($scope.visits.clientName!=undefined) 
-      {inDataClient.name =$scope.visits.clientName;}
-    else inDataClient.name = $scope.parentSelected;
+  // console.log("im here else")
+   var inDataClient={};
+  if ($scope.visits.clientName!=null) 
+        {
+          inDataClient.name = $scope.visits.clientName;
+        }
+        if($scope.visits.clientName==null)  
+        {
+          inDataClient.name = $scope.parentClientString;
+        }
+        // else inDataClient.name = $scope.parentSelected;
 
-    if ($scope.visits.subName!=undefined) 
-      {inDataClient.subName =$scope.visits.subName;}
-    else inDataClient.subName = $scope.childSelected;
+        if ($scope.visits.subName!=null) 
+        {
+          inDataClient.subName =$scope.visits.subName;
+        }
+        if($scope.visits.subName==null)  
+        {
+          inDataClient.subName = $scope.childClientString;
+        }
+        // else inDataClient.subName = $scope.childSelected;
 
-    if ($scope.visits.industry!=undefined) 
-      {inDataClient.industry =$scope.visits.industry;}
-    else inDataClient.industry = $scope.industrySelected;
+        if ($scope.visits.industry!=null) 
+        {
+          inDataClient.industry =$scope.visits.industry;
+        }
+        if($scope.visits.industry==null)  
+        {
+          inDataClient.industry = $scope.industryClientString;
+        }
+        // else inDataClient.industry = $scope.industrySelected;
 
-    if ($scope.visits.regions!=undefined) 
-      { inDataClient.regions =$scope.visits.regions;}
-    else inDataClient.regions = $scope.regionsSelected;
+        if ($scope.visits.regions!=null) 
+        {
+          inDataClient.regions =$scope.visits.regions;
+        }
+        if($scope.visits.regions==null)  
+        {
+          inDataClient.regions = $scope.regionClientString;
+        }
+        // else inDataClient.regions = $scope.regionsSelected;
 
-    if ($scope.visits.sfdcid!=undefined) 
-      { inDataClient.sfdcid =$scope.visits.sfdcid;}
-    else inDataClient.sfdcid = $scope.sfdcidSelected;
+        // sfdcidClientString
+        if ($scope.visits.sfdcid!=null) 
+        {
+          inDataClient.sfdcid =$scope.visits.sfdcid;
+        }
+        if($scope.visits.sfdcid==null)  
+        {
+          inDataClient.sfdcid = $scope.sfdcidClientString;
+        }
+        // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
+        // inDataClient.sfdcid=$scope.visits.sfdcid;
+
+        if(inDataClient.name == null)
+        {
+          inDataClient.name = $scope.parentSelected;
+        }
+
+        if(inDataClient.subName == null)
+        {
+          inDataClient.subName = $scope.childSelected;
+        }
+
+        if(inDataClient.industry == null)
+        {
+          inDataClient.industry = $scope.industrySelected;
+        }
+
+        if(inDataClient.regions == null)
+        {
+          inDataClient.regions = $scope.regionsSelected;
+        }
+
+        if(inDataClient.sfdcid == null)
+        {
+          inDataClient.sfdcid = $scope.sfdcidSelected;
+        }
+        
     $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
       // console.log(response);
+  // console.log(response.logo)
+
       if (response.logo!= null) {
         $scope.avatarVisit=response.logo;
         $scope.showAvatar=true;
       }
       else{
+        // console.log("response.logo else")
         $scope.Addlogovisit=true;
         $scope.removelogovisit=true;
         $scope.showAvatar=false;
@@ -2630,7 +2696,7 @@ $scope.showChatBox = function(ev) {
 };
 
 $scope.showChatBoxrejected = function(ev,rejectReason) {
-  console.log(rejectReason);
+  // console.log(rejectReason);
   $mdDialog.show({
     templateUrl: '/public/mods/visits/visitsReject.html',
     scope: $scope.$new(),
@@ -3061,13 +3127,13 @@ $scope.closeNoteTipSTreject=function(){
 }
 
 $scope.reject=function(rejectReason){
-  console.log(rejectReason);
+  // console.log(rejectReason);
   $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
   {
-    console.log(rejectReason);
+    // console.log(rejectReason);
 
     if (rejectReason!= undefined) {
-      console.log(rejectReason);
+      // console.log(rejectReason);
 
       $scope.visits = response;
       var inData = $scope.visits;
@@ -3175,7 +3241,7 @@ $scope.reject=function(rejectReason){
       // console.log(inData.status);
       inData.comments = $scope.myData;
       $scope.commentsData = [];
-      console.log(rejectReason);
+      // console.log(rejectReason);
 
       inData.rejectReason = rejectReason;
             // console.log($scope.rejectValue);
@@ -3184,7 +3250,7 @@ $scope.reject=function(rejectReason){
         // growl.info(parse("Rejected the visit"));
       // }else
       // inData.status=$scope.visits.status;
-      console.log(inData);
+      // console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
         // console.log(response);
       });
