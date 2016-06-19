@@ -78,8 +78,8 @@ var visitSchema = new mongoose.Schema({
 		id                          : { type: Schema.Types.ObjectId, ref: 'User'},
 		role						: { type: String, trim: true },
 		feedbackElg					: { type: String, trim: true }
-	}]
-
+	}],
+	rejectReason 					: { type: String, trim: true }
 
 });
 
