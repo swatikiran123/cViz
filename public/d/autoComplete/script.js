@@ -45,19 +45,19 @@ angular.module('userAutoDirective', [])
 
     $http.get(url).success(function(response) {
 
-      if($scope.userType == response.association){
+      // if($scope.userType == response.association){
         $scope.userModel = response;
         $scope.userId = response._id;
         $scope.userEmail = response.email;
         $scope.showFlag = "user";
-      }
+      // }
 
-      else{
-        $scope.showFlag = "noUser";
-        $scope.message = "User is not an organization employee!!";
-        $timeout(function () { $scope.message = ''; }, 3000);
+      // else{
+      //   $scope.showFlag = "noUser";
+      //   $scope.message = "User is not an organization employee!!";
+      //   $timeout(function () { $scope.message = ''; }, 3000);
 
-      }
+      // }
 
     })
     .error(function(response, status){
@@ -113,12 +113,12 @@ angular.module('userAutoDirective', [])
 
     $http.get(url).success(function(response) {
 
-      if($scope.userType == response.association){
+      // if($scope.userType == response.association){
         $scope.userModel = response;
         $scope.userId = response._id;
         $scope.userEmail = response.email;
         $scope.showFlag = "user";
-      }
+      // }
     })
     .error(function(response, status){
       $scope.showFlag = "noUser";
