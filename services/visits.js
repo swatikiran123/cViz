@@ -144,11 +144,11 @@ function getMyVisits(thisUser, timeline, limit){
 					, {agm: userId}
 					, {anchor: userId}
 					, {secondaryVmanager: userId}
-					, {'client.salesExec': userId}
-					, {'client.accountGM': userId}
-					, {'client.industryExec': userId}
-					, {'client.globalDelivery': userId}
-					, {'client.cre': userId}
+					, {'cscPersonnel.salesExec': userId}
+					, {'cscPersonnel.accountGM': userId}
+					, {'cscPersonnel.industryExec': userId}
+					, {'cscPersonnel.globalDelivery': userId}
+					, {'cscPersonnel.cre': userId}
 					, {'_id': { $in: sessionVisits }}
 					, {'invitees': userId }
 					]
@@ -162,11 +162,11 @@ function getMyVisits(thisUser, timeline, limit){
 					, {agm: userId}
 					, {anchor: userId}
 					, {secondaryVmanager: userId}
-					, {'client.salesExec': userId}
-					, {'client.accountGM': userId}
-					, {'client.industryExec': userId}
-					, {'client.globalDelivery': userId}
-					, {'client.cre': userId}
+					, {'cscPersonnel.salesExec': userId}
+					, {'cscPersonnel.accountGM': userId}
+					, {'cscPersonnel.industryExec': userId}
+					, {'cscPersonnel.globalDelivery': userId}
+					, {'cscPersonnel.cre': userId}
 					, {'_id': { $in: sessionVisits }}
 					, {'invitees': userId }
 					]
