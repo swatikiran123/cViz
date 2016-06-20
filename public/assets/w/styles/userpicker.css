@@ -92,9 +92,9 @@
 .personNote span{
   color: #000 !important;
 }
-.statusBlock{
+/*.statusBlock{
   margin: 0px 5px;
-}
+}*/
 
 .visTypeSelect {
     margin-bottom: 5px !important;
@@ -126,9 +126,15 @@
 .visIndBlock{
   margin: 0px 0px 0px -21px;
 }
+.visIndBlockEmp {
+    margin: 0px 0px 0px -11px;
+}
 
 .visOfferingBlock{
   margin: 17px 0 7px -21px;
+}
+.visOfferingBlockEmp{
+  margin: 6px 0px 10px -11px;
 }
 
 .oppDetailsPanel{
@@ -138,5 +144,8 @@
 .asterrisk{
     font-size: 16px;
     color: red;
+}
+.keyExcWrapper{
+  padding-left: 0px;
 }
 /*** bucketization css End***/
