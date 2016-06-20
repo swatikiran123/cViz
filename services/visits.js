@@ -34,6 +34,7 @@ service.getLocationsById = getLocationsById;
 service.getvalidationById = getvalidationById;
 
 service.getVisitStats = getVisitStats;
+service.getLastTimeSessionsById = getLastTimeSessionsById;
 
 module.exports = service;
 
@@ -1125,3 +1126,44 @@ function transformVisitStats(visitStats) {
 		return visitStatsData;
 	}
 }
+
+/// Retrieve list of sessions by visit Id
+function getLastTimeSessionsById(id){
+	var deferred = Q.defer();
+
+	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	var sessionLastDays = [];
+
+	model
+	.findOne({ _id: id })
+	.exec(function (err, visit) {
+		if(err) {
+			logger.writeLine('error',0,err);
+			deferred.reject(err);
+		}
+		else{
+			scheduleModel
+			.find({ visit: id })
+			.sort('session.startTime')
+			.exec(function (err, sessions){
+				if(err){
+					logger.writeLine('error',0,err);
+					deferred.reject(err);
+				}
+				else{
+					transform(visit, sessions);
+					logger.Json('test',sessionLastDays);
+					deferred.resolve(sessionLastDays);
+				}
+						}); // end of scheduleModel find
+					} // end of if else
+    }); // end of model find
+
+		// Internal method to transform visit data to session
+		function transform(visit, sessions)
+		{ 		
+			sessionLastDays.push(sessions[sessions.length - 1]);
+		}
+
+		return deferred.promise;
+} // getSessionsById method ends

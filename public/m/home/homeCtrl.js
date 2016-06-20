@@ -7,6 +7,14 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	$scope.finalFeedback=false;
 	$scope.current = new Date();
 	appService.activeVisit().then(function(avisit){
+		$http.get('/api/v1/secure/visits/'+avisit._id+'/getlasttimesessions',{
+			cache: true
+		}).success(function(response) {
+			$scope.lastSession = response[0];	
+		});
+	});
+
+	appService.activeVisit().then(function(avisit){
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
 		}).success(function(response) {

@@ -94,6 +94,9 @@ function getWithAction(req, res){
             getLocationsById(req,res);
             break;
 
+        case "getlasttimesessions":
+            getLastTimeSessionsById(req,res);
+            break;
 
 		default:
 			res.send("Invalid action");
@@ -263,6 +266,20 @@ function getVisitStats(req,res){
     });
 }
 
+function getLastTimeSessionsById(req,res){
+  dataService.getLastTimeSessionsById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
 
 function create(req, res) {
   dataService.create(req.body,res)
