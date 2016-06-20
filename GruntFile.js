@@ -102,7 +102,7 @@ copy: {
       {src: ['public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'], dest: 'dist/public/libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'},
       {src: ['public/libs/angular-multiple-select/build/multiple-select.min.css'], dest: 'dist/public/libs/angular-multiple-select/build/multiple-select.min.css'},
       {src: ['public/libs/angular-multiple-select/build/multiple-select.min.js'], dest: 'dist/public/libs/angular-multiple-select/build/multiple-select.min.js'},
-      {src: ['/public/libs/angular-filter/dist/angular-filter.min.js'], dest: 'dist//public/libs/angular-filter/dist/angular-filter.min.js'},
+      {src: ['public/libs/angular-filter/dist/angular-filter.min.js'], dest: 'dist/public/libs/angular-filter/dist/angular-filter.min.js'},
 
       ],
     },
