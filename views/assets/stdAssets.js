@@ -211,8 +211,7 @@ module.exports = {
 		"cdn": [
 		],
 		"dev":[
-		"/public/libs/angular-filter/dist/angular-filter.min.js",
-		"/public/libs/angular-filter/dist/angular-filter.js"
+		"/public/libs/angular-filter/dist/angular-filter.min.js"
 		],
 		"prod":[
 		]
