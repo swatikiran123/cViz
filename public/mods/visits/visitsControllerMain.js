@@ -678,7 +678,7 @@ var refresh = function() {
         }
         else if ( visits.status == "confirm draft") {
           $scope.saveDrafButton=true;
-          $scope.status = null;
+          $scope.status = "confirm";
         }
         else if (visits.status == "tentative draft") {
           $scope.saveDrafButton=true;
