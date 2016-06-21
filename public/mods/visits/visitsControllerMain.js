@@ -91,6 +91,7 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
   $scope.j=[];
   $scope.kData=[];
   $scope.closeNoteTipReject= false;
+  $scope.cancelReasonNote= false;
 
 
   $scope.visitGrid=false;
@@ -597,7 +598,7 @@ var refresh = function() {
    $scope.agendaSave=1;
    break;//re-submitted
 
-      case "re-submitted": 
+   case "re-submitted": 
    $scope.agendaTab= true;
    $scope.visitorsTab= true;
    $scope.finalizeTab= false;
@@ -606,8 +607,12 @@ var refresh = function() {
    break;
  };
  if (visits.rejectReason!= null || visits.rejectReason!= undefined || visits.rejectReason!="") {
-   $scope.rejectReason= visits.rejectReason;};
-   $scope.createBy= response.createBy._id;
+   $scope.rejectReason= visits.rejectReason;
+ };
+ if (visits.cancelReason!= null || visits.cancelReason!= undefined || visits.cancelReason!="") {
+   $scope.cancelReason= visits.cancelReason;
+ };
+ $scope.createBy= response.createBy._id;
    // console.log(visits.rejectReason);
    $scope.clientIdData=visits.client._id;
    $scope.parentSelected= visits.client.name;
@@ -1930,13 +1935,13 @@ function toTitleCase(string)
   });
 
   });  
-    $scope.avatar = '/public/assets/g/imgs/generic.png';
-  }
+$scope.avatar = '/public/assets/g/imgs/generic.png';
+}
 
-  $scope.cancelButton = function(){
-    $scope.showFlag = "noUser";
-    $scope.message = "";
-  };
+$scope.cancelButton = function(){
+  $scope.showFlag = "noUser";
+  $scope.message = "";
+};
 
   // Visit visitor table
   // //id
@@ -2409,6 +2414,7 @@ $scope.canceldialog = function() {
 };
 $scope.canceldialogvMan = function() {
   $mdDialog.cancel();
+  $scope.cancelReasonNote= false;
 };
 $scope.answer = function(answer) {
   $mdDialog.hide(answer);
@@ -2422,18 +2428,18 @@ $scope.getLogo=function(){
     $scope.showAvatar=false;
   // console.log("im here if")
 
-  }
-  else{
+}
+else{
   // console.log("im here else")
-   var inDataClient={};
+  var inDataClient={};
   if ($scope.visits.clientName!=null) 
-        {
-          inDataClient.name = $scope.visits.clientName;
-        }
-        if($scope.visits.clientName==null)  
-        {
-          inDataClient.name = $scope.parentClientString;
-        }
+  {
+    inDataClient.name = $scope.visits.clientName;
+  }
+  if($scope.visits.clientName==null)  
+  {
+    inDataClient.name = $scope.parentClientString;
+  }
         // else inDataClient.name = $scope.parentSelected;
 
         if ($scope.visits.subName!=null) 
@@ -2504,51 +2510,51 @@ $scope.getLogo=function(){
           inDataClient.sfdcid = $scope.sfdcidSelected;
         }
         
-    $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
+        $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
       // console.log(response);
   // console.log(response.logo)
 
-      if (response.logo!= null) {
-        $scope.avatarVisit=response.logo;
-        $scope.showAvatar=true;
-      }
-      else{
+  if (response.logo!= null) {
+    $scope.avatarVisit=response.logo;
+    $scope.showAvatar=true;
+  }
+  else{
         // console.log("response.logo else")
         $scope.Addlogovisit=true;
         $scope.removelogovisit=true;
         $scope.showAvatar=false;
       }
     })
-  }
-}
+      }
+    }
 
-$scope.removeLogo=function(){
-  $scope.showAvatar=false;
-}
+    $scope.removeLogo=function(){
+      $scope.showAvatar=false;
+    }
 
-$scope.closeNotecscP=function(){
-  $scope.closeNote= false;
-}
-$scope.closeNoteTipST=function(){
-  $scope.closeNoteTipSch=false;
-}
-$scope.closeNoteTipV=function(){
-  $scope.closeNoteTipVis=false;
-}
-$scope.closeNotecscPrs=function(){
-  $scope.closeNote= true;
-}
+    $scope.closeNotecscP=function(){
+      $scope.closeNote= false;
+    }
+    $scope.closeNoteTipST=function(){
+      $scope.closeNoteTipSch=false;
+    }
+    $scope.closeNoteTipV=function(){
+      $scope.closeNoteTipVis=false;
+    }
+    $scope.closeNotecscPrs=function(){
+      $scope.closeNote= true;
+    }
 
-$scope.comment11 = [];
-$scope.btn_add = function(comment1) {
+    $scope.comment11 = [];
+    $scope.btn_add = function(comment1) {
 
-  if(comment1 !=''){
-    $scope.comment11.push({
-      comment: comment1,
-      givenBy: $rootScope.user._id
-    });
+      if(comment1 !=''){
+        $scope.comment11.push({
+          comment: comment1,
+          givenBy: $rootScope.user._id
+        });
 
-    $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
+        $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
       // console.log(response);
       $scope.commentid = response._id;
       $scope.myData.push($scope.commentid);
@@ -2723,15 +2729,31 @@ $scope.showChatBoxrejected = function(ev,rejectReason) {
   });
 
 };
-$scope.cancelVisit=function(){
- // console.log(rejectReason);
+$scope.showcancelVisit = function(ev) {
+  // console.log(rejectReason);
+  $mdDialog.show({
+    templateUrl: '/public/mods/visits/cancelVisit.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
+  })
+  .then(function(answer) {
+    $scope.status = 'You said the information was "' + answer + '".';
+  }, function() {
+    $scope.status = 'You cancelled the dialog.';
+  });
+
+};
+$scope.cancelVisit=function(cancelReason){
+ console.log(cancelReason);
  $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
  {
   console.log($scope.visits);
 
   // if (rejectReason!= undefined) {
   //   console.log(rejectReason);
-
+  if (cancelReason!= undefined) {
     $scope.visits = response;
     var inData = $scope.visits;
     inData.client=$scope.visits.client._id;
@@ -2740,127 +2762,137 @@ $scope.cancelVisit=function(){
     {
       inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
     }
-
+    
     if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
     {
       inData.cscPersonnel.salesExec = null;
     }
-
+    
     if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
     {
       inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
     }
-
+    
     if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
     {
       inData.cscPersonnel.accountGM = null;
     }
-
+    
     if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
     {
       inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
     }
-
+    
     if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
     {
       inData.cscPersonnel.industryExec = null;
     }
-
+    
     if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
     {
       inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
     }
-
+    
     if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
     {
       inData.cscPersonnel.globalDelivery = null;
     }
-
+    
     if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
     {
       inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
     } 
-
+    
     if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
     {
       inData.cscPersonnel.cre = null;
     }
-
+    
     if(inData.anchor!=null || inData.anchor != undefined)
     {
       inData.anchor = $scope.visits.anchor._id;
     }
-
+    
     if(inData.anchor==null || inData.anchor == undefined)
     {
       inData.anchor = null;
     }
-
+    
     if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
     {
       inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
     }
-
+    
     if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
     {
       inData.secondaryVmanager = null;
     }
-
+    
     if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
     {
       inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
     }  
-
+    
     if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
     {
       inData.feedbackTmpl = null;
     }  
-
+    
     if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
     {
       inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
     }  
-
+    
     if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
     {
       inData.sessionTmpl = null;
     }  
-      // console.log($scope.keynotes);
-      // console.log($scope.visits.keynote);
-      // inData.keynote = $scope.visits.keynote;
-      inData.keynote = $scope.keynotes;
-      // console.log($scope.rejectValue);
-      // if ($scope.rejectValue == true) {
-        // inData.status= "rejected";
-        // growl.info(parse("Rejected the visit"));
-      // }else
-      // inData.status=$scope.visits.status;
-      // console.log(inData.status);
-      inData.comments = $scope.myData;
-      $scope.commentsData = [];
-      // console.log(rejectReason);
+          // console.log($scope.keynotes);
+          // console.log($scope.visits.keynote);
+          // inData.keynote = $scope.visits.keynote;
+          inData.keynote = $scope.keynotes;
+          // console.log($scope.rejectValue);
+          // if ($scope.rejectValue == true) {
+            // inData.status= "rejected";
+            // growl.info(parse("Rejected the visit"));
+          // }else
+          // inData.status=$scope.visits.status;
+          // console.log(inData.status);
+          inData.comments = $scope.myData;
+          $scope.commentsData = [];
+          // console.log(rejectReason);
 
-      // inData.rejectReason = rejectReason;
-            // console.log($scope.rejectValue);
-      // if ($scope.rejectValue == true) {
-        // inData.status= "rejected";
-        inData.status = "cancelled";
-                // growl.info(parse("Rejected the visit"));
-      // }else
-      // inData.status=$scope.visits.status;
-      console.log(inData);
-      $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-        console.log(response);
-     // $scope.nextTab($scope.visitid);
-        // $scope.nextTab();
-      $location.path("visits/list"); 
+          // inData.rejectReason = rejectReason;
+          console.log(cancelReason);
+          // if ($scope.rejectValue == true) {
+            // inData.status= "rejected";
+            inData.status = "cancelled";
+            inData.cancelReason = cancelReason;
+                    // growl.info(parse("Rejected the visit"));
+          // }else
+          // inData.status=$scope.visits.status;
+          console.log(inData);
+          $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+            console.log(response);
+         // $scope.nextTab($scope.visitid);
+            // $scope.nextTab();
+            $location.path("visits/list"); 
 
-      });
-      
-      growl.info(parse("Cancelled visit successfully: "+inData.title));
-      
-   
+          });
+          
+          growl.info(parse("Cancelled visit successfully: "+inData.title));
+        }
+        else
+        {
+          $scope.cancelReasonNote= true;
+        // console.log("im here");
+        $scope.errcancelReason= "Please mention reasons for canceling the visit ..!!";
+      }
+
     })  
+}
+$scope.closecancelReasonNote = function(){
+  $scope.cancelReasonNote= false;
 }
 $scope.ReSave=function(){
  // console.log(rejectReason);
@@ -2871,99 +2903,99 @@ $scope.ReSave=function(){
   // if (rejectReason!= undefined) {
   //   console.log(rejectReason);
 
-    $scope.visits = response;
-    var inData = $scope.visits;
-    inData.client=$scope.visits.client._id;
-    inData.createBy = $scope.visits.createBy._id;
-    if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
-    {
-      inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
-    }
+  $scope.visits = response;
+  var inData = $scope.visits;
+  inData.client=$scope.visits.client._id;
+  inData.createBy = $scope.visits.createBy._id;
+  if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+  {
+    inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+  }
 
-    if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
-    {
-      inData.cscPersonnel.salesExec = null;
-    }
+  if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+  {
+    inData.cscPersonnel.salesExec = null;
+  }
 
-    if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
-    {
-      inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
-    }
+  if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+  {
+    inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+  }
 
-    if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
-    {
-      inData.cscPersonnel.accountGM = null;
-    }
+  if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+  {
+    inData.cscPersonnel.accountGM = null;
+  }
 
-    if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
-    {
-      inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
-    }
+  if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+  {
+    inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+  }
 
-    if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
-    {
-      inData.cscPersonnel.industryExec = null;
-    }
+  if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+  {
+    inData.cscPersonnel.industryExec = null;
+  }
 
-    if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
-    {
-      inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
-    }
+  if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+  {
+    inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+  }
 
-    if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
-    {
-      inData.cscPersonnel.globalDelivery = null;
-    }
+  if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+  {
+    inData.cscPersonnel.globalDelivery = null;
+  }
 
-    if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
-    {
-      inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
-    } 
+  if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+  {
+    inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+  } 
 
-    if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
-    {
-      inData.cscPersonnel.cre = null;
-    }
+  if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+  {
+    inData.cscPersonnel.cre = null;
+  }
 
-    if(inData.anchor!=null || inData.anchor != undefined)
-    {
-      inData.anchor = $scope.visits.anchor._id;
-    }
+  if(inData.anchor!=null || inData.anchor != undefined)
+  {
+    inData.anchor = $scope.visits.anchor._id;
+  }
 
-    if(inData.anchor==null || inData.anchor == undefined)
-    {
-      inData.anchor = null;
-    }
+  if(inData.anchor==null || inData.anchor == undefined)
+  {
+    inData.anchor = null;
+  }
 
-    if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
-    {
-      inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
-    }
+  if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+  {
+    inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+  }
 
-    if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
-    {
-      inData.secondaryVmanager = null;
-    }
+  if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+  {
+    inData.secondaryVmanager = null;
+  }
 
-    if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
-    {
-      inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
-    }  
+  if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+  {
+    inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+  }  
 
-    if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
-    {
-      inData.feedbackTmpl = null;
-    }  
+  if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+  {
+    inData.feedbackTmpl = null;
+  }  
 
-    if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
-    {
-      inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
-    }  
+  if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+  {
+    inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+  }  
 
-    if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
-    {
-      inData.sessionTmpl = null;
-    }  
+  if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+  {
+    inData.sessionTmpl = null;
+  }  
       // console.log($scope.keynotes);
       // console.log($scope.visits.keynote);
       // inData.keynote = $scope.visits.keynote;
@@ -2990,13 +3022,13 @@ $scope.ReSave=function(){
       console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
         console.log(response);
-     $scope.nextTab($scope.visitid);
+        $scope.nextTab($scope.visitid);
         // $scope.nextTab();
       });
       
       growl.info(parse("Rejected visit successfully: "+inData.title));
       
-   
+
     })
 
   // $scope.rejectValue= true;
