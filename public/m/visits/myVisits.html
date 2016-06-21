@@ -6,6 +6,7 @@
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" ng-model="$parent.query" />
 
+
             <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})
 
                 <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
@@ -14,8 +15,8 @@
                 </div>
 
                 <ul class="dropdown-menu">
-                    <!-- <li><a href ng-click="setTimeline('all')">All ({{allVisits["all"].visits.length}})</a></li> -->
-                    <!-- <li class="divider"></li> -->
+                    <li><a href ng-click="setTimeline('all')">All ({{allLength}})</a></li>
+                    <li class="divider"></li>
 
                     <li><a href ng-click="setTimeline('past')">Past ({{allVisits["past"].visits.length}})</a></li>
                     <li class="divider"></li>
