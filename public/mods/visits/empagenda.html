@@ -64,14 +64,6 @@
       </div>
     </div>
   </div>
-
-  <div class="well" ng-if="mode=='edit' && adminInitVman && ClientDraft "> 
-    <center>New client as been added {{parentSelected}} -{{childSelected}}&nbsp;&nbsp;&nbsp;
-      <button class="btn btn-success" ng-click="updateClientStatus()">Approve</button>
-      <!-- <button class="btn btn-success" ng-click="ClientStatusReject()">Reject</button> -->
-    </center>
-  </div>
-
 </div>
 </div>
 </div>
@@ -101,6 +93,19 @@
 
      <form name="visitsForm" id="visitsForm" class="form-vertical" >
           <fieldset ng-disabled="true">
+
+          <div class="panel panel-default visdetail-panel" ng-if="(visits.status =='cancelled')">
+            <div class="panel-heading visdetail-panelheader">
+              <h3 class="panel-title"><b>Cancelation Reasons</b></h3>
+            </div>
+            <div class = "panel-subheader pull-right">
+            </div>
+            <div class="panel-body"> 
+              <ul><b>Following are the reasons for visit Reject:<br></b>
+                <div class="text-xs"><richtext body-text="cancelReason"></richtext></div>
+              </ul>
+            </div>
+          </div>
 
         <!--panel-one-->
         <div class="panel panel-default visdetail-panel">

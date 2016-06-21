@@ -79,7 +79,8 @@ var visitSchema = new mongoose.Schema({
 		role						: { type: String, trim: true },
 		feedbackElg					: { type: String, trim: true }
 	}],
-	rejectReason 					: { type: String, trim: true }
+	rejectReason 					: { type: String, trim: true },
+	cancelReason					: { type: String, trim: true }
 
 });
 

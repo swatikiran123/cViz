@@ -17,63 +17,56 @@
 <div class= "page-toolbar">
   <div class="container">
     <div class="row">
-        <fieldset ng-disabled="true">
+      <fieldset ng-disabled="true">
 
-      <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
-      <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
-       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft"> 
-        <div ng-if="mode=='edit' && adminInitVman && !ClientDraft">
-          <div ng-if="visitGrid"><!--checking if visit manager or not-->
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
+        <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
+         <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft"> 
+          <div ng-if="mode=='edit' && adminInitVman && !ClientDraft">
+            <div ng-if="visitGrid"><!--checking if visit manager or not-->
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                </div>
+                <b>Visit Managers</b>
               </div>
-              <b>Visit Managers</b>
-            </div>
-          </div><br>
-          <div class="row">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-             <b>Primary Visit Manager</b>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+               <b>Primary Visit Manager</b>
+             </div>
+             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+               <select ng-change="sendAnchor(anchor,visits.status)" ng-model="anchor" ng-options="d._id as d.name.prefix+' '+d.name.first+' '+d.name.last for d in data">  
+               </select>
+             </div>
+
+
+             <button class="btn btn-success" ng-disabled="true" ng-click="AddVmanager()">Assign</button>
+
            </div>
-           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-             <select ng-change="sendAnchor(anchor,visits.status)" ng-model="anchor" ng-options="d._id as d.name.prefix+' '+d.name.first+' '+d.name.last for d in data">  
+         </div>
+         <div class="row">
+           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
+             <b>Secondary Visit Manager</b>
+           </div>
+           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
+             <select ng-change="sendSecVman(secondaryVmanager,visits.status)" ng-model="secondaryVmanager" ng-options="d.response._id as d.response.name.prefix+' '+d.response.name.first+' '+d.response.name.last for d in dataOne">   
              </select>
-           </div>
-
-
-           <button class="btn btn-success" ng-disabled="true" ng-click="AddVmanager()">Assign</button>
-
-         </div>
-       </div>
-       <div class="row">
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
-           <b>Secondary Visit Manager</b>
-         </div>
-         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="secTrue">
-           <select ng-change="sendSecVman(secondaryVmanager,visits.status)" ng-model="secondaryVmanager" ng-options="d.response._id as d.response.name.prefix+' '+d.response.name.first+' '+d.response.name.last for d in dataOne">   
-           </select>
-           <spam tooltips tooltip-template="Delete Secondary Manager"><i ng-disabled="true" class="fa fa-times" aria-hidden="true" confirm-dialog header-text="Delete Secondary Visit Manager" content="Are you sure you want to delete the Secondary Visit Manager</b>"
-            yes-text="Ok" no-text="Cancel"></i></spam>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
-            <b>Do you want to add Secondary Visit Manager</b>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
-            <a class="fa fa-user-plus fa-lg" aria-hidden="true" ng-disabled="true" tooltips tooltip-template="Add Secondary Manager"></a>
+             <spam tooltips tooltip-template="Delete Secondary Manager"><i ng-disabled="true" class="fa fa-times" aria-hidden="true" confirm-dialog header-text="Delete Secondary Visit Manager" content="Are you sure you want to delete the Secondary Visit Manager</b>"
+              yes-text="Ok" no-text="Cancel"></i></spam>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
+              <b>Do you want to add Secondary Visit Manager</b>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="addSec">
+              <a class="fa fa-user-plus fa-lg" aria-hidden="true" ng-disabled="true" tooltips tooltip-template="Add Secondary Manager"></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-        </fieldset ng-disabled="true">
+    </fieldset ng-disabled="true">
 
-  </div>
-
-  <div class="well" ng-if="mode=='edit' && adminInitVman && ClientDraft "> 
-    <center>New client as been added {{parentSelected}} -{{childSelected}}&nbsp;&nbsp;&nbsp;
-      <button class="btn btn-success" ng-click="updateClientStatus()">Approve</button>
-      <!-- <button class="btn btn-success" ng-click="ClientStatusReject()">Reject</button> -->
-    </center>
   </div>
 
 </div>
@@ -87,48 +80,89 @@
   <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
   <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;"></div>
 
-  <!--Basic Information TAB ONE-->
-  <md-tab label="Visit Details" ng-if="agendaTab">
+<!-- <md-tab label="Visit Cancelation Details" ng-if="cancelledTab">
   <md-content class="md-padding">
-  
-
-
-
-
-
-
   <div ng-controller="visitsControllerMain">
 
     <div class="panel-group">
       <!-- <md-content class="md-padding"> -->
-      <div class="data-form">
+      <!-- <div class="data-form">
 
        <form name="visitsForm" id="visitsForm" class="form-vertical" >
         <fieldset ng-disabled="true">
-
-          <!--panel-one-->
-          <div class="panel panel-default visdetail-panel">
+          <div class="panel panel-default visdetail-panel" ng-if="(visits.status =='cancelled')">
             <div class="panel-heading visdetail-panelheader">
-              <h3 class="panel-title"><b>Account Information</b></h3>
+              <h3 class="panel-title"><b>Cancelation Reasons</b></h3>
             </div>
             <div class = "panel-subheader pull-right">
             </div>
-            <div class="panel-body">
-
-              <!-- visits title input-->
-              <md-input-container class="md-block">
-              <label>Title</label>
-              <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
-              <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
-               <div class="messagenotify">
-                <div ng-messages-include="/public/mods/partials/messages.html"></div>
-                <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
-                <div ng-message="minlength">The title should contain minimum 5 characters</div>
-              </div>
+            <div class="panel-body"> 
+              <ul><b>Following are the reasons for visit Reject:<br></b>
+                <div class="text-xs"><richtext body-text="cancelReason"></richtext></div>
+              </ul>
             </div>
-          </md-input-container>
-          <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
-          <!--client input-->
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</md-tab>
+</md-content> -->
+
+<!--Basic Information TAB ONE-->
+<md-tab label="Visit Details" ng-if="agendaTab">
+<md-content class="md-padding">
+
+
+
+
+
+
+
+<div ng-controller="visitsControllerMain">
+
+  <div class="panel-group">
+    <!-- <md-content class="md-padding"> -->
+    <div class="data-form">
+
+     <form name="visitsForm" id="visitsForm" class="form-vertical" >
+      <fieldset ng-disabled="true">
+       <div class="panel panel-default visdetail-panel" ng-if="(visits.status =='cancelled')">
+        <div class="panel-heading visdetail-panelheader">
+          <h3 class="panel-title"><b>Cancelation Reasons</b></h3>
+        </div>
+        <div class = "panel-subheader pull-right">
+        </div>
+        <div class="panel-body"> 
+          <ul><b>Following are the reasons for visit Reject:<br></b>
+            <div class="text-xs"><richtext body-text="cancelReason"></richtext></div>
+          </ul>
+        </div>
+      </div>
+      <!--panel-one-->
+      <div class="panel panel-default visdetail-panel">
+        <div class="panel-heading visdetail-panelheader">
+          <h3 class="panel-title"><b>Account Information</b></h3>
+        </div>
+        <div class = "panel-subheader pull-right">
+        </div>
+        <div class="panel-body">
+
+          <!-- visits title input-->
+          <md-input-container class="md-block">
+          <label>Title</label>
+          <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
+          <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
+           <div class="messagenotify">
+            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+            <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
+            <div ng-message="minlength">The title should contain minimum 5 characters</div>
+          </div>
+        </div>
+      </md-input-container>
+      <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
+      <!--client input-->
     <!--         <div class="row">
           <div class="col-md-4">
           </div>

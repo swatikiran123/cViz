@@ -9,14 +9,15 @@
 <div ng-if="mode=='edit'" class="page-header">
   <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
   </button>
-  <div ng-if="mode=='edit' && (visits.status =='rejected') && !visitGrid">  <button class="btn btn-info pull-right"  ng-click="showChatBoxrejected($event,visits.rejectReason)">Visit Rejected
+  <div ng-if="mode=='edit' && (visits.status =='rejected') && !visitGrid">  <button class="btn btn-info pull-right"  ng-click="showChatBoxrejected($event,visits.rejectReason)">Check reasons for Visit Rejection
   </button></div>
-    <div ng-if="mode=='edit' && visitGrid">  <button class="btn btn-info pull-right" ng-click="cancelVisit();" confirm-dialog header-text="Cancel the Visit" content="Are you sure you want to cancel the the Visit ? Once cancelled cannot be edited."
-yes-text="Ok" no-text="Cancel">Cancel Visit
+  <div ng-if="mode=='edit' && visitGrid">
+    <button class="btn btn-info pull-right" ng-click="showcancelVisit($event);" confirm-dialog header-text="Cancel the Visit" content="Are you sure you want to cancel the the Visit ? Once cancelled cannot be edited."
+    yes-text="Ok" no-text="Cancel">Cancel Visit
   </button></div>
-	Visit Planner - Edit Visit
-	<div class="sub-header">Edit {{visits.title}}
-	</div>
+  Visit Planner - Edit Visit
+  <div class="sub-header">Edit {{visits.title}}
+  </div>
 </div>
 
 <div class= "page-toolbar">
@@ -24,7 +25,7 @@ yes-text="Ok" no-text="Cancel">Cancel Visit
     <div class="row">
       <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div>
       <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
-       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft && (visits.status !='rejected')"> 
+       <div class="well" ng-if="mode=='edit' && adminInitVman && !ClientDraft && (visits.status !='rejected') && (visits.status !='cancelled')"> 
         <div ng-if="mode=='edit' && adminInitVman && !ClientDraft">
           <div ng-if="visitGrid"><!--checking if visit manager or not-->
             <div class="row">
@@ -72,7 +73,7 @@ yes-text="Ok" no-text="Cancel">Cancel Visit
     </div>
   </div>
 
-  <div class="well" ng-if="mode=='edit' && adminInitVman && ClientDraft "> 
+  <div class="well" ng-if="mode=='edit' && adminInitVman && ClientDraft && (visits.status !='rejected') "> 
     <center>New client as been added {{parentSelected}} -{{childSelected}}&nbsp;&nbsp;&nbsp;
       <button class="btn btn-success" ng-click="updateClientStatus()">Approve</button>
       <!-- <button class="btn btn-success" ng-click="ClientStatusReject()">Reject</button> -->
