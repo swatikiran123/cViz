@@ -113,7 +113,7 @@
 
             <!-- visits title input-->
             <md-input-container class="md-block">
-            <label>Title</label>
+            <label>Title <span class="asterrisk">*</span></label>
             <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
             <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
              <div class="messagenotify">
@@ -159,10 +159,10 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div layout-gt-sm="row">
+        <div layout-gt-sm="row" class="visActGroup">
 
           <md-input-container class="md-block" flex-gt-sm>
-          <label>Parent Account Name  </label>
+          <label>Parent Account Name <span class="asterrisk">*</span></label>
           <angucomplete-alt
           id="ex14"
           placeholder="Select Client or Add Client"
@@ -185,7 +185,7 @@
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
-        <label>Child Account Name </label>
+        <label>Child Account Name <span class="asterrisk">*</span></label>
         <angucomplete-alt
         id="ex14"
         placeholder="Select Child Client or Add Client"
@@ -210,7 +210,7 @@
     </div>
     <div class="form-group visIndBlock">
       <div class="col-md-6">
-       <label>Industry</label>
+       <label>Industry <span class="asterrisk">*</span></label>
        <select
        ng-model="visits.industry" ng-change="industryClientChanged(visits.industry)"
        ng-options="data for data in vertical" class="form-control">
@@ -218,7 +218,7 @@
    </div>
 
    <div class="col-md-6">
-    <label>Regions</label>
+    <label>Regions <span class="asterrisk">*</span></label>
     <select
     ng-model="visits.regions" 
     ng-options="data1 for data1 in regions" class="form-control">
@@ -229,7 +229,7 @@
 
 <div class="form-group col-xs-11 visOfferingBlock">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-    <label class="visLabel">Offerings &nbsp;&nbsp; </label>
+    <label class="visLabel">Offerings <span class="asterrisk">*</span></label>
     <multiple-autocomplete ng-model="selectedList"
     suggestions-arr="offerings">
   </multiple-autocomplete>
@@ -243,12 +243,12 @@
 <div class="large-padded-row">
   <div class="md-block" flex-gt-sm layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
-    <label>Net Promoter Score</label>
+    <label>Net Promoter Score <span class="asterrisk">*</span></label>
     <input type="text" name=" netPromoter" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="visits.netPromoter "><span  ng-show="visitsForm.netPromoter.$error.pattern" class="text-danger">Net promoter Score should be a number !</span>
   </md-input-container>
 
   <md-input-container class="md-block" flex-gt-sm>
-  <label>SFDC Id</label>
+  <label>SFDC Id <span class="asterrisk">*</span></label>
   <angucomplete-alt
   id="ex14"
   placeholder="Select SFDC Id or Add SFDC Id"
@@ -271,7 +271,7 @@
 </md-input-container>
 
 <md-input-container class="md-block" flex-gt-sm>
-<label>Current Competitor</label>
+<label>Current Competitor <span class="asterrisk">*</span></label>
 <input name=" competitors" ng-model="visits.competitors">
 </md-input-container> 
 </div>
@@ -412,7 +412,7 @@
 </div> 
 <!-- CSC Personnel input-->
 <!--salesExec-CSCPersonnel-->
-<div class="panel-body">
+<div class="panel-body keyExcWrapper">
   <a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a>         
   <div class="row">
     <!--div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div-->
@@ -430,7 +430,7 @@
     <div class="form-group col-xs-4">
       <md-input-container class="md-block">
       <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
-        <label>Select Sales Executive &nbsp;&nbsp; :</label>
+        <label>Sales Executive Name <span class="asterrisk">*</span> :</label>
         <div userauto type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee" title="Sales Executive"></div>
       </div>
     </md-input-container>
@@ -440,7 +440,7 @@
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
-      <label>Select Industry Executive &nbsp;&nbsp; :</label>
+      <label>Industry Executive Name <span class="asterrisk">*</span> :</label>
       <div userauto type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee" title="Industry Executive"></div>
     </div>
   </md-input-container>
@@ -450,7 +450,7 @@
 <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
-    <label >Select Global Delivery &nbsp;&nbsp; :</label>
+    <label>Global Delivery Contact <span class="asterrisk">*</span> :</label>
     <div userauto type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee" title="Global Delivery"></div>
   </div>
 </md-input-container>
@@ -462,7 +462,7 @@
   <div class="form-group col-xs-6">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
-      <label>Select Account General Manager &nbsp;&nbsp; :</label>
+      <label>Account General Manager <span class="asterrisk">*</span> :</label>
       <div userauto type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee" title="AGM"></div>
     </div>
   </md-input-container>
@@ -472,7 +472,7 @@
 <div class="form-group col-xs-6">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
-    <label>Select CRE &nbsp;&nbsp; :</label>
+    <label>Customer Relationship Executive <span class="asterrisk">*</span> :</label>
     <div userauto type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee" title="CRE"></div>
   </div>
 </md-input-container>
@@ -541,7 +541,7 @@
     <div class="row">
       <div class="form-group col-xs-3 visTypeSelect">
         <div class="form-group visTypeSelect">
-          <label>Visit Type</label>
+          <label>Visit Type <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
             <option ng-option value="new">New</option>
             <option ng-option value="existing">Existing</option>
@@ -554,7 +554,7 @@
       <!-- visits visitType-->
       <div class="form-group col-xs-5 visTypeSelect">
         <div id="new" ng-if="visits.interest.businessType == 'new'">
-          <label>Say More&nbsp;&nbsp; </label>
+          <label>Say More <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
             <option ng-option value="duediligence">Due Diligence</option>
             <option ng-option value="exploratory">Exploratory</option>
@@ -562,7 +562,7 @@
           </select>
         </div>
         <div id="existing" ng-if="visits.interest.businessType == 'existing'">
-          <label>Visit Type-Existing&nbsp;&nbsp;</label>
+          <label>Visit Type-Existing <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
             <option ng-option value="operationsreview">Meeting &amp; Operations Review</option>
             <option ng-option value="renewals">Renewals</option>
@@ -573,7 +573,7 @@
       </div>
       <div class="form-group col-xs-3 visTypeSelect">
         <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
-          <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Customer Type </label>
+          <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Customer Type <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.visitorType" ng-dropdown>
             <option ng-option ng-selected="Elite == visitorType" value="Elite"><span tooltips tooltip-template=" CEO/CXO/CIO level – select Elite"></span>Elite</option>
             <option ng-option ng-selected="Preferred == visitorType" value="Preferred">Preferred</option>
@@ -614,7 +614,7 @@
 </md-input-container>
 </div>
 
-<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label>Current Status: {{status}}</label></div>
 {{agendaEdit=true;""}}
 
 <style type="text/css">
@@ -628,7 +628,7 @@
 
 <!-- visits agenda-->
 <md-input-container class="md-block">
-<label ng-show="visits.agenda" class="show-hide">Client objectives</label>
+<label ng-show="visits.agenda" class="show-hide">Client objectives <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
@@ -642,7 +642,7 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 
 <!-- visits objective -->
 <md-input-container class="md-block">
-<label ng-show="visits.interest.objective" class="show-hide">CSC Objective</label>
+<label ng-show="visits.interest.objective" class="show-hide">CSC Objective <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
@@ -714,6 +714,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
     <div class="row">
       <div class="col-xs-8">
         <div class="form-group">
+          <label>Visit Expenses <span class="asterrisk">*</span></label>
           <md-input-container class="md-block statusBlock">
           <md-radio-group name="billable" id="billable" ng-model="visits.billable" required class="">
           <div class="row">
@@ -733,7 +734,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
               <div class="check-element animate-show"  ng-if="checked && mode=='add'">
                 <!-- visits wbsCode input-->
                 <md-input-container class="md-block">
-                <label><h5>WBS Code</h5></label>
+                <label>WBS Code <span class="asterrisk">*</span></label>
                 <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
                 <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                  <div class="messagenotify">
@@ -781,7 +782,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
             <div class="check-element animate-show" ng-if="!checked">
              <!-- visits chargeCode input-->
              <md-input-container class="md-block">
-             <label>Charge Code</label>
+             <label>Charge Code <span class="asterrisk">*</span></label>
              <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
              <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
                <div class="messagenotify">
@@ -1064,7 +1065,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
          <div class="col-md-8">
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>First Name</label>
+            <label>First Name <span class="asterrisk">*</span></label>
             <input md-maxlength="20" required name="first" 
             ng-model="firstName">
             <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
@@ -1086,7 +1087,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
             </md-input-container>  
 
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Last Name</label>
+            <label>Last Name <span class="asterrisk">*</span></label>
             <input md-maxlength="20" required name="last" 
             ng-model="userdata.name.last">
             <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
@@ -1099,7 +1100,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 
           <div>
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Email</label>
+            <label>Email <span class="asterrisk">*</span></label>
             <input type="email" md-maxlength="255" minlength="8" required name="email" 
             ng-model="emailId">
             <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
@@ -1112,7 +1113,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 
           <div>
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Password</label>
+            <label>Password <span class="asterrisk">*</span></label>
             <input type="password" md-maxlength="15" minlength="8" required name="password" 
             ng-model="userdata.local.password">
             <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched || !profileForm.password.$pristine">
@@ -1128,7 +1129,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
         <div class="row">
           <div class="col-md-6">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Contact No</label>
+            <label>Contact No <span class="asterrisk">*</span></label>
             <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" 
             ng-model="userdata.contactNumber">
             <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
@@ -1140,7 +1141,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
           </div>
           <div class="col-md-6">
             <md-input-container class="md-block" flex-gt-sm>
-            <label>Designation</label>
+            <label>Designation <span class="asterrisk">*</span></label>
             <angucomplete-alt
             id="ex14"
             placeholder="Select Designation or Add Designation"
