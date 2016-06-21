@@ -72,7 +72,7 @@
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
           <td>
-            <div  ng-if="(visitGrid &&( visit.status === 'tentative draft' || visit.status === 'confirm draft' || visit.status === 'rejected' || visit.status === 'wip' || visit.status === 'finalize' || visit.status === 'complete') && visit.status != 'cancelled' && visit.status != 'close' || (!visitGrid && visit.status === 'tentative' && visit.visitors.length < 1) || (!visitGrid && visit.status === 'confirm' && visit.visitors.length < 1))">
+            <div  ng-if="(visitGrid &&( visit.status === 'tentative draft' || visit.status === 'confirm draft' || visit.status === 'rejected' || visit.status === 'wip' || visit.status === 'finalize' || visit.status === 'complete' || visit.status === 'tentative'|| visit.status === 'confirm') && visit.status != 'cancelled' && visit.status != 'close' || (!visitGrid && visit.status === 'tentative' && visit.visitors.length < 1) || (!visitGrid && visit.status === 'confirm' && visit.visitors.length < 1)) || visit.status === 'tentative draft' || visit.status === 'confirm draft'">
 
              <a class="table-btn" href="#/visits/{{visit._id}}/edit" tooltips tooltip-template="Edit Visit"><span class="fa fa-edit fa-lg" /></a>
 
