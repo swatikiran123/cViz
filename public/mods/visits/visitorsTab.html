@@ -422,7 +422,7 @@
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
     ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
-    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status != 'rejected')">Submit
+    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status != 'rejected' || visits.status === 're-submitted' || visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton)">Submit
   </button>
 <!--   <button type="submit" class="btn btn-success"
   ng-click="ReSave()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
@@ -435,7 +435,7 @@ ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status 
 <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
 yes-text="Ok" no-text="Cancel">Cancel</button>
 
-<button type="submit" class="btn btn-info" ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || visits.status === 'rejected'" ng-show="visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton || visits.status == 'rejected' || visit.status ==='re-submitted'">Save to Draft
+<button type="submit" class="btn btn-info" ng-click="saveDraft()" ng-disabled="visits.status === 'rejected'" ng-show="visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton || visits.status == 'rejected' || visit.status ==='re-submitted'">Save to Draft
 </button>
 
 </div>

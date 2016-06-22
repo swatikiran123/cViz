@@ -1,3 +1,12 @@
+<style>.topmessage{
+  top: 150px;
+  position: fixed;
+  padding-left: 10%;
+  width: 100%;
+  z-index: 100000000;
+
+}
+</style>
 <div ng-controller="visitsControllerMain">
 
   <div class="panel-group">
@@ -5,7 +14,20 @@
     <div class="data-form">
 
       <form name="visitsForm" id="visitsForm" class="form-vertical" >
-
+       
+        <div div class="row topmessage">
+          <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1">
+          </div>
+          <div class="form-group col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <div class="well error text-danger" ng-show="cancelsaveDraft">
+              {{errsaveDraft}}
+              <div class=" pull-right closeicon">
+                <a class="table-btn" ng-click="cancelsaveDraftCall()"><li class="fa fa-times fa-lg" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+       
         <!--panel-one-->
         <div class="panel panel-default visdetail-panel">
           <div class="panel-heading visdetail-panelheader">
@@ -585,14 +607,15 @@
 </div>
 
 <!-- visits status input-->
-<div ng-show=" status == null || status == 'confirm' || status == 'tentative' ||status === 'rejected' ">
+<div ng-show=" status == null  ||status == 'confirm' || status == 'tentative'">
   <label>Status <span class="asterrisk">*</span></label>
   <md-input-container class="md-block statusBlock">
   <md-radio-group name="status" id="status" ng-model="status" required class="">
   <div class="row">
     <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirmed</md-radio-button></div>
     <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
-  </md-radio-group></div>
+    </div>
+  </md-radio-group>
   <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
     <div class="messagenotify">
       <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -601,7 +624,7 @@
 </md-input-container>
 </div>
 
-<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'"><label><h4><b>Current Status: {{status}}</b></h4></label></div>
+<div ng-show="status == 'wip'|| status == 'finalize'|| status == 'complete'|| status == 'close'  ||status === 'rejected'  ||status === 're-submitted' || status === 'cancelled' "><label><h4><b>Current Status: {{status}}</b></h4></label></div>
 {{agendaEdit=true;""}}
 
 <style type="text/css">
@@ -836,7 +859,6 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
 
 <!--/div--><!--comment as per bucketization requirement -->
 <!-- status={{visits.status}}  {{visitGrid}} -->
-
 <!--buttons-->
 <div class="form-group">
   <div class="pull-left">
@@ -854,7 +876,7 @@ ng-click="ReSave()" ng-disabled="visitsForm.$invalid || autoFail || subdis || su
 yes-text="Ok" no-text="Cancel">Cancel</button>
 
 <button type="submit" class="btn btn-info"
-ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient  || status === 'rejected'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'rejected'">Save to Draft
+ng-click="saveDraft()" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'rejected'">Save to Draft
 </button>
 </div><br><br><br>
 </div>

@@ -66,8 +66,8 @@ var visitSchema = new mongoose.Schema({
 	cscPersonnel					: {
 		salesExec					: { type: Schema.Types.ObjectId, ref: 'User'},
 		accountGM					: { type: Schema.Types.ObjectId, ref: 'User'},
-		industryExec				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+		industryExec				: { type: Schema.Types.ObjectId, ref: 'User' },
+		globalDelivery				: { type: Schema.Types.ObjectId, ref: 'User'},
 		cre 						: { type: Schema.Types.ObjectId, ref: 'User'},
 	},
 	competitors 					: [{ type: String, trim: true }],
