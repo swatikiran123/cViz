@@ -1,65 +1,84 @@
 <style>
 
-.modal-dialog   {
-  height: 80%;
-  width: 85%;
-  padding-top: 70px;
-  padding-right: 10px;
-}
-
-@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
-
-.taskDescription {
-    margin-top:10px 0;
-}
-.commentList {
-    padding:0;
-    list-style:none;
-    max-height:300px;
-    overflow:auto;
-}
-.commentList li {
-    margin:0;
-    margin-top:10px;
-}
-.commentList li > div {
-    display:table-cell;
-}
-.commenterImage {
+  .modal-dialog1{
+    overflow-y: initial !important
+  }
+  .modal-footer1{
+    height: 200px;
+    overflow-y: auto;
+  }
+  .ct{
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left:55px;
+  }
+  .actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+  }
+  .commenterImage {
     width:50px;
     margin-right:5px;
     height:100%;
     /*float:left;*/
-}
-.commenterImage img {
+  }
+  .commenterImage img {
     width:100%;
     border-radius:50%;
-}
-.commentText p {
+  }
+  .commentText p {
     margin:0;
     overflow-x: auto;
-}
-.sub-text {
+  }
+  .sub-text {
     color:#aaa;
     font-family:verdana;
     font-size:11px;
+  }
+  @media only screen and (max-device-width: 320px){
+    .modal-dialog1{
+      padding-top:25%;
+      padding-right: 5%; 
+      width: 90%;
+      height: 80%;
+    }
+
+    .modal-footer1{
+      height: 230px;
+      overflow-y: auto;
+    }
+  }
+
+  @media only screen and (min-device-width: 321px) and (max-device-width: 480px){
+   .modal-dialog1{
+    padding-top:20%;
+    padding-right: 5%; 
+    width: 90%;
+    height: 85%;
+  }
+  .modal-footer1{
+    height: 350px;
+    overflow-y: auto;
+  }
 }
-.actionBox {
-    border-top:1px dotted #bbb;
-    padding:10px;
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+ .modal-dialog1{
+  padding-top:15%;
+  padding-right: 5%; 
+  width: 90%;
+  height: 85%;
 }
-.ct{
-    text-align: justify;
-    text-justify: inter-word;
-    padding:0;
-    list-style:none;
-    max-height:300px;
-    overflow:auto;
+ .modal-footer1{
+    height: 600px;
+    overflow-y: auto;
+  }
 }
+
 </style>
 
 <div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
-<label data-toggle="modal" data-target="#myModal{{session._id}}">Session Notes</label>
+<label data-toggle="modal" data-target="#myModal{{session._id}}" ng-click="refresh1();">Session Notes</label>
 </div>
 
 <div class="divtop">
@@ -143,7 +162,7 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal{{session._id}}" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="vertical-alignment-helper">
-    <div class="modal-dialog   mwidth vertical-align-center">
+    <div class="modal-dialog1   mwidth vertical-align-center">
       <div class="modal-content">
         <div class="modal-header">
 
@@ -154,30 +173,16 @@
       </div>
       <div class="modal-body">
         <form  align="center">
-                 <div class="detailBox">
-        
-    <div class="titleBox">
-    <textarea ng-model="txtcomment" placeholder="Your Note" style='width:90%;height:50px;resize: none;'></textarea>
-                   <!--  <button class="btn btn-primary pull-left" ng-click='btn_add(txtcomment);txtcomment=null;' style='margin-top:10px;'>
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i>Post Note</button>  -->
-                    <a class="table-btn" style='margin-top:10px;' ng-click='btn_add(txtcomment);txtcomment=null;'><span class="fa fa-paper-plane fa-lg"/></a>
-                    <!-- <br><br><br> -->
-<!--       <label>Notes</label>
-      <select name="singleSelect" id="singleSelect" class="pull-right" ng-model="valueComment">
-          <option value="opt1"><label>Oldest</label></option>
-          <option value="opt2"><label>Latest</label></option>
-      </select> -->
-    </div>
- 
-
-    
-
-</div>
-
-        </form>
+         <div class="detailBox">
+          <div class="titleBox">
+            <textarea ng-model="txtcomment" placeholder="Your Note" style='width:90%;height:50px;resize: none;'></textarea>
+            <a class="table-btn" style='margin-top:10px;' ng-click='btn_add(txtcomment);txtcomment=null;'><span class="fa fa-paper-plane fa-lg"/></a>
+          </div>
+       </div>
+      </form>
       </div>
 
-         <div class="modal-footer">
+         <div class="modal-footer1">
       {{mode="bulletsmallonly";""}}
           <div class="actionBox">
             <ul class="commentList">
@@ -187,7 +192,7 @@
                    <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
                    </div>
         <div class="ct commentText">
-                  {{comnt.comment}} <span class="sub-text">&nbsp;<br>on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+                  {{comnt.comment}} <span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
                   </div>
               
               <hr>
@@ -196,3 +201,4 @@
     </div>
   </div>
 </div>
+<toaster-container toaster-options="{'time-out': 3000, 'close-button':false, 'animation-class': 'toast-center'}"></toaster-container>

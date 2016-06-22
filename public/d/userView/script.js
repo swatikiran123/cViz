@@ -65,7 +65,9 @@ angular.module('userViewDirective', [])
         if(viewmode === "detial-view"){
           return "/public/d/userView/templates/detailView.html";
         }
-
+        if(viewmode === "nameonlyhref"){
+          return "/public/d/userView/templates/nameWithoutHref.html";
+        }
       }
     }
   };
