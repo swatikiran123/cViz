@@ -37,7 +37,7 @@ angular.module('sessions')
 		//cache: true
 	}).success(function(response) {
 		$scope.visittitle = response;
-		$scope.visittitles = $scope.visittitle.title;
+		$scope.visittitles = $scope.visittitle.client.name;
 	})
 	console.log('refresh');
 

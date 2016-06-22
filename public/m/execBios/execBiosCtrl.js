@@ -25,9 +25,8 @@ bios.controller('execBiosBlankCtrl', function($rootScope, $location, appService)
 
 bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http, appService) {
 	appService.activeVisit().then(function(avisitt){
-$scope.title = avisitt.title;
-
-	});
+$scope.title = avisitt.client.name;
+});
 
 	$http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
 		cache: true
