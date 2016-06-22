@@ -4,13 +4,12 @@
         <div class="searchDivHead col-xs-12 col-sm-8 col-md-10 div-padding">
 
             <i class="fa fa-search fonticon1"></i>
-            <input type="text" placeholder="Search" ng-model="$parent.query" />
+            <input type="text" placeholder="Search" size="15"  ng-model="$parent.query" />
 
-
-            <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM yyyy"}} - {{visitBatch.end | date:"dd MMM yyyy"}} ({{visitBatch.visits.length}})
+            <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM yy"}} - {{visitBatch.end | date:"dd MMM yy"}} ({{visitBatch.visits.length}})
 
                 <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                    <i class="fa fa-th-large fonticon1"></i>
+                    <i class="fa fa-th-large"></i>
                     <span class="caret"></span>
                 </div>
 
