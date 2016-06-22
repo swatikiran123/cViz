@@ -137,9 +137,14 @@ angular.module('userAutoDirective', [])
   } // end of getUser method  
 
 
-   $scope.inputChanged = function(str) {
-      $scope.console10 = str;
-      console.log($scope.console10);
+    $scope.inputChanged = function(str) {
+       $scope.console10 = str;
+       if($scope.console10 == null || $scope.console10 == undefined || $scope.console10 == '')
+       {
+        $scope.userModel = null;
+        $scope.userEmail = null;
+        $scope.userId = null;
+       }
     }
 
     $scope.clearInput = function (id) {

@@ -95,6 +95,16 @@ angular.module('userDirective', [])
  $scope.showFlag = "user";
 }
 
+$scope.inputChanged = function() {
+ $scope.console10 = $scope.userEmail;
+ if($scope.console10 == null || $scope.console10 == undefined || $scope.console10 == '')
+ {
+  $scope.userModel = null;
+  $scope.userEmail = null;
+  $scope.userId = null;
+}
+}
+
   //ToDo: User Picker not working with inline editing.
 }])
 
