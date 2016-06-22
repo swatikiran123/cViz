@@ -61,6 +61,10 @@ angular.module('userdisplayDirective', [])
           return "/public/d/userDisplay/templates/nameOnlyPanel.html";
         }
 
+        if(viewmode === "nameonlyhref"){
+          return "/public/d/userDisplay/templates/nameWithoutHref.html";
+        }
+
         if(viewmode === "summaryonly"){
           return "/public/d/userDisplay/templates/summaryOnlyPanel.html";
         }

@@ -107,7 +107,7 @@
                   <div userdisplay view-mode="mode" user-id="comnt.givenBy"></div>
                 </div>
                 <div class="commentText">
-                    <p class="">{{comnt.comment}}</p> <span class="date sub-text">on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+                    <p class="">{{comnt.comment}}</p> <span class="date sub-text">on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
                 </div>
                 <hr>
             </li>
@@ -123,7 +123,9 @@
                   <div userdisplay view-mode="mode" user-id="comnt.givenBy"></div>
               </div>
               <div class="commentText">
-                <p class="">{{comnt.comment}}</p> <span class="date sub-text">on {{comnt.givenOn | date:'dd MMM yyyy'}}</span>
+               {{viewmode = "nameonlyhref";""}}
+                <p class="">{{comnt.comment}}</p> <span class="date sub-text">by <userdisplay view-mode="viewmode" user-id="comnt.givenBy"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
+               
             </div>
             <hr>
         </li>

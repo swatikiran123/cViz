@@ -159,13 +159,13 @@ $scope.pushSession = function(sessionId,rtime){
 		}
 	})
 
-.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval) {
+.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout) {
 	$scope.arrayData=[];
 	$scope.comment = [];
 	$scope.comment11 = [];
 	$scope.myData = [];
 	console.log($rootScope.user);
-	var refresh1 = function()
+	$scope.refresh1 = function()
 	{ 
     // console.log($scope.visitid);
 
@@ -181,20 +181,22 @@ $scope.pushSession = function(sessionId,rtime){
   });
 }
 
-refresh1();
+// refresh1();
 
-// var c=0;
-// $scope.message="This DIV is refreshed "+c+" time.";
+var refresh2 = function()
+{ 
+	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+	{
+		$scope.comment = response.comments;
+	});
+}
+
 // $interval(function(){
-
 // 	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
 // 	{
 // 		$scope.comment = response.comments;
 // 	});
-
-
-// 	c++;
-// },10000);
+// },1000);
 
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
 		cache: true
@@ -252,10 +254,12 @@ $scope.btn_add = function(comment1) {
       $scope.visitSchedule = response;
       var inData = $scope.visitSchedule;
       inData.comments = $scope.myData;
+      console.log($scope.myData)
       $scope.commentsData = [];
       console.log(inData);
       $http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
 
+      	// refresh2();
         $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
         {
           console.log(response)	;
@@ -269,6 +273,8 @@ $scope.btn_add = function(comment1) {
           }
         }).then(function() {
           console.log($scope.commentsData);
+          toaster.pop({body:"Your Note has been received."});
+          $timeout(callSubmit,3000);
         });
 
       });
@@ -279,6 +285,11 @@ $scope.txtcomment = "";
 $scope.comment11 = [];
 }
 }
+
+function callSubmit() {
+	window.location.reload();
+};
+
 
 })
 
