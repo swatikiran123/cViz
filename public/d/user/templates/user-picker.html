@@ -1,5 +1,5 @@
 <input type="text" name="user" id="user"
-  placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75">
+  placeholder="User" ng-blur="getUser()" ng-model="userEmail" ng-minlength="1" ng-maxlength="75" ng-change="inputChanged();">
 <div ng-if="userEmail=='' && (moduleType=='sessions'||moduleType=='keynotes')">
 {{notNull=="true";""}}
 </div>
