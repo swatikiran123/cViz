@@ -61,14 +61,30 @@ $scope.pushSession = function(sessionId,rtime){
 	$scope.drop = function(sessionId){
 		$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
 		{
-			console.log(response);
+			//console.log(response);
 			$scope.response = response;
 			$scope.response.status = "cancelled";
+
+			$scope.st = moment($scope.response.session.startTime);
+			$scope.et = moment($scope.response.session.endTime);
+
+			var difference = moment.duration($scope.st.diff($scope.et));
+			var diffInMin = difference.asMinutes();
+			console.log(diffInMin);
+
+			$scope.pushSession(sessionId,diffInMin);
+
 			$http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
-				console.log(response);
+				//console.log(response);
+
 				if ($scope.response.status === "cancelled"){
 					angular.element('#cancel-session').addClass('agenda-cancel-session');
-				}
+				}	
+				refresh();
+			});
+
+			$http.put('/api/v1/secure/visitSchedules/'+ sessionId, $scope.response).success(function(response1) {
+				console.log(response1);
 				refresh();
 			});
 		});
