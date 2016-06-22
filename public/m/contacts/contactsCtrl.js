@@ -31,7 +31,7 @@ angular.module('contacts')
     var str= String(avisit.locations);
     $scope.cities = str.split(/[ ,]+/);
 
-    $scope.title=avisit.title;
+    $scope.title=avisit.client.name;
     $scope.anchor=avisit.anchor;
 
     $http.get('/api/v1/secure/admin/users/'+$scope.anchor,{
