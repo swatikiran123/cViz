@@ -14,7 +14,7 @@
     <div class="data-form">
 
       <form name="visitsForm" id="visitsForm" class="form-vertical" >
-       
+
         <div div class="row topmessage">
           <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1">
           </div>
@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-       
+
         <!--panel-one-->
         <div class="panel panel-default visdetail-panel">
           <div class="panel-heading visdetail-panelheader">
@@ -60,30 +60,31 @@
         </div> addClientLogo -->
         <br>
         <div ng-if="groupMember=='admin' || groupMember=='vManager'" class="row">
-          <fieldset ng-disabled="isSaving && mode ==='edit'">
+          <!-- <fieldset ng-disabled="isSaving && mode ==='edit'"> -->
 
-            <div class="col-md-4 text-center">
-              <br>
-              <br>
-              <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
-              />
-              <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" width="122" height="122"
-              style="background-size:cover;"/>
-              <div>
-                <a class="btn btn-info" 
-                ng-click="getLogo()" ng-disabled="parentClient || childClient || industryClient || regionClient">
-                Check Logo
-              </a>
-              <a class="btn btn-success" 
-              ng-click="addClientLogo($event)" ng-if="Addlogovisit">
-              Add
+          <div class="col-md-4 text-center">
+            <br>
+            <br>
+            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
+            />
+            <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" width="122" height="122"
+            style="background-size:cover;"/>
+            <div>
+              <a class="btn btn-info" 
+              ng-click="getLogo()" ng-disabled="parentClient || childClient || industryClient || regionClient">
+              Check Logo
             </a>
-            <a class="btn btn-warning" 
-            ng-click="removeLogo()" ng-if="removelogovisit">
-            Remove
+            <a class="btn btn-success" 
+            ng-click="addClientLogo($event)" ng-if="Addlogovisit">
+            Add
           </a>
-        </div>
+          <a class="btn btn-warning" 
+          ng-click="removeLogo()" ng-if="removelogovisit">
+          Remove
+        </a>
       </div>
+    </div>
+    <fieldset ng-disabled="isSaving && mode ==='edit'">
       <div class="col-md-8">
         <div layout-gt-sm="row" class="visActGroup">
 
@@ -614,13 +615,13 @@
   <div class="row">
     <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="confirm"> Confirmed</md-radio-button></div>
     <div class ="col-xs-4 col-sm-2 col-md-2 col-lg-2"><md-radio-button value="tentative"> Tentative</md-radio-button></div>
-    </div>
-  </md-radio-group>
-  <div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
-    <div class="messagenotify">
-      <div ng-messages-include="/public/mods/partials/messages.html"></div>
-    </div>
   </div>
+</md-radio-group>
+<div ng-messages="visitsForm.status.$error" ng-show="visitsForm.status.$touched || !visitsForm.status.$pristine">
+  <div class="messagenotify">
+    <div ng-messages-include="/public/mods/partials/messages.html"></div>
+  </div>
+</div>
 </md-input-container>
 </div>
 
