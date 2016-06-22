@@ -11,16 +11,21 @@
 </md-toolbar>
 <md-dialog-content>
 <br>
-<md-dialog-actions layout="row">
-<ul>
+<md-dialog-actions>
+<div class="row">
+	<div class="col-lg-12 col-md-12">
+<!-- <ul> -->
 	<div class="well error text-danger" ng-show="cancelReasonNote">
 		{{errcancelReason}}
 		<div class=" pull-right closeicon">
 			<a class="table-btn" ng-click="closecancelReasonNote()"><li class="fa fa-times fa-lg" /></a>
 		</div>
 	</div>
-</ul>
-<ul><b>Provide the reasons for canceling the Visit:<br></b>
+<!-- </ul> -->
+<br>
+
+<!-- <ul> -->
+	<b>Provide the reasons for canceling the Visit:<br></b>
 	<md-input-container class="md-block">
 	<text-angular
 	ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
@@ -28,7 +33,9 @@
 	ng-model="cancelReason" name="cancelReason" />
 </text-angular>
 </md-input-container>
-</ul>
+<!-- </ul> -->
+</div>
+</div>
 </md-dialog-actions>
 <md-button class="md-primary md-raised pull-right" ng-click="cancelVisit(cancelReason)">
 OK

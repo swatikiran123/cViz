@@ -679,7 +679,7 @@ var refresh = function() {
           $scope.visitorType = '';
         if ($rootScope.user.groups=="user" && visits.status == "rejected") {
           $scope.saveDrafButton=true;
-          $scope.status = null;
+          $scope.status = "tentative";
         }
         else if ( visits.status == "confirm draft") {
           $scope.saveDrafButton=true;
@@ -830,13 +830,22 @@ break;
 
   refresh();
   $scope.saveDraft=function() {
-    $scope.saveDraf=true;
-    $scope.saveDrafButton=true;
-    $scope.save();
+    console.log($scope.visits.clientName);
+    if ($scope.visits.clientName != undefined || $scope.visits.subName != undefined|| $scope.visits.regions != undefined ||  $scope.parentSelected != undefined || $scope.childSelected != undefined){
+        $scope.saveDraf=true;
+        $scope.saveDrafButton=true;
+        $scope.save();}
+else{$scope.cancelsaveDraft= true;
+        // console.log("im here");
+        $scope.errsaveDraft= "Account Information - Client Parent Account Name, Child Account Name, Region are Mandatory fields!!";}        
   }
+  $scope.cancelsaveDraftCall= function(){
+      $scope.cancelsaveDraft = false;
+    }
   $scope.save = function(){
     // console.log($scope.parentSelected);
     // Set agm based on the user picker value
+    if ($scope.status != undefined) {
     if ( $scope.saveDraf==true && $scope.status == "confirm") {
       $scope.visits.status = "confirm draft";
     }
@@ -844,7 +853,10 @@ break;
       $scope.visits.status = "tentative draft";
     }else{
       $scope.visits.status =$scope.status;
-    } 
+    }
+     }else{
+      $scope.visits.status = "tentative draft";
+    }
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
     $scope.visits.offerings = $scope.selectedList;
