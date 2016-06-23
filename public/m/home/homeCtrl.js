@@ -20,6 +20,19 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 		}).success(function(response) {
 			$scope.visitId = avisit._id;
 			$scope.dayHighlighter = response;
+			for(var i=0;i<$scope.dayHighlighter.length;i++)
+			{	
+				$scope.weatherData = [];
+				$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + $scope.dayHighlighter[i].location + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{
+					cache: true
+				}).success(function (data) {
+					var climate = {};
+					climate.daylike = data.weather[0].main;
+					climate.temperature = data.main.temp + "\u00B0C";
+					climate.icon = "/public/assets/m/img/ic/"+ data.weather[0].icon +".png";
+					$scope.weatherData.push(climate);
+				});
+			}
 			$scope.loading = false;
 		})
 	}, function(reason) {
