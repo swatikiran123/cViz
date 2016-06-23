@@ -3,3 +3,19 @@
 .dateHeader{margin: 10px 0 10px;}
 
 .row{display:block;clear:both; margin: 0 5px 10px;}
+
+table{margin: 10px 0 0px;}
+
+.data-grid-data ul{padding-left: 16px;}
+
+.data-grid-header th{width: 15%;}
+
+.cscLogo{
+    width: 10%;
+    height: 10%;
+}
+.clientLogo{
+	width: 10%;
+	height: 10%;
+	padding-right: 10px;
+}
