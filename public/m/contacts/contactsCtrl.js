@@ -61,6 +61,27 @@ angular.module('contacts')
 
 })
 
+.directive('filterList', function($timeout) {
+    return {
+        link: function(scope, element, attrs) {
+
+            var li = Array.prototype.slice.call(element[0].children);
+            function filterBy(value) {
+                li.forEach(function(el) {
+                    var a = angular.element(el).html();
+                    el.style = a.indexOf(value.toLowerCase()) !== -1 ? '' : 'display:none';
+                });
+            }
+
+            scope.$watch(attrs.filterList, function(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    filterBy(newVal);
+                }
+            });
+        }
+    };
+})
+
 .config(['$compileProvider', function($compileProvider) {
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|sms|blob|mailto|tel|):/);
 }]);

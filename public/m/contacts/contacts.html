@@ -1,8 +1,8 @@
-<div header showprofile="false" icon="fa fa-phone" title1="Key Contacts" title2="{{title}} Visit to CSC India">  
+<div header showprofile="false" icon="fa fa-phone" title1="Key Contacts" title2="{{title}} Visit to CSC India" query='query'>
  <div class="searchViewHead  col-xs-12">
    <div class="searchDivHead col-xs-12 col-sm-8 col-md-12 div-padding">
     <i class="fa fa-search fonticon1"></i>
-    <input type="text" placeholder="Search" value="" name="search" id="search">
+    <input type="text" placeholder="Search" value="" name="search" id="search" ng-model="$parent.query.$">
     <div class="pull-right">
         <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
             LOCATION
@@ -25,7 +25,7 @@
 
         <div class="heading1">CONTACT YOUR VISIT MANAGER</div>
         
-        <div class="list-group">
+        <div class="list-group" filter-list="$parent.query.$" style="display:inline-block;">
             <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{anchor.avatar}}">
             </div>
@@ -51,8 +51,9 @@
 
         </div>
         <div ng-if="contactList[0]!=null" class="heading1">CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
+        <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
-         <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList">
+         <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList | filter:query">
             <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
