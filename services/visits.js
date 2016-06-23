@@ -639,30 +639,30 @@ function getSchedulesById(id){
 						var thisDay = moment(x.scheduleDate);
 						return d.isSame(thisDay, 'day')
 					});
-					//weather api to get climate details
-					var climate = {};
-					var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-					var request = new XMLHttpRequest();
-					request.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + sch.location + "&units=metric&date="+ d + "&APPID=73136fa514890c15bc4534e7b8a1c0c4", false);
-					request.send();
-					if(request.responseText !== undefined){
-						request = JSON.parse(request.responseText);
-						var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
-						climate = {
-							daylike:request.weather[0].main,
-							temperature:request.main.temp + "\u00B0C",
-							minTemp:request.main.temp_min + "\u00B0C",
-							maxTemp:request.main.temp_max + "\u00B0C",
-							icon: icon
-						}
-					}
+					// //weather api to get climate details
+					// var climate = {};
+					// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+					// var request = new XMLHttpRequest();
+					// request.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + sch.location + "&units=metric&date="+ d + "&APPID=73136fa514890c15bc4534e7b8a1c0c4", false);
+					// request.send();
+					// if(request.responseText !== undefined){
+					// 	request = JSON.parse(request.responseText);
+					// 	var icon = "/public/assets/m/img/ic/"+ request.weather[0].icon +".png";
+					// 	climate = {
+					// 		daylike:request.weather[0].main,
+					// 		temperature:request.main.temp + "\u00B0C",
+					// 		minTemp:request.main.temp_min + "\u00B0C",
+					// 		maxTemp:request.main.temp_max + "\u00B0C",
+					// 		icon: icon
+					// 	}
+					// }
 					// skip days for which sessions are not scheduled
 					if(daySessions.length > 0){
 						var schedule = {
 							day : i,
 							date : d,
 							location: sch.location,
-							climate: climate
+							// climate: climate
 						}; // end of schedule object
 
 						i++;

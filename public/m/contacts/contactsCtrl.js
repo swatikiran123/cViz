@@ -20,8 +20,20 @@ angular.module('contacts')
     console.log(response);
     for(var i=0;i<$scope.contactList.length;i++)
     {
-    var data = "Name:" + $scope.contactList[i].name+ " "+"Contact No: "+$scope.contactList[i].contactNo+" "+"Email: "+$scope.contactList[i].email+"     "+"Summary: "+$scope.contactList[i].summary,
-    blob = new Blob([data], { type: 'text/plain' }),
+
+    var start = "BEGIN:VCARD\nVERSION:3.0\n";
+    var end = "END:VCARD";
+    var data = "";
+    data += "FN:"+ $scope.contactList[i].name +'\n';
+    data += "N:" + $scope.contactList[i].firstName + ';' + $scope.contactList[i].middleName + ';'  + $scope.contactList[i].lastName +'\n';
+    data += "TEL;TYPE=CELL:" + $scope.contactList[i].contactNo + '\n';
+    data += "EMAIL;TYPE=PREF,INTERNET:" + $scope.contactList[i].email+ '\n';
+    data += "ORG:" + $scope.contactList[i].organization+ '\n';
+    data += "TITLE:" + $scope.contactList[i].jobTitle+ '\n';
+    data += "PHOTO;TYPE=JPEG:" + $scope.contactList[i].avatar+ '\n';
+    data += "NOTE:" + $scope.contactList[i].summary+ '\n';
+    var get = start + data + end;
+    blob = new Blob([get], { type: 'text/vcard' });
     url = $window.URL || $window.webkitURL;
     $scope.fileDataUrl.push(url.createObjectURL(blob));
     }
@@ -40,8 +52,19 @@ angular.module('contacts')
        $scope.anchor=response;
        $scope.anchorName = response.name.prefix + response.name.first + response.name.middle + response.name.last + response.name.suffix;
        console.log($scope.anchor);
-       var data = "Name:" + $scope.anchor.name.first + " " + $scope.anchor.name.last+ " "+"Contact No: "+$scope.anchor.contactNo[0].contactNumber+" "+"Email: "+$scope.anchor.email+"     "+"Summary: "+$scope.anchor.summary,
-       blob = new Blob([data], { type: 'text/plain' }),
+       var start = "BEGIN:VCARD\nVERSION:3.0\n";
+       var end = "END:VCARD";
+       var data = "";
+       data += "FN:"+ $scope.anchor.name.first + ' ' + $scope.anchor.name.middle + ' ' + $scope.anchor.name.last + '\n';
+       data += "N:" + $scope.anchor.name.first + ';' + $scope.anchor.name.last + '\n';
+       data += "TEL;TYPE=CELL:" + $scope.anchor.contactNo[0].contactNumber + '\n';
+       data += "EMAIL;TYPE=PREF,INTERNET:" + $scope.anchor.email+ '\n';
+       data += "ORG:" + $scope.anchor.organization+ '\n';
+       data += "TITLE:" + $scope.anchor.jobTitle+ '\n';
+       data += "PHOTO;TYPE=JPEG:" + $scope.anchor.avatar+ '\n';
+       data += "NOTE:" + $scope.anchor.summary+ '\n';
+       var get = start + data + end;
+       blob = new Blob([get], { type: 'text/vcard' });
        url = $window.URL || $window.webkitURL;
        $scope.fileUrl = url.createObjectURL(blob);
     })
@@ -58,6 +81,11 @@ angular.module('contacts')
     }
   };
 
+  function transcodeToAnsi(content){
+  var encoding = "windows-1252";
+  var nonstandard = {NONSTANDARD_allowLegacyEncoding: true};
+  return new TextEncoder(encoding, nonstandard).encode(content);
+}
 
 })
 

@@ -33,9 +33,9 @@
 
                  <span class="day">Day {{objs.day}}</span>
                 <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
-                    <img ng-src="{{objs.climate.icon}}"/></span>
-                    <span class="dayLike">{{objs.climate.daylike}}</span><br>
-                    <span class="temp" >{{objs.climate.temperature}}</span>
+                    <img ng-src="{{weatherData[$index].icon}}"/></span>
+                    <span class="dayLike">{{weatherData[$index].daylike}}</span><br>
+                    <span class="temp" >{{weatherData[$index].temperature}}</span>
                     <h4> <span class="loc">{{objs.location}}</span></h4>
                 </fieldset>
               </div>

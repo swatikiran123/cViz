@@ -86,7 +86,11 @@ function getWithCity(query){
                 email :type.email,
                 contactNo :type.contactNo[0].contactNumber,
                 type: role,
-                location: loc
+                location: loc,
+                organization: type.organization,
+                firstName: type.name.first,
+                lastName: type.name.last,
+                middleName: type.name.middle
             }
             return typeData;
         }
