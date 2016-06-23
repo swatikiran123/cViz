@@ -7,7 +7,7 @@
         <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
       </div>
       <div class="col-xs-4">
-        <a class="btn btn-default btn-sm pull-right" href="#/visits/add">Add New Visit</a>
+        <a class="btn btn-default btn-sm pull-right initVisBtn" href="#/visits/add">Initiate New Visit</a>
       </div>
 
       <div ng-include src="'/public/mods/visits/partials/sortSearch.html'"></div>
@@ -18,7 +18,7 @@
         <tr>
           <th class="hidden-xs">
             <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Schedule Date</a>
+            <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Visit Date</a>
           </th>
           <!--th>
             <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
@@ -30,7 +30,7 @@
           </th>
           <th class="hidden-xs">
             <span class="fa fa-globe fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Locations</a>
+            <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Visit Location(s)</a>
           </th>
           <th class="hidden-xs">
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
@@ -38,11 +38,11 @@
           </th>
           <th class="hidden-xs">
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
+            <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Visit Initiator</a>
           </th>
           <th class="hidden-xs">
             <span class="fa fa-refresh fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</a>
+            <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Visit Status</a>
           </th>
           <th></th>
         </tr>
@@ -95,9 +95,9 @@
 
             <a class="table-btn" href="#/visits/{{visit._id}}/uploadFiles" tooltips tooltip-template="Upload Files" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1 || visit.status ==='re-submitted'))"><span class="fa fa-paperclip fa-lg"/></a>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close' || visit.status ==='re-submitted' || visit.status == 'cancelled'))"><span class="fa fa-edit fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close' || visit.status ==='re-submitted' || visit.status == 'cancelled'))"><span class="fa fa-eye fa-lg"/></a>
 
-            <a class="table-btn" href="#/visits/{{visit._id}}/vman" tooltips tooltip-template="View Visit" ng-if="visitGrid && (( visit.status == 'cancelled' || visit.status == 'close'))"><span class="fa fa-edit fa-lg"/></a>
+            <a class="table-btn" href="#/visits/{{visit._id}}/vman" tooltips tooltip-template="View Visit" ng-if="visitGrid && (( visit.status == 'cancelled' || visit.status == 'close'))"><span class="fa fa-eye fa-lg"/></a>
           </td>
         </tr>
 
@@ -121,7 +121,7 @@
         <tr>
           <th class="hidden-xs">
             <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Schedule Date</a>
+            <a href="" ng-click="orderByField='agenda'; reverseSort = !reverseSort">Visit Date</a>
           </th>
           <!--th>
             <span class="fa fa-th-large fa-lg"></span>&nbsp;&nbsp;
@@ -133,7 +133,7 @@
           </th>
           <th class="hidden-xs">
             <span class="fa fa-globe fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Locations</a>
+            <a href="" ng-click="orderByField='location'; reverseSort = !reverseSort">Visit Location(s)</a>
           </th>
           <th class="hidden-xs">
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
@@ -141,11 +141,11 @@
           </th>
           <th class="hidden-xs">
             <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Created By</a>
+            <a href="" ng-click="orderByField='createBy'; reverseSort = !reverseSort">Visit Initiator</a>
           </th>
           <th class="hidden-xs">
             <span class="fa fa-refresh fa-lg"></span>&nbsp;&nbsp;
-            <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</a>
+            <a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">Visit Status</a>
           </th>
           <th></th>
         </tr>
@@ -173,7 +173,7 @@
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
           <td>{{visit.status}}</td>
-          <td> <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ><span class="fa fa-edit fa-lg"/></a></td>
+          <td> <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ><span class="fa fa-eye fa-lg"/></a></td>
         </tr>
       </tbody>
 

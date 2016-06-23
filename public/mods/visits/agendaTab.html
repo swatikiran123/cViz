@@ -156,7 +156,7 @@
 
 <div class="form-group col-xs-12 visOfferingBlock">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-    <label class="visLabel">Offerings <span class="asterrisk">*</span></label>
+    <label class="visLabel">Offering(s) <span class="asterrisk">*</span></label>
     <multiple-autocomplete ng-model="$parent.selectedList"
     suggestions-arr="offerings">
   </multiple-autocomplete>
@@ -240,7 +240,7 @@
 
 <div class="form-group col-xs-12 visOfferingBlockEmp">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-    <label class="visLabel">Offerings <span class="asterrisk">*</span></label>
+    <label class="visLabel">Offering(s) <span class="asterrisk">*</span></label>
     <multiple-autocomplete ng-model="$parent.selectedList"
     suggestions-arr="offerings">
   </multiple-autocomplete>
@@ -423,10 +423,10 @@
 <!-- CSC Personnel input-->
 <!--salesExec-CSCPersonnel-->
 <div class="panel-body keyExcWrapper">
-  <a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a>         
-  <div class="row">
+  <!--a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a-->         
+  <!--div class="row"-->
     <!--div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div-->
-    <div class="form-group col-xs-6">
+    <!--div class="form-group col-xs-6">
       <div class="well personNote" ng-show="closeNote">
         {{errMessage="Industry Executive, Global Delivery and Sales Executive Contact are Mandatory Fields.";""}}
         <span class="error text-info">&nbsp;&nbsp;Note: {{errMessage}}</span>
@@ -434,8 +434,8 @@
           <a class="table-btn" ng-click="closeNotecscP()"><li class="fa fa-times fa-lg" /></a>
         </div>
       </div>
-    </div>
-  </div>
+    </div-->
+  <!--/div-->
   <div class="row">
     <div class="form-group col-xs-4">
       <md-input-container class="md-block">
@@ -553,8 +553,8 @@
         <div class="form-group visTypeSelect">
           <label>Visit Type <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
-            <option ng-option value="new">New</option>
-            <option ng-option value="existing">Existing</option>
+            <option ng-option value="new">New Business</option>
+            <option ng-option value="existing">Existing Business</option>
           </select>
         </div>
       </div>
@@ -564,7 +564,7 @@
       <!-- visits visitType-->
       <div class="form-group col-xs-5 visTypeSelect">
         <div id="new" ng-if="visits.interest.businessType == 'new'">
-          <label>Say More <span class="asterrisk">*</span> </label>
+          <label>Visit Type-New <span class="asterrisk">*</span> </label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
             <option ng-option value="duediligence">Due Diligence</option>
             <option ng-option value="exploratory">Exploratory</option>
@@ -643,7 +643,7 @@
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." required /></text-angular>
+ng-model="visits.agenda" name="agenda" required /></text-angular>
 <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
   <div class="messagenotify">
     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -653,11 +653,11 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 
 <!-- visits objective -->
 <md-input-container class="md-block">
-<label class="show-hide">CSC Objective <span class="asterrisk">*</span></label>
+<label class="show-hide">CSC Objectives <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
+ng-model="visits.interest.objective" name="objective" required /></text-angular>
 <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
   <div class="messagenotify">
     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -686,7 +686,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
   <div class = "panel-subheader pull-right">
   </div>
   <div class="panel-body">
-   <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
+   <i><h5>Please upload the relevant documents - Draft visit agenda, RFP document, engagement overview etc.</h5></i><br>
    <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
  </div>
 </div>
@@ -754,9 +754,9 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
                   <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
                 </md-input-container>
                 <div>
-                  <h4><b>Attach IWO File</b></h4>
+                  <h4><b>Attach approved IWO File</b></h4>
                   <div>
-                    <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                    <!--i><h5>Please click Attach files to upload IWO File</h5></i><br-->
                     <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
                     file-type="singleFile"/>
                   </div>
@@ -777,10 +777,10 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
                 </md-input-container>
 
                 <div>
-                 <h4><b>Attach IWO File</b></h4>
+                 <h4><b>Attach approved IWO File</b></h4>
                  <div>
                   {{arrayiwo=$parent.arrayiwo;""}} 
-                  <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                  <!--i><h5>Please click Attach files to upload IWO File</h5></i><br-->
                   <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
                   file-type="singleFile"/>
                 </div>

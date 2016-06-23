@@ -148,8 +148,19 @@
 .keyExcWrapper{
   padding-left: 0px;
 }
+.initVisBtn, .initVisBtn:focus, .initVisBtn:hover{
+    background-color: #6495CE;
+    color: #FFF;
+    border-color: #6495CE;
+}
+
+.headerBreak{
+    border-bottom: none !important;
+}
 /*** bucketization css End***/
+
 /* print btn css */
 .printbtn{
     margin-right: 15px;
 }
+

@@ -282,7 +282,7 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
       var name = inData.name
       $http.post('/api/v1/secure/clients', inData).success(function(response) {
         refresh();
-        growl.info(parse("client [%s]<br/>Added successfully", name));
+        growl.info(parse("New client has been added – [%s]", name));
       })
       .error(function(data, status){
         growl.error("Error adding client");

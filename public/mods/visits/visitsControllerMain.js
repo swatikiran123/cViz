@@ -1137,7 +1137,7 @@ break;
 
               $scope.nextTab(response._id);
 
-              growl.info(parse("visit [%s]<br/>Added successfully as draft", $scope.parentClientString));
+              growl.info(parse("[%s] visit successfully saved as draft.", $scope.parentClientString));
             })
           }else{
             $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -1146,7 +1146,7 @@ break;
                // console.log(response);
              })
               $scope.nextTab(response._id);
-              growl.info(parse("visit [%s]<br/>Added successfully", $scope.parentClientString));
+              growl.info(parse("Visit information saved successfully."));
             })
             .error(function(data, status){
               growl.error("Error adding visit");
@@ -1389,7 +1389,7 @@ $scope.ClientDraft=false;
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
       console.log(response);
-      growl.info(parse("Email sent to visit managers successfully"));
+      /*growl.info(parse("Email sent to visit managers successfully"));*/
     }) 
    })
   };
