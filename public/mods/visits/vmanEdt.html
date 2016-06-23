@@ -1,9 +1,8 @@
 
 <!-- page header/subheader -->
-<div ng-if="mode=='add'" class="page-header">
-  Visit Planner - Add New Visit
-  <!-- <div class="sub-header">Highlevel planning for the visit -->
-</div>
+<div ng-if="mode=='add'" class="page-header headerBreak">
+  <!--Visit Planner - Add New Visit
+  <div class="sub-header">Highlevel planning for the visit></div>-->
 </div>
 
 <div ng-if="mode=='edit'" class="page-header">
@@ -111,7 +110,7 @@
 </md-content> -->
 
 <!--Basic Information TAB ONE-->
-<md-tab label="Visit Details" ng-if="agendaTab">
+<md-tab label="Visit Initiation Form" ng-if="agendaTab">
 <md-content class="md-padding">
 
 
@@ -150,7 +149,7 @@
         <div class="panel-body">
 
           <!-- visits title input-->
-          <md-input-container class="md-block">
+          <!--md-input-container class="md-block">
           <label>Title</label>
           <input md-maxlength="30" minlength="5" required name="title" ng-model="visits.title">
           <div ng-messages="visitsForm.title.$error" ng-show="visitsForm.title.$touched || !visitsForm.title.$pristine">
@@ -160,7 +159,7 @@
             <div ng-message="minlength">The title should contain minimum 5 characters</div>
           </div>
         </div>
-      </md-input-container>
+      </md-input-container-->
       <!-- <div ng-include src="'/public/mods/visits/clientAdd.html'"></div> -->
       <!--client input-->
     <!--         <div class="row">
@@ -200,7 +199,7 @@
       <div layout-gt-sm="row">
 
         <md-input-container class="md-block" flex-gt-sm>
-        <label>Parent Account Name  </label>
+        <label>Parent Account Name  <span class="asterrisk">*</span></label>
         <angucomplete-alt
         id="ex14"
         placeholder="Select Client or Add Client"
@@ -223,7 +222,7 @@
       </md-input-container>
 
       <md-input-container class="md-block" flex-gt-sm>
-      <label>Child Account Name </label>
+      <label>Child Account Name <span class="asterrisk">*</span></label>
       <angucomplete-alt
       id="ex14"
       placeholder="Select Child Client or Add Client"
@@ -248,7 +247,7 @@
   </div>
   <div class="form-group visIndBlock">
     <div class="col-md-6">
-     <label>Industry</label>
+     <label>Industry <span class="asterrisk">*</span></label>
      <select
      ng-model="visits.industry" ng-change="industryClientChanged(visits.industry)"
      ng-options="data for data in vertical" class="form-control">
@@ -256,7 +255,7 @@
  </div>
 
  <div class="col-md-6">
-  <label>Regions</label>
+  <label>Regions <span class="asterrisk">*</span></label>
   <select
   ng-model="visits.regions" 
   ng-options="data1 for data1 in regions" class="form-control">
@@ -267,7 +266,7 @@
 
 <div class="form-group col-xs-11 visOfferingBlock">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.offerings.$touched && visitsForm.offerings.$invalid }">
-    <label class="visLabel">Offerings &nbsp;&nbsp; </label>
+    <label class="visLabel">Offering(s) <span class="asterrisk">*</span></label>
     <multiple-autocomplete ng-model="selectedList"
     suggestions-arr="offerings">
   </multiple-autocomplete>
@@ -281,12 +280,12 @@
 <div class="large-padded-row">
   <div class="md-block" flex-gt-sm layout-gt-sm="row">
     <md-input-container class="md-block" flex-gt-sm>
-    <label>Net Promoter Score</label>
+    <label>Net Promoter Score <span class="asterrisk">*</span></label>
     <input type="text" name=" netPromoter" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" ng-model="visits.netPromoter "><!-- <span  ng-show="visitsForm.netPromoter.$error.pattern" class="text-danger">Net promoter Score should be a number !</span> -->
   </md-input-container>
 
   <md-input-container class="md-block" flex-gt-sm>
-  <label>SFDC Id</label>
+  <label>SFDC Id <span class="asterrisk">*</span></label>
   <angucomplete-alt
   id="ex14"
   placeholder="Select SFDC Id or Add SFDC Id"
@@ -309,7 +308,7 @@
 </md-input-container>
 
 <md-input-container class="md-block" flex-gt-sm>
-<label>Current Competitor</label>
+<label>Current Competitor <span class="asterrisk">*</span></label>
 <input name=" competitors" ng-model="visits.competitors">
 </md-input-container> 
 </div>
@@ -451,10 +450,10 @@
 <!-- CSC Personnel input-->
 <!--salesExec-CSCPersonnel-->
 <div class="panel-body">
-  <a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a>         
-  <div class="row">
+  <!--a class="pull-right" ng-show="!closeNote" ng-click="closeNotecscPrs()">Show Note</a-->         
+  <!--div class="row"-->
     <!--div class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></div-->
-    <div class="form-group col-xs-6">
+    <!--div class="form-group col-xs-6">
       <div class="well personNote" ng-show="closeNote">
         {{errMessage="Industry Executive, Global Delivery and Sales Executive Contact are Mandatory Fields.";""}}
         <span class="error text-info">&nbsp;&nbsp;Note: {{errMessage}}</span>
@@ -462,13 +461,13 @@
           <a class="table-btn" ng-click="closeNotecscP()"><li class="fa fa-times fa-lg" /></a>
         </div>
       </div>
-    </div>
-  </div>
+    </div-->
+  <!--/div-->
   <div class="row">
     <div class="form-group col-xs-4">
       <md-input-container class="md-block">
       <div class="form-group" ng-class="{ 'has-error': visitsForm.salesExecUser.$touched && visitsForm.salesExecUser.$invalid }">
-        <label>Select Sales Executive &nbsp;&nbsp; :</label>
+        <label>Sales Executive Name <span class="asterrisk">*</span>:</label>
         <div userauto type="picker" user-model="salesExecUser" user-id="salesExecId" view-type="small" user-email="salesExecEmail" switch-mode="mode" user-type="employee" title="Sales Executive"></div>
       </div>
     </md-input-container>
@@ -478,7 +477,7 @@
   <div class="form-group col-xs-4">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.industryExecUser.$touched && visitsForm.industryExecUser.$invalid }">
-      <label>Select Industry Executive &nbsp;&nbsp; :</label>
+      <label>Industry Executive Name<span class="asterrisk">*</span>:</label>
       <div userauto type="picker" user-model="industryExecUser" user-id="industryExecId" view-type="small" user-email="industryExecEmail" switch-mode="mode" user-type="employee" title="Industry Executive"></div>
     </div>
   </md-input-container>
@@ -488,7 +487,7 @@
 <div class="form-group col-xs-4">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.globalDeliveryUser.$touched && visitsForm.globalDeliveryUser.$invalid }">
-    <label >Select Global Delivery &nbsp;&nbsp; :</label>
+    <label >Global Delivery Contact <span class="asterrisk">*</span>:</label>
     <div userauto type="picker" user-model="globalDeliveryUser" user-id="globalDeliveryId" view-type="small" user-email="globalDeliveryEmail" switch-mode="mode" user-type="employee" title="Global Delivery"></div>
   </div>
 </md-input-container>
@@ -500,7 +499,7 @@
   <div class="form-group col-xs-6">
     <md-input-container class="md-block">
     <div class="form-group" ng-class="{ 'has-error': visitsForm.accountGMUser.$touched && visitsForm.accountGMUser.$invalid }">
-      <label>Select Account General Manager &nbsp;&nbsp; :</label>
+      <label>Account General Manager &nbsp;&nbsp; :</label>
       <div userauto type="picker" user-model="accountGMUser" user-id="accountGMId" view-type="small" user-email="accountGMEmail" switch-mode="mode" user-type="employee" title="AGM"></div>
     </div>
   </md-input-container>
@@ -510,7 +509,7 @@
 <div class="form-group col-xs-6">
   <md-input-container class="md-block">
   <div class="form-group" ng-class="{ 'has-error': visitsForm.creUser.$touched && visitsForm.creUser.$invalid }">
-    <label>Select CRE &nbsp;&nbsp; :</label>
+    <label>Customer Relationship Executive &nbsp;&nbsp; :</label>
     <div userauto type="picker" user-model="creUser" user-id="creId" view-type="small" user-email="creEmail" switch-mode="mode" user-type="employee" title="CRE"></div>
   </div>
 </md-input-container>
@@ -579,10 +578,10 @@
     <div class="row">
       <div class="form-group col-xs-3 visTypeSelect">
         <div class="form-group visTypeSelect">
-          <label>Visit Type</label>
+          <label>Visit Type <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.businessType" ng-dropdown>
-            <option ng-option value="new">New</option>
-            <option ng-option value="existing">Existing</option>
+            <option ng-option value="new">New Business</option>
+            <option ng-option value="existing">Existing Business</option>
           </select>
         </div>
       </div>
@@ -592,7 +591,7 @@
       <!-- visits visitType-->
       <div class="form-group col-xs-5 visTypeSelect">
         <div id="new" ng-if="visits.interest.businessType == 'new'">
-          <label>Say More&nbsp;&nbsp; </label>
+          <label>Visit Type-New <span class="asterrisk">*</span> </label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
             <option ng-option value="duediligence">Due Diligence</option>
             <option ng-option value="exploratory">Exploratory</option>
@@ -600,7 +599,7 @@
           </select>
         </div>
         <div id="existing" ng-if="visits.interest.businessType == 'existing'">
-          <label>Visit Type-Existing&nbsp;&nbsp;</label>
+          <label>Visit Type-Existing <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.interest.visitType" ng-dropdown>
             <option ng-option value="operationsreview">Meeting &amp; Operations Review</option>
             <option ng-option value="renewals">Renewals</option>
@@ -611,7 +610,7 @@
       </div>
       <div class="form-group col-xs-3 visTypeSelect">
         <div class="form-group" ng-class="{ 'has-error': visitsForm.vertical.$touched && visitsForm.vertical.$invalid }">
-          <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Customer Type </label>
+          <label tooltips tooltip-template="If the visiting customer is “CEO/CXO/CIO level – select Elite  President/MD/SVP/Decision Executive – select Premier VP/Director – select Preferred">Customer Type <span class="asterrisk">*</span></label>
           <select name="type" ng-model="visits.visitorType" ng-dropdown>
             <option ng-option ng-selected="Elite == visitorType" value="Elite"><span tooltips tooltip-template=" CEO/CXO/CIO level – select Elite"></span>Elite</option>
             <option ng-option ng-selected="Preferred == visitorType" value="Preferred">Preferred</option>
@@ -637,7 +636,7 @@
 
 <!-- visits status input-->
 <div ng-show=" status == null || status == 'confirm' || status == 'tentative' ||status === 'reject' ">
-  <label><h4><b>Status</b></h4></label>
+  <label>Status <span class="asterrisk">*</span></label>
   <md-input-container class="md-block statusBlock">
   <md-radio-group name="status" id="status" ng-model="status" required class="">
   <div class="row">
@@ -666,11 +665,11 @@
 
 <!-- visits agenda-->
 <md-input-container class="md-block">
-<label ng-show="visits.agenda" class="show-hide">Client objectives</label>
+<label ng-show="visits.agenda" class="show-hide">Client objectives <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." required /></text-angular>
+ng-model="visits.agenda" name="agenda" required /></text-angular>
 <div ng-messages="visitsForm.agenda.$error" ng-show="visitsForm.agenda.$touched && !visitsForm.agenda.$pristine">
   <div class="messagenotify">
     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -680,11 +679,11 @@ ng-model="visits.agenda" name="agenda" placeholder="Client objectives..." requir
 
 <!-- visits objective -->
 <md-input-container class="md-block">
-<label ng-show="visits.interest.objective" class="show-hide">CSC Objective</label>
+<label ng-show="visits.interest.objective" class="show-hide">CSC Objectives <span class="asterrisk">*</span></label>
 <text-angular
 ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
 ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-ng-model="visits.interest.objective" name="objective" placeholder="CSC objectives..." required /></text-angular>
+ng-model="visits.interest.objective" name="objective" required /></text-angular>
 <div ng-messages="visitsForm.objective.$error" ng-show="visitsForm.objective.$touched && !visitsForm.objective.$pristine">
   <div class="messagenotify">
     <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -713,7 +712,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
   <div class = "panel-subheader pull-right">
   </div>
   <div class="panel-body">
-   <i><h5>Please click Attach files to attach files related to visit.</h5></i><br>
+   <i><h5>Please upload the relevant documents - Draft visit agenda, RFP document, engagement overview etc.</h5></i><br>
    <fileattachment folder-type="visits" file-size="10" file-allowed="5" array="array" file-type="multiFile"/>
  </div>
 </div>
@@ -752,6 +751,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
     <div class="row">
       <div class="col-xs-8">
         <div class="form-group">
+          <label>Visit Expenses <span class="asterrisk">*</span></label>
           <md-input-container class="md-block statusBlock">
           <md-radio-group name="billable" id="billable" ng-model="visits.billable" required class="">
           <div class="row">
@@ -771,7 +771,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
               <div class="check-element animate-show"  ng-if="checked && mode=='add'">
                 <!-- visits wbsCode input-->
                 <md-input-container class="md-block">
-                <label><h5>WBS Code</h5></label>
+                <label>WBS Code <span class="asterrisk">*</span></label>
                 <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
                 <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                  <div class="messagenotify">
@@ -780,9 +780,9 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
                   <div ng-message="minlength">The wbsCode should contain minimum 5 characters</div></div></div>
                 </md-input-container>
                 <div>
-                  <h4><b>Attach IWO File</b></h4>
+                  <h4><b>Attach approved IWO File</b></h4>
                   <div>
-                    <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                    <!--i><h5>Please click Attach files to upload IWO File</h5></i><br-->
                     <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
                     file-type="singleFile"/>
                   </div>
@@ -793,7 +793,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
               <div class="check-element animate-show"  ng-if="checked && mode=='edit'">
                 <!-- visits wbsCode input-->
                 <md-input-container class="md-block">
-                <label><h5>WBS Code</h5></label>
+                <label>WBS Code <span class="asterrisk">*</span></label>
                 <input md-maxlength="30" minlength="5" name="wbsCode" ng-model="visits.wbsCode" required>
                 <div ng-messages="visitsForm.wbsCode.$error" ng-show="visitsForm.wbsCode.$touched || !visitsForm.wbsCode.$pristine">
                  <div class="messagenotify">
@@ -803,10 +803,10 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
                 </md-input-container>
 
                 <div>
-                 <h4><b>Attach IWO File</b></h4>
+                 <h4><b>Attach approved IWO File</b></h4>
                  <div>
                   {{arrayiwo=$parent.arrayiwo;""}} 
-                  <i><h5>Please click Attach files to upload IWO File</h5></i><br>
+                  <!--i><h5>Please click Attach files to upload IWO File</h5></i><br-->
                   <fileattachment folder-type="visits" file-size="10" file-allowed="1" array="arrayiwo" 
                   file-type="singleFile"/>
                 </div>
@@ -819,7 +819,7 @@ ng-model="visits.interest.objective" name="objective" placeholder="CSC objective
             <div class="check-element animate-show" ng-if="!checked">
              <!-- visits chargeCode input-->
              <md-input-container class="md-block">
-             <label>Charge Code</label>
+             <label>Charge Code <span class="asterrisk">*</span></label>
              <input md-maxlength="30" minlength="5" name="chargeCode" ng-model="visits.chargeCode" required>
              <div ng-messages="visitsForm.chargeCode.$error" ng-show="visitsForm.chargeCode.$touched || !visitsForm.chargeCode.$pristine">
                <div class="messagenotify">
