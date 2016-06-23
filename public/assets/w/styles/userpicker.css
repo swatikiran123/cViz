@@ -149,3 +149,7 @@
   padding-left: 0px;
 }
 /*** bucketization css End***/
+/* print btn css */
+.printbtn{
+    margin-right: 15px;
+}

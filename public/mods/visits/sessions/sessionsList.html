@@ -95,12 +95,13 @@
   <a class="btn btn-default btn-sm pull-right" ng-if="showFiltered" ng-click="addSchedule1($event)">Add New Schedule</a>
   
   <!--a class="btn btn-default btn-sm pull-right" ng-if="showFiltered == false" href="#/visits/{{visit._id}}/session/print" target="new">Print Agenda</a-->
-  <a class="btn btn-default btn-sm pull-right" ng-if="showFiltered == false" ng-click="printToCard('printAgenda')"><i class="fa fa-print" aria-hidden="true"></i>
+  <a class="btn btn-default btn-sm pull-right printbtn" ng-click="printToCard('printAgenda')"><i class="fa fa-print" aria-hidden="true"></i>
  Print</a>
 </div>
 
 <div class="scheduledates">
 	<a href ng-click="showAllSchedules()">All ({{scheduleList.length}})</a>&nbsp;&nbsp;
+
 	<span ng-repeat="dt in scheduleDates track by $index">
 		<a href ng-click="setEntryDate(dt,$index)">{{dt | DateFormat:"ddd, DD MMM" }}</a>&nbsp;&nbsp;
 	</span>
