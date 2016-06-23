@@ -1,11 +1,11 @@
 'use strict';
 
-/*angular.module('mviz-main', [
+angular.module('mviz-main', [
 'appFilters','appService', 'home','locator','header','scroll','userViewDirective','richTextDirective'
-]);*/
+]);
 
 angular.module('mviz-visits', [
-	'appFilters','appService','visits','home','locator','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir','richTextDirective'
+	'appFilters','appService','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir','richTextDirective'
 ]);
 
 angular.module('mviz-facts', [
