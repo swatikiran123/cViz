@@ -11,9 +11,9 @@ module.exports = function(app) {
 	// route to main module
 	app.get('/m/main/', auth.isLoggedIn, function(req, res) {
 		res.locals.pageTitle = "Mobile Home";
-		res.locals.appName = "ng-app='mviz-main'"
-		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-home");
-		res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-home");
+		res.locals.appName = "ng-app='mviz-visits'"
+		res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "m-general,m-angular,m-visits");
+		res.locals.appAssets = assetBuilder.getAssets("appAssets", "m-general,m-angular,m-visits");
 		res.render('mobile/home.ejs', {
             layout: activeLayout
 		});
