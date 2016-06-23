@@ -1116,7 +1116,6 @@ break;
         } // End of save method
 
         $scope.create = function() {
-
           var inData       = $scope.visits;
           inData.schedule = $scope.schedules;
           inData.keynote = $scope.keynotes;
@@ -1124,7 +1123,6 @@ break;
           inData.visitors = $scope.visitors;
           inData.createBy =  $rootScope.user._id;
           inData.cscPersonnel =$scope.cscPersonnel;
-
           // console.log($scope.cscPersonnel);
           // console.log(inData);
           var client ={};
@@ -1139,7 +1137,7 @@ break;
 
               $scope.nextTab(response._id);
 
-              growl.info(parse("visit [%s]<br/>Added successfully as draft", inData.title));
+              growl.info(parse("visit [%s]<br/>Added successfully as draft", $scope.parentClientString));
             })
           }else{
             $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -1148,8 +1146,7 @@ break;
                // console.log(response);
              })
               $scope.nextTab(response._id);
-
-              growl.info(parse("visit [%s]<br/>Added successfully", inData.title));
+              growl.info(parse("visit [%s]<br/>Added successfully", $scope.parentClientString));
             })
             .error(function(data, status){
               growl.error("Error adding visit");
@@ -1161,7 +1158,7 @@ break;
       var title = visits.title;
       $http.delete('/api/v1/secure/visits/' + visits._id).success(function(response) {
         refresh();
-        growl.info(parse("visits [%s]<br/>Deleted successfully", title));
+        growl.info(parse("visit deleted successfully."));
       })
       .error(function(data, status){
         growl.error("Error deleting visit");
@@ -1273,7 +1270,7 @@ break;
 
       $http.put('/api/v1/secure/visits/' + $scope.visits._id,  inData).success(function(response) {
        refresh();
-       growl.info(parse("visit [%s]<br/>Edited successfully",  $scope.visits.title));
+       growl.info(parse("visit [%s]<br/>Edited successfully",  client.name));
 
        if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
         if($scope.agendaTab == true && $scope.agendaEdit == false) {
