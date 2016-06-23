@@ -6,7 +6,7 @@
 		
 		"name"						: "Hyderabad",
 		"desc"						: "Hyderabad is the capital of the southern Indian state of Telangana and de jure capital of Andhra Pradesh. Occupying 650 square kilometres (250 sq mi) along the banks of the Musi River, it has a population of about 6.7 million and a metropolitan population of about 7.75 million, making it the fourth most populous city and sixth most populous urban agglomeration in India.",
-		"bannerLink"				: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Hyderabad_montage-2.png,",
+		"bannerLink"			: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Hyderabad_montage-2.png",
 
 		"geospot"					:  [17.3700, 78.4800], 
 
@@ -60,23 +60,9 @@
 				"Hyderabad is home to some of the most beautiful artificial lakes in the world with lakes such as Hussain Sagar, Osman Sagar and Himayat Sagar being created by dams on River Musi.",
 				"The Koh-i-Noor (the “Mountain of Light”) , which was once the largest known diamond in the world was originally mined in Kollur mines of andhra and then had its way to golconda fort.",
 				"Hyderabad’s most famous meat-and-rice dish, it is said that the Nizams served some 26 varieties of biryanis for their guests any given time.  It is said that there are more than 140 varieties in the Hyderabadi biryani."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900001")
+			]
 
 	},
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	{
@@ -135,9 +121,7 @@
 				"Bangalore is the first city to be electrified in India",
 				"Bangalore has produced the maximum number of scientists considered for Nobel Prize nominations from India",
 				"Bangalore has the biggest statue of Lord Shiva and Hanuman in India."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900002")
+			]
 
 	},
 	
@@ -203,9 +187,7 @@
 				"It’s the automobile hub of India.",
 				"The Anna Centenary Library is the largest in Asia.",
 				"Tidal Park, an IT Park in Chennai, is one of the largest IT Parks in Asia."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900003")
+			]
 	},
 	
 	
@@ -268,9 +250,7 @@
 				"Noida replaced Mumbai as the second-best realty destination, according to an analyst report.",
 				"Noida has emerged a hot spot for IT and IT-enabled services industry with many large companies setting up their businesses here,is becoming the preferred destinations for companies offering IT, ITeS, BPO, BTO and KPO services in various domains such as banking, financial services, insurance, pharma, auto, FMCG and manufacturing.According to a study by Assocham.",
 				"The major advantages include excellent power situation, salubrious climate eminently suited to IT industries, capability to increase the pool of skilled manpower, engineering colleges and other educational institutions, low cost of setting up an IT unit as well as low recurring cost (including cost of living)."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900004")
+			]
 	},
 
 	
@@ -336,9 +316,7 @@
 				"Most of the buildings during the British period, such as the Victoria Terminus and Bombay University, were built in Gothic Revival style.",
 				"There are also a few Indo-Saracenic styled buildings such as the Gateway of India.",
 				" Mumbai has two UNESCO World Heritage Sites, the Chhatrapati Shivaji Terminus and the Elephanta Caves."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900005")
+			]
 	},
 	
 	
@@ -406,9 +384,7 @@
 				" Baroda has had amazing names like “Chandanvati”, “Ankottaka” – (Now called Akota),”Vatpatrak” (Banyan Tree), “Viravati” -(land of Warriors), “Virakshetra”, “Brodera” (Names given by British – mostly they could not pronounce Baroda😛 ) then we had “Baroda” and in 1974 it was given the name “Vadodara”.",
 				"here was a diamond found in Baroda called “The Moon of Baroda” The Moon of Baroda weighed 25.95 carats (5.19 g) at the time it was found. It was later cut into a pear shaped diamond, weighing 24.04 carats (4.81 g).",
 				"Vadodara also holds International Marathon every year. It became the first non-metro city of India to have held a Marathon of such a large scale and success."
-			],
-
-		"editBy"				: ObjectId("A02234567892345678900006")
+			]
 	},
 	
 	
@@ -474,11 +450,251 @@
 				"40 feet high Idol at Bada Ganapati is the largest Ganesh Idol in the world.",
 				"CAT ,The Center for Advanced Technology is India's main Research center on Laser Technology.",
 				"Sudama nagar happens to be Asia's largest colony."
+			]
+	},
+
+
+	{
+
+		"_id"							: ObjectId("A07234567892345678900008"),
+
+		"name"						: "Solan",
+		"desc"						: "Solan is the district headquarters of Solan district in the Indian state of Himachal Pradesh. The largest Municipal Council of Himachal Pradesh, it is located 46 kilometres south of the state capital, Shimla.",
+		"bannerLink"				: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Solan_collage.jpg/394px-Solan_collage.jpg",
+
+		"geospot"					: [30.9044860, 77.0967360],
+		"places"					:
+			[
+				{
+					"name" 				: "Chail",
+					"desc" 					: "Chail is a hill station in Himachal Pradesh, India.",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/5/5e/Chailhill.jpg"
+						],
+					"geospot"				: [30.9676210, 77.1916500],
+					"quickFacts"			:
+						[
+							"It once served as the summer capital of His Highness Maharaja Adhiraj Bhupinder Singh of Patiala. Chail is 49 km from Shimla.",
+							"The Chail Palace is well known for its architecture. The cricket ground and a polo ground which is there at an altitude of 2,444 m was owned by erstwhile royal family of Patiala.",
+							"It is the world's highest cricket ground."
+						]
+				},
+
+				{
+					"name" 				: "Dagshai ",
+					"desc" 					: "Dagshai is one of the oldest cantonment towns in the Solan district of Himachal Pradesh, India.",
+					"imageLinks"			:
+						[
+							"http://cbdagshai.org/images/marq10.jpg",
+							"http://cbdagshai.org/images/marq9.jpg"
+						],
+					"geospot"				: [30.884462, 77.052129],
+					"quickFacts"			:
+						[
+							"It is situated on top of a 5689 feet (1734 mtr) high hillock that stands sphinx-like astride the Kalka-Shimla Highway at a point about 11 km from Solan.",
+							" It was founded in 1847 by the East India Company by securing free of cost five villages from Maharaja of Patiala aka Bhupinder Singh of Patiala.",
+							"It has an average elevation of 1,734 metres (5,689 ft)."
+						]
+				}
 			],
 
-		"editBy"				: ObjectId("A02234567892345678900007")
+		"quickFacts":
+			[
+				"At an average elevation of 1,600 metres (5,200 ft).[1] The place is named after the Hindu goddess Shoolini devi",
+				"Every year in the month of June, a fair celebrating the goddess is held, featuring a 3-day mela at the central Thoudo grounds. Solan was the capital of the erstwhile princely state, Bhagat.",
+				"It is known as the 'Mushroom city of India' because of the vast mushroom farming in the area as well as the Directorate of Mushroom Research (DMR) situated at Chambaghat.",
+				"Solan is crowned as the 'City of Red Gold', in reference to the bulk production of tomatoes in the area.",
+				"The town is situated between Chandigarh (joint capital of Punjab and Harayana) and Shimla (state capital), on the Kalka-Shimla National Highway-22.",
+				"The Kalka-Shimla narrow gauge heritage railway line, built by the British passes through Solan."
+			]
+	},
+	
+	
+	{
+
+		"_id"							: ObjectId("A07234567892345678900009"),
+
+		"name"						: "Pune",
+		"desc"						: "Pune is the 9th most populous city in India and the second largest in the state of Maharashtra after the state capital Mumbai.",
+		"bannerLink"			: "https://upload.wikimedia.org/wikipedia/commons/0/04/Pune_Montage.JPG",
+
+		"geospot"					: [18.520430, 73.856744],
+		"places"					:
+			[
+				{
+					"name" 				: "Lonavla",
+					"desc" 					: "Lonavla, officially Lonavala is a town and a hill station Municipal Council in Pune district in the Indian State of Maharashtra.",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/d/dd/Lonavalamh.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/e/ee/Rajmachi35.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Lohagad_Fort.jpg/1024px-Lohagad_Fort.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Bhushi_dam.JPG/1024px-Bhushi_dam.JPG"
+						],
+					"geospot"				: [18.754617, 73.406234],
+					"quickFacts"			:
+						[
+							"Present day Lonavla was a part of the Yadava dynasty.",
+							"Lonavla and the adjacent Khandala are twin hill stations 622 metres (2,041 ft) above sea level, in the Sahyadri ranges that demarcate the Deccan Plateau and the Konkan coast.",
+							"The hill stations sprawl over an approximate area of 38 square kilometres (15 sq mi)",
+							"Tourism peaks during the monsoon season. The name Lonavla is derived from the Sanskrit lonavli, which refers to the many caves like Karla Caves, Bhaja Caves and Bedsa that are close to Lonavla.",
+							"Lonavla Lake is surrounded by natural scenery, about 1.6 km from the town. The lake dries up during the winter months.",
+							"Duke's Nose stands 12 km from Lonavla, clearly visible from the highway while driving towards Mumbai. This landmark in Khandala is popular with hikers. Also known locally as Naagphani (Cobra's Hood), the cliff owes its name to the Duke of Wellington, whose ample nose it resembles."
+						]
+				},
+
+				{
+					"name" 				: "Malshej Ghat",
+					"desc" 					: "Malshej Ghat is a mountain pass in the Western Ghats range in the Pune district of Maharashtra, India. The site is nestled in the lofty rugged hills of the Western Ghats.",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Malshej_Hills.jpg/1024px-Malshej_Hills.jpg",
+							"http://www.couponraja.in/theroyale/wp-content/uploads/2015/06/malshej_ghat.jpg"
+						],
+					"geospot"				: [19.340625, 73.774552],
+					"quickFacts"			:
+						[
+							"The site is home to hundreds of different kinds of flora and fauna especially the avian population such as quails, rails, crakes, flamingos and cuckoos.",
+							"Malshej ghat, with average height of 700 mts[1] is situated in Pune district near the borders of Thane and Ahmednagar districts. ",
+							"Malshej Ghat is known for several types avian population and particularly known for flamingoes.",
+							"A nice view of valleys is one of the major attraction here. The view from behind the MTDC resort is a must-see. ",
+							" It is also famous for dark woods and the animals inside. These animals includes tigers, leopards, rabbits and peacocks etc.",
+							"But truly a famous place near Malshej Ghat is Khireshwar which is 2/3 km from rest house.",
+							"The birthplace of legendary Chhatrapati Shivaji Maharaj, The Shivneri Fort is not very far (approximately 40 km) from Malshej Ghat."
+						]
+				}
+			],
+
+		"quickFacts":
+			[
+				"Pune is also the 101st largest city in the world, by population",
+				"Pune city is the administrative headquarters of Pune district and was once the centre of power of the Maratha Empire established by Shivaji Maharaj.",
+				"The city is also known for its manufacturing and automobile industries, as well as for research institutes of information technology (IT), education, management and training, which attracts migrants, students, and professionals from India, South East Asia, the Middle East, and Africa. ",
+				"Pune is also one of the fastest growing cities in the Asia-Pacific region.",
+				"Prominent museums in Pune include the Raja Dinkar Kelkar Museum, Chhatrapati Shivaji Maharaj Museum of Indian History, Mahatma Phule Museum, Dr. Babasaheb Ambedkar Museum, and the Pune Tribal Museum.",
+				"Pune is said to be the cultural capital of the state of Maharashtra. It epitomises Marathi culture, which places emphasis on education, arts and crafts, music, and theatre."
+			]
+
+	},
+
+
+	{
+
+		"_id"							: ObjectId("A07234567892345678900010"),
+
+		"name"						: "Shimoga",
+		"desc"						: "Shimoga, officially renamed as Shivamogga, is a city and the district headquarters of Shimoga District in the central part of the state of Karnataka, India.",
+		"bannerLink"			: "http://www.aitmb.ac.in/nebulus/wp-content/uploads/2016/03/Jog_Falls.jpg",
+
+		"geospot"					: [13.929930, 75.568101],
+		"places"					:
+			[
+				{
+					"name" 				: "Jog Falls",
+					"desc" 					: "Jog falls is situated on the borders of Shimoga and Uttara Kannada district. Jog Falls are wonderful and world famous water falls. ",
+					"imageLinks"		:
+						[
+							"http://www.aitmb.ac.in/nebulus/wp-content/uploads/2016/03/Jog_Falls.jpg",
+							"http://tourmet.com/wp-content/uploads/2014/11/Thyvare-Koppa-Lion-Tiger-Reserve.jpg"
+						],
+					"geospot"				: [14.228416, 74.810224],
+					"quickFacts"			:
+						[
+							"Jog Falls, Gerosoppa Falls or Joga Falls is the second-highest plunge waterfall in India located in Sagara taluk in the state of Karnataka.",
+							"They are also known as the Gersoppa Falls or Jogada Gundi.",
+							"Jog Falls is created by the Sharavathi River dropping 253 m (830 ft), making it the second-highest plunge waterfall in India after the Nohkalikai Falls with a drop of 335 m (1100 ft) in Meghalaya."
+						]
+				},
+
+				{
+					"name" 				: "Kodachadri",
+					"desc" 					: "Kodachadri is a mountain peak with dense forests (elevation - 1,343 metres above sea level) in the Western Ghats in South India (Shivamogga Dist., Karnataka State)",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Kodachadri.JPG/1024px-Kodachadri.JPG",
+							"https://en.wikipedia.org/wiki/File:Kodachadribettagalu.jpg"
+						],
+					"geospot"				: [13.862308, 74.875201],
+					"quickFacts"			:
+						[
+							"It is declared as natural heritage site by Government Karnataka. and it is 10th highest peak of Karnataka.",
+							"The name comes from native word 'Kodacha' or 'Kodashi' which means hill of Kutaja flowers and 'Adri' a Sanskrit word, both combined together coined the word Kodachadri.",
+							"Kutaja in Sanskrit means Girimallika or Jasmine of the hill. The hilly region that is full of 'Jasmine of the hills' plants is 'Kutajadri'.",
+							"Kodachadri receives an annual rain fall of 500 cm to 750 cm and it rains for about eight months in a year",
+							"The Shola Forests and thick forest cover Kodachadri and the nearby hills and the place has a cool and beautiful landscape."
+						]
+				}
+			],
+
+		"quickFacts":
+			[
+				"The city lies on the banks of the Tunga River. Being the gateway for the hilly region of the Western Ghats, the city is popularly nicknamed as 'Gateway of Malnad'.",
+				"The name of the city is derived from the term 'shivmoga', 'History behind the city name due to story that the Lord Shiva drunk Tunga river water using Mogge at the city, hence the city name Shiva-mogga'.",
+				"The city is 569 m above sea level and is surrounded by lush green paddy fields, arecanut and coconut groves.",
+				"Shivappa Nayaka's palace is located within the city."
+			]
+
+	},
+
+
+	{
+
+		"_id"							: ObjectId("A07234567892345678900011"),
+
+		"name"						: "Gurgaon",
+		"desc"						: "Gurgaon also known as Gurugram, is a city in the Indian state of Haryana, located immediately south of the National Capital Territory of Delhi",
+		"bannerLink"			: "http://atulgupta.in/wp-content/uploads/2015/08/gurgaon.jpg",
+
+		"geospot"					: [28.459497, 77.026638],
+		"places"					:
+			[
+				{
+					"name" 				: "Cyber City",
+					"desc" 					: "The DLF Cyber City is an industrial park in Gurgaon, India, which houses some of the top Fortune 500 companies.",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Gurgoan6.JPG/768px-Gurgoan6.JPG",
+							"https://upload.wikimedia.org/wikipedia/commons/a/a0/Cyber_Green_Building%2C_Gurgaon%2C_Haryana%2C_India_-_20070613.jpg"
+						],
+					"geospot"				: [28.493602, 77.088325],
+					"quickFacts"			:
+						[
+							"It has been termed a 'futuristic commercial hub'.",
+							"Some of the tenant companies of the Cyber City are 'Nokia Siemens', 'LinkedIn', 'Yahoo!', 'Google'."
+						]
+				},
+
+				{
+					"name" 				: "Kingdom of Dreams",
+					"desc" 					: "Kingdom of Dreams is India's first live entertainment, theatre and leisure destination. It is located in Sector 29, Gurgaon in NCR Delhi, near the Leisure Valley Park.",
+					"imageLinks"			:
+						[
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Kingdom_of_Dreams_auditorium_night_view%2C_Gurgaon.jpg/1024px-Kingdom_of_Dreams_auditorium_night_view%2C_Gurgaon.jpg",
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Culture_Gully_and_Nautanki_Mahal_auditorium%2C_Kingdom_of_Dreams%2C_Gurgaon.jpg/1024px-Culture_Gully_and_Nautanki_Mahal_auditorium%2C_Kingdom_of_Dreams%2C_Gurgaon.jpg"
+						],
+					"geospot"				: [28.459497, 77.026638],
+					"quickFacts"			:
+						[
+							"Spread over 6 acres (24,000 m2) and built at a cost of over Rs. 2 billion, Kingdom of Dreams is run by the Great Indian Nautanki Company (GINC),",
+							"Nautanki Mahal is an 835-seat auditorium within the complex and is designed like a grand palace.",
+							"Culture Gully is the arts, crafts and food boulevard at the Kingdom of Dreams. It is fully ac boulevard spread across 100,000 square feet (9,300 m2)",
+							"Showshaa Theatre is a 350-seater covered amphitheatre, complete with a soaring tent. Multiple theatrical performances take place here including productions based on Indian mythology."
+						]
+				}
+			],
+
+		"quickFacts":
+			[
+				"Historically known as Gurugram, the city's economic growth story started when the leading Indian automobile manufacturer Maruti Suzuki India Limited established a manufacturing plant in Gurgaon in the 1970s.",
+				"Today, Gurgaon has local offices for more than 250 Fortune 500 companies.",
+				"The origin of the city's name can be traced back to the Sanskrit epic Mahabharat; it is believed that the land was owned by the legendary rulers Pandavas and Kauravas, who presented it to Guru Dronacharaya, their royal guru for warfare, as an appreciation of his training. ",
+				"The land came to be known as Gurugram (Sanskrit: गुरुग्राम, lit. village of the Guru) which over time became distorted to Gurgaon. The village still exists within the modern day city.",
+				"From an agricultural village, Gurgaon has emerged to become the city with the third highest per capita income in India",
+				"Various international companies, including Coca-Cola, Pepsi, BMW, Agilent Technologies have chosen Gurgaon to be their Indian corporate headquarters"
+			]
+
 	}
-	
-	
-	
+
+
 ]

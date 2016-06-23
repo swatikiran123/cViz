@@ -8,12 +8,12 @@ mongoimport --db cViz-Test --collection users --file jsonFiles/user.json --type 
 
 
 echo
-echo Creating User Collection
+echo Creating List of Values Collection
 mongoimport --db cViz-Test --collection lovs --file jsonFiles/lov.json --type json --jsonArray
 
 
 echo
-echo Creating User Collection
+echo Creating Group Collection
 mongoimport --db cViz-Test --collection groups --file jsonFiles/group.json --type json --jsonArray
 
 
