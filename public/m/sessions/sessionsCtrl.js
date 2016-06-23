@@ -45,6 +45,17 @@ angular.module('sessions')
 
 refresh();
 
+	$scope.calculation = function(rtime) {
+
+		if(rtime < 0 || rtime > 0)
+		{
+			$scope.isEnable = true;
+		}
+		else {
+			$scope.isEnable = false;
+		}
+	}
+
 $scope.pushSession = function(sessionId,rtime){
 		//console.log(sessionId)
 		//$window.location.reload();

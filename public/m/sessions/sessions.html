@@ -102,13 +102,13 @@
 											            </div>
 											           <div class="modal-body">
                                                             <form  align="center">
-				                                 -45min&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" ng-model="rtime">&nbsp;45min  &nbsp;&nbsp;
+				                                 -45min&nbsp;<input type="range"  id="rangeInput" step="5" name="rangeInput" min="-45" max="45" class="rangestyle" ng-model="rtime" ng-change = "calculation(rtime)">&nbsp;45min  &nbsp;&nbsp;
 				                                 <br>
 				                                 {{rtime}} min
 				                           </form>
                                                        </div>
 											            <div class="modal-footer">
-											             <button type="button" class="btn btn-success xsbutn" ng-click="pushSession(session._id,rtime)" data-dismiss="modal">Push</button>
+											             <button type="button" class="btn btn-success xsbutn"  ng-disabled="!isEnable"  ng-click="pushSession(session._id,rtime)" data-dismiss="modal">Push</button>
 											                <button type="button" class="btn btn-warning xsbutn" ng-click="drop(session._id)" data-dismiss="modal">Drop</button>
 
 
