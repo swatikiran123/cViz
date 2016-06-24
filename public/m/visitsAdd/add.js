@@ -264,13 +264,20 @@ $scope.create = function(visits) {
       // console.log($scope.createBy);
       // console.log($scope.schedules);
       // console.log($scope.clientIdData);
-
-      var inData  ={};
+if (visits!= undefined) {
+      var inData  =visits;
       inData.createBy = $scope.createBy;//inData.createBy
       inData.client=$scope.clientIdData;
       inData.schedule = $scope.schedules;
       inData.status = status;
-
+}
+else{
+   var inData  ={};
+      inData.createBy = $scope.createBy;//inData.createBy
+      inData.client=$scope.clientIdData;
+      inData.schedule = $scope.schedules;
+      inData.status = status;
+}
 
       // console.log($scope.visitsId);
 

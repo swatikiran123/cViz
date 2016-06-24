@@ -832,6 +832,9 @@ function getvalidationById(id, data){
 			deferred.reject(err);
 		}
 		else{	
+			if (item.preview === "poor" || item.preview === "" || item.preview === undefined || item.preview === null) {
+				errMessgs.push("Make sure to check the preview of Welcome Note.");
+			}
 			if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null){
 				errMessgs.push("Feedback Template needs to be defined.");
 			}
