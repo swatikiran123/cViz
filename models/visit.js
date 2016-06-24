@@ -80,7 +80,8 @@ var visitSchema = new mongoose.Schema({
 		feedbackElg					: { type: String, trim: true }
 	}],
 	rejectReason 					: { type: String, trim: true },
-	cancelReason					: { type: String, trim: true }
+	cancelReason					: { type: String, trim: true },
+	preview                         : { type: String, trim: true, enum: ['good', 'poor']}
 
 });
 

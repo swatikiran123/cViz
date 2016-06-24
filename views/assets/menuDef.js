@@ -4,7 +4,7 @@ module.exports = {
 			name: "Welcome",
 			link: "/m/main/",
 			icon: "fa-home",
-			roles: "customer"
+			roles: "customer,vManager"
 		},
 		// {
 		// 	name: "Dashboard",

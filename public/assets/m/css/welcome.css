@@ -5,9 +5,24 @@
 	    padding-right: 20px;
 	    border-right: 1px solid black;
 	}
+	.welnote{
+		overflow: hidden;
+	}
+	.richtext1{
+    height: 500px;
+
+    overflow-y: scroll;
+      margin:5px -400px 5px 5px;
+  padding-right:400px;
+}
+.content{
+    width: 96%;
+    text-align: justify;
+    padding-left: 4px;
+    padding-right:  4px;
+}
       .richtext{
-      	overflow-y: auto; 
-      	min-height:100px; 
+      	
       	width:850px; 
       	padding-left:15px;
       }
@@ -51,20 +66,12 @@
  		width: 820px;
  		height: 300px;
  		padding-left: 20px;
- 	}.scrollcontent{
-    height:150px;
-    width:805px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:301px;
-        padding:10px;
+ 	}
 
-        }
+ 	.scrollcontent{
+    height:100px;
+  overflow-y: scroll; }
+   
 	
 	button{
 		background-color: #fff;
@@ -79,10 +86,21 @@ overflow-y:scroll;
 		padding-left: 20px;
 	}
 	@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+			.richtext1{
+    height: 345px;
+
+    overflow-y: scroll;
+}
+		.content{
+    width: 95%;
+    text-align: justify;
+   padding-left: 10px;
+   padding-right: 10px;
+}
 		#welcome{
  		object-fit: initial;
  		width: 95%;
- 		height: 300px;
+ 		height: 250px;
  		padding-left: 10px;
  	}
 		 	.modal-body {
@@ -114,60 +132,35 @@ overflow-y:scroll;
 			padding-left: 20px;
 		}
 	.image1{
-    height:300px;
+    height:200px;
     width: 95%;
     margin-left: 10px;
  	margin-right: 10px;
      }
-	.scrollcontent{
-    height:150px;
-    width:300px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:301px;
-        padding:10px;
-
-        }
+	
 
 }
-@media only screen and (min-device-width: 400px) and (max-device-width: 480px) {
-.scrollcontent{
-    height:150px;
-    width:345px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:301px;
-        padding:10px;
 
-        }
-}
-@media only screen and (min-device-width: 400px) and (max-device-width: 480px) {
-
-}
 @media only screen and (max-device-width: 320px){
 		#welcome{
  		
  		width: 280px;
- 		height: 300px;
+ 		height: 250px;
  		margin-left: 2px;
  		margin-right: 2px;
  	}
  	.image1{
-    height:300px;
-    width: 280px;
-    margin-left: 10px;
+    height:220px;
+    width: 240px;
+ 
  	margin-right: 10px;
      }
+
+     		.richtext1{
+    height: 320px;
+
+    overflow-y: scroll;
+}
  	
 	.headwel{
 		padding-top: 20px;
@@ -179,22 +172,22 @@ overflow-y:scroll;
 		    padding-right: 10px;
 		    border-right: 1px solid black;
 		}
-.scrollcontent{
-    height:150px;
-    width:260px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:301px;
-        padding:10px;
 
-        }
 }
+
+	@media only screen and (min-device-width: 400px) and (max-device-width: 480px) {
+		.richtext1{
+			height:400px;
+		}
+
+	}
 @media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
+			.content{
+    width: 95%;
+    text-align: justify;
+   padding-left: 10px;
+   padding-right: 10px;
+}
 		#welcome{
  		object-fit: initial;
  		width: 95%;
@@ -230,23 +223,16 @@ overflow-y:scroll;
     margin-left: 10px;
  	margin-right: 10px;
      }
-     .scrollcontent{
-    height:150px;
-    width: 510px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:471px;
-        padding:10px;
-
-        }
+   
 
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+			.content{
+    width: 95%;
+    text-align: justify;
+   padding-left: 10px;
+   padding-right: 10px;
+}
 			#welcome{
  		object-fit: initial;
  		width: 95%;
@@ -267,7 +253,7 @@ overflow-y:scroll;
 			padding-left: 40%;
 		}
 		      #videoModal{
-padding-top: 10%;
+padding-top: 2%;
 padding-bottom: 10%;
 }
 	.headwel{
@@ -287,24 +273,23 @@ padding-bottom: 10%;
  	margin-right: 10px;
      }
   
-   .scrollcontent{
-    height:150px;
-    width: 710px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:471px;
-        padding:10px;
-
-        }
+ 
 }
  
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+
+		.richtext1{
+    height: 250px;
+
+    overflow-y: scroll;
+}
+			.content{
+    width: 95%;
+    text-align: justify;
+   padding-left: 10px;
+   padding-right: 10px;
+}
 			#welcome{
  		object-fit: initial;
  		width: 95%;
@@ -330,8 +315,8 @@ overflow-y:scroll;
 		padding-left: 20px;
 	}
 	.lo{
-		    width: 20%;
-		    height: 20%;
+		    width: 10%;
+		    height: 10%;
 		    padding-right: 10px;
 		    border-right: 1px solid black;
 		}
@@ -341,19 +326,6 @@ overflow-y:scroll;
     margin-left: 10px;
  	margin-right: 10px;
      }
-        .scrollcontent{
-    height:150px;
-    width: 800px;
-    border:solid 2px grey;
-overflow:scroll;
-overflow-x:scroll;
-overflow-y:scroll;
-    }
-    .scrollinnercon{
-        height:350px;
-        min-width:471px;
-        padding:10px;
-
-        }
+  
        
 }
