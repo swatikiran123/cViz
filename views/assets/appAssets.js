@@ -191,7 +191,11 @@ module.exports = {
 			"/public/assets/g/js/rateit.js",
 			"/public/assets/g/js/toaster.js",
 			"/public/d/richText/script.js",
-			"/public/d/ssnFeedbackDir/ssnfeedback.js"
+			"/public/d/ssnFeedbackDir/ssnfeedback.js",
+			"/public/assets/w/styles/angucomplete.css",
+			"/public/assets/w/styles/angucomplete-alt.css",
+			"/public/d/autoComplete/angucomplete-alt.js",
+			"/public/d/autoComplete/angucomplete-alter1.js"
 		],
 		"prod":[
 		]

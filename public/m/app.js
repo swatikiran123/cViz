@@ -14,7 +14,7 @@ angular.module('mviz-facts', [
 	'facts','header','scroll'
 ]);
 
-angular.module('mviz-add', ['visitAdd','home','scroll','mgo-angular-wizard','header','scroll','userdisplayDirective']);
+angular.module('mviz-add', ['visitAdd','home','scroll','mgo-angular-wizard','header','scroll','userdisplayDirective','angucomplete-alt','angucomplete-alter']);
 
 angular.module('mviz-emp', []);
 

@@ -1,46 +1,50 @@
 <!--schedules-->
 
 <div class="wizpad">
-<form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
-  <div ng-if="err" class="error text-danger well">{{err}}</div>
-  <table class="table boldtable table-responsive table-bordered table-hover" width="100">
-    <thead class="data-grid-header">
-      <tr>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Location</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody class="data-grid-data">
-      <tr>
-       <td><input type="text" placeholder="Start Date" ng-model="schedule.startDate" class="form-control" ui-date novalidate></td>
-       <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate></td>
-       <td>
-        <select
-         ng-model="schedule.location"
-         ng-options="data for data in location" class="form-control">
-       </select>
-     </td>
-     <td><a class="table-btn" ng-click="addSchedule(schedule)" ng-disabled="scheduleForm.$invalid"><span class="fa fa-plus fa-lg" /></a></td>
+  <form name="scheduleForm" id="scheduleForm" class="form-vertical" novalidate>
+    <div ng-if="err" class="error text-danger well">{{err}}</div>
+    <table class="table boldtable table-responsive table-bordered table-hover" width="100">
+      <thead class="data-grid-header">
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Location</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="data-grid-data">
+        <tr>
+         <td><input type="text" placeholder="Start Date" ng-model="schedule.startDate" class="form-control" ui-date novalidate></td>
+         <td><input type="text" name="endDate" placeholder="End Date" ng-model="schedule.endDate" class="form-control" ui-date novalidate></td>
+         <td>
+          <select
+          ng-model="schedule.location"
+          ng-options="data for data in location" class="form-control">
+        </select>
+      </td>
+      <td><a class="table-btn" ng-click="addSchedule(schedule)" ng-disabled="scheduleForm.$invalid"><span class="fa fa-plus fa-lg" /></a></td>
 
-   </tr>
-   <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">
-    <td>{{schedule.startDate | date:"dd MMM yyyy"}}</td>
-    <td>{{schedule.endDate | date:"dd MMM yyyy"}}</td>
-    <td>{{schedule.location}}</td>
-    <td><a class="table-btn" ng-click="removeSchedule($index,schedules)"><span class="fa fa-trash fa-lg" /></a>
-    </td>
-  </tr>
-</tbody>
+    </tr>
+    <tr ng-repeat="schedule in schedules | filter: search |orderBy:orderByField:reverseSort">
+      <td>{{schedule.startDate | date:"dd MMM yyyy"}}</td>
+      <td>{{schedule.endDate | date:"dd MMM yyyy"}}</td>
+      <td>{{schedule.location}}</td>
+      <td><a class="table-btn" ng-click="removeSchedule($index,schedules)"><span class="fa fa-trash fa-lg" /></a>
+      </td>
+    </tr>
+  </tbody>
 </table>
+<!-- <a ng-click="update();">save</a> -->
+<br><br>
+<div class="finish well">
+  Make sure to save the data befour clicking finish.<br>
+  On click Finish, it will trigger to list of visits.
+  <span >
+    <a class="pull-right" ng-click="update();" href="/#/visits/all/my">&nbsp;Finish</a></span>
+  </div>
+</div>
+
 </form>
 
-<span class="pull-left" wz-previous="logStep();backcheck()" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
-<span  class="pull-right" ng-click="scheduleTab();logStep();save(visits,clientId,clientName,checked);">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
-
-<!--input type="button" class="pull-left backbut"  wz-previous="logStep();backcheck()" value="BACK"     {{visits.agendaTab=false;""}}
-    {{visits.scheduleTab=true;""}}/-->
-
-
+<span class="pull-left" wz-previous="logStep();" ><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
 </div>

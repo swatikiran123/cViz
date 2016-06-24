@@ -18,6 +18,8 @@ select option{
   <div class="wizpad">
     <form name="orgkeyTakeForm" id="orgkeyTakeForm" class="form-vertical" novalidate>
       <div ng-if="err" class="error text-danger well">{{err}}</div>
+    <div ng-if="error" class="error text-danger well">{{error}}</div>
+      
 
       <!--panel-four-->
       <div class="panel panel-default">
@@ -28,36 +30,31 @@ select option{
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8">
               <div class="form-group">
-                <input type="radio" name="status" ng-model="visits.billable" value="billable"  ng-click="checkedBill()">&nbsp; Billable
-                &nbsp;&nbsp;
-                <input type="radio" name="status" ng-model="visits.billable" value="non-billable" ng-click="checkednonBill()"> Non-Billable         
-              </div>
-              <div class="check-element animate-show"  ng-if="checked">
-                <!-- visits wbsCode input-->
-                <label>WBS Code</label>
-                <input ng-model="visits.wbsCode" name="wbsCode" type="text" required>
-
+                <label class="show-hide">CSC Objective <span class="asterrisk">*</span></label>
+                <textarea class="form-control" rows="5" id="comment" ng-model="visits.interest.objective"></textarea>        
               </div>
 
-              <div class="check-element animate-show" ng-if="!checked">
-               <!-- visits chargeCode input-->
-               <label>Charge Code</label>
-               <input ng-model="visits.chargeCode" name="chargeCode" type="text"  required>
-             </div>
-           </div></div></div>
+            </div></div></div>
 
-           <!--vist Interest interest. businessType visitType objective-->
+            <!--vist Interest interest. businessType visitType objective-->
 
-           <!-- visits businessType-->
+            <!-- visits businessType-->
 
-
-           <label>Business Type</label><br>
-           <select name="type"  ng-model="visits.interest.businessType"  ng-dropdown>
-            <option ng-option  value="new">New</option>
-            <option ng-option value="existing">Existing</option>
-          </select>
-
+            <label>Status</label>
+            &nbsp;&nbsp;
+            <input type="radio" name="status" ng-model="status" value="confirm">&nbsp; Confirm
+            &nbsp;&nbsp;
+            <input type="radio" name="status" ng-model="status" value="tentative"> Tentative         
+          </div>
         </div>
+
+        <label>Visit Type <span class="asterrisk">*</span></label>
+        <select name="type"  ng-model="visits.interest.businessType"  ng-dropdown>
+          <option ng-option  value="new">New</option>
+          <option ng-option value="existing">Existing</option>
+        </select>
+
+        <!-- </div> -->
         <div class="row">
           <div class="col-xs-12">
 
@@ -87,8 +84,9 @@ select option{
     </div>
   </form>
   <br>
+  <!-- {{error}} -->
   <span wz-previous="logStep()" class="pull-left"><i class="fa fa-angle-left fa-lg "   aria-hidden="true"></i>&nbsp;Previous</span>
-  <span ng-click="orgkeyTakeTab();logStep();save(visits,clientId,clientName,checked);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg"  aria-hidden="true"></i></span>
+  <span ng-click="save(visits,status);" class="pull-right">Next&nbsp;<i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></span>
   <br>
   <br>
 </div>
