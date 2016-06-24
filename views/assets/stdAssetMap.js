@@ -15,7 +15,7 @@ module.exports = {
 		"m-home": [],
 		"m-facts": ["angular-map"],
 		"m-visits": ["angular-animate"],
-		"m-visitAdd":["angular-wizard"]
+		"m-visitAdd":["angular-wizard","angularMultipleSelect"]
 		
 	}
 }

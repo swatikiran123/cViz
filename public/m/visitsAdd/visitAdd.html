@@ -199,27 +199,28 @@ select{
 
   <wizard on-finish="finished()">
 
-   <wz-step  wz-title="Agenda">
+   <wz-step  wz-title="Account Information">
    <div  class="wxsection" ng-include src="'/public/m/visitsAdd/agendaTab.html'"></div>
  </wz-step>
 
- <wz-step wz-title="Schedule">
- <div ng-include src="'/public/m/visitsAdd/scheduleVisit.html'"></div>
+
+ <wz-step wz-title="Visit Information">
+ <div ng-include src="'/public/m/visitsAdd/visitInformation.html'"></div>
+</wz-step>
+
+<wz-step wz-title="Visit Schedule Information">
+<div ng-include src="'/public/m/visitsAdd/scheduleVisit.html'"></div>
 </wz-step>
 
 
-<wz-step wz-title=" Org Take Away">
-<div ng-include src="'/public/m/visitsAdd/orgKeyTakaway.html'"></div>
-</wz-step>
 
-
-<wz-step wz-title="Add visitors" >
+<!-- <wz-step wz-title="Add visitors" >
 <div ng-include src="'/public/m/visitsAdd/visitorsAdd.html'"></div>
 </wz-step>
 
 <wz-step wz-title="Add new visitor" wz-disabled="{{disabled}}">
 <div ng-include src="'/public/m/visitsAdd/newVisitorsAdd.html'"></div>
-</wz-step>
+</wz-step> -->
 </wizard>
 </section>
 </div>
@@ -230,7 +231,7 @@ function startDictation(id) {
     // alert(tid);
     
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
-     
+
       var recognition = new webkitSpeechRecognition();
       
       recognition.continuous = true;
