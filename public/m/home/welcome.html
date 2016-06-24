@@ -1,159 +1,159 @@
 
 <style>
 </style><div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true" ng-controller="welcomeCtrl">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-                <div  class="headwel">
-             
-                    <img src="/public/assets/g/imgs/csclogo.png" class="lo">
-                    <img ng-src="{{clientLogo}}" class="lo1">
-                    <br>
-                    
+      <div  class="headwel">
+       
+        <img src="/public/assets/g/imgs/csclogo.png" class="lo">
+        <img ng-src="{{clientLogo}}" class="lo1">
+        <br>
+        
 <!--                     <span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Welcomes you <b>{{clientName}}</b>
 
-                    </span> -->
-                </div>
-                <!-- {{welcomeResponse[order]}} -->
-              
-                <!-- {{fileExt}} -->
+</span> -->
+</div>
+<!-- {{welcomeResponse[order]}} -->
 
-                 <div ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'">
-                 <video id="welcome"  controls  autoplay muted ng-src="{{url}}" 
-                 type="video/fileExt">
-                    <!-- <source > x-->
-                 </video>
-                 </div>
+<!-- {{fileExt}} -->
 
-               
+<div ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'">
+ <video id="welcome"  controls  autoplay muted ng-src="{{url}}" 
+ type="video/fileExt">
+ <!-- <source > x-->
+</video>
+</div>
 
-                 <div ng-if="fileExt =='mp3' || fileExt=='wav' || fileExt=='aac'">
-                   <audio id="audio"  controls  autoplay muted ng-src="{{url}}" 
-                   type="audio/fileExt">
-                   <!-- <source > x-->
-                   </audio>
-                 </div>
+
+
+<div ng-if="fileExt =='mp3' || fileExt=='wav' || fileExt=='aac'">
+ <audio id="audio"  controls  autoplay muted ng-src="{{url}}" 
+ type="audio/fileExt">
+ <!-- <source > x-->
+</audio>
+</div>
 <br>
-             <div class="richtext1">
-       
-    <div class="content">
+<div class="richtext1">
+ 
+  <div class="content">
 
     <div class="details">
-                {{url=welcomeResponse[order].attachment;""}}
-                <!-- {{url}} -->
-                {{fileExt=url.split(".").pop();""}}
+      {{url=welcomeResponse[order].attachment;""}}
+      <!-- {{url}} -->
+      {{fileExt=url.split(".").pop();""}}
 
-                  <div ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'">
-                 <img ng-src="{{url}}" class="image1" />
-                 </div></div>
-                <!-- {{fileExt}} -->
-    <label>&nbsp;Dear {{customerName}},</label>
-    <richtext class="text" body-text="welcomeResponse[order].noteText">
-             </richtext>
-            
-           
-             <!--  <p class="text"> --><!-- {{}} -->
+      <div ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'">
+       <img ng-src="{{url}}" class="image1" />
+     </div></div>
+     <!-- {{fileExt}} -->
+     <label>&nbsp;Dear {{customerName}},</label>
+     <richtext class="text" body-text="welcomeResponse[order].noteText">
+     </richtext>
+     
+     
+     <!--  <p class="text"> --><!-- {{}} -->
              <!-- <div class="richtext">
              <richtext class="text" body-text="welcomeResponse[order].noteText">
              </richtext>
-             </div> -->
-                       <!-- </p> -->
-                       
-                       <div class="container row">
-                       <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-                            <div ng-if="user1!=null">
-                            <div class="profile">
-                                <div  ng-if="user1.avatar!=null" class="pull-left">
-                                    <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
-                                </div>
-                                <div  ng-if="user1.avatar==null" class="pull-left">
-                                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
-                                </div>
-                                <div class="panelpdmd">
-                                    <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
-                                    <div class="text-xsmall">{{user1.jobTitle}} </div>
-                                </div>       
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-                            <div ng-if="user2!=null">
-                            <div class="profile">
-                                <div  ng-if="user2.avatar!=null" class="pull-left">
-                                    <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
-                                </div>
-                                <div  ng-if="user2.avatar==null" class="pull-left">
-                                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
-                                </div>
-                                <div class="panelpdmd">
-                                    <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
-                                    <div class="text-xsmall">{{user2.jobTitle}} </div>
-                                </div>       
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-                                                     
-                            <div ng-if="user3!=null">
-                            <div class="profile">
-                                <div ng-if="user3.avatar!=null" class="pull-left">
-                                    <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
-                                </div>
-                                <div  ng-if="user3.avatar==null" class="pull-left">
-                                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
-                                </div>
-                                <div class="panelpdmd">
-                                    <div class="text-highlight">{{user3.name.first}} {{user3.name.last}}</div>
-                                    <div class="text-xsmall">{{user3.jobTitle}} </div>
-                                </div>       
-                            </div>
-                            </div>
+           </div> -->
+           <!-- </p> -->
+           
+           <div class="container row">
+             <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+              <div ng-if="user1!=null">
+                <div class="profile">
+                  <div  ng-if="user1.avatar!=null" class="pull-left">
+                    <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
+                  </div>
+                  <div  ng-if="user1.avatar==null" class="pull-left">
+                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+                  </div>
+                  <div class="panelpdmd">
+                    <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
+                    <div class="text-xsmall">{{user1.jobTitle}} </div>
+                  </div>       
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+              <div ng-if="user2!=null">
+                <div class="profile">
+                  <div  ng-if="user2.avatar!=null" class="pull-left">
+                    <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
+                  </div>
+                  <div  ng-if="user2.avatar==null" class="pull-left">
+                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+                  </div>
+                  <div class="panelpdmd">
+                    <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
+                    <div class="text-xsmall">{{user2.jobTitle}} </div>
+                  </div>       
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+             
+              <div ng-if="user3!=null">
+                <div class="profile">
+                  <div ng-if="user3.avatar!=null" class="pull-left">
+                    <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
+                  </div>
+                  <div  ng-if="user3.avatar==null" class="pull-left">
+                    <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+                  </div>
+                  <div class="panelpdmd">
+                    <div class="text-highlight">{{user3.name.first}} {{user3.name.last}}</div>
+                    <div class="text-xsmall">{{user3.jobTitle}} </div>
+                  </div>       
+                </div>
+              </div>
 <!--                             {{welcomeResponse[order].noteBy}}
                             <div ng-if="userDisplay == true">
                             <userdisplay  view-mode="medium" 
                             user-id="user_id"></userdisplay>
-                            </div> -->
-</div>
-                    </div>    
-</div>
-                    </div>
-                
-                    <div class="modal-footer">
-                        <div class="pull-left" ng-if="group=='vManager' && order == length">
-                        <form name="myForm">
-                        preview &nbsp;&nbsp;
-  <label>
-    <input type="radio" ng-model="previewoption" value="Good">
-    good
-  </label>
-  
-  <label>
-    <input type="radio" ng-model="previewoption" value="poor">
-    poor
-  </label>
-  <br>
-  <button type="button" class="btn btn-warning xsbutn" ng-click="preview(previewoption)" data-dismiss="modal">ok</button>
-  </form>
+                          </div> -->
                         </div>
-                        <button type="button" ng-click="orderIncrement()" class="btn btn-default" ng-if="showContinue == true">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
-
-                        <button type="button" href="/m/main/" class="btn btn-default" data-dismiss="modal" ng-if="showContinue == false" >Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+                      </div>    
                     </div>
-                     
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <div class="pull-left" ng-if="group=='vManager' && order == length">
+                      <form name="myForm">
+                        preview &nbsp;&nbsp;
+                        <label>
+                          <input type="radio" ng-model="previewoption" value="Good">
+                          good
+                        </label>
+                        
+                        <label>
+                          <input type="radio" ng-model="previewoption" value="poor">
+                          poor
+                        </label>
+                        <br>
+                        <button type="button" class="btn btn-warning xsbutn" ng-click="preview(previewoption)" data-dismiss="modal">ok</button>
+                      </form>
+                    </div>
+                    <button type="button" ng-click="orderIncrement()" class="btn btn-default" ng-if="showContinue == true">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+
+                    <button type="button" href="/m/main/" class="btn btn-default" data-dismiss="modal" ng-if="showContinue == false" >Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+                  </div>
+                  
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-   <script type="text/javascript">
-$('#videoModal').on('hidden.bs.modal', function(e) {    
-    
-    var $if = $(e.delegateTarget).find('video');
-    var src = $if.attr("src");
-    $if.attr("src", '/public/uploads/video/message.mp4');
-    $if.attr("src", src);
+        <script type="text/javascript">
+        $('#videoModal').on('hidden.bs.modal', function(e) {    
+          
+          var $if = $(e.delegateTarget).find('video');
+          var src = $if.attr("src");
+          $if.attr("src", '/public/uploads/video/message.mp4');
+          $if.attr("src", src);
 });</script><!--script>
 $('.close').click(function () {
     alert('hellow');
@@ -165,9 +165,9 @@ $('.close').click(function () {
 })</script-->
 <script type="text/javascript">
 
-  $(document).ready(function(){
+$(document).ready(function(){
 
-    $("#videoModal").modal('show');
-  });
+  $("#videoModal").modal('show');
+});
 </script>
 

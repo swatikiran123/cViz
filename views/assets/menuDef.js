@@ -28,7 +28,7 @@ module.exports = {
 			name: "Add Visit",
 			link: "/m/visit/add/#/add",
 			icon: "fa-plus",
-			roles: "user,vManager,admin"
+			roles: "user,vManager,admin,exec"
 		},
 		{
 			name: "Agenda",
