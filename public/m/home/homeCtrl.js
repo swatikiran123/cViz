@@ -5,14 +5,14 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 	$scope.finalFeedback=false;
-	$scope.current = new Date();
-	appService.activeVisit().then(function(avisit){
-		$http.get('/api/v1/secure/visits/'+avisit._id+'/getlasttimesessions',{
-			cache: true
-		}).success(function(response) {
-			$scope.lastSession = response[0];	
-		});
-	});
+	// $scope.current = new Date();
+	// appService.activeVisit().then(function(avisit){
+	// 	$http.get('/api/v1/secure/visits/'+avisit._id+'/getlasttimesessions',{
+	// 		cache: true
+	// 	}).success(function(response) {
+	// 		$scope.lastSession = response[0];	
+	// 	});
+	// });
 
 	appService.activeVisit().then(function(avisit){
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
