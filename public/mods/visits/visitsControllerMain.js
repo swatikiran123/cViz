@@ -939,14 +939,7 @@ break;
         // else inDataClient.regions = $scope.regionsSelected;
 
         // sfdcidClientString
-        if ($scope.visits.sfdcid!=null) 
-        {
-          inDataClient.sfdcid =$scope.visits.sfdcid;
-        }
-        if($scope.visits.sfdcid==null)  
-        {
-          inDataClient.sfdcid = $scope.sfdcidClientString;
-        }
+      
         // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
@@ -971,16 +964,33 @@ break;
           inDataClient.regions = $scope.regionsSelected;
         }
 
+        if($scope.visits.sfdcid==null)  
+        {
+          inDataClient.sfdcid = $scope.sfdcidClientString;
+        }
+
         if(inDataClient.sfdcid == null)
         {
           inDataClient.sfdcid = $scope.sfdcidSelected;
         }
+
+        if ($scope.visits.sfdcid!=null) 
+        {
+          inDataClient.sfdcid =$scope.visits.sfdcid;
+        }
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+        }
+
+        
+
         inDataClient.netPromoter =$scope.visits.netPromoter;
         inDataClient.competitors =$scope.visits.competitors;
         inDataClient.logo= $scope.avatarVisit; 
-
-        $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&industry="+inDataClient.industry+"&regions="+inDataClient.regions+"&id=").success(function(response) {
+        //console.log(inDataClient.name + " " + inDataClient.subName + " " +inDataClient.industry + " " + inDataClient.regions);
+        $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
           console.log(response);
+
           if (response.id!= null) {
             // console.log("im in here with id")
             $scope.visits.client = response.id;
