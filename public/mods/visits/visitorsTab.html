@@ -421,8 +421,7 @@
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
-    yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status != 'rejected' || visits.status === 're-submitted' || visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton)">Submit
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to submit the visit? <br> Once submitted, the visit cannot be edited / deleted." yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid && (visits.status != 'rejected' || visits.status === 're-submitted' || visits.status === 'tentative draft' || visits.status === 'confirm draft' || visits.status === 'tentative' || visits.status === 'confirm' || saveDrafButton)">Submit
   </button>
 <!--   <button type="submit" class="btn btn-success"
   ng-click="ReSave()" ng-disabled="visitsForm.$invalid || visvalid || visits.status == 'rejected'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
