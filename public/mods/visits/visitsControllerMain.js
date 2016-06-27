@@ -1059,14 +1059,7 @@ break;
         // else inDataClient.regions = $scope.regionsSelected;
 
         // sfdcidClientString
-        if ($scope.visits.sfdcid!=null) 
-        {
-          inDataClient.sfdcid =$scope.visits.sfdcid;
-        }
-        if($scope.visits.sfdcid==null)  
-        {
-          inDataClient.sfdcid = $scope.sfdcidClientString;
-        }
+        
         // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
@@ -1091,11 +1084,24 @@ break;
           inDataClient.regions = $scope.regionsSelected;
         }
 
+        if ($scope.visits.sfdcid!=null) 
+        {
+          inDataClient.sfdcid =$scope.visits.sfdcid;
+        }
+        if($scope.visits.sfdcid==null)  
+        {
+          inDataClient.sfdcid = $scope.sfdcidClientString;
+        }
+
         if(inDataClient.sfdcid == null)
         {
           inDataClient.sfdcid = $scope.sfdcidSelected;
         }
 
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+        }
+        
         if ($rootScope.user.groups.indexOf("admin") > -1 ) {
           inDataClient.status="final";
         }else inDataClient.status="draft";
