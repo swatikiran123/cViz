@@ -110,7 +110,7 @@ copy: {
       files: [{
         expand: true,
         cwd: 'public/',
-        src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg', '**/**/**/*.gif','**/*.png', '**/**/*.png','**/**/**/*.png','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
+        src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg', '**/**/**/*.gif','**/*.png', '**/**/*.png','**/**/**/*.png','**/**/**/**/*.png','**/**/**/**/*.jpg','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
         dest: 'dist/public/'
       }]
     },
