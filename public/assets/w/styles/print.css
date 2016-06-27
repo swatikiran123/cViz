@@ -12,6 +12,8 @@
       content: none !important;
     }
     a{font-weight: normal;}
- 
-    /*label { page-break-before: always; }*/
+
+    table{
+     page-break-after:always;
+    }
 }

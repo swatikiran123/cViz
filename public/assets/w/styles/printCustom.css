@@ -29,7 +29,11 @@ ul {
 }
 
 li, li div {
-    display: inline-block !important;
+    display: inline !important;
+}
+
+li > div > label {
+    display: inline !important;
 }
 
 li:after
