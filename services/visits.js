@@ -833,7 +833,7 @@ function getvalidationById(id, data){
 		}
 		else{	
 			if (item.preview === "poor" || item.preview === "" || item.preview === undefined || item.preview === null) {
-				errMessgs.push("Make sure to check the preview of Welcome Note.");
+				errMessgs.push("Make sure to check the preview in Mobile.");
 			}
 			if(item.feedbackTmpl === "" || item.feedbackTmpl === undefined || item.feedbackTmpl === null){
 				errMessgs.push("Feedback Template needs to be defined.");

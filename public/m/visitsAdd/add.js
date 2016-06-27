@@ -74,6 +74,15 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
      {
        inDataClient.regions =$scope.store.regions;
      }
+
+     if(inDataClient.industry == null || inDataClient.industry == undefined || inDataClient.industry == ""){
+          inDataClient.industry = "null";
+      }
+
+    if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+      }
+
      $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
        // console.log(response);
      //checking if client exists 0r not
@@ -101,6 +110,15 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
        {
          inDataClient.regions =$scope.store.regions;
        }
+
+        if(inDataClient.industry == null || inDataClient.industry == undefined || inDataClient.industry == ""){
+          inDataClient.industry = "null";
+      }
+
+       if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+        }
+
        if ($rootScope.user.groups.indexOf("admin") > -1 ) {
          inDataClient.status="final";
        }else inDataClient.status="draft";
