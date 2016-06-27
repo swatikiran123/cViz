@@ -53,6 +53,10 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
         $scope.clients = response;
         $scope.parentSelected= $scope.clients.name;
         $scope.childSelected= $scope.clients.subName;
+        
+        if($scope.clients.sfdcid == "null"|| $scope.clients.sfdcid == null ) {
+          $scope.clients.sfdcid = "";
+        }
         // $scope.industrySelected= $scope.clients.industry;
         // $scope.regionsSelected= $scope.clients.regions;
 
@@ -270,6 +274,16 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
     if(inData.regions==null)
     {
       inData.regions = $scope.regionClientString;
+    }
+
+    if(inData.sfdcid != null)
+    {
+      inData.sfdcid = $scope.clients.sfdcid;
+    }
+
+    if(inData.sfdcid == null)
+    {
+      inData.sfdcid = "null";
     }
     if ($rootScope.user.groups.indexOf("admin") > -1 ) {
       inData.status="final";
