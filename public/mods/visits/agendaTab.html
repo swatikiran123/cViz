@@ -873,8 +873,8 @@ ng-model="visits.interest.objective" name="objective" required /></text-angular>
 ng-click="ReSave()" ng-disabled="visitsForm.$invalid || autoFail || subdis || submitVisitsUsers || parentClient || childClient || industryClient || regionClient || status === 'rejected'">Re-submit 
 </button>
 
-<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-yes-text="Ok" no-text="Cancel">Cancel</button>
+<button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the visit initiation?"
+yes-text="Yes" no-text="No">Cancel</button>
 
 <button type="submit" class="btn btn-info"
 ng-click="saveDraft()" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || saveDrafButton || status === 'rejected'">Save to Draft

@@ -1313,6 +1313,7 @@ break;
   $scope.cancel = function() {
 
     $scope.visits="";
+    growl.info(parse("Visit initiation cancelled successfully."));
     $location.path("visits/list");
    // window.history.back();
  }
@@ -1395,7 +1396,7 @@ $scope.ClientDraft=false;
     inData.keynote = $scope.keynotes;
     inData.comments = $scope.commentsData;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
-     growl.info(parse("Visit Manager Added successfully"));
+     growl.info(parse("Visit Manager assigned successfully."));
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
       console.log(response);

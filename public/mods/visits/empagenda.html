@@ -1281,14 +1281,13 @@ ng-model="visits.interest.objective" name="objective" required /></text-angular>
 <div class="form-group">
   <div class="pull-left">
     <button type="submit" class="btn btn-success"
-    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to Submit this form ? <br> Once submitted you cannot edit/ delete."
+    ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" confirm-dialog header-text="Save Form Submission" content="Are you sure you want to submit the visit? <br> Once submitted, the visit cannot be edited / deleted."
   yes-text="Ok" no-text="Cancel"  ng-if="!visitGrid">Submit
   </button>
       <button type="submit" class="btn btn-success"
     ng-click="save()" ng-disabled="visitsForm.$invalid || visvalid || status == 'reject'" ng-if="visitGrid">Submit
   </button>
-  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-  yes-text="Ok" no-text="Cancel">Cancel</button>
+  <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the visit initiation?" yes-text="Yes" no-text="No">Cancel</button>
   <button type="submit" class="btn btn-info"
   ng-click="saveDraft()" ng-disabled="visitsForm.$invalid || visvalid  || status === 'reject'" ng-show="mode ==='add'|| status === 'tentative draft' || status === 'confirm draft' || status === 'tentative' || status === 'confirm' || saveDrafButton || status == 'reject'">Save to Draft
 </button>
