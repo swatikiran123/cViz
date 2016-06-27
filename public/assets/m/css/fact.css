@@ -190,6 +190,7 @@ padding-bottom: 20px;
 
 .factsheet-second-block {
   margin-top: 20px;
+  overflow-y: scroll;
 }
 
 .indiaMapBlock {
@@ -200,6 +201,7 @@ padding-bottom: 20px;
   font-size: 14px;
   text-shadow: 1px 1px #555555;
   margin-bottom: 30px;
+  margin-top: 100px;
 }
 
 .map-title {
@@ -329,7 +331,7 @@ padding-bottom: 20px;
   font-family: workSansMedium;
   font-weight: bold;
   bottom: -3px;
-  left: -25px;
+  left: -29px;
   position: absolute;
 
     color: black;
@@ -370,7 +372,7 @@ padding-bottom: 20px;
 .markerText9{
   position: absolute;
   top: 7px;
-  left: -15px;
+  left: -44px;
   font-family: workSansMedium;
   font-weight: bold;
   color: black;
@@ -381,7 +383,7 @@ padding-bottom: 20px;
   font-family: workSansMedium;
   font-weight: bold;
   bottom: -3px;
-  left: -15px;
+  left: -35px;
   position: absolute;
   color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -390,7 +392,7 @@ padding-bottom: 20px;
 .markerText11 {
   font-family: workSansMedium;
   font-weight: bold;
-  bottom: -3px;
+  bottom: -5px;
   left: 2px;
   position: absolute;
   color: black;
@@ -587,7 +589,7 @@ padding-bottom: 20px;
     
     .ftb-title-text {
         position: absolute;
-        width: 52%;
+        width: 42%;
         top: 30%;
         left: 19%;
         font-size: 16px;
@@ -618,9 +620,7 @@ padding-bottom: 20px;
         .ftb-text-2 {
             left: 16%;
         }
-        .ftb-title-text {
-            left: 29%;
-        }
+        
         .ftb-title-class {
             left: 32%;
         }
@@ -644,9 +644,6 @@ padding-bottom: 20px;
         }
         .ftb-text-2 {
             left: 12%;
-        }
-        .ftb-title-text {
-            left: 23%;
         }
         .ftb-title-class {
             left: 32%;
@@ -674,13 +671,21 @@ padding-bottom: 20px;
         .ftb-third-block {
             left: 29%;
         }
-        .ftb-title-text {
-            top: 36%;
-            left: 21%;
-        }
+        
         .ftb-title-class {
             left: 38%;
         }
+.ftb-title-text {
+        position: absolute;
+        width: 52%;
+        top: 45%;
+        left: 19%;
+        font-size: 16px;
+        font-family: workSansSemiBold;
+        color: #fff;
+    }
+
+
 
 }
 
@@ -736,6 +741,15 @@ padding-bottom: 20px;
     font-size: 10px;
     top: 20px;
   }
+  .ftb-title-text {
+        position: absolute;
+        width: 52%;
+        top: 45%;
+        left: 19%;
+        font-size: 16px;
+        font-family: workSansSemiBold;
+        color: #fff;
+    }
 
   .top10text1 {
     font-size: 19px;
@@ -842,11 +856,7 @@ padding-bottom: 20px;
         .ftb-third-block {
             left: 29%;
         }
-        .ftb-title-text {
-            top: 36%;
-            left: 21%;
-        }
-        .ftb-title-class {
+               .ftb-title-class {
             left: 38%;
         }
 }
@@ -1111,13 +1121,4 @@ padding-bottom: 20px;
   }
 }
 
-.ftb-title-text {
-  position: absolute;
-  width: 52%;
-  top: 30%;
-  left: 19%;
-  font-size: 16px;
-  font-family: workSansSemiBold;
-  color: #fff;
 }
-
