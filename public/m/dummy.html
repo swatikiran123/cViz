@@ -3,7 +3,13 @@
   </div>
 
 <div class="divtop">
+{{visitStatus=$root.activeVisit.status;""}}
 <div ng-show="$root.activeVisit===undefined">
+<br>
+No active visits available in the database<br/>
+Please contact the Visit Portal Admin
+</div>
+<div ng-show="visitStatus!=finalize">
 <br>
 No active visits available in the database<br/>
 Please contact the Visit Portal Admin

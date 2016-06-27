@@ -15,6 +15,14 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	// });
 
 	appService.activeVisit().then(function(avisit){
+		if(avisit==''||avisit==null||avisit==undefined)
+		{
+			$scope.button = 'disable';
+		}
+		if(avisit!=''||avisit!=null||avisit!=undefined)
+		{
+			$scope.button = 'enable';
+		}
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
 		}).success(function(response) {
@@ -63,10 +71,18 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.arrayData=[];
 	$scope.customerName = $rootScope.user.name.first;
 	    $scope.previewoption = ' ';
-
- 					
-
-	var refresh = function() {
+   
+    var refresh = function() {
+    	appService.activeVisit().then(function(avisitData){
+    		if(avisitData==''||avisitData==null||avisitData==undefined)
+    		{
+    			angular.element('#videoModal').modal('hide');
+    		}
+    		if(avisitData!=''||avisitData!=null||avisitData!=undefined)
+    		{
+    			angular.element('#videoModal').modal('show');
+    		}
+    	});
 		$http.get('/api/v1/secure/visits/current/keynotes',{
 			cache: true
 		}).success(function(response) {
