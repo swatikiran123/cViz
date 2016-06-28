@@ -1,6 +1,6 @@
 .data-grid-data a{pointer-events: none;cursor: default; color: #000; font-weight: normal;}
 
-.dateHeader{margin: 10px 0 10px;}
+.dateHeader{margin: 10px 0 10px; text-decoration: underline;}
 
 .row{display:block;clear:both; margin: 0 5px 10px;}
 
@@ -12,7 +12,7 @@ table, th, tr, td{border: 1px solid #CCC !important;}
 
 .data-grid-header th{width: 15%;}
 
-.cscLogo{
+/*.cscLogo{
     width: 10%;
     height: 10%;
 }
@@ -20,7 +20,7 @@ table, th, tr, td{border: 1px solid #CCC !important;}
 	width: 10%;
 	height: 10%;
 	padding-right: 10px;
-}
+}*/
 
 ul {
     list-style-type: none !important;
@@ -38,11 +38,17 @@ li > div > label {
 
 li:after
 {
-  content: ', ' !important;
+  content: ',' !important;
 }
 li:last-child:after
 {
   content: '' !important;
 }
 
+.anchorbold, .anchorbold div, .anchorbold label{
+    display: inline !important;
+}
 
+.data-grid-data .anchorbold a{
+    font-weight: bold;
+}

@@ -1,11 +1,10 @@
 <div class="page-header">
   <div class="row">
-    <img src="../../../../public/assets/g/imgs/csclogo.png" class="pull-left cscLogo"/>
-    <img src="{{clientId.logo}}" alt="" class="pull-right clientLogo"/>
+    <img src="../../../../public/assets/g/imgs/csclogo-new.png" class="pull-left cscLogo" width="122" height="81"/>
+    <img src="{{clientId.logo}}" alt="" class="pull-right clientLogo" width="122" height="81"/>
   </div>
 </div>
 <!--div ng-include src="'/public/mods/visits/sessions/visitPanel.html'"></div-->
-  
 <div ng-repeat="(key, value) in scheduleList | groupBy:'scheduleDate'" ng-if="showAll">
   <label class="dateHeader">Agenda: {{key | date:'EEEE, dd MMM yyyy'}} | CSC {{meetingLocations[$index]}}</label>
 
@@ -15,7 +14,7 @@
       <!--th>Type</th-->
       <th>Time (Hrs.)</th>
       <th>Session/Activity</th>
-      <th>Anchor(s)</th>
+      <!--th>Anchor(s)</th-->
       <th>Participants</th>
       <th>Venue</th>      
     </tr>
@@ -28,18 +27,19 @@
       <!--Title -->
       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' ">{{schedule.session.title}}</div>
        </td>
-      <td colspan="3" align="center" ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' ">{{schedule.session.type}}</td>
+      <td colspan="2" align="center" ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' ">{{schedule.session.type}}</td>
 
       <!--Anchor -->
-      <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "><div class="removeHref" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>
+      <!--td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "><div class="removeHref" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>
        </td>
-      <!--td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td-->
+      <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td-->
 
       <!--Participants -->
       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' ">
+        <div class="anchorbold" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>,
         <ul>
          <li ng-repeat="val in schedule.invitees">
-            <div class="removeHref" userdisplay view-mode="nameonly" user-id="val" no-user-msg="{{}}"></div> 
+            <div class="removeHref" userdisplay view-mode="nameonly" user-id="val" no-user-msg="{{}}"></div>
           </li>
         </ul>
       </td>
@@ -63,7 +63,7 @@
       <th>Type</th-->
       <th>Time (Hrs.)</th>
       <th>Session/Activity</th>
-      <th>Anchor(s)</th>
+      <!--th>Anchor(s)</th-->
       <th>Participants</th>
       <th>Venue</th>
     </tr>
@@ -76,15 +76,16 @@
       <!--Title -->
       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' ">{{schedule.session.title}}</div>
        </td>
-      <td colspan="3" align="center" ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' ">{{schedule.session.type}}</td>
+      <td colspan="2" align="center" ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' ">{{schedule.session.type}}</td>
 
       <!--Anchors -->
-      <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "><div class="removeHref" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>
+      <!--td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "><div class="removeHref" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>
        </td>
-      <!--td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td-->
+      <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td-->
 
       <!--Participants -->
       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' ">
+        <div class="anchorbold" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>,
         <ul>
           <li ng-repeat="val in schedule.invitees">
             <div class="removeHref" userdisplay view-mode="nameonly" user-id="val" no-user-msg="{{}}"></div> 
