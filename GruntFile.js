@@ -15,7 +15,7 @@ grunt.initConfig(  {
     },
     expand: true,
     cwd: 'public/',
-    src: ['**/*.js','**/**/*.js','**/**/**/*.js','!libs/**/*.js','!libs/*.js','!libs/**/**/*.js'],
+    src: ['**/*.js','**/**/*.js','**/**/**/*.js','**/**/**/**/*.js','!libs/**/*.js','!libs/*.js','!libs/**/**/*.js'],
     dest: 'dist/public/'
   }
 },
@@ -29,7 +29,7 @@ grunt.initConfig(  {
     },
     expand: true,
     cwd: 'public/',
-    src: ['**/*.html','**/**/*.html','**/**/**/*.html','!libs/**/*.html','!libs/*.html','!libs/**/**/*.html'],
+    src: ['**/*.html','**/**/*.html','**/**/**/*.html','**/**/**/**/*.html','!libs/**/*.html','!libs/*.html','!libs/**/**/*.html'],
     dest: 'dist/public/'
   }
 },
@@ -110,7 +110,7 @@ copy: {
       files: [{
         expand: true,
         cwd: 'public/',
-        src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg', '**/**/**/*.gif','**/*.png', '**/**/*.png','**/**/**/*.png','**/**/**/**/*.png','**/**/**/**/*.jpg','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
+        src: ['**/*.jpg', '**/**/*.jpg','**/**/**/*.jpg', '**/**/**/*.gif','**/*.png', '**/**/*.png','**/**/**/*.png','**/**/**/**/*.PNG','**/**/**/**/*.jpg','!libs/**/*.jpg','!libs/*.jpg','!libs/**/**/*.jpg'],
         dest: 'dist/public/'
       }]
     },
@@ -187,7 +187,7 @@ copy: {
     build:{
       expand: true,
       cwd: 'public/',
-      src: ['**/*.css', '**/**/*.css','**/**/**/*.css','!assets/w/styles/materialform.css','!libs/**/*.css','!libs/*.css','!libs/**/**/*.css'],
+      src: ['**/*.css', '**/**/*.css','**/**/**/*.css','**/**/**/**/*.css','!assets/w/styles/materialform.css','!libs/**/*.css','!libs/*.css','!libs/**/**/*.css'],
       dest: 'dist/public/'
     }
 
