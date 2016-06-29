@@ -76,15 +76,15 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
      }
 
      if(inDataClient.industry == null || inDataClient.industry == undefined || inDataClient.industry == ""){
-          inDataClient.industry = "null";
-      }
+      inDataClient.industry = "null";
+    }
 
     if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
-          inDataClient.sfdcid = "null";
-      }
+      inDataClient.sfdcid = "null";
+    }
 
-     $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
-       // console.log(response);
+    $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
+     console.log(response);
      //checking if client exists 0r not
      if (response.id!= null) {
        $scope.clientIdData = response.id;
@@ -93,35 +93,30 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
 
      else
      {
+      var inDataClient ={};
 
-       var inDataClient ={};
+      if ($scope.store.clientName!=null) 
+      {
+       inDataClient.name = $scope.store.clientName;
+     }
 
-       if ($scope.store.clientName!=null) 
-       {
-         inDataClient.name = $scope.store.clientName;
-       }
+     if ($scope.store.subName!=null) 
+     {
+       inDataClient.subName =$scope.store.subName;
+     }
 
-       if ($scope.store.subName!=null) 
-       {
-         inDataClient.subName =$scope.store.subName;
-       }
+     if ($scope.store.regions!=null) 
+     {
+       inDataClient.regions =$scope.store.regions;
+     }
 
-       if ($scope.store.regions!=null) 
-       {
-         inDataClient.regions =$scope.store.regions;
-       }
+      inDataClient.industry = "null";
 
-        if(inDataClient.industry == null || inDataClient.industry == undefined || inDataClient.industry == ""){
-          inDataClient.industry = "null";
-      }
+      inDataClient.sfdcid = "null";
 
-       if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
-          inDataClient.sfdcid = "null";
-        }
-
-       if ($rootScope.user.groups.indexOf("admin") > -1 ) {
-         inDataClient.status="final";
-       }else inDataClient.status="draft";
+    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+     inDataClient.status="final";
+   }else inDataClient.status="draft";
 
       //Adding client if client dont exists
       $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
