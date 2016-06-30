@@ -55,19 +55,19 @@ function getAll(){
 
 // Method implementations
 //ToDo:: Fix Known issues
-// 2. Date are not as per UTC, timezone is effecting the date filters
+// 2. Date are not as per UTC, timezone is effecting the date filters , limit){ , limit);
 // 3. Custo9mers are not filtered by visit. They can access any visit of the client irrective of being part of it
 
-function getMyVisits(thisUser, timeline, limit){
-	logger.dump('test', 0, 'Initiate getMyVisits...', thisUser._id, timeline, limit);
+function getMyVisits(thisUser, timeline){ 
+	logger.dump('test', 0, 'Initiate getMyVisits...', thisUser._id, timeline);
 	var deferred = Q.defer();
 
 	// massage params
 	if (timeline=="" || timeline===undefined)
 		timeline = "all";
 
-	if (limit=="" || limit===undefined)
-		limit = 25;
+	// if (limit=="" || limit===undefined)
+	// 	limit = 25;
 
 	// by default filter not applicable for "vManager, exec"
 	var filter = {};
@@ -183,7 +183,7 @@ function getMyVisits(thisUser, timeline, limit){
 			model
 			.find(filter)
 			.populate('client')
-			.limit(limit)
+			// .limit(limit)
 			.sort('startDate')
 			.exec(function(err, list){
 				if(err) {
