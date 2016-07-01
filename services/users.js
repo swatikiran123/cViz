@@ -60,7 +60,7 @@ function getOneById(id){
 
 function create(userParam) {
     var deferred = Q.defer();
-
+    userParam.email = userParam.email.toLowerCase();
     // validation
     model.findOne(
         { email: userParam.email },

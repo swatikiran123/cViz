@@ -44,6 +44,8 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
     //adding new user into the user model
     $scope.addUser = function() {
+      $scope.user.association = 'employee';
+      $scope.user.organization = 'CSC';
       $http.post('/api/v1/secure/admin/users/', $scope.user).success(function(response) {
         refresh();
         $scope.action = "none";
@@ -72,6 +74,9 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
   //updating user details
   $scope.update = function() {
+    $scope.user.association = 'employee';
+    $scope.user.local.email = $scope.user.email;
+    $scope.user.organization = 'CSC';
     $http.put('/api/v1/secure/admin/users/' + $scope.user._id, $scope.user).success(function(response) {
       refresh();
       $scope.action = "none";
