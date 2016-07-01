@@ -74,9 +74,12 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
   //updating user details
   $scope.update = function() {
+    if($scope.user.association == 'employee')
+    {
     $scope.user.association = 'employee';
     $scope.user.local.email = $scope.user.email;
     $scope.user.organization = 'CSC';
+    }
     $http.put('/api/v1/secure/admin/users/' + $scope.user._id, $scope.user).success(function(response) {
       refresh();
       $scope.action = "none";
