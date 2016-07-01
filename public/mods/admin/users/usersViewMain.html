@@ -14,7 +14,7 @@
         <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
       </div>
       <div class="col-xs-4">
-        <button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add New User</button>
+        <button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add CSC Employee</button>
       </div>
       <div ng-include src="'/public/mods/admin/users/partials/sortSearch.html'"></div>
     </div>
@@ -71,7 +71,9 @@
       </td>
         <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.name.first"></span></td>
         <td><span ng-hide="hideAddRow"><input type="text" ng-model="user.name.last"></span></td>
-        <td  class="hidden-xs"><span ng-hide="hideAddRow"><input type="text" ng-model="user.organization"></span></td>
+        <!-- <td  class="hidden-xs"><span ng-hide="hideAddRow"><input type="text" ng-model="user.organization"></span></td> -->
+        <td></td>
+        <td></td>
         <td></td>
         <td>
           <span ng-hide="hideAddRow">
