@@ -63,9 +63,15 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 	});
 });
 
-app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService', function ($scope, location,$http,$routeParams,$rootScope,appService) {
+app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService','appMUserService',function ($scope, location,$http,$routeParams,$rootScope,appService, appMUserService) {
+  appMUserService.activeMUser().then(function(user){
+    console.log("thsis"+user._id);
+    $scope.group = user.groups;
+});
+
 	$scope.order = 0;
-	$scope.group=$rootScope.user.groups;
+
+	
 	$scope.showContinue = true;
 	$scope.medium = "medium";
 	$scope.arrayData=[];

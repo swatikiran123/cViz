@@ -59,10 +59,14 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
   };
 }]);
 
-visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$filter', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia', '$timeout','Upload', 'FeedbackService', 'KeynoteService',
-  function($scope, $http, $route,$filter, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, FeedbackService, SessionService, KeynoteService) {
+visitsApp.controller('visitsControllerMain', ['$scope','appUserService', '$http', '$route', '$filter', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia','$timeout','Upload', 'FeedbackService', 'KeynoteService',
+  function($scope,appUserService, $http, $route,$filter, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, FeedbackService, SessionService, KeynoteService) {
 
-    var id = $routeParams.id;
+  appUserService.activeUser().then(function(user){
+    //console.log("thsis"+user._id);
+    $scope.activeUser = user;
+  
+  var id = $routeParams.id;
 
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
@@ -167,16 +171,16 @@ visitsApp.controller('visitsControllerMain', ['$scope', '$http', '$route', '$fil
     $route.reload();
   };
 
-  var user= $rootScope.user._id; 
-  var group = $rootScope.user.memberOf;
-  $scope.groupMember = $rootScope.user.groups;
-  if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+  // var user= $scope.activeUser._id; 
+  // var group = $scope.activeUser.memberOf;
+  $scope.groupMember = $scope.activeUser.groups;
+  if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
     $scope.visitGrid= true;
   }
-  if ($rootScope.user.groups.indexOf("vManager") > -1){
+  if ($scope.activeUser.groups.indexOf("vManager") > -1){
     $scope.isSaving= true;
   }
-  if ($rootScope.user.groups.indexOf("admin") > -1) {
+  if ($scope.activeUser.groups.indexOf("admin") > -1) {
     $scope.adminInitVman= true;
   }
 
@@ -241,7 +245,7 @@ $scope.visitAllvMan = function() {
 
   if($scope.mode == 'edit')
   {
-    $http.get('/api/v1/secure/visitSchedules/visit/'+$routeParams.id).success(function(response) {
+    $http.get('/api/v1/secure/visitSchedules/visit/'+id).success(function(response) {
       $scope.sessiondbId = response;
     }); 
   }
@@ -252,7 +256,7 @@ $scope.visitAllvMan = function() {
 
       if(response.overallfeedback.length=== 0){
         //first time 
-        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+id+'/execs',{
           cache: true
         }).success(function(response) {
           console.log(response)
@@ -280,7 +284,7 @@ $scope.visitAllvMan = function() {
         //first time 
         $scope.checkOverLaa=response.overallfeedback;
         
-        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+id+'/execs',{
           cache: true
         }).success(function(response) {
           console.log(response)
@@ -493,7 +497,7 @@ var refresh = function() {
           break;
 
           case "wip":
-          if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+          if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
             $scope.finalizeTab= true;
             $scope.agendaTab=true;
             $scope.visitorsTab=true;
@@ -512,7 +516,7 @@ var refresh = function() {
          break;
 
          case "finalize": 
-         if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+         if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
           $scope.finalizeTab= true;
           $scope.agendaTab=true;
           $scope.visitorsTab=true;
@@ -532,7 +536,7 @@ var refresh = function() {
        break;
 
        case "complete": 
-       if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+       if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
         $scope.closeTab=true;
         $scope.finalizeTab= true;
         $scope.agendaTab=true;
@@ -554,7 +558,7 @@ var refresh = function() {
      break;
 
      case "close": 
-     if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+     if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
       $scope.closeTab=true;
       $scope.finalizeTab= true;
       $scope.agendaTab=true;
@@ -678,7 +682,7 @@ var refresh = function() {
           $scope.visitorType = response.visitorType; // response from visitor type
         else
           $scope.visitorType = '';
-        if ($rootScope.user.groups=="user" && visits.status == "rejected") {
+        if ($scope.activeUser.groups=="user" && visits.status == "rejected") {
           $scope.saveDrafButton=true;
           $scope.status = "tentative";
         }
@@ -1102,7 +1106,7 @@ break;
           inDataClient.sfdcid = "null";
         }
         
-        if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+        if ($scope.activeUser.groups.indexOf("admin") > -1 ) {
           inDataClient.status="final";
         }else inDataClient.status="draft";
 
@@ -1137,7 +1141,7 @@ break;
           inData.keynote = $scope.keynotes;
           inData.bod = $scope.bods;
           inData.visitors = $scope.visitors;
-          inData.createBy =  $rootScope.user._id;
+          inData.createBy =  $scope.activeUser._id;
           inData.cscPersonnel =$scope.cscPersonnel;
           // console.log($scope.cscPersonnel);
           // console.log(inData);
@@ -1270,7 +1274,7 @@ break;
         }
         // else client.sfdcid = $scope.sfdcidSelected;
 
-        if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+        if ($scope.activeUser.groups.indexOf("admin") > -1 ) {
           client.status="final";
         }
 
@@ -1288,7 +1292,7 @@ break;
        refresh();
        growl.info(parse("visit [%s]<br/>Edited successfully",  client.name));
 
-       if ($rootScope.user.groups.indexOf("vManager") > -1 || $rootScope.user.groups.indexOf("admin") > -1) {
+       if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
         if($scope.agendaTab == true && $scope.agendaEdit == false) {
           if(($scope.status == "confirm" || $scope.status =="tentative") ||( $scope.visitorsTab == true && $scope.check == true && $scope.finall == true && $scope.status == "wip"))
           {
@@ -1361,7 +1365,7 @@ $scope.updateClientStatus=function () {
       { client.sfdcid =$scope.visits.sfdcid;}
     else client.sfdcid = $scope.sfdcidSelected;
 
-    if ($rootScope.user.groups.indexOf("admin") > -1 ) {
+    if ($scope.activeUser.groups.indexOf("admin") > -1 ) {
       client.status="final";
     }
 
@@ -2591,7 +2595,7 @@ else{
       if(comment1 !=''){
         $scope.comment11.push({
           comment: comment1,
-          givenBy: $rootScope.user._id
+          givenBy: $scope.activeUser._id
         });
 
         $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
@@ -3484,6 +3488,7 @@ $scope.saveoverallfeed=function(){
       $location.path("visits/list"); 
     })
 }
+});
 }])
 
 //Autocompleate - Directive

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mviz-main', [
-	'appFilters','appService', 'home','locator','header','scroll','userViewDirective','richTextDirective'
+	'appFilters','appService', 'home','locator','header','scroll','userViewDirective','richTextDirective','appMUserService'
 	]);
 
 angular.module('mviz-visits', [
@@ -63,3 +63,34 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 	return appService;
 
 }]);
+
+
+var serv1 = angular.module('appMUserService', []);
+
+serv1.factory('appMUserService', ['$http', '$q', function ($http, $q){
+
+	 var appMUserService =  {};
+
+	 appMUserService.activeMUser = function () {
+
+			 var defer = $q.defer();
+
+			 $http.get('/token',{
+				 cache: true
+			 }).success(function(response) {
+			 	console.log(response);
+				 if(response !== undefined){
+					 defer.resolve(response);
+				 }
+				 else {
+ 					 //console.log("Not active visit");
+					 defer.reject("No User Found");
+				 }
+			 });
+
+			 return defer.promise;
+	 }
+
+	 return appMUserService;
+
+ }]);
