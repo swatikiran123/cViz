@@ -1,7 +1,8 @@
 var app = angular.module('home');
 
-app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService) {
-
+app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService, appMUserService) {
+appMUserService.activeMUser().then(function(user){
+    $scope.activeUser = user;
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 	$scope.finalFeedback=false;
@@ -53,7 +54,7 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 		$scope.endDate = response.visits.endDate;
 			for (var i = 0; i < response.visits.overallfeedback.length; i++) {
 
-				if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
+				if(response.visits.overallfeedback[i].id=== $scope.activeUser._id)
 				{
 					if (response.visits.overallfeedback[i].feedbackElg == "true") {
 						$scope.finalFeedback=true;
@@ -61,13 +62,14 @@ app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams,
 				}
 			};
 	});
+});	
 });
 
 app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService','appMUserService',function ($scope, location,$http,$routeParams,$rootScope,appService, appMUserService) {
   appMUserService.activeMUser().then(function(user){
     console.log("thsis"+user._id);
+    $scope.activeUser = user;
     $scope.group = user.groups;
-});
 
 	$scope.order = 0;
 
@@ -75,7 +77,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.showContinue = true;
 	$scope.medium = "medium";
 	$scope.arrayData=[];
-	$scope.customerName = $rootScope.user.name.first;
+	$scope.customerName = $scope.activeUser.name.first;
 	    $scope.previewoption = ' ';
    
     var refresh = function() {
@@ -314,4 +316,5 @@ console.log(response1);
 		$scope.user2 = '';
 		$scope.user3 = '';
 	}
+});
 }]);
