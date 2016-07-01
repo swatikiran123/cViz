@@ -80,6 +80,11 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     $scope.user.local.email = $scope.user.email;
     $scope.user.organization = 'CSC';
     }
+    if($scope.user.association == 'customer')
+    {
+      $scope.user.association = 'customer';
+      $scope.user.local.email = $scope.user.email;
+    }
     $http.put('/api/v1/secure/admin/users/' + $scope.user._id, $scope.user).success(function(response) {
       refresh();
       $scope.action = "none";

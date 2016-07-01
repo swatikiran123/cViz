@@ -106,7 +106,7 @@
           yes-text="Ok" no-text="Cancel"><span class="fa fa-lock fa-lg" tooltips tooltip-template="Lock User"/></a>
           <a class="table-btn" ng-if="user.status == 'Locked'" ng-click="unlock(user._id,user)" confirm-dialog header-text="Unlock User" content="Are you sure you want to unlock the user with name <b>{{user.name.first}} {{user.name.last}} ?</b>"
           yes-text="Ok" no-text="Cancel"><span class="fa fa-unlock fa-lg" tooltips tooltip-template="Unlock User"/></a>
-          <a ng-click="getUserDetails(user._id,$event)" class="table-btn" tooltips tooltip-template="Add User to Group"><span class="fa fa-users fa-lg" /></a>
+          <a ng-if="user.groups!='customer'" ng-click="getUserDetails(user._id,$event)" class="table-btn" tooltips tooltip-template="Add User to Group"><span class="fa fa-users fa-lg" /></a>
         </td>
       </tr>
     </tbody>
