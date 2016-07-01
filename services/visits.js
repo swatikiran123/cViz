@@ -896,6 +896,7 @@ function getParticipantsById(id){
 	model
 	.findOne({ _id: id })
 	.populate('client')
+	.populate('visitors.visitor')
 	.exec(function (err, visit) {
 		if(err) {
 			console.log(err);
@@ -924,7 +925,15 @@ function getParticipantsById(id){
 
 			// push all client side visitors
 			visit.visitors.forEach(function(v){
-				arrAddItem(client, v.visitor);
+				switch(v.visitor.association)    {
+					case "employee":
+					arrAddItem(emp, v.visitor);					
+					break;
+
+					case "customer":
+					arrAddItem(client, v.visitor);
+					break;
+				}
 			})
 
 			// push key visit personnel
