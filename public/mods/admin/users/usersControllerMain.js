@@ -117,7 +117,9 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
      parent: angular.element(document.body),
      targetEvent: ev,
      clickOutsideToClose:true
-   });
+   }).then(function(response) {
+        refresh();
+      });
   };
 
     // selected groups
