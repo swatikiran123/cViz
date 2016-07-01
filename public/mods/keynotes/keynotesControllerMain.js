@@ -2,11 +2,16 @@
 
 var keynotesApp = angular.module('keynotes');
 
-keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope', '$routeParams', '$location', 'growl',
-  function($scope, $http,$rootScope, $routeParams, $location, growl) {
+keynotesApp.controller('keynotesControllerMain', ['$scope', 'appUserService','$http','$rootScope', '$routeParams', '$location', 'growl',
+  function($scope, appUserService, $http,$rootScope, $routeParams, $location, growl) {
+
+    appUserService.activeUser().then(function(user){
+    //console.log("thsis"+user._id);
+    $scope.activeUser = user;
+
    // $scope.entity = "entity";
-   var self = this;
-   self.readonly = false;
+   // var self = this;
+   // self.readonly = false;
    $scope.nameonly= "nameonly";
    $scope.tags=[];
    // var tag=$scope.tags;
@@ -27,9 +32,13 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', '$http','$rootScope'
       $scope.keyTruedone=true;
       $scope.signatory1Submit = true;
 
-      if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+        $scope.groupMember = $scope.activeUser.groups;
+      if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
         $scope.isSaving= true; 
-      }
+      }      
+      // if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+      //   $scope.isSaving= true; 
+      // }
       var refresh = function() {
         $http.get('/api/v1/secure/keynotes').success(function(response) {
 
@@ -190,5 +199,5 @@ $scope.keyTrue=function(){
   console.log("reached");
   $scope.keyTruedone=false;
 }
-
+});
 }]);﻿ // controller ends
