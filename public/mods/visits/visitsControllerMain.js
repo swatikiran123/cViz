@@ -245,7 +245,7 @@ $scope.visitAllvMan = function() {
 
   if($scope.mode == 'edit')
   {
-    $http.get('/api/v1/secure/visitSchedules/visit/'+id).success(function(response) {
+    $http.get('/api/v1/secure/visitSchedules/visit/'+$routeParams.id).success(function(response) {
       $scope.sessiondbId = response;
     }); 
   }
@@ -256,7 +256,7 @@ $scope.visitAllvMan = function() {
 
       if(response.overallfeedback.length=== 0){
         //first time 
-        $http.get('/api/v1/secure/visits/'+id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
           console.log(response)
@@ -284,7 +284,7 @@ $scope.visitAllvMan = function() {
         //first time 
         $scope.checkOverLaa=response.overallfeedback;
         
-        $http.get('/api/v1/secure/visits/'+id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
           console.log(response)
