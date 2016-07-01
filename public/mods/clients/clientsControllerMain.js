@@ -2,8 +2,12 @@
 
 var clientsApp = angular.module('clients');
 
-clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload','$rootScope',
-  function($scope, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
+clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$http', '$routeParams', '$location', 'growl','$mdDialog', '$mdMedia', '$timeout','Upload','$rootScope',
+  function($scope ,appUserService, $http, $routeParams, $location, growl,$mdDialog,$mdMedia,$timeout,Upload,$rootScope) {
+
+    appUserService.activeUser().then(function(user){
+    //console.log("thsis"+user._id);
+    $scope.activeUser = user;
 
     var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
@@ -28,10 +32,16 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   $http.get('/api/v1/secure/lov/vertical').success(function(response) {
     $scope.vertical = response.values;
   });
+
   $scope.isSaving=false;
-  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
-    $scope.isSaving= true; 
-  }
+
+        $scope.groupMember = $scope.activeUser.groups;
+      if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+        $scope.isSaving= true; 
+      }
+  // if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+  //   $scope.isSaving= true; 
+  // }
   var refresh = function() {
 
     $http.get('/api/v1/secure/clients').success(function(response) {
@@ -552,4 +562,6 @@ clientsApp.controller('clientsControllerMain', ['$scope', '$http', '$routeParams
   //     $scope.errregionMsg = "Region is Mandatory field";
   //   }
   // } 
+});
+
 }]);﻿ // controller ends

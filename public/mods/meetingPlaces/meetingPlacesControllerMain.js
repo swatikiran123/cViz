@@ -1,15 +1,25 @@
 'use strict';
 var meetingPlacesApp = angular.module('meetingPlaces');
 
-meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope',
-  function($scope, $http, $routeParams, $location,growl,$rootScope) {
+meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope' ,'appUserService', '$http', '$routeParams','$location', 'growl','$rootScope',
+  function($scope ,appUserService, $http, $routeParams, $location,growl,$rootScope) {
+    
+    appUserService.activeUser().then(function(user){
+    //console.log("thsis"+user._id);
+    $scope.activeUser = user;
 
     $scope.hideFilter = true;
     $scope.hideAddRow = true;
     $scope.action = "none";
-  if ($rootScope.user.groups.indexOf("vManager") > -1) {
-    $scope.visitGrid= true;
-  }
+
+    $scope.groupMember = $scope.activeUser.groups;
+    if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+      $scope.visitGrid= true;
+    }
+  
+  // if ($rootScope.user.groups.indexOf("vManager") > -1) {
+  //   $scope.visitGrid= true;
+  // }
     //fetching all the meetingPlaces details by calling refresh function
     var refresh = function() {
        //Location - Http get for drop-down
@@ -17,14 +27,14 @@ meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope', '$http', '
         $scope.location=response.values;
       });
 
-      $http.get('/api/v1/secure/meetingPlaces').success(function(response) {
+       $http.get('/api/v1/secure/meetingPlaces').success(function(response) {
         $scope.meetingPlaceslist = response;
         $scope.meetingPlaces = "";
       });
-    };
+     };
 
-    refresh();
-    
+     refresh();
+
     //method for adding new record dynamically
     $scope.addRecord = function(){
       $scope.hideAddRow = false;
@@ -94,9 +104,10 @@ meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope', '$http', '
       $scope.detailDisplay = response;
      //console.log($scope.detailDisplay);
      $location.url("/city/");
-    });
+   });
     
   }
 
+});
 
 }]);
