@@ -65,6 +65,9 @@ module.exports = function(passport) {
                 if (!user.validPassword(password))
                     return done(null, false, req.flash('loginMessage', 'Invalid Username/Password'));
 
+                if (user.status == 'Locked')
+                    return done(null, false, req.flash('loginMessage', 'User is Locked.Please Contact Administrator'));
+
                 // all is well, return user
                 else{
 									// set last login time on successful login

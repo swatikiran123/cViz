@@ -14,7 +14,8 @@
         <button class="btn btn-default btn-sm" ng-click="hideFilter=!hideFilter">Advanced Search</button>
       </div>
       <div class="col-xs-4">
-        <button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add CSC Employee</button>
+<!--         <button class="btn btn-default btn-sm pull-right" ng-click="addRecord()"> Add CSC Employee</button> -->
+        <a class="btn btn-default btn-sm pull-right" href="#/users/add">Add CSC Employee</a>
       </div>
       <div ng-include src="'/public/mods/admin/users/partials/sortSearch.html'"></div>
     </div>
@@ -99,7 +100,7 @@
         <td class="hidden-xs">{{user.groups}}</td>
         <td class="hidden-xs">{{user.status}}</td>
         <td>
-          <a class="table-btn" ng-click="edit(user._id)" tooltips tooltip-template="Edit User"><span class="fa fa-pencil-square-o fa-lg" /></a>
+          <a class="table-btn" href="#/users/{{user._id}}/edit" tooltips tooltip-template="Edit User"><span class="fa fa-pencil-square-o fa-lg" /></a>
           <a class="table-btn" ng-click="remove(user)" confirm-dialog header-text="Delete User" content="Are you sure you want to delete the user with name <b>{{user.name.first}} {{user.name.last}} ?</b>"
           yes-text="Ok" no-text="Cancel"><span class="fa fa-trash-o fa-lg" tooltips tooltip-template="Delete User"/></a>
           <a class="table-btn" ng-if="user.status == 'Active'" ng-click="lock(user._id,user)" confirm-dialog header-text="Lock User" content="Are you sure you want to lock the user with name <b>{{user.name.first}} {{user.name.last}} ?</b>"

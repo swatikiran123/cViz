@@ -1906,7 +1906,7 @@ function toTitleCase(string)
 
     if(avatar == '' || avatar == undefined)
     {
-      userdata.avatar = '/public/assets/g/imgs/avatar.jpg';
+      userdata.avatar = '/public/assets/g/imgs/generic.png';
     }  
     if(avatar != '' || avatar !=undefined)
     {  
