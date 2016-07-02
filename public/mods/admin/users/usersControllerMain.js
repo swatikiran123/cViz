@@ -1,13 +1,15 @@
 'use strict';
 var usersApp = angular.module('users');
 
-usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope','$mdDialog',
-  function($scope, $http, $routeParams, $location,growl,$rootScope,$mdDialog) {
+usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$rootScope','$mdDialog','$location', 'growl', '$mdMedia','Upload',
+  function($scope, $http, $routeParams,$rootScope,$mdDialog,$location,growl,$mdMedia,Upload) {
 
     $scope.hideFilter = true;
     $scope.hideAddRow = true;
     $scope.action = "none";
-
+    var id = $routeParams.id;
+    $scope.regEx="/^[0-9]{10,10}$/;";
+    $scope.mode=(id==null? 'add': 'edit');
     //fetching all the user details by calling refresh function
     var refresh = function() {
       $http.get('/api/v1/secure/admin/users').success(function(response) {
@@ -19,6 +21,28 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
         $scope.grouplist = response;
         $scope.group = "";
       });
+
+      switch($scope.mode)    {
+        case "add":
+        $scope.userdata = "";
+        $scope.showAvatar = false;
+        break;
+
+        case "edit":
+        $scope.userdata = $http.get('/api/v1/secure/admin/users/' + id).success(function(response){
+          $scope.userdata = response;
+          console.log($scope.userdata.avatar);
+          if($scope.userdata.avatar == '/public/assets/g/imgs/generic.png')
+          {
+            $scope.showAvatar = false;
+          }
+          if($scope.userdata.avatar != '/public/assets/g/imgs/generic.png')
+          {
+            $scope.showAvatar = true;
+            $scope.avatar = $scope.userdata.avatar;
+          }
+        });
+      } // switch scope.mode ends
     };
 
     refresh();
@@ -34,6 +58,7 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
       {
         case "add":
         $scope.addUser();
+        // $scope.addemployeedata();
         break;
 
         case "edit":
@@ -278,9 +303,107 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     });
    };
 
-    //method for adding new group record dynamically start
+ //adding csc employee data
+ $scope.addEmployee = function(userdata,avatar)
+ {  
+    $location.path("/users/");
+    if(avatar != '' || avatar !=undefined)
+    {  
+      userdata.avatar = avatar;
+    }
+    $scope.contactNo = [];
+    userdata.association = 'employee';
+    userdata.organization = 'CSC';
+    console.log(userdata);
+    $scope.contactNo.push({
+      contactNumber:userdata.contactNo[0].contactNumber,
+      contactType:userdata.contactNo[0].contactType
+    });
 
+    userdata.contactNo = $scope.contactNo;
+
+    $http.post('/api/v1/secure/admin/users/', userdata).success(function(response) {
+      growl.info(parse("User with email [%s]<br/>added successfully",userdata.email));
+    });
+    refresh();
+  }
+
+   //editing csc employee data
+   $scope.editEmployee = function(userdata,avatar)
+   {
+    if(avatar != '' || avatar !=undefined)
+    {  
+      userdata.avatar = avatar;
+    }
+ 
+    $scope.contactNo = [];
+    if(userdata.association == 'employee')
+    {
+      userdata.association = 'employee';
+      userdata.organization = 'CSC';
+    }
+    if(userdata.association == 'customer')
+    {
+      userdata.association = 'customer';
+    }
+
+    $scope.contactNo.push({
+      contactNumber:userdata.contactNo[0].contactNumber,
+      contactType:userdata.contactNo[0].contactType
+    });
+
+    userdata.contactNo = $scope.contactNo;
+
+    $http.put('/api/v1/secure/admin/users/'+userdata._id, userdata).success(function(response) {
+      growl.info(parse("User with email [%s]<br/>edited successfully",userdata.email));
+    });
+    refresh();
+    $location.path("/users/");
+  }
+
+  // Show Profile Dialog for non-registered users
+  $scope.showAvatarButton = function(ev) {
+    $mdDialog.show({
+      templateUrl: '/public/mods/admin/users/userprofileDialog.html',
+      scope: $scope.$new(),
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+
+  };
+
+  $scope.addpicturedata = function (dataUrl) {
+    Upload.upload({
+      url: '/api/v1/upload/profilePics',
+      data: {
+        file: Upload.dataUrltoBlob(dataUrl),
+      },
+    }).then(function (response) {
+      $scope.result = response.data;
+      var filepath = response.data.file.path;
+      var imagepath = '/'+ filepath.replace(/\\/g , "/");
+      $scope.avatar = imagepath;
+      $scope.showAvatar = true;
+      $mdDialog.hide();
+    });
+  }
+
+  $scope.canceldialog = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.cancelButton = function () {
+    $location.path("/users/");
+  }
   }]);
+
 
 
 function Dialog($scope, $mdDialog,$http,usersid) {

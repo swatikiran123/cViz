@@ -18,6 +18,7 @@ angular.module('userprofileDirective', [])
       $http.get('/api/v1/secure/admin/users/' + $scope.userId).success(function(response) {
         $scope.userModel = response;
         $scope.showFlag = "user";
+        $scope.cNo = $scope.userModel.contactNo[0].contactNumber;
       })
 
       //if user email is not given then get user by id
@@ -26,6 +27,7 @@ angular.module('userprofileDirective', [])
         $http.get('/api/v1/secure/admin/users/' + $scope.userId).success(function(response) {
           $scope.userModel = response;
           $scope.showFlag = "user";
+          $scope.cNo = $scope.userModel.contactNo[0].contactNumber;
         })
         .error(function(response, status){
           $scope.showFlag = "noUser";
@@ -44,6 +46,7 @@ angular.module('userprofileDirective', [])
         $http.get('/api/v1/secure/admin/users/email/' + $scope.userEmail).success(function(response) {
           $scope.userModel = response;
           $scope.showFlag = "user";
+          $scope.cNo = $scope.userModel.contactNo[0].contactNumber;
         })
         .error(function(response, status){
           $scope.showFlag = "noUser";
@@ -72,13 +75,15 @@ angular.module('userprofileDirective', [])
 }
 
   $scope.editprofile = function (user,id,cNo) {
+    console.log(cNo);
     console.log(user);
     console.log(id);
+    console.log(user.summary);
     $scope.contactNo = [];
 
     $scope.contactNo.push({
-      contactNumber:"+" + cNo,
-      contactType:user.contactType
+      contactNumber:user.contactNo[0].contactNumber,
+      contactType:user.contactNo[0].contactType
     })
     user.contactNo = $scope.contactNo;
     var userid = id;

@@ -17,6 +17,16 @@ angular.module('users')
       .when('/users/panels', {
         templateUrl: '/public/mods/admin/users/partials/usersViewPanels.html',
         controller: 'usersControllerMain'
+      })
+
+      .when('/users/add', {
+        templateUrl: '/public/mods/admin/users/userViewAdd.html',
+        controller: 'usersControllerMain'
+      })
+
+      .when('/users/:id/edit', {
+        templateUrl: '/public/mods/admin/users/userViewAdd.html',
+        controller: 'usersControllerMain'
       });
 
     }

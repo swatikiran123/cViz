@@ -1,0 +1,148 @@
+   <br>
+   <br>
+   <br>
+   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default visdetail-panel">
+          <div class="panel-heading visdetail-panelheader">
+            <h3 ng-if="userdata.association==null" class="panel-title"> <b>Employee Information</b></h3>
+            <h3 ng-if="userdata.association=='employee'" class="panel-title"> <b>Employee Information</b></h3>
+            <h3 ng-if="userdata.association=='customer'" class="panel-title"> <b>Customer Information</b></h3>
+          </div>
+
+          <div class="panel-body">
+            <form name="profileForm">
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <br><br>
+                  <img ng-if="showAvatar == false" ng-src="/public/assets/g/imgs/generic.png" width="122" height="122" 
+                  />
+                  <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
+                  style="background-size:cover;"/>
+
+                  <div>
+                    <md-button class="md-primary md-raised" 
+                    ng-click="showAvatarButton($event)">
+                    change picture
+                  </md-button>
+                </div>
+              </div>
+
+
+              <div class="col-md-8">
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                  <label>First Name <span class="asterrisk">*</span></label>
+                  <input md-maxlength="20" required name="first" ng-model="userdata.name.first"/>
+                  <div ng-messages="profileForm.first.$error" ng-show="profileForm.first.$touched || !profileForm.first.$pristine">
+                    <div class="messagenotify">
+                      <div ng-message='required'>First Name is mandatory field.</div>
+                      <div ng-message="md-maxlength">The first name has to be less than 20 characters long.</div>
+                      <div ng-message="minlength">The first name should contain minimum 5 characters</div>
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                <label>Middle Name</label>
+                <input name="middle" ng-model="userdata.name.middle"/>
+                <div ng-messages="profileForm.middle.$error" ng-show="profileForm.middle.$touched || !profileForm.middle.$pristine">
+                  <div class="messagenotify">
+                    <div ng-message='required'>Middle Name is mandatory field.</div>
+                    <div ng-message="md-maxlength">The middle name has to be less than 10 characters long.</div>
+                    <div ng-message="minlength">The middle name should contain minimum 5 characters</div>
+                  </div>
+                </div>
+              </md-input-container>  
+
+              <md-input-container class="md-block" flex-gt-sm>
+              <label>Last Name <span class="asterrisk">*</span></label>
+              <input md-maxlength="20" required name="last" ng-model="userdata.name.last"/>
+              <div ng-messages="profileForm.last.$error" ng-show="profileForm.last.$touched || !profileForm.last.$pristine">
+                <div class="messagenotify">
+                  <div ng-message='required'>Last Name is mandatory field.</div>
+                  <div ng-message="md-maxlength">The last name has to be less than 20 characters long.</div>
+                  <div ng-message="minlength">The last name should contain minimum 5 characters</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <div>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Email <span class="asterrisk">*</span></label>
+            <input type="email" md-maxlength="255" minlength="8" required name="email" ng-model="userdata.email"/>
+            <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$touched || !profileForm.email.$pristine">
+              <div class="messagenotify">
+                <div ng-message='required'>Email Address is mandatory field.</div>
+                <div ng-message="md-maxlength">The email has to be less than 255 characters long.</div>
+                <div ng-message="minlength">The email should contain minimum 8 characters</div>
+              </div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div>
+          <md-input-container class="md-block" flex-gt-sm>
+          <label>Contact No <span class="asterrisk">*</span></label>
+          <input type="text" ng-maxlength="15" ng-minlength="10" 
+          name="contactno" required 
+          ng-model="userdata.contactNo[0].contactNumber">
+          <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
+           <div class="messagenotify">
+            <div ng-messages-include="/public/mods/partials/messages.html"></div>
+            <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
+            <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <md-input-container class="md-block" flex-gt-sm>
+        <label>Designation <span class="asterrisk">*</span></label>
+        <input md-maxlength="40" minlength="5" name="jobTitle" required 
+        ng-model="userdata.jobTitle">
+        <div ng-messages="profileForm.jobTitle.$error" ng-show="profileForm.jobTitle.$touched || !profileForm.jobTitle.$pristine">
+         <div class="messagenotify">
+          <div ng-messages-include="/public/mods/partials/messages.html"></div>
+          <div ng-message="md-maxlength">The designation has to be less than 40 characters long.</div>
+          <div ng-message="minlength">The designation should contain minimum 5 characters</div></div></div>
+        </md-input-container>
+      </div>
+
+      <div class="col-md-12">
+        <md-input-container class="md-block" style="height: auto;">
+        <label>Employee Bio</label>
+        <textarea ng-model="userdata.summary" md-maxlength="2000" minlength="30" name="summary" 
+        rows="4" aria-multiline="true" style="height: 116px;"></textarea>
+      </md-input-container>
+    </div>
+{{userdata.local.email=userdata.email;""}}  
+  
+<md-button class="md-warn md-raised pull-right" 
+  ng-click="cancelButton()" confirm-dialog header-text="Cancel??" content="Are you sure you want to return to user list? </b>"
+yes-text="Ok" no-text="Cancel">
+<i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Cancel
+</md-button> 
+
+  <md-button ng-if="mode=='add'" class="md-primary md-raised pull-right" ng-click="addEmployee(userdata,avatar)" ng-disabled="profileForm.$invalid">
+  <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Add CSC Employee
+</md-button>
+
+<md-button ng-if="mode=='edit' && userdata.association=='employee'" class="md-primary md-raised pull-right" ng-click="editEmployee(userdata,avatar)" ng-disabled="profileForm.$invalid">
+  <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Edit CSC Employee
+</md-button>
+
+<md-button ng-if="mode=='edit' && userdata.association=='customer'" class="md-primary md-raised pull-right" ng-click="editEmployee(userdata,avatar)" ng-disabled="profileForm.$invalid">
+  <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Edit {{userdata.organization}} Customer
+</md-button>
+</div>
+</form>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
