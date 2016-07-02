@@ -218,10 +218,11 @@
       <div ng-if="groupMember == 'user'">
         <md-input-container class="md-block" flex-gt-sm>
         <label>Contact No <span class="asterrisk">*</span></label>
-        <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userdata.contactNumber">
+        <input type="text" ng-pattern="/^[+0-9]+$/" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userdata.contactNumber">
         <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
           <div class="messagenotify">
             <div ng-message='required'>Contact No is mandatory field.</div>
+            <div ng-message="pattern">Please Enter a valid contact no</div>
             <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
             <div ng-message="minlength">The contact no should contain minimum 10 characters</div>
           </div>
@@ -235,10 +236,11 @@
       <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
         <md-input-container class="md-block" flex-gt-sm>
         <label>Contact No <span class="asterrisk">*</span></label>
-        <input type="number" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userdata.contactNumber"/>
+        <input type="text" ng-pattern="/^[+0-9]+$/" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userdata.contactNumber"/>
         <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
           <div class="messagenotify">
             <div ng-message='required'>Contact No is mandatory field.</div>
+            <div ng-message="pattern">Please Enter a valid contact no</div>
             <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
             <div ng-message="minlength">The contact no should contain minimum 10 characters</div>
           </div>

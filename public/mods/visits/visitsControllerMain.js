@@ -1900,7 +1900,7 @@ function toTitleCase(string)
     $scope.contactNo = [];
 
     $scope.contactNo.push({
-      contactNumber:"+" + userdata.contactNumber,
+      contactNumber:userdata.contactNumber,
       contactType:userdata.contactType
     })
 
