@@ -908,7 +908,7 @@ break;
         }
         if($scope.visits.clientName==null)  
         {
-          inDataClient.name = $scope.parentClientString;
+          inDataClient.name = $scope.parentSelected;
         }
         // else inDataClient.name = $scope.parentSelected;
 
@@ -918,7 +918,7 @@ break;
         }
         if($scope.visits.subName==null)  
         {
-          inDataClient.subName = $scope.childClientString;
+          inDataClient.subName = $scope.childSelected;
         }
         // else inDataClient.subName = $scope.childSelected;
 
@@ -1028,7 +1028,7 @@ break;
           }
           if($scope.visits.clientName==null)  
           {
-            inDataClient.name = $scope.parentClientString;
+            inDataClient.name = $scope.parentSelected;
           }
         // else inDataClient.name = $scope.parentSelected;
 
@@ -1038,7 +1038,7 @@ break;
         }
         if($scope.visits.subName==null)  
         {
-          inDataClient.subName = $scope.childClientString;
+          inDataClient.subName = $scope.childSelected;
         }
         // else inDataClient.subName = $scope.childSelected;
 
@@ -1157,7 +1157,7 @@ break;
 
               $scope.nextTab(response._id);
 
-              growl.info(parse("[%s] visit successfully saved as draft.", $scope.parentClientString));
+              growl.info(parse("[%s] visit successfully saved as draft."));
             })
           }else{
             $http.post('/api/v1/secure/visits', inData).success(function(response) {
@@ -1197,14 +1197,16 @@ break;
     // console.log(inData.comments);
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
-
+    console.log($scope.visits.clientName);
+    console.log($scope.parentSelected);
+    // console.log($)
     if ($scope.visits.clientName!=null) 
     {
       client.name = $scope.visits.clientName;
     }
     if ($scope.visits.clientName==null)  
     {
-      client.name = $scope.parentClientString;
+      client.name = $scope.parentSelected;
     }
     // else client.name = $scope.parentSelected;
 
@@ -1214,7 +1216,7 @@ break;
     }
     if ($scope.visits.subName==null)  
     {
-      client.subName = $scope.childClientString;
+      client.subName = $scope.childSelected;
     }
     // else client.subName = $scope.childSelected;
 
@@ -2482,7 +2484,7 @@ else{
   }
   if($scope.visits.clientName==null)  
   {
-    inDataClient.name = $scope.parentClientString;
+    inDataClient.name = $scope.parentSelected;
   }
         // else inDataClient.name = $scope.parentSelected;
 
@@ -2492,7 +2494,7 @@ else{
         }
         if($scope.visits.subName==null)  
         {
-          inDataClient.subName = $scope.childClientString;
+          inDataClient.subName = $scope.childSelected;
         }
         // else inDataClient.subName = $scope.childSelected;
 
