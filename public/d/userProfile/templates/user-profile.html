@@ -110,16 +110,17 @@
                     <md-input-container class="md-block" flex-gt-sm>
                     <label>Contact No <span class="asterrisk">*</span></label>
                     <div ng-if="show=='noSaveProfile'">
-                    <input type="text" ng-maxlength="15" ng-minlength="10" 
+                    <input type="text" ng-pattern="/^[+0-9]+$/" ng-maxlength="15" ng-minlength="10" 
                     name="contactno" 
                     ng-model="userModel.contactNo[0].contactNumber" ng-readonly="true">
                     </div>
                     <div ng-if="show=='saveProfile'">
-                      <input type="text" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userModel.contactNo[0].contactNumber">
+                      <input type="text" ng-pattern="/^[+0-9]+$/" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userModel.contactNo[0].contactNumber">
                     </div>
                     <div ng-messages="profileForm.contactno.$error" ng-show="profileForm.contactno.$touched || !profileForm.contactno.$pristine">
                      <div class="messagenotify">
                       <div ng-messages-include="/public/mods/partials/messages.html"></div>
+                      <div ng-message="pattern">Please Enter a valid contact no</div>
                       <div ng-message="maxlength">The contact no has to be less than 15 characters long.</div>
                       <div ng-message="minlength">The contact no should contain minimum 10 characters</div></div></div>
                     </md-input-container>
