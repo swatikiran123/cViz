@@ -896,7 +896,9 @@ function getParticipantsById(id){
 	model
 	.findOne({ _id: id })
 	.populate('client')
-	.populate('visitors.visitor')
+	.populate('visitors.visitor')//visit.invitees
+	.populate('invitees')//visit.invitees
+
 	.exec(function (err, visit) {
 		if(err) {
 			console.log(err);
@@ -923,7 +925,7 @@ function getParticipantsById(id){
 				}
 			}
 
-			// push all client side visitors
+			// push all client/emp side visitors
 			visit.visitors.forEach(function(v){
 				switch(v.visitor.association)    {
 					case "employee":
@@ -940,8 +942,21 @@ function getParticipantsById(id){
 			arrAddItem(emp, visit.agm);
 			arrAddItem(emp, visit.anchor);
 			arrAddItem(emp, visit.secondaryVmanager);
-			arrAddArray(emp, visit.invitees);
+			// arrAddArray(emp, visit.invitees);
+			// console.log(visit.invitees)
+			// push all client/emp side invitees
+				for (var i = 0; i < visit.invitees.length; i++) {
+					console.log(visit.invitees.association);
+					switch(visit.invitees[i].association)    {
+						case "employee":
+						arrAddItem(emp, visit.invitees[i]);					
+						break;
 
+						case "customer":
+						arrAddItem(client, visit.invitees[i]);
+						break;
+					}
+				};
 
 			// push participants from visit schedules
 			scheduleModel
