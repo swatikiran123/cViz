@@ -55,8 +55,8 @@
 }
 .agenda-list a.active{
     border-bottom: 3px solid red;
-    font-size: 1.6em;
-    height: 35px;
+    font-size: 1.3em;
+    height: 30px;
     vertical-align: top;
 }
 .agenda-list a.active .schday{
@@ -77,8 +77,8 @@
 .agenda-list a:focus {
 
   border-bottom: 3px solid red;
-    font-size: 1.6em;
-    height: 35px;
+    font-size: 1.3em;
+    height: 30px;
     vertical-align: top;
     color: black;
   }
@@ -412,7 +412,7 @@ input[type=range]:focus::-ms-fill-upper {
 
   .agenda-session-name a {
     font-family: workSansMedium;
-    font-size: 16px;
+    font-size: 12px;
      color: black;
     font-weight: bold;
     padding-left: 10px;
