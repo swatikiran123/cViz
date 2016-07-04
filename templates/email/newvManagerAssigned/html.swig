@@ -1,6 +1,6 @@
 Hi <b>{{createBy.name.first}} {{createBy.name.last}}</b>, 
 
-<p>This is to acknowledge that your client visit request has been accepted and <b>{{anchor.name.first}} {{anchor.name.last}}</b>{% if secondaryVmanager != null %}/<b>{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}</b>{% endif %} has been asssigned as the Visit Manager.</p> 
+<p>This is to acknowledge that your client visit request has been accepted and <b>{{anchor.name.first}} {{anchor.name.last}}</b>{% if secondaryVmanager != null %}/<b>{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}</b>{% endif %} has been asssigned as the Visit Manager.</p> 
 
 <p>
 Primary Visit Manager Contact Details:<br>
