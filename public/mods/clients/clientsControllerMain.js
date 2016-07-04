@@ -199,7 +199,7 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
 
     if(inDataClient.subName!=null)
     {
-      inDataClient.name = $scope.clients.subName;
+      inDataClient.subName = $scope.clients.subName;
     }
 
     if(inDataClient.subName==null)
@@ -258,7 +258,7 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
 
     if(inData.subName!=null)
     {
-      inData.name = $scope.clients.subName;
+      inData.subName = $scope.clients.subName;
     }
 
     if(inData.subName==null)
