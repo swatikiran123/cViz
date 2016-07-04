@@ -2284,11 +2284,11 @@ $scope.showProfileButton = function(ev) {
     clickOutsideToClose:true
 
   })
-  .then(function(answer) {
-    $scope.status = 'You said the information was "' + answer + '".';
-  }, function() {
-    $scope.status = 'You cancelled the dialog.';
-  });
+  // .then(function(answer) {
+  //   $scope.status = 'You said the information was "' + answer + '".';
+  // }, function() {
+  //   $scope.status = 'You cancelled the dialog.';
+  // });
 
 };
 
@@ -2749,11 +2749,11 @@ $scope.showChatBox = function(ev) {
     targetEvent: ev,
     clickOutsideToClose:true
   })
-  .then(function(answer) {
-    $scope.status = 'You said the information was "' + answer + '".';
-  }, function() {
-    $scope.status = 'You cancelled the dialog.';
-  });
+  // .then(function(answer) {
+  //   $scope.status = 'You said the information was "' + answer + '".';
+  // }, function() {
+  //   $scope.status = 'You cancelled the dialog.';
+  // });
 
 };
 
@@ -2766,11 +2766,11 @@ $scope.showChatBoxrejected = function(ev,rejectReason) {
     targetEvent: ev,
     clickOutsideToClose:true
   })
-  .then(function(answer) {
-    $scope.status = 'You said the information was "' + answer + '".';
-  }, function() {
-    $scope.status = 'You cancelled the dialog.';
-  });
+  // .then(function(answer) {
+  //   $scope.status = 'You said the information was "' + answer + '".';
+  // }, function() {
+  //   $scope.status = 'You cancelled the dialog.';
+  // });
 
 };
 $scope.showcancelVisit = function(ev) {
@@ -2782,11 +2782,11 @@ $scope.showcancelVisit = function(ev) {
     targetEvent: ev,
     clickOutsideToClose:true
   })
-  .then(function(answer) {
-    $scope.status = 'You said the information was "' + answer + '".';
-  }, function() {
-    $scope.status = 'You cancelled the dialog.';
-  });
+  // .then(function(answer) {
+  //   $scope.status = 'You said the information was "' + answer + '".';
+  // }, function() {
+  //   $scope.status = 'You cancelled the dialog.';
+  // });
 
 };
 $scope.cancelVisit=function(cancelReason){
@@ -2924,7 +2924,7 @@ $scope.cancelVisit=function(cancelReason){
 
           });
           
-          growl.info(parse("Cancelled visit successfully: "+inData.title));
+          growl.info(parse("Cancelled visit successfully"));
         }
         else
         {
@@ -3070,7 +3070,7 @@ $scope.ReSave=function(){
         // $scope.nextTab();
       });
       
-      growl.info(parse("Rejected visit successfully: "+inData.title));
+      growl.info(parse("Rejected visit successfully"));
       
 
     })
@@ -3206,7 +3206,7 @@ $scope.saveoverallfeed=function(){
         // console.log(response);
       });
       
-      growl.info(parse("Overall Feedback submitted successfully for visit: "+inData.title));
+      growl.info(parse("Overall Feedback submitted successfully for visit"));
       $location.path("visits/list"); 
     }) 
 }
@@ -3343,7 +3343,7 @@ $scope.reject=function(rejectReason){
         // console.log(response);
       });
       
-      growl.info(parse("Rejected visit successfully: "+inData.title));
+      growl.info(parse("Rejected visit successfully"));
       $location.path("visits/list"); 
     }else
     {
@@ -3484,7 +3484,7 @@ $scope.saveoverallfeed=function(){
         // console.log(response);
       });
       
-      growl.info(parse("Overall Feedback submitted successfully for visit: "+inData.title));
+      growl.info(parse("Overall Feedback submitted successfully for visit"));
       $location.path("visits/list"); 
     })
 }
