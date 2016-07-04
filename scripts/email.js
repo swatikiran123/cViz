@@ -219,6 +219,7 @@ function notifyVisitOwnerChange(visitId,oldvmanEmail)
 				receiversId.push(visit.createBy.email);
 				emailIds.push(oldvmanEmail);
 				emailIds.push(visit.anchor.email);
+
 				if(visit.secondaryVmanager != null || visit.secondaryVmanager != undefined)
 				{
 					emailIds.push(visit.secondaryVmanager.email);
@@ -741,7 +742,6 @@ function visitClosure(visitId) {
 										subject: 'Save your day', // Subject line
 										text: results.text, // plaintext body
 										html: results.html, // html body
-
 									};
 
 									console.log(mailOptions);
@@ -805,6 +805,7 @@ function agendaFinalize(visitId,basePath) {
 					console.log(basePath)
 					var filePath = basePath + "/public/uploads/visits/wrkday.pdf";
 					console.log(filePath)
+
 					if(err){
 						return console.log(err);
 					}
