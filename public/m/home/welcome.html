@@ -124,6 +124,7 @@
                   <div class="modal-footer">
                     <div class="pull-left" ng-if="group=='vManager' && order == length">
                       <form name="myForm">
+                        <fieldset ng-disabled="statusCheck">
                         preview &nbsp;&nbsp;
                         <label>
                           <input type="radio" ng-model="previewoption" value="Good">
@@ -136,6 +137,7 @@
                         </label>
                         <br>
                         <button type="button" class="btn btn-warning xsbutn" ng-click="preview(previewoption)" data-dismiss="modal">ok</button>
+                        </fieldset>
                       </form>
                     </div>
                     <button type="button" ng-click="orderIncrement()" class="btn btn-default" ng-if="showContinue == true">Continue&nbsp;<i class="fa fa-angle-right"></i></button>

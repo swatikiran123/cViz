@@ -62,11 +62,11 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
 visitsApp.controller('visitsControllerMain', ['$scope','appUserService', '$http', '$route', '$filter', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia','$timeout','Upload', 'FeedbackService', 'KeynoteService',
   function($scope,appUserService, $http, $route,$filter, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, FeedbackService, SessionService, KeynoteService) {
 
-  appUserService.activeUser().then(function(user){
+    appUserService.activeUser().then(function(user){
     //console.log("thsis"+user._id);
     $scope.activeUser = user;
-  
-  var id = $routeParams.id;
+
+    var id = $routeParams.id;
 
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
@@ -254,12 +254,12 @@ $scope.visitAllvMan = function() {
 
     $http.get('/api/v1/secure/visits/' + id).success(function(response){
 
-      if(response.overallfeedback.length=== 0){
+      if(response.overallfeedback.length=== 0 && $routeParams.id != undefined){
         //first time 
         $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
-          console.log(response)
+          // console.log(response)
           $scope.cscData = response["employees"];
           $scope.clientData = response["clients"];
           for (var i =0 ;i<$scope.cscData.length;  i++) {
@@ -275,19 +275,19 @@ $scope.visitAllvMan = function() {
             feedbackElg: true
           });
          };
-         console.log($scope.j);
+         // console.log($scope.j);
 
        })
       }
 
-      else if(response.overallfeedback.length !=0){
+      else if(response.overallfeedback.length !=0 && $routeParams.id != undefined){
         //first time 
         $scope.checkOverLaa=response.overallfeedback;
         
         $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
-          console.log(response)
+          // console.log(response)
           $scope.cscData = response["employees"];
           $scope.clientData = response["clients"];
           
@@ -305,7 +305,7 @@ $scope.visitAllvMan = function() {
           });
          };
 
-         console.log($scope.kData);//all ppl are here
+         // console.log($scope.kData);//all ppl are here
 
          for (var i = 0; i < $scope.kData.length; i++) {
           if ($scope.checkOverLaa[i]== null || $scope.checkOverLaa[i]== undefined) 
@@ -835,7 +835,7 @@ break;
 
   refresh();
   $scope.saveDraft=function() {
-    console.log($scope.visits.clientName);
+    // console.log($scope.visits.clientName);
     if ($scope.visits.clientName != undefined || $scope.visits.subName != undefined|| $scope.visits.regions != undefined ||  $scope.parentSelected != undefined || $scope.childSelected != undefined){
       $scope.saveDraf=true;
       $scope.saveDrafButton=true;
@@ -877,11 +877,11 @@ break;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.overallfeedbackElg = $scope.collectlist;
     if ($scope.j!= undefined || $scope.j != 0) {
-      console.log($scope.j);
-    $scope.visits.overallfeedback = $scope.j;};
-    $scope.check= true;
-    if ($scope.checked1 == true){
-      $scope.visits.competitorVisit=null;
+      // console.log($scope.j);
+      $scope.visits.overallfeedback = $scope.j;};
+      $scope.check= true;
+      if ($scope.checked1 == true){
+        $scope.visits.competitorVisit=null;
       }//check code
       if ($scope.checked == false){
         $scope.unbillable= "non-billable";
@@ -906,21 +906,47 @@ break;
         {
           inDataClient.name = $scope.visits.clientName;
         }
-        if($scope.visits.clientName==null)  
+        if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
         {
           inDataClient.name = $scope.parentSelected;
         }
-        // else inDataClient.name = $scope.parentSelected;
+        if(inDataClient.name == null || inDataClient.name == undefined)
+        {
+          inDataClient.name = $scope.parentClientString;
+        }
 
+        // else inDataClient.name = $scope.parentSelected;
         if ($scope.visits.subName!=null) 
         {
           inDataClient.subName =$scope.visits.subName;
         }
-        if($scope.visits.subName==null)  
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
         {
           inDataClient.subName = $scope.childSelected;
         }
+        if(inDataClient.subName == null  || inDataClient.subName == undefined)
+        {
+          inDataClient.subName = $scope.childClientString;
+        }
         // else inDataClient.subName = $scope.childSelected;
+
+        if($scope.visits.sfdcid==null || $scope.visits.sfdcid==undefined )  
+        {
+          inDataClient.sfdcid = $scope.sfdcidSelected;
+        }
+
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid== undefined)
+        {
+          inDataClient.sfdcid = $scope.sfdcidSelected;
+        }
+
+        if ($scope.visits.sfdcid!=null) 
+        {
+          inDataClient.sfdcid =$scope.visits.sfdcid;
+        }
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+        }
 
         if ($scope.visits.industry!=null) 
         {
@@ -943,20 +969,13 @@ break;
         // else inDataClient.regions = $scope.regionsSelected;
 
         // sfdcidClientString
-      
+
         // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
 
-        if(inDataClient.name == null)
-        {
-          inDataClient.name = $scope.parentSelected;
-        }
 
-        if(inDataClient.subName == null)
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
+
 
         if(inDataClient.industry == null)
         {
@@ -966,34 +985,14 @@ break;
         if(inDataClient.regions == null)
         {
           inDataClient.regions = $scope.regionsSelected;
-        }
-
-        if($scope.visits.sfdcid==null)  
-        {
-          inDataClient.sfdcid = $scope.sfdcidClientString;
-        }
-
-        if(inDataClient.sfdcid == null)
-        {
-          inDataClient.sfdcid = $scope.sfdcidSelected;
-        }
-
-        if ($scope.visits.sfdcid!=null) 
-        {
-          inDataClient.sfdcid =$scope.visits.sfdcid;
-        }
-        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
-          inDataClient.sfdcid = "null";
-        }
-
-        
+        }        
 
         inDataClient.netPromoter =$scope.visits.netPromoter;
         inDataClient.competitors =$scope.visits.competitors;
         inDataClient.logo= $scope.avatarVisit; 
         //console.log(inDataClient.name + " " + inDataClient.subName + " " +inDataClient.industry + " " + inDataClient.regions);
         $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
-          console.log(response);
+          // console.log(response);
 
           if (response.id!= null) {
             // console.log("im in here with id")
@@ -1022,34 +1021,15 @@ break;
           
           var inDataClient ={};
 
-          if ($scope.visits.clientName!=null) 
-          {
-            inDataClient.name = $scope.visits.clientName;
-          }
-          if($scope.visits.clientName==null)  
-          {
-            inDataClient.name = $scope.parentSelected;
-          }
-        // else inDataClient.name = $scope.parentSelected;
 
-        if ($scope.visits.subName!=null) 
-        {
-          inDataClient.subName =$scope.visits.subName;
-        }
-        if($scope.visits.subName==null)  
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
-        // else inDataClient.subName = $scope.childSelected;
-
-        if ($scope.visits.industry!=null) 
-        {
-          inDataClient.industry =$scope.visits.industry;
-        }
-        if($scope.visits.industry==null)  
-        {
-          inDataClient.industry = $scope.industryClientString;
-        }
+          if ($scope.visits.industry!=null) 
+          {
+            inDataClient.industry =$scope.visits.industry;
+          }
+          if($scope.visits.industry==null)  
+          {
+            inDataClient.industry = $scope.industryClientString;
+          }
         // else inDataClient.industry = $scope.industrySelected;
 
         if ($scope.visits.regions!=null) 
@@ -1068,16 +1048,7 @@ break;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
 
-        if(inDataClient.name == null)
-        {
-          inDataClient.name = $scope.parentSelected;
-        }
-
-        if(inDataClient.subName == null)
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
-
+        
         if(inDataClient.industry == null)
         {
           inDataClient.industry = $scope.industrySelected;
@@ -1088,6 +1059,33 @@ break;
           inDataClient.regions = $scope.regionsSelected;
         }
 
+        if ($scope.visits.clientName!=null) 
+        {
+          inDataClient.name = $scope.visits.clientName;
+        }
+        if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
+        {
+          inDataClient.name = $scope.parentSelected;
+        }
+        if(inDataClient.name == null || inDataClient.name == undefined)
+        {
+          inDataClient.name = $scope.parentClientString;
+        }
+
+        // else inDataClient.name = $scope.parentSelected;
+        if ($scope.visits.subName!=null) 
+        {
+          inDataClient.subName =$scope.visits.subName;
+        }
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
+        {
+          inDataClient.subName = $scope.childSelected;
+        }
+        if(inDataClient.subName == null  || inDataClient.subName == undefined)
+        {
+          inDataClient.subName = $scope.childClientString;
+        }
+        // else inDataClient.subName = $scope.childSelected;
         if ($scope.visits.sfdcid!=null) 
         {
           inDataClient.sfdcid =$scope.visits.sfdcid;
@@ -1115,7 +1113,7 @@ break;
 
         if ($scope.avatarVisit!=undefined) {
           inDataClient.logo=$scope.avatarVisit;}
-          console.log(inDataClient)
+          // console.log(inDataClient)
 
           $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
            $scope.visits.client = response._id;
@@ -1187,7 +1185,7 @@ break;
 
   $scope.update = function() {
     // console.log($scope.commentsData);
-    console.log($scope.visits);
+    // console.log($scope.visits);
     // console.log($scope.visits.clientIdData)
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
@@ -1197,37 +1195,48 @@ break;
     // console.log(inData.comments);
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
-    console.log($scope.visits.clientName);
-    console.log($scope.parentSelected);
+    // console.log($scope.visits.clientName);
+    // console.log($scope.parentSelected);
+    // console.log($scope.parentClientString);
     // console.log($)
+
+
     if ($scope.visits.clientName!=null) 
     {
       client.name = $scope.visits.clientName;
     }
-    if ($scope.visits.clientName==null)  
+    if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
     {
       client.name = $scope.parentSelected;
     }
-    // else client.name = $scope.parentSelected;
+    if(client.name == null || client.name == undefined)
+    {
+      client.name = $scope.parentClientString;
+    }
 
-    if ($scope.visits.subName!=null) 
-    {
-      client.subName =$scope.visits.subName;
-    }
-    if ($scope.visits.subName==null)  
-    {
-      client.subName = $scope.childSelected;
-    }
-    // else client.subName = $scope.childSelected;
+        // else inDataClient.name = $scope.parentSelected;
+        if ($scope.visits.subName!=null) 
+        {
+          client.subName =$scope.visits.subName;
+        }
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
+        {
+          client.subName = $scope.childSelected;
+        }
+        if(client.subName == null  || client.subName == undefined)
+        {
+          client.subName = $scope.childClientString;
+        }
 
-    if ($scope.visits.industry!=null) 
-    {
-      client.industry =$scope.visits.industry;
-    }
-    if ($scope.visits.industry==null)  
-    {
-      client.industry = $scope.industryClientString;
-    }
+
+        if ($scope.visits.industry!=null) 
+        {
+          client.industry =$scope.visits.industry;
+        }
+        if ($scope.visits.industry==null)  
+        {
+          client.industry = $scope.industryClientString;
+        }
     // else client.industry = $scope.industrySelected;
 
     if ($scope.visits.regions!=null) 
@@ -1250,15 +1259,15 @@ break;
           client.sfdcid = $scope.sfdcidClientString;
         }
 
-        if(client.name == null)
-        {
-          client.name = $scope.parentSelected;
-        }
+        // if(client.name == null)
+        // {
+        //   client.name = $scope.parentSelected;
+        // }
 
-        if(client.subName == null)
-        {
-          client.subName = $scope.childSelected;
-        }
+        // if(client.subName == null)
+        // {
+        //   client.subName = $scope.childSelected;
+        // }
 
         if(client.industry == null)
         {
@@ -1374,7 +1383,7 @@ $scope.updateClientStatus=function () {
     if ($scope.avatarVisit!=undefined) {
       client.logo=$scope.avatarVisit;}
 
-      console.log(client);
+      // console.log(client);
       $http.put('/api/v1/secure/clients/id/' + response._id, client).success(function(response) {
       })
       .error(function(data, status){
@@ -1411,7 +1420,7 @@ $scope.ClientDraft=false;
      growl.info(parse("Visit Manager assigned successfully."));
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
-      console.log(response);
+      // console.log(response);
       /*growl.info(parse("Email sent to visit managers successfully"));*/
     }) 
    })
@@ -1947,7 +1956,7 @@ function toTitleCase(string)
       userdata.jobTitle = toTitleCase($scope.designationdata);
       // userdata.jobTitle = toTitleCase($scope.jobTitle);
     }
-    console.log(userdata);  
+    // console.log(userdata);  
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
     // "complete" code here
@@ -2103,7 +2112,7 @@ if(visitorDef.visitorId==null)
 {
   $scope.showFlag = "notRegisteredUser";
   var substring = "@";
-  console.log(emailid.indexOf(substring));
+  // console.log(emailid.indexOf(substring));
   if(emailid.indexOf(substring) == -1)
   {
     $scope.firstName = emailid;
@@ -2375,7 +2384,7 @@ $scope.childClientChanged = function(str) {
 
   $scope.industryClientChanged = function(str) {
     $scope.industryClientString = str;
-    console.log($scope.industryClientString);
+    // console.log($scope.industryClientString);
     if($scope.industryClientString!=null || $scope.industryClientString!="")
     {
       $scope.industryClient = false;
@@ -2792,10 +2801,10 @@ $scope.showcancelVisit = function(ev) {
 
 };
 $scope.cancelVisit=function(cancelReason){
- console.log(cancelReason);
+ // console.log(cancelReason);
  $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
  {
-  console.log($scope.visits);
+  // console.log($scope.visits);
 
   // if (rejectReason!= undefined) {
   //   console.log(rejectReason);
@@ -2909,7 +2918,7 @@ $scope.cancelVisit=function(cancelReason){
           // console.log(rejectReason);
 
           // inData.rejectReason = rejectReason;
-          console.log(cancelReason);
+          // console.log(cancelReason);
           // if ($scope.rejectValue == true) {
             // inData.status= "rejected";
             inData.status = "cancelled";
@@ -2917,9 +2926,9 @@ $scope.cancelVisit=function(cancelReason){
                     // growl.info(parse("Rejected the visit"));
           // }else
           // inData.status=$scope.visits.status;
-          console.log(inData);
+          // console.log(inData);
           $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-            console.log(response);
+            // console.log(response);
          // $scope.nextTab($scope.visitid);
             // $scope.nextTab();
             $location.path("visits/list"); 
@@ -3065,9 +3074,9 @@ $scope.ReSave=function(){
                 // growl.info(parse("Rejected the visit"));
       // }else
       // inData.status=$scope.visits.status;
-      console.log(inData);
+      // console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-        console.log(response);
+        // console.log(response);
         $scope.nextTab($scope.visitid);
         // $scope.nextTab();
       });
