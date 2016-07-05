@@ -62,11 +62,11 @@ visitsApp.factory('KeynoteService', ["$http", function ($http) {
 visitsApp.controller('visitsControllerMain', ['$scope','appUserService', '$http', '$route', '$filter', '$routeParams','$rootScope', '$location', 'growl', '$window','$mdDialog', '$mdMedia','$timeout','Upload', 'FeedbackService', 'KeynoteService',
   function($scope,appUserService, $http, $route,$filter, $routeParams, $rootScope, $location, growl, $window ,$mdDialog , $mdMedia ,$timeout, Upload, FeedbackService, SessionService, KeynoteService) {
 
-  appUserService.activeUser().then(function(user){
+    appUserService.activeUser().then(function(user){
     //console.log("thsis"+user._id);
     $scope.activeUser = user;
-  
-  var id = $routeParams.id;
+
+    var id = $routeParams.id;
 
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
@@ -878,10 +878,10 @@ break;
     $scope.visits.overallfeedbackElg = $scope.collectlist;
     if ($scope.j!= undefined || $scope.j != 0) {
       console.log($scope.j);
-    $scope.visits.overallfeedback = $scope.j;};
-    $scope.check= true;
-    if ($scope.checked1 == true){
-      $scope.visits.competitorVisit=null;
+      $scope.visits.overallfeedback = $scope.j;};
+      $scope.check= true;
+      if ($scope.checked1 == true){
+        $scope.visits.competitorVisit=null;
       }//check code
       if ($scope.checked == false){
         $scope.unbillable= "non-billable";
@@ -906,21 +906,47 @@ break;
         {
           inDataClient.name = $scope.visits.clientName;
         }
-        if($scope.visits.clientName==null)  
+        if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
         {
           inDataClient.name = $scope.parentSelected;
         }
-        // else inDataClient.name = $scope.parentSelected;
+        if(inDataClient.name == null || inDataClient.name == undefined)
+        {
+          inDataClient.name = $scope.parentClientString;
+        }
 
+        // else inDataClient.name = $scope.parentSelected;
         if ($scope.visits.subName!=null) 
         {
           inDataClient.subName =$scope.visits.subName;
         }
-        if($scope.visits.subName==null)  
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
         {
           inDataClient.subName = $scope.childSelected;
         }
+        if(inDataClient.subName == null  || inDataClient.subName == undefined)
+        {
+          inDataClient.subName = $scope.childClientString;
+        }
         // else inDataClient.subName = $scope.childSelected;
+
+        if($scope.visits.sfdcid==null || $scope.visits.sfdcid==undefined )  
+        {
+          inDataClient.sfdcid = $scope.sfdcidSelected;
+        }
+
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid== undefined)
+        {
+          inDataClient.sfdcid = $scope.sfdcidSelected;
+        }
+
+        if ($scope.visits.sfdcid!=null) 
+        {
+          inDataClient.sfdcid =$scope.visits.sfdcid;
+        }
+        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
+          inDataClient.sfdcid = "null";
+        }
 
         if ($scope.visits.industry!=null) 
         {
@@ -943,20 +969,13 @@ break;
         // else inDataClient.regions = $scope.regionsSelected;
 
         // sfdcidClientString
-      
+
         // else inDataClient.sfdcid = $scope.sfdcidSelected;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
 
-        if(inDataClient.name == null)
-        {
-          inDataClient.name = $scope.parentSelected;
-        }
 
-        if(inDataClient.subName == null)
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
+
 
         if(inDataClient.industry == null)
         {
@@ -966,27 +985,7 @@ break;
         if(inDataClient.regions == null)
         {
           inDataClient.regions = $scope.regionsSelected;
-        }
-
-        if($scope.visits.sfdcid==null)  
-        {
-          inDataClient.sfdcid = $scope.sfdcidClientString;
-        }
-
-        if(inDataClient.sfdcid == null)
-        {
-          inDataClient.sfdcid = $scope.sfdcidSelected;
-        }
-
-        if ($scope.visits.sfdcid!=null) 
-        {
-          inDataClient.sfdcid =$scope.visits.sfdcid;
-        }
-        if(inDataClient.sfdcid == null || inDataClient.sfdcid == undefined || inDataClient.sfdcid == ""){
-          inDataClient.sfdcid = "null";
-        }
-
-        
+        }        
 
         inDataClient.netPromoter =$scope.visits.netPromoter;
         inDataClient.competitors =$scope.visits.competitors;
@@ -1022,34 +1021,15 @@ break;
           
           var inDataClient ={};
 
-          if ($scope.visits.clientName!=null) 
-          {
-            inDataClient.name = $scope.visits.clientName;
-          }
-          if($scope.visits.clientName==null)  
-          {
-            inDataClient.name = $scope.parentSelected;
-          }
-        // else inDataClient.name = $scope.parentSelected;
 
-        if ($scope.visits.subName!=null) 
-        {
-          inDataClient.subName =$scope.visits.subName;
-        }
-        if($scope.visits.subName==null)  
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
-        // else inDataClient.subName = $scope.childSelected;
-
-        if ($scope.visits.industry!=null) 
-        {
-          inDataClient.industry =$scope.visits.industry;
-        }
-        if($scope.visits.industry==null)  
-        {
-          inDataClient.industry = $scope.industryClientString;
-        }
+          if ($scope.visits.industry!=null) 
+          {
+            inDataClient.industry =$scope.visits.industry;
+          }
+          if($scope.visits.industry==null)  
+          {
+            inDataClient.industry = $scope.industryClientString;
+          }
         // else inDataClient.industry = $scope.industrySelected;
 
         if ($scope.visits.regions!=null) 
@@ -1068,16 +1048,7 @@ break;
 
         // inDataClient.sfdcid=$scope.visits.sfdcid;
 
-        if(inDataClient.name == null)
-        {
-          inDataClient.name = $scope.parentSelected;
-        }
-
-        if(inDataClient.subName == null)
-        {
-          inDataClient.subName = $scope.childSelected;
-        }
-
+        
         if(inDataClient.industry == null)
         {
           inDataClient.industry = $scope.industrySelected;
@@ -1088,6 +1059,33 @@ break;
           inDataClient.regions = $scope.regionsSelected;
         }
 
+        if ($scope.visits.clientName!=null) 
+        {
+          inDataClient.name = $scope.visits.clientName;
+        }
+        if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
+        {
+          inDataClient.name = $scope.parentSelected;
+        }
+        if(inDataClient.name == null || inDataClient.name == undefined)
+        {
+          inDataClient.name = $scope.parentClientString;
+        }
+
+        // else inDataClient.name = $scope.parentSelected;
+        if ($scope.visits.subName!=null) 
+        {
+          inDataClient.subName =$scope.visits.subName;
+        }
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
+        {
+          inDataClient.subName = $scope.childSelected;
+        }
+        if(inDataClient.subName == null  || inDataClient.subName == undefined)
+        {
+          inDataClient.subName = $scope.childClientString;
+        }
+        // else inDataClient.subName = $scope.childSelected;
         if ($scope.visits.sfdcid!=null) 
         {
           inDataClient.sfdcid =$scope.visits.sfdcid;
@@ -1199,35 +1197,46 @@ break;
     client.cscPersonnel =$scope.cscPersonnel;
     console.log($scope.visits.clientName);
     console.log($scope.parentSelected);
+    console.log($scope.parentClientString);
     // console.log($)
+
+
     if ($scope.visits.clientName!=null) 
     {
       client.name = $scope.visits.clientName;
     }
-    if ($scope.visits.clientName==null)  
+    if($scope.visits.clientName==null || $scope.visits.clientName == undefined)  
     {
       client.name = $scope.parentSelected;
     }
-    // else client.name = $scope.parentSelected;
+    if(client.name == null || client.name == undefined)
+    {
+      client.name = $scope.parentClientString;
+    }
 
-    if ($scope.visits.subName!=null) 
-    {
-      client.subName =$scope.visits.subName;
-    }
-    if ($scope.visits.subName==null)  
-    {
-      client.subName = $scope.childSelected;
-    }
-    // else client.subName = $scope.childSelected;
+        // else inDataClient.name = $scope.parentSelected;
+        if ($scope.visits.subName!=null) 
+        {
+          client.subName =$scope.visits.subName;
+        }
+        if($scope.visits.subName==null || $scope.visits.subName == undefined)  
+        {
+          client.subName = $scope.childSelected;
+        }
+        if(client.subName == null  || client.subName == undefined)
+        {
+          client.subName = $scope.childClientString;
+        }
 
-    if ($scope.visits.industry!=null) 
-    {
-      client.industry =$scope.visits.industry;
-    }
-    if ($scope.visits.industry==null)  
-    {
-      client.industry = $scope.industryClientString;
-    }
+
+        if ($scope.visits.industry!=null) 
+        {
+          client.industry =$scope.visits.industry;
+        }
+        if ($scope.visits.industry==null)  
+        {
+          client.industry = $scope.industryClientString;
+        }
     // else client.industry = $scope.industrySelected;
 
     if ($scope.visits.regions!=null) 
@@ -1250,15 +1259,15 @@ break;
           client.sfdcid = $scope.sfdcidClientString;
         }
 
-        if(client.name == null)
-        {
-          client.name = $scope.parentSelected;
-        }
+        // if(client.name == null)
+        // {
+        //   client.name = $scope.parentSelected;
+        // }
 
-        if(client.subName == null)
-        {
-          client.subName = $scope.childSelected;
-        }
+        // if(client.subName == null)
+        // {
+        //   client.subName = $scope.childSelected;
+        // }
 
         if(client.industry == null)
         {
