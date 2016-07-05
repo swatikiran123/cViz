@@ -78,7 +78,9 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.medium = "medium";
 	$scope.arrayData=[];
 	$scope.customerName = $scope.activeUser.name.first;
-	    $scope.previewoption = ' ';
+	    // $scope.previewoption = ' ';
+	    $scope.statusCheck= true;
+
    
     var refresh = function() {
     	appService.activeVisit().then(function(avisitData){
@@ -135,6 +137,12 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 					console.log(response.client.name);
 					$scope.clientName = response.client.name;
 					$scope.clientLogo = response.client.logo;
+	   				$scope.previewoption = response.preview;
+	   				$scope.status = response.status;
+	   				if($scope.status != 'finalize' && $scope.status != 'complete' && $scope.status != 'close' && $scope.status != 'rejected' && $scope.status !='cancelled'){
+	   					$scope.statusCheck= false;
+	   				}
+
 				})
 			});
 		})

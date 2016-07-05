@@ -254,12 +254,12 @@ $scope.visitAllvMan = function() {
 
     $http.get('/api/v1/secure/visits/' + id).success(function(response){
 
-      if(response.overallfeedback.length=== 0){
+      if(response.overallfeedback.length=== 0 && $routeParams.id != undefined){
         //first time 
         $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
-          console.log(response)
+          // console.log(response)
           $scope.cscData = response["employees"];
           $scope.clientData = response["clients"];
           for (var i =0 ;i<$scope.cscData.length;  i++) {
@@ -275,19 +275,19 @@ $scope.visitAllvMan = function() {
             feedbackElg: true
           });
          };
-         console.log($scope.j);
+         // console.log($scope.j);
 
        })
       }
 
-      else if(response.overallfeedback.length !=0){
+      else if(response.overallfeedback.length !=0 && $routeParams.id != undefined){
         //first time 
         $scope.checkOverLaa=response.overallfeedback;
         
         $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
           cache: true
         }).success(function(response) {
-          console.log(response)
+          // console.log(response)
           $scope.cscData = response["employees"];
           $scope.clientData = response["clients"];
           
@@ -305,7 +305,7 @@ $scope.visitAllvMan = function() {
           });
          };
 
-         console.log($scope.kData);//all ppl are here
+         // console.log($scope.kData);//all ppl are here
 
          for (var i = 0; i < $scope.kData.length; i++) {
           if ($scope.checkOverLaa[i]== null || $scope.checkOverLaa[i]== undefined) 
@@ -835,7 +835,7 @@ break;
 
   refresh();
   $scope.saveDraft=function() {
-    console.log($scope.visits.clientName);
+    // console.log($scope.visits.clientName);
     if ($scope.visits.clientName != undefined || $scope.visits.subName != undefined|| $scope.visits.regions != undefined ||  $scope.parentSelected != undefined || $scope.childSelected != undefined){
       $scope.saveDraf=true;
       $scope.saveDrafButton=true;
@@ -877,7 +877,7 @@ break;
     $scope.cscPersonnel.cre= $scope.creId;
     $scope.visits.overallfeedbackElg = $scope.collectlist;
     if ($scope.j!= undefined || $scope.j != 0) {
-      console.log($scope.j);
+      // console.log($scope.j);
       $scope.visits.overallfeedback = $scope.j;};
       $scope.check= true;
       if ($scope.checked1 == true){
@@ -992,7 +992,7 @@ break;
         inDataClient.logo= $scope.avatarVisit; 
         //console.log(inDataClient.name + " " + inDataClient.subName + " " +inDataClient.industry + " " + inDataClient.regions);
         $http.get('/api/v1/secure/clients/find?query=' + inDataClient.name+"&subQuery="+inDataClient.subName+"&regions="+inDataClient.regions+"&id=").success(function(response) {
-          console.log(response);
+          // console.log(response);
 
           if (response.id!= null) {
             // console.log("im in here with id")
@@ -1113,7 +1113,7 @@ break;
 
         if ($scope.avatarVisit!=undefined) {
           inDataClient.logo=$scope.avatarVisit;}
-          console.log(inDataClient)
+          // console.log(inDataClient)
 
           $http.post('/api/v1/secure/clients', inDataClient).success(function(response) {
            $scope.visits.client = response._id;
@@ -1185,7 +1185,7 @@ break;
 
   $scope.update = function() {
     // console.log($scope.commentsData);
-    console.log($scope.visits);
+    // console.log($scope.visits);
     // console.log($scope.visits.clientIdData)
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
@@ -1195,9 +1195,9 @@ break;
     // console.log(inData.comments);
     var client ={};
     client.cscPersonnel =$scope.cscPersonnel;
-    console.log($scope.visits.clientName);
-    console.log($scope.parentSelected);
-    console.log($scope.parentClientString);
+    // console.log($scope.visits.clientName);
+    // console.log($scope.parentSelected);
+    // console.log($scope.parentClientString);
     // console.log($)
 
 
@@ -1383,7 +1383,7 @@ $scope.updateClientStatus=function () {
     if ($scope.avatarVisit!=undefined) {
       client.logo=$scope.avatarVisit;}
 
-      console.log(client);
+      // console.log(client);
       $http.put('/api/v1/secure/clients/id/' + response._id, client).success(function(response) {
       })
       .error(function(data, status){
@@ -1420,7 +1420,7 @@ $scope.ClientDraft=false;
      growl.info(parse("Visit Manager assigned successfully."));
      $scope.nextTab($scope.visits._id);
      $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
-      console.log(response);
+      // console.log(response);
       /*growl.info(parse("Email sent to visit managers successfully"));*/
     }) 
    })
@@ -1956,7 +1956,7 @@ function toTitleCase(string)
       userdata.jobTitle = toTitleCase($scope.designationdata);
       // userdata.jobTitle = toTitleCase($scope.jobTitle);
     }
-    console.log(userdata);  
+    // console.log(userdata);  
     $http.post('/api/v1/secure/admin/users/',userdata).success(function(response){
     }).then(function() {
     // "complete" code here
@@ -2112,7 +2112,7 @@ if(visitorDef.visitorId==null)
 {
   $scope.showFlag = "notRegisteredUser";
   var substring = "@";
-  console.log(emailid.indexOf(substring));
+  // console.log(emailid.indexOf(substring));
   if(emailid.indexOf(substring) == -1)
   {
     $scope.firstName = emailid;
@@ -2384,7 +2384,7 @@ $scope.childClientChanged = function(str) {
 
   $scope.industryClientChanged = function(str) {
     $scope.industryClientString = str;
-    console.log($scope.industryClientString);
+    // console.log($scope.industryClientString);
     if($scope.industryClientString!=null || $scope.industryClientString!="")
     {
       $scope.industryClient = false;
@@ -2801,10 +2801,10 @@ $scope.showcancelVisit = function(ev) {
 
 };
 $scope.cancelVisit=function(cancelReason){
- console.log(cancelReason);
+ // console.log(cancelReason);
  $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
  {
-  console.log($scope.visits);
+  // console.log($scope.visits);
 
   // if (rejectReason!= undefined) {
   //   console.log(rejectReason);
@@ -2918,7 +2918,7 @@ $scope.cancelVisit=function(cancelReason){
           // console.log(rejectReason);
 
           // inData.rejectReason = rejectReason;
-          console.log(cancelReason);
+          // console.log(cancelReason);
           // if ($scope.rejectValue == true) {
             // inData.status= "rejected";
             inData.status = "cancelled";
@@ -2926,9 +2926,9 @@ $scope.cancelVisit=function(cancelReason){
                     // growl.info(parse("Rejected the visit"));
           // }else
           // inData.status=$scope.visits.status;
-          console.log(inData);
+          // console.log(inData);
           $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-            console.log(response);
+            // console.log(response);
          // $scope.nextTab($scope.visitid);
             // $scope.nextTab();
             $location.path("visits/list"); 
@@ -3074,9 +3074,9 @@ $scope.ReSave=function(){
                 // growl.info(parse("Rejected the visit"));
       // }else
       // inData.status=$scope.visits.status;
-      console.log(inData);
+      // console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
-        console.log(response);
+        // console.log(response);
         $scope.nextTab($scope.visitid);
         // $scope.nextTab();
       });
