@@ -1421,7 +1421,7 @@ $scope.ClientDraft=false;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
      growl.info(parse("Visit Manager assigned successfully."));
      $scope.nextTab($scope.visits._id);
-     
+
      //Notfication when Primary Visit Manager Assigned or Sec V manager Assigned 
      if($scope.visitManagerAnchor == undefined && $scope.visitManagerSecondary == undefined)
      {
