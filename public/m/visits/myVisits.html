@@ -6,7 +6,15 @@
             <i class="fa fa-search fonticon1"></i>
             <input type="text" placeholder="Search" size="15"  ng-model="$parent.query" />
 
-            <div class="visitbatch pull-right">{{visitBatch.start | date:"dd MMM yy"}} - {{visitBatch.end | date:"dd MMM yy"}} ({{visitBatch.visits.length}})
+          <!--   <div class="visitbatch pull-right" ng-show="timeline ==='today'">{{visitBatch.start | date:"dd MMM yy"}}</div> -->
+
+            <div class="visitbatch pull-right" >
+
+                <span ng-show="timeline ==='today'">
+                {{visitBatch.start | date:"dd MMM yy"}} ({{visitBatch.visits.length}})</span>
+
+                <span ng-hide = "timeline ==='today'">
+                {{visitBatch.start | date:"dd MMM yy"}} - {{visitBatch.end | date:"dd MMM yy"}} ({{visitBatch.visits.length}})</span>
 
                 <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                     <i class="fa fa-th-large"></i>

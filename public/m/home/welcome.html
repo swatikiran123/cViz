@@ -63,10 +63,8 @@
            <!-- </p> -->
            
            <div class="container row">
-             <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-              <div ng-if="user1!=null">
-                <div class="profile">
-                  <div  ng-if="user1.avatar!=null" class="pull-left">
+             <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 profile" ng-if="user1!=null">
+                 <div  ng-if="user1.avatar!=null" class="pull-left">
                     <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
                   </div>
                   <div  ng-if="user1.avatar==null" class="pull-left">
@@ -76,13 +74,9 @@
                     <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
                     <div class="text-xsmall">{{user1.jobTitle}} </div>
                   </div>       
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-              <div ng-if="user2!=null">
-                <div class="profile">
-                  <div  ng-if="user2.avatar!=null" class="pull-left">
+             </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 profile" ng-if="user2!=null">
+                <div  ng-if="user2.avatar!=null" class="pull-left">
                     <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
                   </div>
                   <div  ng-if="user2.avatar==null" class="pull-left">
@@ -92,13 +86,10 @@
                     <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
                     <div class="text-xsmall">{{user2.jobTitle}} </div>
                   </div>       
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+          </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 profile" ng-if="user3!=null"> 
              
-              <div ng-if="user3!=null">
-                <div class="profile">
+             
                   <div ng-if="user3.avatar!=null" class="pull-left">
                     <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
                   </div>
@@ -110,7 +101,7 @@
                     <div class="text-xsmall">{{user3.jobTitle}} </div>
                   </div>       
                 </div>
-              </div>
+            
 <!--                             {{welcomeResponse[order].noteBy}}
                             <div ng-if="userDisplay == true">
                             <userdisplay  view-mode="medium" 
