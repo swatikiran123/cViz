@@ -26,6 +26,7 @@ feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval,
     }).success(function(response) {
                 // console.log(response.visits.feedbackTmpl);
                 $scope.overallFeedbackTmpl = response.visits.feedbackTmpl;
+                $scope.status = response.visits.status;
                 $scope.visitId = response.visits._id;
                 // console.log(response.visits.overallfeedback);
                 for (var i = 0; i < response.visits.overallfeedback.length; i++) {

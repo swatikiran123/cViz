@@ -24,10 +24,10 @@
 
 
 <div class="divtop">
-
+<div ng-if = "activevists == true">
 	<div class="agenda-parent-div">
-
-		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show="vm.tab === schedules.day" >
+	
+		<div class="div-padding" ng-repeat="schedules in scheduleList track by $index" ng-show ="vm.tab === schedules.day" ng-init="vm.tab=1"  >
 			<h1 class="day-agenda-header">
 				<i class="fa fa-calendar"></i>
 				{{schedules.date | date : "dd MMM yyyy"}} &nbsp;&nbsp;
@@ -139,3 +139,10 @@
 	</div> <!-- end of day -->
 </div> <!-- enf of days - sessions-->
 </div> <!-- end of scrollable area -->
+
+<div ng-if="activevists != true">
+<br>
+No active visits available in the database<br/>
+Please contact the Visit Portal Admin
+</div>
+</div>

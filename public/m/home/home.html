@@ -51,21 +51,21 @@
     <div class="container" id="menu">
         <div class="row">
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/#/agenda">
+                <a href="/m/visits/#/agenda/{{vid}}">
                     <div class="menu-circle-icon agenda agenda-icon"></div>
                     <div class="account-info-text">AGENDA</div>
                 </a>
 
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <a href="/m/visits/#/execBios">
+                <a href="/m/visits/#/execBios/{{vid}}">
                     <div class="menu-circle-icon exec-bio exec-icon"></div>
                     <div class="exec-bio-text">EXECUTIVE BIO'S</div>
                 </a>
             </div>
 
             <div class="col-xs-4 col-sm-4 col-md-4">
-            <a href="/m/visits/#/contacts">
+            <a href="/m/visits/#/contactanchor/{{vid}}">
               <div class="menu-circle-icon spoc spoc-icon"></div>
               <div class="spoc-text">CONTACT SPOC</div>
             </a>
@@ -76,9 +76,9 @@
         <!-- {{current | date : 'dd MMM yyyy HH:mm:ss'}}{{lastSession.session.endTime | date : 'dd MMM yyyy HH:mm:ss'}} -->
         <!-- current | date : 'dd MMM yyyy HH:mm:ss') >= (starttime | date : 'dd MMM yyyy HH:mm:ss' -->
  <!--        <div ng-if="finalFeedback==true && ((current | date : 'dd MMM yyyy HH:mm:ss') > (lastSession.session.endTime | date : 'dd MMM yyyy HH:mm:ss'))" class="row"> -->
-        <div ng-if="finalFeedback==true" class="row">
+        <div ng-if="(finalFeedback==true && (group == 'admin' || group == 'vManager' || group == 'user' || group == 'exec')) || (finalFeedback==true && status == 'finalize' && group == 'customer')" class="row">
           <div class="col-xs-4 col-sm-4 col-md-4">
-           <a href="/m/facts/">
+           <a href="/m/facts/{{vid}}">
             <div class="menu-circle-icon factsheet factsheet-icon"></div>
             <div class="factsheets-text">FACTSHEETS</div>
           </a>
@@ -101,7 +101,7 @@
       </div>
 
 <!--       <div ng-if="finalFeedback==false || ((current | date : 'dd MMM yyyy HH:mm:ss') <= (lastSession.session.endTime | date : 'dd MMM yyyy HH:mm:ss'))" class="row"> -->
-      <div ng-if="finalFeedback==false" class="row">
+      <div ng-if="finalFeedback==false || (finalFeedback==true && status != 'finalize' && group == 'customer')" class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
          <a href="/m/facts/">
           <div class="menu-circle-icon factsheet factsheet-icon"></div>

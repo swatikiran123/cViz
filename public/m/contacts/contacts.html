@@ -20,7 +20,7 @@
 </div>
 
 <div class="divtop"></div>
-<div id="spoc-page">
+<div id="spoc-page" ng-if="activevisits == true">
     <div ng-if="anchor!=null" class="spoc-details-container">
 
         <div class="heading1">CONTACT YOUR VISIT MANAGER</div>
@@ -78,4 +78,11 @@
          </div>
         </div>
     </div>
+</div>
+
+<div ng-show="activevisits != true">
+<br>
+No active visits available in the database<br/>
+Please contact the Visit Portal Admin
+</div>
 </div>

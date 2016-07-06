@@ -84,7 +84,7 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
 </div>
 <br>
 <br>
-<div class="divtop" ng-if="finalFeedback ==true">
+<div class="divtop"  ng-if="finalFeedback == true && status == 'finalize'">
 <div ng-if="feedbackSamplelist[0]._id==undefined">
 <div class="sessionfeedback">
 <div feedback feedback-id="overallFeedbackTmpl" visit-id="visitId" session-id="sessionId" feedback-model type="visit"></div>
@@ -102,6 +102,16 @@ progress::-webkit-progress-value {background-color: #8fa6c8 !important;}
 <br>
     <b><i>Not authorized to give feedback..</i></b> 
 </div>
+ <div  ng-if="status != 'finalize'">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+No active visits available in the database<br/>
+Please contact the Visit Portal Admin
+</div> 
 <!-- <div class="divtop">  
     <div id="overall-feedback-page">
    

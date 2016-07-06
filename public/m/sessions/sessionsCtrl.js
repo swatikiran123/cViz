@@ -1,13 +1,21 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
+		appServicem.activeVisit($routeParams.id).then(function(avisit){
+	 $scope.activevists = true;
+  if(avisit == 'Not active visit'){
+    $scope.activevists =false;
+    $scope.message == "No active visits available in the database Please contact the Visit Portal Admin"
+  };
+	
+
 	$scope.group=$rootScope.user.groups;
 	$scope.current = new Date();
 
 	$scope.mix=[];
 	$scope.invitee=[];
 	var refresh = function() {
-		$http.get('/api/v1/secure/visits/' + $routeParams.id + '/sessions',{
+		$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
 		}).success(function(response) {
 			$scope.scheduleList = response;
 			for (var i = 0; i < $scope.scheduleList.length; i++) {
@@ -33,7 +41,7 @@ angular.module('sessions')
 				}
 			};
 		});
-		$http.get('/api/v1/secure/visits/' + $routeParams.id ,{
+		$http.get('/api/v1/secure/visits/' + avisit._id ,{
 		//cache: true
 	}).success(function(response) {
 		$scope.visittitle = response;
@@ -118,7 +126,7 @@ $scope.pushSession = function(sessionId,rtime){
   //  console.log($location.search()["day"]);
   //  console.log($location.search()["s"]);
 
-  $scope.visit_id = $routeParams.id;
+  //$scope.visit_id = $routeParams.id;
   $scope.vmtab = $location.search()["day"];
   if($scope.vmtab === undefined)
   {
@@ -184,6 +192,7 @@ $scope.pushSession = function(sessionId,rtime){
 			$window.location.reload();
 			$location.path(path);
 		}
+		})
 	})
 
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout) {
@@ -320,11 +329,11 @@ function callSubmit() {
 
 })
 
-.controller('agendaCtrl', function($rootScope, $location, appService) {
-	appService.activeVisit().then(function(avisit){
+/*.controller('agendaCtrl', function($rootScope, $routeParams, $location, appServicem) {
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
 		$location.path("sessions/" + avisit._id);
 	})
-})
+})*/
 
 .controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {
 	$scope.fbackTemp = $routeParams.fTmpl;
