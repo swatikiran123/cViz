@@ -9,26 +9,37 @@ bios.config(['$routeProvider', function ($routeProvider) {
 	})
 
 	.when('/execBios', {
-		templateUrl: '/public/m/dummy.html',
-		controller: 'execBiosBlankCtrl'
+		templateUrl: '/public/m/execBios/execBios.html',
+		controller: 'execBiosCtrl'
 	})
 
 }]);
+/*
+bios.controller('execBiosBlankCtrl', function($rootScope, $routeParams, $location, appService, appServicem) {
 
-bios.controller('execBiosBlankCtrl', function($rootScope, $location, appService) {
-
-	appService.activeVisit().then(function(avisit){
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
 		$location.path("execBios/" + avisit._id);
 	})
 
-});
+});*/
 
-bios.controller('execBiosCtrl', function($scope, $rootScope, $routeParams, $http, appService) {
-	appService.activeVisit().then(function(avisitt){
+bios.controller('execBiosCtrl', function($scope, $rootScope, $location, $routeParams, $http, appService, appServicem) {
+	appServicem.activeVisit($routeParams.id).then(function(avisitt){
+	/*	$location.path("execBios/" + avisitt._id);*/
+		console.log(avisitt);
+		$scope.visit = avisitt._id;
+		console.log($scope.visit);
 $scope.title = avisitt.client.name;
-});
+$scope.message = "";
+ $scope.activevisits = true;
+  if(avisitt == 'Not active visit'){
+    $scope.activevisits = false;
 
-	$http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+  };
+
+
+
+	$http.get('/api/v1/secure/visits/'+$scope.visit+'/execs',{
 		cache: true
 	}).success(function(response) {
 		$scope.cscData = response["employees"];
@@ -60,4 +71,6 @@ $scope.title = avisitt.client.name;
           ele.prev().removeClass('chevron-down-arrow');
       }
   };
+
+  });
 });

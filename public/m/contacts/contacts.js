@@ -9,10 +9,18 @@ angular.module('contacts', ['ngRoute'])
 		controller: 'contactsCtrl'
 	})
 
-    .when('/contacts', {
-		templateUrl: '/public/m/dummy.html',
-		controller: 'spocCtrl'
+     .when('/contactanchor/:id', {
+		templateUrl: '/public/m/contacts/contacts.html',
+		controller: 'contactsCtrl'
 	})
+    
+    
+    .when('/contacts/', {
+		templateUrl: '/public/m/contacts/contacts.html',
+		controller: 'contactsCtrl'
+	})
+    
+
 
 
 }]);

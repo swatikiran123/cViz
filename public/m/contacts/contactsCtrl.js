@@ -1,18 +1,33 @@
 angular.module('contacts')
 
-.controller('spocCtrl', function($scope, $rootScope, $location, appService) {
-
-  appService.activeVisit().then(function(avisit){
+/*.controller('spocCtrl', function($scope, $rootScope, $routeParams, $location, appService, appServicem) {
+appServicem.activeVisit($routeParams.id).then(function(avisit){
+    console.log($routeParams.id);
+    console.log(avisit);
     var str= String(avisit.locations);
     var loc= str.split(",");
     $location.path("contacts/"+loc[0]);
-  })
+  });
 
-})
+})*/
 
-.controller('contactsCtrl', function($scope, $routeParams, $http, appService,$window) {
+.controller('contactsCtrl', function($scope, $location, $routeParams, $http, appService, appServicem, $window) {
+ 
+  appServicem.activeVisit($routeParams.id).then(function(avisit){
+    console.log($routeParams.id);
+    var str= String(avisit.locations);
+    var loc= str.split(",");
+    //$location.path("contacts/"+loc[0]);
+  $scope.activevisits = true;
+  if(avisit == 'Not active visit'){
+    $scope.activevisits =false
+    $scope.message == "No active visits available in the database Please contact the Visit Portal Admin"
+  };
+
+
+
   $scope.fileDataUrl =[];
-  $http.get('/api/v1/secure/contactList/city/' +$routeParams.city,{
+  $http.get('/api/v1/secure/contactList/city/' + loc[0],{
     cache: true
   }).success(function(response) {
     $scope.contactList = response;
@@ -37,14 +52,19 @@ angular.module('contacts')
     url = $window.URL || $window.webkitURL;
     $scope.fileDataUrl.push(url.createObjectURL(blob));
     }
-  })
+  });
+  });
 
-  appService.activeVisit().then(function(avisit){
+  appServicem.activeVisit($routeParams.id).then(function(avisit){
+    console.log(avisit);
     var str= String(avisit.locations);
     $scope.cities = str.split(/[ ,]+/);
 
     $scope.title=avisit.client.name;
     $scope.anchor=avisit.anchor;
+    
+console.log($scope.anchor);
+  
 
     $http.get('/api/v1/secure/admin/users/'+$scope.anchor,{
       cache: true

@@ -1,13 +1,15 @@
 var app = angular.module('home');
 
-app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService, appMUserService) {
+app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService, appMUserService, appServicem) {
 appMUserService.activeMUser().then(function(user){
+	$scope.vid = $routeParams.id;
     $scope.activeUser = user;
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 	$scope.finalFeedback=false;
+	  $scope.group = user.groups;
 	// $scope.current = new Date();
-	// appService.activeVisit().then(function(avisit){
+	// appServicem.activeVisit($routeParams.id).then(function(avisit){
 	// 	$http.get('/api/v1/secure/visits/'+avisit._id+'/getlasttimesessions',{
 	// 		cache: true
 	// 	}).success(function(response) {
@@ -15,7 +17,7 @@ appMUserService.activeMUser().then(function(user){
 	// 	});
 	// });
 
-	appService.activeVisit().then(function(avisit){
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
 		if(avisit==''||avisit==null||avisit==undefined)
 		{
 			$scope.button = 'disable';
@@ -47,25 +49,28 @@ appMUserService.activeMUser().then(function(user){
 	}, function(reason) {
 		$scope.loading = false;
 	})
-
-	$http.get('/api/v1/secure/visits/all/activeVisit',{
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
+	$http.get('/api/v1/secure/visits/'+avisit._id,{
 		cache: true
 	}).success(function(response) {
-		$scope.endDate = response.visits.endDate;
-			for (var i = 0; i < response.visits.overallfeedback.length; i++) {
+//console.log(response);
+		$scope.status =  response.status;
+		$scope.endDate = response.endDate;
+			for (var i = 0; i < response.overallfeedback.length; i++) {
 
-				if(response.visits.overallfeedback[i].id=== $scope.activeUser._id)
+				if(response.overallfeedback[i].id=== $scope.activeUser._id)
 				{
-					if (response.visits.overallfeedback[i].feedbackElg == "true") {
+					if (response.overallfeedback[i].feedbackElg == "true") {
 						$scope.finalFeedback=true;
 					} 
 				}
 			};
 	});
+});
 });	
 });
 
-app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService','appMUserService',function ($scope, location,$http,$routeParams,$rootScope,appService, appMUserService) {
+app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$rootScope','appService','appMUserService','appServicem',function ($scope, location,$http,$routeParams,$rootScope,appService, appMUserService, appServicem) {
   appMUserService.activeMUser().then(function(user){
     console.log("thsis"+user._id);
     $scope.activeUser = user;
@@ -83,7 +88,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 
    
     var refresh = function() {
-    	appService.activeVisit().then(function(avisitData){
+    	appServicem.activeVisit($routeParams.id).then(function(avisitData){
     		if(avisitData==''||avisitData==null||avisitData==undefined)
     		{
     			angular.element('#videoModal').modal('hide');
@@ -92,8 +97,8 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
     		{
     			angular.element('#videoModal').modal('show');
     		}
-    	});
-		$http.get('/api/v1/secure/visits/current/keynotes',{
+    
+		$http.get('/api/v1/secure/visits/'+avisitData._id+'/keynotes',{
 			cache: true
 		}).success(function(response) {
 			if(response[0] != "")
@@ -130,7 +135,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 			}
 
 
-			appService.activeVisit().then(function(avisit){
+			appServicem.activeVisit($routeParams.id).then(function(avisit){
 				$http.get('/api/v1/secure/visits/'+avisit._id,{
 					cache: true
 				}).success(function(response) {
@@ -146,12 +151,14 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 				})
 			});
 		})
+
+			});
 	}
 
 	refresh();
 
 
-	    appService.activeVisit().then(function(avist){
+	    appServicem.activeVisit($routeParams.id).then(function(avist){
 $scope.vid = avist._id;
 });
 	   $scope.preview = function(previewoption) {
