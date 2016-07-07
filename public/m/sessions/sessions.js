@@ -13,6 +13,10 @@ angular.module('sessions', ['ngRoute'])
 		templateUrl: '/public/m/sessions/sessions.html',
 		controller: 'sessionsCtrl'
 	})
+		.when('/agenda/:id', {
+		templateUrl: '/public/m/sessions/sessions.html',
+		controller: 'sessionsCtrl'
+	})
 
 	.when('/sessions/:id/details', {
 		templateUrl: '/public/m/sessions/session.html',

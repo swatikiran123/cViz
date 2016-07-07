@@ -50,6 +50,7 @@
 <div class="container" id="menu">
     <div class="container" id="menu">
         <div class="row">
+        {{vid}}
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <a href="/m/visits/#/agenda/{{vid}}">
                     <div class="menu-circle-icon agenda agenda-icon"></div>
@@ -78,7 +79,7 @@
  <!--        <div ng-if="finalFeedback==true && ((current | date : 'dd MMM yyyy HH:mm:ss') > (lastSession.session.endTime | date : 'dd MMM yyyy HH:mm:ss'))" class="row"> -->
         <div ng-if="(finalFeedback==true && (group == 'admin' || group == 'vManager' || group == 'user' || group == 'exec')) || (finalFeedback==true && status == 'finalize' && group == 'customer')" class="row">
           <div class="col-xs-4 col-sm-4 col-md-4">
-           <a href="/m/facts/{{vid}}">
+           <a href="/m/facts/">
             <div class="menu-circle-icon factsheet factsheet-icon"></div>
             <div class="factsheets-text">FACTSHEETS</div>
           </a>
