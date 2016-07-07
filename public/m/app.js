@@ -50,11 +50,13 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
+				var clientExecs = response.visits.cscPersonnel; 
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log('this is null');
 					console.log(user.groups);
-					if(user.groups=='vManager'|| user.groups=='admin')
+					console.log(clientExecs);
+					if(user.groups=='vManager'|| user.groups=='admin' || clientExecs != null)
 					{
 						defer.resolve(response.visits);
 					}
@@ -65,7 +67,8 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					else
 					{
 						defer.reject("Not active visit");
-					}				}
+					}				
+				}
 				else {
  					 //console.log("Not active visit");
  					 defer.reject("Not active visit");
@@ -100,10 +103,12 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
+				var clientExecs = response.visits.cscPersonnel; 
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log(user.groups);
-					if(user.groups=='vManager'|| user.groups=='admin')
+					console.log(clientExecs);
+					if(user.groups=='vManager'|| user.groups=='admin' || clientExecs != null )
 					{
 						defer.resolve(response.visits);
 					}
@@ -136,10 +141,11 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
              console.log(response);
              console.log(status);
              var visitStatus = response.status;
+             var clientExecs = response.visits.cscPersonnel; 
              if(response !== undefined){
              	console.log(visitStatus);
              	console.log(user.groups);
-             	if(user.groups=='vManager'|| user.groups=='admin')
+             	if(user.groups=='vManager'|| user.groups=='admin' || clientExecs != null)
              	{
              		defer.resolve(response);
              	}

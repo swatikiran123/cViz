@@ -12,10 +12,14 @@ feedback.config(['$routeProvider', function ($routeProvider) {
 })
 
 }])
-feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $filter, $location, $routeParams,$http,$rootScope) {
+feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval, $filter, $location, $routeParams,$http,$rootScope,appMUserService) {
+   
+appMUserService.activeMUser().then(function(user){
+    $scope.acvtiveuser = user._id;
+console.log($scope.acvtiveuser);
     $scope.order = 0;
     $scope.counter = 0;
-    console.log($rootScope.user._id);
+    console.log($scope.acvtiveuser);
     $scope.showSaveNext = true;
     $scope.finalFeedback=false;
 
@@ -30,8 +34,8 @@ feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval,
                 $scope.visitId = response.visits._id;
                 // console.log(response.visits.overallfeedback);
                 for (var i = 0; i < response.visits.overallfeedback.length; i++) {
-                    // console.log(response.visits.overallfeedback[i].id+"-"+$rootScope.user._id);
-                    if(response.visits.overallfeedback[i].id=== $rootScope.user._id)
+                    // console.log(response.visits.overallfeedback[i].id+"-"+$scope.acvtiveuser);
+                    if(response.visits.overallfeedback[i].id=== $scope.acvtiveuser)
                     {
                        if (response.visits.overallfeedback[i].feedbackElg == "true") {
                             $scope.finalFeedback=true;
@@ -46,7 +50,7 @@ feedback.controller('overallFeedbackCtrl', function($scope, $timeout, $interval,
                 });
 
                 $http.get('/api/v1/secure/feedbacks/').success(function(response) {
-                    $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, feedbackOn: "visit" ,providedBy:$rootScope.user._id });
+                    $scope.feedbackSamplelist = $filter('filter')(response, {visitid:$scope.visitId, feedbackOn: "visit" ,providedBy:$scope.acvtiveuser });
                 });
             });
 
@@ -134,7 +138,7 @@ $scope.orderIncrement = function()
 
     $scope.next = function(order) {
         deleteData();
-        var providedById = $rootScope.user._id;
+        var providedById = $scope.acvtiveuser;
         $scope.feedbackModel.visitid = $scope.visitId;
         $scope.feedbackModel.template = $scope.overallFeedbackTmpl;
         $scope.feedbackModel.providedBy = providedById;
@@ -177,7 +181,7 @@ $scope.orderIncrement = function()
         };
 
         $scope.submitAndExitForm = function() {
-            var providedById = $rootScope.user._id;
+            var providedById = $scope.acvtiveuser;
             $scope.feedbackModel.visitid = $scope.visitId;
             $scope.feedbackModel.template = $scope.overallFeedbackTmpl;
             $scope.feedbackModel.providedBy = providedById;
@@ -257,16 +261,19 @@ $scope.orderIncrement = function()
             // console.log(answerChoice.toString());
             $scope.feedbackModel.item[index].answer = answerChoice.toString();
         };
-
+});
     });
 
 
-feedback.controller('thankyouCtrl', ['$scope', '$location', '$http','appService','$rootScope',  function ($scope, location, $http,appService,$rootScope) {
+feedback.controller('thankyouCtrl', ['$scope', '$location', '$http','appService','$rootScope', 'appMUserService', function ($scope, location, $http,appService,$rootScope,appMUserService) {
     console.log("Thank You Controller Running");
+
+    appMUserService.activeMUser().then(function(user){
+        $scope.activeuser = user;
     $scope.order = 0;
     $http.get('/api/v1/secure/visits/current/keynotes').success(function(response) {
         $scope.thankyouResponse = response[1];
-        $scope.customerName = $rootScope.user.name.first;
+        $scope.customerName = $scope.activeuser.name.first;
         $scope.user1_id = $scope.thankyouResponse[0].noteBy;
         $scope.user2_id = $scope.thankyouResponse[0].noteBy1;
         $scope.user3_id = $scope.thankyouResponse[0].noteBy2;
@@ -291,4 +298,5 @@ feedback.controller('thankyouCtrl', ['$scope', '$location', '$http','appService'
             })
         });
     })
+});
 }]);

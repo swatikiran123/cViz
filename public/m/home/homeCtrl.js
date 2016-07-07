@@ -2,7 +2,7 @@ var app = angular.module('home');
 
 app.controller('homeCtrl', function ($scope, location, $rootScope, $routeParams, $http, appService, appMUserService, appServicem) {
 appMUserService.activeMUser().then(function(user){
-	$scope.vid = $routeParams.id;
+
     $scope.activeUser = user;
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
@@ -18,6 +18,7 @@ appMUserService.activeMUser().then(function(user){
 	// });
 
 	appServicem.activeVisit($routeParams.id).then(function(avisit){
+			$scope.vid = $routeParams.id;
 		if(avisit==''||avisit==null||avisit==undefined)
 		{
 			$scope.button = 'disable';
