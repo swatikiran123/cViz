@@ -36,6 +36,7 @@ service.getvalidationById = getvalidationById;
 service.getVisitStats = getVisitStats;
 service.getLastTimeSessionsById = getLastTimeSessionsById;
 service.getAllSessionsById = getAllSessionsById;
+service.getPDFSessionsById = getPDFSessionsById;
 
 module.exports = service;
 
@@ -1257,3 +1258,75 @@ function getAllSessionsById(id){
 
 		return deferred.promise;
 } // getSessionsById method ends
+
+/// Gen PDF-  Retrieve list of sessions by visit Id
+function getPDFSessionsById(id){
+	var deferred = Q.defer();
+
+	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	var sessionDays = [];
+
+	model
+	.findOne({ _id: id })
+	.exec(function (err, visit) {
+		if(err) {
+			logger.writeLine('error',0,err);
+			deferred.reject(err);
+		}
+		else{
+			scheduleModel
+			.find({ visit: id })
+			.sort('session.startTime')
+			.exec(function (err, sessions){
+				if(err){
+					logger.writeLine('error',0,err);
+					deferred.reject(err);
+				}
+				else{
+					transform(visit, sessions);
+					logger.Json('test',sessionDays);
+					deferred.resolve(sessionDays);
+				}
+						}); // end of scheduleModel find
+					} // end of if else
+    }); // end of model find
+
+		// Internal method to transform visit data to session
+		function transform(visit, sessions)
+		{
+			var vistSchedule =  _.sortBy( visit.schedule, 'startDate' );
+
+			// first built list of all days with location from visit data
+			var i=1;
+			vistSchedule.forEach(function(sch){
+
+				// loop thru each of the days in the schedule
+				var dayRange = moment.range(sch.startDate, sch.endDate);
+				dayRange.toArray('days').forEach(function(d){
+
+					// filter schedule data for each of the days
+					var daySessions = sessions.filter(function(x){
+						var thisDay = moment(x.scheduleDate);
+						return d.isSame(thisDay, 'day')
+					});
+
+					// skip days for which sessions are not scheduled
+					// if(daySessions.length > 0){
+						var schedule = {
+							day : i,
+							date : d,
+							location: sch.location,
+							//count: daySessions.length,
+							sessions: daySessions
+						}; // end of schedule object
+
+						i++;
+					// }
+
+					sessionDays.push(schedule);
+				}); // end of date range loop
+			}); // end of visit vistSchedule loop
+		}
+
+		return deferred.promise;
+} // getPDFSessionsById method ends
