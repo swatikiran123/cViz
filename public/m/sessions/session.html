@@ -192,7 +192,8 @@
                    <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
                    </div>
         <div class="ct commentText">
-                  {{comnt.comment}} <span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
+                  {{comnt.comment}} <span class="sub-text pull-right" ng-if="activeUser._id==comnt.givenBy" 
+                  ng-click="deleteComment($index)"><span class="glyphicon glyphicon-trash" /></span><span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
                   </div>
               
               <hr>

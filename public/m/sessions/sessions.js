@@ -38,4 +38,8 @@ angular.module('sessions', ['ngRoute'])
 		controller: "sessionFeedbackCtrl"
 	})
 
+	.when("/sessionNotes/:id", {
+		templateUrl: '/public/m/sessions/sessionNotes.html',
+		controller: "sessionsNotesCtrl"
+	})
 }]);

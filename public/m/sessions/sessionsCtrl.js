@@ -195,29 +195,28 @@ $scope.pushSession = function(sessionId,rtime){
 		})
 	})
 
-.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout) {
+.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout,appMUserService) {
+	appMUserService.activeMUser().then(function(user){
+
+    $scope.activeUser = user;
+    console.log($scope.activeUser);
 	$scope.arrayData=[];
 	$scope.comment = [];
 	$scope.comment11 = [];
 	$scope.myData = [];
-	console.log($rootScope.user);
+
 	$scope.refresh1 = function()
 	{ 
-    // console.log($scope.visitid);
-
+    $scope.myData = [];
     $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
     {
-    	$scope.comment = response.comments;
-      // console.log($scope.comment);
-
+      $scope.comment = response.comments;
       for(var i=0;i<$scope.comment.length;i++)
       {
       	$scope.myData.push($scope.comment[i]._id);
       }
   });
 }
-
-// refresh1();
 
 var refresh2 = function()
 { 
@@ -272,6 +271,18 @@ var refresh2 = function()
 
 $scope.btn_add = function(comment1) {
 
+	$scope.myData = [];
+	$scope.comment = [];
+	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+	{
+		$scope.comment = response.comments;
+      // console.log($scope.comment);
+
+      for(var i=0;i<$scope.comment.length;i++)
+      {
+      	$scope.myData.push($scope.comment[i]._id);
+      }
+  }).then(function() {	
   if(comment1 !=''){
     $scope.comment11.push({
       comment: comment1,
@@ -279,7 +290,6 @@ $scope.btn_add = function(comment1) {
     });
 
     $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
-      // console.log(response);
       $scope.commentid = response._id;
       $scope.myData.push($scope.commentid);
     });
@@ -290,17 +300,12 @@ $scope.btn_add = function(comment1) {
       $scope.visitSchedule = response;
       var inData = $scope.visitSchedule;
       inData.comments = $scope.myData;
-      console.log($scope.myData)
       $scope.commentsData = [];
-      console.log(inData);
       $http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
 
-      	// refresh2();
         $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
         {
-          console.log(response)	;
           $scope.comment = response.comments;
-          console.log($scope.comment);
           $scope.oneData = [];
           for(var i=0;i<$scope.comment.length;i++)
           {
@@ -308,9 +313,7 @@ $scope.btn_add = function(comment1) {
             $scope.commentsData = $scope.oneData;
           }
         }).then(function() {
-          console.log($scope.commentsData);
           toaster.pop({body:"Your Note has been received."});
-          $timeout(callSubmit,3000);
         });
 
       });
@@ -320,13 +323,34 @@ $scope.btn_add = function(comment1) {
 $scope.txtcomment = "";
 $scope.comment11 = [];
 }
+});
 }
 
-function callSubmit() {
-	window.location.reload();
+// function callSubmit() {
+// 	window.location.reload();
+// };
+
+$scope.deleteComment = function(index){
+	$scope.commentData = [];
+	$scope.myData = [];
+	$scope.comment.splice(index, 1);
+
+	for(var i=0;i<$scope.comment.length;i++)
+	{	
+		$scope.commentData.push($scope.comment[i]._id);
+		$scope.myData.push($scope.comment[i]._id);
+	}
+
+	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response)
+	{	
+		var inData = response;
+		inData.comments = $scope.commentData;
+		$http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
+		});
+	});
 };
 
-
+});
 })
 
 /*.controller('agendaCtrl', function($rootScope, $routeParams, $location, appServicem) {
@@ -345,4 +369,31 @@ function callSubmit() {
 	}).success(function(response){
 		$scope.sessionTitle = response.session.title;
 	});
+})
+
+.controller('sessionsNotesCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
+		$scope.activevists = true;
+		if(avisit == 'Not active visit'){
+			$scope.activevists =false;
+			$scope.message == "No active visits available in the database Please contact the Visit Portal Admin"
+		};
+
+		var refresh = function() {
+			$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
+			}).success(function(response) {
+				$scope.scheduleList = response;
+			});
+			$http.get('/api/v1/secure/visits/' + avisit._id ,{
+		//cache: true
+	}).success(function(response) {
+		$scope.visittitle = response;
+		$scope.visittitles = $scope.visittitle.client.name;
+	})
+	console.log('refresh');
+
+};
+
+refresh();
 });
+})
