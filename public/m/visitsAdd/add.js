@@ -14,6 +14,8 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
     $scope.store="";
     $scope.storetwo="";
     $scope.storeStatus="";
+    $scope.parentClientString="";
+    $scope.childClientString="";
   //offerings - Http get for drop-down
   $http.get('/api/v1/secure/lov/offerings').success(function(response) {
     $scope.offerings=response.values;
@@ -42,7 +44,7 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
     }
     $scope.addtwo=function(visits,status){
       // console.log(visits)
-      if (visits.interest!= undefined && status != undefined && (visits.interest.objective !="" || visits.interest.objective != undefined) && visits.interest.businessType != undefined  && visits.interest.visitType != undefined) {
+      if (visits.agenda!= undefined && visits.interest!= undefined && status != undefined && visits.interest.businessType != undefined  && visits.interest.visitType != undefined) {
         $scope.storetwo=visits;
         $scope.storeStatus=status;
         WizardHandler.wizard().next();
@@ -64,13 +66,17 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
       {
        inDataClient.name = $scope.store.clientName;
      }
-
-     if ($scope.store.subName!=null) 
-     {
-       inDataClient.subName =$scope.store.subName;
-     }
-     
-     if ($scope.store.regions!=null) 
+     if(inDataClient.name == null || inDataClient.name == undefined){
+      inDataClient.name=    $scope.parentClientString;
+    }
+    if ($scope.store.subName!=null) 
+    {
+     inDataClient.subName =$scope.store.subName;
+   }
+   if(inDataClient.subName == null || inDataClient.subName == undefined){
+     inDataClient.subName= $scope.childClientString;
+   }
+   if ($scope.store.regions!=null) 
      {
        inDataClient.regions =$scope.store.regions;
      }
@@ -100,10 +106,18 @@ angular.module('visitAdd', ['ngRoute','header','scroll','mgo-angular-wizard','mu
        inDataClient.name = $scope.store.clientName;
      }
 
-     if ($scope.store.subName!=null) 
-     {
-       inDataClient.subName =$scope.store.subName;
-     }
+     if(inDataClient.name == null || inDataClient.name == undefined){
+      inDataClient.name=    $scope.parentClientString;
+    }
+    
+    if ($scope.store.subName!=null) 
+    {
+     inDataClient.subName =$scope.store.subName;
+   }
+   
+   if(inDataClient.subName == null || inDataClient.subName == undefined){
+     inDataClient.subName= $scope.childClientString;
+   }
 
      if ($scope.store.regions!=null) 
      {
@@ -135,6 +149,7 @@ $scope.create = function() {
     // console.log($scope.clientIdData);
     // console.log($scope.storetwo.interest.businessType);
     // console.log($scope.storetwo.interest.objective);
+    // console.log($scope.storetwo.agenda);
     // console.log($scope.storetwo.interest.visitType);
 
     var inData       = {};
@@ -144,6 +159,7 @@ $scope.create = function() {
     inData.schedule = $scope.schedules;
     inData.offerings=$scope.store.selectedList;
     inData.interest =$scope.storetwo.interest;
+    inData.agenda=$scope.storetwo.agenda;
 
     // console.log(inData);
 
@@ -217,7 +233,37 @@ $scope.create = function() {
     }else{
       $scope.subdis= false;}
     };
+    $scope.parentClientChanged = function(str) {
+      $scope.parentClientString = str;
+  console.log($scope.parentClientString);
+  if($scope.parentClientString!=null || $scope.parentClientString!="")
+  {
+    $scope.parentClient = false;
+    $scope.errparentMsg = "";
+  }
 
+  if($scope.parentClientString==null || $scope.parentClientString=="")
+  {
+    $scope.parentClient = true;
+    $scope.errparentMsg = "Parent Account Name is Mandatory field";
+  }
+}  
+
+$scope.childClientChanged = function(str) {
+  $scope.childClientString = str;
+    console.log($scope.childClientString);
+    if($scope.childClientString!=null || $scope.childClientString!="")
+    {
+      $scope.childClient = false;
+      $scope.errchildMsg = "";
+    }
+
+    if($scope.childClientString==null || $scope.childClientString=="")
+    {
+      $scope.childClient = true;
+      $scope.errchildMsg = "Child Account Name is Mandatory field";
+    }
+  } 
   }
   ]
   )
