@@ -30,10 +30,12 @@ appMUserService.activeMUser().then(function(user){
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
 		}).success(function(response) {
+
 			$scope.visitId = avisit._id;
 			$scope.dayHighlighter = response;
 			for(var i=0;i<$scope.dayHighlighter.length;i++)
-			{	
+			{
+			
 				$scope.weatherData = [];
 				$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + $scope.dayHighlighter[i].location + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{
 					cache: true
@@ -56,6 +58,7 @@ appMUserService.activeMUser().then(function(user){
 	}).success(function(response) {
 //console.log(response);
 		$scope.status =  response.status;
+
 		$scope.endDate = response.endDate;
 			for (var i = 0; i < response.overallfeedback.length; i++) {
 
@@ -104,6 +107,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		}).success(function(response) {
 			if(response[0] != "")
 			{
+				$scope.button1 = "true";
 				$scope.welcomeResponse = response[0];
 				$scope.length = $scope.welcomeResponse.length - 1;
 				$scope.user_id = $scope.welcomeResponse[$scope.order].noteBy;
@@ -133,6 +137,8 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 			else
 			{
 				console.log("No keynotes Defined");
+		      angular.element('#videoModal').modal('hide');
+			
 			}
 
 

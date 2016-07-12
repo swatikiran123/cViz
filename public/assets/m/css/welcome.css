@@ -1,4 +1,7 @@
-	
+	.close{
+		width: 20px;
+	}
+
 		.lo{
 	    width: 10%;
 	    height: 10%;
@@ -93,10 +96,11 @@
 	@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 			.richtext1{
     height: 345px;
-
+    position: relative;
     overflow-y: scroll;
 }
-	
+
+
 
 .lo1{
 			width: 34%;
@@ -150,7 +154,12 @@
 
 }
 
-@media only screen and (max-device-width: 320px){
+@media only screen and (max-device-width: 320px) and (max-device-height: 480px){
+
+	    #videoModal{
+width: 95%;
+height: 460px;
+}
 		#welcome{
  		
  		width: 280px;
@@ -172,7 +181,7 @@
      }
 
      		.richtext1{
-    height: 320px;
+    height: 240px;
 
     overflow-y: scroll;
 }

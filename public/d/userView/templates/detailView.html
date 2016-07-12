@@ -1,5 +1,6 @@
 <div ng-if="userModel">
-<div ng-hide="userModel.summary == null" class="representative-bios">{{userModel.summary}}</div>
+
+<div  class="representative-bios">{{userModel.summary}}</div>
 <div class="reach-representative">
     <div class="reach-representative-text">Contact by</div>
     <a ng-href="tel: {{userModel.contactNo[0].contactNumber}}" class="tele-link">

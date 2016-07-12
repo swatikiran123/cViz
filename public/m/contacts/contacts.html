@@ -25,11 +25,11 @@
 
         <div class="heading1">CONTACT YOUR VISIT MANAGER</div>
         
-        <div class="list-group" filter-list="$parent.query.$" style="display:inline-block;">
-            <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
+        <div class="list-group" filter-list="$parent.query.$">
+            <div class="spoc-pic col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <img class="img-circle spocpicture" ng-src="{{anchor.avatar}}">
             </div>
-            <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11">
+            <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11 col-lg-11">
                 <div class="spoc-name">{{anchor.name.prefix}} {{anchor.name.first}} {{anchor.name.middle}} {{anchor.name.last}} {{anchor.name.suffix}}
                 </div>
                 <div class="spoc-designation">{{anchor.jobTitle}}</div>{{anchor.type}}
@@ -42,15 +42,17 @@
                 <div class="reach-spoc-email">
                     <div class="number">{{anchor.email}}</div>
                     <a class="email-text" ng-href="mailto: {{anchor.email}}">EMAIL</a>
-                </div>
-                <div class="download-contact glyphicon glyphicon-paperclip">
-                    <div class="download-text"><a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Download Contact</a></div>
+                </div><br>
+                <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Active Address Book</a>
                 </div>
 
             </div>
-
+<br>
         </div>
-        <div ng-if="contactList[0]!=null" class="heading1">CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
+
+<br>
+               <div ng-if="contactList[0]!=null" class="heading1">CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
         <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
          <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList | filter:query">
@@ -70,8 +72,8 @@
                     <div class="number">{{spoc.email}}</div>
                     <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
                 </div>
-                <div class="download-contact glyphicon glyphicon-paperclip">
-                    <div class="download-text"><a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.vcf">Download Contact</a></div>
+                  <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                    <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.vcf">Active Address Book</a>
                 </div>
             </div>
          

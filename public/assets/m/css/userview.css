@@ -106,8 +106,8 @@
             -webkit-transform: rotate(-180deg);
             -moz-transform: rotate(-180deg);
             transform: rotate(-180deg);
-            margin-top: 15px;
-            padding-right: 45px;
+            margin-top: 5px;
+            padding-right: 15px;
             -webkit-transition: all 0.5s ease;
             -moz-transition: all 0.5s ease;
             transition: all 0.5s ease;
