@@ -59,7 +59,8 @@
     background-color: black;
     position:relative;
     padding-left: 20px;
-    height: 35px;
+    padding-top: 15px;
+    height: 60px;
     color: white;
 }
 .hd-sticky{
@@ -148,7 +149,26 @@ height:52px;
     -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
      }
+         .title2 {
+    width: 80%;
+    overflow-x: scroll;
+    white-space: nowrap;
+   
+}
+@media only screen and (min-device-width: 769px) and (max-device-width: 2000px) {
     
+    .title2 {
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    margin-bottom: -5px;
+    padding-bottom: 5px;
+}
+
+
+
+}
+
 
  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 .searchViewHead {

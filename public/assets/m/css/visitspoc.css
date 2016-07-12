@@ -17,7 +17,7 @@
     .spoc-details-container {
         margin: 10px;
         background-color: #fff;
-        display: inline-block;
+ display: inline-block;
         padding: 10px;
         box-shadow: 2px 2px 2px #c1c1c1;
         width: 98%;
@@ -47,6 +47,8 @@
         .spoc-bios-div {
             padding-left: 20px;
             padding-right: 0;
+
+
         }
             .spoc-name {
                 font-family: robotoBold;
@@ -59,6 +61,7 @@
                 margin-bottom: 12px;
             }
             .spoc-bios {
+            
                 font-family: robotoRegular;
                 font-size: 0.8em;
                 padding-top: 10px;
@@ -95,8 +98,8 @@
                 .number,
                 .email {
                     border-bottom: 1px solid #d0d0d0;
-                    margin-right: 15px;
-                    margin-left: 15px;
+                   /* margin-right: 15px;
+                    margin-left: 15px;*/
                     padding-bottom: 5px;
                     margin-bottom: 5px;
                 }

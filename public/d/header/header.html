@@ -1,4 +1,4 @@
-
+    
  <div scroll>
     <div id="header_nav" ng-class="navClass">
 
@@ -12,6 +12,7 @@
 					<!-- <div ng-if="$root.canBack()==false" class="icon" id="menu"> -->
 						<a id="menu-toggle" >
 								<i class="fa fa-bars hds-icon" ></i>
+
 						</a>
 					<!-- </div>
 					<div ng-if="$root.canBack()==true" class="icon">
@@ -19,13 +20,15 @@
 							<i class="fa fa-arrow-left hds-icon"></i>
 						</a>
 					</div> -->
-            &nbsp;&nbsp;<a href="#">{{title2 | uppercase}}</a>
+   <p class="title3" style="padding-left:20px;" href="#">{{title2 | uppercase}}</p>
+    
         </div>
         <div class="hd-sticky">
         <ng-transclude></ng-transclude>
         </div>
     </div>
-</div>
+    </div>
+
 
 <script>
     $(document).on("click", "#menu-toggle", function(e) {

@@ -10,6 +10,7 @@
 
        <span ng-include src="'/public/m/home/welcome.html'"></span>
    </div>
+   
 
    <!-- Modal -->
 
@@ -23,8 +24,8 @@
 
  </div> -->
 
- <div class="scroll-outer">
-    <div class="load" ng-show="loading"><img src="/public/assets/m/img/bg/ajax-loading.gif"/></div>
+ <div class="scroll-outer" >
+    <div class="load" ng-repeat="objs in dayHighlighter"  ng-show="loading"><img src="/public/assets/m/img/bg/ajax-loading.gif"/></div>
     <div id="scrollBox" align="center" class="scroll-inner">
         <div ng-repeat="objs in dayHighlighter">
         	<a ng-href="/m/visits/#/sessions/{{visitId}}/?day={{objs.day}}">
