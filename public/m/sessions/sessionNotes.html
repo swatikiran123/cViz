@@ -1,0 +1,126 @@
+<style>
+.border{
+	    border-top:1px dotted #bbb;
+	    padding-top: 10px;
+}
+  .modal-dialog1{
+    overflow-y: initial !important
+  }
+  .modal-footer1{
+    height: 200px;
+    overflow-y: auto;
+  }
+  .ct{
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left:55px;
+  }
+  .actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+  }
+  .commenterImage {
+    width:50px;
+    margin-right:5px;
+    height:100%;
+    /*float:left;*/
+  }
+  .commenterImage img {
+    width:100%;
+    border-radius:50%;
+  }
+  .commentText p {
+    margin:0;
+    overflow-x: auto;
+  }
+  .sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+  }
+  .sessionhead{
+  	font-size: 16px;
+  	color: black;
+  }
+  @media only screen and (max-device-width: 320px){
+    .modal-dialog1{
+      padding-top:25%;
+      padding-right: 5%; 
+      width: 90%;
+      height: 80%;
+    }
+
+    .modal-footer1{
+      height: 230px;
+      overflow-y: auto;
+    }
+  }
+
+  @media only screen and (min-device-width: 321px) and (max-device-width: 480px){
+   .modal-dialog1{
+    padding-top:20%;
+    padding-right: 5%; 
+    width: 90%;
+    height: 85%;
+  }
+  .modal-footer1{
+    height: 350px;
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+ .modal-dialog1{
+  padding-top:15%;
+  padding-right: 5%; 
+  width: 90%;
+  height: 85%;
+}
+ .modal-footer1{
+    height: 600px;
+    overflow-y: auto;
+  }
+}
+
+</style>
+<div>                                           
+
+	<div header showprofile="false" icon="fa fa-calendar" title1="Session Notes" title2="{{visittitles}} Visit to CSC India" >
+		<div class="sessionhead">
+				Session Notes Summary
+		</div>
+	</div>
+
+
+	<div class="divtop">
+		<div ng-if = "activevists == true">
+			<div class="div-padding" ng-repeat="schedules in scheduleList track by $index">
+			<div ng-if = "schedules.session.type != 'lunch' && schedules.session.type != 'breakfast' && schedules.session.type != 'dinner' && schedules.session.type != 'tea-break' ">	
+					<div class="day-agenda-header1">
+						<i class="fa fa-calendar"></i>
+						{{schedules.scheduleDate | date : "dd MMM yyyy"}} &nbsp;&nbsp;
+						{{schedules.session.title}}	&nbsp;&nbsp;				
+						<i class="fa fa-map-marker"></i>
+						{{schedules.session.location}}
+					</div>
+					<div class="border" ng-repeat="comnt in schedules.comments">
+						<div class="commenterImage pull-left">
+							<div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
+						</div>
+						<div class="ct commentText">
+							{{comnt.comment}} <span class="sub-text pull-right" ng-if="activeUser._id==comnt.givenBy" 
+							ng-click="deleteComment($index)"><span class="glyphicon glyphicon-trash" /></span><span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
+						</div>
+					</div>
+				</div>
+			</div> <!-- end of presentation template -->
+		</div> <!-- end of day -->
+	</div> <!-- enf of days - sessions-->
+</div> <!-- end of scrollable area -->
+
+<div ng-if="activevists != true">
+	<br>
+	No active visits available in the database<br/>
+	Please contact the Visit Portal Admin
+</div>
+</div>

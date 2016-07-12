@@ -102,6 +102,20 @@
     font-size: 20px;
     text-align: center;
 }
+
+.day-agenda-header1{
+    background: linear-gradient(#545454, #939393);
+    color: #fff;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 10px;
+    font-family: robotoCondensedBold;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
+}
 .cancel{
   display: none;
 }

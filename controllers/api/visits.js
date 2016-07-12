@@ -98,6 +98,10 @@ function getWithAction(req, res){
             getLastTimeSessionsById(req,res);
             break;
 
+        case "getallsessions": 
+            getAllSessionsById(req,res);
+            break;   
+
 		default:
 			res.send("Invalid action");
 	}
@@ -268,6 +272,21 @@ function getVisitStats(req,res){
 
 function getLastTimeSessionsById(req,res){
   dataService.getLastTimeSessionsById(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function getAllSessionsById(req,res){
+  dataService.getAllSessionsById(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);
