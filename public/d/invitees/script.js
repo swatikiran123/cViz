@@ -26,62 +26,75 @@ angular.module('inviteesDirective', [])
   $scope.addInvitees=function(invite){
 
     $http.get('/api/v1/secure/admin/users/email/' + invite).success(function(response) {
+      console.log(response.association);
      if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
      {
-       if(response.memberOf == null || response.memberOf == undefined || response.memberOf == "" )
-       {
+       // if(response.memberOf == null || response.memberOf == undefined || response.memberOf == "")
+       // {
          $scope.userId = response._id;
+         var count=0;
 
-         $scope.array.push({
-          invite: $scope.userId,
-        });
+         for (var h = 0; h < $scope.arraydata.length; h++) {
+          if ($scope.userId == $scope.arraydata[h]) {
+            count++;
+          }
+        }
+        if (count == 0) {
+          $scope.array.push({
+            invite: $scope.userId,
+          });
 
-         $scope.checked = false;
+          $scope.checked = false;
 
-         for (var i =0 ;i<$scope.array.length;  i++) {
+          for (var i =0 ;i<$scope.array.length;  i++) {
            j =$scope.array[i].invite;
          };
 
          $scope.arraydata.push(j);
        }
-       else {
+       else{
         $scope.checked = true;
-        $scope.message = "User is not an organization employee!!";
+        $scope.message = "User already taken!!";
         $timeout(function () { $scope.message = ''; }, 3000);
       }
-    }
 
-    else {
-      $scope.checked = true;
-      $scope.message = "User is not an organization employee!!";
-      $timeout(function () { $scope.message = ''; }, 3000);
-    }
-    
-    $scope.invite='';
+    // }
+    // else {
+    //   $scope.checked = true;
+    //   $scope.message = "User is not an organization employee!!";
+    //   $timeout(function () { $scope.message = ''; }, 3000);
+    // }
+  }
 
-  })
+  else {
+    $scope.checked = true;
+    $scope.message = "User is not an organization employee!!";
+    $timeout(function () { $scope.message = ''; }, 3000);
+  }
 
-    .error(function(response, status){
-      if(status===404)
-      {
-        $scope.checked = true;
-        $scope.message = "User not found !!!";
-        $timeout(function () { $scope.message = ''; }, 3000);
-      }
-      else
-        console.log("error with user directive");
-    });
+  $scope.invite='';
+
+})
+
+.error(function(response, status){
+  if(status===404)
+  {
+    $scope.checked = true;
+    $scope.message = "User not found !!!";
+    $timeout(function () { $scope.message = ''; }, 3000);
+  }
+  else
+    console.log("error with user directive");
+});
 
 
   };//end of addInvitees
 
   $scope.removeInvitees = function(index){
-    console.log(index);
     $scope.array.splice(index, 1);
   };
 
   $scope.removeInviteesdata = function(index){
-    console.log(index);
     $scope.arraydata.splice(index, 1);
   };
 

@@ -25,6 +25,10 @@ angular.module('userdisplayDirective', [])
           $scope.message = "Error!";
 
         }
+        if(status===404)
+        { 
+          $scope.message = "User not found !!!";
+        }
       });
     }
     if($scope.showFlag === "noUser")
