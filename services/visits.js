@@ -927,14 +927,16 @@ function getParticipantsById(id){
 
 			// push all client/emp side visitors
 			visit.visitors.forEach(function(v){
-				switch(v.visitor.association)    {
-					case "employee":
-					arrAddItem(emp, v.visitor);					
-					break;
+				if (v.visitor!= null && v.visitor!= undefined && v.visitor!= "" ){
+					switch(v.visitor.association)    {
+						case "employee":
+						arrAddItem(emp, v.visitor);					
+						break;
 
-					case "customer":
-					arrAddItem(client, v.visitor);
-					break;
+						case "customer":
+						arrAddItem(client, v.visitor);
+						break;
+					}
 				}
 			})
 
@@ -945,6 +947,7 @@ function getParticipantsById(id){
 			// arrAddArray(emp, visit.invitees);
 			// console.log(visit.invitees)
 			// push all client/emp side invitees
+			if (visit.invitees.length!=0 && visit.invitees!= undefined && visit.invitees != null && visit.invitees != "") {
 				for (var i = 0; i < visit.invitees.length; i++) {
 					console.log(visit.invitees.association);
 					switch(visit.invitees[i].association)    {
@@ -956,7 +959,8 @@ function getParticipantsById(id){
 						arrAddItem(client, visit.invitees[i]);
 						break;
 					}
-				};
+				}
+			};
 
 			// push participants from visit schedules
 			scheduleModel
