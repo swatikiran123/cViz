@@ -11,8 +11,8 @@ module.exports = {
 		'mobile'			: {
 			'customer'	: '/m/main/',
 			'exec'			: '/m/visits//#/execvisits',
-			'user'			: '/m/visits/',
-			'vManager'	: '/m/visits/',
-			'admin'			: '/m/visits/'
+			'user'			: '/m/main/#/visits/all/my',
+			'vManager'	: '/m/main/#/visits/all/my',
+			'admin'			: '/m/main/#/visits/all/my'
 		}
 }

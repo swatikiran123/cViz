@@ -81,8 +81,8 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
     $scope.group = user.groups;
 
 	$scope.order = 0;
-
-	
+	$scope.myData = [];
+	$scope.keynotes = [];	
 	$scope.showContinue = true;
 	$scope.medium = "medium";
 	$scope.arrayData=[];
@@ -97,10 +97,33 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
     		{
     			angular.element('#videoModal').modal('hide');
     		}
+    		if($scope.activeUser.groups=='vManager' || $scope.activeUser.groups=='admin' || $scope.activeUser.groups=='user')
+    		{
     		if(avisitData!=''||avisitData!=null||avisitData!=undefined)
     		{
     			angular.element('#videoModal').modal('show');
     		}
+    		}
+    		$http.get('/api/v1/secure/visits/'+avisitData._id,{
+    			cache: true
+    		}).success(function(response) {
+    			for (var i = 0; i < response.visitors.length; i++) {
+
+    				if(response.visitors[i].visitor === $scope.activeUser._id)
+    				{
+    					$scope.visitWelcomeStatus = response.visitors[i].welcomeStatus;
+    					console.log($scope.visitWelcomeStatus);
+    					if($scope.visitWelcomeStatus == 'notshown')
+    					{
+    						angular.element('#videoModal').modal('show');
+    					}
+    					if($scope.visitWelcomeStatus == 'shown')
+    					{
+    						angular.element('#videoModal').modal('hide');
+    					}
+    				}								
+    			};	
+			});		
     
 		$http.get('/api/v1/secure/visits/'+avisitData._id+'/keynotes',{
 			cache: true
@@ -128,8 +151,141 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 				}).success(function(response) {
 					$scope.user3 = response;
 				})
-				if(response[0].length == 1)
-				{
+				if(response[0].length >= 1)
+				{	
+						$http.get('/api/v1/secure/visits/'+avisitData._id,{
+							cache: true
+						}).success(function(response) {
+							console.log(response);
+							for (var i = 0; i < response.visitors.length; i++) {
+
+								if(response.visitors[i].visitor === $scope.activeUser._id)
+								{
+									response.visitors[i].welcomeStatus = "shown";
+								}								
+							};	
+							// console.log(response);
+							if($scope.visitWelcomeStatus == 'notshown')
+							{
+								$scope.visits = response;
+								var inData = $scope.visits;
+								console.log(inData);
+								inData.client=$scope.visits.client._id;
+								inData.createBy = $scope.visits.createBy._id;
+								if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+								{
+									inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+								}
+
+								if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+								{
+									inData.cscPersonnel.salesExec = null;
+								}
+
+								if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+								{
+									inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+								}
+
+								if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+								{
+									inData.cscPersonnel.accountGM = null;
+								}
+
+								if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+								{
+									inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+								}
+
+								if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+								{
+									inData.cscPersonnel.industryExec = null;
+								}
+
+								if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+								{
+									inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+								}
+
+								if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+								{
+									inData.cscPersonnel.globalDelivery = null;
+								}
+
+								if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+								{
+									inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+								} 
+
+								if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+								{
+									inData.cscPersonnel.cre = null;
+								}
+
+								if(inData.anchor!=null || inData.anchor != undefined)
+								{
+									inData.anchor = $scope.visits.anchor._id;
+								}
+
+								if(inData.anchor==null || inData.anchor == undefined)
+								{
+									inData.anchor = null;
+								}
+
+								if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+								{
+									inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+								}
+
+								if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+								{
+									inData.secondaryVmanager = null;
+								}
+
+								if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+								{
+									inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+								}  
+
+								if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+								{
+									inData.feedbackTmpl = null;
+								}  
+
+								if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+								{
+									inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+								}  
+
+								if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+								{
+									inData.sessionTmpl = null;
+								}  
+								for (var i =0; i<$scope.visits.keynote.length;i++) {
+									$scope.keynotes.push({
+										note: $scope.visits.keynote[i].note._id,
+										noteName: $scope.visits.keynote[i].note.title, 
+										context: $scope.visits.keynote[i].context,
+										order: $scope.visits.keynote[i].order
+									});
+								};
+								if($scope.comment!=null)
+								{
+									for(var i=0;i<$scope.comment.length;i++)
+									{
+										$scope.myData.push($scope.comment[i]._id);
+									}
+									inData.comments = $scope.myData;
+								}
+								inData.keynote = $scope.keynotes;						
+								inData.overallfeedback = $scope.visits.overallfeedback;
+
+
+								$http.put('/api/v1/secure/visits/'+avisitData._id, inData).success(function(response) {
+									console.log(response);
+								})
+							}
+							});			
 					$scope.showContinue = false;
 				}
 			}
@@ -287,9 +443,9 @@ $scope.vid = avist._id;
 									{
 										$scope.myData1.push($scope.comment[i]._id);
 									}
-									inData.comments = $scope.myData;
+									inData.comments = $scope.myData1;
 								}
-								inData.keynote = $scope.keynotes;						
+								inData.keynote = $scope.keynotes1;						
 								inData.overallfeedback = $scope.visits.overallfeedback; 
 
  			

@@ -38,7 +38,8 @@ var visitSchema = new mongoose.Schema({
 	chargeCode						: { type: String, trim: true },
 	visitors						: [{
 		visitor						: { type: Schema.Types.ObjectId, ref: 'User' },
-		influence					: { type: String, lowercase: true, trim: true }		// {Decision Maker, Influencer, End User, Others}
+		influence					: { type: String, lowercase: true, trim: true },		// {Decision Maker, Influencer, End User, Others}
+		welcomeStatus     			: { type: String, default: 'notshown'}
 	}],
 	interest						: {
 		businessType			    : { type: String, lowercase: true, trim: true },		// {new, repeat}
