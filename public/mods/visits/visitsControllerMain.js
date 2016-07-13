@@ -3500,6 +3500,11 @@ $scope.saveoverallfeed=function(){
     })
 }
 });
+
+$scope.viewImageItem = function(x){
+  window.open(x,'_blank');
+};
+
 }])
 
 //Autocompleate - Directive

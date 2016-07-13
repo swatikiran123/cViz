@@ -98,10 +98,12 @@
             <a class="table-btn" href="#/visits/{{visit._id}}/emp" tooltips tooltip-template="View Visit" ng-if="!visitGrid && ((visit.status === 'tentative' && visit.visitors.length >= 1) || (visit.status === 'confirm' && visit.visitors.length >= 1)) ||(!visitGrid &&(visit.status == 'wip'|| visit.status == 'finalize'|| visit.status == 'complete'|| visit.status == 'close' || visit.status ==='re-submitted' || visit.status == 'cancelled'))"><span class="fa fa-eye fa-lg"/></a>
 
             <a class="table-btn" href="#/visits/{{visit._id}}/vman" tooltips tooltip-template="View Visit" ng-if="visitGrid && (( visit.status == 'cancelled' || visit.status == 'close'))"><span class="fa fa-eye fa-lg"/></a>
+
+            <a class="table-btn" href="#/visits/{{visit._id}}/closeSummary" tooltips tooltip-template="Close Summary" ng-if=" visit.status == 'close'"><span class="fa fa-file-text-o fa-lg"/></a>
           </td>
         </tr>
 
-        <!-- <tr ng-show="isSaving && VisitVmag " ng-repeat="visit in VisitsAllList | filter: search |orderBy:orderByField:reverseSort">
+        <!-- <tr ng-show="isSaving && VisitVmag " ng-repeat="visit in VisitsAllList | filter: search  |orderBy:orderByField:reverseSort">
           
           <td>{{visit.startDate | date:'dd MMM yyyy'}} - {{visit.endDate | date:'dd MMM yyyy'}}</td>
           <td>{{visit.title}}</td>
