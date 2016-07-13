@@ -75,8 +75,9 @@
 										</p>
 										<p> <!--Roboto-->
 											<span class="agenda-session-loc">with</span>
-											<userview user-id="session.session.owner" user-model view-mode="bullet-small"></userview>
-											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
+											<userview user-id="session.session.owner" user-model view-mode="bullet-small"
+											view-type="session.session.type.toLowerCase()"></userview>
+											<userview user-id="session.session.supporter" user-model view-mode="bullet-small" view-type="session.session.type.toLowerCase()"></userview>
 
 											<label ng-if="session.invitees.length > 0">+{{session.invitees.length}}</label>
                                             <!--div ng-if="group=='customer' || group=='exec'">

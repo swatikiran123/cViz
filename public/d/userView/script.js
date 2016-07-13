@@ -1,13 +1,15 @@
 angular.module('userViewDirective', [])
 .controller('userViewDirectiveControllerMain', ['$scope', '$http', function($scope, $http) {
 
-  //console.log ($scope.userId);
-  // console.log($scope.userModel);
   $scope.loading= true;
-  if($scope.userModel === undefined || $scope.userModel === "")
-    $scope.showFlag = "none";
-  else
+  if($scope.userModel != undefined)
+  {
     $scope.showFlag = "user";
+  } 
+  if($scope.userModel === undefined && $scope.viewType)
+  {
+    $scope.showFlag = "none";
+  }
 
   $scope.getUser = function(){
     if($scope.userId===""){
@@ -46,7 +48,8 @@ angular.module('userViewDirective', [])
     scope: {
       userId: "=userId",
       viewMode: "@viewMode",
-      userModel: "=userModel"
+      userModel: "=userModel",
+      viewType: "=viewType"
     },
 
     link : function(scope,element,attrs)
