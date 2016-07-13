@@ -1,27 +1,10 @@
 'use strict';
 
 
-// angular.module('mviz-main', [
-// 	'appFilters','appService', 'home','locator','header','scroll','userViewDirective','richTextDirective','appMUserService'
-// 	]);
-
-
-/*angular.module('mviz-main', [
-'appFilters','appService', 'home','locator','header','scroll','userViewDirective','richTextDirective'
-]);
-*/
-
 angular.module('mviz-visits', [
 	'appFilters','appService','appServicem','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir','richTextDirective','home','locator','appMUserService'
 ]);
 
-/*angular.module('mviz-main', [
-	'appFilters','appService','appServicem','home','locator','header','scroll','userViewDirective','richTextDirective','appMUserService'
-	]);
-
-angular.module('mviz-visits', [
-	'appFilters','appService','appServicem','visits','sessions','contacts','header','scroll','feedbackDirective','userViewDirective','execBios','client', 'overallFeedback','ngRateIt','ssnfbdir','richTextDirective'
-	]);*/
 
 angular.module('mviz-facts', [
 	'ngMap',

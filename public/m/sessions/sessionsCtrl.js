@@ -1,6 +1,8 @@
 angular.module('sessions')
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
+		  $scope.visittitles = 'No active visit';
+
 		appServicem.activeVisit($routeParams.id).then(function(avisit){
 	 $scope.activevists = true;
   if(avisit == 'Not active visit'){
@@ -45,7 +47,7 @@ angular.module('sessions')
 		//cache: true
 	}).success(function(response) {
 		$scope.visittitle = response;
-		$scope.visittitles = $scope.visittitle.client.name;
+		$scope.visittitles = $scope.visittitle.client.name + ' Visit to CSC India';
 	})
 
 };

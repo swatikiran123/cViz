@@ -12,7 +12,7 @@ appServicem.activeVisit($routeParams.id).then(function(avisit){
 })*/
 
 .controller('contactsCtrl', function($scope, $location, $routeParams, $http, appService, appServicem, $window) {
- 
+$scope.title = 'No active visit';
   appServicem.activeVisit($routeParams.id).then(function(avisit){
     console.log($routeParams.id);
     var str= String(avisit.locations);
@@ -60,7 +60,7 @@ appServicem.activeVisit($routeParams.id).then(function(avisit){
     var str= String(avisit.locations);
     $scope.cities = str.split(/[ ,]+/);
 
-    $scope.title=avisit.client.name;
+    $scope.title=avisit.client.name + ' Visit to CSC India';
     $scope.anchor=avisit.anchor;
     
 console.log($scope.anchor);
