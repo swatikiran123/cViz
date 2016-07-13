@@ -946,11 +946,10 @@ function getParticipantsById(id){
 			arrAddItem(emp, visit.anchor);
 			arrAddItem(emp, visit.secondaryVmanager);
 			// arrAddArray(emp, visit.invitees);
-			// console.log(visit.invitees)
 			// push all client/emp side invitees
 			if (visit.invitees.length!=0 && visit.invitees!= undefined && visit.invitees != null && visit.invitees != "") {
 				for (var i = 0; i < visit.invitees.length; i++) {
-					console.log(visit.invitees.association);
+					// console.log(visit.invitees.association);
 					switch(visit.invitees[i].association)    {
 						case "employee":
 						arrAddItem(emp, visit.invitees[i]);					
@@ -961,39 +960,51 @@ function getParticipantsById(id){
 						break;
 					}
 				}
-			};
+			}
 
 			// push participants from visit schedules
 			scheduleModel
 			.find({visit: id})
+			.populate('invitees')
 			.exec(function(err, schedules){
 				if(err)
 					console.log(err);
 				else {
 					schedules.forEach(function(sch){
-						arrAddItem(emp, sch.session.owner);
-						arrAddItem(emp, sch.session.supporter);
-						arrAddArray(emp, sch.invitees);
+						if (sch.session.owner!= null) {
+							arrAddItem(emp, sch.session.owner);
+						}
+						if (sch.session.supporter!= null) {
+							arrAddItem(emp, sch.session.supporter);}
+						// arrAddArray(emp, sch.invitees);
+						if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
+							for (var i = 0; i < sch.invitees.length; i++) {
+								switch(sch.invitees[i].association)    {
+									case "employee":
+									arrAddItem(emp, sch.invitees[i]);					
+									break;
+
+									case "customer":
+									arrAddItem(client, sch.invitees[i]);
+									break;
+								}
+							}
+						}
 					})
-				}
-			})
-			var uEmp = arrUnique(emp);
-			var uClient = arrUnique(client);
-
-			userModel
-			.find({'_id': { $in: uEmp }})
-			.select('_id name email avatar summary jobTitle organization contactNo association')
-			.exec(function(err, empsData){
-				if(err)
-					console.log(err);
-
-				userModel
-				.find({'_id': { $in: uClient }})
-				.select('_id name email avatar summary jobTitle organization contactNo association')
-				.exec(function(err, clientsData){
-					if(err)
-						console.log(err);
-
+					var uEmp = arrUnique(emp);
+					var uClient = arrUnique(client);
+					userModel
+					.find({'_id': { $in: uEmp }})
+					.select('_id name email avatar summary jobTitle organization contactNo association')
+					.exec(function(err, empsData){
+						if(err)
+							console.log(err);
+						userModel
+						.find({'_id': { $in: uClient }})
+						.select('_id name email avatar summary jobTitle organization contactNo association')
+						.exec(function(err, clientsData){
+							if(err)
+								console.log(err);
 						// console.log("Client reps ::", uClient);
 						// console.log("Emp reps ::", uEmp);
 						deferred.resolve({
@@ -1001,12 +1012,13 @@ function getParticipantsById(id){
 							"employees": empsData
 						});
 
-					}) // end of user model for clients
-			}) // end of user model for emp
+					})//end of user model for clients
+					}) //end of user model for emp
+				}
+			})
 		}
-	}); // end of visit model
-
-	return deferred.promise;
+	})//end of visit model
+		return deferred.promise;
 }
 
 function getVisitSessionsByDate(visitId, thisDate){
