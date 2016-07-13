@@ -47,7 +47,6 @@ angular.module('sessions')
 		$scope.visittitle = response;
 		$scope.visittitles = $scope.visittitle.client.name;
 	})
-	console.log('refresh');
 
 };
 
@@ -65,10 +64,6 @@ refresh();
 	}
 
 $scope.pushSession = function(sessionId,rtime){
-		//console.log(sessionId)
-		//$window.location.reload();
-		console.log(sessionId);
-		console.log(rtime);
 
 		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime).success(function(response) {
 			$scope.sessiontime = response;
@@ -80,7 +75,6 @@ $scope.pushSession = function(sessionId,rtime){
 	$scope.drop = function(sessionId){
 		$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
 		{
-			//console.log(response);
 			$scope.response = response;
 			$scope.response.status = "cancelled";
 
@@ -89,12 +83,10 @@ $scope.pushSession = function(sessionId,rtime){
 
 			var difference = moment.duration($scope.st.diff($scope.et));
 			var diffInMin = difference.asMinutes();
-			console.log(diffInMin);
 
 			$scope.pushSession(sessionId,diffInMin);
 
 			$http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
-				//console.log(response);
 
 				if ($scope.response.status === "cancelled"){
 					angular.element('#cancel-session').addClass('agenda-cancel-session');
@@ -103,7 +95,6 @@ $scope.pushSession = function(sessionId,rtime){
 			});
 
 			$http.put('/api/v1/secure/visitSchedules/'+ sessionId, $scope.response).success(function(response1) {
-				console.log(response1);
 				refresh();
 			});
 		});
@@ -123,10 +114,7 @@ $scope.pushSession = function(sessionId,rtime){
 			else{
 				return "feedback-link";}
 			}
-  //  console.log($location.search()["day"]);
-  //  console.log($location.search()["s"]);
 
-  //$scope.visit_id = $routeParams.id;
   $scope.vmtab = $location.search()["day"];
   if($scope.vmtab === undefined)
   {
@@ -154,37 +142,11 @@ $scope.pushSession = function(sessionId,rtime){
   		return $location.search()["day"]-0;
   }
 
-
-		// if ($location.hash() !== newHash) {
-		// 	// set the $location.hash to `newHash` and
-		// 	// $anchorScroll will automatically scroll to it
-		// 	$location.hash(newHash);
-		// } else {
-		// 	// call $anchorScroll() explicitly,
-		// 	// since $location.hash hasn't changed
-		// 	$anchorScroll();
-		// }
-
 		$scope.hideFeeedbackDiv = true;
 		$scope.toggleFeedbackDialog = function(index, $event){
 			$scope.hideFeeedbackDiv = !$scope.hideFeeedbackDiv;
 			$event.stopPropagation();
 		};
-
-		// console.log("tab setting done");
-
-		// var newHash = $location.search()["s"];
-		// if ($location.hash() !== newHash) {
-    //   // set the $location.hash to `newHash` and
-    //   // $anchorScroll will automatically scroll to it
-    //   $location.hash(newHash);
-		// 	console.log("pushed");
-    // } else {
-    //   // call $anchorScroll() explicitly,
-    //   // since $location.hash hasn't changed
-    //   $anchorScroll();
-    // }
-		// console.log("hash set to " + newHash);
 
 		$scope.giveFeedback = function(fTmpl,sId,vId)
 		{
@@ -195,29 +157,28 @@ $scope.pushSession = function(sessionId,rtime){
 		})
 	})
 
-.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout) {
+.controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout,appMUserService) {
+	appMUserService.activeMUser().then(function(user){
+
+    $scope.activeUser = user;
+    console.log($scope.activeUser);
 	$scope.arrayData=[];
 	$scope.comment = [];
 	$scope.comment11 = [];
 	$scope.myData = [];
-	console.log($rootScope.user);
+
 	$scope.refresh1 = function()
 	{ 
-    // console.log($scope.visitid);
-
+    $scope.myData = [];
     $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
     {
-    	$scope.comment = response.comments;
-      // console.log($scope.comment);
-
+      $scope.comment = response.comments;
       for(var i=0;i<$scope.comment.length;i++)
       {
       	$scope.myData.push($scope.comment[i]._id);
       }
   });
 }
-
-// refresh1();
 
 var refresh2 = function()
 { 
@@ -227,28 +188,18 @@ var refresh2 = function()
 	});
 }
 
-// $interval(function(){
-// 	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
-// 	{
-// 		$scope.comment = response.comments;
-// 	});
-// },1000);
-
 	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id,{
 		cache: true
 	}).success(function(response) {
 		$scope.session = response;
-		console.log(JSON.stringify($scope.session,null,2));
 		$scope.owner= $scope.session.session.owner;
 		$scope.supporter =$scope.session.session.supporter;
-		// console.log($scope.session.session.owner);
-		// console.log($scope.owner);
 		if($scope.owner!=null)
 		{
 		$scope.arrayData.push($scope.owner);
 		}
 	});
-	// $scope.visitDataId = $routeParams.id;
+
 	$scope.collapseDiv = function(index, text) {
 		var ele = angular.element(document.getElementById(text + index));
 		ele.toggle();
@@ -272,6 +223,17 @@ var refresh2 = function()
 
 $scope.btn_add = function(comment1) {
 
+	$scope.myData = [];
+	$scope.comment = [];
+	$http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
+	{
+		$scope.comment = response.comments;
+
+      for(var i=0;i<$scope.comment.length;i++)
+      {
+      	$scope.myData.push($scope.comment[i]._id);
+      }
+  }).then(function() {	
   if(comment1 !=''){
     $scope.comment11.push({
       comment: comment1,
@@ -279,28 +241,21 @@ $scope.btn_add = function(comment1) {
     });
 
     $http.post('/api/v1/secure/comments/',$scope.comment11).success(function(response) {
-      // console.log(response);
       $scope.commentid = response._id;
       $scope.myData.push($scope.commentid);
     });
-    // refresh1();
 
     $http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response)
     {
       $scope.visitSchedule = response;
       var inData = $scope.visitSchedule;
       inData.comments = $scope.myData;
-      console.log($scope.myData)
       $scope.commentsData = [];
-      console.log(inData);
       $http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
 
-      	// refresh2();
         $http.get('/api/v1/secure/visitSchedules/'+$routeParams.id).success(function(response)
         {
-          console.log(response)	;
           $scope.comment = response.comments;
-          console.log($scope.comment);
           $scope.oneData = [];
           for(var i=0;i<$scope.comment.length;i++)
           {
@@ -308,9 +263,7 @@ $scope.btn_add = function(comment1) {
             $scope.commentsData = $scope.oneData;
           }
         }).then(function() {
-          console.log($scope.commentsData);
-          toaster.pop({body:"Your Note has been received."});
-          $timeout(callSubmit,3000);
+          toaster.pop({body:"Note received."});
         });
 
       });
@@ -320,20 +273,31 @@ $scope.btn_add = function(comment1) {
 $scope.txtcomment = "";
 $scope.comment11 = [];
 }
+});
 }
 
-function callSubmit() {
-	window.location.reload();
+$scope.deleteComment = function(index){
+	$scope.commentData = [];
+	$scope.myData = [];
+	$scope.comment.splice(index, 1);
+
+	for(var i=0;i<$scope.comment.length;i++)
+	{	
+		$scope.commentData.push($scope.comment[i]._id);
+		$scope.myData.push($scope.comment[i]._id);
+	}
+
+	$http.get('/api/v1/secure/visitSchedules/' + $routeParams.id).success(function(response)
+	{	
+		var inData = response;
+		inData.comments = $scope.commentData;
+		$http.put('/api/v1/secure/visitSchedules/'+$routeParams.id,inData).success(function(response) {
+		});
+	});
 };
 
-
+});
 })
-
-/*.controller('agendaCtrl', function($rootScope, $routeParams, $location, appServicem) {
-	appServicem.activeVisit($routeParams.id).then(function(avisit){
-		$location.path("sessions/" + avisit._id);
-	})
-})*/
 
 .controller('sessionFeedbackCtrl',function($scope, $routeParams, $http, $location, $timeout) {
 	$scope.fbackTemp = $routeParams.fTmpl;
@@ -345,4 +309,29 @@ function callSubmit() {
 	}).success(function(response){
 		$scope.sessionTitle = response.session.title;
 	});
+})
+
+.controller('sessionsNotesCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
+	appServicem.activeVisit($routeParams.id).then(function(avisit){
+		$scope.activevists = true;
+		if(avisit == 'Not active visit'){
+			$scope.activevists =false;
+			$scope.message == "No active visits available in the database Please contact the Visit Portal Admin"
+		};
+
+		var refresh = function() {
+			$http.get('/api/v1/secure/visits/' + avisit._id + '/getallsessions',{
+			}).success(function(response) {
+				$scope.scheduleList = response;
+			});
+			$http.get('/api/v1/secure/visits/' + avisit._id ,{
+		//cache: true
+	}).success(function(response) {
+		$scope.visittitle = response;
+		$scope.visittitles = $scope.visittitle.client.name;
+	})
+};
+
+refresh();
 });
+})

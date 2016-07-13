@@ -1,5 +1,8 @@
 <style>
-
+.border{
+      border-top:1px dotted #bbb;
+      padding-top: 10px;
+}
   .modal-dialog1{
     overflow-y: initial !important
   }
@@ -13,8 +16,11 @@
     padding-left:55px;
   }
   .actionBox {
-    border-top:1px dotted #bbb;
     padding:10px;
+  }
+
+  .detailBox {
+    padding-top: 10px;
   }
   .commenterImage {
     width:50px;
@@ -78,7 +84,7 @@
 </style>
 
 <div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
-<label data-toggle="modal" data-target="#myModal{{session._id}}" ng-click="refresh1();">Session Notes</label>
+<label ng-if = "session.session.type != 'lunch' && session.session.type != 'breakfast' && session.session.type != 'dinner' && session.session.type != 'tea-break' " data-toggle="modal" data-target="#myModal{{session._id}}" ng-click="refresh1();">Session Notes</label>
 </div>
 
 <div class="divtop">
@@ -100,8 +106,6 @@
                 {{session.session.title | uppercase}}
             </div>
 
-<!--             <div class="session-description">{{session.session.desc}}
-            </div> -->
             <div class="scrollprop">
                   <richtext class="text" body-text="session.session.desc">
                   </richtext>
@@ -186,17 +190,15 @@
       {{mode="bulletsmallonly";""}}
           <div class="actionBox">
             <ul class="commentList">
-              <div  ng-repeat="comnt in comment">
+              <div class="border" ng-repeat="comnt in comment">
+              <span class="sub-text pull-right" ng-if="activeUser._id==comnt.givenBy" 
+                  ng-click="deleteComment($index)"><span class="glyphicon glyphicon-trash" /></span>
          <div class="commenterImage pull-left">
-                   <!-- <userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></userview> -->
                    <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
                    </div>
         <div class="ct commentText">
                   {{comnt.comment}} <span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
                   </div>
-              
-              <hr>
-             
       </div>
     </div>
   </div>

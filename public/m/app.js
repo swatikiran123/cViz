@@ -108,7 +108,7 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 					console.log(visitStatus);
 					console.log(user.groups);
 					
-					if(user.groups=='vManager'|| user.groups=='admin')
+					if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
 					{
 						defer.resolve(response.visits);
 					}
@@ -145,11 +145,11 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
              if(response !== undefined){
              	console.log(visitStatus);
              	console.log(user.groups);
-             	if(user.groups=='vManager'|| user.groups=='admin')
+             	if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
              	{
              		defer.resolve(response);
              	}
-             	else if(visitStatus!='finalize')
+             	else if(visitStatus=='finalize')
              	{
              		defer.resolve(response);
              	}
