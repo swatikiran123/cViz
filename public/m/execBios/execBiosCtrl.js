@@ -24,16 +24,17 @@ bios.controller('execBiosBlankCtrl', function($rootScope, $routeParams, $locatio
 });*/
 
 bios.controller('execBiosCtrl', function($scope, $rootScope, $location, $routeParams, $http, appService, appServicem) {
+	$scope.title = 'No active visit';
 	appServicem.activeVisit($routeParams.id).then(function(avisitt){
 	/*	$location.path("execBios/" + avisitt._id);*/
 		console.log(avisitt);
 		$scope.visit = avisitt._id;
 		console.log($scope.visit);
-$scope.title = avisitt.client.name;
+$scope.title = avisitt.client.name + ' Visit to CSC India';
 $scope.message = "";
  $scope.activevisits = true;
   if(avisitt == 'Not active visit'){
-    $scope.activevisits = false;
+   $scope.title = 'No active visit'
 
   };
 

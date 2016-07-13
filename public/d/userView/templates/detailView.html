@@ -1,13 +1,15 @@
 <div ng-if="userModel">
 
-<div  class="representative-bios">{{userModel.summary}}</div>
+<div  ng-if="!!userModel.summary" class="representative-bios">{{userModel.summary}}</div>
+
 <div class="reach-representative">
-    <div class="reach-representative-text">Contact by</div>
+    <div class="reach-representative-text">Contact by
     <a ng-href="tel: {{userModel.contactNo[0].contactNumber}}" class="tele-link">
      <i class="fa fa-phone"></i>
  </a>
  <a ng-href="mailto: {{userModel.email}}" class = "email-link">
     <i class="fa fa-envelope-o"></i>
 </a>
+</div>
 </div>
 </div>
