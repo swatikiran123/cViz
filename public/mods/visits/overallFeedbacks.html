@@ -1,4 +1,19 @@
 <!-- page header/subheader -->
+<script type='text/javascript'>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem( 'firstLoad' ) )
+    {
+      localStorage[ 'firstLoad' ] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem( 'firstLoad' );
+  }
+})();
+</script>
 <div class="page-header">
 	Overall Feedback - {{parentSelected}}
 	<div class="sub-header">

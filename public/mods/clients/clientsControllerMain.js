@@ -22,6 +22,7 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
   $scope.regionDataClient = true;
   $scope.err="";
   $scope.closeNoteTipSch= false;
+  $scope.adminShow= false; 
   $scope.closeNoteTipNote= true;
 
   // $scope.regionClient = true;
@@ -35,13 +36,13 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
 
   $scope.isSaving=false;
 
-        $scope.groupMember = $scope.activeUser.groups;
-      if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
-        $scope.isSaving= true; 
-      }
-  // if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
-  //   $scope.isSaving= true; 
-  // }
+  $scope.groupMember = $scope.activeUser.groups;
+  if ($scope.activeUser.groups.indexOf("admin") > -1 ) {
+    $scope.adminShow= true; 
+  }
+  if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+    $scope.isSaving= true; 
+  }
   var refresh = function() {
 
     $http.get('/api/v1/secure/clients').success(function(response) {
@@ -468,83 +469,83 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
     //   $scope.status = 'You cancelled the dialog.';
     // });
 
-  };
+};
 
-  $scope.addlogo = function (dataUrl) {
-    Upload.upload({
-      url: '/api/v1/upload/visits',
-      data: {
-        file: Upload.dataUrltoBlob(dataUrl),
-      },
-    }).then(function (response) {
-      $scope.userdata ='';
-      $scope.result = response.data;
-      var filepath = response.data.file.path;
-      var imagepath = '/'+ filepath.replace(/\\/g , "/");
-      $scope.avatar = imagepath;
-      $scope.showAvatar = true;
-      $mdDialog.hide();
-    });
-
-  };
-
-  $scope.hide = function() {
+$scope.addlogo = function (dataUrl) {
+  Upload.upload({
+    url: '/api/v1/upload/visits',
+    data: {
+      file: Upload.dataUrltoBlob(dataUrl),
+    },
+  }).then(function (response) {
+    $scope.userdata ='';
+    $scope.result = response.data;
+    var filepath = response.data.file.path;
+    var imagepath = '/'+ filepath.replace(/\\/g , "/");
+    $scope.avatar = imagepath;
+    $scope.showAvatar = true;
     $mdDialog.hide();
-  };
-  $scope.canceldialog = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+  });
 
-  $scope.parentClientChanged = function(str) {
-    $scope.parentClientString = str;
+};
 
-    if($scope.parentClientString!=null || $scope.parentClientString!="")
-    {
-      $scope.parentClient = false;
-      $scope.errparentMsg = "";
-    }
+$scope.hide = function() {
+  $mdDialog.hide();
+};
+$scope.canceldialog = function() {
+  $mdDialog.cancel();
+};
+$scope.answer = function(answer) {
+  $mdDialog.hide(answer);
+};
 
-    if($scope.parentClientString==null || $scope.parentClientString=="")
-    {
-      $scope.parentClient = true;
-      $scope.errparentMsg = "Parent Account Name is Mandatory field";
-    }
-  }  
+$scope.parentClientChanged = function(str) {
+  $scope.parentClientString = str;
 
-  $scope.childClientChanged = function(str) {
-    $scope.childClientString = str;
+  if($scope.parentClientString!=null || $scope.parentClientString!="")
+  {
+    $scope.parentClient = false;
+    $scope.errparentMsg = "";
+  }
 
-    if($scope.childClientString!=null || $scope.childClientString!="")
-    {
-      $scope.childClient = false;
-      $scope.errchildMsg = "";
-    }
+  if($scope.parentClientString==null || $scope.parentClientString=="")
+  {
+    $scope.parentClient = true;
+    $scope.errparentMsg = "Parent Account Name is Mandatory field";
+  }
+}  
 
-    if($scope.childClientString==null || $scope.childClientString=="")
-    {
-      $scope.childClient = true;
-      $scope.errchildMsg = "Child Account Name is Mandatory field";
-    }
-  } 
+$scope.childClientChanged = function(str) {
+  $scope.childClientString = str;
 
-  $scope.industryClientChanged = function(str) {
-    $scope.industry = str;
-    console.log($scope.industry)
-    if($scope.industry!=null || $scope.industry!="")
-    {
-      $scope.industryClient = false;
-      $scope.errindustryMsg = "";
-    }
+  if($scope.childClientString!=null || $scope.childClientString!="")
+  {
+    $scope.childClient = false;
+    $scope.errchildMsg = "";
+  }
 
-    if($scope.industry==null || $scope.industry=="" || $scope.industry == undefined)
-    {
-      $scope.industryClient = true;
-      $scope.errindustryMsg = "Industry is Mandatory field";
-    }
-  } 
+  if($scope.childClientString==null || $scope.childClientString=="")
+  {
+    $scope.childClient = true;
+    $scope.errchildMsg = "Child Account Name is Mandatory field";
+  }
+} 
+
+$scope.industryClientChanged = function(str) {
+  $scope.industry = str;
+  console.log($scope.industry)
+  if($scope.industry!=null || $scope.industry!="")
+  {
+    $scope.industryClient = false;
+    $scope.errindustryMsg = "";
+  }
+
+  if($scope.industry==null || $scope.industry=="" || $scope.industry == undefined)
+  {
+    $scope.industryClient = true;
+    $scope.errindustryMsg = "Industry is Mandatory field";
+  }
+} 
 
   // $scope.regionClientChanged = function(str) {
   //   $scope.regions = str;

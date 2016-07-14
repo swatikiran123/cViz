@@ -40,7 +40,7 @@
           <img ng-if="showAvatar == true" ng-src="{{avatar}}" class="img-rectangle avatar-original pic" width="122" height="122"
           style="background-size:cover;"/>
           <div>
-           <md-button class="md-primary md-raised" 
+           <md-button class="md-primary md-raised" ng-show="adminShow"
            ng-click="addClientLogo($event)">
            Add Logo
          </md-button>
@@ -269,12 +269,14 @@ ng-options="data1 for data1 in regions" class="form-control">
 
 
       <br>
+      <div ng-show="adminShow">
       <div class="pull-right" ng-if="clientModule" >
         <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Add Visitor??" content="Are you sure you want to proceed without adding client? </b>"
           yes-text="Ok" no-text="Cancel">Cancel</button> 
 
           <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="clientsForm.$invalid || parentClient || childClient || industryClient || regionClient"> Submit</button><!-- {{industryClient}}{{industry}}{{regions}} -->
         </div>
+      </div>
       </fieldset>
     </form>
   </div>

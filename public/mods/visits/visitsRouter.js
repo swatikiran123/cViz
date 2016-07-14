@@ -54,6 +54,11 @@ angular.module('visits')
         controller: 'visitsControllerMain'
       })
 
+      .when('/visits/:id/closeSummary', {
+        templateUrl: '/public/mods/visits/closeSummary.html',
+        controller: 'visitsControllerMain'
+      })
+
       .when('/visits/:id/overallFeedbacks', {
         templateUrl: '/public/mods/visits/overallFeedbacks.html',
         controller: 'visitsControllerMain'

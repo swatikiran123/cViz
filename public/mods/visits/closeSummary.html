@@ -1,0 +1,42 @@
+<div ng-if="mode=='edit'" class="page-header">
+  <button class="btn btn-primary pull-right"  ng-click="showChatBox($event)">Click here to Comment
+  </button> 
+  Visit Summary  <p ng-show="visits.client.name != visits.client.subName">{{visits.client.name}} {{visits.client.subName}}</p>
+  <p ng-show="visits.client.name === visits.client.subName">{{visits.client.name}}</p>
+	<!--div class="sub-header">Edit Visit {{parentSelected}}
+</div-->
+</div>
+
+<label>Visit Overview</label>
+<richtext body-text="visits.summary"></richtext>
+
+<br><HR>
+<!-- visits agenda-->
+<label>Action Item</label>
+<richtext body-text="visits.actionItem"></richtext>
+<br><HR>
+<div class="panel-body " ng-repeat="x in arrayClose">
+  {{fileExt=x.split(".").pop();""}}
+  <!-- {{fileExt}} -->
+  <div class="row">
+    &nbsp;
+    <img ng-if="fileExt =='jpg' || fileExt=='png' || fileExt=='gif' || fileExt=='jpeg'" ng-src="{{x}}" height="50" width="50" />
+    <img ng-if="fileExt=='pdf'" ng-src="/public/assets/g/imgs/pdf.jpg" height="50" width="50" />
+    <img ng-if="fileExt=='docx' || fileExt=='doc'" ng-src="/public/assets/g/imgs/word.png" height="50" width="50" />
+    <img ng-if="fileExt=='xlsx' || fileExt=='xls'" ng-src="/public/assets/g/imgs/excel.jpg" height="50" width="50" />
+    <img ng-if="fileExt=='pptx' || fileExt=='ppt'" ng-src="/public/assets/g/imgs/ppt.png" height="50" width="50" />
+    <img ng-if="fileExt == 'mp4' || fileExt == 'mkv' || fileExt == 'avi' || fileExt == 'wmv'" 
+    ng-src="/public/assets/g/imgs/video.png" height="50" width="50" />
+    <img ng-if="fileExt == 'mp3' || fileExt == 'wav' || fileExt == 'aac'"
+    ng-src="/public/assets/g/imgs/audio.png" height="50" width="50" />
+    &nbsp;
+    &nbsp;
+    {{x.split('\\').pop().split('/').pop()}}
+    <div class="pull-right" style="margin-right:1cm;">
+    <a href="" ng-click="viewImageItem(x)"><span class="glyphicon glyphicon-eye-open"/></a>
+    <a href="{{x}}" download="{{x.split('\\').pop().split('/').pop()}}">
+    <span class="glyphicon glyphicon-download-alt"/></a>
+    </div>
+  </div>
+  <hr>
+</div>
