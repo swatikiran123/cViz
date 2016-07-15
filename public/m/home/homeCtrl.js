@@ -151,7 +151,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 				}).success(function(response) {
 					$scope.user3 = response;
 				})
-				if(response[0].length >= 1)
+				if(response[0].length == 1)
 				{	
 						$http.get('/api/v1/secure/visits/'+avisitData._id,{
 							cache: true
