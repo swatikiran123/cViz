@@ -46,6 +46,7 @@ module.exports = function(app, passport) {
 		}
 
     app.get('/app', isLoggedIn, function(req, res) {
+			res.setHeader('content-type', 'application/pdf');
         res.locals.pageTitle = "App Info";
         res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
         res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
@@ -78,7 +79,7 @@ module.exports = function(app, passport) {
 
         // process the login form
         app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/home', // redirect to the secure profile section
+            successReturnToOrRedirect : '/home', // redirect to the secure profile section
             failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
@@ -239,13 +240,16 @@ module.exports = function(app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
+    if (req.isAuthenticated()){
+      return next();
+    }
 
     // A simple detour for token access
     // Application can access token after login to connect with API
     if(req.url.indexOf('/token') > -1)
         res.status(404).send("Not Found");
-    else
-        res.redirect('/login?' + req.path);
+    else{
+      res.redirect('/login?' + req.originalUrl);
+    }
+
 }

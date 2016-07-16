@@ -9,6 +9,7 @@ var User            = require(constants.paths.models +  '/user');
 var userService     = require(constants.paths.services +  '/users');
 var emailController = require(constants.paths.scripts + '/email');
 var secure  = require(constants.paths.scripts + '/secure');
+var logger  = require(constants.paths.scripts + '/logger');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
@@ -74,7 +75,16 @@ module.exports = function(passport) {
 									user.stats.dateLastLogin = new Date();
 									userService.updateById(user._id, user);
 
-                    return done(null, user);
+                  var reroute = req.body.redir;
+                  if(reroute !== undefined){
+                    var x =  reroute.indexOf('?');
+                    if(x > -1){
+                      reroute = reroute.substring(x+1);
+                      req.session.returnTo = reroute;
+                    }
+                  }
+
+                  return done(null, user);
 								}
             });
         });

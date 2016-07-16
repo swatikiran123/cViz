@@ -9,8 +9,10 @@ var auth = {
     // Application can access token after login to connect with API
     if(req.url.indexOf('/token') > -1)
         res.status(404).send("Not Found");
-    else
-        res.redirect('/login?' + req.path);
+    else{
+      res.redirect('/login?' + req.path);
+    }
+
 	}
 };
 

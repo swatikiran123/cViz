@@ -47,7 +47,7 @@ function getOneById(id){
                 deferred.reject(err);
             }
             else
-                console.log(item);
+                // console.log(item);
                 deferred.resolve(item);
         });
 
@@ -56,7 +56,7 @@ function getOneById(id){
 
 function getWithQuery(query, fields, maxRecs, sortEx){
     var deferred = Q.defer();
-    
+
     model
     .find(query)
     .limit(maxRecs)
@@ -69,7 +69,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
         }
         else
         {
-            console.log(item);
+            // console.log(item);
             deferred.resolve(item);
         }
     });
@@ -80,9 +80,9 @@ function getWithQuery(query, fields, maxRecs, sortEx){
 function create(data) {
     var deferred = Q.defer();
 
-    //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving keynote........");
-    console.log(data);
+    // //data.noteBy = "56c71b49bf009e7424e61099";
+    // console.log("Saving keynote........");
+    // console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);
