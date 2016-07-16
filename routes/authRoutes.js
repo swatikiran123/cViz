@@ -1,9 +1,9 @@
 
-var constants					= require('../scripts/constants');
-var logger 						= require(constants.paths.scripts + '/logger');
-var util 							= require(constants.paths.scripts + '/util');
-var assetBuilder 			= require(constants.paths.scripts + '/assetBuilder');
-var menuBuilder 			= require(constants.paths.scripts + '/menuBuilder');
+var constants                   = require('../scripts/constants');
+var logger                      = require(constants.paths.scripts + '/logger');
+var util                            = require(constants.paths.scripts + '/util');
+var assetBuilder            = require(constants.paths.scripts + '/assetBuilder');
+var menuBuilder             = require(constants.paths.scripts + '/menuBuilder');
 
 module.exports = function(app, passport) {
 
@@ -14,13 +14,13 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
 
       if (!req.isAuthenticated()){
-				/*res.locals.pageTitle = "Main";
-				res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
-				res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
+                /*res.locals.pageTitle = "Main";
+                res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,index");
+                res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,index");
         res.render('index.ejs',{layout: 'layouts/public'});*/
         res.redirect('/login');
-			} else {
-				renderHome(req, res);
+            } else {
+                renderHome(req, res);
       }
     });
 
@@ -34,19 +34,19 @@ module.exports = function(app, passport) {
         renderHome(req, res);
     });
 
-		function renderHome(req, res){
-			res.locals.pageTitle = "Home";
-			res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
-			res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
-			if("desktop".compare(res.locals.device)){
-				res.redirect(menuBuilder.getDefaultPage(req.user, 'web'));
-			} else {
-				res.redirect(menuBuilder.getDefaultPage(req.user, 'mobile'));
-			}
-		}
+        function renderHome(req, res){
+            res.locals.pageTitle = "Home";
+            res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
+            res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
+            if("desktop".compare(res.locals.device)){
+                res.redirect(menuBuilder.getDefaultPage(req.user, 'web'));
+            } else {
+                res.redirect(menuBuilder.getDefaultPage(req.user, 'mobile'));
+            }
+        }
 
     app.get('/app', isLoggedIn, function(req, res) {
-			res.setHeader('content-type', 'application/pdf');
+            res.setHeader('content-type', 'application/pdf');
         res.locals.pageTitle = "App Info";
         res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
         res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
@@ -68,13 +68,13 @@ module.exports = function(app, passport) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-					res.locals.pageTitle = "Login";
-					res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
-					res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,login");
+                    res.locals.pageTitle = "Login";
+                    res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+                    res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,login");
           res.render('login.ejs', {
-						message: req.flash('loginMessage'),
-						layout: 'layouts/public'
-					});
+                        message: req.flash('loginMessage'),
+                        layout: 'layouts/public'
+                    });
         });
 
         // process the login form
@@ -91,9 +91,9 @@ module.exports = function(app, passport) {
                     res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
                     res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
             res.render('signup.ejs', {
-							layout: 'layouts/public',
-							message: req.flash('signupMessage')
-						});
+                            layout: 'layouts/public',
+                            message: req.flash('signupMessage')
+                        });
         });
 
         // process the signup form
