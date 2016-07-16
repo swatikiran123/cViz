@@ -1699,6 +1699,10 @@ $scope.ClientDraft=false;
     $scope.nextTab($scope.visits._id);
   })
 
+   $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitclosure').success(function(response) {
+   growl.info(parse("Mail has been generated and sent to all Participants"));
+   // console.log(response);
+ })
 }
 $scope.isDataValid=function(schedule){
   var Today = new Date();

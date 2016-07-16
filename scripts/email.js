@@ -28,6 +28,7 @@ email.rejectVisitByAdmin 				= rejectVisitByAdmin;
 email.newvManagerAssigned				= newvManagerAssigned;
 email.newsecvManagerAssigned 			= newsecvManagerAssigned;
 email.agendaFinalize					= agendaFinalize;
+email.visitClosure 						= visitClosure;
 
 module.exports = email;
 
@@ -71,109 +72,118 @@ function notifyNewVisit(visitId,basePath) {
 	var templateDir = path.join(constants.paths.templates, 'email', 'newVisit');
 	var mailTemplate = new emailTemplate(templateDir);
 	modelVisit
-		.findOne({ _id: visitId })
-		.populate('client')
-		.populate('createBy')
-		.populate('visitors.visitor')
-		.populate({path:'cscPersonnel.salesExec'})
-		.populate({path:'cscPersonnel.accountGM'})
-		.populate({path:'cscPersonnel.industryExec'})
-		.populate({path:'cscPersonnel.globalDelivery'})
-		.populate({path:'cscPersonnel.cre'})
-		.exec(function (err, visit) {
-			if(err) {
-				console.log(err);
-			}
-			else{
-				sendMail(visit)
-			}
-		})
+	.findOne({ _id: visitId })
+	.populate('client')
+	.populate('createBy')
+	.populate('visitors.visitor')
+	.populate({path:'cscPersonnel.salesExec'})
+	.populate({path:'cscPersonnel.accountGM'})
+	.populate({path:'cscPersonnel.industryExec'})
+	.populate({path:'cscPersonnel.globalDelivery'})
+	.populate({path:'cscPersonnel.cre'})
+	.exec(function (err, visit) {
+		if(err) {
+			console.log(err);
+		}
+		else{
+			sendMail(visit)
+		}
+	})
 
-		function sendMail(visit){
-			// var loginPath = pathBuilder.getPath(basePath, "/manage/#/visits/{{visitId}}/edit");
-			// console.log(loginPath);
-			// visit.loginPath = loginPath;
+	function sendMail(visit){
 
-			mailTemplate.render(visit, function (err, results) {
+		groupService.getUsersByGroup("admin")
+		.then(function(users){
+			users.forEach(function(user){
+				var visitData =	{
+					client: visit.client,
+					userId: user.id,
+					localData:user.local,
+					visitId:visit.id,
+					startDate:visit.startDate,
+					endDate:visit.endDate,
+					createBy:visit.createBy,
+					locations:visit.locations,
+					hostPath: basePath,
+					loginPath: pathBuilder.getPath(basePath, "loginPage")
+				};
 
-				if(err){
-					return console.log(err);
-				}
+				mailTemplate.render(visitData, function (err, results) {
 
-				var emailIds = [];
-				var cscPersonnelIds = [];
+					if(err){
+						return console.log(err);
+					}
 
-				if(visit.cscPersonnel.salesExec != null || visit.cscPersonnel.salesExec != undefined)
-				{
-					cscPersonnelIds.push(visit.cscPersonnel.salesExec.email);
-				}
+					var emailIds = [];
+					var cscPersonnelIds = [];
 
-				if(visit.cscPersonnel.salesExec == null || visit.cscPersonnel.salesExec == undefined)
-				{
-					cscPersonnelIds.push(null);
-				}
+					if(visit.cscPersonnel.salesExec != null || visit.cscPersonnel.salesExec != undefined)
+					{
+						cscPersonnelIds.push(visit.cscPersonnel.salesExec.email);
+					}
 
-				if(visit.cscPersonnel.accountGM != null || visit.cscPersonnel.accountGM != undefined)
-				{	
-					cscPersonnelIds.push(visit.cscPersonnel.accountGM.email);
-				}
+					if(visit.cscPersonnel.salesExec == null || visit.cscPersonnel.salesExec == undefined)
+					{
+						cscPersonnelIds.push(null);
+					}
 
-				if(visit.cscPersonnel.accountGM == null || visit.cscPersonnel.accountGM == undefined)
-				{
-					cscPersonnelIds.push(null);
-				}
+					if(visit.cscPersonnel.accountGM != null || visit.cscPersonnel.accountGM != undefined)
+					{	
+						cscPersonnelIds.push(visit.cscPersonnel.accountGM.email);
+					}
 
-				if(visit.cscPersonnel.industryExec != null || visit.cscPersonnel.industryExec != undefined)
-				{	
-					cscPersonnelIds.push(visit.cscPersonnel.industryExec.email);
-				}
+					if(visit.cscPersonnel.accountGM == null || visit.cscPersonnel.accountGM == undefined)
+					{
+						cscPersonnelIds.push(null);
+					}
 
-				if(visit.cscPersonnel.industryExec == null || visit.cscPersonnel.industryExec == undefined)
-				{
-					cscPersonnelIds.push(null);
-				}
+					if(visit.cscPersonnel.industryExec != null || visit.cscPersonnel.industryExec != undefined)
+					{	
+						cscPersonnelIds.push(visit.cscPersonnel.industryExec.email);
+					}
 
-				if(visit.cscPersonnel.globalDelivery != null || visit.cscPersonnel.globalDelivery != undefined)
-				{	
-					cscPersonnelIds.push(visit.cscPersonnel.globalDelivery.email);
-				}
+					if(visit.cscPersonnel.industryExec == null || visit.cscPersonnel.industryExec == undefined)
+					{
+						cscPersonnelIds.push(null);
+					}
 
-				if(visit.cscPersonnel.globalDelivery == null || visit.cscPersonnel.globalDelivery == undefined)
-				{
-					cscPersonnelIds.push(null);
-				}
+					if(visit.cscPersonnel.globalDelivery != null || visit.cscPersonnel.globalDelivery != undefined)
+					{	
+						cscPersonnelIds.push(visit.cscPersonnel.globalDelivery.email);
+					}
 
-				if(visit.cscPersonnel.cre != null || visit.cscPersonnel.cre != undefined)
-				{	
-					cscPersonnelIds.push(visit.cscPersonnel.cre.email);
-				} 
+					if(visit.cscPersonnel.globalDelivery == null || visit.cscPersonnel.globalDelivery == undefined)
+					{
+						cscPersonnelIds.push(null);
+					}
 
-				if(visit.cscPersonnel.cre == null || visit.cscPersonnel.cre == undefined)
-				{
-					cscPersonnelIds.push(null);
-				}
+					if(visit.cscPersonnel.cre != null || visit.cscPersonnel.cre != undefined)
+					{	
+						cscPersonnelIds.push(visit.cscPersonnel.cre.email);
+					} 
 
-				cscPersonnelIds.push(visit.createBy.email);
-				groupService.getUsersByGroup("admin")
-					.then(function(users){
-						users.forEach(function(user){
-							emailIds.push(user.email);
-						});
+					if(visit.cscPersonnel.cre == null || visit.cscPersonnel.cre == undefined)
+					{
+						cscPersonnelIds.push(null);
+					}
+
+					cscPersonnelIds.push(visit.createBy.email);
+						emailIds.push(user.email);
 						console.log(emailIds);
 						console.log(cscPersonnelIds)
 						var mailOptions = {
-								from: config.get('email.from'),
+							from: config.get('email.from'),
 								to: emailIds, // list of receivers
 								cc: cscPersonnelIds,
 								subject: 'New Customer Visit Initiated', // Subject line
 								text: results.text, // plaintext body
 								html: results.html // html body
-						};
+							};
 
 						// send mail with defined transport object
 						transporter.sendMail(mailOptions, function(error, info){
 							if(error){
-									return console.log(error);
+								return console.log(error);
 							}
 							console.log('Send mail:: New Visit Initiated - Status: ' + info.response);
 							console.log('Notifications sent to ' + emailIds);
@@ -182,7 +192,9 @@ function notifyNewVisit(visitId,basePath) {
 
 					}); // end of getUsersByGroup service call
 			}); // end of register mail render
-		} // end of sendmail
+
+		}); // end of sendmail
+	}
 } // end of sendMailOnRegistration
 
 function notifyVisitOwnerChange(visitId,oldvmanEmail) 
@@ -281,7 +293,9 @@ function welcomeClient(visitId, basePath) {
 					var visitor = {
 						name: participant.visitor.name,
 						email: participant.visitor.email,
+						visitorId:participant.visitor.id,
 						schedule: weatherSch,
+						localData:participant.visitor.local,
 						spoc: visit.anchor,
 						hostPath: basePath,
 						loginPath: pathBuilder.getPath(basePath, "loginPage")
@@ -683,7 +697,7 @@ function newsecvManagerAssigned(visitId)
 }
 
 // Send Notification when visit is closed
-function visitClosure(visitId) {
+function visitClosure(visitId,basePath) {
 
 	if(config.get('email.send-mails')!="true") return;
 
@@ -701,6 +715,14 @@ function visitClosure(visitId) {
 		}
 		else{
 			console.log(visit);
+			if(visit.client.name == visit.client.subName)
+			{
+				var subject = visit.client.name + "  visit - Closure submitted"
+			}
+			if(visit.client.name != visit.client.subName)
+			{
+				var subject = visit.client.name + " "+ visit.client.subName + "  visit - Closure submitted"
+			}
 
 			visitService.getParticipantsById(visitId)
 			.then(function(participants){
@@ -728,8 +750,14 @@ function visitClosure(visitId) {
 				emailIds.push(visit.createBy.email);
 
 				console.log(emailIds);
-
-				mailTemplate.render(visit, function (err, results) {
+				var visitData =	{
+					client: visit.client,
+					visitId:visit.id,
+					createBy:visit.createBy,
+					hostPath: basePath,
+					loginPath: pathBuilder.getPath(basePath, "loginPage")
+				};
+				mailTemplate.render(visitData, function (err, results) {
 
 					if(err){
 						return console.log(err);
@@ -739,7 +767,7 @@ function visitClosure(visitId) {
 						from: config.get('email.from'),
 										to: emailIds, // list of receivers
 										cc: receiversEmailIds,
-										subject: 'Save your day', // Subject line
+										subject: subject, // Subject line
 										text: results.text, // plaintext body
 										html: results.html, // html body
 									};
@@ -750,7 +778,7 @@ function visitClosure(visitId) {
 									if(error){
 										return console.log(error);
 									}
-									console.log("Send Mail:: inviteAttendees  -- Status: "+ info.response);
+									console.log("Send Mail:: visitClosure  -- Status: "+ info.response);
 									console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
@@ -778,7 +806,15 @@ function agendaFinalize(visitId,basePath) {
 		}
 		else{
 			console.log(visit);
-
+			if(visit.client.name == visit.client.subName)
+			{
+				var subject = visit.client.name + "  visit planning - Agenda finazlied"
+			}
+			if(visit.client.name != visit.client.subName)
+			{
+				var subject = visit.client.name + " "+ visit.client.subName + " visit planning - Agenda finazlied"
+			}
+			console.log(subject);
 			visitService.getParticipantsById(visitId)
 			.then(function(participants){
 				var emailIds = [];
@@ -814,7 +850,7 @@ function agendaFinalize(visitId,basePath) {
 						from: config.get('email.from'),
 										to: emailIds, // list of receivers
 										cc: receiversEmailIds,
-										subject: 'Save your day', // Subject line
+										subject: subject, // Subject line
 										text: results.text, // plaintext body
 										html: results.html, // html body
 										attachments: [{						

@@ -18,7 +18,7 @@ function sendMails(req, res){
 	switch(req.params.action.toLowerCase())
 	{
     case "newvisit":
-      emailService.notifyNewVisit(req.params.id);
+      emailService.notifyNewVisit(req.params.id,basePath);
       break;
 
 		case "visitownerchange":
@@ -50,7 +50,7 @@ function sendMails(req, res){
 			break;			
 
 		case "visitclosure":
-			emailService.vistClosure(req.params.id);	
+			emailService.visitClosure(req.params.id,basePath);	
 			break;	
 
 		case "agendafinalize":

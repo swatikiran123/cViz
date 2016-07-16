@@ -8,7 +8,8 @@ Client name: {% if client.name != client.subName %} {{client.name}} {{client.sub
 Visit date: {{startDate|date('d M Y')}} - {{endDate|date('d M Y')}}<br/>
 Visit locations: {{locations}}
 
-<p>Please acknowledge the visit by clicking <a href="{{loginPath}}" title="CSC Visit Portal">here</a>.</p>
+<p>Please acknowledge the visit by clicking <a href="{{loginPath}}/{{userId}}/{{localData.password}}/visitAcknowledge/{{visitId}}" title="CSC Visit Portal">here</a>.</p>
+<p>
 <p>
 Thanks.<br>
 CSC India Visit Management Team<br>
