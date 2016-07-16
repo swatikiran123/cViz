@@ -11,8 +11,8 @@
   max-width: 300px;
   margin: 0 auto 100px;
   padding: 10px;
-    
-  
+
+
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
@@ -47,7 +47,7 @@
 body {
    font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  -moz-osx-font-smoothing: grayscale;
 }
 .navbar-brand{
   color: black;
@@ -61,7 +61,7 @@ padding-top:35%;
 .centered{
 padding-top: 1%;
  }
-} 
+}
 
 
 </style>
@@ -80,15 +80,17 @@ padding-top: 1%;
 <div class="pull-right">ver: <%= locals.app_info.version %>:<%= locals.app_info.gitHash %>&nbsp;&nbsp;&nbsp;</div>
   <div class="centered" align="center" style="vertical-align:middle;">
   <div class="form">
- 
+
     <form class="login-form"  action="/login"  method="post">
       <input autocomplete="off" type="text" name="email" placeholder="username"/>
       <input type="password" name="password" placeholder="password"/>
+      <script>
+        document.write('<input type="hidden" name="redir" value="'+document.location.href+'"/>');
+      </script>
       <button type="submit">login</button>
-   
+
     </form>
   </div>
-    
+
 
 </div>
-

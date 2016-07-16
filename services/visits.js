@@ -59,7 +59,7 @@ function getAll(){
 // 2. Date are not as per UTC, timezone is effecting the date filters , limit){ , limit);
 // 3. Custo9mers are not filtered by visit. They can access any visit of the client irrective of being part of it
 
-function getMyVisits(thisUser, timeline){ 
+function getMyVisits(thisUser, timeline){
 	logger.dump('test', 0, 'Initiate getMyVisits...', thisUser._id, timeline);
 	var deferred = Q.defer();
 
@@ -139,7 +139,7 @@ function getMyVisits(thisUser, timeline){
 				// console.log(filter);
 			}
 			else if( secure.isInAnyGroups(thisUser, "vManager")){
-				logger.dump('test', 2, "Found vManager!!!");
+				// logger.dump('test', 2, "Found vManager!!!");
 				filter = {
 					$or: [
 					{createBy: userId}
@@ -157,7 +157,7 @@ function getMyVisits(thisUser, timeline){
 				};
 			} // end of secure if
 			else if( secure.isInAnyGroups(thisUser, "user")){
-				logger.dump('test', 2, "Found user!!!");
+				// logger.dump('test', 2, "Found user!!!");
 				filter = {
 					$or: [
 					{createBy: userId}
@@ -176,9 +176,9 @@ function getMyVisits(thisUser, timeline){
 			}
 
 
-			logger.dump('test', 0, "Find visits with filter");
-
-			logger.dump('test', filter);
+			// logger.dump('test', 0, "Find visits with filter");
+      //
+			// logger.dump('test', filter);
 
 			var visitsByTimeline = new Array();
 			model
@@ -188,15 +188,15 @@ function getMyVisits(thisUser, timeline){
 			.sort('startDate')
 			.exec(function(err, list){
 				if(err) {
-					logger.error(0, 'find visits with filter', filter, err);
+					// logger.error(0, 'find visits with filter', filter, err);
 					deferred.reject(err);
 				}
 				else{
-					logger.dump('test', 1,"Visits found :: " + list.length);
+					// logger.dump('test', 1,"Visits found :: " + list.length);
 					transform(list);
-					logger.dump('test', 1,'------------------------------');
-					logger.dump('test', 1,'Transformed data.....');
-					logger.Json('test',visitsByTimeline)
+					// logger.dump('test', 1,'------------------------------');
+					// logger.dump('test', 1,'Transformed data.....');
+					// logger.Json('test',visitsByTimeline)
 					deferred.resolve(visitsByTimeline);
 				}
 			}) // end of model exec
@@ -207,14 +207,14 @@ function getMyVisits(thisUser, timeline){
 
 			function transform(visits){
 
-				logger.dump('test', 0,"---------------------");
-				logger.dump('test', 0,'Begin data tranformation...');
+				// logger.dump('test', 0,"---------------------");
+				// logger.dump('test', 0,'Begin data tranformation...');
 
 				var visitsSorted =  _.sortBy( visits, 'startDate' );
 
 				visitsSorted.forEach(function(visit){
-					logger.dump('test', 0,'----- transform with visit ------')
-					logger.dump('test', 1,visit._id, visit.title, visit.startDate, visit.endDate);
+					// logger.dump('test', 0,'----- transform with visit ------')
+					// logger.dump('test', 1,visit._id, visit.title, visit.startDate, visit.endDate);
 
 					var involved = [];
 
@@ -232,7 +232,7 @@ function getMyVisits(thisUser, timeline){
 						involved.push(thisOne);
 					}
 
-					logger.dump('test', 2,'Check vManager',visit.agm, thisUser._id,stringCmp(visit.agm, thisUser._id));
+					// logger.dump('test', 2,'Check vManager',visit.agm, thisUser._id,stringCmp(visit.agm, thisUser._id));
 					if(stringCmp(visit.agm, thisUser._id)){
 						var thisOne = {
 							id : visit._id,
@@ -246,7 +246,7 @@ function getMyVisits(thisUser, timeline){
 					}
 
 					if(visit.invitees !== undefined){
-						logger.dump('test', 2,'Check Visit invitees',visit.invitees, thisUser._id, arrContains(visit.invitees, thisUser._id))
+						// logger.dump('test', 2,'Check Visit invitees',visit.invitees, thisUser._id, arrContains(visit.invitees, thisUser._id))
 						if(arrContains(visit.invitees, thisUser._id)){
 							var thisOne = {
 								id : visit._id,
@@ -259,16 +259,16 @@ function getMyVisits(thisUser, timeline){
 							involved.push(thisOne);
 						}
 					}else {
-						logger.dump('test', 2,'visit invitees undefined');
+						// logger.dump('test', 2,'visit invitees undefined');
 					}
 
-					logger.dump('test', 2,'Checking sessions...');
+					// logger.dump('test', 2,'Checking sessions...');
 					userSessions.forEach(function(thisSession){
-						logger.dump('test', 3, '--------- visit vs. session -----------');
-						logger.dump('test', 3,thisSession._id,visit._id,thisSession.visit,stringCmp(thisSession.visit, visit._id));
+						// logger.dump('test', 3, '--------- visit vs. session -----------');
+						// logger.dump('test', 3,thisSession._id,visit._id,thisSession.visit,stringCmp(thisSession.visit, visit._id));
 						if(stringCmp(thisSession.visit, visit._id)){
 							// sesion level participants
-							logger.dump('test', 4,'session owner', thisUser._id,thisSession.session.owner, stringCmp(thisUser._id,thisSession.session.owner));
+							// logger.dump('test', 4,'session owner', thisUser._id,thisSession.session.owner, stringCmp(thisUser._id,thisSession.session.owner));
 							if(stringCmp(thisUser._id,thisSession.session.owner)){
 								var thisOne = {
 									id : thisSession._id,
@@ -281,7 +281,7 @@ function getMyVisits(thisUser, timeline){
 								involved.push(thisOne);
 							}
 
-							logger.dump('test', 4,'session supporter',thisUser._id,thisSession.session.supporter, stringCmp(thisUser._id, thisSession.session.supporter))
+							// logger.dump('test', 4,'session supporter',thisUser._id,thisSession.session.supporter, stringCmp(thisUser._id, thisSession.session.supporter))
 							if(stringCmp(thisUser._id,thisSession.session.supporter)){
 								var thisOne = {
 									id : thisSession._id,
@@ -294,7 +294,7 @@ function getMyVisits(thisUser, timeline){
 								involved.push(thisOne);
 							}
 
-							logger.dump('test', 4,'session invitees', thisSession.invitees, thisUser._id, arrContains(thisSession.invitees, thisUser._id))
+							// logger.dump('test', 4,'session invitees', thisSession.invitees, thisUser._id, arrContains(thisSession.invitees, thisUser._id))
 							if(thisSession.invitees !== undefined){
 								if(arrContains(thisSession.invitees, thisUser._id)){
 									var thisOne = {
@@ -309,17 +309,17 @@ function getMyVisits(thisUser, timeline){
 								}
 							}
 							else {
-								logger.dump('test', 4,'session invitees undefined');
+								// logger.dump('test', 4,'session invitees undefined');
 							}
 						}
-						logger.dump('test', 3,'-------- end of sessions');
+						// logger.dump('test', 3,'-------- end of sessions');
 					}) // end of visit -> session foreach loop
 
-					logger.dump('test', 3,'-------- end of visit');
-					logger.dump('test', 3,'Involvement details....');
-					logger.Json('test', involved);
+					// logger.dump('test', 3,'-------- end of visit');
+					// logger.dump('test', 3,'Involvement details....');
+					// logger.Json('test', involved);
 					visit.set('involved', involved,  { strict: false });
-					logger.Json('test', visit);
+					// logger.Json('test', visit);
 				}) // end of visit loop
 logger.dump('test', 3,'-------- end of all visits')
 
@@ -370,8 +370,8 @@ var nextOne = moment.range(thisDay.start._d, nextWeekEndsOn)
 // var further = moment.range(afterNextWeek, furtherEnd);
 // var nextOne = moment.range(thisDay.start._d, nextWeekEndsOn)
 
-console.log("---- Date ranges ----")
-console.log("today: " + today.format("ddd D-MMM-YYYY") + " >> " + todayRange.toString());
+// console.log("---- Date ranges ----")
+// console.log("today: " + today.format("ddd D-MMM-YYYY") + " >> " + todayRange.toString());
 // console.log("this week:" + thisWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
 // 	thisWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + thisWeek.toString());
 // console.log("last week:" + lastWeekBeginsOn.format("ddd D-MMM-YYYY") + " - " +
@@ -385,17 +385,17 @@ console.log("today: " + today.format("ddd D-MMM-YYYY") + " >> " + todayRange.toS
 // console.log("next one: "+ today.format("ddd D-MMM-YYYY") + " - " +
 // 	nextWeekEndsOn.format("ddd D-MMM-YYYY") + " >> " + nextOne.toString());
 
-console.log("past: "+ 
-	pastBegin.format("ddd D-MMM-YYYY") + " - " + pastEnd.format("ddd D-MMM-YYYY") + 
-	" >> " + past.toString());
-
-console.log("further: "+ 
-	furtherStart.format("ddd D-MMM-YYYY") + " - " + furtherEnd.format("ddd D-MMM-YYYY") + 
-	" >> " + further.toString());
-
-console.log("next one: "+ 
-	today.format("ddd D-MMM-YYYY") + " - " + nextWeekEndsOn.format("ddd D-MMM-YYYY") + 
-	" >> " + nextOne.toString());
+// console.log("past: "+
+// 	pastBegin.format("ddd D-MMM-YYYY") + " - " + pastEnd.format("ddd D-MMM-YYYY") +
+// 	" >> " + past.toString());
+//
+// console.log("further: "+
+// 	furtherStart.format("ddd D-MMM-YYYY") + " - " + furtherEnd.format("ddd D-MMM-YYYY") +
+// 	" >> " + further.toString());
+//
+// console.log("next one: "+
+// 	today.format("ddd D-MMM-YYYY") + " - " + nextWeekEndsOn.format("ddd D-MMM-YYYY") +
+// 	" >> " + nextOne.toString());
 
 
 visitsByTimeline = {
@@ -442,7 +442,7 @@ visitsByTimeline = {
 	}
 }
 
-logger.dump('test', 1,'-------- end of transformation')
+// logger.dump('test', 1,'-------- end of transformation')
 }
 
 function filterByRange(visits, range){
@@ -524,14 +524,14 @@ function getOneById(id){
 function getSessionsById(id){
 	var deferred = Q.defer();
 
-	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	// logger.writeLine('debug',0,"Sessions by visit Id " + id);
 	var sessionDays = [];
 
 	model
 	.findOne({ _id: id })
 	.exec(function (err, visit) {
 		if(err) {
-			logger.writeLine('error',0,err);
+			// logger.writeLine('error',0,err);
 			deferred.reject(err);
 		}
 		else{
@@ -540,12 +540,12 @@ function getSessionsById(id){
 			.sort('session.startTime')
 			.exec(function (err, sessions){
 				if(err){
-					logger.writeLine('error',0,err);
+					// logger.writeLine('error',0,err);
 					deferred.reject(err);
 				}
 				else{
 					transform(visit, sessions);
-					logger.Json('test',sessionDays);
+					// logger.Json('test',sessionDays);
 					deferred.resolve(sessionDays);
 				}
 						}); // end of scheduleModel find
@@ -595,7 +595,7 @@ function getSessionsById(id){
 function getSchedulesById(id){
 	var deferred = Q.defer();
 
-	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	// logger.writeLine('debug',0,"Sessions by visit Id " + id);
 	var sessionDays = [];
 
 	model
@@ -615,7 +615,7 @@ function getSchedulesById(id){
 				}
 				else{
 					transform(visit, sessions);
-					logger.Json('test',sessionDays);
+					// logger.Json('test',sessionDays);
 					deferred.resolve(sessionDays);
 				}
 						}); // end of scheduleModel find
@@ -709,7 +709,7 @@ function getKeynotesById(id){
 
 			keynotesWelcome.sort(sortOn("order"));
 			keynotesThankyou.sort(sortOn("order"));
-			console.log(keynotes);
+			// console.log(keynotes);
 			deferred.resolve(keynotes);
 	});
 
@@ -731,9 +731,9 @@ function getKeynotesById(id){
 				desc: keynote.note.desc,
 				attachment: keynote.note.attachment
 			}
-			console.log("******************************");
-			console.log(keynoteData);
-			console.log("******************************");
+			// console.log("******************************");
+			// console.log(keynoteData);
+			// console.log("******************************");
 			return keynoteData;
 		}
 	}
@@ -760,7 +760,7 @@ function getLocationsById(id)
 	model
 	.findOne({ _id: id })
 	.exec(function (err, item) {
-		console.log(item);
+		// console.log(item);
 		if(err) {
 			console.log(err);
 			deferred.reject(err);
@@ -785,7 +785,7 @@ function getLocationsById(id)
 	});
 	return deferred.promise;
 }
-	
+
 function create(data) {
 	var deferred = Q.defer();
 
@@ -823,7 +823,7 @@ function getvalidationById(id, data){
 	var deferred = Q.defer();
 	var errMessgs=[];
 	model
-	.findByIdAndUpdate(id, data) 
+	.findByIdAndUpdate(id, data)
 	.populate('keynote.note')
 	.populate('feedbackTmpl')
 	.populate('sessionTmpl')
@@ -832,7 +832,7 @@ function getvalidationById(id, data){
 			console.log(err);
 			deferred.reject(err);
 		}
-		else{	
+		else{
 			if (item.preview === "poor" || item.preview === "" || item.preview === undefined || item.preview === null) {
 				errMessgs.push("Make sure to check the preview in Mobile.");
 			}
@@ -842,7 +842,7 @@ function getvalidationById(id, data){
 			if(item.sessionTmpl === "" || item.sessionTmpl === undefined || item.sessionTmpl === null){
 				errMessgs.push("Session Template needs to be defined.");
 
-			}		
+			}
 			if(item.keynote.length != 0 || item.keynote.length == 0 ){
 				var count=0;
 				for (var i=0; i<item.keynote.length; i++){
@@ -867,8 +867,8 @@ function getvalidationById(id, data){
 					deferred.resolve(errMessgs);
 				}
 			}
-		})	
-	});			
+		})
+	});
 return deferred.promise;
 
 } // gentOneById method ends
@@ -931,7 +931,7 @@ function getParticipantsById(id){
 				if (v.visitor!= null && v.visitor!= undefined && v.visitor!= "" ){
 					switch(v.visitor.association)    {
 						case "employee":
-						arrAddItem(emp, v.visitor);					
+						arrAddItem(emp, v.visitor);
 						break;
 
 						case "customer":
@@ -952,7 +952,7 @@ function getParticipantsById(id){
 					// console.log(visit.invitees.association);
 					switch(visit.invitees[i].association)    {
 						case "employee":
-						arrAddItem(emp, visit.invitees[i]);					
+						arrAddItem(emp, visit.invitees[i]);
 						break;
 
 						case "customer":
@@ -981,7 +981,7 @@ function getParticipantsById(id){
 							for (var i = 0; i < sch.invitees.length; i++) {
 								switch(sch.invitees[i].association)    {
 									case "employee":
-									arrAddItem(emp, sch.invitees[i]);					
+									arrAddItem(emp, sch.invitees[i]);
 									break;
 
 									case "customer":
@@ -1089,23 +1089,23 @@ function getVisitStats() {
 	var visitStats = [];
 
 	var today = moment().startOf('day');
-	console.log(today);
+	// console.log(today);
 
 	model.find(
 				{$and:
 					[
 						{"anchor": {$exists: true, $ne: null}},
-				
+
 						{$or:
 							[
-								{$and: 
+								{$and:
 									[
 										{"startDate": {$lte: today, $exists: true, $ne: null}},
 										{"endDate": {$gte: today, $exists: true, $ne: null}}
 									]
 								},
-								
-								{$and: 
+
+								{$and:
 									[
 										{"startDate": {$gte: today, $exists: true, $ne: null}},
 										{"endDate": {$gte: today, $exists: true, $ne: null}}
@@ -1164,9 +1164,9 @@ function transformVisitStats(visitStats) {
 				locations: visitStats.locations
 			}
 		}
-		console.log("******************************");
-		console.log(visitStatsData);
-		console.log("******************************");
+		// console.log("******************************");
+		// console.log(visitStatsData);
+		// console.log("******************************");
 		return visitStatsData;
 	}
 }
@@ -1175,7 +1175,7 @@ function transformVisitStats(visitStats) {
 function getLastTimeSessionsById(id){
 	var deferred = Q.defer();
 
-	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	// logger.writeLine('debug',0,"Sessions by visit Id " + id);
 	var sessionLastDays = [];
 
 	model
@@ -1196,7 +1196,7 @@ function getLastTimeSessionsById(id){
 				}
 				else{
 					transform(visit, sessions);
-					logger.Json('test',sessionLastDays);
+					// logger.Json('test',sessionLastDays);
 					deferred.resolve(sessionLastDays);
 				}
 						}); // end of scheduleModel find
@@ -1205,7 +1205,7 @@ function getLastTimeSessionsById(id){
 
 		// Internal method to transform visit data to session
 		function transform(visit, sessions)
-		{ 		
+		{
 			sessionLastDays.push(sessions[sessions.length - 1]);
 		}
 
@@ -1216,7 +1216,7 @@ function getLastTimeSessionsById(id){
 function getAllSessionsById(id){
 	var deferred = Q.defer();
 
-	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	// logger.writeLine('debug',0,"Sessions by visit Id " + id);
 	var sessionLastDays = [];
 
 	model
@@ -1247,7 +1247,7 @@ function getAllSessionsById(id){
 
 		// Internal method to transform visit data to session
 		function transform(visit, sessions)
-		{ 
+		{
 
 			for(var i=0;i<sessions.length;i++)
 			{
