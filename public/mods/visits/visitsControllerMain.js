@@ -462,7 +462,9 @@ var refresh = function() {
       $scope.regionClient = false;
       $scope.visits = $http.get('/api/v1/secure/visits/' + id).success(function(response){
         console.log(response);
-
+        $scope.visitManagerAnchor = response.anchor;
+        $scope.visitManagerSecondary = response.secondaryVmanager;
+        
         for(var files=0;files<response.visitAttachment.length;files++)
         {
           $scope.array.push(response.visitAttachment[files])
@@ -1419,10 +1421,37 @@ $scope.ClientDraft=false;
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
      growl.info(parse("Visit Manager assigned successfully."));
      $scope.nextTab($scope.visits._id);
-     $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitownerchange').success(function(response) {
-      // console.log(response);
-      /*growl.info(parse("Email sent to visit managers successfully"));*/
-    }) 
+
+     //Notfication when Primary Visit Manager Assigned or Sec V manager Assigned 
+     if($scope.visitManagerAnchor == undefined && $scope.visitManagerSecondary == undefined)
+     {
+       $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/newvmanagerassigned').success(function(response) {
+        console.log(response);
+      }) 
+     }
+
+     if($scope.visitManagerSecondary == undefined && $scope.visitManagerAnchor != undefined && $scope.anchorman==undefined && $scope.vman!=undefined)
+     {
+       $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/newvmanagerassigned').success(function(response) {
+        console.log(response);
+      }) 
+     }
+    
+     //Notfication when Primary Visit Manager Changes
+     if($scope.visitManagerAnchor._id != $scope.anchorman && $scope.anchorman!=undefined)
+     {
+       $http.get('/api/v1/secure/email/'+ $scope.visits._id + '/' + $scope.visitManagerAnchor.email + '/visitownerchange').success(function(response) {
+        console.log(response);
+      }) 
+     }
+
+     //Notfication when Secondary Visit Manager Changes
+     if($scope.anchorman==undefined && $scope.vman!=undefined && $scope.visitManagerSecondary._id != $scope.vman)
+     {
+       $http.get('/api/v1/secure/email/'+ $scope.visits._id + '/' + $scope.visitManagerSecondary.email + '/visitownerchange').success(function(response) {
+        console.log(response);
+      }) 
+     } 
    })
   };
 
@@ -1448,10 +1477,15 @@ $scope.ClientDraft=false;
     var inData       = $scope.visits;
     inData.keynote = $scope.keynotes;
     inData.comments = $scope.commentsData;
+
     $http.put('/api/v1/secure/visits/' + $scope.visits._id, inData).success(function(response) {
       growl.info(parse("Planning stage compleated successfully"));
       $scope.nextTab($scope.visits._id);
     })
+
+    $http.get('/api/v1/secure/email/'+ $scope.visits._id + '/agendafinalize').success(function(response) {
+      console.log(response);
+    }) 
 
   }
   $scope.reachedEnd=function(){
@@ -1482,6 +1516,11 @@ $scope.ClientDraft=false;
       $location.path("visits/list"); 
       
     })
+
+    $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitclosure').success(function(response) {
+      growl.info(parse("Visit has been closed successfully"));
+   // console.log(response);
+ })
   }
   $scope.getvalidation= function(ev){
 
@@ -1664,7 +1703,6 @@ $scope.ClientDraft=false;
     growl.info(parse("notifications stage compleated successfully"));
     $scope.nextTab($scope.visits._id);
   })
-
 }
 $scope.isDataValid=function(schedule){
   var Today = new Date();
@@ -3352,6 +3390,10 @@ $scope.reject=function(rejectReason){
       // console.log(inData);
       $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
         // console.log(response);
+      });
+
+      $http.get('/api/v1/secure/email/'+ $scope.visitid +'/rejectvisitbyadmin').success(function(response) {
+               // console.log(response);
       });
       
       growl.info(parse("Rejected visit successfully"));

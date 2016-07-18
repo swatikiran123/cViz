@@ -1,9 +1,9 @@
 Hi <b>{{createBy.name.first}} {{createBy.name.last}}</b>, 
 
-<p>This is to inform that {{client.name}} {{client.subName}} visit has been re-assigned to {{anchor.name.first}} {{anchor.name.last}}.{% if secondaryVmanager != null %}/<b>{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}</b>{% endif %}</p> 
+<p>This is to acknowledge that your client visit request has been accepted and <b>{{anchor.name.first}} {{anchor.name.last}}</b>{% if secondaryVmanager != null %}/<b>{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}</b>{% endif %} has been asssigned as the Visit Manager.</p> 
 
 <p>
-Primary Visit Manager Contact Details:
+Primary Visit Manager Contact Details:<br>
 Name: {{anchor.name.first}} {{anchor.name.last}}<br>
 Email: {{anchor.email}}<br>
 Contact No: {{anchor.contactNo[0].contactNumber}}
@@ -17,8 +17,7 @@ Email: {{secondaryVmanager.email}}<br>
 Contact No: {{secondaryVmanager.contactNo[0].contactNumber}}
 </p>
 {% endif %}
-
-<p>The Visit Manager will get in touch with you shortly to start/continue the Visit Planning. </p>
+<p>The Visit Manager will get in touch with you shortly to start the Visit Planning.</p>
 
 <p>
 Thanks.<br>

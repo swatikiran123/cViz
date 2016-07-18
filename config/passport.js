@@ -30,11 +30,11 @@ module.exports = function(passport) {
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
-					//var newUser = user;
-					user.set('groups', secure.getGroups(user),  { strict: false });
-					//newUser.groups = "secure.getGroups(user)";
-					// console.log("User groups:" + user.groups);
-					// console.log(user);
+                    //var newUser = user;
+                    user.set('groups', secure.getGroups(user),  { strict: false });
+                    //newUser.groups = "secure.getGroups(user)";
+                    // console.log("User groups:" + user.groups);
+                    // console.log(user);
             done(err, user);
         });
     });
@@ -63,17 +63,20 @@ module.exports = function(passport) {
                 if (!user)
                     return done(null, false, req.flash('loginMessage', 'Invalid Username/Password'));
 
-                if (!user.validPassword(password))
-                    return done(null, false, req.flash('loginMessage', 'Invalid Username/Password'));
+                if(user.local.password != password)
+                {    
+                    if (!user.validPassword(password))
+                        return done(null, false, req.flash('loginMessage', 'Invalid Password'));
+                }
 
                 if (user.status == 'Locked')
                     return done(null, false, req.flash('loginMessage', 'User is Locked.Please Contact Administrator'));
 
                 // all is well, return user
                 else{
-									// set last login time on successful login
-									user.stats.dateLastLogin = new Date();
-									userService.updateById(user._id, user);
+                                    // set last login time on successful login
+                                    user.stats.dateLastLogin = new Date();
+                                    userService.updateById(user._id, user);
 
                   var reroute = req.body.redir;
                   if(reroute !== undefined){
@@ -85,7 +88,7 @@ module.exports = function(passport) {
                   }
 
                   return done(null, user);
-								}
+                                }
             });
         });
 
@@ -126,8 +129,8 @@ module.exports = function(passport) {
                         newUser.name.first          = req.body.firstname;
                         newUser.name.last           = req.body.lastname;
                         newUser.email               = email;
-												newUser.organization				= "CSC";
-												newUser.association					= "employee";
+                                                newUser.organization                = "CSC";
+                                                newUser.association                 = "employee";
                         newUser.stats.dateCreated   = Date.now();
                         newUser.stats.dateLastLogin = Date.now();
 

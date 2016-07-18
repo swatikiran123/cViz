@@ -3,9 +3,9 @@ var _ = require('underscore');
 var bcrypt = require('bcryptjs');
 var path              = require('path');
 
-var constants 				= require('../scripts/constants');
-
-var model 				    = require(constants.paths.models +  '/user')
+var constants               = require('../scripts/constants');
+var logger                      = require(constants.paths.scripts + "/logger");
+var model                   = require(constants.paths.models +  '/user')
 var config            = require(path.join(constants.paths.config, '/config'));
 
 // Service method definition -- Begin
@@ -60,7 +60,7 @@ function getOneById(id){
 
 function create(userParam) {
     var deferred = Q.defer();
-    userParam.email = userParam.email.toLowerCase();
+
     // validation
     model.findOne(
         { email: userParam.email },
@@ -82,16 +82,26 @@ function create(userParam) {
 
       // set user object to userParam without the cleartext password
       var user = _.omit(userParam, 'password');
-
+      console.log(userParam.local.password);
       if(userParam.local.email == null)
         userParam.local.email = userParam.email;
 
-      if(userParam.local.password == null)
-          userParam.local.password = config.get('profile.default-pwd');
-
-        // add hashed password to user object
+      if(userParam.local.password != null)
+        {
         user.local.password = bcrypt.hashSync(userParam.local.password, bcrypt.genSaltSync(8), null);
+        }    
 
+      if(userParam.local.password == null)
+        {
+         localPassword = randomPassword(userParam.name.first.length);
+         var bcryptPassword = bcrypt.hashSync(localPassword, bcrypt.genSaltSync(8), null);
+         console.log(bcryptPassword);
+         var pwdwithoutSlash =  bcryptPassword.replace(/\//g, "");
+         console.log(pwdwithoutSlash);
+         user.local.password = pwdwithoutSlash;
+        }
+ 
+        console.log(user.local.password);
         model.create(
             user,
             function (err, doc) {
@@ -105,6 +115,16 @@ function create(userParam) {
     }
 
     return deferred.promise;
+}
+
+function randomPassword(length) {
+    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+    var pass = "";
+    for (var x = 0; x < length; x++) {
+        var i = Math.floor(Math.random() * chars.length);
+        pass += chars.charAt(i);
+    }
+    return pass;
 }
 
 function updateById(id, data) {

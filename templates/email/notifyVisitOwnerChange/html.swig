@@ -1,22 +1,27 @@
-Dear Visit Manager,<br/>
-<br/>
-Owner for the following visit changed as below
-<br/>
-Title: {{title}}<br/>
-Client: {{client.name}}<br/>
-Start Date: {{startDate|date('jS \o\f F, Y')}}<br/>
-End Date: {{endDate|date('jS \o\f F, Y')}}<br/>
-Locations: {{locations}}<br/>
-<br/>
-<b>Current Owners</b><br/>
-Primary Visit Manager: {{anchor.name.first}} {{anchor.name.last}}<br/>
+Hi <b>{{createBy.name.first}} {{createBy.name.last}}</b>, 
 
-Secondary Visit Manager:{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}<br/>
-<br/>
-Please goto visit planner to validate the agenda and initiate visit planning workflow<br/>
-<br/>
-Best Regards,<br/>
-Visit Portal Team<br/>
+<p>This is to inform that {{client.name}} {{client.subName}} visit has been re-assigned to <b>{{anchor.name.first}} {{anchor.name.last}}</b>{% if secondaryVmanager != null %}/<b>{{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}</b>{% endif %}</p> 
 
-<hr/>
-Note: This is an auto generated mail from Visit Portal. Please do not reply.
+<p>
+Primary Visit Manager Contact Details:<br>
+Name: {{anchor.name.first}} {{anchor.name.last}}<br>
+Email: {{anchor.email}}<br>
+Contact No: {{anchor.contactNo[0].contactNumber}}
+</p>
+
+{% if secondaryVmanager != null %}
+<p>
+Secondary Visit Manager Contact Details:<br>
+Name: {{secondaryVmanager.name.first}} {{secondaryVmanager.name.last}}<br>
+Email: {{secondaryVmanager.email}}<br>
+Contact No: {{secondaryVmanager.contactNo[0].contactNumber}}
+</p>
+{% endif %}
+
+<p>The Visit Manager will get in touch with you shortly to start/continue the Visit Planning. </p>
+
+<p>
+Thanks.<br>
+CSC India Visit Management Team<br>
+<a href="https://c3.csc.com/groups/global-site-visit-management">Connect with us at on C3</a>
+</p>

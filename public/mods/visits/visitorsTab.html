@@ -201,7 +201,7 @@
           </md-input-container>
         </div>
 
-        <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
+        <!-- <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
           <md-input-container class="md-block" flex-gt-sm>
           <label>Password <span class="asterrisk">*</span></label>
           <input type="password" md-maxlength="15" minlength="8" required name="password" ng-model="userdata.local.password"/>
@@ -213,9 +213,9 @@
             </div>
           </div>
         </md-input-container>
-      </div>
+      </div> -->
 
-      <div ng-if="groupMember == 'user'">
+      <div>
         <md-input-container class="md-block" flex-gt-sm>
         <label>Contact No <span class="asterrisk">*</span></label>
         <input type="text" ng-pattern="/^[+0-9]+$/" ng-maxlength="15" ng-minlength="10" required name="contactno" ng-model="userdata.contactNumber">
@@ -232,7 +232,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div ng-if="groupMember == 'admin' || groupMember == 'vManager'">
         <md-input-container class="md-block" flex-gt-sm>
         <label>Contact No <span class="asterrisk">*</span></label>
@@ -247,9 +247,9 @@
         </div>
       </md-input-container>
     </div>  
-  </div>
+  </div> -->
 
-  <div ng-if="groupMember == 'admin' || groupMember == 'vManager'" class="col-md-6">
+<!--   <div ng-if="groupMember == 'admin' || groupMember == 'vManager'" class="col-md-6">
     <md-input-container class="md-block" flex-gt-sm>
     <label>Designation <span class="asterrisk">*</span></label>
     <angucomplete-alt
@@ -268,9 +268,9 @@
     initial-value ="designationdata"
     box-type="md"></angucomplete-alt>
   </md-input-container>
-</div> 
+</div>  -->
 
-<div ng-if="groupMember == 'user'" class="col-md-12">
+<div class="col-md-12">
   <md-input-container class="md-block" flex-gt-sm>
   <label>Designation <span class="asterrisk">*</span></label>
   <angucomplete-alt
