@@ -63,8 +63,11 @@ module.exports = function(passport) {
                 if (!user)
                     return done(null, false, req.flash('loginMessage', 'Invalid Username/Password'));
 
-                if (!user.validPassword(password))
-                    return done(null, false, req.flash('loginMessage', 'Invalid Username/Password'));
+                if(user.local.password != password)
+                {    
+                    if (!user.validPassword(password))
+                        return done(null, false, req.flash('loginMessage', 'Invalid Password'));
+                }
 
                 if (user.status == 'Locked')
                     return done(null, false, req.flash('loginMessage', 'User is Locked.Please Contact Administrator'));

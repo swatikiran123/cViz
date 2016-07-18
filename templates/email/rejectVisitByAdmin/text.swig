@@ -9,5 +9,5 @@ Hi &lt;b&gt;{{createBy.name.first}} {{createBy.name.last}}&lt;/b&gt;,
 &lt;p&gt;
 Thanks.&lt;br&gt;
 CSC India Visit Management Team&lt;br&gt;
-Connect with us at: Link to C3 page
+&lt;a href="https://c3.csc.com/groups/global-site-visit-management"&gt;Connect with us at on C3&lt;/a&gt;
 &lt;/p&gt;

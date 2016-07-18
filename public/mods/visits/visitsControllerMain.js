@@ -1516,6 +1516,11 @@ $scope.ClientDraft=false;
       $location.path("visits/list"); 
       
     })
+
+    $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitclosure').success(function(response) {
+      growl.info(parse("Visit has been closed successfully"));
+   // console.log(response);
+ })
   }
   $scope.getvalidation= function(ev){
 
@@ -1698,11 +1703,6 @@ $scope.ClientDraft=false;
     growl.info(parse("notifications stage compleated successfully"));
     $scope.nextTab($scope.visits._id);
   })
-
-   $http.get('/api/v1/secure/email/'+ $scope.visits._id+'/visitclosure').success(function(response) {
-   growl.info(parse("Mail has been generated and sent to all Participants"));
-   // console.log(response);
- })
 }
 $scope.isDataValid=function(schedule){
   var Today = new Date();

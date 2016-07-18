@@ -4,6 +4,8 @@ var logger                      = require(constants.paths.scripts + '/logger');
 var util                            = require(constants.paths.scripts + '/util');
 var assetBuilder            = require(constants.paths.scripts + '/assetBuilder');
 var menuBuilder             = require(constants.paths.scripts + '/menuBuilder');
+var User            = require(constants.paths.models +  '/user');
+var userService     = require(constants.paths.services +  '/users');
 
 module.exports = function(app, passport) {
 
@@ -83,6 +85,49 @@ module.exports = function(app, passport) {
             failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
+
+        //auto login functionality with url from email
+        app.get('/login/:userId/:pwd', function(req, res,next) {
+            console.log(req.params.userId);
+            console.log(req.params.pwd);
+
+            User.findOne({ '_id' :  req.params.userId }, function(err, user) {
+                var emailId = user.local.email;    
+                var basePath = 'http://' + req.headers.host + '/login';
+                console.log(basePath);
+                var request = require('request');
+                request.post({
+                  headers: {'content-type' : 'application/x-www-form-urlencoded'},
+                  url:     basePath,
+                  form:    { email: emailId , password:req.params.pwd }
+              }, function(error, response, body,dict){ 
+               console.log(body);
+               if(body == 'Found. Redirecting to /home')
+               {
+                   res.locals.pageTitle = "Home";
+                   res.locals.stdAssets = assetBuilder.getAssets("stdAssets", 
+
+                    "general,angular");
+                   res.locals.appAssets = assetBuilder.getAssets("appAssets", 
+
+                    "general,home");
+                   res.locals.pageTitle = "App Info";
+                   res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+                   res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
+                   res.locals.user = user;
+                   req.isAuth = true;
+                   console.log(res);
+                   console.log(req);
+                   req.session.passport.user = user._id;
+                   res.redirect('/home');
+               }
+               else{
+                console.log(req);
+                res.redirect('/login');
+            }
+        });
+            });
+        });
 
         // SIGNUP =================================
         // show the signup form

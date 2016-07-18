@@ -4,6 +4,6 @@ Hi All,
 <p>
 Thanks.<br> 
 CSC India Visit Management Team<br>
-Connect with us at: Link to C3 page
+<a href="https://c3.csc.com/groups/global-site-visit-management">Connect with us at on C3</a>
 </p>
 <hr/>

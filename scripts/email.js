@@ -91,23 +91,16 @@ function notifyNewVisit(visitId,basePath) {
 	})
 
 	function sendMail(visit){
-
-		groupService.getUsersByGroup("admin")
-		.then(function(users){
-			users.forEach(function(user){
 				var visitData =	{
 					client: visit.client,
-					userId: user.id,
-					localData:user.local,
 					visitId:visit.id,
+					createBy:visit.createBy,
+					hostPath: basePath,
+					loginPath: pathBuilder.getPath(basePath, "/m"),
 					startDate:visit.startDate,
 					endDate:visit.endDate,
-					createBy:visit.createBy,
-					locations:visit.locations,
-					hostPath: basePath,
-					loginPath: pathBuilder.getPath(basePath, "loginPage")
+					locations:visit.locations
 				};
-
 				mailTemplate.render(visitData, function (err, results) {
 
 					if(err){
@@ -168,7 +161,11 @@ function notifyNewVisit(visitId,basePath) {
 					}
 
 					cscPersonnelIds.push(visit.createBy.email);
-						emailIds.push(user.email);
+					groupService.getUsersByGroup("admin")
+					.then(function(users){
+						users.forEach(function(user){
+							emailIds.push(user.email);
+						});
 						console.log(emailIds);
 						console.log(cscPersonnelIds)
 						var mailOptions = {
@@ -190,10 +187,8 @@ function notifyNewVisit(visitId,basePath) {
 							console.log('Notifications sent to ' + cscPersonnelIds);
 						}); // end of transporter.sendMail
 
-					}); // end of getUsersByGroup service call
+	   					}); // end of getUsersByGroup service call
 			}); // end of register mail render
-
-		}); // end of sendmail
 	}
 } // end of sendMailOnRegistration
 

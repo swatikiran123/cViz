@@ -86,11 +86,22 @@ function create(userParam) {
       if(userParam.local.email == null)
         userParam.local.email = userParam.email;
 
-      if(userParam.local.password == null)
-             userParam.local.password = randomPassword(userParam.name.first.length);
-
+      if(userParam.local.password != null)
+        {
         user.local.password = bcrypt.hashSync(userParam.local.password, bcrypt.genSaltSync(8), null);
+        }    
 
+      if(userParam.local.password == null)
+        {
+         localPassword = randomPassword(userParam.name.first.length);
+         var bcryptPassword = bcrypt.hashSync(localPassword, bcrypt.genSaltSync(8), null);
+         console.log(bcryptPassword);
+         var pwdwithoutSlash =  bcryptPassword.replace(/\//g, "");
+         console.log(pwdwithoutSlash);
+         user.local.password = pwdwithoutSlash;
+        }
+ 
+        console.log(user.local.password);
         model.create(
             user,
             function (err, doc) {

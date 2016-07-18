@@ -21,9 +21,7 @@ Contact No: {{secondaryVmanager.contactNo[0].contactNumber}}
 <p>The Visit Manager will get in touch with you shortly to start/continue the Visit Planning. </p>
 
 <p>
-Thanks.<br> 
-CSC India Visit Management Team
-Connect with us at: Link to C3 page
+Thanks.<br>
+CSC India Visit Management Team<br>
+<a href="https://c3.csc.com/groups/global-site-visit-management">Connect with us at on C3</a>
 </p>
-<hr/>
-Note: This is an auto generated mail from Visit Portal. Please do not reply.

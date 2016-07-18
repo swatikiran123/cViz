@@ -127,18 +127,7 @@
          <div ng-message="minlength">The title should contain minimum 5 characters</div></div></div>
       </md-input-container>
 
-         <!--desc have to pic from User -->
-<!--              <md-input-container class="md-block">
-        <label>Description</label>
-        <textarea md-maxlength="3000" minlength="30" required name="desc" ng-model="schedule.session.desc"></textarea>
-        <div ng-messages="sessionAddForm.desc.$error" ng-show="sessionAddForm.desc.$touched || !sessionAddForm.desc.$pristine">
-             <div class="messagenotify">
-              <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The description  has to be less than 3000 characters long.</div>
-         <div ng-message="minlength">The description should contain minimum 30 characters</div></div></div>
-      </md-input-container> -->
-
-      <md-input-container class="md-block">
+     <md-input-container class="md-block">
       <label>Session Descritpiton <span class="asterrisk">*</span></label>
       <text-angular
       ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
@@ -223,44 +212,20 @@
         </div> 
 			</div>
       <br>
-        <!-- <div style="overflow-y: auto; height:100px; width:700px"> -->
+
            <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type={{visit.client._id}} collectlist="$parent.collectlist"></invitees>
-        <!-- </div>   -->
-        <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-click="save()" 
-        ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner">
-        Submit
-      </md-button>
-      <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-      yes-text="Ok" no-text="Cancel">
-      Cancel
-    </md-button>
-  </md-dialog-actions>
+           <div class="pull-right">
+            <button type="submit" class="btn btn-success" ng-click="save()" 
+            ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner">
+            Submit
+          </button>
+          <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+          yes-text="Ok" no-text="Cancel">
+          Cancel
+        </button>
+      </div>
     </ANY>
       <ANY ng-switch-when="tea-break">
-
-<!--        <md-input-container class="md-block" ng-if="mode=='add'">
-       <label>Location</label>
-       <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
-       ng-blur="sendMeetingPlace(meetingPlacesData)">
-       <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
-
-        <md-input-container class="md-block" ng-if="mode=='edit'">
-        <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
-        ng-blur="sendMeetingPlace(meetingPlaceData)">
-        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container> -->
-
         <div class="row">
           <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
@@ -282,44 +247,19 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <md-dialog-actions layout="row">
-           <md-button class="md-primary md-raised" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
-              Submit
-           </md-button>
-           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-             yes-text="Ok" no-text="Cancel">
-           Cancel
-           </md-button>
-        </md-dialog-actions>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-success" ng-click="save()" 
+          ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+          Submit
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+        yes-text="Ok" no-text="Cancel">
+        Cancel
+      </button>
+    </div>  
       </ANY>
 
       <ANY ng-switch-when="lunch">
-
-<!--         <md-input-container class="md-block" ng-if="mode=='add'">
-        <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlacesData"
-        ng-blur="sendMeetingPlace(meetingPlacesData)">
-        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container>
-
-        <md-input-container class="md-block" ng-if="mode=='edit'">
-        <label>Location</label>
-        <input md-maxlength="30" minlength="5" required name="location" ng-model="meetingPlaceData"
-        ng-blur="sendMeetingPlace(meetingPlaceData)">
-        <div ng-messages="sessionAddForm.location.$error" ng-show="sessionAddForm.location.$touched || !sessionAddForm.location.$pristine">
-         <div class="messagenotify">
-          <div ng-messages-include="/public/mods/partials/messages.html"></div>
-          <div ng-message="md-maxlength">The location  has to be less than 30 characters long.</div>
-          <div ng-message="minlength">The location should contain minimum 5characters</div></div></div>
-        </md-input-container> -->
         <div class="row">
           <i>Select Meeting Place <span class="asterrisk">*</span></i>
           <select id="meetingPlace" ng-model="schedule.session.location" required>
@@ -341,19 +281,16 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <md-dialog-actions layout="row">
-           <md-button class="md-primary md-raised" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
-              Submit
-           </md-button>
-           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-             yes-text="Ok" no-text="Cancel">
-           Cancel
-           </md-button>
-        </md-dialog-actions>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-success" ng-click="save()" 
+          ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+          Submit
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+        yes-text="Ok" no-text="Cancel">
+        Cancel
+      </button>
+    </div>
       </ANY>
 
       <ANY ng-switch-when="dinner">
@@ -379,19 +316,16 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <md-dialog-actions layout="row">
-           <md-button class="md-primary md-raised" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
-              Submit
-           </md-button>
-           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-             yes-text="Ok" no-text="Cancel">
-           Cancel
-           </md-button>
-        </md-dialog-actions>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-success" ng-click="save()" 
+          ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+          Submit
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+        yes-text="Ok" no-text="Cancel">
+        Cancel
+      </button>
+    </div>  
       </ANY>
 
       <ANY ng-switch-when="breakfast">
@@ -417,19 +351,16 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <md-dialog-actions layout="row">
-           <md-button class="md-primary md-raised" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid || checkTimeVar">
-              Submit
-           </md-button>
-           <md-button class="md-warn md-raised" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-             yes-text="Ok" no-text="Cancel">
-           Cancel
-           </md-button>
-        </md-dialog-actions>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-success" ng-click="save()" 
+          ng-disabled="sessionAddForm.$invalid || checkTimeVar">
+          Submit
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+        yes-text="Ok" no-text="Cancel">
+        Cancel
+      </button>
+    </div> 
       </ANY>
 
 </ANY>    
