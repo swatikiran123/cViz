@@ -782,11 +782,66 @@ function visitClosure(visitId,basePath) {
 		}) // end of modelVisit
 }
 
+// code to generate pdf file for visit schedules//
+function getAgenda(visitId){
+	if(config.get('email.send-mails')!="true") return;
+	modelschedule
+		.findOne({ visit: visitId })
+		.populate('client')
+		.exec(function (err, visit) {
+			if(err) {
+				console.log(err);
+			}
+			else{
+				visitService.getPDFSessionsById(visitId)
+				.then(function(vSchedules){
+					var text = 'Agenda:';
+					 for (var i = 0; i < vSchedules.length; i++) {
+						text += "<label><b> "+ (vSchedules[i].date).format('ddd, DD MMM YYYY')+" | CSC "+vSchedules[i].location+"</b></label>";
+						text += "<table border=1 cellpadding=0 cellspacing=0 width=100%><tr><th>Type</th><th width=20%>Time (Hrs.)</th><th>Session/Activity</th><th>Anchors</th><th>Venue</th></tr>";
+						for (var j = 0; j < vSchedules[i].sessions.length; j++) {
+							text += "<tr><td>"+vSchedules[i].sessions[j].session.type+"</td>";
+							text += "<td>"+(vSchedules[i].sessions[j].session.startTime).toLocaleString()+"-"+(vSchedules[i].sessions[j].session.endTime).toLocaleString()+"</td>";
+							if(vSchedules[i].sessions[j].session.type == 'presentation' || vSchedules[i].sessions[j].session.type == 'discussion' || vSchedules[i].sessions[j].session.type == 'floor-walk' || vSchedules[i].sessions[j].session.type == 'visit-wrap-up')
+								text += "<td>"+vSchedules[i].sessions[j].session.title+"</td>";
+							else
+								text += "<td>"+vSchedules[i].sessions[j].session.type+"</td>";
+							//text += "<td><b>"+vSchedules[i].sessions[j].session.owner.name.first+" "+vSchedules[i].sessions[j].session.owner.name.last+"</b>";
+							text += "<td>";
+							for (var k = 0; k < vSchedules[i].sessions[j].invitees.length; k++) {
+								text += vSchedules[i].sessions[j].invitees[k].name.first+' '+vSchedules[i].sessions[j].invitees[k].name.last+", ";
+								//if(k == vSchedules[i].sessions[j].invitees.length){text += ' '};
+							}
+							text += "</td>";
+							text += "<td>"+vSchedules[i].sessions[j].session.location+"</td></tr>";
+				        }
+				        text += "</table>";
+				    }
+					var fs = require('fs');
+-					fs.writeFile("pdfAgenda1.html", text);
+					setTimeout(function(){
+						var pdf = require('html-pdf');
+						var options = { format: 'Letter' };
+						var html = fs.readFileSync('pdfAgenda1.html', 'utf8');
+						var filePath = "public/uploads/visits/";
+						pdf.create(html, options).toFile('../../'+filePath+'emailPDF/pdfAgenda1.pdf', function(err, res) {
+						  if (err) return console.log(err);
+							var destPath = res.filename.split('cViz');
+							//return console.log(destPath[1]);
+						});
+					}, 8000);
+				}); // end of visitService.getParticipantsById
+				} //end of else
+		}) // end of modelVisit
+var destPath = "/public/uploads/visits/emailPDF/pdfAgenda1.pdf";
+return destPath;
+}
+// code to generate pdf file for visit schedules//
+
 // Send Notification when visit is finalized
 function agendaFinalize(visitId,basePath) {
 
 	if(config.get('email.send-mails')!="true") return;
-
 	var templateDir = path.join(constants.paths.templates, 'email', 'agendaFinalize');
 	var mailTemplate = new emailTemplate(templateDir);
 
@@ -849,7 +904,8 @@ function agendaFinalize(visitId,basePath) {
 										text: results.text, // plaintext body
 										html: results.html, // html body
 										attachments: [{						
-											path: filePath,
+											//path: filePath,
+											path: getAgenda(visitId),
 											contentType: 'application/pdf'
 										}]
 									};

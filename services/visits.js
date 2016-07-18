@@ -1190,6 +1190,8 @@ function getLastTimeSessionsById(id){
 			scheduleModel
 			.find({ visit: id })
 			.sort('session.startTime')
+			.populate('session.owner')
+			.populate('invitees')
 			.exec(function (err, sessions){
 				if(err){
 					logger.writeLine('error',0,err);
@@ -1263,7 +1265,7 @@ function getAllSessionsById(id){
 function getPDFSessionsById(id){
 	var deferred = Q.defer();
 
-	logger.writeLine('debug',0,"Sessions by visit Id " + id);
+	//logger.writeLine('debug',0,"Sessions by visit Id " + id);
 	var sessionDays = [];
 
 	model
@@ -1284,7 +1286,7 @@ function getPDFSessionsById(id){
 				}
 				else{
 					transform(visit, sessions);
-					logger.Json('test',sessionDays);
+					//logger.Json('test',sessionDays);
 					deferred.resolve(sessionDays);
 				}
 						}); // end of scheduleModel find
