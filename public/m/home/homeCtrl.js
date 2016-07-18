@@ -87,6 +87,8 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 	$scope.medium = "medium";
 	$scope.arrayData=[];
 	$scope.customerName = $scope.activeUser.name.first;
+	$scope.myData1= [];
+	$scope.keynotes1 =[];
 	    // $scope.previewoption = ' ';
 	    $scope.statusCheck= true;
 
@@ -123,6 +125,13 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
     					}
     				}								
     			};	
+
+				$scope.comment = response.comments;
+
+				for(var i=0;i<$scope.comment.length;i++)
+				{
+					$scope.myData1.push($scope.comment[i]._id);
+				}
 			});		
     
 		$http.get('/api/v1/secure/visits/'+avisitData._id+'/keynotes',{
@@ -269,14 +278,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 										order: $scope.visits.keynote[i].order
 									});
 								};
-								if($scope.comment!=null)
-								{
-									for(var i=0;i<$scope.comment.length;i++)
-									{
-										$scope.myData.push($scope.comment[i]._id);
-									}
-									inData.comments = $scope.myData;
-								}
+								inData.comments = $scope.myData1;
 								inData.keynote = $scope.keynotes;						
 								inData.overallfeedback = $scope.visits.overallfeedback;
 
@@ -407,14 +409,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 										order: $scope.visits.keynote[i].order
 									});
 								};
-								if($scope.comment!=null)
-								{
-									for(var i=0;i<$scope.comment.length;i++)
-									{
-										$scope.myData.push($scope.comment[i]._id);
-									}
-									inData.comments = $scope.myData;
-								}
+								inData.comments = $scope.myData1;
 								inData.keynote = $scope.keynotes;						
 								inData.overallfeedback = $scope.visits.overallfeedback;
 
@@ -463,8 +458,6 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 $scope.vid = avist._id;
 });
 	   $scope.preview = function(previewoption) {
-	   	$scope.myData1= [];
-	   	$scope.keynotes1 =[];
 	   	console.log(previewoption);
 	    $http.get('/api/v1/secure/visits/' + $scope.vid).success(function(response)
  		{
@@ -575,14 +568,8 @@ $scope.vid = avist._id;
 										order: $scope.visits.keynote[i].order
 									});
 								};
-								if($scope.comment!=null)
-								{
-									for(var i=0;i<$scope.comment.length;i++)
-									{
-										$scope.myData1.push($scope.comment[i]._id);
-									}
-									inData.comments = $scope.myData1;
-								}
+
+								inData.comments = $scope.myData1;									
 								inData.keynote = $scope.keynotes1;						
 								inData.overallfeedback = $scope.visits.overallfeedback; 
 
