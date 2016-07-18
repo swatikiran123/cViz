@@ -11,6 +11,7 @@ var pathBuilder			  = require(constants.paths.scripts +  '/pathBuilder');
 var groupService      = require(constants.paths.services +  '/groups');
 var visitService     = require(constants.paths.services + '/visits');
 var modelVisit        = require(constants.paths.models +  '/visit');
+var modelschedule   = require(constants.paths.models +  '/visitSchedule');
 
 var smptOptions       = config.get("email.smtp-options");
 var transporter       = nodemailer.createTransport(smptOptions);
@@ -29,6 +30,7 @@ email.newvManagerAssigned				= newvManagerAssigned;
 email.newsecvManagerAssigned 			= newsecvManagerAssigned;
 email.agendaFinalize					= agendaFinalize;
 email.visitClosure 						= visitClosure;
+email.getAgenda 						= getAgenda;
 
 module.exports = email;
 
@@ -787,7 +789,8 @@ function getAgenda(visitId){
 	if(config.get('email.send-mails')!="true") return;
 	modelschedule
 		.findOne({ visit: visitId })
-		.populate('client')
+		.populate('invitees')
+		.populate('session.owner')
 		.exec(function (err, visit) {
 			if(err) {
 				console.log(err);
@@ -810,14 +813,13 @@ function getAgenda(visitId){
 							text += "<td>";
 							for (var k = 0; k < vSchedules[i].sessions[j].invitees.length; k++) {
 								text += vSchedules[i].sessions[j].invitees[k].name.first+' '+vSchedules[i].sessions[j].invitees[k].name.last+", ";
-								//if(k == vSchedules[i].sessions[j].invitees.length){text += ' '};
 							}
 							text += "</td>";
 							text += "<td>"+vSchedules[i].sessions[j].session.location+"</td></tr>";
 				        }
 				        text += "</table>";
 				    }
-					var fs = require('fs');
+				    var fs = require('fs');
 -					fs.writeFile("pdfAgenda1.html", text);
 					setTimeout(function(){
 						var pdf = require('html-pdf');
@@ -890,7 +892,8 @@ function agendaFinalize(visitId,basePath) {
 
 					console.log(basePath)
 					var filePath = basePath + "/public/uploads/visits/wrkday.pdf";
-					console.log(filePath)
+					var filePath1 = basePath + getAgenda(visitId);
+					//console.log('filePath1 '+filePath1);
 
 					if(err){
 						return console.log(err);
@@ -905,7 +908,7 @@ function agendaFinalize(visitId,basePath) {
 										html: results.html, // html body
 										attachments: [{						
 											//path: filePath,
-											path: getAgenda(visitId),
+											path: filePath1,
 											contentType: 'application/pdf'
 										}]
 									};

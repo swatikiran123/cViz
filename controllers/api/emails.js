@@ -54,11 +54,7 @@ function sendMails(req, res){
 			break;	
 
 		case "agendafinalize":
-<<<<<<< e21603380cc40b88e9ab85a4d8570c3f464a5819
 			emailService.agendaFinalize(req.params.id,basePath);	
-=======
-			emailService.agendaFinalize(req.params.id);	
->>>>>>> Email notification added in L4 Branch.
 			break;		
 
 		case "sessiontimechange":

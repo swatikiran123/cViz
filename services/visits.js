@@ -1279,6 +1279,8 @@ function getPDFSessionsById(id){
 			scheduleModel
 			.find({ visit: id })
 			.sort('session.startTime')
+			.populate('session.owner')
+			.populate('invitees')
 			.exec(function (err, sessions){
 				if(err){
 					logger.writeLine('error',0,err);
