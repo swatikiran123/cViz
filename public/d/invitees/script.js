@@ -24,11 +24,13 @@ angular.module('inviteesDirective', [])
   $scope.checkFlg='';
 
   $scope.addInvitees=function(invite){
-
-    $http.get('/api/v1/secure/admin/users/email/' + invite).success(function(response) {
-      console.log(response.association);
-     if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
-     {
+    var str= String(invite);
+    var loc= str.split(/[\s,]+/);
+    for (var i = 0; i < loc.length; i++) {     
+      $http.get('/api/v1/secure/admin/users/email/' + loc[i]).success(function(response) {
+        console.log(response.association);
+        if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
+        {
        // if(response.memberOf == null || response.memberOf == undefined || response.memberOf == "")
        // {
          $scope.userId = response._id;
@@ -86,7 +88,7 @@ angular.module('inviteesDirective', [])
   else
     console.log("error with user directive");
 });
-
+}
 
   };//end of addInvitees
 

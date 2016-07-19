@@ -70,7 +70,8 @@
           <td>{{visit.locations}}</td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.anchor" no-user-msg="vManager not Assigned" ></td>
           <td><div userdisplay view-mode="nameonly" user-id="visit.createBy" no-user-msg="Error!!!" ></td>
-          <td>{{visit.status}}</td>
+          <td ng-if= "visit.status == 'close'">closed</td>
+          <td ng-if= "visit.status != 'close'">{{visit.status}}</td>
           <td>
             <div  ng-if="(visitGrid &&( visit.status === 're-submitted' || visit.status === 'tentative draft' || visit.status === 'confirm draft' || visit.status === 'rejected' || visit.status === 'wip' || visit.status === 'finalize' || visit.status === 'complete' || visit.status === 'tentative'|| visit.status === 'confirm') && visit.status != 'cancelled' && visit.status != 'close' || (!visitGrid && visit.status === 'tentative' && visit.visitors.length < 1) || (!visitGrid && visit.status === 'confirm' && visit.visitors.length < 1)) || visit.status === 'tentative draft' || (!visitGrid && visit.status === 'rejected') || visit.status === 'confirm draft'">
 

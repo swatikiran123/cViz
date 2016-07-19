@@ -93,6 +93,7 @@ visitsApp.controller('visitsControllerMain', ['$scope','appUserService', '$http'
   $scope.clientId='';
   $scope.isSaving= false;
   $scope.j=[];
+  $scope.arrayClose=[];
   $scope.kData=[];
   $scope.closeNoteTipReject= false;
   $scope.cancelReasonNote= false;
