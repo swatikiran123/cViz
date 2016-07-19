@@ -2,7 +2,7 @@ angular.module('sessions')
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
 		  $scope.visittitles = 'No active visit';
-
+	$scope.pusharray = [];
 		appServicem.activeVisit($routeParams.id).then(function(avisit){
 	 $scope.activevists = true;
   if(avisit == 'Not active visit'){
@@ -65,15 +65,51 @@ refresh();
 		}
 	}
 
-$scope.pushSession = function(sessionId,rtime){
 
-		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime).success(function(response) {
+	$scope.submit = function(){
+
+	   angular.forEach($scope.pusharray, function(todo) {
+      if (!todo.done) 
+
+		{console.log(todo.rtime);
+			console.log(todo.id)
+		    	$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ todo.id +'&time='+ todo.rtime +'&sesnstatus='+ todo.sesnstatus).success(function(response) {
 			$scope.sessiontime = response;
 
 			refresh();
 
+   
 		});
+
 	}
+    });
+
+console.log($scope.pusharray);
+$scope.pusharray = [];
+
+	}
+
+$scope.pushSession = function(sessionId,rtime,sesnstatus){
+
+/*		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime +'&sesnstatus='+ sesnstatus).success(function(response) {
+			$scope.sessiontime = response;
+
+			refresh();
+
+
+		});*/
+	
+		$scope.pushobject = {};
+ 
+		$scope.pushobject.id = sessionId;
+		$scope.pushobject.rtime = rtime;
+	    $scope.pushobject.sesnstatus = sesnstatus;
+		
+		$scope.pusharray.push($scope.pushobject)
+		console.log($scope.pusharray);
+	}
+
+
 	$scope.drop = function(sessionId){
 		$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
 		{
@@ -86,7 +122,7 @@ $scope.pushSession = function(sessionId,rtime){
 			var difference = moment.duration($scope.st.diff($scope.et));
 			var diffInMin = difference.asMinutes();
 
-			$scope.pushSession(sessionId,diffInMin);
+			$scope.pushSession(sessionId,diffInMin,$scope.response.status);
 
 			$http.put('/api/v1/secure/visitSchedules/' + sessionId,  $scope.response).success(function(response) {
 
@@ -96,9 +132,7 @@ $scope.pushSession = function(sessionId,rtime){
 				refresh();
 			});
 
-			$http.put('/api/v1/secure/visitSchedules/'+ sessionId, $scope.response).success(function(response1) {
-				refresh();
-			});
+
 		});
 	}
 

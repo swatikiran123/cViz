@@ -269,8 +269,9 @@ function pushSession(req,res){
 	var visitId = req.params.id;
 	var sessionId = req.param('sessionId');
 	var time = req.param('time');
+    var sesnstatus = req.param('sesnstatus');
 
-  dataService.pushSession(sessionId, time)
+  dataService.pushSession(sessionId, time, sesnstatus)
     .then(function(data){
         res.status(200).send("Session moved successfully");
     })
