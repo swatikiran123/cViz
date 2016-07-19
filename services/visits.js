@@ -1052,9 +1052,11 @@ function getVisitSessionsByDate(visitId, thisDate){
 		return deferred.promise;
 }
 
-function pushSession(sessionId, time){
+function pushSession(sessionId, time, sesnstatus){
 	var deferred = Q.defer();
-
+	console.log(time);
+	console.log(sessionId);
+	console.log(sesnstatus);
 	scheduleModel
 		.findOne({'_id': sessionId})
 		.exec(function(err, session){
@@ -1067,7 +1069,17 @@ function pushSession(sessionId, time){
 				.then(function(allSessions){
 
 					allSessions.forEach(function(sess){
+
 						if(sess.session.startTime >= session.session.startTime){
+							if(sess.status == 'cancelled'){
+							scheduleModel.findByIdAndUpdate(sess._id, sess, function (err, doc) {
+								if (err) {
+									console.log("error updating session");
+									console.log(err.stack);
+								}
+							});
+						}
+						else{
 							sess.session.startTime = DateAddTime(sess.session.startTime, time);
 							sess.session.endTime = DateAddTime(sess.session.endTime, time)
 							scheduleModel.findByIdAndUpdate(sess._id, sess, function (err, doc) {
@@ -1077,10 +1089,23 @@ function pushSession(sessionId, time){
 								}
 							}); // end of schedule Update
 						} // end of if
+					}
 
 					}); // end of sess forEach
-				});
-			} // end of if err
+
+						if(sesnstatus == 'cancelled'){
+							
+				session.status = "cancelled"
+				scheduleModel.findByIdAndUpdate(session._id, session, function (err, doc) {
+								if (err) {
+									console.log("error updating session");
+									console.log(err.stack);
+								}
+							}); // end of schedule Update
+			}
+				})
+			
+			} // end of if err 
 			deferred.resolve("Done");
 		}); // end of find schedule
 
