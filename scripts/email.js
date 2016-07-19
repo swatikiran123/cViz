@@ -17,6 +17,7 @@ var smptOptions       = config.get("email.smtp-options");
 var transporter       = nodemailer.createTransport(smptOptions);
 var emailTemplate     = require('email-templates').EmailTemplate;
 var htmlToText = require('html-to-text');
+var Q               = require('q');
 
 var email = {}
 
@@ -785,7 +786,8 @@ function visitClosure(visitId,basePath) {
 }
 
 // code to generate pdf file for visit schedules//
-function getAgenda(visitId){
+function getAgenda(visitId,basePath){
+	var deferred = Q.defer();
 	if(config.get('email.send-mails')!="true") return;
 	modelschedule
 		.findOne({ visit: visitId })
@@ -820,29 +822,31 @@ function getAgenda(visitId){
 				        text += "</table>";
 				    }
 				    var fs = require('fs');
--					fs.writeFile("pdfAgenda1.html", text);
+					fs.writeFile("pdfAgenda1.html", text);
 					setTimeout(function(){
 						var pdf = require('html-pdf');
 						var options = { format: 'Letter' };
 						var html = fs.readFileSync('pdfAgenda1.html', 'utf8');
-						var filePath = "public/uploads/visits/";
-						pdf.create(html, options).toFile('../../'+filePath+'emailPDF/pdfAgenda1.pdf', function(err, res) {
+						pdf.create(html, options).toFile( __dirname + '/../public/uploads/visits/'+'pdfAgenda1.pdf', function(err, res) {
 						  if (err) return console.log(err);
 							var destPath = res.filename.split('cViz');
-							//return console.log(destPath[1]);
+							if (destPath[1]!=null) {
+								deferred.resolve(destPath[1]);
+								agendaFinalize(visitId,basePath);
+							} else {
+								deferred.reject('is not allowed.');
+							}
+							return deferred.promise;
 						});
 					}, 8000);
 				}); // end of visitService.getParticipantsById
 				} //end of else
 		}) // end of modelVisit
-var destPath = "/public/uploads/visits/emailPDF/pdfAgenda1.pdf";
-return destPath;
 }
 // code to generate pdf file for visit schedules//
 
 // Send Notification when visit is finalized
 function agendaFinalize(visitId,basePath) {
-
 	if(config.get('email.send-mails')!="true") return;
 	var templateDir = path.join(constants.paths.templates, 'email', 'agendaFinalize');
 	var mailTemplate = new emailTemplate(templateDir);
@@ -891,9 +895,8 @@ function agendaFinalize(visitId,basePath) {
 				mailTemplate.render(visit, function (err, results) {
 
 					console.log(basePath)
-					var filePath = basePath + "/public/uploads/visits/wrkday.pdf";
-					var filePath1 = basePath + getAgenda(visitId);
-					//console.log('filePath1 '+filePath1);
+					var filePath = basePath + "/public/uploads/visits/pdfAgenda1.pdf";
+					// var filePath = basePath + getAgenda(visitId);
 
 					if(err){
 						return console.log(err);
@@ -908,8 +911,9 @@ function agendaFinalize(visitId,basePath) {
 										html: results.html, // html body
 										attachments: [{						
 											//path: filePath,
-											path: filePath1,
-											contentType: 'application/pdf'
+											path: filePath,
+											contentType: 'application/pdf',
+											cache:true
 										}]
 									};
 
@@ -922,7 +926,9 @@ function agendaFinalize(visitId,basePath) {
 									console.log("Send Mail:: inviteAttendees  -- Status: "+ info.response);
 									console.log('Notifications sent to ' + emailIds);
 									console.log('Notifications sent to ' + receiversEmailIds);
+									transporter.close();
 								}); // end of transporter.sendMail
+
 							}); // end of register mail render
 						}); // end of visitService.getParticipantsById
 				} //end of else

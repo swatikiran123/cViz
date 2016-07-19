@@ -61,6 +61,10 @@ function sendMails(req, res){
 			emailService.sessionTimeChange(req.params.id);	
 			break;
 
+		case "getagenda":
+			emailService.getAgenda(req.params.id,basePath);
+			break;	
+
 		default:
 			res.status(404).send("Action could not be identified");
 	}

@@ -1483,11 +1483,14 @@ $scope.ClientDraft=false;
       $scope.nextTab($scope.visits._id);
     })
 
-    $http.get('/api/v1/secure/email/'+ $scope.visits._id + '/agendafinalize').success(function(response) {
+    $http.get('/api/v1/secure/email/'+ $scope.visits._id + '/getagenda',{
+      cache: true
+    }).success(function(response) {
       console.log(response);
-    }) 
-
+      growl.info(parse("Agenda finalize email sent successfully"));
+    });
   }
+
   $scope.reachedEnd=function(){
     $scope.visits.anchor = $scope.anchorman;
     $scope.visits.secondaryVmanager= $scope.vman;
