@@ -13,6 +13,8 @@ var model           = require(constants.paths.models +  '/visit');
 var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 var clientModel           = require(constants.paths.models +  '/client');
 var userModel           = require(constants.paths.models +  '/user');
+var executivesModel		= require(constants.paths.models + '/executives');
+var regionsModel		= require(constants.paths.models + '/regions')
 
 // Service method definition -- Begin
 var service = {};
@@ -37,6 +39,8 @@ service.getVisitStats = getVisitStats;
 service.getLastTimeSessionsById = getLastTimeSessionsById;
 service.getAllSessionsById = getAllSessionsById;
 service.getPDFSessionsById = getPDFSessionsById;
+service.getOfferingsHeads = getOfferingsHeads;
+service.getRegionsHeads = getRegionsHeads;
 
 module.exports = service;
 
@@ -1080,6 +1084,84 @@ function pushSession(sessionId, time){
 			deferred.resolve("Done");
 		}); // end of find schedule
 
+	return deferred.promise;
+}
+
+function getRegionsHeads(id) {
+	var deferred = Q.defer();
+	var offeringHeads = [];
+	model
+	.findOne({ _id: id })
+	.populate('client')
+	.exec(function (err, item) {
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else {
+			regionsModel
+			.findOne({regName: item.client.regions})
+			.populate('regHead')
+			.exec(function(err1, item1) {
+				if(err1) {
+					console.log(err1);
+					deferred.reject(err1);
+				}
+				else {
+					deferred.resolve(item1.regHead.email);
+				}
+			});
+		}
+	});
+	return deferred.promise;
+}
+
+
+function getOfferingsHeads(id) {
+	var deferred = Q.defer();
+	var allOfferings = [];
+	var visitOfferings = [];
+	var visitOfferingHeads = [];
+
+	executivesModel
+	.find()
+	.populate('offHead')
+	.exec(function(err, item){
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else {
+			allOfferings = item;
+			model
+			.findOne({_id: id})
+			.exec(function (err1,item1){
+				if(err1) {
+					console.log(err1);
+					deferred.reject(err1);
+				}
+				else {
+					visitOfferings = item1.offerings;
+					transform(allOfferings, visitOfferings);
+					deferred.resolve(visitOfferingHeads);
+				}
+			}); //end of visit model
+		} //endofif else
+	}); //end of exective model
+
+	function transform(allOfferings, visitOfferings) {
+		for (var i = 0; i < visitOfferings.length; i++) {
+
+			for (var j = 0; j < allOfferings.length; j++) {
+
+				 if(visitOfferings[i] == allOfferings[j].offName) {
+					console.log(visitOfferings[i]);
+					console.log(allOfferings[j].offName);
+					visitOfferingHeads.push(allOfferings[j].offHead.email);
+				 }
+			}
+		}
+	}
 	return deferred.promise;
 }
 

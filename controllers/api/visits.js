@@ -100,12 +100,53 @@ function getWithAction(req, res){
 
         case "getallsessions": 
             getAllSessionsById(req,res);
-            break;   
+            break;
+
+        case "getofferingsheads":
+            getOfferingsHeadsById(req,res);
+            break;
+
+        case "getregionsheads":
+            getRegionsHeadsById(req,res);
+            break;
 
 		default:
 			res.send("Invalid action");
 	}
 }
+
+function getOfferingsHeadsById(req, res) {
+    dataService.getOfferingsHeads(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+
+function getRegionsHeadsById(req, res) {
+    dataService.getRegionsHeads(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+
 
 function getMyVisits(req,res){
 	var timeline = (req.param('timeline')===undefined)? "all": req.param('timeline');
