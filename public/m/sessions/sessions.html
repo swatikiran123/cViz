@@ -38,7 +38,7 @@
 			</h1>
 			<br>
 			 <button  class="btn btn-primary" ng-show="!showme" ng-click="showme=true">Push Sessions</button>
-				    <button  class="btn btn-success pull-right" ng-click="showme=false;submit();" ng-show="showme">submit</button>
+				    <button  class="btn btn-success pull-right" ng-click="showme=false;submit();" ng-show="showme">submit&nbsp;&nbsp;</button>
 
 			<div id="agenda-scrollable-block" class="scroll">
 				<div id="{{session._id}}" class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
@@ -81,9 +81,8 @@
 										</p>
 										<p> <!--Roboto-->
 											<span class="agenda-session-loc">with</span>
-											<userview user-id="session.session.owner" user-model view-mode="bullet-small"
-											view-type="session.session.type.toLowerCase()"></userview>
-											<userview user-id="session.session.supporter" user-model view-mode="bullet-small" view-type="session.session.type.toLowerCase()"></userview>
+											<userview user-id="session.session.owner" user-model view-mode="bullet-small"></userview>
+											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
 											<label ng-if="session.invitees.length > 0">+{{session.invitees.length}}</label>
                                             <!--div ng-if="group=='customer' || group=='exec'">

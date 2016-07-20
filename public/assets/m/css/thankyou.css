@@ -3,25 +3,40 @@
 	width: 100%;
 	height: auto;
 }
+.headerwelT{
+	overflow:hidden;
+}
 .headerwelT .lo{
-	width: 5%;
+	float:left;
+	width: 8%;
 	height: 8%;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-bottom: 10px;
 	border-right: 1px solid black;
 }
 
 .headerwelT .lo1{
-	width: 5%;
-	height: 8%;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-bottom: 10px;
+	float:left;
+	width: 150px;
+	height: 83px;
+	padding-top: 18px;
+}
+.richtextT{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.profileT{
+	padding-left: 15px;
+}
+
+.headerwelT	 .lo1 img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 .imageT{
 	height:300px;
-	width: 90%;
+	width: 95%;
+
 	
 }
 
@@ -34,17 +49,8 @@
 .welltextT{
 	text-align: center;
 }
-.richtextT{
-	overflow-y: auto; 
-	height:100px; 
-	width: 90%;
-	padding-left: 2%;
-	padding-right: 20px;
-}
-.imageT img{
-	height:300px;
-	width:;
-}
+
+
 
 hr{
 	color: red;
@@ -69,9 +75,8 @@ hr{
 }
 .textT{
 	text-align: justify;
-	padding-left: 100px;
-	padding-right: 100px; 
-	font-size: 20px;
+
+	font-size: 22px;
 	font-family: robotoLight;
 	padding-top: 0px;
 }
@@ -122,20 +127,18 @@ hr{
 
 
 	.headerwelT .lo{
-		width: 25%;
-		height: 25%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		float:left;
+		width: 20%;
+		height: 20%;
+		padding-right: 10px;
 		border-right: 1px solid black;
 	}
 
 	.headerwelT .lo1{
-		width: 25%;
-		height: 25%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		float:left;
+		width: 100px;
+		height: 48px;
+		padding-left: 0px;
 	}
 }
 @media only screen and (max-device-width: 320px){
@@ -163,6 +166,7 @@ hr{
 
 
 	.headerwelT .lo{
+		float:left;
 		width: 40%;
 		height: 40%;
 		padding-left: 20px;
@@ -172,11 +176,11 @@ hr{
 	}
 
 	.headerwelT .lo1{
-		width: 40%;
-		height: 40%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		float:left;
+		width: 150px;
+		height: 72px;
+		padding-left: 7px;
+		padding-top: 10px;
 	}
 }
 @media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
@@ -205,6 +209,7 @@ hr{
 
 
 	.headerwelT .lo{
+		float: left;
 		width: 20%;
 		height: 20%;
 		padding-left: 20px;
@@ -213,16 +218,14 @@ hr{
 		border-right: 1px solid black;
 	}
 
-	.headerwelT .lo1{
-		width: 20%;
-		height: 20%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+	.headerwelT  .lo1{
+		width: 90px;
+		height: 28px;
+		padding-left: 7px;
 	}
 
 }
-@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	#thankyou{
 		object-fit: initial;
 		width: 95%;
@@ -245,8 +248,9 @@ hr{
 		margin: 10px;
 	}
 	.headerwelT .lo{
-		width: 40%;
-		height: 40%;
+		float: left;
+		width: 20%;
+		height: 20%;
 		padding-left: 20px;
 		padding-right: 20px;
 		margin-bottom: 10px;
@@ -259,11 +263,10 @@ hr{
 	}
 
 	.headerwelT .lo1{
-		width: 40%;
-		height: 40%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		float: left;
+		width: 150px;
+		height: 82px;
+		padding-left: 7px;
 	}
 }
 
@@ -291,20 +294,18 @@ hr{
 		padding-right: 10px;
 	}
 	.headerwelT .lo{
-		width: 40%;
-		height: 40%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		float: left;
+		width: 10%;
+		height: 10%;
+		
 		border-right: 1px solid black;
 	}
 
 	.headerwelT .lo1{
-		width: 40%;
-		height: 40%;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-bottom: 10px;
+		width: 180px;
+		height: 82px;
+		padding-left: 7px;
+
 	}
 
 }
