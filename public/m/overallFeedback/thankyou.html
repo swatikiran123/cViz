@@ -4,15 +4,13 @@
       <br>
 
       <img src="/public/assets/g/imgs/csclogo.png" class="lo">
-      <img ng-src="{{clientLogo}}" class="lo1">
+      <div class="lo1">
+      <img ng-src="{{clientLogo}}" ></div>
       <br>
-      <label style="padding-top: 10px">Dear {{customerName}},</label>
-<!--       <span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Thank You !
+     
 
-      </span> -->
     </div>
     <br>
-
     <div class="detailsT">
       {{url=thankyouResponse[order].attachment;""}}
       {{fileExt=url.split(".").pop();""}}
@@ -34,60 +32,55 @@
   </div>
 
   <div class="richtextT">
-   <richtext class="text" body-text="thankyouResponse[order].noteText">
+   <label style="padding-top: 10px">Dear {{customerName}},</label>
+   <richtext class=" textT" body-text="thankyouResponse[order].noteText">
+   
    </richtext>
- </div>
+   </div>
+ 
 
-<br>
 
-<div class="row">
- <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-  <div ng-if="user1!=null">
-    <div class="profile">
-      <div  ng-if="user1.avatar!=null" class="pull-left">
-        <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
-      </div>
-      <div  ng-if="user1.avatar==null" class="pull-left">
-      </div>
-      <div class="panelpdmd">
-        <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
-        <div class="text-xsmall">{{user1.jobTitle}} </div>
-      </div>       
-    </div>
-  </div>
-</div>
-<div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-  <div ng-if="user2!=null">
-    <div class="profile">
-      <div  ng-if="user2.avatar!=null" class="pull-left">
-        <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
-      </div>
-      <div  ng-if="user2.avatar==null" class="pull-left">
-      </div>
-      <div class="panelpdmd">
-        <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
-        <div class="text-xsmall">{{user2.jobTitle}} </div>
-      </div>       
-    </div>
-  </div>
-</div>
-<div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+ <div class="col-sm-10 col-md-4 col-lg-4 col-xs-10 profileT" ng-if="user1!=null">
+          <div  ng-if="user1.avatar!=null" class="pull-left">
+            <img ng-src="{{user1.avatar}}" class="img-thumbnail userpic"> 
+          </div>
+          <div  ng-if="user1.avatar==null" class="pull-left">
+            <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+          </div>
+          <div class="panelpdmd">
+            <div class="text-highlight">{{user1.name.first}} {{user1.name.last}}</div>
+            <div class="text-xsmall">{{user1.jobTitle}} </div>
+          </div>      
+        </div>
 
-  <div ng-if="user3!=null">
-    <div class="profile">
-      <div ng-if="user3.avatar!=null" class="pull-left">
-        <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
-      </div>
-      <div  ng-if="user3.avatar==null" class="pull-left">
-      </div>
-      <div class="panelpdmd">
-        <div class="text-highlight">{{user3.name.first}} {{user3.name.last}}</div>
-        <div class="text-xsmall">{{user3.jobTitle}} </div>
-      </div>       
-    </div>
-  </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 profileT" ng-if="user2!=null">
+          <div  ng-if="user2.avatar!=null" class="pull-left">
+            <img ng-src="{{user2.avatar}}" class="img-thumbnail userpic"> 
+          </div>
+          <div  ng-if="user2.avatar==null" class="pull-left">
+            <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+          </div>
+          <div class="panelpdmd">
+            <div class="text-highlight">{{user2.name.first}} {{user2.name.last}}</div>
+            <div class="text-xsmall">{{user2.jobTitle}} </div>
+          </div>       
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 profileT" ng-if="user3!=null"> 
 
-</div>
+
+          <div ng-if="user3.avatar!=null" class="pull-left">
+            <img ng-src="{{user3.avatar}}" class="img-thumbnail userpic"> 
+          </div>
+          <div  ng-if="user3.avatar==null" class="pull-left">
+            <!-- <img ng-src="{{user.avatar}}" class="img-thumbnail userpic">  -->
+          </div>
+          <div class="panelpdmd">
+            <div class="text-highlight">{{user3.name.first}} {{user3.name.last}}</div>
+            <div class="text-xsmall">{{user3.jobTitle}} </div>
+          </div>       
+        </div>
+
+
 </div>
 <br>
 <a href="/m/main/" style="padding-left: 60%"><button type="button" class="btn btn-default">Continue<i class="fa fa-angle-right"></i></button></a>
