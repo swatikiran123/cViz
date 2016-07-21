@@ -803,20 +803,27 @@ function getAgenda(visitId,basePath){
 					var text = 'Agenda:';
 					 for (var i = 0; i < vSchedules.length; i++) {
 						text += "<label><b> "+ (vSchedules[i].date).format('ddd, DD MMM YYYY')+" | CSC "+vSchedules[i].location+"</b></label>";
-						text += "<table border=1 cellpadding=0 cellspacing=0 width=100%><tr><th>Type</th><th width=20%>Time (Hrs.)</th><th>Session/Activity</th><th>Anchors</th><th>Venue</th></tr>";
+						text += "<table border=1 cellpadding=0 cellspacing=0 width=100%><tr><th width=15%>Type</th><th width=20%>Time (Hrs.)</th><th width=20%>Session/Activity</th><th width=20%>Anchors</th><th width=20%>Venue</th></tr>";
 						for (var j = 0; j < vSchedules[i].sessions.length; j++) {
 							text += "<tr><td>"+vSchedules[i].sessions[j].session.type+"</td>";
 							text += "<td>"+(vSchedules[i].sessions[j].session.startTime).toLocaleString()+"-"+(vSchedules[i].sessions[j].session.endTime).toLocaleString()+"</td>";
 							if(vSchedules[i].sessions[j].session.type == 'presentation' || vSchedules[i].sessions[j].session.type == 'discussion' || vSchedules[i].sessions[j].session.type == 'floor-walk' || vSchedules[i].sessions[j].session.type == 'visit-wrap-up')
 								text += "<td>"+vSchedules[i].sessions[j].session.title+"</td>";
 							else
-								text += "<td>"+vSchedules[i].sessions[j].session.type+"</td>";
-							//text += "<td><b>"+vSchedules[i].sessions[j].session.owner.name.first+" "+vSchedules[i].sessions[j].session.owner.name.last+"</b>";
-							text += "<td>";
-							for (var k = 0; k < vSchedules[i].sessions[j].invitees.length; k++) {
-								text += vSchedules[i].sessions[j].invitees[k].name.first+' '+vSchedules[i].sessions[j].invitees[k].name.last+", ";
+								text += "<td colspan=2 align=center>"+vSchedules[i].sessions[j].session.type+"</td>";
+
+							if(vSchedules[i].sessions[j].session.type == 'presentation' || vSchedules[i].sessions[j].session.type == 'discussion' || vSchedules[i].sessions[j].session.type == 'floor-walk' || vSchedules[i].sessions[j].session.type == 'visit-wrap-up'){
+								if (vSchedules[i].sessions[j].session.owner != null) {
+									ownerName = vSchedules[i].sessions[j].session.owner.name.first+" "+vSchedules[i].sessions[j].session.owner.name.last+", ";
+								}else
+									ownerName = '';
+								text += "<td><b>"+ownerName+"</b>";
+								for (var k = 0; k < vSchedules[i].sessions[j].invitees.length; k++) {
+									text += vSchedules[i].sessions[j].invitees[k].name.first+' '+vSchedules[i].sessions[j].invitees[k].name.last+", ";
+								}
+								text += "</td>";
 							}
-							text += "</td>";
+
 							text += "<td>"+vSchedules[i].sessions[j].session.location+"</td></tr>";
 				        }
 				        text += "</table>";
