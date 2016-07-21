@@ -94,6 +94,8 @@ angular.module('inviteesDirective', [])
 
   $scope.removeInvitees = function(index){
     $scope.array.splice(index, 1);
+    $scope.arraydata.splice(index, 1);
+    
   };
 
   $scope.removeInviteesdata = function(index){
