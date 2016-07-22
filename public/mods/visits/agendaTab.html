@@ -56,10 +56,9 @@
           <div class="col-md-4 text-center">
             <br>
             <br>
-            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" width="122" height="122" 
+            <img ng-if="showAvatar == false" ng-src="https://www.voicehost.co.uk/sites/default/files/placelogo_placeholder.jpg" style=" max-height:45px;width:auto;height:auto;" 
             />
-            <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" width="122" height="122"
-            style="background-size:cover;"/>
+            <img ng-if="showAvatar == true" ng-src="{{avatarVisit}}" class="img-rectangle avatar-original pic" style=" max-height:45px;width:auto;height:auto;"/>
             <div>
               <a class="btn btn-info" 
               ng-click="getLogo()" ng-disabled="parentClient || childClient || industryClient || regionClient">
