@@ -15,17 +15,27 @@
 <div><span ng-show="checked" class="error text-danger">{{message}}</span></div>
 
 <div ng-repeat="special in array">
-  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6">
-   <userdisplay view-mode="medium" user-id="special.invite">
-    <div class="closeicon pull-right">
-      <a class="table-btn" ng-click="removeInvitees($index)"><li class="fa fa-times fa-lg" /></a>
+  <div class ="row">
+    <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6">
+     <userdisplay view-mode="medium" user-id="special.invite">
+      <div class="closeicon pull-right">
+        <a class="table-btn" ng-click="removeInvitees($index)"><li class="fa fa-times fa-lg" /></a>
+      </div>
+    </userdisplay>
+
+    <div ng-if="collectlist">
+      Eligible for Feedback :
+      <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" ng-change="collectFeedback(feedElg, $index)">
     </div>
-  </userdisplay>
-  <div ng-if="collectlist">
-    Eligible for Feedback :
-    <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" ng-change="collectFeedback(feedElg, $index)">
+    
   </div>
+  Move to: <input type="number" name="invite" id="invite" ng-model="num" maxlength="6" size="6" placeholder="Place no">
+  <button class="btn btn-primary" ng-click="clickUp(num,array,$index); num = null">Ok</button>
+
+  <span class="fa fa-arrow-up" aria-hidden="true" ng-click="up($index,array)" ng-if ="$index != 0" tooltips tooltip-template="Shift one place up" ></span>
+  <span class="fa fa-arrow-down" aria-hidden="true" ng-click="down($index,array)" ng-if ="$index != array.length-1" tooltips tooltip-template="Shift one place down"></span>
 </div>
+<br>
 </div>
 </div>
 
@@ -43,25 +53,32 @@
   <button class="btn btn-primary" ng-click="addInvitees(invite);invite = null">Add Invitee</button>
 </div>
 </div>
+<div ng-if="err" class="error text-danger">{{err}}</div>
+
 <div><span ng-show="checked" class="error text-danger">{{message}}</span></div>  
 
 <div ng-repeat="special in arraydata">
-    <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6">
+  <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6">
 
 
-   <userdisplay view-mode="medium" user-id="special">
-    <div ng-if="collectlist">
-      <div class="pull-right">
-        <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" ng-checked="{{collectlist[$index]}}" ng-click="collectFeedback(feedElg, $index)">
-      </div>
-    </div>  
-  </userdisplay>
-  <div  class="pull-left">
-    <a class="table-btn"  ng-click="removeInviteesdata($index)" tooltips tooltip-template="Delete invitee"><li class="fa fa-times fa-lg"/></a>
+     <userdisplay view-mode="medium" user-id="special">
+      <div ng-if="collectlist">
+        <div class="pull-right">
+          <input type="checkbox" name="{{special.invite}}" id="{{special.invite}}" ng-model="feedElg" ng-checked="{{collectlist[$index]}}" ng-click="collectFeedback(feedElg, $index)">
+        </div>
+      </div>  
+    </userdisplay>
+    <div  class="pull-left">
+      <a class="table-btn"  ng-click="removeInviteesdata($index)" tooltips tooltip-template="Delete invitee"><li class="fa fa-times fa-lg"/></a>
+    </div>
+    Move to: <input type="number" name="invite" id="invite" ng-model="num" maxlength="6" size="6" placeholder="Place no">
+    <button class="btn btn-primary" ng-click="clickUp(num,arraydata,$index); num = null">Ok</button>
+
+    <span class="fa fa-arrow-up" aria-hidden="true" ng-click="up($index,arraydata)" ng-if ="$index != 0" tooltips tooltip-template="Shift one place up"></span>
+    <span class="fa fa-arrow-down" aria-hidden="true" ng-click="down($index,arraydata)" ng-if ="$index != arraydata.length-1" tooltips tooltip-template="Shift one place down"></span>
   </div>
-
 </div>
 </div><!-- ng-repeat div end-->
-
-
 </div><!-- edit mode div end-->
+
