@@ -3,6 +3,8 @@
 angular.module('userAutoDirective', [])
 .controller('userAutoDirectiveControllerMain', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
+  console.log($scope.userType);
+  console.log($scope.userRef);
   if($scope.userModel === undefined || $scope.userModel === "")
     $scope.showFlag = "none";
   else
@@ -113,18 +115,43 @@ angular.module('userAutoDirective', [])
 
     $http.get(url).success(function(response) {
 
-      // if($scope.userType == response.association){
+      if(($scope.userType == "employeeCustomer" && response.orgRef == $scope.userRef) || response.association == "employee"){
         $scope.userModel = response;
         $scope.userId = response._id;
         $scope.userEmail = response.email;
         $scope.showFlag = "user";
-      // }
+      }
+
+      if($scope.userType == "employeeCustomer" && response.orgRef != $scope.userRef && response.association != "employee"){
+        var id = 'ex15'
+        if (id) {
+          $scope.$broadcast('angucomplete-alt:clearInput', id);
+          $scope.showFlag = "noUser";
+          $scope.userModel = null;
+          $scope.userEmail = null;
+          $scope.userId = null;
+          $scope.message = "User can't be added !!!";
+        }
+        else{
+          $scope.$broadcast('angucomplete-alt:clearInput');
+        }
+      }
+
+      if($scope.userType == "employee"){
+        $scope.userModel = response;
+        $scope.userId = response._id;
+        $scope.userEmail = response.email;
+        $scope.showFlag = "user";
+      }
     })
     .error(function(response, status){
       $scope.showFlag = "noUser";
       if(status===404)
-      {
-        $scope.message = "User is not an organization employee!!";
+      { 
+        $scope.userModel = null;
+        $scope.userEmail = null;
+        $scope.userId = null;
+        $scope.message = "User is not an organization employee or client for visit!!";
         $timeout(function () { $scope.message = ''; }, 3000);
 
       }
@@ -193,7 +220,8 @@ angular.module('userAutoDirective', [])
       switchMode: "=switchMode",
       userType: "@userType",
       moduleType: "@moduleType",
-      title: "@title"
+      title: "@title",
+      userRef: "@userRef"
     },
 
     link : function(scope,element,attrs)
