@@ -127,11 +127,11 @@ angular.module('inviteesDirective', [])
     // console.log(arraydata[num]);
   }
   $scope.clickUp= function(num,arraydata,index){
-    if (num-1 == index || num == 0 || num >arraydata.length) {
+    if (num-1 == index || num <= 0 || num >arraydata.length) {
       if (num-1 == index ){
         $scope.err= "The position you want to move is existing position!!";
       }
-      if (num == 0 || num >arraydata.length) {
+      if (num <= 0 || num >arraydata.length) {
         $scope.err= "The position you want to move currently does not exists!!";
       }
 
