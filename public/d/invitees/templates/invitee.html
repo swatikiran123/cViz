@@ -12,6 +12,7 @@
     <button class="btn btn-primary" ng-click="addInvitees(invite);invite = null">Add Invitee</button>
   </div>
 </div>
+<div ng-if="err" class="error text-danger">{{err}}</div>
 <div><span ng-show="checked" class="error text-danger">{{message}}</span></div>
 
 <div ng-repeat="special in array">
