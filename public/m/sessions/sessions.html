@@ -90,7 +90,7 @@
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>
 													</span></div{{session.feedbackElg}}-->
 													
-													 <div  ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{session.feedbackElg}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.endTime}}" visit-id="{{session.visit}}"></div>
+													 <div  ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{finalData[$index]}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.endTime}}" visit-id="{{session.visit}}"></div>
 													
                                              {{session.status.toUpperCase()}}  <!-- ng-show="showme" -->
                                        
