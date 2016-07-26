@@ -975,27 +975,27 @@ function getParticipantsById(id){
 				if(err)
 					console.log(err);
 				else {
-					schedules.forEach(function(sch){
-						if (sch.session.owner!= null) {
-							arrAddItem(emp, sch.session.owner);
-						}
-						if (sch.session.supporter!= null) {
-							arrAddItem(emp, sch.session.supporter);}
-						// arrAddArray(emp, sch.invitees);
-						if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
-							for (var i = 0; i < sch.invitees.length; i++) {
-								switch(sch.invitees[i].association)    {
-									case "employee":
-									arrAddItem(emp, sch.invitees[i]);
-									break;
+					// schedules.forEach(function(sch){
+					// 	if (sch.session.owner!= null) {
+					// 		arrAddItem(emp, sch.session.owner);
+					// 	}
+					// 	if (sch.session.supporter!= null) {
+					// 		arrAddItem(emp, sch.session.supporter);}
+					// 	// arrAddArray(emp, sch.invitees);
+					// 	if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
+					// 		for (var i = 0; i < sch.invitees.length; i++) {
+					// 			switch(sch.invitees[i].association)    {
+					// 				case "employee":
+					// 				arrAddItem(emp, sch.invitees[i]);
+					// 				break;
 
-									case "customer":
-									arrAddItem(client, sch.invitees[i]);
-									break;
-								}
-							}
-						}
-					})
+					// 				case "customer":
+					// 				arrAddItem(client, sch.invitees[i]);
+					// 				break;
+					// 			}
+					// 		}
+					// 	}
+					// })
 					var uEmp = arrUnique(emp);
 					var uClient = arrUnique(client);
 					userModel
