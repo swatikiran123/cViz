@@ -49,7 +49,7 @@
         <div ng-repeat="visit in visitBatch.visits | filter: query" class="visit-card">
 
             <div> <div class="visitlinks">
-                <h3><a href="#/sessions/{{visit._id}}" >{{visit.title}}</a><br></h3>
+                <a href="#/sessions/{{visit._id}}" >{{visit.title}}</a><br>
                 <h5><a href="#/client/{{visit.client._id}}/info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{{visit.client.name | uppercase}}</a></h5>
                 </div>
                 <div class="dropdown pull-right">
@@ -73,16 +73,16 @@
             </div>
 
 
-    <richtext  body-text="visit.agenda">
+    <richtext class="visitagendafont1" body-text="visit.agenda">
              </richtext>
 
                 <span ng-if="visit.status.toLowerCase() =='confirmed'" class="visit-status-confirmed">CONFIRMED</span>
                 <span ng-if="visit.status.toLowerCase() =='tentative'" class="visit-status-tentative">TENTATIVE</span>
             </p>
-            <p class="visit-details"><i class="fa fa-calendar">
+            <p class="visit-details visitagendafont"><i class="fa fa-calendar">
               </i> {{visit.startDate | date:"dd MMM yyyy"}} - {{visit.endDate | date:"dd MMM yyyy"}}
             </p>
-            <p class="visit-details">
+            <p class="visit-details visitagendafont">
                 <i class="fa fa-map-marker"></i> {{visit.locations}}
 
                 <div class="upcoming-sessions" ng-click="showDetails = ! showDetails">

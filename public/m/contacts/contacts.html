@@ -44,24 +44,24 @@
                     <a class="email-text" ng-href="mailto: {{anchor.email}}">EMAIL</a>
                 </div><br>
                 <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Download Contact<br></a>
+                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Download Contact</a>
                 </div>
 
             </div>
-<br>
-        </div>
 
-<br>
-               <div ng-if="contactList[0]!=null" class="heading1">
-               <br>CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
+        </div>
+</div>
+
+               <div ng-if="contactList[0]!=null" class="spoc-details-container"><div class="heading1"
+>               CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location | uppercase}}</div>
         <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
-         <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList | filter:query">
+         <div  ng-repeat="spoc in contactList | filter:query">
             <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
             <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11">
-                <div class="spoc-name"><span>{{spoc.firstName}}</span> <span>{{spoc.lastName}}</span></div>
+                <div class="spoc-name">{{spoc.firstName}} {{spoc.lastName}}</div>
                 <div class="spoc-designation">{{spoc.jobTitle}}</div>{{spoc.type}}
                 <div class="spoc-bios">{{spoc.summary}}</div>
                 <div class="reach-spoc-phone">

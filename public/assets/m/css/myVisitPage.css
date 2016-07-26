@@ -8,7 +8,12 @@
     left: 0;
     right: 0;
 }
-
+.visitagendafont{
+    font-size: 14px;
+    }
+    .visitagendafont1{
+    font-size: 24px;
+    }
 .searchViewHead{
    padding-left: 0px;
 }

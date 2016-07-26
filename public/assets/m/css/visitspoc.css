@@ -3,7 +3,12 @@
     /*padding-top: 10px;*/
     /*padding-bottom: 20px;*/
 }
-
+.locpad{
+    padding-top: 10px;
+}
+.spoc-details{
+     background-color: #fff;
+}
  
     .dropdown-menu{
        background-color: white;
