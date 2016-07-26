@@ -257,7 +257,7 @@ $scope.visitAllvMan = function() {
 
       if(response.overallfeedback.length=== 0 && $routeParams.id != undefined){
         //first time 
-        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/overallfeedbackexecs',{
           cache: true
         }).success(function(response) {
           // console.log(response)
@@ -285,7 +285,7 @@ $scope.visitAllvMan = function() {
         //first time 
         $scope.checkOverLaa=response.overallfeedback;
         
-        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/execs',{
+        $http.get('/api/v1/secure/visits/'+$routeParams.id+'/overallfeedbackexecs',{
           cache: true
         }).success(function(response) {
           // console.log(response)
