@@ -44,7 +44,7 @@
                     <a class="email-text" ng-href="mailto: {{anchor.email}}">EMAIL</a>
                 </div><br>
                 <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Active Address Book</a>
+                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Download Contact<br></a>
                 </div>
 
             </div>
@@ -52,7 +52,8 @@
         </div>
 
 <br>
-               <div ng-if="contactList[0]!=null" class="heading1">CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
+               <div ng-if="contactList[0]!=null" class="heading1">
+               <br>CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location}}</div>
         <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
          <div class="spoc-details" class="list-group-item" ng-repeat="spoc in contactList | filter:query">
@@ -73,7 +74,7 @@
                     <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
                 </div>
                   <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                    <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.vcf">Active Address Book</a>
+                    <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.vcf">Download Contact</a>
                 </div>
             </div>
          
