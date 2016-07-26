@@ -41,6 +41,7 @@ service.getAllSessionsById = getAllSessionsById;
 service.getPDFSessionsById = getPDFSessionsById;
 service.getOfferingsHeads = getOfferingsHeads;
 service.getRegionsHeads = getRegionsHeads;
+service.getParticipantsForOverAllFeedback = getParticipantsForOverAllFeedback;
 
 module.exports = service;
 
@@ -947,7 +948,143 @@ function getParticipantsById(id){
 			})
 
 			// push key visit personnel
-			arrAddItem(emp, visit.agm);
+			// arrAddItem(emp, visit.agm);
+			// arrAddItem(emp, visit.anchor);
+			// arrAddItem(emp, visit.secondaryVmanager);
+			// arrAddArray(emp, visit.invitees);
+			// push all client/emp side invitees
+			if (visit.invitees.length!=0 && visit.invitees!= undefined && visit.invitees != null && visit.invitees != "") {
+				for (var i = 0; i < visit.invitees.length; i++) {
+					// console.log(visit.invitees.association);
+					switch(visit.invitees[i].association)    {
+						case "employee":
+						arrAddItem(emp, visit.invitees[i]);
+						break;
+
+						case "customer":
+						arrAddItem(client, visit.invitees[i]);
+						break;
+					}
+				}
+			}
+
+			// push participants from visit schedules
+			// scheduleModel
+			// .find({visit: id})
+			// .populate('invitees')
+			// .exec(function(err, schedules){
+			// 	if(err)
+			// 		console.log(err);
+			// 	else {
+					// schedules.forEach(function(sch){
+					// 	if (sch.session.owner!= null) {
+					// 		arrAddItem(emp, sch.session.owner);
+					// 	}
+					// 	if (sch.session.supporter!= null) {
+					// 		arrAddItem(emp, sch.session.supporter);}
+					// 	// arrAddArray(emp, sch.invitees);
+					// 	if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
+					// 		for (var i = 0; i < sch.invitees.length; i++) {
+					// 			switch(sch.invitees[i].association)    {
+					// 				case "employee":
+					// 				arrAddItem(emp, sch.invitees[i]);
+					// 				break;
+
+					// 				case "customer":
+					// 				arrAddItem(client, sch.invitees[i]);
+					// 				break;
+					// 			}
+					// 		}
+					// 	}
+					// })
+			// 	}
+			// })
+					var uEmp = arrUnique(emp);
+					var uClient = arrUnique(client);
+					userModel
+					.find({'_id': { $in: uEmp }})
+					.select('_id name email avatar summary jobTitle organization contactNo association')
+					.exec(function(err, empsData){
+						if(err)
+							console.log(err);
+						userModel
+						.find({'_id': { $in: uClient }})
+						.select('_id name email avatar summary jobTitle organization contactNo association')
+						.exec(function(err, clientsData){
+							if(err)
+								console.log(err);
+						// console.log("Client reps ::", uClient);
+						// console.log("Emp reps ::", uEmp);
+						deferred.resolve({
+							"clients": clientsData,
+							"employees": empsData
+						});
+
+					})//end of user model for clients
+				}) //end of user model for emp
+				
+			
+		}
+	})//end of visit model
+		return deferred.promise;
+}
+
+
+function getParticipantsForOverAllFeedback(id){
+	var deferred = Q.defer();
+
+	var emp = [];
+	var client = [];
+
+	model
+	.findOne({ _id: id })
+	.populate('client')
+	.populate('visitors.visitor')//visit.invitees
+	.populate('invitees')//visit.invitees
+
+	.exec(function (err, visit) {
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else{
+			// push all client executives
+
+			if (visit.client!= null){
+				if (visit.client.cscPersonnel.salesExec!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.salesExec);
+				};
+				if (visit.client.cscPersonnel.accountGM!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.accountGM);
+				};
+				if (visit.client.cscPersonnel.industryExec!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.industryExec);
+				}
+				if (visit.client.cscPersonnel.globalDelivery!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.globalDelivery);
+				}
+				if (visit.client.cscPersonnel.cre!= null) {
+					arrAddItem(emp, visit.client.cscPersonnel.cre);
+				}
+			}
+
+			// push all client/emp side visitors
+			visit.visitors.forEach(function(v){
+				if (v.visitor!= null && v.visitor!= undefined && v.visitor!= "" ){
+					switch(v.visitor.association)    {
+						case "employee":
+						arrAddItem(emp, v.visitor);
+						break;
+
+						case "customer":
+						arrAddItem(client, v.visitor);
+						break;
+					}
+				}
+			})
+
+			// push key visit personnel
+			// arrAddItem(emp, visit.agm);
 			arrAddItem(emp, visit.anchor);
 			arrAddItem(emp, visit.secondaryVmanager);
 			// arrAddArray(emp, visit.invitees);
@@ -975,27 +1112,28 @@ function getParticipantsById(id){
 				if(err)
 					console.log(err);
 				else {
-					// schedules.forEach(function(sch){
-					// 	if (sch.session.owner!= null) {
-					// 		arrAddItem(emp, sch.session.owner);
-					// 	}
-					// 	if (sch.session.supporter!= null) {
-					// 		arrAddItem(emp, sch.session.supporter);}
-					// 	// arrAddArray(emp, sch.invitees);
-					// 	if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
-					// 		for (var i = 0; i < sch.invitees.length; i++) {
-					// 			switch(sch.invitees[i].association)    {
-					// 				case "employee":
-					// 				arrAddItem(emp, sch.invitees[i]);
-					// 				break;
+					schedules.forEach(function(sch){
+						if (sch.session.owner!= null) {
+							arrAddItem(emp, sch.session.owner);
+						}
+						if (sch.session.supporter!= null) {
+							arrAddItem(emp, sch.session.supporter);}
+						// arrAddArray(emp, sch.invitees);
+						if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
+							for (var i = 0; i < sch.invitees.length; i++) {
+								switch(sch.invitees[i].association)    {
+									case "employee":
+									arrAddItem(emp, sch.invitees[i]);
+									break;
 
-					// 				case "customer":
-					// 				arrAddItem(client, sch.invitees[i]);
-					// 				break;
-					// 			}
-					// 		}
-					// 	}
-					// })
+									case "customer":
+									arrAddItem(client, sch.invitees[i]);
+									break;
+								}
+							}
+						}
+					})
+
 					var uEmp = arrUnique(emp);
 					var uClient = arrUnique(client);
 					userModel
@@ -1018,13 +1156,15 @@ function getParticipantsById(id){
 						});
 
 					})//end of user model for clients
-					}) //end of user model for emp
+				}) //end of user model for emp
 				}
-			})
+			})							
 		}
 	})//end of visit model
 		return deferred.promise;
 }
+
+
 
 function getVisitSessionsByDate(visitId, thisDate){
 	var deferred = Q.defer();
