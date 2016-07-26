@@ -1,6 +1,8 @@
 angular.module('sessions')
 
-.controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem) {
+.controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem,appMUserService) {
+	appMUserService.activeMUser().then(function(user){
+    $scope.activeUser = user;
 		  $scope.visittitles = 'No active visit';
 	$scope.pusharray = [];
 		appServicem.activeVisit($routeParams.id).then(function(avisit){
@@ -16,32 +18,43 @@ angular.module('sessions')
 
 	$scope.mix=[];
 	$scope.invitee=[];
+	$scope.finalData=[];
 	var refresh = function() {
 		$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
 		}).success(function(response) {
 			$scope.scheduleList = response;
+    
 			for (var i = 0; i < $scope.scheduleList.length; i++) {
-				if ($scope.scheduleList[i].sessions[i]!=undefined && $scope.scheduleList[i].sessions[i].invitees[i]!=undefined) {
-					var str= String($scope.scheduleList[i].sessions[i].feedbackElg);
-					$scope.feedbackElg = str.split(/[ ,]+/);
-					for (var j = 0; j < $scope.scheduleList[i].sessions[i].invitees.length; j++) {
-
-						$scope.invitee.push($scope.scheduleList[i].sessions[i].invitees[j]);
+				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
+					if ($scope.scheduleList[i].sessions[l]!=undefined && $scope.scheduleList[i].sessions[l].invitees!=undefined) {
+						var str= String($scope.scheduleList[i].sessions[l].feedbackElg);
+						$scope.feedbackElg = str.split(/[ ,]+/);
+						for (var j = 0; j < $scope.scheduleList[i].sessions[l].invitees.length; j++) {
+							$scope.invitee.push($scope.scheduleList[i].sessions[l].invitees[j]);
+						}
+						for (var k = 0; k < $scope.invitee.length; k++) {
+							if ($scope.feedbackElg[k]==""|| $scope.feedbackElg[k]== undefined || $scope.feedbackElg[k]== null) {
+								$scope.feedbackElg[k]= false;
+							}
+							$scope.mix.push({
+								invite: $scope.invitee[k],
+								feedbackElg:$scope.feedbackElg[k]
+							})
+						}
 					}
-					for (var i = 0; i < $scope.feedbackElg.length; i++) {
-						$scope.mix.push({
-							invite: $scope.invitee[i],
-							feedbackElg:$scope.feedbackElg[i]
-						})
+					for (var m = 0; m < $scope.mix.length; m++) {
+						if ($scope.activeUser._id === $scope.mix[m].invite) {
+							if ($scope.mix[m].feedbackElg==""|| $scope.mix[m].feedbackElg== undefined || $scope.mix[m].feedbackElg== null) {
+								$scope.finalData[l] =false;
+							}
+							else
+								$scope.finalData[l] =$scope.mix[m].feedbackElg;
+						}
 					}
+					$scope.mix=[];
+					$scope.invitee=[];
 				}
 			}
-			$scope.finalData=false;
-			for (var i = 0; i < $scope.mix.length; i++) {
-				if ($rootScope.user._id === $scope.mix[i].invite) {
-					$scope.finalData =$scope.mix[i].feedbackElg;
-				}
-			};
 		});
 		$http.get('/api/v1/secure/visits/' + avisit._id ,{
 		//cache: true
@@ -192,6 +205,8 @@ $scope.pushSession = function(sessionId,rtime,sesnstatus){
 		}
 		})
 	})
+	})
+
 
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout,appMUserService) {
 	appMUserService.activeMUser().then(function(user){
