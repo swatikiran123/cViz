@@ -81,11 +81,14 @@
 												{{session.session.location}}
 										</p>
 										<p> <!--Roboto-->
+										<div ng-hide = "session.session.type == 'Tea-Break' || session.session.type == 'BreakFast' || session.session.type == 'Lunch' || session.session.type == 'Dinner' || session.session.type.toLowerCase() == 'tea-break' || session.session.type.toLowerCase() == 'breakfast'|| session.session.type.toLowerCase() == 'lunch' || session.session.type.toLowerCase() == 'dinner'">
+	  	
 											<span class="agenda-session-loc">with</span>
 											<userview user-id="session.session.owner" user-model view-mode="bullet-small"></userview>
 											<userview user-id="session.session.supporter" user-model view-mode="bullet-small"></userview>
 
 											<label ng-if="session.invitees.length > 0">+{{session.invitees.length}}</label>
+											</div>
                                             <!--div ng-if="group=='customer' || group=='exec'">
 											<span class="feedback-link" ng-if="group=='customer' || group=='exec'">
 														<a href="/m/visits/#/sessionFeedback/{{session.feedbackTemplate}}/{{session._id}}/{{visit_id}}" >Give Feedback</a>

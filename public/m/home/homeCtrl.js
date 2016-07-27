@@ -95,8 +95,11 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
    
     var refresh = function() {
     	appServicem.activeVisit($routeParams.id).then(function(avisitData){
-    		if(avisitData==''||avisitData==null||avisitData==undefined)
+    		if(avisitData==''||avisitData==null||avisitData==undefined )
     		{
+    			angular.element('#videoModal').modal('hide');
+    		}
+    		if($scope.activeUser.groups=='exec'){
     			angular.element('#videoModal').modal('hide');
     		}
     		if($scope.activeUser.groups=='vManager' || $scope.activeUser.groups=='admin' || $scope.activeUser.groups=='user')

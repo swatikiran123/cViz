@@ -11,7 +11,9 @@
    transition:0.5s linear all;
    z-index:10000;
 }
-
+.left{
+    float:left;
+}
 .tb-big {
     height: 136px;
 
@@ -59,8 +61,8 @@
     background-color: black;
     position:relative;
     padding-left: 20px;
-    padding-top: 15px;
-    height: 60px;
+    padding-top: 5px;
+    height: 40px;
     color: white;
 }
 .hd-sticky{
@@ -178,9 +180,14 @@ height:52px;
     color: #a4a4a4;
     height: 32px;
 
-    }
+    }  
+ .title2 {
+    width: 200px;
+    overflow: auto;
+    white-space: nowrap;
+    
 
-
+}
     .title-icon{
       margin-top: 30px;
       font-size: 20px;
@@ -208,7 +215,7 @@ height:40px;
 .hd-prime{
     background-color: #F8F8FF;
     position:relative;
-    height:92px;
+    height:88px;
 }
 .title-icon{
       margin-top: 30px;
