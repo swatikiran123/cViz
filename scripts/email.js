@@ -807,12 +807,12 @@ function getAgenda(visitId,basePath){
 						for (var j = 0; j < vSchedules[i].sessions.length; j++) {
 							text += "<tr><td>"+vSchedules[i].sessions[j].session.type+"</td>";
 							text += "<td>"+(vSchedules[i].sessions[j].session.startTime).toLocaleString()+"-"+(vSchedules[i].sessions[j].session.endTime).toLocaleString()+"</td>";
-							if(vSchedules[i].sessions[j].session.type == 'presentation' || vSchedules[i].sessions[j].session.type == 'discussion' || vSchedules[i].sessions[j].session.type == 'floor-walk' || vSchedules[i].sessions[j].session.type == 'visit-wrap-up')
+							if(vSchedules[i].sessions[j].session.title != null)
 								text += "<td>"+vSchedules[i].sessions[j].session.title+"</td>";
 							else
 								text += "<td colspan=2 align=center>"+vSchedules[i].sessions[j].session.type+"</td>";
 
-							if(vSchedules[i].sessions[j].session.type == 'presentation' || vSchedules[i].sessions[j].session.type == 'discussion' || vSchedules[i].sessions[j].session.type == 'floor-walk' || vSchedules[i].sessions[j].session.type == 'visit-wrap-up'){
+							if(vSchedules[i].sessions[j].session.title != null){
 								if (vSchedules[i].sessions[j].session.owner != null) {
 									ownerName = vSchedules[i].sessions[j].session.owner.name.first+" "+vSchedules[i].sessions[j].session.owner.name.last+", ";
 								}else
