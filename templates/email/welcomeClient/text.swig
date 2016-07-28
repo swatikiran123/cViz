@@ -1,24 +1,59 @@
-Dear {{name.prefix}} {{name.first}} {{name.last}},
+<font face="calibri" color="black">
+	Dear <b>{{name.prefix}} {{name.first}} {{name.last}},</b>
 
-CSC Welcomes you to India.
+	<p>
+	CSC Welcomes you to India.
+	</p>
 
-We would like to invite you Visit Portal application, CSC visit agenda management tool...
-Please click here {{link}} (or copy paste the below link in your browser address bar) to open the visit agenda.
-{{appPath}}
+	<p>
+		We would like to invite you Visit Portal application, CSC visit agenda management tool...<br/>
+		Please <a href="{{loginPath}}/{{visitorId}}/{{localData.password}}" title="CSC Visit Portal">click here</a>
+	  (or copy paste the below link in your browser address bar) to open the visit agenda.<br/>
+		{{loginPath}}/{{visitorId}}/{{localData.password}}
+	</p>
 
-Here is your visit schedule:
+	<font face="calibri" color="maroon">
+		Here is your visit schedule:<br/>
+	</font>
+
+	<font face="calibri" color="maroon">
+	<table border="1">
+		<tr>
+			<td>#</td>
+			<td>Date</td>
+			<td>City</td>
+			<td>Weather</td>
+		</tr>
 
 		{% for sch in schedule %}
-			{{ sch.day }} | {{ sch.date|date('jS \o\f F, Y')}}  | {{ sch.location }}  |  {{ sch.climate.daylike}} with {{ sch.climate.temperature}}&deg;C
+		<tr>
+			<td>{{ sch.day}}</td>
+			<td>{{ sch.date|date('jS \o\f F, Y') }}</td>
+			<td>{{ sch.location }}</td>
+			<td>{{ sch.climate.daylike}} with {{ sch.climate.temperature}}&deg;C</td>
+		</tr>
 		{% endfor %}
+	</table>
+	</font>
 
-For any further details please feel free to contact the visit manager:
+	<br/><br/>
+	<font color="maroon">
+		For any further details please feel free to contact the visit manager:<br/>
+	</font>
 
-		{{spoc.name.prefix}} {{spoc.name.first}} {{spoc.name.last}}
-		Email: {{spoc.email}}
-		Contact: {{spoc.contactNo[0].contactNumber}}
+	<font color="gray">
+			<img src='{{hostPath}}{{spoc.avatar}}'/> {{spoc.name.prefix}} {{spoc.name.first}} {{spoc.name.last}}<br/>
+			Email: {{spoc.email}}<br/>
+			Contact: {{spoc.contactNo[0].contactNumber}}
+	</font>
 
-Best Regards,
-Visit Portal Team, CSC
+	<p>
+		Best Regards,<br/>
+		Visit Portal Team, CSC
+	</p>
 
-Note: This is an auto generated mail from Visit Portal. Please do not reply.
+	<hr/>
+	<font color="gray">
+	Note: This is an auto generated mail from Visit Portal. Please do not reply.
+	</font>
+</font>
