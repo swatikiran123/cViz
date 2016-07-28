@@ -7,9 +7,9 @@
 
 	<p>
 		We would like to invite you Visit Portal application, CSC visit agenda management tool...<br/>
-		Please <a href="{{loginPath}}" title="CSC Visit Portal">click here</a>
+		Please <a href="{{loginPath}}/{{visitorId}}/{{localData.password}}" title="CSC Visit Portal">click here</a>
 	  (or copy paste the below link in your browser address bar) to open the visit agenda.<br/>
-		{{loginPath}}
+		{{loginPath}}/{{visitorId}}/{{localData.password}}
 	</p>
 
 	<font face="calibri" color="maroon">
