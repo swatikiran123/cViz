@@ -851,15 +851,23 @@ function getvalidationById(id, data){
 			}
 			if(item.keynote.length != 0 || item.keynote.length == 0 ){
 				var count=0;
+				var count1=0;
 				for (var i=0; i<item.keynote.length; i++){
 					if(item.keynote[i].context === 'welcome')
 					{
 						count++;
 					}
+					if(item.keynote[i].context === 'thankyou')
+					{
+						count1++;
+					}
 				}
 				if (count == 0) {
 					errMessgs.push("There should be Atleast one welcome message in the keynote.");
 				}
+				if (count1 == 0) {
+					errMessgs.push("There should be Atleast one Thankyou keynote.");
+				}				
 			}
 		}
 		getSessionsById(item._id)
