@@ -18,12 +18,11 @@ angular.module('sessions')
 
 	$scope.mix=[];
 	$scope.invitee=[];
-	$scope.finalData=[];
+	$scope.finalData=[[]];
 	var refresh = function() {
 		$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
 		}).success(function(response) {
 			$scope.scheduleList = response;
-    
 			for (var i = 0; i < $scope.scheduleList.length; i++) {
 				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
 					if ($scope.scheduleList[i].sessions[l]!=undefined && $scope.scheduleList[i].sessions[l].invitees!=undefined) {
@@ -45,14 +44,15 @@ angular.module('sessions')
 					for (var m = 0; m < $scope.mix.length; m++) {
 						if ($scope.activeUser._id === $scope.mix[m].invite) {
 							if ($scope.mix[m].feedbackElg==""|| $scope.mix[m].feedbackElg== undefined || $scope.mix[m].feedbackElg== null) {
-								$scope.finalData[l] =false;
+								$scope.finalData[[i,l]] =false;
 							}
 							else
-								$scope.finalData[l] =$scope.mix[m].feedbackElg;
+								$scope.finalData[[i,l]] =$scope.mix[m].feedbackElg;
 						}
 					}
 					$scope.mix=[];
 					$scope.invitee=[];
+					// console.log($scope.finalData)
 				}
 			}
 		});
