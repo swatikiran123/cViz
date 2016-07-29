@@ -1,22 +1,27 @@
 
-<style>
-</style>
+
+
+
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true" ng-controller="welcomeCtrl">
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
     <div class="modal-body">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <!--     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
 
       <div  class="headwel">
-       <div class="lo1" style="border-right: 1px solid black;padding-right:10px;">
-        <img src="/public/assets/g/imgs/csclogo-new.png" ></div>
-        <div class="lo2" style="padding-left:10px;">
-        <img ng-src="{{clientLogo}}"></div>
-        <br>
+      <div class="left">
+        <img  class="csc" src="/public/assets/g/imgs/csclogo-new.png">
+      </div>
+      <div class="left">
+        <img  class="clientlogowl"  ng-src="{{clientLogo}}">
+      </div>
+      <i class="fa fa-times pull-right" data-dismiss="modal" aria-hidden="true"></i>&nbsp;&nbsp;
+     <!--  <div class="left super">
+        <img  ng-src="{{clientLogo}}">
+      </div> -->
         
-<!--                     <span class="wellc"> &nbsp;&nbsp;&nbsp;&nbsp;Welcomes you <b>{{clientName}}</b>
+  <br>
 
-</span> -->
 </div>
 <!-- {{welcomeResponse[order]}} -->
 
