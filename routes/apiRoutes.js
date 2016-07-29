@@ -27,6 +27,7 @@ var meetingPlaces 			= 	require(constants.paths.controllers + '/api/meetingPlace
 var comments 				= 	require(constants.paths.controllers + '/api/comments');
 var executives				= 	require(constants.paths.controllers + '/api/executives');
 var regions					= 	require(constants.paths.controllers + '/api/regions');
+var visitSessionTemplates   = 	require(constants.paths.controllers + '/api/visitSessionTemplates');
 /*
  * Routes that can be accessed by any one
  */
@@ -198,5 +199,13 @@ router.post('/api/v1/secure/regions',regions.create);
 router.put('/api/v1/secure/regions/:id',regions.updateById);
 router.delete('/api/v1/secure/regions/:id',regions.deleteById);
 router.get('/api/v1/secure/regions/get/:name', regions.getOneByName);
+
+// List of service routes for visitSessionTemplates
+router.get('/api/v1/secure/visitSessionTemplates', visitSessionTemplates.getAll);
+router.get('/api/v1/secure/visitSessionTemplates/:id', visitSessionTemplates.getOneById);
+router.post('/api/v1/secure/visitSessionTemplates', visitSessionTemplates.create);
+router.put('/api/v1/secure/visitSessionTemplates/:id', visitSessionTemplates.updateById);
+router.delete('/api/v1/secure/visitSessionTemplates/:id', visitSessionTemplates.deleteById);
+router.get('/api/v1/secure/visitSessionTemplates/find/:id', visitSessionTemplates.getWithQuery);
 
 module.exports = router;

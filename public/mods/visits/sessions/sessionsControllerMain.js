@@ -40,6 +40,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.nameonly = "nameonly";
 		$scope.meetingLocations =[];
 		$scope.submitOwner = true;
+		$scope.submitSessionTemplate = true;
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -176,7 +177,36 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.endMinTime =null;
 		$scope.ownerId=null;
 		$scope.supporterId=null;
+		$scope.ownerUser = null;
+		$scope.supporterUser = null;
+		$scope.sessionTemplateTitle =null;
+		$scope.sessionFeedbackId = null;
+		$scope.meetingPlaceData = null;
+		$scope.arraydata = null;
+		$scope.session = null;
+		$scope.sessiondata = null;
 	    $scope.showAdvanced(ev);
+	  }
+
+	  $scope.populateSessionTemplate = function(sessionTemplateId){
+	    $scope.mode = "edit";
+	  	$http.get('/api/v1/secure/visitSessionTemplates/' + sessionTemplateId ).success(function(response) {
+	      $scope.schedule = response;
+	      delete $scope.schedule._id;
+	      $scope.meetingPlaceData = $scope.schedule.session.location;
+	      $scope.arraydata = $scope.schedule.invitees;
+	      if($scope.schedule.session.type != 'lunch' && $scope.schedule.session.type != 'breakfast' && $scope.schedule.session.type != 'dinner' && $scope.schedule.session.type != 'tea-break' )
+	      {
+	      $scope.session = $scope.schedule.feedbackTemplate.title;
+	      $scope.sessiondata = $scope.schedule.feedbackTemplate.title;
+	      $scope.ownerUser = $scope.schedule.session.owner;
+	      $scope.supporterUser = $scope.schedule.session.supporter;
+	      $scope.ownerId = $scope.schedule.session.owner._id;
+	      $scope.supporterId = $scope.schedule.session.supporter._id;
+	      $scope.sessionTempTitle = $scope.schedule.sessionTemplateTitle;
+	      $scope.sessionFeedbackId = $scope.schedule.feedbackTemplate._id;
+	  	 }
+	  });
 	  }
 
 	  $scope.editSession = function(ev, id){
@@ -195,13 +225,13 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	      $scope.meetingPlaceData = $scope.schedule.session.location;
 	      console.log($scope.schedule.session.type);
 	      // if($scope.schedule.session.type == "Presentation" || $scope.schedule.session.type =="Discussion" || $scope.schedule.session.type =="Floor-Walk" || $scope.schedule.session.type =="Visit-Wrap-Up" || $scope.schedule.session.type.toLowerCase() == "presentation" || $scope.schedule.session.type.toLowerCase() =="discussion" || $scope.schedule.session.type.toLowerCase() =="floor-walk" || $scope.schedule.session.type.toLowerCase() == "visit-wrap-up")
-		  if($scope.schedule.session.type)
-		  {
-	      $scope.sessiondfbid = $scope.schedule.feedbackTemplate;
-	      $http.get('/api/v1/secure/feedbackDefs/id/' + $scope.sessiondfbid).success(function(response) {
-	  	  $scope.sessiondata = response.title;
-	      });
-	  }
+	      if($scope.schedule.session.type)
+	      {
+	      	$scope.sessiondfbid = $scope.schedule.feedbackTemplate;
+	      	$http.get('/api/v1/secure/feedbackDefs/id/' + $scope.sessiondfbid).success(function(response) {
+	      		$scope.sessiondata = response.title;
+	      	});
+	      }
 
 				$scope.ownerId = $scope.schedule.session.owner;
 				$scope.supporterId = $scope.schedule.session.supporter;
@@ -235,30 +265,42 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
     };
 
 
-	  $scope.save = function() {
+	  $scope.save = function() 
+	  {
+	  	if($scope.sessionTempTitle !=null)
+	  	{
+	  		delete $scope.schedule._id;
+	  		$scope.mode = 'add';
+	  	}
+
+	  	if($scope.schedule._id ==undefined)
+	  	{
+	  		delete $scope.schedule._id;
+	  		$scope.mode = 'add';
+	  	}
+
 	  	$scope.schedule.scheduleDate = $scope.entryDate;
 	    $scope.schedule.visit = $scope.visit._id;
 	    $scope.schedule.client = $scope.visit.client._id;
 	    $scope.schedule.invitees = $scope.arraydata;
 	    $scope.schedule.feedbackElg = $scope.collectlist;
-	   // $scope.schedule.session.location = $scope.meetingPlacesData;
-			//session invitees to be added
-
-			// session info
-		// console.log($scope.startHourTime);
-		// console.log()
+        if($scope.schedule.session.type != 'lunch' && $scope.schedule.session.type != 'breakfast' && $scope.schedule.session.type != 'dinner' && $scope.schedule.session.type != 'tea-break' )
+	    {
 		$scope.schedule.session.owner = $scope.ownerId;
     	$scope.schedule.session.supporter = $scope.supporterId;
+    	}
+
+    	if($scope.schedule.session.type == 'lunch' || $scope.schedule.session.type == 'breakfast' || $scope.schedule.session.type == 'dinner' || $scope.schedule.session.type == 'tea-break' )
+    	{
+    		$scope.schedule.session.owner = null;
+    		$scope.schedule.session.supporter = null;
+    	}
 	    var startTime = $scope.startHourTime + ":" +$scope.startMinTime;
 	    var endTime = $scope.endHourTime + ":" +$scope.endMinTime;
 	    $scope.schedule.session.startTime = DateReplaceTime($scope.entryDate, startTime);
 	    $scope.schedule.session.endTime = DateReplaceTime($scope.entryDate, endTime);
 	    if($scope.mode == 'add')
 	    {	
-	  //   	if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
-	  //   	{
-	  //   	$scope.schedule.session.location = $scope.meetingPlacesData;
-			// }
 			if($scope.schedule.session.type)
 		  	{
 				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
@@ -270,10 +312,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 
 		if($scope.mode == 'edit')
 		{
-	   		// if($scope.sessionMeetingData == '' || $scope.sessionMeetingData == undefined)
-	   		// {
-	   		// 	$scope.schedule.session.location = $scope.meetingPlaceData;
-	   		// }
 	   		if($scope.schedule.session.type)
 		  	{
 	   			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
@@ -282,11 +320,6 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	   			}
 	   		}
 	   	}	
-
-		// if($scope.sessionMeetingData != '' && $scope.sessionMeetingData != undefined)
-		// {
-		//  $scope.schedule.session.location = $scope.sessionMeetingData;
-		// }
 
 		if($scope.schedule.session.type)
 		{		
@@ -382,29 +415,101 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	}); // http delete visitSchedule ends
 	}; // delete method ends
 
+	$scope.saveSessionTemplate = function(sessionTemplateTitle) {
+	    delete $scope.schedule._id;
+		$scope.schedule.visit = $scope.visit._id;
+		$scope.schedule.invitees = $scope.arraydata;
+		$scope.schedule.session.owner = $scope.ownerId;
+		$scope.schedule.session.supporter = $scope.supporterId;
+        $scope.schedule.sessionTemplateTitle = sessionTemplateTitle;
 
-	  // type field dropdown list
-	  // $scope.prTypes = ['Presentation','Discussion','Breakfast','Tea-Break','Lunch','Dinner','Floor-Walk', 'Visit-Wrap-Up'];
 
-	  // location field dropdown list
-	  // $scope.locations = [{
-	  //   "city" : "Hyderabad",
-	  //   "rooms": ['Hyd Board Room','B7 1st Floor Conference Room','B4 Cafeteria',
-	  //   'B4 Executive Dining Room','Hyd Amphi Theatre','Hyd Main Lobby']
-	  // },
-	  // {
-	  //   "city" : "Noida",
-	  //   "rooms": ['Noida Board Room','Noida Cafeteria','Noida Amphi Theatre','Noida Main Lobby']
-	  // },
-	  // {
-	  //   "city" : "Chennai",
-	  //   "rooms": ['Chennai Lobby Area','Chennai Ex Lunch','Chennai Amphi Theatre','Chennai Main Lobby']
-	  // },
-	  // {
-	  //   "city" : "Bangalore",
-	  //   "rooms": ['Bng Lobby Area','Bng Ex Lunch','Bng Amphi Theatre','Bng Main Lobby']
-	  // }];
+	  	if($scope.schedule.session.type == "Tea-Break" || $scope.schedule.session.type =="BreakFast" || $scope.schedule.session.type =="Lunch" || $scope.schedule.session.type =="Dinner" || $scope.schedule.session.type.toLowerCase() == "tea-break" || $scope.schedule.session.type.toLowerCase() =="breakfast" || $scope.schedule.session.type.toLowerCase() =="lunch" || $scope.schedule.session.type.toLowerCase() == "dinner")
+	  	{
+	  		delete $scope.schedule.session.owner;
+	  		delete $scope.schedule.session.supporter;
+	  		delete $scope.schedule.session.desc;
+	  		delete $scope.schedule.session.title;
+	  	}
+        	    if($scope.mode == 'add')
+	    {	
+			if($scope.schedule.session.type)
+		  	{
+				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+				{
+					$scope.schedule.feedbackTemplate = $scope.sessionFeedbackDefaultId;
+				}
+			}
+		}
 
+		if($scope.mode == 'edit')
+		{
+	   		if($scope.schedule.session.type)
+		  	{
+	   			if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+	   			{
+	   				$scope.schedule.feedbackTemplate = $scope.sessiondfbid;
+	   			}
+	   		}
+	   	}	
+
+		if($scope.schedule.session.type)
+		{		
+			if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
+			{
+				$scope.schedule.feedbackTemplate = $scope.sessionFeedbackId;
+			}
+		}
+		$scope.createSessionTemplate();
+	  } // end of save method
+
+	  $scope.createSessionTemplate = function () {
+	  	$http.post('/api/v1/secure/visitSessionTemplates', $scope.schedule).success(function(response) {
+			growl.info(parse("Title: [%s]<br/>New Session Template Added", $scope.schedule.sessionTemplateTitle));
+	  	});
+	  	}  
+
+	  	$scope.updateSessionTemplate = function(sessionTemplateId,sessionTemplateTitle)
+	  	{
+	  		$scope.schedule.visit = $scope.visit._id;
+	  		$scope.schedule.invitees = $scope.arraydata;
+	  		$scope.schedule.session.owner = $scope.ownerId;
+	  		$scope.schedule.session.supporter = $scope.supporterId;
+	  		$scope.schedule.sessionTemplateTitle = sessionTemplateTitle;
+	  		if($scope.mode == 'add')
+	  		{	
+	  			if($scope.schedule.session.type)
+	  			{
+	  				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+	  				{
+	  					$scope.schedule.feedbackTemplate = $scope.sessionFeedbackDefaultId;
+	  				}
+	  			}
+	  		}
+
+	  		if($scope.mode == 'edit')
+	  		{
+	  			if($scope.schedule.session.type)
+	  			{
+	  				if($scope.sessionFeedbackId == '' || $scope.sessionFeedbackId == undefined)
+	  				{
+	  					$scope.schedule.feedbackTemplate = $scope.sessiondfbid;
+	  				}
+	  			}
+	  		}	
+
+	  		if($scope.schedule.session.type)
+	  		{		
+	  			if($scope.sessionFeedbackId != '' && $scope.sessionFeedbackId != undefined)
+	  			{
+	  				$scope.schedule.feedbackTemplate = $scope.sessionFeedbackId;
+	  			}
+	  		}
+
+	  		$http.put('/api/v1/secure/visitSessionTemplates/'+sessionTemplateId, $scope.schedule).success(function(response) {
+	  				growl.info(parse("Session Template Updated"));
+	  		});
+	  	}
 
 		$scope.showAdvanced = function(ev) {
 			$mdDialog.show({

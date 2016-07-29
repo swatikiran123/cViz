@@ -20,7 +20,28 @@
           <div ng-if="mode=='edit'">
             {{$parent.submitOwnerSupporter=false;""}}
           </div>
-
+           <div class="row">
+            <md-input-container class="md-block" flex-gt-sm style="width: 100%;
+            border-bottom: 1px dotted #A9A9A9">
+            <label>Search Session Template</label>
+            <angucomplete-alt
+            id="ex150"
+            placeholder="Search session Template"
+            pause="500"
+            selected-object="selectedSessionTemplate"
+            remote-url="/api/v1/secure/visitSessionTemplates/find/{{visit._id}}"
+            remote-url-data-field="items"
+            title-field="sessionTemplateTitle"
+            description-field="session.type"
+            minlength="3"
+            input-class="form-control form-control-small"
+            template-url="/my-custom-template334.html"
+            match-class="highlight"></angucomplete-alt>
+          </md-input-container>
+          <span ng-if="selectedSessionTemplate!=null" 
+          ng-init="populateSessionTemplate(selectedSessionTemplate.originalObject._id)">
+          </span>
+           </div> 
            <div class="row">
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                 <i>Select Start Time <span class="asterrisk">*</span></i><br>
@@ -214,9 +235,42 @@
         </div> 
 			</div>
       <br>
-
            <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type={{visit.client._id}} collectlist="$parent.collectlist"></invitees>
-           <div class="pull-right">
+           <div class="pull-left">
+            <input type="text" ng-model="sessionTemplateTitle" placeholder="Enter Session Title" style="border-top:none ;border-right:none ;border-left:none ; border-bottom: 1px solid darkgrey;"/>
+            <span ng-if="sessionTemplateTitle!=null">
+            {{$parent.submitSessionTemplate = false;""}}
+            </span>
+            <span ng-if="sessionTemplateTitle==null">
+              {{$parent.submitSessionTemplate = true;""}}
+            </span>
+
+            <span ng-if="sessionTemplateTitle.length>5 && sessionTemplateTitle.length<30">
+              {{$parent.submitSessionTemplate = false;""}}
+            </span>
+             <button type="submit" class="btn btn-success" ng-click="saveSessionTemplate(sessionTemplateTitle)"
+             ng-disabled="sessionAddForm.$invalid || submitOwner || submitOwnerSupporter ||submitSessionTemplate">
+             Save as New Template
+           </button>
+           <button ng-if="selectedSessionTemplate!=null" type="submit" class="btn btn-success"
+           ng-click="updateSessionTemplate(selectedSessionTemplate.originalObject._id,
+           selectedSessionTemplate.originalObject.sessionTemplateTitle)"
+           ng-disabled="sessionAddForm.$invalid || submitOwner || submitOwnerSupporter">
+           Update Template
+         </button> 
+
+         <br>
+         <span ng-if="sessionTemplateTitle.length<5" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be more than 5 characters."}}
+        </span>
+
+        <span ng-if="sessionTemplateTitle.length>30" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be less than 30 characters."}}
+        </span>
+         </div>
+          <div class="pull-right">
             <button type="submit" class="btn btn-success" ng-click="save()" 
             ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner">
             Submit
@@ -244,11 +298,40 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="pull-left">
+          <input type="text" ng-model="sessionTemplateTitle" placeholder="Enter Session Title" style="border-top:none ;border-right:none ;border-left:none ; border-bottom: 1px solid darkgrey;"/>
+          <span ng-if="sessionTemplateTitle!=null">
+            {{$parent.submitSessionTemplate = false;""}}
+          </span>
+          <span ng-if="sessionTemplateTitle==null">
+            {{$parent.submitSessionTemplate = true;""}}
+          </span>
+
+          <span ng-if="sessionTemplateTitle.length>5 && sessionTemplateTitle.length<30">
+            {{$parent.submitSessionTemplate = false;""}}
+          </span>
+          <button type="submit" class="btn btn-success" ng-click="saveSessionTemplate(sessionTemplateTitle)"
+          ng-disabled="sessionAddForm.$invalid || submitSessionTemplate">
+          Save as New Template
+        </button>
+        <button ng-if="selectedSessionTemplate!=null" type="submit" class="btn btn-success"
+        ng-click="updateSessionTemplate(selectedSessionTemplate.originalObject._id,
+        selectedSessionTemplate.originalObject.sessionTemplateTitle)"
+        ng-disabled="sessionAddForm.$invalid">
+        Update Template
+      </button> 
+
+      <br>
+      <span ng-if="sessionTemplateTitle.length<5" style="color:#ff0000;">
+        {{$parent.submitSessionTemplate = true;""}}
+        {{errMessageTemp = "Template Title should be more than 5 characters."}}
+      </span>
+
+      <span ng-if="sessionTemplateTitle.length>30" style="color:#ff0000;">
+        {{$parent.submitSessionTemplate = true;""}}
+        {{errMessageTemp = "Template Title should be less than 30 characters."}}
+      </span>
+    </div>
         <div class="pull-right">
           <button type="submit" class="btn btn-success" ng-click="save()" 
           ng-disabled="sessionAddForm.$invalid || checkTimeVar">
@@ -272,17 +355,47 @@
           </select>
         </div>
         <br>
+        {{$parent.arraydata}}
         <invitees arraydata="$parent.arraydata" switch-mode="mode" user-type={{visit.client._id}} collectlist="$parent.collectlist"></invitees>
         <br>
         <br>
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="pull-left">
+          <input type="text" ng-model="sessionTemplateTitle" placeholder="Enter Session Title" style="border-top:none ;border-right:none ;border-left:none ; border-bottom: 1px solid darkgrey;"/>
+          <span ng-if="sessionTemplateTitle!=null">
+            {{$parent.submitSessionTemplate = false;""}}
+          </span>
+          <span ng-if="sessionTemplateTitle==null">
+            {{$parent.submitSessionTemplate = true;""}}
+          </span>
+
+          <span ng-if="sessionTemplateTitle.length>5 && sessionTemplateTitle.length<30">
+            {{$parent.submitSessionTemplate = false;""}}
+          </span>
+          <button type="submit" class="btn btn-success" ng-click="saveSessionTemplate(sessionTemplateTitle)"
+          ng-disabled="sessionAddForm.$invalid ||submitSessionTemplate">
+          Save as New Template
+        </button>
+        <button ng-if="selectedSessionTemplate!=null" type="submit" class="btn btn-success"
+        ng-click="updateSessionTemplate(selectedSessionTemplate.originalObject._id,
+        selectedSessionTemplate.originalObject.sessionTemplateTitle)"
+        ng-disabled="sessionAddForm.$invalid">
+        Update Template
+      </button> 
+
+      <br>
+      <span ng-if="sessionTemplateTitle.length<5" style="color:#ff0000;">
+        {{$parent.submitSessionTemplate = true;""}}
+        {{errMessageTemp = "Template Title should be more than 5 characters."}}
+      </span>
+
+      <span ng-if="sessionTemplateTitle.length>30" style="color:#ff0000;">
+        {{$parent.submitSessionTemplate = true;""}}
+        {{errMessageTemp = "Template Title should be less than 30 characters."}}
+      </span>
+    </div>
         <div class="pull-right">
           <button type="submit" class="btn btn-success" ng-click="save()" 
           ng-disabled="sessionAddForm.$invalid || checkTimeVar">
@@ -313,11 +426,40 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="pull-left">
+            <input type="text" ng-model="sessionTemplateTitle" placeholder="Enter Session Title" style="border-top:none ;border-right:none ;border-left:none ; border-bottom: 1px solid darkgrey;"/>
+            <span ng-if="sessionTemplateTitle!=null">
+            {{$parent.submitSessionTemplate = false;""}}
+            </span>
+            <span ng-if="sessionTemplateTitle==null">
+              {{$parent.submitSessionTemplate = true;""}}
+            </span>
+
+            <span ng-if="sessionTemplateTitle.length>5 && sessionTemplateTitle.length<30">
+              {{$parent.submitSessionTemplate = false;""}}
+            </span>
+             <button type="submit" class="btn btn-success" ng-click="saveSessionTemplate(sessionTemplateTitle)"
+             ng-disabled="sessionAddForm.$invalid ||submitSessionTemplate">
+             Save as New Template
+           </button>
+           <button ng-if="selectedSessionTemplate!=null" type="submit" class="btn btn-success"
+           ng-click="updateSessionTemplate(selectedSessionTemplate.originalObject._id,
+           selectedSessionTemplate.originalObject.sessionTemplateTitle)"
+           ng-disabled="sessionAddForm.$invalid">
+           Update Template
+         </button> 
+
+         <br>
+         <span ng-if="sessionTemplateTitle.length<5" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be more than 5 characters."}}
+        </span>
+
+        <span ng-if="sessionTemplateTitle.length>30" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be less than 30 characters."}}
+        </span>
+    </div>
         <div class="pull-right">
           <button type="submit" class="btn btn-success" ng-click="save()" 
           ng-disabled="sessionAddForm.$invalid || checkTimeVar">
@@ -348,11 +490,40 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="pull-left">
+            <input type="text" ng-model="sessionTemplateTitle" placeholder="Enter Session Title" style="border-top:none ;border-right:none ;border-left:none ; border-bottom: 1px solid darkgrey;"/>
+            <span ng-if="sessionTemplateTitle!=null">
+            {{$parent.submitSessionTemplate = false;""}}
+            </span>
+            <span ng-if="sessionTemplateTitle==null">
+              {{$parent.submitSessionTemplate = true;""}}
+            </span>
+
+            <span ng-if="sessionTemplateTitle.length>5 && sessionTemplateTitle.length<30">
+              {{$parent.submitSessionTemplate = false;""}}
+            </span>
+             <button type="submit" class="btn btn-success" ng-click="saveSessionTemplate(sessionTemplateTitle)"
+             ng-disabled="sessionAddForm.$invalid ||submitSessionTemplate">
+             Save as New Template
+           </button>
+           <button ng-if="selectedSessionTemplate!=null" type="submit" class="btn btn-success"
+           ng-click="updateSessionTemplate(selectedSessionTemplate.originalObject._id,
+           selectedSessionTemplate.originalObject.sessionTemplateTitle)"
+           ng-disabled="sessionAddForm.$invalid">
+           Update Template
+         </button> 
+
+         <br>
+         <span ng-if="sessionTemplateTitle.length<5" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be more than 5 characters."}}
+        </span>
+
+        <span ng-if="sessionTemplateTitle.length>30" style="color:#ff0000;">
+          {{$parent.submitSessionTemplate = true;""}}
+          {{errMessageTemp = "Template Title should be less than 30 characters."}}
+        </span>
+    </div>
         <div class="pull-right">
           <button type="submit" class="btn btn-success" ng-click="save()" 
           ng-disabled="sessionAddForm.$invalid || checkTimeVar">
@@ -374,6 +545,41 @@
 </md-dialog>
 </div>
 
+<div class="large-padded-row">
+  <div class="padded-row">
+    <script type="text/ng-template" id="/my-custom-template334.html">
+      <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+        <input ng-model="searchStr"
+        class="md-block"
+        ng-disabled="disableInput"
+        type="text"
+        placeholder="{{placeholder}}"
+        ng-focus="onFocusHandler()"
+        class="{{inputClass}}"
+        ng-focus="resetHideResults()"
+        ng-blur="hideResults($event)"
+        autocapitalize="off"
+        autocorrect="off"
+        autocomplete="off"
+        ng-change="inputChangeHandler(searchStr)"/>
+        <div class="angucomplete-dropdown" ng-show="showDropdown">
+          <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+          <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+          <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+            <div ng-if="imageField" class="angucomplete-image-holder">
+              <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+              <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+            </div>
+            <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+            <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+            <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+            <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+          </div>
+        </div>
+      </div>
+    </script>
+  </div>
+</div>
 <style>
 
   .session-type{
