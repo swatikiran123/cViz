@@ -14,6 +14,7 @@
     text-align: justify;
     text-justify: inter-word;
     padding-left:55px;
+    padding-bottom: 10px;
   }
   .actionBox {
     padding:10px;
@@ -40,6 +41,10 @@
     color:#aaa;
     font-family:verdana;
     font-size:11px;
+  }
+  .sub-text p{
+    font-size:11px;
+    margin-bottom: -20px;
   }
   @media only screen and (max-device-width: 320px){
     .modal-dialog1{
@@ -197,8 +202,12 @@
                    <div userview user-id="comnt.givenBy" user-model  view-mode="bullet-small"></div>
                    </div>
         <div class="ct commentText">
-                  {{comnt.comment}} <span class="sub-text">&nbsp;<br>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/> on {{comnt.givenOn | date:'dd MMM yyyy HH:mm:ss'}}</span>
+                  {{comnt.comment}}
+                  <div class="sub-text">
+                    <p>by <userview user-id="comnt.givenBy" user-model view-mode="nameonlyhref"/></p>
+                    on {{comnt.givenOn | date:"dd MMMM, yyyy 'at' HH:mm:ss"}}
                   </div>
+        </div>
       </div>
     </div>
   </div>
