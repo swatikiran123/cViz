@@ -2,26 +2,24 @@
 		width: 20px;
 	}
 
+  .left{float:left;}
+  .csc{
+    border-right: 1px solid black;padding-right:10px;
+      height:auto;
+    width:auto;
+    max-height: 40px;
+  }
+  .clientlogowl{ 
+    padding-left:10px; 
+   
+ 
+    height:auto;
+    width:auto;
+    max-height: 40px;
 
-	.lo1{
-		float:left;
-	}
-	.lo1 img{
-		margin-top: 6px;
-		max-height: 35px;
-		width:auto;
-		height:auto;
-	}
+  
+  }
 
-	.lo2{
-		float:left;
-		margin-top: 7px;
-	}
-	.lo2 img{
-		max-height: 45px;
-		width:auto;
-		height:auto;
-	}
 
 		.welnote{
 			overflow: hidden;
@@ -192,50 +190,33 @@
 			}
 
 @media only screen and (max-device-width: 320px) { 
-	 .lo1 img{
-		margin-top: 6px;
-		max-height: 25px;
-		width:auto;
-		height:auto;
-	}
-	.lo2 img{
-		margin-top: 3px;
-		max-height: 28px;
-		width:auto;
-		height: auto;
-	}
+  .csc{
+    border-right: 1px solid black;padding-right:10px;
+      height:auto;
+    width:auto;
+    max-height: 40px;
+  }
+  .clientlogowl{ 
+    padding-left:10px; 
+   
+ 
+    height:auto;
+    width:auto;
+    max-height: 40px;
+
+  
+  }
 
 }
 @media only screen and (min-device-width: 321px) and (max-device-width: 480){
-	            .lo1 img{
-		margin-top: 6px;
-		max-height: 28px;
-		width:auto;
-		height:auto;
-	}
-	.lo2 img{
-		max-height: 29px;
-		width:auto;
-		height: auto;
-	}
+
 
 }
 			@media only screen and (min-device-width: 400px) and (max-device-width: 480px) {
 				.richtext1{
 					height:400px;
 				}
-				             .lo1 img{
-		margin-top: 6px;
-		max-height: 35px;
-		width:auto;
-		height:auto;
-	}
-	.lo2 img{
-		margin-top: 2px;
-		max-height: 38px;
-		width:auto;
-		height: auto;
-	}  
+
 		
 		
 			}

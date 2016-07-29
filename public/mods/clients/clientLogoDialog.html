@@ -14,7 +14,7 @@
        
         <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
           <img-crop  image="picFile  | ngfDataUrl"
-          ng-init="croppedDataUrl=''" area-type="rectangle" result-image-size={w:226,h:113} result-image="croppedDataUrl">
+          ng-init="croppedDataUrl=''" area-type="rectangle" result-image-size="'max'" result-image="croppedDataUrl">
         </img-crop>
         </div>
       
