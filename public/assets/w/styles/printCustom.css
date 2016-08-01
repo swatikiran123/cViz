@@ -22,6 +22,28 @@ table, th, tr, td{border: 1px solid #CCC !important;}
 	padding-right: 10px;
 }*/
 
+.participants div, .participants div label {
+    display: inline !important;
+}
+
+.participants span label {
+    font-weight: normal !important;
+}
+
+.participants span:after
+{
+  content: ',' !important;
+}
+
+.participants span:last-child:after
+{
+  content: '' !important;
+}
+
+.participants span.anchorbold label {
+    font-weight: bold !important;
+}
+
 ul {
     list-style-type: none !important;
     display: inline !important;
@@ -45,13 +67,14 @@ li:last-child:after
   content: '' !important;
 }
 
-.anchorbold, .anchorbold div, .anchorbold label{
+/*.anchorbold, .anchorbold div, .anchorbold label{
     display: inline !important;
 }
 
 .data-grid-data .anchorbold a{
     font-weight: bold;
-}
+}*/
+
 .page-header-filter{
     margin: 0px 0px 3px !important;
     border-bottom: 1px solid #EEE;

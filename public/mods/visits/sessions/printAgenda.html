@@ -31,12 +31,13 @@
       <td ng-if="schedule.session.title == null " colspan="2" align="center">{{schedule.session.type}}</td>
       <!--Participants -->
       <td ng-if="schedule.session.title != null ">
-        <div class="anchorbold" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>,
-        <ul>
-         <li ng-repeat="val in schedule.invitees">
-            <div class="removeHref" userdisplay view-mode="nameonly" user-id="val" no-user-msg="{{}}"></div>
-          </li>
-        </ul>
+        <div class="participants">
+          {{viewmode = "nameonlyhref";""}}
+          <span class="anchorbold" userdisplay view-mode="viewmode" user-id="schedule.session.owner"></span>
+          <span ng-repeat="val in schedule.invitees">
+              <span class="removeHref" userdisplay view-mode="viewmode" user-id="val"></span>
+          </span>
+        </div>
       </td>
       <td>{{schedule.session.location}}</td>
     </tr>
@@ -78,12 +79,13 @@
       <td ng-if="schedule.session.title == null " colspan="2" align="center">{{schedule.session.type}}</td>
       <!--Participants -->
       <td ng-if="schedule.session.title != null ">
-        <div class="anchorbold" userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></div>,
-        <ul>
-          <li ng-repeat="val in schedule.invitees">
-            <div class="removeHref" userdisplay view-mode="nameonly" user-id="val" no-user-msg="{{}}"></div> 
-          </li>
-        </ul>
+        <div class="participants">
+          {{viewmode = "nameonlyhref";""}}
+          <span class="anchorbold" userdisplay view-mode="viewmode" user-id="schedule.session.owner"></span>
+          <span ng-repeat="val in schedule.invitees">
+              <span class="removeHref" userdisplay view-mode="viewmode" user-id="val"></span>
+          </span>
+        </div>
       </td>
       <td>{{schedule.session.location}}, CSC {{index}}</td>
     </tr>

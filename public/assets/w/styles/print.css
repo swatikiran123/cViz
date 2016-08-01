@@ -2,10 +2,10 @@
     page { size: auto; margin: 0px 20px;}
    
     body  { margin: 0px 15px; }
-    a[href]:after {
+    /*a[href]:after {
       content: none !important;
     }
-    a{font-weight: normal;}
+    a{font-weight: normal;}*/
 
     table{
      page-break-after:always;

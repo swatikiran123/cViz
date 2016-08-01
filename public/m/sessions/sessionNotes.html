@@ -97,11 +97,8 @@
 			<div class="div-padding" ng-repeat="schedules in scheduleList track by $index">
 			<div ng-if = "schedules.session.type != 'lunch' && schedules.session.type != 'breakfast' && schedules.session.type != 'dinner' && schedules.session.type != 'tea-break' ">	
 					<div class="day-agenda-header1">
-						<i class="fa fa-calendar"></i>
-						{{schedules.scheduleDate | date : "dd MMM yyyy"}} &nbsp;&nbsp;
-						{{schedules.session.title}}	&nbsp;&nbsp;				
-						<i class="fa fa-map-marker"></i>
-						{{schedules.session.location}}
+						<p>{{schedules.session.title}} </p>
+						<p><i class="fa fa-calendar"></i> {{schedules.scheduleDate | date : "dd MMM yyyy"}} &nbsp;&nbsp;<i class="fa fa-map-marker"></i> {{schedules.session.location}}</p>
 					</div>
 					<div class="border" ng-repeat="comnt in schedules.comments">
 						<div class="commenterImage pull-left">
