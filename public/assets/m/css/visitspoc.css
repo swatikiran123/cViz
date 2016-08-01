@@ -7,109 +7,109 @@
     padding-top: 10px;
 }
 .spoc-details{
-     background-color: #fff;
+   background-color: #fff;
 }
- 
-    .dropdown-menu{
-       background-color: white;
-    }
 
-    .spocpicture{
-        width: 75px;
-        height: 65px;
+.dropdown-menu{
+ background-color: white;
+}
 
-    }
-    .spoc-details-container {
-        margin: 10px;
-        background-color: #fff;
- display: inline-block;
-        padding: 10px;
-        box-shadow: 2px 2px 2px #c1c1c1;
-        width: 98%;
-    }
-        .heading1 {
-            padding-top: 30px;
-            color: black;
-            font-family: workSansLight;
-            font-size: 1.4em;
-            padding-bottom: 5px;
-        }
-        .spoc-pic {
-            padding-left: 10px;}
+.spocpicture{
+    width: 75px;
+    height: 65px;
+
+}
+.spoc-details-container {
+    margin: 10px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 10px;
+    box-shadow: 2px 2px 2px #c1c1c1;
+    width: 98%;
+}
+.heading1 {
+    padding-top: 30px;
+    color: black;
+    font-family: workSansLight;
+    font-size: 1.4em;
+    padding-bottom: 5px;
+}
+.spoc-pic {
+    padding-left: 10px;}
             /*
             img {
                 width: 60px;
-            }*/
-      .dropdown-menu{
-        background-color: white;
+                }*/
+                .dropdown-menu{
+                    background-color: white;
 
-      }
-      .dropdown-menu  a {
-        display: block;
-        color: black;
-        padding: 5px 20px;
-}
-        .spoc-bios-div {
-            padding-left: 20px;
-            padding-right: 0;
+                }
+                .dropdown-menu  a {
+                    display: block;
+                    color: black;
+                    padding: 5px 20px;
+                }
+                .spoc-bios-div {
+                    padding-left: 20px;
+                    padding-right: 0;
 
 
-        }
-            .spoc-name {
-                font-family: robotoBold;
-                color: #676767;
-            }
-            .spoc-designation {
-                font-family: robotoBold;
-                color: #8a8a8a;
-                font-size: 0.8em;
-                margin-bottom: 12px;
-            }
-            .spoc-bios {
-            
-                font-family: robotoRegular;
-                font-size: 0.8em;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-top: 1px solid #d0d0d0;
-                border-bottom: 1px solid #d0d0d0;
-            }
-            .reach-spoc-phone,
-            .reach-spoc-email {
-                text-align: center;
-                border-bottom: 1px solid #d0d0d0;
-                display: inline-block;
-                width: 100%;
-                color: black;
-                font-family: workSansLight;
-                font-size: 1.2em;
-                padding-top: 10px;
-                padding-bottom: 15px;}
-                .call-text,
-                .message-text,
-                .email-text {
-                    color: #4D4D4D;
-                    font-size: 0.6em;
-                    padding-top: 5px;
-                    font-weight: bold;
                 }
-                .call-text {
-                    text-align: right;
-                    border-right: 1px solid #d0d0d0;
+                .spoc-name {
+                    font-family: robotoBold;
+                    color: #676767;
                 }
-                .message-text {
-                    text-align: left;
+                .spoc-designation {
+                    font-family: robotoBold;
+                    color: #8a8a8a;
+                    font-size: 0.8em;
+                    margin-bottom: 12px;
                 }
-                .number,
-                .email {
+                .spoc-bios {
+
+                    font-family: robotoRegular;
+                    font-size: 0.8em;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-top: 1px solid #d0d0d0;
                     border-bottom: 1px solid #d0d0d0;
-                   /* margin-right: 15px;
-                    margin-left: 15px;*/
-                    padding-bottom: 5px;
-                    margin-bottom: 5px;
                 }
-            
-            .download-contact {
+                .reach-spoc-phone,
+                .reach-spoc-email {
+                    text-align: center;
+                    border-bottom: 1px solid #d0d0d0;
+                    display: inline-block;
+                    width: 100%;
+                    color: black;
+                    font-family: workSansLight;
+                    font-size: 1.2em;
+                    padding-top: 10px;
+                    padding-bottom: 15px;}
+                    .call-text,
+                    .message-text,
+                    .email-text {
+                        color: #4D4D4D;
+                        font-size: 0.6em;
+                        padding-top: 5px;
+                        font-weight: bold;
+                    }
+                    .call-text {
+                        text-align: right;
+                        border-right: 1px solid #d0d0d0;
+                    }
+                    .message-text {
+                        text-align: left;
+                    }
+                    .number,
+                    .email {
+                        border-bottom: 1px solid #d0d0d0;
+                   /* margin-right: 15px;
+                   margin-left: 15px;*/
+                   padding-bottom: 5px;
+                   margin-bottom: 5px;
+               }
+
+               .download-contact {
                 font-size: 0.9em;
                 padding-top: 15px;
                 padding-bottom: 20px;
@@ -123,62 +123,68 @@
                     border-bottom: 1px solid #d0d0d0;
                     padding-bottom: 3px;
                 }
-      
 
 
-@media (max-width: 320px) {
-     .spocpicture{
-        width: 40px;
-        height: 35px;
-}
-   .spoc-pic {
-            padding-left: 7px;}
 
-   
-.spoc-bios-div {
-    padding-left: 29px;
-    padding-right: 0;
-}
-    }
-
-    @media only screen and (min-device-width: 323px) and (max-device-width: 480px) {
-         .spocpicture{
-        width: 40px;
-        height: 35px;
-        }
-        .spoc-pic {
-            padding-left: 9px;}
-
-   
-        .spoc-bios-div {
-            padding-left: 25px;
-            padding-right: 0;
-        }
-
-}
-@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
-       #spoc-page {
-        font-size: 25px;
-        padding-top: 60px;
-    } 
-    .spoc-pic {
-            padding-left: 7px;}
-
-}
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    .spoc-pic{
-       padding-left: 0px;
-     
-    }
-
-}
+                @media (max-width: 320px) {
+                   .spocpicture{
+                    width: 40px;
+                    height: 35px;
+                }
+                .spoc-pic {
+                    padding-left: 7px;}
 
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-  
-            
+                    .spoc-bios-div {
+                        padding-left: 29px;
+                        padding-right: 0;
+                    }
+                }
 
-}
+                @media only screen and (min-device-width: 323px) and (max-device-width: 480px) {
+                   .spocpicture{
+                    width: 40px;
+                    height: 35px;
+                }
+                .spoc-pic {
+                    padding-left: 9px;}
+
+
+                    .spoc-bios-div {
+                        padding-left: 25px;
+                        padding-right: 0;
+                    }
+
+                }
+                @media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+                 #spoc-page {
+
+                    padding-top: 10px;
+                } 
+                .spoc-pic {
+                    padding-left: 7px;}
+
+                }
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    .spoc-pic{
+                     padding-left: 0px;
+
+                 }
+                     #spoc-page {
+
+                    padding-top: 10px;
+                } 
+
+             }
+
+
+             @media only screen and (min-device-width: 600px) and (max-device-width: 960px) {
+
+            /*.rightpull{
+                padding-left: 900px;
+                }*/
+
+            }
 
 
 

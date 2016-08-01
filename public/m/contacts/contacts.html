@@ -1,13 +1,13 @@
 <div header showprofile="false" icon="fa fa-phone" title1="Key Contacts" title2="{{title}}" query='query'>
- <div class="searchViewHead  col-xs-12">
-   <div class="searchDivHead col-xs-12 col-sm-8 col-md-12 div-padding">
+ <div class="searchViewHead" style="padding-left:10px;height: 40px;">
+   <div class="searchDivHead  div-padding">
     <i class="fa fa-search fonticon1"></i>
     <input type="text" placeholder="Search" value="" name="search" id="search" ng-model="$parent.query.$">
     <div class="pull-right">
         <div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
             LOCATION
             <span class="caret"></span>
-        </div>
+        </div> 
         <ul class="dropdown-menu">
             <div ng-repeat="city in cities">
                 <li><a href="#/contacts/{{city}}">{{city}}</a></li>
@@ -17,7 +17,7 @@
      </div>
     </div>
   </div>
-</div>
+</div> 
 
 <div class="divtop"></div>
 <div id="spoc-page" ng-if="activevisits == true">
@@ -26,10 +26,10 @@
         <div class="heading1">CONTACT YOUR VISIT MANAGER</div>
         
         <div class="list-group" filter-list="$parent.query.$">
-            <div class="spoc-pic col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="spoc-pic col-xs-2 col-sm-1 col-md-1 col-lg-1">
                 <img class="img-circle spocpicture" ng-src="{{anchor.avatar}}">
             </div>
-            <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <div class="spoc-bios-div col-xs-10 col-sm-11 col-md-11 col-lg-11">
                 <div class="spoc-name">{{anchor.name.prefix}} {{anchor.name.first}} {{anchor.name.middle}} {{anchor.name.last}} {{anchor.name.suffix}}
                 </div>
                 <div class="spoc-designation">{{anchor.jobTitle}}</div>{{anchor.type}}
@@ -57,10 +57,10 @@
         <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
          <div  ng-repeat="spoc in contactList | filter:query">
-            <div class="spoc-pic col-xs-1 col-sm-1 col-md-1">
+            <div class="spoc-pic col-xs-2 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
-            <div class="spoc-bios-div col-xs-11 col-sm-11 col-md-11">
+            <div class="spoc-bios-div col-xs-10 col-sm-11 col-md-11">
                 <div class="spoc-name">{{spoc.firstName}} {{spoc.lastName}}</div>
                 <div class="spoc-designation">{{spoc.jobTitle}}</div>{{spoc.type}}
                 <div class="spoc-bios">{{spoc.summary}}</div>
