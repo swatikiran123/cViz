@@ -28,29 +28,25 @@ angular.module('visits').controller('calendarCtrl',
 
         $http.get('/api/v1/secure/visits').success(function(response) {
             $scope.visits = response;
-            // $scope.schedule = [];
-            // angular.forEach($scope.visits, function(a) {
-            //     angular.forEach(a.schedule, function(b) {
-            //         $scope.schedule.push(b);
-            //     });
-
-            // });
             populateEvents();
         });
 
         function populateEvents() {
             $timeout(function() {
                 $scope.visits.forEach(function(data) {
+                $http.get('/api/v1/secure/clients/id/'+data.client).success(function(response) {    
                     $scope.events.push({
-                        title: data.title,
+                        title: response.name,
                         start: data.startDate,
                         end: data.endDate,
                         url:'#/visits/'+ data._id +'/edit'
                     });
                 });
+            });
                 count = count + 1;
             });
         }
+
         /* Change View */
         $scope.changeView = function(view, calendar) {
             calendar.fullCalendar('changeView', view);
