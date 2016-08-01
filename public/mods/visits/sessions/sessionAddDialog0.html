@@ -164,6 +164,9 @@
       <md-input-container class="md-block" ng-if="mode=='add'">
       <label>Session Feedback Template <span class="asterrisk">*</span></label>
       <input name="session" ng-model="session" session required ng-blur="sendFeedbackId(sessionId)">
+      <span ng-if="autoFailsec==true" ng-init="callautoFailsecTrue();"></span>
+      <span ng-if="autoFailsec==false" ng-init="callautoFailsecFalse();"></span>
+      <div ng-show="autoFailsec" class="error text-danger" >{{sessionNotFound}}</div>
       <div ng-messages="sessionAddForm.session.$error" ng-show="sessionAddForm.session.$touched || !sessionAddForm.session.$pristine">
        <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -172,9 +175,11 @@
       </md-input-container>
 
       <md-input-container class="md-block" ng-if="mode=='edit'">
-      <label>Session Feedback Template <span class="asterrisk">*</span></label>
-
+      <label>Session Feedback Template <span class="asterrisk">*</span></label>      
       <input name="sessiondata" ng-model="sessiondata" sessiondata required ng-blur="sendFeedbackId(sessionId)">
+      <span ng-if="sessionAuto==true" ng-init="callautoFailsecTrue();"></span>
+      <span ng-if="sessionAuto==false" ng-init="callautoFailsecFalse();"></span>
+      <div ng-show="sessionAuto" class="error text-danger" >{{sessionNotFound}}</div>
       <div ng-messages="sessionAddForm.sessiondata.$error" ng-show="sessionAddForm.sessiondata.$touched || !sessionAddForm.sessiondata.$pristine">
        <div class="messagenotify">
         <div ng-messages-include="/public/mods/partials/messages.html"></div>
@@ -272,7 +277,7 @@
          </div>
           <div class="pull-right">
             <button type="submit" class="btn btn-success" ng-click="save()" 
-            ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner">
+            ng-disabled="sessionAddForm.$invalid || submitOwnerSupporter || checkTimeVar || submitOwner || defaultFeedbackTemplate">
             Submit
           </button>
           <button class="btn btn-warning" ng-click="cancel()"  confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"

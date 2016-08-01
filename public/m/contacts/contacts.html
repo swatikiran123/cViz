@@ -44,7 +44,7 @@
                     <a class="email-text" ng-href="mailto: {{anchor.email}}">EMAIL</a>
                 </div><br>
                 <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}}.vcf">Download Contact</a>
+                    <a ng-href="{{fileUrl}}" download="{{anchor.name.first}} {{anchor.name.last}}.vcf">Download Contact</a>
                 </div>
 
             </div>
@@ -74,7 +74,7 @@
                     <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
                 </div>
                   <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
-                    <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.name}}.vcf">Download Contact</a>
+                    <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.firstName}} {{spoc.lastName}}.vcf">Download Contact</a>
                 </div>
             </div>
          
