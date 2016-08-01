@@ -2,357 +2,296 @@
 		width: 20px;
 	}
 
-  .left{float:left;}
-  .csc{
-    border-right: 1px solid black;padding-right:10px;
-      height:auto;
-    width:auto;
-    max-height: 40px;
-  }
-  .clientlogowl{ 
-    padding-left:10px; 
-   
- 
-    height:auto;
-    width:auto;
-    max-height: 40px;
-
-  
-  }
+	.left{float:left;}
+	.csc{
+		border-right: 1px solid black;padding-right:10px;
+		height:auto;
+		width:auto;
+		max-height: 40px;
+	}
+	.clientlogowl{ 
+		padding-left:10px; 
 
 
-		.welnote{
-			overflow: hidden;
-		}
-		.richtext1{
-			height: 500px;
+		height:auto;
+		width:auto;
+		max-height: 40px;
 
-			overflow-y: scroll;
-			margin:5px -400px 5px 5px;
-			padding-right:400px;
-		}
 
-		.content{
-			width: 96%;
-			text-align: justify;
-			padding-left: 4px;
-			padding-right:  4px;
-		}
-		.richtext{
+	}
 
-			width:850px; 
-			padding-left:15px;
-		}
-		.image1{
-			height:300px;
-			width: 800px;
-		}
-		hr{
-			color: red;
-			background-color: red;
-			border-color: red;
-			margin-left: 20px;
-			margin-left: 20px;
-		}
 
-		.btn-default {
-			color: #333;
+	.welnote{
+		overflow: hidden;
+	}
+	.richtext1{
+		height: 48vh;
+
+		overflow-y: scroll;
+		margin:5px -400px 5px 5px;
+		padding-right:400px;
+	}
+
+	.content{
+		width: 96%;
+		text-align: justify;
+		padding-left: 4px;
+		padding-right:  4px;
+	}
+	.richtext{
+
+		width:850px; 
+		padding-left:15px;
+	}
+	.image1{
+		height:300px;
+		width: 95%;
+	}
+	hr{
+		color: red;
+		background-color: red;
+		border-color: red;
+		margin-left: 20px;
+		margin-left: 20px;
+	}
+
+	.btn-default {
+		color: #333;
+		background-color: #fff;
+		border-color: red;
+		border-width: 1px;
+	}
+	.panelpdmd{
+		padding-left: 70px;
+	}
+	.userpic{
+		width:60px;
+		height:55px;
+	}
+	.text{
+		text-align: justify;
+		padding-left: 20px;
+		padding-right: 20px; 
+		font-size: 20px;
+		font-family: robotoLight;
+		padding-top: 0px;
+	}
+
+
+	#welcome{
+		object-fit: initial;
+		width: 90%;
+		height: 300px;
+		padding-left: 20px;
+	}
+
+	.scrollcontent{
+		height:100px;
+		overflow-y: scroll; }
+
+
+		#videoModal button{
 			background-color: #fff;
+			margin-left: 70%;
+			color:black;
 			border-color: red;
 			border-width: 1px;
+			padding-left: 10px;
+			padding-right: 10px;
 		}
-		.panelpdmd{
-			padding-left: 70px;
+		.profile{
+			padding-left: 0px;
 		}
-		.userpic{
-			width:60px;
-			height:55px;
+		@media only screen and (max-device-width: 320px){
+	
+			#welcome{
+				object-fit: initial;
+				width: 95%;
+				height: 250px;
+				padding-left: 10px;
+			}
+			.image1{
+				height:220px;
+				width: 95%;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
 		}
-		.text{
+
+		@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+
+            .content{
+				width: 95%;
+				text-align: justify;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			#welcome{
+				object-fit: initial;
+				width: 95%;
+				height: 250px;
+				padding-left: 10px;
+			}
+			.modal-body {
+				position: relative;
+				padding: 0px;
+			}
+			#videoModal button{
+				background-color: #fff;
+				margin-left: 120px;
+
+				border-color: red;
+				border-width: 1px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+
+			.headwel{
+				padding-top: 10px;
+				padding-left: 20px;
+			}
+			.image1{
+				height:220px;
+				width: 95%;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+
+		}
+
+		
+	@media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
+		.content{
+			width: 95%;
 			text-align: justify;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		#welcome{
+			object-fit: initial;
+			width: 95%;
+			height: 300px;
 			padding-left: 20px;
-			padding-right: 20px; 
-			font-size: 20px;
-			font-family: robotoLight;
-			padding-top: 0px;
+		}
+		#videoModal button{
+			background-color: #fff;
+			margin-left: 120px;
+
+			border-color: red;
+			border-width: 1px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.headerwel{
+			padding-left: 40%;
+		}
+		.headwel{
+			padding-top: 10px;
+			padding-left: 20px;
+		}
+		/*.richtext1{
+			height:220px;
+		}*/
+		.image1{
+			height:300px;
+			width: 95%;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+
+	}
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		.content{
+			width: 95%;
+			text-align: justify;
+			padding-left: 10px;
+			padding-right: 10px;
 		}
 
 
 		#welcome{
 			object-fit: initial;
-			width: 820px;
-			height: 300px;
+			width: 95%;
+			height: 400px;
+			padding-left: 20px;
+		}
+		#videoModal button{
+			background-color: #fff;
+			margin-left: 120px;
+
+			border-color: red;
+			border-width: 1px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.headerwel{
+			padding-left: 40%;
+		}
+		#videoModal{
+			padding-top: 2%;
+			padding-bottom: 10%;
+		}
+		.headwel{
+			padding-top: 10px;
 			padding-left: 20px;
 		}
 
-		.scrollcontent{
-			height:100px;
-			overflow-y: scroll; }
-
-
-			#videoModal button{
-				background-color: #fff;
-				margin-left: 550px;
-                color:black;
-				border-color: red;
-				border-width: 1px;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-			.profile{
-				padding-left: 0px;
-			}
-			@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-				.richtext1{
-					height: 345px;
-					position: relative;
-					overflow-y: scroll;
-				}
-   
-     
-
-
-				.content{
-					width: 95%;
-					text-align: justify;
-					padding-left: 10px;
-					padding-right: 10px;
-				}
-				#welcome{
-					object-fit: initial;
-					width: 95%;
-					height: 250px;
-					padding-left: 10px;
-				}
-				.modal-body {
-					position: relative;
-					padding: 0px;
-				}
-				#videoModal button{
-					background-color: #fff;
-					margin-left: 120px;
-
-					border-color: red;
-					border-width: 1px;
-					padding-left: 10px;
-					padding-right: 10px;
-				}
-	
-
-				.headwel{
-					padding-top: 10px;
-					padding-left: 20px;
-				}
-				.image1{
-					height:200px;
-					width: 95%;
-					margin-left: 10px;
-					margin-right: 10px;
-				}
-
-
-			}
-
-			@media only screen and (max-device-width: 320px) and (max-device-height: 480px){
-
-				#videoModal{
-					width: 95%;
-					height: 460px;
-				}
-				#welcome{
-
-					width: 280px;
-					height: 250px;
-					margin-left: 2px;
-					margin-right: 2px;
-				}
-
-     
-				.image1{
-					height:220px;
-					width: 240px;
-
-					margin-right: 10px;
-				}
-
-				.richtext1{
-					height: 240px;
-
-					overflow-y: scroll;
-				}
-
-				.headwel{
-					padding-top: 10px;
-					padding-left: 20px;
-				}
-
-
-			}
-
-@media only screen and (max-device-width: 320px) { 
-  .csc{
-    border-right: 1px solid black;padding-right:10px;
-      height:auto;
-    width:auto;
-    max-height: 40px;
-  }
-  .clientlogowl{ 
-    padding-left:10px; 
-   
- 
-    height:auto;
-    width:auto;
-    max-height: 40px;
-
-  
-  }
-
-}
-@media only screen and (min-device-width: 321px) and (max-device-width: 480){
-
-
-}
-			@media only screen and (min-device-width: 400px) and (max-device-width: 480px) {
-				.richtext1{
-					height:400px;
-				}
-
-		
-		
-			}
-			@media only screen and (min-device-width: 485px) and (max-device-width: 768px) {
-				.content{
-					width: 95%;
-					text-align: justify;
-					padding-left: 10px;
-					padding-right: 10px;
-				}
-				#welcome{
-					object-fit: initial;
-					width: 95%;
-					height: 300px;
-					padding-left: 20px;
-				}
-				#videoModal button{
-					background-color: #fff;
-					margin-left: 120px;
-
-					border-color: red;
-					border-width: 1px;
-					padding-left: 10px;
-					padding-right: 10px;
-				}
-
-				.headerwel{
-					padding-left: 40%;
-				}
-				.headwel{
-					padding-top: 10px;
-					padding-left: 20px;
-				}
-		
-			.image1{
-				height:300px;
-				width: 95%;
-				margin-left: 10px;
-				margin-right: 10px;
-			}
-
-
+		.image1{
+			height:300px;
+			width: 95%;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
-		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-			.content{
-				width: 95%;
-				text-align: justify;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
 
-	
-			#welcome{
-				object-fit: initial;
-				width: 95%;
-				height: 400px;
-				padding-left: 20px;
-			}
-			#videoModal button{
-				background-color: #fff;
-				margin-left: 120px;
-
-				border-color: red;
-				border-width: 1px;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-
-			.headerwel{
-				padding-left: 40%;
-			}
-			#videoModal{
-				padding-top: 2%;
-				padding-bottom: 10%;
-			}
-			.headwel{
-				padding-top: 10px;
-				padding-left: 20px;
-			}
-			
-			.image1{
-				height:300px;
-				width: 95%;
-				margin-left: 10px;
-				margin-right: 10px;
-			}
+	}
 
 
+	@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+
+		.content{
+			width: 95%;
+			text-align: justify;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		#welcome{
+			object-fit: initial;
+			width: 95%;
+			height: 300px;
+			padding-left: 20px;
+		}
+		#videoModal button{
+			background-color: #fff;
+			margin-left: 120px;
+
+			border-color: red;
+			border-width: 1px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.headerwel{
+			padding-left: 40%;
+		}
+
+		.headwel{
+			padding-top: 10px;
+			padding-left: 20px;
 		}
 
 
-		@media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
-
-			.richtext1{
-				height: 250px;
-
-				overflow-y: scroll;
-			}
-			.content{
-				width: 95%;
-				text-align: justify;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-			#welcome{
-				object-fit: initial;
-				width: 95%;
-				height: 300px;
-				padding-left: 20px;
-			}
-			#videoModal button{
-				background-color: #fff;
-				margin-left: 120px;
-
-				border-color: red;
-				border-width: 1px;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-
-			.headerwel{
-				padding-left: 40%;
-			}
-
-			.headwel{
-				padding-top: 10px;
-				padding-left: 20px;
-			}
-	
-
-			.image1{
-				height:300px;
-				width: 95%;
-				margin-left: 10px;
-				margin-right: 10px;
-			}
-
-
+		.image1{
+			height:300px;
+			width: 95%;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
+
+
+	}
