@@ -3598,7 +3598,7 @@ visitsApp.directive("session", ["SessionService", "$timeout", function (SessionS
           SessionService.search(searchTerm.term).then(function (autocompleteResults) {
             if(autocompleteResults == undefined || autocompleteResults == ''){
               scope.autoFailsec=true;
-              scope.sessionNotFound="Session Template not found!!!"
+              scope.sessionNotFound="Session Feedback Template not found!!!"
             }else{
               response($.map(autocompleteResults, function (autocompleteResult) {
                 return {

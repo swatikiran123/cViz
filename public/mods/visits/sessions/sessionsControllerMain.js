@@ -41,6 +41,7 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 		$scope.meetingLocations =[];
 		$scope.submitOwner = true;
 		$scope.submitSessionTemplate = true;
+		$scope.defaultFeedbackTemplate = false;
 
 		var init = function() {
 			$http.get('/api/v1/secure/visits/' + $scope.visitId).success(function(response) {
@@ -264,6 +265,15 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	$scope.endHourGreatTime = end_time;
     };
 
+    $scope.callautoFailsecTrue = function()
+    {	
+    	$scope.defaultFeedbackTemplate = true;
+    }
+
+    $scope.callautoFailsecFalse = function()
+    {	
+    	$scope.defaultFeedbackTemplate = false;
+    }
 
 	  $scope.save = function() 
 	  {
