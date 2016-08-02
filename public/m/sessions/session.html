@@ -1,15 +1,38 @@
 <style>
+
+.tg-big{
+  z-index: 0;
+}
+.tg-small{
+  z-index: 0;
+}
+
+#header_nav{
+  z-index: 0;
+}
+
+.my-visit-header{
+  z-index:0;
+}
+.modal-dialog1{
+width: 90%;
+  padding-right: 10px;
+
+ padding-top: 10px;
+
+}
+.modal-footer1{
+height: 60vh;
+overflow-y: scroll;
+    margin:5px -400px 5px 5px;
+    padding-right:400px;
+}
+
 .border{
       border-top:1px dotted #bbb;
       padding-top: 10px;
 }
-  .modal-dialog1{
-    overflow-y: initial !important
-  }
-  .modal-footer1{
-    height: 200px;
-    overflow-y: auto;
-  }
+
   .ct{
     text-align: justify;
     text-justify: inter-word;
@@ -27,7 +50,7 @@
     width:50px;
     margin-right:5px;
     height:100%;
-    /*float:left;*/
+    float:left;
   }
   .commenterImage img {
     width:100%;
@@ -46,45 +69,6 @@
     font-size:11px;
     margin-bottom: -20px;
   }
-  @media only screen and (max-device-width: 320px){
-    .modal-dialog1{
-      padding-top:25%;
-      padding-right: 5%; 
-      width: 90%;
-      height: 80%;
-    }
-
-    .modal-footer1{
-      height: 230px;
-      overflow-y: auto;
-    }
-  }
-
-  @media only screen and (min-device-width: 321px) and (max-device-width: 480px){
-   .modal-dialog1{
-    padding-top:20%;
-    padding-right: 5%; 
-    width: 90%;
-    height: 85%;
-  }
-  .modal-footer1{
-    height: 350px;
-    overflow-y: auto;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
- .modal-dialog1{
-  padding-top:15%;
-  padding-right: 5%; 
-  width: 90%;
-  height: 85%;
-}
- .modal-footer1{
-    height: 600px;
-    overflow-y: auto;
-  }
-}
 
 </style>
 
@@ -165,10 +149,7 @@
     </div>
 </div>
 
-
-
-
-<!-- Modal -->
+ <!-- Modal -->
 <div class="modal fade" id="myModal{{session._id}}" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="vertical-alignment-helper">
     <div class="modal-dialog1   mwidth vertical-align-center">
@@ -211,5 +192,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
+
 <toaster-container toaster-options="{'time-out': 3000, 'close-button':false, 'animation-class': 'toast-center'}"></toaster-container>

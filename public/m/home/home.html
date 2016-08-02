@@ -31,13 +31,14 @@
         	<a ng-href="/m/visits/#/sessions/{{visitId}}/?day={{objs.day}}">
            <div>
             <fieldset>
-
+<br>
                  <span class="day">Day {{objs.day}}</span>
                 <span class="date"> {{objs.date | date : "dd MMM yyyy"}}<br>
                     <img ng-src="{{weatherData[$index].icon}}"/></span>
                     <span class="dayLike">{{weatherData[$index].daylike}}</span><br>
                     <span class="temp" >{{weatherData[$index].temperature}}</span>
                     <h4> <span class="loc">{{objs.location}}</span></h4>
+                    <br>
                 </fieldset>
               </div>
               </a>
