@@ -11,12 +11,15 @@
    transition:0.5s linear all;
    z-index:10000;
 }
+#header_nav h1{
+ font-size: 20px;
+}
 .left{
     float:left;
 }
 .tb-big {
-    height: 136px;
-
+   max-height: 136px;
+    height:auto;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -55,7 +58,7 @@
 .hd-prime{
     background-color: #F8F8FF;
     position:relative;
-    height:97px;
+    height:90px;
 }
 .hd-sec{
     background-color: black;
