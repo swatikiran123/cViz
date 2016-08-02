@@ -955,58 +955,7 @@ function getParticipantsById(id){
 				}
 			})
 
-			// push key visit personnel
-			// arrAddItem(emp, visit.agm);
-			// arrAddItem(emp, visit.anchor);
-			// arrAddItem(emp, visit.secondaryVmanager);
-			// arrAddArray(emp, visit.invitees);
-			// push all client/emp side invitees
-			if (visit.invitees.length!=0 && visit.invitees!= undefined && visit.invitees != null && visit.invitees != "") {
-				for (var i = 0; i < visit.invitees.length; i++) {
-					// console.log(visit.invitees.association);
-					switch(visit.invitees[i].association)    {
-						case "employee":
-						arrAddItem(emp, visit.invitees[i]);
-						break;
-
-						case "customer":
-						arrAddItem(client, visit.invitees[i]);
-						break;
-					}
-				}
-			}
-
-			// push participants from visit schedules
-			// scheduleModel
-			// .find({visit: id})
-			// .populate('invitees')
-			// .exec(function(err, schedules){
-			// 	if(err)
-			// 		console.log(err);
-			// 	else {
-					// schedules.forEach(function(sch){
-					// 	if (sch.session.owner!= null) {
-					// 		arrAddItem(emp, sch.session.owner);
-					// 	}
-					// 	if (sch.session.supporter!= null) {
-					// 		arrAddItem(emp, sch.session.supporter);}
-					// 	// arrAddArray(emp, sch.invitees);
-					// 	if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
-					// 		for (var i = 0; i < sch.invitees.length; i++) {
-					// 			switch(sch.invitees[i].association)    {
-					// 				case "employee":
-					// 				arrAddItem(emp, sch.invitees[i]);
-					// 				break;
-
-					// 				case "customer":
-					// 				arrAddItem(client, sch.invitees[i]);
-					// 				break;
-					// 			}
-					// 		}
-					// 	}
-					// })
-			// 	}
-			// })
+			
 					var uEmp = arrUnique(emp);
 					var uClient = arrUnique(client);
 					userModel
@@ -1030,8 +979,6 @@ function getParticipantsById(id){
 
 					})//end of user model for clients
 				}) //end of user model for emp
-				
-			
 		}
 	})//end of visit model
 		return deferred.promise;
