@@ -473,84 +473,96 @@ function newvManagerAssigned(visitId)
 			var emailIds = [];
 			var receiversEmailIds = [];
 
-			receiversEmailIds.push(visit.createBy.email);
-			receiversEmailIds.push(visit.anchor.email);
-
-			if(visit.secondaryVmanager != null || visit.secondaryVmanager != undefined)
+			visitService.getRegionsHeads(visitId)
+			.then(function(regHead)
 			{
-				receiversEmailIds.push(visit.secondaryVmanager.email);
-			}
+				emailIds.push(regHead);
+			});
 
-			if(visit.secondaryVmanager == null || visit.secondaryVmanager == undefined)
-			{
-				receiversEmailIds.push(null);
-			}
+			visitService.getOfferingsHeads(visitId)
+			.then(function(offHeads){
+				for(var i=0;i<offHeads.length;i++)
+				{
+					emailIds.push(offHeads[i]);
+				}
+				receiversEmailIds.push(visit.createBy.email);
+				receiversEmailIds.push(visit.anchor.email);
 
-			if(visit.cscPersonnel.salesExec != null || visit.cscPersonnel.salesExec != undefined)
-			{
-				emailIds.push(visit.cscPersonnel.salesExec.email);
-			}
+				if(visit.secondaryVmanager != null || visit.secondaryVmanager != undefined)
+				{
+					receiversEmailIds.push(visit.secondaryVmanager.email);
+				}
 
-			if(visit.cscPersonnel.salesExec == null || visit.cscPersonnel.salesExec == undefined)
-			{
-				emailIds.push(null);
-			}
+				if(visit.secondaryVmanager == null || visit.secondaryVmanager == undefined)
+				{
+					receiversEmailIds.push(null);
+				}
 
-			if(visit.cscPersonnel.accountGM != null || visit.cscPersonnel.accountGM != undefined)
-			{	
-				emailIds.push(visit.cscPersonnel.accountGM.email);
-			}
+				if(visit.cscPersonnel.salesExec != null || visit.cscPersonnel.salesExec != undefined)
+				{
+					emailIds.push(visit.cscPersonnel.salesExec.email);
+				}
 
-			if(visit.cscPersonnel.accountGM == null || visit.cscPersonnel.accountGM == undefined)
-			{
-				emailIds.push(null);
-			}
+				if(visit.cscPersonnel.salesExec == null || visit.cscPersonnel.salesExec == undefined)
+				{
+					emailIds.push(null);
+				}
 
-			if(visit.cscPersonnel.industryExec != null || visit.cscPersonnel.industryExec != undefined)
-			{	
-				emailIds.push(visit.cscPersonnel.industryExec.email);
-			}
+				if(visit.cscPersonnel.accountGM != null || visit.cscPersonnel.accountGM != undefined)
+				{	
+					emailIds.push(visit.cscPersonnel.accountGM.email);
+				}
 
-			if(visit.cscPersonnel.industryExec == null || visit.cscPersonnel.industryExec == undefined)
-			{
-				emailIds.push(null);
-			}
+				if(visit.cscPersonnel.accountGM == null || visit.cscPersonnel.accountGM == undefined)
+				{
+					emailIds.push(null);
+				}
 
-			if(visit.cscPersonnel.globalDelivery != null || visit.cscPersonnel.globalDelivery != undefined)
-			{	
-				emailIds.push(visit.cscPersonnel.globalDelivery.email);
-			}
+				if(visit.cscPersonnel.industryExec != null || visit.cscPersonnel.industryExec != undefined)
+				{	
+					emailIds.push(visit.cscPersonnel.industryExec.email);
+				}
 
-			if(visit.cscPersonnel.globalDelivery == null || visit.cscPersonnel.globalDelivery == undefined)
-			{
-				emailIds.push(null);
-			}
+				if(visit.cscPersonnel.industryExec == null || visit.cscPersonnel.industryExec == undefined)
+				{
+					emailIds.push(null);
+				}
 
-			if(visit.cscPersonnel.cre != null || visit.cscPersonnel.cre != undefined)
-			{	
-				emailIds.push(visit.cscPersonnel.cre.email);
-			} 
+				if(visit.cscPersonnel.globalDelivery != null || visit.cscPersonnel.globalDelivery != undefined)
+				{	
+					emailIds.push(visit.cscPersonnel.globalDelivery.email);
+				}
 
-			if(visit.cscPersonnel.cre == null || visit.cscPersonnel.cre == undefined)
-			{
-				emailIds.push(null);
-			}
+				if(visit.cscPersonnel.globalDelivery == null || visit.cscPersonnel.globalDelivery == undefined)
+				{
+					emailIds.push(null);
+				}
 
-			groupService.getUsersByGroup("admin")
-			.then(function(users){
-				users.forEach(function(user){
-					emailIds.push(user.email);
-				});
-				console.log(emailIds);
+				if(visit.cscPersonnel.cre != null || visit.cscPersonnel.cre != undefined)
+				{	
+					emailIds.push(visit.cscPersonnel.cre.email);
+				} 
 
-				mailTemplate.render(visit, function (err, results) {
+				if(visit.cscPersonnel.cre == null || visit.cscPersonnel.cre == undefined)
+				{
+					emailIds.push(null);
+				}
 
-					if(err){
-						return console.log(err);
-					}
+				groupService.getUsersByGroup("admin")
+				.then(function(users){
+					users.forEach(function(user){
+						emailIds.push(user.email);
+					});
+					console.log(emailIds);
 
-					var mailOptions = {
-						from: config.get('email.from'),
+					mailTemplate.render(visit, function (err, results) {
+
+						if(err){
+							return console.log(err);
+						}
+
+						var mailOptions = {
+							from: config.get('email.from'),
 						to: receiversEmailIds, // list of receivers
 						cc: emailIds,
 						subject: 'Visit Acknowledgement - Accepted', // Subject line
@@ -564,12 +576,13 @@ function newvManagerAssigned(visitId)
 						if(error){
 							return console.log(error);
 						}
-							console.log("Send Mail:: visitAcknowledgeAccepted  -- Status: "+ info.response);
-							console.log('Notifications sent to ' + receiversEmailIds);
-							console.log('Notifications sent to ' + emailIds);
+						console.log("Send Mail:: visitAcknowledgeAccepted  -- Status: "+ info.response);
+						console.log('Notifications sent to ' + receiversEmailIds);
+						console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
 						}); // end of visitService.getParticipantsById
+					});
 				} //end of else
 		}) // end of modelVisit
 }
@@ -721,11 +734,22 @@ function visitClosure(visitId,basePath) {
 			{
 				var subject = visit.client.name + " "+ visit.client.subName + "  visit - Closure submitted"
 			}
+			var emailIds = [];
+			var receiversEmailIds = [];
+			visitService.getRegionsHeads(visitId)
+			.then(function(regHead)
+			{
+				emailIds.push(regHead);
+			});
 
+			visitService.getOfferingsHeads(visitId)
+			.then(function(offHeads){
+				for(var i=0;i<offHeads.length;i++)
+				{
+					emailIds.push(offHeads[i]);
+				}
 			visitService.getParticipantsById(visitId)
 			.then(function(participants){
-				var emailIds = [];
-				var receiversEmailIds = [];
 				receiversEmailIds.push(visit.anchor.email);
 				
 				groupService.getUsersByGroup("admin")
@@ -781,6 +805,7 @@ function visitClosure(visitId,basePath) {
 								}); // end of transporter.sendMail
 							}); // end of register mail render
 						}); // end of visitService.getParticipantsById
+					});
 				} //end of else
 		}) // end of modelVisit
 }
@@ -878,10 +903,24 @@ function agendaFinalize(visitId,basePath) {
 				var subject = visit.client.name + " "+ visit.client.subName + " visit planning - Agenda finazlied"
 			}
 			console.log(subject);
+			var emailIds = [];
+			var receiversEmailIds = [];
+			visitService.getRegionsHeads(visitId)
+			.then(function(regHead)
+			{
+				emailIds.push(regHead);
+			});
+
+			visitService.getOfferingsHeads(visitId)
+			.then(function(offHeads){
+				for(var i=0;i<offHeads.length;i++)
+				{
+					emailIds.push(offHeads[i]);
+				}
+
 			visitService.getParticipantsById(visitId)
 			.then(function(participants){
-				var emailIds = [];
-				var receiversEmailIds = [];
+
 				receiversEmailIds.push(visit.anchor.email);
 				
 				groupService.getUsersByGroup("admin")
@@ -938,6 +977,7 @@ function agendaFinalize(visitId,basePath) {
 
 							}); // end of register mail render
 						}); // end of visitService.getParticipantsById
+					});
 				} //end of else
 		}) // end of modelVisit
 }
