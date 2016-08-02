@@ -15,12 +15,13 @@ var visitService           = require(constants.paths.services +  '/visits');
 require(constants.paths.scripts + '/database'); // load database management scripts
 var emails = [];
 
-var visitId = "578dc230aa260e0caeaa999a";
+var visitId = "57a075e932ac76883c400d85";
 console.log("Running with visit id " + visitId);
 try{
 	//emailController.inviteAttendees(visitId, 'http://localhost:8080');
 	//emailController.agendaFinalize(visitId, 'http://localhost:8080');
-	emailController.getAgenda(visitId,'http://localhost:8080');
+	 emailController.getAgenda(visitId,'http://localhost:8080');
+	// emailController.visitClosure(visitId,'http://localhost:8080');
 }
 catch(err){
 	console.log(err.stack);

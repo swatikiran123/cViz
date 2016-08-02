@@ -344,7 +344,7 @@ function inviteAttendees(visitId, basePath){
 			else{
 				console.log(visit);
 
-				visitService.getParticipantsById(visitId)
+				visitService.getParticipantsForOverAllFeedback(visitId)
 			    .then(function(participants){
 							var emailIds = [];
 		          participants["employees"].forEach(function(p){
@@ -377,7 +377,7 @@ function inviteAttendees(visitId, basePath){
 									console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 				} //end of else
 		}) // end of modelVisit
 } // end of inviteAttendees
@@ -439,7 +439,7 @@ function rejectVisitByAdmin(visitId)
 							console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 				} //end of else
 		}) // end of modelVisit
 }
@@ -581,7 +581,7 @@ function newvManagerAssigned(visitId)
 						console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 					});
 				} //end of else
 		}) // end of modelVisit
@@ -702,7 +702,7 @@ function newsecvManagerAssigned(visitId)
 							console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 				} //end of else
 		}) // end of modelVisit
 }
@@ -748,7 +748,7 @@ function visitClosure(visitId,basePath) {
 				{
 					emailIds.push(offHeads[i]);
 				}
-			visitService.getParticipantsById(visitId)
+			visitService.getParticipantsForOverAllFeedback(visitId)
 			.then(function(participants){
 				receiversEmailIds.push(visit.anchor.email);
 				
@@ -804,7 +804,7 @@ function visitClosure(visitId,basePath) {
 									console.log('Notifications sent to ' + emailIds);
 								}); // end of transporter.sendMail
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 					});
 				} //end of else
 		}) // end of modelVisit
@@ -871,7 +871,7 @@ function getAgenda(visitId,basePath){
 							return deferred.promise;
 						});
 					}, 8000);
-				}); // end of visitService.getParticipantsById
+				}); // end of visitService.getParticipantsForOverAllFeedback
 				} //end of else
 		}) // end of modelVisit
 }
@@ -918,7 +918,7 @@ function agendaFinalize(visitId,basePath) {
 					emailIds.push(offHeads[i]);
 				}
 
-			visitService.getParticipantsById(visitId)
+			visitService.getParticipantsForOverAllFeedback(visitId)
 			.then(function(participants){
 
 				receiversEmailIds.push(visit.anchor.email);
@@ -976,7 +976,7 @@ function agendaFinalize(visitId,basePath) {
 								}); // end of transporter.sendMail
 
 							}); // end of register mail render
-						}); // end of visitService.getParticipantsById
+						}); // end of visitService.getParticipantsForOverAllFeedback
 					});
 				} //end of else
 		}) // end of modelVisit
@@ -1002,7 +1002,7 @@ function sessionTimeChange(visitId) {
 		else{
 			console.log(visit);
 
-			visitService.getParticipantsById(visitId)
+			visitService.getParticipantsForOverAllFeedback(visitId)
 			.then(function(participants){
 				var emailIds = [];
 				var receiversEmailIds = [];
