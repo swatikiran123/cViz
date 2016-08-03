@@ -17,6 +17,12 @@
 .left{
     float:left;
 }
+
+.profile-overview{overflow-x:auto;overflow-y:hidden;width:100%;white-space: nowrap;margin-bottom:-2000px;padding-bottom: 2000px;}
+.title3{width:200%;}
+.profile-overview::-webkit-scrollbar { 
+    display: none; 
+}
 .tb-big {
    max-height: 136px;
     height:auto;
@@ -140,6 +146,7 @@
     border: none;
     margin-left: 10px;
 }
+
 
 .title-icon{
 margin-top: 30px;
