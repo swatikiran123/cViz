@@ -18,9 +18,15 @@
     float:left;
 }
 
-.profile-overview{overflow-x:auto;overflow-y:hidden;width:100%;white-space: nowrap;margin-bottom:-2000px;padding-bottom: 2000px;}
+/*.profile-overview{overflow-x:auto;overflow-y:hidden;width:100%;white-space: nowrap;margin-bottom: -10px;,padding-bottom:}
 .title3{width:200%;}
 .profile-overview::-webkit-scrollbar { 
+    display: none; 
+}*/
+.profile-overview{overflow: hidden;}
+.title4{width:100%;overflow:auto;white-space: nowrap; margin-bottom: -13px; padding-bottom: 13px;}
+.title3{width:200%; }
+.title4::-webkit-scrollbar { 
     display: none; 
 }
 .tb-big {
