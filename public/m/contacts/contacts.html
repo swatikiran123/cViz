@@ -21,7 +21,7 @@
 
 <div class="divtop"></div>
 <div id="spoc-page" ng-if="activevisits == true">
-    <div ng-if="anchor!=null" class="spoc-details-container">
+<!--     <div ng-if="anchor!=null" class="spoc-details-container">
 
         <div class="heading1">CONTACT YOUR VISIT MANAGER</div>
         
@@ -50,13 +50,13 @@
             </div>
 
         </div>
-</div>
+</div> -->
 
                <div ng-if="contactList[0]!=null" class="spoc-details-container"><div class="heading1"
 >               CONTACT YOUR LOCATION SPOC FOR {{contactList[0].location | uppercase}}</div>
         <div ng-show="(contactList |filter:query).length==0">No contact Found</div>
         <div class="list-group">
-         <div  ng-repeat="spoc in contactList | filter:query">
+         <div ng-repeat="spoc in contactList | filter:query">
             <div class="spoc-pic col-xs-2 col-sm-1 col-md-1">
                 <img class="img-circle spocpicture" ng-src="{{spoc.avatar}}">
             </div>
@@ -73,11 +73,10 @@
                     <div class="number">{{spoc.email}}</div>
                     <a class="email-text" ng-href="mailto: {{spoc.email}}">EMAIL</a>
                 </div>
-                  <div><i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                  <div><i class="fa fa-book fa-lg" aria-hidden="true" style="margin-bottom: 30px;"></i>
                     <a ng-href="{{fileDataUrl[$index]}}" download="{{spoc.firstName}} {{spoc.lastName}}.vcf">Download Contact</a>
                 </div>
             </div>
-         
          </div>
         </div>
     </div>
