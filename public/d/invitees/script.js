@@ -24,8 +24,10 @@ angular.module('inviteesDirective', [])
   $scope.addInvitees=function(invite){
     var str= String(invite);
     var loc= str.split(/[\s,]+/);
-    for (var i = 0; i < loc.length; i++) {     
-      $http.get('/api/v1/secure/admin/users/email/' + loc[i]).success(function(response) {
+    for (var i = 0; i < loc.length; i++) {    
+    var locc;
+    locc= loc[i].toLowerCase();
+      $http.get('/api/v1/secure/admin/users/email/' + locc).success(function(response) {
         if(response.association == "employee" || (response.association == "customer" && response.orgRef == $scope.userType))
         {
          $scope.userId = response._id;
