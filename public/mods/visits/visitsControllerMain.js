@@ -1965,7 +1965,7 @@ function toTitleCase(string)
     {  
       userdata.avatar = avatar;
     }
-    userdata.email = emailId;
+    userdata.email = emailId.toLowerCase();
     // userdata.local.email = emailId;
     userdata.name.first = firstName;
     userdata.association = 'customer';
@@ -2161,7 +2161,7 @@ if(visitorDef.visitorId==null)
   }
   if(emailid.indexOf(substring) > -1)
   {
-    $scope.emailId = emailid;
+    $scope.emailId = emailid.toLowerCase();
   }
 
   $scope.influencedata = influencedata;

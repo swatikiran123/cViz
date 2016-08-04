@@ -314,7 +314,8 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     $scope.contactNo = [];
     userdata.association = 'employee';
     userdata.organization = 'CSC';
-    console.log(userdata);
+    userdata.email = userdata.email.toLowerCase();
+    userdata.local.email = userdata.email.toLowerCase();
     $scope.contactNo.push({
       contactNumber:userdata.contactNo[0].contactNumber,
       contactType:userdata.contactNo[0].contactType
