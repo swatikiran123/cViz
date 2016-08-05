@@ -2,19 +2,26 @@
 
 var feedbackApp = angular.module('feedback');
 
-feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope','$mdDialog',
-	function($scope, $http, $routeParams, $location,growl,$rootScope,$mdDialog) {
- 	$scope.items=[];
- 	var id = $routeParams.id;
+feedbackApp.controller('feedbackControllerMain', ['$scope', 'appUserService', '$http', '$routeParams','$location', 'growl','$rootScope','$mdDialog',
+	function($scope, appUserService, $http, $routeParams, $location,growl,$rootScope,$mdDialog) {
+
+    appUserService.activeUser().then(function(user){
+
+      $scope.activeUser = user;
+
+      $scope.items=[];
+      var id = $routeParams.id;
   // AUtomatically swap between the edit and new mode to reuse the same frontend form
   $scope.mode=(id==null? 'add': 'edit');
   $scope.nameonly= "nameonly";
   $scope.hideFilter = true;
   $scope.fbvalid= true;
-        $scope.isSaving=false;
-      if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
-        $scope.isSaving= true; 
-      }
+  $scope.isSaving=false;
+
+  $scope.groupMember = $scope.activeUser.groups;
+  if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+    $scope.isSaving= true; 
+  }
   var refresh = function() {
 
     $http.get('/api/v1/secure/feedbackDefs').success(function(response) {
@@ -26,12 +33,12 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
       switch($scope.mode)    {
 
         case "add":
-          $scope.feedbackDefs = "";
-          break;
+        $scope.feedbackDefs = "";
+        break;
 
         case "edit":
-          $scope.feedbackDefs = $http.get('/api/v1/secure/feedbackDefs/id/' + id).success(function(response){
-            var feedbackDefs = response;
+        $scope.feedbackDefs = $http.get('/api/v1/secure/feedbackDefs/id/' + id).success(function(response){
+          var feedbackDefs = response;
             $scope.items = feedbackDefs.item;       //list of item
             $scope.feedbackDefs = feedbackDefs;     //whole form object
             if ($scope.items.length == 0)
@@ -56,12 +63,12 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
     switch($scope.mode)    {
 
       case "add":
-        $scope.create();
-        break;
+      $scope.create();
+      break;
 
       case "edit":
-        $scope.update();
-        break;
+      $scope.update();
+      break;
       } // end of switch scope.mode ends
 
       $location.path("feedbackTmpl/list");
@@ -158,47 +165,47 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
      $scope.fbvalid=false;
 
    }
-  };
+ };
 
-  $scope.editItem = function(index,item,ev){
-    $scope.item = item;
-    $scope.items.splice(index, 1);
-    $mdDialog.show({
-      templateUrl: '/public/mods/feedback/itemViewDialog.html',
-      scope: $scope.$new(),
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:false
-    })
-  };
+ $scope.editItem = function(index,item,ev){
+  $scope.item = item;
+  $scope.items.splice(index, 1);
+  $mdDialog.show({
+    templateUrl: '/public/mods/feedback/itemViewDialog.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:false
+  })
+};
 
-  $scope.addFeedbackItem = function(ev) {
-    $mdDialog.show({
-      templateUrl: '/public/mods/feedback/itemViewDialog.html',
-      scope: $scope.$new(),
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:false
-    })
-  };
+$scope.addFeedbackItem = function(ev) {
+  $mdDialog.show({
+    templateUrl: '/public/mods/feedback/itemViewDialog.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:false
+  })
+};
 
-  $scope.showFeedbackTemp = function(ev,id) {
-    $mdDialog.show({
-      controller: fbackDialog,
-      templateUrl: '/public/mods/feedback/feedbackViewDialog.html',
+$scope.showFeedbackTemp = function(ev,id) {
+  $mdDialog.show({
+    controller: fbackDialog,
+    templateUrl: '/public/mods/feedback/feedbackViewDialog.html',
       // scope: $scope.$new(),
       locals: { feedbackid: id },
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:false
     })
-  };
+};
 
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
+$scope.hide = function() {
+  $mdDialog.hide();
+};
 
-  $scope.canceldialog = function(item) {
+$scope.canceldialog = function(item) {
     // console.log(item.choices);
     if(item === undefined || item=== '')
     {
@@ -226,75 +233,74 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', '$http', '$routePara
 
       $mdDialog.cancel();
     };
-
-
   }
 
-}])
+});
+}]);
 
 //services and drirectives for ngFloatingLables//
 var messages = {
-    required: "this field is required",
-    minlength: "min length of @value@ characters",
-    maxlength: "max length of @value@ characters",
-    pattern: "don\'t match the pattern",
-    "email": "mail address not valid",
-    "number": "insert only numbers",
-    "custom": "custom not valid type \"@value@\"",
-    "async": "async not valid type \"@value@\""
+  required: "this field is required",
+  minlength: "min length of @value@ characters",
+  maxlength: "max length of @value@ characters",
+  pattern: "don\'t match the pattern",
+  "email": "mail address not valid",
+  "number": "insert only numbers",
+  "custom": "custom not valid type \"@value@\"",
+  "async": "async not valid type \"@value@\""
 };
 
 feedbackApp.directive('customValidator', function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, element, attrs, ngModel) {
-            ngModel.$validators.custom = function (value) {
-                return value === "foo";
-            };
-        }
-    };
+  return {
+    require: 'ngModel',
+    link: function (scope, element, attrs, ngModel) {
+      ngModel.$validators.custom = function (value) {
+        return value === "foo";
+      };
+    }
+  };
 });
 
 feedbackApp.service('$fakeValidationService', ['$q', function ($q) {
-    return {
-        "get": function (value) {
-            var deferred = $q.defer();
+  return {
+    "get": function (value) {
+      var deferred = $q.defer();
 
-            setTimeout(function () {
-                if (value === "bar") {
-                    deferred.resolve({valid: true});
-                } else {
-                    deferred.reject({valid: false});
-                }
-            }, 3000);
-
-            return deferred.promise;
+      setTimeout(function () {
+        if (value === "bar") {
+          deferred.resolve({valid: true});
+        } else {
+          deferred.reject({valid: false});
         }
+      }, 3000);
+
+      return deferred.promise;
     }
+  }
 }])
 
 feedbackApp.directive('asyncValidator', ['$fakeValidationService', '$q', function ($fakeValidationService, $q) {
-    return {
-        require: 'ngModel',
-        link: function ($scope, element, attrs, ngModel) {
-            ngModel.$asyncValidators.async = function (modelValue, viewValue) {
-                var value = modelValue || viewValue;
-                if(value.length){
-                    element.before('<i class="icon-spin icon-refresh"></i>').parent().addClass('spinner');
+  return {
+    require: 'ngModel',
+    link: function ($scope, element, attrs, ngModel) {
+      ngModel.$asyncValidators.async = function (modelValue, viewValue) {
+        var value = modelValue || viewValue;
+        if(value.length){
+          element.before('<i class="icon-spin icon-refresh"></i>').parent().addClass('spinner');
 
-                    return $fakeValidationService.get(value).then(function(response) {
-                        element.parent().removeClass('spinner').find('i').remove();
-                        return true;
-                    }, function(response) {
-                        element.parent().removeClass('spinner').find('i').remove();
-                        if (!response.valid) {
-                            return $q.reject();
-                        }
-                    });
-                }
-            };
+          return $fakeValidationService.get(value).then(function(response) {
+            element.parent().removeClass('spinner').find('i').remove();
+            return true;
+          }, function(response) {
+            element.parent().removeClass('spinner').find('i').remove();
+            if (!response.valid) {
+              return $q.reject();
+            }
+          });
         }
+      };
     }
+  }
 }])
 
 function fbackDialog($scope, $mdDialog,$http,feedbackid) {
@@ -303,12 +309,12 @@ function fbackDialog($scope, $mdDialog,$http,feedbackid) {
   $scope.visit_id = "a01234567892345678900001";
   $scope.hide = function() {
 //    console.log($scope.model);
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+$mdDialog.hide();
+};
+$scope.cancel = function() {
+  $mdDialog.cancel();
+};
+$scope.answer = function(answer) {
+  $mdDialog.hide(answer);
+};
 }
