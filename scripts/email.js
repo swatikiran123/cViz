@@ -476,14 +476,18 @@ function newvManagerAssigned(visitId)
 			visitService.getRegionsHeads(visitId)
 			.then(function(regHead)
 			{
-				emailIds.push(regHead);
+				if(regHead != null || regHead != "" || regHead != undefined) {
+					emailIds.push(regHead);
+				}
 			});
 
 			visitService.getOfferingsHeads(visitId)
 			.then(function(offHeads){
 				for(var i=0;i<offHeads.length;i++)
 				{
-					emailIds.push(offHeads[i]);
+					if(offHeads[i] != null || offHeads[i] != "" || offHeads[i] != undefined) {
+						emailIds.push(offHeads[i]);
+					}
 				}
 				receiversEmailIds.push(visit.createBy.email);
 				receiversEmailIds.push(visit.anchor.email);
@@ -739,14 +743,18 @@ function visitClosure(visitId,basePath) {
 			visitService.getRegionsHeads(visitId)
 			.then(function(regHead)
 			{
-				emailIds.push(regHead);
+				if(regHead != null || regHead != "" || regHead != undefined) {
+					emailIds.push(regHead);
+				}
 			});
 
 			visitService.getOfferingsHeads(visitId)
 			.then(function(offHeads){
 				for(var i=0;i<offHeads.length;i++)
 				{
-					emailIds.push(offHeads[i]);
+					if(offHeads[i] != null || offHeads[i] != "" || offHeads[i] != undefined) {
+						emailIds.push(offHeads[i]);
+					}
 				}
 			visitService.getParticipantsForOverAllFeedback(visitId)
 			.then(function(participants){
@@ -908,14 +916,19 @@ function agendaFinalize(visitId,basePath) {
 			visitService.getRegionsHeads(visitId)
 			.then(function(regHead)
 			{
-				emailIds.push(regHead);
+				if(regHead != null || regHead != "" || regHead != undefined) {
+					emailIds.push(regHead);
+				}
+				
 			});
 
 			visitService.getOfferingsHeads(visitId)
 			.then(function(offHeads){
 				for(var i=0;i<offHeads.length;i++)
 				{
-					emailIds.push(offHeads[i]);
+					if(offHeads[i] != null || offHeads[i] != "" || offHeads[i] != undefined) {
+						emailIds.push(offHeads[i]);
+					}
 				}
 
 			visitService.getParticipantsForOverAllFeedback(visitId)

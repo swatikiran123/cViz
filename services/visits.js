@@ -1209,7 +1209,7 @@ function pushSession(sessionId, time, sesnstatus){
 
 function getRegionsHeads(id) {
 	var deferred = Q.defer();
-	var offeringHeads = [];
+
 	model
 	.findOne({ _id: id })
 	.populate('client')
@@ -1228,7 +1228,17 @@ function getRegionsHeads(id) {
 					deferred.reject(err1);
 				}
 				else {
-					deferred.resolve(item1.regHead.email);
+					if(item1 != null){
+						if(item1.regHead != null){
+							deferred.resolve(item1.regHead.email);
+						}
+						else{
+							deferred.resolve("null");
+						}
+					}
+					else{
+						deferred.resolve("null");
+					}
 				}
 			});
 		}
@@ -1261,9 +1271,15 @@ function getOfferingsHeads(id) {
 					deferred.reject(err1);
 				}
 				else {
-					visitOfferings = item1.offerings;
-					transform(allOfferings, visitOfferings);
-					deferred.resolve(visitOfferingHeads);
+					if(item1 != null) {
+						visitOfferings = item1.offerings;
+						// console.log(visitOfferings);
+						transform(allOfferings, visitOfferings);
+						deferred.resolve(visitOfferingHeads);
+					}
+					else{
+						deferred.resolve("null");
+					}
 				}
 			}); //end of visit model
 		} //endofif else
@@ -1275,10 +1291,12 @@ function getOfferingsHeads(id) {
 			for (var j = 0; j < allOfferings.length; j++) {
 
 				 if(visitOfferings[i] == allOfferings[j].offName) {
-					console.log(visitOfferings[i]);
-					console.log(allOfferings[j].offName);
-					visitOfferingHeads.push(allOfferings[j].offHead.email);
-				 }
+					// console.log(visitOfferings[i]);
+					// console.log(allOfferings[j].offName);
+					if(allOfferings[j].offHead != null){
+						visitOfferingHeads.push(allOfferings[j].offHead.email);
+					}
+				}
 			}
 		}
 	}
