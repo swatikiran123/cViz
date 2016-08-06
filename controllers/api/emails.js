@@ -12,7 +12,6 @@ controller.ownerChange     = ownerChange;
 module.exports = controller;
 
 function sendMails(req, res){
-	logger.dump('debug',0, "api send mails", req.params.id, req.params.action);
 	var basePath = 'http://' + req.headers.host ;
 
 	switch(req.params.action.toLowerCase())
@@ -73,7 +72,6 @@ function sendMails(req, res){
 }
 
 function ownerChange(req, res){
-	logger.dump('debug',0, "api send mails", req.params.id,req.params.action);
 
 	switch(req.params.action.toLowerCase())
 	{

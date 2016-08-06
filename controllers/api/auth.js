@@ -8,8 +8,7 @@ var authKey = config.get("auth.secret");
 var auth= {
  
   login: function(req, res) {
- 
-  console.log(req.body.username + '/' + req.body.password);
+
     var username = req.body.username || '';
     var password = req.body.password || '';
  

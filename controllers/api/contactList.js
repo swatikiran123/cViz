@@ -46,7 +46,6 @@ function getOneById(req,res){
 }
 
 function getWithCity(req,res){
-    console.log(req.params);
     dataService.getWithCity(req.params)
     .then(function(data){
         if (data){

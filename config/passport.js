@@ -30,11 +30,7 @@ module.exports = function(passport) {
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
-                    //var newUser = user;
                     user.set('groups', secure.getGroups(user),  { strict: false });
-                    //newUser.groups = "secure.getGroups(user)";
-                    // console.log("User groups:" + user.groups);
-                    // console.log(user);
             done(err, user);
         });
     });

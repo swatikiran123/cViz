@@ -16,11 +16,6 @@ controller.deleteById = deleteById;
 controller.getWithAction = getWithAction;
 controller.getvalidationById = getvalidationById;
 controller.getVisitStats = getVisitStats;
-// controller.getSessionsById = getSessionsById;
-// controller.getSchedulesById=getSchedulesById;
-// controller.getExecsById = getExecsById;
-// controller.getKeynotesById = getKeynotesById;
-// controller.pushSession = pushSession;
 
 module.exports = controller;
 
@@ -57,7 +52,6 @@ function getOneById(req,res){
 
 
 function getWithAction(req, res){
-	logger.dump('debug',0, req.params.id, req.params.action);
 
 	switch(req.params.action.toLowerCase())
 	{
@@ -74,7 +68,6 @@ function getWithAction(req, res){
 			break;
 
 		case "activevisit":
-			console.log("picking active visit");
 			getActiveVisit(req, res);
 			break;
 
@@ -156,7 +149,6 @@ function getMyVisits(req,res){
 	var timeline = (req.param('timeline')===undefined)? "all": req.param('timeline');
 	var limit = (req.param('limit')==undefined)? 25: req.param('limit');
 
-	logger.dump('debug',0,timeline,limit);
   dataService.getMyVisits(req.user, timeline, limit)
     .then(function(data){
         if (data){
@@ -204,7 +196,6 @@ function getActiveVisit(req, res){
 	dataService.getMyVisits(req.user,"next-one")
 		.then(function(data){
 				if (data){
-					logger.Json(data);
 					res.send(data["next-one"]);
 				}else {
 						logger.Json("No active visits");
