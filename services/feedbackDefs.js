@@ -44,7 +44,6 @@ function getOneById(id){
             deferred.reject(err);
         }
         else
-            console.log(item);
         deferred.resolve(item);
     });
 
@@ -81,10 +80,6 @@ function getWithQuery(query, fields, maxRecs, sortEx,type){
 
 function create(data) {
     var deferred = Q.defer();
-
-    //data.noteBy = "56c71b49bf009e7424e61099";
-    console.log("Saving keynote........");
-    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

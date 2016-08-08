@@ -45,7 +45,6 @@ function getOneById(req,res){
 }
 
 function getWithQuery(req,res){
-    console.log(req.params);
     var title= req.param('query');
     var query = {title: new RegExp(title, 'i')};
     var maxRecs = req.param('maxRecs'); 

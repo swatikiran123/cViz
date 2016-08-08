@@ -3,7 +3,6 @@
 var Q               = require('q');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/client')
-//var userModel           = require(constants.paths.models +  '/user')
 
 // Service method definition -- Begin
 var service = {};
@@ -51,35 +50,11 @@ function getOneById(id){
             deferred.reject(err);
         }
         else
-            console.log(item);
         deferred.resolve(item);
     });
 
     return deferred.promise;
 } // gentOneById method ends
-
-// function getWithQuery(query, fields, maxRecs, sortEx){
-//     var deferred = Q.defer();
-
-//     model
-//     .find(query)
-//     .limit(maxRecs)
-//     .select(fields)
-//     .sort(sortEx)
-//     .exec(function (err, item) {
-//         if(err) {
-//             console.log(err);
-//             deferred.reject(err);
-//         }
-//         else
-//         {
-//             console.log(item);
-//             deferred.resolve(item);
-//         }
-//     });
-
-//     return deferred.promise;
-// } // getWithQuery method ends
 
 function getWithQuery(query, fields, maxRecs, sortEx){
 
@@ -109,8 +84,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
             console.log(err);
             deferred.reject(err);
         }
-        else
-            console.log(list); 
+        else 
         for(var i=0;i<list.length;i++)
         {        
             if(clientArray.indexOf(list[i].name) === -1){
@@ -130,8 +104,6 @@ function getWithQuery(query, fields, maxRecs, sortEx){
                 sfdcidArray.push(list[i].sfdcid);
             } 
         }   
-        console.log(sfdcidArray);
-        console.log(childArray);
         var data = clientArray;
         var data1 = childArray;
         var data2= industryArray;
@@ -157,12 +129,10 @@ function getWithQuery(query, fields, maxRecs, sortEx){
         {
             sfdcidDesig.push({'sfdcidClient':data4[j]});
         }
-        // console.log(list[0].logo);
         if(list[0]!= undefined ){
             var id=list[0].id;
             var logo=list[0].logo;}else {var id = null; var logo = null;}
 
-            console.log(clientDesig.length);
             deferred.resolve
             ({
                 "items": clientDesig,
@@ -187,7 +157,6 @@ function getWithName(name){
             deferred.reject(err);
         }
         else
-            console.log(item);
         deferred.resolve(item);
     });
 
@@ -197,8 +166,6 @@ function getWithName(name){
 function create(data) {
     var deferred = Q.defer();
 
-    console.log("Saving an Account........");
-    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

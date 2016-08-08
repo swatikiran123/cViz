@@ -95,7 +95,6 @@ function updateById(req, res) {
 }
 
 function getWithQuery(req,res){
-    console.log(req.params.id);
     var query = req.params.id;
     var maxRecs = req.param('maxRecs');
     var fields = req.param('fields');

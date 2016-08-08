@@ -3,7 +3,6 @@
 var Q               = require('q');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/feedbacks')
-//var userModel           = require(constants.paths.models +  '/user')
 
 // Service method definition -- Begin
 var service = {};
@@ -57,8 +56,7 @@ function getOneById(id){
 //create feedback
 function create(data) {
     var deferred = Q.defer();
-    console.log("Saving Feedbacks........");
-    console.log(data);
+
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

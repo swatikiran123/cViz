@@ -3,7 +3,6 @@
 var Q               = require('q');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/comments')
-//var userModel           = require(constants.paths.models +  '/user')
 
 // Service method definition -- Begin
 var service = {};
@@ -45,7 +44,6 @@ function getOneById(id){
                 deferred.reject(err);
             }
             else
-                console.log(item);
                 deferred.resolve(item);
         });
 
@@ -54,9 +52,7 @@ function getOneById(id){
 
 function create(data) {
     var deferred = Q.defer();
-
-    console.log("Saving a fact........");
-    console.log(data);
+    
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);

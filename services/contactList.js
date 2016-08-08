@@ -3,7 +3,6 @@
 var Q               = require('q');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/contactList')
-//var userModel           = require(constants.paths.models +  '/user')
 
 // Service method definition -- Begin
 var service = {};
@@ -46,7 +45,6 @@ function getOneById(id){
             deferred.reject(err);
         }
         else
-            console.log(item);
         deferred.resolve(item);
     });
 
@@ -56,7 +54,7 @@ function getOneById(id){
 function getWithCity(query){
     var deferred = Q.defer();
     var user = [];
-    console.log("im here:"+query.location);
+
     model
     .find({ location: query.location })
     .populate('user')
@@ -69,7 +67,6 @@ function getWithCity(query){
         }
         else
         { 
-            console.log("no of city's: "+item.length);
             for (var i =0;i< item.length; i++) {
               user.push(transform(item[i].user, item[i].type, item[0].location));
           };
@@ -99,11 +96,8 @@ function getWithCity(query){
 
 
 function create(data) {
-    console.log(data);
     var deferred = Q.defer();
 
-    console.log("Saving a contactList........");
-    console.log(data);
     model.create(data, function (err, doc) {
         if (err) {
             console.log("err- " + err);
