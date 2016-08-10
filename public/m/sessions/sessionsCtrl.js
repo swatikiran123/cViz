@@ -217,7 +217,7 @@ $scope.pushSession = function(sessionId,rtime,sesnstatus){
 	$scope.comment = [];
 	$scope.comment11 = [];
 	$scope.myData = [];
-
+	$scope.groupBelong = user.groups;
 	$scope.refresh1 = function()
 	{ 
     $scope.myData = [];

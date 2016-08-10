@@ -71,9 +71,8 @@ overflow-y: scroll;
   }
 
 </style>
-
 <div header showprofile="false" icon="fa fa-list" title1="Visit Session" title2="{{session.session.title | uppercase}}">
-<label ng-if = "session.session.type != 'lunch' && session.session.type != 'breakfast' && session.session.type != 'dinner' && session.session.type != 'tea-break' " data-toggle="modal" data-target="#myModal{{session._id}}" ng-click="refresh1();">Session Notes</label>
+<label ng-if = "groupBelong != 'customer' && session.session.type != 'lunch' && session.session.type != 'breakfast' && session.session.type != 'dinner' && session.session.type != 'tea-break' " data-toggle="modal" data-target="#myModal{{session._id}}" ng-click="refresh1();">Session Notes</label>
 </div>
 
 <div class="divtop">
