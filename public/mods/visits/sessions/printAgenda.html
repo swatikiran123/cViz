@@ -13,7 +13,7 @@
 
 <label class="dateHeader">Agenda: {{key | date:'EEEE, dd MMM yyyy'}} | CSC {{meetingLocations[$index]}}</label>
 
-<table class="table table-striped table-condensed table-responsive table-hover" cellpadding="0" cellspacing="0">
+<table class="table table-striped table-condensed table-responsive table-hover pageNext" cellpadding="0" cellspacing="0">
   <thead class="data-grid-header">
     <tr>
       <th>Time (Hrs.)</th>
@@ -62,7 +62,7 @@
 <div ng-repeat="schedule in scheduleList | filter:dayFilter as filtered">
 </div>
 
-<table class="table table-striped table-condensed table-responsive table-hover" ng-if="showFiltered" cellpadding="0" cellspacing="0">
+<table class="table table-striped table-condensed table-responsive table-hover pageNext" ng-if="showFiltered" cellpadding="0" cellspacing="0">
   <thead class="data-grid-header">
     <tr>
       <th>Time (Hrs.)</th>
