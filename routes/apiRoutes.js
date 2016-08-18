@@ -176,6 +176,7 @@ router.get('/api/v1/secure/meetingPlaces/:id', meetingPlaces.getOneById);
 router.post('/api/v1/secure/meetingPlaces', meetingPlaces.create);
 router.put('/api/v1/secure/meetingPlaces/:id', meetingPlaces.updateById);
 router.delete('/api/v1/secure/meetingPlaces/:id', meetingPlaces.deleteById);
+router.get('/api/v1/secure/meetingPlaces/get/:meetingPlace', meetingPlaces.getOneByName);
 
 // List of service routes for comments
 router.get('/api/v1/secure/comments',comments.getAll);
