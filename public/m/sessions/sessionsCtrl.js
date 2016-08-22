@@ -1,10 +1,14 @@
+
 angular.module('sessions')
+
 
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem,appMUserService) {
 	appMUserService.activeMUser().then(function(user){
     $scope.activeUser = user;
 		  $scope.visittitles = 'No active visit';
 	$scope.pusharray = [];
+	$scope.allSessions = [];
+	$scope.push = [];
 		appServicem.activeVisit($routeParams.id).then(function(avisit){
 	 $scope.activevists = true;
   if(avisit == 'Not active visit'){
@@ -22,6 +26,7 @@ angular.module('sessions')
 	var refresh = function() {
 		$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
 		}).success(function(response) {
+
 			$scope.scheduleList = response;
 			for (var i = 0; i < $scope.scheduleList.length; i++) {
 				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
@@ -66,7 +71,11 @@ angular.module('sessions')
 };
 
 refresh();
-
+	DateAddTime = function(dt1, mins){
+	var parsedDate = new Date(Date.parse(dt1))
+	var newDate = new Date(parsedDate.getTime() + (1000 * mins * 60));
+	return newDate;
+}
 	$scope.calculation = function(rtime) {
 
 		if(rtime < 0 || rtime > 0)
@@ -81,48 +90,146 @@ refresh();
 
 	$scope.submit = function(){
 
-	   angular.forEach($scope.pusharray, function(todo) {
-      if (!todo.done) 
 
-		{console.log(todo.rtime);
-			console.log(todo.id)
-		    	$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ todo.id +'&time='+ todo.rtime +'&sesnstatus='+ todo.sesnstatus).success(function(response) {
-			$scope.sessiontime = response;
+	for (var m = 0; m < $scope.allSessions.length; m++) {
+         
+        
+       $scope.allSessions[m].forEach(function(sess){
+					
+					    sess.flag = "updated";
+                       if(sess.status == "cancelled"){
+                       	sess.flag = "cancelled&updated";
+                       }
+					})
 
-			refresh();
+              console.log($scope.allSessions[m]);
+        $http({   
+            url: "/api/v1/secure/visits/xyz/updatesessions",   
+            dataType: 'json',   
+            method: 'GET',
+	        params: {
+        'allSessions[]' : $scope.allSessions[m]
+          }   
+         }).success(function (response) {   
+            $scope.value = response;   
+            refresh();
+         })   
+           .error(function (error) {   
+               
+           }); 
+             
 
-   
-		});
+         }
 
-	}
-    });
+  }
 
-console.log($scope.pusharray);
-$scope.pusharray = [];
-
-	}
-
-$scope.pushSession = function(sessionId,rtime,sesnstatus){
-
-/*		$http.get('/api/v1/secure/visits/xyz/pushsession?sessionId='+ sessionId +'&time='+ rtime +'&sesnstatus='+ sesnstatus).success(function(response) {
-			$scope.sessiontime = response;
-
-			refresh();
-
-
-		});*/
-	
-		$scope.pushobject = {};
  
-		$scope.pushobject.id = sessionId;
-		$scope.pushobject.rtime = rtime;
-	    $scope.pushobject.sesnstatus = sesnstatus;
+console.log($scope.scheduleList);
+$scope.pushSession = function(sessionId,rtime,sesnstatus,scheduleDate,sessionstarttime,ssnpushtype){
+
+
+$scope.pushobject = {};
+
+$scope.pushobject.id = sessionId;
+$scope.pushobject.rtime = rtime;
+$scope.pushobject.sesnstatus = sesnstatus;
+$scope.pushobject.ssnpushtype = ssnpushtype;
+$scope.pusharray.push($scope.pushobject)
+
+	for (var i = 0; i < $scope.scheduleList.length; i++) {
+		if($scope.scheduleList[i].date == scheduleDate){
+               console.log($scope.scheduleList[i].sessions);
+				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
+                   if(ssnpushtype === "push"){
+				     if($scope.scheduleList[i].sessions[l]._id == sessionId){
+						$scope.scheduleList[i].sessions[l].flag = "changed";
+					
+			/*
+				angular.element('#changedsession').addClass('changed');*/
+				    }
+				     if($scope.scheduleList[i].sessions[l].session.startTime >= sessionstarttime){
+					if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
+					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
+				    }
+                    else{
+					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, rtime);
+					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
+					}
+					}
+			
+
+				}
+                 if(ssnpushtype === "duration"){
+				     if($scope.scheduleList[i].sessions[l]._id == sessionId){
+						$scope.scheduleList[i].sessions[l].flag = "changed";
+					
+			/*
+				angular.element('#changedsession').addClass('changed');*/
+				    }
+				    	if($scope.scheduleList[i].sessions[l].session.startTime === sessionstarttime){
+					$scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
+					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
+					}
+						if($scope.scheduleList[i].sessions[l].session.startTime > sessionstarttime){
+								if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
+					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
+				    }
+				    else{
+					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, rtime);
+					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
+					}}
+				
+
+				}
+				if(ssnpushtype === 'cancel'){
+					    if($scope.scheduleList[i].sessions[l]._id == sessionId){
+						$scope.scheduleList[i].sessions[l].flag = "cancelled";
+						$scope.scheduleList[i].sessions[l].status = "cancelled";
+					$scope.st = moment($scope.scheduleList[i].sessions[l].session.startTime);
+			$scope.et = moment($scope.scheduleList[i].sessions[l].session.endTime);
+
+			var difference = moment.duration($scope.st.diff($scope.et));
+			var diffInMin = difference.asMinutes();
 		
-		$scope.pusharray.push($scope.pushobject)
-		console.log($scope.pusharray);
+	                     
+				    }
+
+
+				     if($scope.scheduleList[i].sessions[l].session.startTime >= sessionstarttime){
+					if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
+					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
+				    }
+                    else{
+					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, diffInMin);
+					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, diffInMin);	
+					}
+					}
+
+				}
+
+			}
+			console.log($scope.scheduleList[i].sessions);
+			       $scope.allSessions.push($scope.scheduleList[i].sessions);
+			/*for (var m = 0; m < $scope.scheduleList[i].sessions.length; m++) {
+                $scope.allsessions.push($scope.scheduleList[i].sessions[m]); 
+			}*/
+            console.log($scope.allSessions);
+		  }
+		 }
+
+
+       console.log($scope.scheduleList);
+
+
+	
+
+
 	}
 
-
+/*
 	$scope.drop = function(sessionId){
 		$http.get('/api/v1/secure/visitSchedules/'+ sessionId).success(function(response)
 		{
@@ -147,18 +254,18 @@ $scope.pushSession = function(sessionId,rtime,sesnstatus){
 
 
 		});
-	}
+	}*/
 
 
 	$scope.getClass = function (strValue) {
-		if (strValue == ("cancelled"))
+		if (strValue == ("cancelled&updated"))
 			return "agenda-block-sub-div-cancel";
 		else{
 			return "agenda-block-sub-div";}
 		}
 
 		$scope.getdiv = function (strValue) {
-			if (strValue == ("cancelled"))
+			if (strValue == ("cancelled&updated"))
 				return "feed";
 			else{
 				return "feedback-link";}

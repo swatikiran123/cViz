@@ -106,11 +106,15 @@ function getWithAction(req, res){
         case "getregionsheads":
             getRegionsHeadsById(req,res);
             break;
+        case "updatesessions":
+            updateSessions(req,res);
+            break;
 
 		default:
 			res.send("Invalid action");
 	}
 }
+
 
 function getOfferingsHeadsById(req, res) {
     dataService.getOfferingsHeads(req.params.id)
@@ -281,8 +285,9 @@ function pushSession(req,res){
 	var sessionId = req.param('sessionId');
 	var time = req.param('time');
     var sesnstatus = req.param('sesnstatus');
+    var ssnpushtype = req.param('ssnpushtype');
 
-  dataService.pushSession(sessionId, time, sesnstatus)
+  dataService.pushSession(sessionId, time, sesnstatus, ssnpushtype)
     .then(function(data){
         res.status(200).send("Session moved successfully");
     })
@@ -291,6 +296,22 @@ function pushSession(req,res){
         res.status(500).send(err);
     });
 }
+
+
+function  updateSessions(req, res) {
+ var visitId = req.params.id;
+ var allSessions = req.param('allSessions');
+
+  dataService.updateSessions(allSessions)
+    .then(function(data){
+        res.status(200).send("Session moved successfully");
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
 
 function getLocationsById(req,res){
   dataService.getLocationsById(req.params.id)

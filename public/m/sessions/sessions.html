@@ -1,4 +1,13 @@
+<style>.changed{
+	background-color: yellow;
+	}
+	.blink_me {
+  animation: blinker 1s linear infinite;
+}
 
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}</style>
 <div>                                           
 
 <div header showprofile="false" icon="fa fa-calendar" title1="Visit Agenda" title2="{{visittitles}}">
@@ -44,8 +53,8 @@
 </div>
 			<div id="agenda-scrollable-block" class="scroll">
 				<div id="{{session._id}}" class="agenda-session-block" ng-repeat="session in schedules.sessions track by $index">
-					<div  ng-class="[getClass(session.status)]">
-						<div class="inactivesession">
+					<div  ng-class="[getClass(session.flag)]">
+						<div class="inactivesession" >
 							<div>
 
 									<span ng-switch on="session.type.toLowerCase()">
@@ -57,12 +66,13 @@
 										<img ng-switch-when="discussion" src="/public/assets/g/imgs/ic/discussion.png" class="session-status-img"-->
 										<i ng-switch-default  class="fa fa-circle fa-lg session-status-img" aria-hidden="true"></i>
 									</span>
-									<span class="agenda-session-time">
+									<span class="agenda-session-time" id="changedsession">
 										{{session.session.startTime | date:'HH:mm'}}
 
-										<!-- -
-										{{session.session.endTime | date : "HH:mm"}} -->
+										-
+										{{session.session.endTime | date : "HH:mm"}} <blink ng-if = "session.flag == 'changed' || session.flag == 'cancelled'"style="color:red" class="blink_me">{{session.flag.toUpperCase()}}</blink>
 									</span>
+									
 									<span class="agenda-session-name">
 									<span ng-switch on="session.session.type.toLowerCase()">
 									<a ng-switch-default href="#/sessions/{{session._id}}/details" >{{session.session.title}}</a>
@@ -97,7 +107,7 @@
 										
 										<div  ssnfbdir ftmplate="{{session.feedbackTemplate}}" session-id="{{session._id}}" feedback-elg="{{finalData[[check,$index]]}}"  type="{{session.session.type.toLowerCase()}}"  status="{{session.status}}" starttime="{{session.session.endTime}}" visit-id="{{session.visit}}"></div>
 										
-                                             {{session.status.toUpperCase()}}  <!-- ng-show="showme" -->
+                                           <div ng-if="status.flag == 'cancelled&updated'">  {{session.status.toUpperCase()}} </div> <!-- ng-show="showme" -->
                                        
                                              <div ng-if="group=='admin' || group=='vManager'" ng-show="showme">
                                              <span ng-class="[getdiv(session.status)]" data-toggle="modal" data-target="#myModal{{session._id}}">Move Session</span>
@@ -119,11 +129,21 @@
 				                                 <br>
 				                                 {{rtime}} min
 				                           </form>
+				                                       <button type="button" class="btn btn-success xsbutn"  ng-disabled="!isEnable"  ng-click="pushSession(session._id,rtime,sesnstatus,schedules.date,session.session.startTime,'push')" data-dismiss="modal">Push</button>
+											                <button type="button" class="btn btn-warning xsbutn"  ng-click="pushSession(session._id,rtime1,sesnstatus,schedules.date,session.session.startTime,'cancel')" data-dismiss="modal">Drop</button><br><br>
+                                                 Duration expand or contract :
+                                                               <form  align="center">
+				                                 -15min&nbsp;<input type="range"  id="rangeInput1" step="5" name="rangeInput1" min="-15" max="120" class="rangestyle" ng-model="rtime1" ng-change = "calculation(rtime1)">&nbsp;120  &nbsp;&nbsp;
+				                                 <br>
+				                                 {{rtime1}} min
+				                           </form>
+				                                 <button type="button" class="btn btn-success smbutn"  ng-disabled="!isEnable"  ng-click="pushSession(session._id,rtime1,sesnstatus,schedules.date,session.session.startTime,'duration')" data-dismiss="modal">Duration&nbsp;&nbsp;</button>
+											                
+
                                                        </div>
 											            <div class="modal-footer">
-											             <button type="button" class="btn btn-success xsbutn"  ng-disabled="!isEnable"  ng-click="pushSession(session._id,rtime)" data-dismiss="modal">Push</button>
-											                <button type="button" class="btn btn-warning xsbutn" ng-click="drop(session._id)" data-dismiss="modal">Drop</button>
-
+											           
+ 
 
 											            </div>
 											        </div>
