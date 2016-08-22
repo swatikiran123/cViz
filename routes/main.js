@@ -3,12 +3,13 @@ var colors 				= require('colors');
 var constants 		= require('../scripts/constants.js');
 var appInfoServ   = require(constants.paths.services + '/appService');
 var menuBuilder   = require(constants.paths.scripts + '/menuBuilder');
+var config        = require(constants.paths.config + '/config');
 var device = require('express-device');
 
 module.exports = function(app, passport) {
 
 		app.use(device.capture());
-		
+
 	app.use(function (req, res, next) {
 
 		// build side menu if user is logged in
@@ -52,7 +53,11 @@ module.exports = function(app, passport) {
 	// Any URL's that do not follow the below pattern would be avoided
 
 	// ToDo:: Api security supressed for dev - to be activated later
-	//app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
+  // if(config.get("env") == "production"){
+  //   console.log("setting security for production environment");
+    app.all('/api/v1/secure/*', [require(constants.paths.routes + '/validateRequest')]);
+  // }
+
 
 	// include routes here
 	app.use('/', require('./apiRoutes')); // load api endpoint routes
@@ -64,6 +69,7 @@ module.exports = function(app, passport) {
 	app.use('/public', express.static('public')); // folder to render public assets. Can be improved for security tightening
 	app.use('/app', express.static('public/app'));
 	app.use('/profile', express.static('profile'));//folder to render user profile assets.
+
 	// If no route is matched by now, it must be a 404
 	app.use(function(req, res, next) {
 	  var err = new Error('Not Found');
@@ -72,5 +78,8 @@ module.exports = function(app, passport) {
 	});
 
 	// include error handler
-	//require(constants.paths.scripts + '/err')(app);
+  if(config.get("env") == "production"){
+    console.log("setting error handler for production environment");
+  	require(constants.paths.scripts + '/err')(app);
+  }
 }

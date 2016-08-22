@@ -33,7 +33,7 @@ serv.factory('appUserService', ['$http', '$q', function ($http, $q){
 			 $http.get('/token',{
 				 cache: true
 			 }).success(function(response) {
-			 	console.log(response);
+			 	  
 				 if(response !== undefined){
 					 defer.resolve(response);
 				 }

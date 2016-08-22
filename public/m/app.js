@@ -33,12 +33,12 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
-				
+
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log('this is null');
 					console.log(user.groups);
-					
+
 					if(user.groups=='vManager'|| user.groups=='admin')
 					{
 						defer.resolve(response.visits);
@@ -50,7 +50,7 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					else
 					{
 						defer.reject("Not active visit");
-					}				
+					}
 				}
 				else {
  					 //console.log("Not active visit");
@@ -78,7 +78,7 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 	appServicem.activeVisit = function (id) {
 		var defer = $q.defer();
 		console.log(id);
-		if(id == undefined){ 
+		if(id == undefined){
 		console.log(' this is null');
 		$http.get('/api/v1/secure/visits/all/activeVisit',{
 			cache: true
@@ -86,11 +86,11 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
-				
+
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log(user.groups);
-					
+
 					if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
 					{
 						defer.resolve(response.visits);
@@ -124,7 +124,7 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
              console.log(response);
              console.log(status);
              var visitStatus = response.status;
-             
+
              if(response !== undefined){
              	console.log(visitStatus);
              	console.log(user.groups);

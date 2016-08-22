@@ -86,7 +86,7 @@ function create(userParam) {
       if(userParam.local.password != null)
         {
         user.local.password = bcrypt.hashSync(userParam.local.password, bcrypt.genSaltSync(8), null);
-        }    
+        }
 
       if(userParam.local.password == null)
         {
@@ -184,11 +184,11 @@ function getAllUsers(query, fields, maxRecs, sortEx){
         }
         else
             for(var i=0;i<list.length;i++)
-            {        
+            {
                 if(usersArray.indexOf(list[i].jobTitle) === -1){
                     usersArray.push(list[i].jobTitle);
-                }    
-            }   
+                }
+            }
 
             var data = usersArray;
 
@@ -209,7 +209,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
     var deferred = Q.defer();
     var usersArray = [];
     var usersArray1 = [];
-    
+
     model
     .find(query)
     .limit(maxRecs)
@@ -222,7 +222,7 @@ function getWithQuery(query, fields, maxRecs, sortEx){
         }
         else
             for(var i=0;i<item.length;i++)
-            {        
+            {
                 if(item[i].association=='employee')
                 {
                 usersArray.push(transform(item[i]));
@@ -231,8 +231,8 @@ function getWithQuery(query, fields, maxRecs, sortEx){
                 if(item[i].association == 'customer' || item[i].association=='employee')
                 {
                     usersArray1.push(transform(item[i]));
-                }    
-            }   
+                }
+            }
 
             deferred.resolve
             ({

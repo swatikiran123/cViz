@@ -4,14 +4,14 @@ var config = require(constants.paths.config + '/config');
 var errors = {
   404: {
     'internal': {
-      'message': '404 - Dev error - Page not found',
+      'message': '404 - Page not found',
       'stackTrace': true,
-      'help': 'Check application log for detailed information'
+      'help': 'Navigated Url missing'
     },
     'external': {
-      'message': '404 - Dev error',
+      'message': 'Missing Link',
       'stackTrace': false,
-      'help': 'Please contact your administrator for further help'
+      'help': 'Ideally this should not happen unless a bad page link is directly pasted in the browser. We suggest you go back and trial the usual navigation. You feel a genuine case, please contact the application administrator'
     }
   },
   500: {
@@ -40,6 +40,8 @@ module.exports = function(app, passport) {
 
 
 function logErrors(err, req, res, next) {
+  console.log("This is the area");
+  console.log(config.get("env"));
   console.error(error);
   next(err);
 }
@@ -85,7 +87,7 @@ function catchRestAll(err, req, res, next) {
   if(req.url.indexOf('api')>-1) // it is an api call
   {
     error.trace = error.trace.split('\n');
-    res.status(500).send(error); 
+    res.status(500).send(error);
   } else {
       error.trace.replace('\n', '<br>');
       res.render('err.ejs', {
