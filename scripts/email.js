@@ -1,4 +1,5 @@
 var nodemailer        = require('nodemailer');
+var icalToolkit 	  = require('ical-toolkit');
 var path              = require('path')
 var mongoose = require('mongoose')
 , Schema = mongoose.Schema;
@@ -10,14 +11,19 @@ var weather			      = require(constants.paths.scripts +  '/weather');
 var pathBuilder			  = require(constants.paths.scripts +  '/pathBuilder');
 var groupService      = require(constants.paths.services +  '/groups');
 var visitService     = require(constants.paths.services + '/visits');
+var visitScheduleService     = require(constants.paths.services + '/visitSchedules');
+var userService		  = require(constants.paths.services + '/users');
+var meetingPlaceService = require(constants.paths.services + '/meetingPlaces');
 var modelVisit        = require(constants.paths.models +  '/visit');
 var modelschedule   = require(constants.paths.models +  '/visitSchedule');
 
 var smptOptions       = config.get("email.smtp-options");
 var transporter       = nodemailer.createTransport(smptOptions);
 var emailTemplate     = require('email-templates').EmailTemplate;
-var htmlToText = require('html-to-text');
+var htmlToText 		= require('html-to-text');
 var Q               = require('q');
+var _				= require('underscore');
+var moment 					= require('moment');  require('moment-range');
 
 var email = {}
 
@@ -32,6 +38,7 @@ email.newsecvManagerAssigned 			= newsecvManagerAssigned;
 email.agendaFinalize					= agendaFinalize;
 email.visitClosure 						= visitClosure;
 email.getAgenda 						= getAgenda;
+email.calendarInvites					= calendarInvites;
 
 module.exports = email;
 
@@ -1064,4 +1071,318 @@ function sessionTimeChange(visitId) {
 						}); // end of visitService.getParticipantsById
 				} //end of else
 		}) // end of modelVisit
+}
+
+// Send Calendar Invite when calendar invite button is clicked
+function calendarInvites(scheduleId) {
+
+	if(config.get('email.send-mails')!="true") return;
+
+	var templateDir = path.join(constants.paths.templates, 'email', 'calendarInvites');
+	var mailTemplate = new emailTemplate(templateDir);
+	var templateDir1 = path.join(constants.paths.templates, 'email', 'calendarInvites');
+	var mailTemplate1 = new emailTemplate(templateDir);
+
+	modelschedule
+	.findOne({ _id: scheduleId })
+	.populate('session.owner')
+	.populate('session.supporter')
+	.populate('client')
+	.populate('visit')
+	.exec(function (err, schedule) {
+		if(err) {
+			console.log(err);
+		}
+		else{
+			var visitLocation = "";
+			meetingPlaceService.getOneByName(schedule.session.location)
+			.then(function(response)
+			{
+				visitLocation = response.location;
+			});
+			visitScheduleService.getSessionParticipantsById(scheduleId)
+			.then(function(sessionParticipants){
+			var emailIds = [];
+			var attendees = [];
+			var attendeesEmail = [];
+			var listEmail = [];
+			var attendeesListEmail = [];
+			var unique = [];
+			var cancelEmail = [];
+			var a = [];
+			var icsFileContent = "";
+			for(var i=0;i<sessionParticipants.length;i++)
+			{	
+				var fullNameParticipant = sessionParticipants[i].name.first + " " + sessionParticipants[i].name.last;
+				attendees.push({ name: fullNameParticipant ,email:sessionParticipants[i].email,rsvp:true})
+				attendeesEmail.push({email:sessionParticipants[i].email});
+			}
+			var builder = icalToolkit.createIcsFileBuilder();
+			builder.method = 'REQUEST';
+			builder.timezone = 'Asia/Calcutta';
+			builder.tzid = 'Asia/Calcutta';
+			var builder1 = icalToolkit.createIcsFileBuilder();
+			builder1.method = 'REQUEST';
+			builder1.timezone = 'Asia/Calcutta';
+			builder1.tzid = 'Asia/Calcutta';
+			var fullName = schedule.session.owner.name.first + " " + schedule.session.owner.name.last;
+			var newStartDate = new Date(schedule.session.startTime);
+			var newEndDate = new Date(schedule.session.endTime);
+			var scheduleDate = new Date(schedule.scheduleDate);
+
+			var m = moment(newStartDate);
+			var s = m.format('MMM D')
+
+			var subjectAgenda = schedule.client.name + " Visit " + "| " + s + " | " + visitLocation + " | "  + schedule.session.title;
+
+			if(schedule.sequenceNumber == 0) 
+			{	
+				builder.events.push({
+					start: new Date(newStartDate),
+					end: new Date(newEndDate),
+					transp: 'OPAQUE',
+					summary: schedule.session.title,
+					alarms: [15, 10, 5], 
+					uid: scheduleId, 
+					sequence: schedule.sequenceNumber,
+					location: schedule.session.location,
+					organizer: {
+						name: fullName,
+						email: schedule.session.owner.email,
+					},
+					attendees: attendees,
+					method: 'PUBLISH',
+					status: 'CONFIRMED'
+				});
+
+				icsFileContent = builder.toString();
+				for(var i=0;i<sessionParticipants.length;i++)
+				{
+					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
+						emailIds.push(sessionParticipants[i].email);
+					}
+				}
+
+				mailTemplate.render(schedule, function (err, results) {
+					console.log(results);
+					if(err){
+						return console.log(err);
+					}
+
+					var mailOptions = {
+						from: config.get('email.from'),
+						to: emailIds, // list of receivers
+						subject: subjectAgenda, // Subject line
+						rsvp: true,
+						icalEvent: {
+							method: 'request',
+							content: icsFileContent.toString()
+						}
+					};
+
+					transporter.sendMail(mailOptions, function(error, info){
+						if(error){
+							return console.log(error);
+						}
+						console.log("Send Mail:: calendar invite  -- Status: "+ info.response);
+						console.log('Notifications sent in sequence no 0 freshly(first) added ' + emailIds);
+								}); // end of transporter.sendMail
+							}); // end of register mail render
+			}
+
+  			if(schedule.sequenceNumber != 0)
+  			{	
+  			for(var i=0;i<schedule.attendeeList.length;i++)
+  			{
+  				listEmail.push(schedule.attendeeList[i].email);
+  			}
+
+  			for(var j=0;j<attendeesEmail.length;j++)
+  			{
+  				attendeesListEmail.push(attendeesEmail[j].email);
+  			}
+  			a = _.difference(listEmail,attendeesListEmail);
+
+  			if(a.length==0)
+  			{
+				//Add events 
+				builder.events.push({
+					start: new Date(newStartDate),
+					end: new Date(newEndDate),
+					transp: 'OPAQUE',
+					summary: schedule.session.title,
+					alarms: [15, 10, 5], 
+					uid: scheduleId, 
+					sequence: schedule.sequenceNumber,
+					location: schedule.session.location,
+					organizer: {
+						name: fullName,
+						email: schedule.session.owner.email,
+					},
+					attendees: attendees,
+					method: 'PUBLISH',
+					status: 'CONFIRMED'
+				});
+
+				icsFileContent = builder.toString();
+
+				for(var i=0;i<sessionParticipants.length;i++)
+				{
+					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
+						emailIds.push(sessionParticipants[i].email);
+					}
+				}
+
+				mailTemplate.render(schedule, function (err, results) {
+					console.log(results);
+					if(err){
+						return console.log(err);
+					}
+
+					var mailOptions = {
+						from: config.get('email.from'),
+						to: emailIds, // list of receivers
+						subject: subjectAgenda, // Subject line
+						rsvp: true,
+						icalEvent: {
+							method: 'request',
+							content: icsFileContent.toString()
+						}
+					};
+
+					transporter.sendMail(mailOptions, function(error, info){
+						if(error){
+							return console.log(error);
+						}
+						console.log("Send Mail:: calendar invite  -- Status: "+ info.response);
+						console.log('Notifications sent to without updating again clicking on cal invite' + emailIds);
+								}); // end of transporter.sendMail
+							}); // end of register mail render
+		}
+			if(a.length>0)
+			{	 		
+				for(var i=0;i<a.length;i++)
+				{
+					var fullNameParticipant = a[i];
+					cancelEmail.push({ name: fullNameParticipant ,email:a[i]})
+				}	
+				builder.events.push({
+					start: new Date(newStartDate),
+					end: new Date(newEndDate),
+					transp: 'OPAQUE',
+					summary: schedule.session.title,
+					alarms: [15, 10, 5], 
+					uid: scheduleId, 
+					sequence: schedule.sequenceNumber,
+					location: schedule.session.location,
+					organizer: {
+						name: fullName,
+						email: schedule.session.owner.email,
+					},
+					attendees: attendees,
+					method: 'PUBLISH',
+					status: 'CONFIRMED'
+				});
+
+				builder1.events.push({
+					start: new Date(newStartDate),
+					end: new Date(newEndDate),
+					transp: 'OPAQUE',
+					summary: schedule.session.title,
+					alarms: [15, 10, 5], 
+					uid: scheduleId, 
+					sequence: schedule.sequenceNumber,
+					location: schedule.session.location,
+					organizer: {
+						name: fullName,
+						email: schedule.session.owner.email,
+					},
+					attendees: cancelEmail,
+					method: 'PUBLISH',
+					status: 'CANCELLED'
+				})
+
+				icsFileContent = builder.toString();
+				icsFileContent1 = builder1.toString();
+				for(var i=0;i<sessionParticipants.length;i++)
+				{
+					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
+						emailIds.push(sessionParticipants[i].email);
+					}
+				}
+
+				mailTemplate.render(schedule, function (err, results) {
+					console.log(results);
+					if(err){
+						return console.log(err);
+					}
+
+					var mailOptions = {
+						from: config.get('email.from'),
+						to: emailIds, // list of receivers
+						subject: subjectAgenda, // Subject line
+						rsvp: true,
+						icalEvent: {
+							method: 'request',
+							content: icsFileContent.toString()
+						}
+					};
+
+					transporter.sendMail(mailOptions, function(error, info){
+						if(error){
+							return console.log(error);
+						}
+						console.log("Send Mail:: calendar invite  -- Status: "+ info.response);
+						console.log('Notifications sent to newly people or update or deletign invitee (sending cal invite with confirm)' + emailIds);
+						}); // end of transporter.sendMail
+					}); // end of register mail render
+
+				mailTemplate1.render(schedule, function (err, results) {
+					if(err){
+						return console.log(err);
+					}
+
+					var mailOptions1 = {
+						from: config.get('email.from'),
+						to: a, // list of receivers
+						subject: subjectAgenda, // Subject line
+						rsvp: true,
+						icalEvent: {
+							method: 'request',
+							content: icsFileContent1.toString()
+						}
+					};
+
+					transporter.sendMail(mailOptions1, function(error, info){
+						if(error){
+							return console.log(error);
+						}
+						console.log("Send Mail:: calendar invite  -- Status: "+ info.response);
+						console.log('Notifications sent to cancelled users' + a);
+						}); // end of transporter.sendMail
+					}); // end of register mail render
+			}
+		}
+
+			
+			var data = schedule;
+			data.sequenceNumber = data.sequenceNumber + 1;
+			data.attendeeList = attendeesEmail;
+			visitScheduleService.updateById(scheduleId,data)
+			.then(function(response){
+			});
+			});
+			} //end of else
+		}) // end of modelVisit
+}
+
+function diff(arr1, arr2) {
+	var filteredArr1 = arr1.filter(function(ele) {
+		return arr2.indexOf(ele) == -1;
+	});
+
+	var filteredArr2 = arr2.filter(function(ele) {
+		return arr1.indexOf(ele) == -1;
+	});
+	return filteredArr1.concat(filteredArr2);
 }

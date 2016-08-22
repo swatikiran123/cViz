@@ -4,7 +4,7 @@ var Q               = require('q');
 var _ 							= require('underscore');
 var constants       = require('../scripts/constants');
 var model           = require(constants.paths.models +  '/visitSchedule')
-
+var util            = require(constants.paths.scripts + "/util");
 // Service method definition -- Begin
 var service = {};
 
@@ -15,6 +15,7 @@ service.create                = create;
 service.getOneById = getOneById;
 service.updateById = updateById;
 service.deleteById = deleteById;
+service.getSessionParticipantsById = getSessionParticipantsById;
 
 module.exports = service;
 
@@ -114,6 +115,45 @@ function deleteById(id) {
             deferred.resolve(doc);
         }
     });
+
+    return deferred.promise;
+}
+
+function getSessionParticipantsById(id) {
+    var deferred = Q.defer();
+    var emp = [];
+    var client = [];
+
+    model
+        .findOne({ _id: id })
+        .populate('session.owner')
+        .populate('session.supporter')
+        .populate('invitees')
+        .exec(function (err, scheduleData) {
+            if(err) {
+                console.log(err);
+                deferred.reject(err);
+            }
+            else
+                if(scheduleData.session.owner!=null && scheduleData.session.owner.association == 'employee')
+                {
+                    emp.push(scheduleData.session.owner);
+                }
+
+                if(scheduleData.session.supporter!=null && scheduleData.session.supporter.association == 'employee')
+                {
+                    emp.push(scheduleData.session.supporter);
+                }
+
+                for(var i=0;i<scheduleData.invitees.length;i++)
+                {
+                    if(scheduleData.invitees[i].association=='employee')
+                    {
+                        emp.push(scheduleData.invitees[i]);
+                    }
+                }
+                deferred.resolve(emp);
+        });
 
     return deferred.promise;
 }

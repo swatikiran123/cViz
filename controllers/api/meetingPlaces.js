@@ -11,6 +11,7 @@ controller.create     = create;
 controller.getOneById = getOneById;
 controller.updateById = updateById;
 controller.deleteById = deleteById;
+controller.getOneByName = getOneByName;
 
 module.exports = controller;
 
@@ -75,4 +76,19 @@ function updateById(req, res) {
         console.log(err);
         res.status(500).send(err);
     });
+}
+
+function getOneByName(req,res){
+  dataService.getOneByName(req.params.meetingPlace)
+  .then(function(data){
+    if (data){
+        res.send(data);
+    }else {
+        res.sendStatus(404).send("Doc dont exists");
+    }
+})
+  .catch(function (err){
+    console.log("doc dont exists" + err);
+    res.status(500).send(err);
+});
 }

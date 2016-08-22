@@ -26,8 +26,11 @@ var visitScheduleSchema = new mongoose.Schema({
 	feedbackElg						: { type: String, trim: true },
 	feedbackTemplate				: { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
 	status							: { type: String, trim: true, enum: ['active', 'cancelled']},
-	comments						: [{type: Schema.Types.ObjectId, ref: 'comments'}]
-
+	comments						: [{type: Schema.Types.ObjectId, ref: 'comments'}],
+	sequenceNumber					: { type:Number , default:0},
+	attendeeList					: [{
+		email        : { type: String},
+	}]
 });
 
 module.exports = mongoose.model('visit_schedules', visitScheduleSchema);

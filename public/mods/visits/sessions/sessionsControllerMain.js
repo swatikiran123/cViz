@@ -572,6 +572,14 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
             popupWinindow.document.write('<link rel="stylesheet" href="/public/assets/w/styles/dataview-table.css" /><link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.css"/><link rel="stylesheet" media="print" href="/public/assets/w/styles/print.css" type="text/css" /><link rel="stylesheet" href="/public/assets/w/styles/printCustom.css" /><body onload="window.print()">' + $scope.innerContents + '</body>');
             popupWinindow.document.close();
         }
+
+        $scope.calendarInviteSession = function(scheduleId)
+        {
+        	console.log(scheduleId);
+        	$http.get('/api/v1/secure/email/'+ scheduleId +'/calendarinvites').success(function(response) {
+        		console.log(response);
+           	})
+        }
 	}
 
 ]);

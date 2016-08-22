@@ -196,6 +196,7 @@
         <a class="table-btn" ng-click="editSession($event,schedule._id)" tooltips tooltip-template="Edit Session"><span class="glyphicon glyphicon-edit" /></a>
         <!-- <a class="table-btn" ng-click="editSession1(schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
         <a class="table-btn" ng-click="deleteSession(schedule)" tooltips tooltip-template="Delete Session"><span class="glyphicon glyphicon-trash" /></a>
+        <a ng-if = "schedule.session.type != 'lunch' && schedule.session.type != 'breakfast' && schedule.session.type != 'dinner' && schedule.session.type != 'tea-break' " class="table-btn" ng-click="calendarInviteSession(schedule._id)" tooltips tooltip-template="Send Calendar Invite"><span class="glyphicon glyphicon-calendar" /></a>
       </td>
     </tr>
   </tbody>
