@@ -32,6 +32,7 @@ service.getMyVisits = getMyVisits;
 service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
 service.pushSession = pushSession;
+service.updateSessions = updateSessions;
 service.getLocationsById = getLocationsById;
 service.getvalidationById = getvalidationById;
 
@@ -937,7 +938,8 @@ function getVisitSessionsByDate(visitId, thisDate){
 		return deferred.promise;
 }
 
-function pushSession(sessionId, time, sesnstatus){
+function pushSession(sessionId, time, sesnstatus, ssnpushtype){
+		console.log(ssnpushtype);
 	var deferred = Q.defer();
 	scheduleModel
 		.findOne({'_id': sessionId})
@@ -949,41 +951,74 @@ function pushSession(sessionId, time, sesnstatus){
 			else {
 				getVisitSessionsByDate(session.visit, session.scheduleDate)
 				.then(function(allSessions){
-
+				
 					allSessions.forEach(function(sess){
+	                    if(ssnpushtype == 'push'){
+	                    	console.log('hiiipush');
+							if(sess.session.startTime >= session.session.startTime){
+								if(sess.status == 'cancelled'){
+					
+						       updateSessions(allSessions);
+								}
+								else{
+									sess.session.startTime = DateAddTime(sess.session.startTime, time);
+									sess.session.endTime = DateAddTime(sess.session.endTime, time);
+						            updateSessions(allSessions);
+									
+								} // end of if
+							}
+	                    }
 
-						if(sess.session.startTime >= session.session.startTime){
-							if(sess.status == 'cancelled'){
-							scheduleModel.findByIdAndUpdate(sess._id, sess, function (err, doc) {
-								if (err) {
-									console.log("error updating session");
-									console.log(err.stack);
+	                    if(ssnpushtype == 'duration'){
+	                    	console.log('hiii');
+	                    	console.log(sess.session.startTime);
+	                    	console.log(session.session.startTime);
+
+							var timeStart = new Date(sess.session.startTime).getTime();
+							var timeEnd = new Date(session.session.startTime).getTime();
+							var hourDiff = timeEnd - timeStart; //in ms
+							var secDiff = hourDiff / 1000; //in s
+							var minDiff = hourDiff / 60 / 1000; //in minutes
+							var hDiff = hourDiff / 3600 / 1000; //in hours
+							var humanReadable = {};
+							humanReadable.hours = Math.floor(hDiff);
+							humanReadable.minutes = minDiff - 60 * humanReadable.hours;
+							console.log(humanReadable); //{hours: 0, minutes: 30} 
+                             
+                             if(humanReadable.minutes == 0 && humanReadable.minutes == 0){
+                             	console.log('equal');
+                             	 sess.session.startTime = session.session.startTime;
+								 sess.session.endTime = DateAddTime(sess.session.endTime, time);
+								 updateSessions(allSessions);
+                             }
+
+	                    	if(sess.session.startTime === session.session.startTime){
+	                    		console.log('equal');
+	                    	}
+	                    			if(sess.session.startTime > session.session.startTime){
+	                    				console.log('greater')
+								if(sess.status == 'cancelled'){
+					
+						       updateSessions(allSessions);
 								}
-							});
-						}
-						else{
-							sess.session.startTime = DateAddTime(sess.session.startTime, time);
-							sess.session.endTime = DateAddTime(sess.session.endTime, time)
-							scheduleModel.findByIdAndUpdate(sess._id, sess, function (err, doc) {
-								if (err) {
-									console.log("error updating session");
-									console.log(err.stack);
-								}
-							}); // end of schedule Update
-						} // end of if
-					}
+								else{
+									sess.session.startTime = DateAddTime(sess.session.startTime, time);
+									sess.session.endTime = DateAddTime(sess.session.endTime, time);
+							
+                                  updateSessions(allSessions);
+									
+								} // end of if
+							}
+                          
+						                    }
 
 					}); // end of sess forEach
 
 						if(sesnstatus == 'cancelled'){
 							
 				session.status = "cancelled"
-				scheduleModel.findByIdAndUpdate(session._id, session, function (err, doc) {
-								if (err) {
-									console.log("error updating session");
-									console.log(err.stack);
-								}
-							}); // end of schedule Update
+		
+           updateSessions(allSessions)
 			}
 				})
 			
@@ -993,6 +1028,24 @@ function pushSession(sessionId, time, sesnstatus){
 
 	return deferred.promise;
 }
+
+function updateSessions(allSessions){
+var deferred = Q.defer();
+
+				allSessions.forEach(function(sess){
+				var json = JSON.parse(sess);
+		        scheduleModel.findByIdAndUpdate(json._id, json, function (err, doc) {
+		                    
+								if (err) {
+									console.log("error updating session");
+									console.log(err.stack);
+								}
+							});	deferred.resolve("Done");
+					});
+				
+							return deferred.promise;
+}
+
 
 function getRegionsHeads(id) {
 	var deferred = Q.defer();

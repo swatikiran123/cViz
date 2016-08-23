@@ -27,10 +27,14 @@ var visitScheduleSchema = new mongoose.Schema({
 	feedbackTemplate				: { type: Schema.Types.ObjectId, ref: 'feedbackDefs' },
 	status							: { type: String, trim: true, enum: ['active', 'cancelled']},
 	comments						: [{type: Schema.Types.ObjectId, ref: 'comments'}],
+
 	sequenceNumber					: { type:Number , default:0},
 	attendeeList					: [{
-		email        : { type: String},
-	}]
+		email        : { type: String}
+	}],
+
+	flag                            : { type: String, trim: true }
+
 });
 
 module.exports = mongoose.model('visit_schedules', visitScheduleSchema);
