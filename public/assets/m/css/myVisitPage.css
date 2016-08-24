@@ -49,14 +49,18 @@
     text-shadow: none;
     font-size: 1em;
 }
-.my-visit-content button {
+/*.my-visit-content button {
     width: 130px;
     outline: #ccd0db 1px solid;
     background: rgba(0, 0, 0, 0.6);
     margin: 0 5px;
     padding: 10px 20px;
     margin-bottom: 5px;
-}
+}*/
+.m{
+    background-color: white;
+    border: none;
+    }
 
 .searchView {
     padding: 10px 15px;
