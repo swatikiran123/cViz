@@ -19,6 +19,7 @@ appMUserService.activeMUser().then(function(user){
 
 	appServicem.activeVisit($routeParams.id).then(function(avisit){
 			$scope.vid = $routeParams.id;
+			console.log(avisit);
 		if(avisit==''||avisit==null||avisit==undefined)
 		{
 			$scope.button = 'disable';
@@ -30,9 +31,10 @@ appMUserService.activeMUser().then(function(user){
 		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
 			cache: true
 		}).success(function(response) {
-
+          
 			$scope.visitId = avisit._id;
 			$scope.dayHighlighter = response;
+			  console.log($scope.dayHighlighter);
 			for(var i=0;i<$scope.dayHighlighter.length;i++)
 			{
 			
@@ -52,11 +54,44 @@ appMUserService.activeMUser().then(function(user){
 	}, function(reason) {
 		$scope.loading = false;
 	})
+
 	appServicem.activeVisit($routeParams.id).then(function(avisit){
+    		if(avisit==''||avisit==null||avisit==undefined)
+		{
+			$scope.button = 'disable';
+		}
+		if(avisit!=''||avisit!=null||avisit!=undefined)
+		{
+			$scope.button = 'enable';
+		}
+		$http.get('/api/v1/secure/visits/'+avisit._id+'/schedules',{
+			cache: true
+		}).success(function(response) {
+          
+			$scope.visitId = avisit._id;
+			$scope.dayHighlighter = response;
+			for(var i=0;i<$scope.dayHighlighter.length;i++)
+			{
+			
+				$scope.weatherData = [];
+				$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + $scope.dayHighlighter[i].location + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{
+					cache: true
+				}).success(function (data) {
+					var climate = {};
+					climate.daylike = data.weather[0].main;
+					climate.temperature = data.main.temp + "\u00B0C";
+					climate.icon = "/public/assets/m/img/ic/"+ data.weather[0].icon +".png";
+					$scope.weatherData.push(climate);
+				});
+			}
+			$scope.loading = false;
+		});
+
 	$http.get('/api/v1/secure/visits/'+avisit._id,{
 		cache: true
 	}).success(function(response) {
 //console.log(response);
+
 		$scope.status =  response.status;
 
 		$scope.endDate = response.endDate;

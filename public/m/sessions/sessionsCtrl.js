@@ -5,11 +5,13 @@ angular.module('sessions')
 .controller('sessionsCtrl', function($scope, $routeParams, $http, $route, $location, $anchorScroll, $timeout ,$window,$rootScope, appServicem,appMUserService) {
 	appMUserService.activeMUser().then(function(user){
     $scope.activeUser = user;
+});
 		  $scope.visittitles = 'No active visit';
 	$scope.pusharray = [];
 	$scope.allSessions = [];
 	$scope.push = [];
 		appServicem.activeVisit($routeParams.id).then(function(avisit){
+			console.log(avisit);
 	 $scope.activevists = true;
   if(avisit == 'Not active visit'){
     $scope.activevists =false;
@@ -312,7 +314,7 @@ $scope.pusharray.push($scope.pushobject)
 		}
 		})
 	})
-	})
+	
 
 
 .controller('sessionCtrl', function($scope, $routeParams, $http, $rootScope,$interval,$window,toaster,$timeout,appMUserService) {
