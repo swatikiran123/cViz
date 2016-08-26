@@ -110,7 +110,7 @@
                                            <div ng-if="status.flag == 'cancelled&updated'">  {{session.status.toUpperCase()}} </div> <!-- ng-show="showme" -->
                                        
                                              <div ng-if="group=='admin' || group=='vManager'" ng-show="showme">
-                                             <span ng-class="[getdiv(session.status)]" data-toggle="modal" data-target="#myModal{{session._id}}">Move Session</span>
+                                             <span ng-class="[getdiv(session.flag)]" data-toggle="modal" data-target="#myModal{{session._id}}">Move Session</span>
 <!-- Modal -->
 											<div class="modal fade" id="myModal{{session._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="vertical-alignment-helper">
