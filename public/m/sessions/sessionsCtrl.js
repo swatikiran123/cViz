@@ -19,7 +19,19 @@ angular.module('sessions')
   };
 	
 
-	$scope.group=$rootScope.user.groups;
+	// $scope.group=$rootScope.user.groups;
+	if($rootScope.user.groups.includes("vManager") === true){
+		$scope.group = "vManager";
+	}
+	else if($rootScope.user.groups.includes("admin") === true){
+		$scope.group = "admin";
+	}
+	else if($rootScope.user.groups.includes("exec") === true){
+		$scope.group = "exec";
+	}else if($rootScope.user.groups.includes("user") === true){
+		$scope.group = "user";
+	}
+
 	$scope.current = new Date();
 
 	$scope.mix=[];
@@ -326,7 +338,19 @@ $scope.pusharray.push($scope.pushobject)
 	$scope.comment = [];
 	$scope.comment11 = [];
 	$scope.myData = [];
-	$scope.groupBelong = user.groups;
+	// $scope.groupBelong = user.groups;
+	if(user.groups.includes("vManager") === true){
+		$scope.groupBelong = "vManager";
+	}
+	else if(user.groups.includes("admin") === true){
+		$scope.groupBelong = "admin";
+	}
+	else if(user.groups.includes("exec") === true){
+		$scope.groupBelong = "exec";
+	}else if(user.groups.includes("user") === true){
+		$scope.groupBelong = "user";
+	}
+
 	$scope.refresh1 = function()
 	{ 
     $scope.myData = [];

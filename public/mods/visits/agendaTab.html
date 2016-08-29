@@ -50,7 +50,7 @@
           </div>
         </div> addClientLogo -->
         <br>
-        <div ng-if="groupMember=='admin' || groupMember=='vManager'" class="row">
+        <div ng-if="visitGrid" class="row">
           <!-- <fieldset ng-disabled="isSaving && mode ==='edit'"> -->
 
           <div class="col-md-4 text-center">
@@ -238,7 +238,7 @@
 
 </div>
 
-<div ng-if="groupMember=='user'" class="row">
+<div ng-if="groupMember=='user' || groupMember=='exec'" class="row">
   <fieldset ng-disabled="isSaving && mode ==='edit'">
 
     <div class="col-md-12">

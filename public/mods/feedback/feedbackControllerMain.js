@@ -19,7 +19,10 @@ feedbackApp.controller('feedbackControllerMain', ['$scope', 'appUserService', '$
   $scope.isSaving=false;
 
   $scope.groupMember = $scope.activeUser.groups;
-  if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+  if ($scope.activeUser.groups.includes("admin") === true ) {
+    $scope.isSaving= false; 
+  }
+  else if ($scope.activeUser.groups.includes("vManager") === true) {
     $scope.isSaving= true; 
   }
   var refresh = function() {

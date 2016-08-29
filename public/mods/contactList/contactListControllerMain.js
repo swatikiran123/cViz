@@ -1,8 +1,10 @@
 'use strict';
 var contactListApp = angular.module('contactList');
 
-contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$routeParams','$location', 'growl','$rootScope',
-  function($scope, $http, $routeParams, $location,growl,$rootScope) {
+contactListApp.controller('contactListControllerMain', ['$scope','appUserService', '$http', '$routeParams','$location', 'growl','$rootScope',
+  function($scope,appUserService, $http, $routeParams, $location,growl,$rootScope) {
+    appUserService.activeUser().then(function(user){
+    $scope.activeUser = user;
 
     $scope.hideFilter = true;
     $scope.hideAddRow = true;
@@ -24,7 +26,11 @@ contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$rou
   $http.get('/api/v1/secure/lov/contactType').success(function(response) {
     $scope.type=response.values;
   });
-  if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
+   $scope.groupMember = $scope.activeUser.groups;
+  if ($scope.activeUser.groups.includes("admin") === true ) {
+    $scope.visitGrid= false; 
+  }
+  else if ($scope.activeUser.groups.includes("vManager") === true) {
     $scope.visitGrid= true;
   }
 
@@ -117,6 +123,7 @@ contactListApp.controller('contactListControllerMain', ['$scope', '$http', '$rou
     });
     
   }
+});
 
 
 }]);

@@ -37,10 +37,11 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
   $scope.isSaving=false;
 
   $scope.groupMember = $scope.activeUser.groups;
-  if ($scope.activeUser.groups.indexOf("admin") > -1 ) {
+  if ($scope.activeUser.groups.includes("admin") === true ) {
     $scope.adminShow= true; 
+    $scope.isSaving= false; 
   }
-  if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+  else if ($scope.activeUser.groups.includes("vManager") === true) {
     $scope.isSaving= true; 
   }
   var refresh = function() {
