@@ -7,7 +7,18 @@ appMUserService.activeMUser().then(function(user){
 	location.get(angular.noop, angular.noop);
 	$scope.loading = true;
 	$scope.finalFeedback=false;
-	  $scope.group = user.groups;
+	  // $scope.group = user.groups;
+	  if(user.groups.includes("admin") === true){
+	  	$scope.group = "admin";
+	  }else if(user.groups.includes("vManager") === true){
+	  	$scope.group = "vManager";
+	  }else if(user.groups.includes("exec") === true){
+	  	$scope.group = "exec";
+	  }else if(user.groups.includes("user") === true){
+	  	$scope.group= "user";
+	  }
+	  console.log($scope.group);
+
 	// $scope.current = new Date();
 	// appServicem.activeVisit($routeParams.id).then(function(avisit){
 	// 	$http.get('/api/v1/secure/visits/'+avisit._id+'/getlasttimesessions',{
@@ -113,8 +124,17 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
   appMUserService.activeMUser().then(function(user){
     console.log("thsis"+user._id);
     $scope.activeUser = user;
-    $scope.group = user.groups;
-
+    // $scope.group = user.groups;
+	if(user.groups.includes("vManager") === true){
+	  	$scope.group = "vManager";
+	  } else if(user.groups.includes("admin") === true){
+	  	$scope.group = "admin";
+	  } else if(user.groups.includes("exec") === true){
+	  	$scope.group = "exec";
+	  }else if(user.groups.includes("user") === true){
+	  	$scope.group= "user";
+	  }
+	  console.log($scope.group);
 	$scope.order = 0;
 	$scope.myData = [];
 	$scope.keynotes = [];	
@@ -137,7 +157,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
     		if($scope.activeUser.groups=='exec'){
     			angular.element('#videoModal').modal('hide');
     		}
-    		if($scope.activeUser.groups=='vManager' || $scope.activeUser.groups=='admin' || $scope.activeUser.groups=='user')
+    		if($scope.activeUser.groups.includes("vManager") === true || $scope.activeUser.groups.includes("admin") === true || $scope.activeUser.groups.includes("user") === true)
     		{
     		if(avisitData!=''||avisitData!=null||avisitData!=undefined)
     		{
@@ -175,6 +195,7 @@ app.controller('welcomeCtrl', ['$scope', 'location','$http','$routeParams','$roo
 		$http.get('/api/v1/secure/visits/'+avisitData._id+'/keynotes',{
 			cache: true
 		}).success(function(response) {
+			console.log(response);
 			if(response[0] != "")
 			{
 				$scope.button1 = "true";

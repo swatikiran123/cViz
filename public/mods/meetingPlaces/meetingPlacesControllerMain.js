@@ -13,10 +13,13 @@ meetingPlacesApp.controller('meetingPlacesControllerMain', ['$scope' ,'appUserSe
     $scope.action = "none";
 
     $scope.groupMember = $scope.activeUser.groups;
-    if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
-      $scope.visitGrid= true;
+    if ($scope.activeUser.groups.includes("admin") === true ) {
+      $scope.visitGrid= false; 
     }
-  
+    else if ($scope.activeUser.groups.includes("vManager") === true) {
+      $scope.visitGrid= true; 
+    }
+    
   // if ($rootScope.user.groups.indexOf("vManager") > -1) {
   //   $scope.visitGrid= true;
   // }

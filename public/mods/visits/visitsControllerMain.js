@@ -175,13 +175,13 @@ visitsApp.controller('visitsControllerMain', ['$scope','appUserService', '$http'
   // var user= $scope.activeUser._id; 
   // var group = $scope.activeUser.memberOf;
   $scope.groupMember = $scope.activeUser.groups;
-  if ($scope.activeUser.groups.indexOf("vManager") > -1 || $scope.activeUser.groups.indexOf("admin") > -1) {
+  if ($scope.activeUser.groups.includes("vManager") === true || $scope.activeUser.groups.includes("admin") === true) {
     $scope.visitGrid= true;
   }
-  if ($scope.activeUser.groups.indexOf("vManager") > -1){
+  if ($scope.activeUser.groups.includes("vManager") === true && $scope.activeUser.groups.length == 8){
     $scope.isSaving= true;
   }
-  if ($scope.activeUser.groups.indexOf("admin") > -1) {
+  if ($scope.activeUser.groups.includes("admin") === true) {
     $scope.adminInitVman= true;
   }
 
@@ -3551,6 +3551,7 @@ $scope.viewImageItem = function(x){
   window.open(x,'_blank');
 };
 
+    
 }])
 
 //Autocompleate - Directive
