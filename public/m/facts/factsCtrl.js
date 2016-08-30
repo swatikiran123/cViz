@@ -1,11 +1,21 @@
 var app=angular.module('facts');
 
-app.controller('factsCtrl', function($scope, $rootScope, $location, $http,$routeParams) {
+app.controller('factsCtrl', function($scope, $rootScope, $location, $http, $routeParams, pdfDelegate, $timeout) {
 			console.log("fact controller running");
 
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
         });
+
+    $http.get('/api/v1/secure/facts').success(function(response) {
+
+      $scope.factsList = response;
+console.log($scope.factsList);
+
+    
+
+ // switch scope.mode ends
+    });
         $scope.cscIndiaLocations = [
             {
                 cityName: "Noida",

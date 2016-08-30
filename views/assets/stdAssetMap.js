@@ -13,7 +13,7 @@ module.exports = {
 	    "m-general" : ["jquery","bootstrap","font-awesome","utils"],
 		"m-angular" : ["angular-core","angular-growl"],
 		//"m-home": [],
-		"m-facts": ["angular-map"],
+		"m-facts": ["angular-map","angular-pdf"],
 		"m-visits": ["angular-animate"],
 		"m-visitAdd":["angular-wizard","angularMultipleSelect"]
 		

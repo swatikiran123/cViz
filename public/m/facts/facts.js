@@ -1,5 +1,5 @@
 
-angular.module('facts', ['ngRoute'])
+angular.module('facts', ['ngRoute','pdf'])
 
 .run(function ($rootScope, $location, $http) {
 	$http.get('/token')
