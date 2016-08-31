@@ -863,10 +863,28 @@ function getParticipantsForOverAllFeedback(id){
 				else {
 					schedules.forEach(function(sch){
 						if (sch.session.owner!= null) {
+							switch(sch.session.owner.association)
+							{
+							case "employee":	
 							arrAddItem(emp, sch.session.owner);
+							break;
+
+							case "customer":
+							arrAddItem(client,sch.session.owner);
+							}
 						}
 						if (sch.session.supporter!= null) {
-							arrAddItem(emp, sch.session.supporter);}
+							switch(sch.session.supporter.association)
+							{
+							case "employee":
+							arrAddItem(emp, sch.session.supporter);
+							break;
+
+							case "customer":
+							arrAddItem(client,sch.session.supporter)
+							break;
+						}
+						}
 						if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
 							for (var i = 0; i < sch.invitees.length; i++) {
 								switch(sch.invitees[i].association)    {

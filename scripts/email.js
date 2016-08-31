@@ -940,7 +940,8 @@ function agendaFinalize(visitId,basePath) {
 
 			visitService.getParticipantsForOverAllFeedback(visitId)
 			.then(function(participants){
-
+				console.log("THIS IS PARTICIPANTS");
+				console.log(participants);
 				receiversEmailIds.push(visit.anchor.email);
 				
 				groupService.getUsersByGroup("admin")
@@ -957,6 +958,7 @@ function agendaFinalize(visitId,basePath) {
 				});
 
 				console.log(emailIds);
+				console.log(receiversEmailIds);
 
 				mailTemplate.render(visit, function (err, results) {
 
@@ -1094,11 +1096,19 @@ function calendarInvites(scheduleId) {
 			console.log(err);
 		}
 		else{
+			console.log(schedule.visit.anchor);
 			var visitLocation = "";
+			var anchorData = "";
 			meetingPlaceService.getOneByName(schedule.session.location)
 			.then(function(response)
 			{
 				visitLocation = response.location;
+			});
+
+			userService.getOneById(schedule.visit.anchor)
+			.then(function(response)
+			{
+				anchorData = response;
 			});
 			visitScheduleService.getSessionParticipantsById(scheduleId)
 			.then(function(sessionParticipants){
@@ -1125,7 +1135,10 @@ function calendarInvites(scheduleId) {
 			builder1.method = 'REQUEST';
 			builder1.timezone = 'Asia/Calcutta';
 			builder1.tzid = 'Asia/Calcutta';
-			var fullName = schedule.session.owner.name.first + " " + schedule.session.owner.name.last;
+			console.log(anchorData);
+			var fullName = anchorData.name.first + " " + anchorData.name.last;
+			console.log("THIS IS FULL NAME")
+			console.log(fullName);
 			var newStartDate = new Date(schedule.session.startTime);
 			var newEndDate = new Date(schedule.session.endTime);
 			var scheduleDate = new Date(schedule.scheduleDate);
@@ -1134,7 +1147,7 @@ function calendarInvites(scheduleId) {
 			var s = m.format('MMM D')
 
 			var subjectAgenda = schedule.client.name + " Visit " + "| " + s + " | " + visitLocation + " | "  + schedule.session.title;
-
+			console.log(subjectAgenda);
 			if(schedule.sequenceNumber == 0) 
 			{	
 				builder.events.push({
@@ -1148,7 +1161,7 @@ function calendarInvites(scheduleId) {
 					location: schedule.session.location,
 					organizer: {
 						name: fullName,
-						email: schedule.session.owner.email,
+						email: anchorData.email,
 					},
 					attendees: attendees,
 					method: 'PUBLISH',
@@ -1156,6 +1169,7 @@ function calendarInvites(scheduleId) {
 				});
 
 				icsFileContent = builder.toString();
+				console.log(icsFileContent);
 				for(var i=0;i<sessionParticipants.length;i++)
 				{
 					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
@@ -1217,7 +1231,7 @@ function calendarInvites(scheduleId) {
 					location: schedule.session.location,
 					organizer: {
 						name: fullName,
-						email: schedule.session.owner.email,
+						email: anchorData.email,
 					},
 					attendees: attendees,
 					method: 'PUBLISH',
@@ -1225,7 +1239,7 @@ function calendarInvites(scheduleId) {
 				});
 
 				icsFileContent = builder.toString();
-
+								console.log(icsFileContent);
 				for(var i=0;i<sessionParticipants.length;i++)
 				{
 					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
@@ -1277,7 +1291,7 @@ function calendarInvites(scheduleId) {
 					location: schedule.session.location,
 					organizer: {
 						name: fullName,
-						email: schedule.session.owner.email,
+						email: anchorData.email,
 					},
 					attendees: attendees,
 					method: 'PUBLISH',
@@ -1295,7 +1309,7 @@ function calendarInvites(scheduleId) {
 					location: schedule.session.location,
 					organizer: {
 						name: fullName,
-						email: schedule.session.owner.email,
+						email: anchorData.email,
 					},
 					attendees: cancelEmail,
 					method: 'PUBLISH',
@@ -1304,6 +1318,8 @@ function calendarInvites(scheduleId) {
 
 				icsFileContent = builder.toString();
 				icsFileContent1 = builder1.toString();
+								console.log(icsFileContent);
+												console.log(icsFileContent1);
 				for(var i=0;i<sessionParticipants.length;i++)
 				{
 					if(sessionParticipants[i] != null || sessionParticipants[i] != "" || sessionParticipants[i] != undefined) {
