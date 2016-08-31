@@ -1,12 +1,15 @@
-
+<style>.labelstyles{
+  color: black;
+  }</style>
 
 <div class="row"> 
   <div class="col-sm-1"></div>
   <div class="col-md-8">
 
    <!-- page header/subheader -->
-   <div ng-if="mode=='add'" class="page-header">
-    Facts - Add new fact
+   
+   <div  ng-if="mode=='add'" class="page-header">
+    Facts - Add new fact  
     <div class="sub-header">Managing quick facts
     </div>
   </div>
@@ -17,6 +20,7 @@
     </div>
   </div>
 
+
   <!-- facts pageheader input--> 
   <div class="data-form">
     <form name="factsForm" id="factsForm" class="form-vertical" novalidate>
@@ -25,29 +29,161 @@
 
     <!-- facts title input-->
     <form name="factsForm">
-      <md-input-container class="md-block">
+<!--       <md-input-container class="md-block" style="visibility:hidden">
         <label>Title</label>
-        <input md-maxlength="30" minlength="5" required name="title"   ng-model="facts.title">
+        <input md-maxlength="30" minlength="5" name="title"   ng-model="facts.title">
         <div ng-messages="factsForm.title.$error" ng-show="factsForm.title.$touched || !factsForm.title.$pristine">
              <div class="messagenotify">
               <div ng-messages-include="/public/mods/partials/messages.html"></div>
           <div ng-message="md-maxlength">The title  has to be less than 30 characters long.</div>
          <div ng-message="minlength">the title should contain minimum 5characters</div></div></div>
+      </md-input-container> -->
+{{facts.title=whatever;""}}
+
+    <!-- facts description -->
+  <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">CSC India factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="facts" file-size="25" file-allowed="1" array="array1" file-type="singleFile" />
+        </div>
+   </div>
+      </md-input-container>
+    <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Noida factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Noida" file-size="25" file-allowed="1" array="array2" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Indore factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Indore" file-size="25" file-allowed="1" array="array3" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Vadodara factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Vadodara" file-size="25" file-allowed="1" array="array4" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Mumbai factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Mumbai" file-size="25" file-allowed="1" array="array5" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Hyderabad factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Hyderabad" file-size="25" file-allowed="1" array="array6" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Banglore factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Banglore" file-size="25" file-allowed="1" array="array7" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Chennai factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Chennai" file-size="25" file-allowed="1" array="array8" file-type="singleFile" />
+        </div>
+        </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Solan factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Solan" file-size="25" file-allowed="1" array="array9" file-type="singleFile" />
+        </div>
+      </div>
+   
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Shimoga factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Shimoga" file-size="25" file-allowed="1" array="array10" file-type="singleFile" />
+        </div>
+   </div>
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Gurgaon factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Gurgaon" file-size="25" file-allowed="1" array="array11" file-type="singleFile" />
+        </div>
+   </div>
+      </md-input-container>
+       <md-input-container class="md-block"><div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <label class="labelstyles">Pune factsheet</label></div>
+        <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+          <fileattachment folder-type="Pune" file-size="25" file-allowed="1" array="array12" file-type="singleFile" />
+        </div>
+   </div>
       </md-input-container>
 
 
-    <!-- facts description -->
-
+<!--  
+ <label>location</label>
+   <md-input-container class="md-block">
        
-    <div class="field">
-                  <label ng-show="facts.description" class="show-hide">note</label>
+      <select name="singleSelect" ng-model="facts.location" ng-change="callLocFolder(facts.location)">
 
-      <text-angular 
-      ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['p', 'quote'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent','insertLink']]"
-      ng-model="facts.description" name="note" placeholder="Description the fact." required /></text-angular>
-    </div>
+      <option value="Noida"> Noida</option>
+      <option value="Indore">Indore</option>
+       <option value="Vadodara">Vadodara</option>
+      <option value="Mumbai">Mumbai</option>
+       <option value="Hyderabad">Hyderabad</option>
+      <option value="Banglore">Banglore</option>
+       <option value="Chennai">Chennai</option>
+      <option value="Solan">Solan</option>
+       <option value="Shimoga">Shimoga</option>
+      <option value="Gurgaon">Gurgaon</option>
+       <option value="Pune">Pune</option>
+     
 
+    </select><br>
+
+    <div ng-if="facts.location != null">
+      </md-input-container>
+     <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <b>Attachments for {{facts.location}}</b></h3>
+  </div>
+  <div class = "panel-subheader pull-right">
+  </div>
+  <div class="panel-body">
+   <i><h5>Please select location and click Attach files to add pdf for locations</h5></i><br>
+ 
+   <fileattachment folder-type="{{uploadFolder}}"  file-size="25" file-allowed="1" array="arrayloc" file-type="singleFile" />
+ </div>
+</div>
+</div>
+ -->
 
     <!--buttons-->
     <div class="form-group">
@@ -55,8 +191,8 @@
         <button type="submit" class="btn btn-success" 
         ng-click="save()" ng-disabled="factsForm.$invalid">Submit
       </button>
-      <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
-            yes-text="Ok" no-text="Cancel">Cancel</button>
+<!--       <button type="reset" class="btn btn-warning" ng-click="cancel()" confirm-dialog header-text="Cancel Form Submission" content="Are you sure you want to cancel the submission of this form ?"
+            yes-text="Ok" no-text="Cancel">Cancel</button> -->
     </div>
 
   </form>

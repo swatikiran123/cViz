@@ -1,6 +1,6 @@
 <style>
 
-
+/*
 .testClass{
   
     
@@ -33,7 +33,7 @@
     100% {
         background-color:;
     }
-}
+}*/
 </style>
 
 <!-- Grid filter -->
@@ -63,22 +63,19 @@
         <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;Editor Name
         <!-- <a href="" ng-click="orderByField='editedBy'; reverseSort = !reverseSort">Editor Name</a> -->
       </th>
-      <th>
-        <span class="fa fa-list-alt fa-lg"></span>&nbsp;&nbsp;
-        <a href="" ng-click="orderByField='description'; reverseSort = !reverseSort">Description</a>
-      </th>
+
       <th class="hidden-xs">
         <span class="fa fa-calendar fa-lg"></span>&nbsp;&nbsp;Created Date
         <!-- <a href="" ng-click="orderByField='createOn'; reverseSort = !reverseSort">Created Date</a> -->
       </th>
-      <th></th>
+      <th>  <span class="fa fa-user fa-lg"></span>&nbsp;&nbsp;path</th>
     </tr>
 
     <!-- table filter -->
     <tr ng-hide="hideFilter">
       <th><span ng-hide="hideFilter"><input type="text" ng-model="search.title"></span></th>
       <th></th>
-      <th><span ng-hide="hideFilter"><input type="text" ng-model="search.description"></span></th>
+
       <th></th>
       <th></th>
     </tr>
@@ -86,11 +83,12 @@
   </thead>
 
   <tbody class="data-grid-data">
-    <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort"  ng-class="{ testClass: $last }">
+    <tr ng-repeat="fact in factsList | filter: search |orderBy:orderByField:reverseSort">
       <td>{{fact.title}}</td>
       <td><div userdisplay view-mode="nameonly" user-id="fact.editedBy"></div></td>
-      <td><p ng-bind-html="fact.description"></p></td>
+   
       <td>{{fact.createOn | date:'dd-MM-yyyy'}}</td>
+      <td>{{fact.inidafact}}</td>
       <td>
         <!-- <a class="table-btn" href="#/facts/{{fact._id}}/show"><span class="glyphicon glyphicon-eye-open" /></a> -->
         <a class="table-btn" href="#/facts/{{fact._id}}/edit" tooltips tooltip-template="Edit Fact"><span class="fa fa-edit fa-lg" /></a>
