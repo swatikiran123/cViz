@@ -43,17 +43,17 @@ angular.module('appFilters', [])
 			var d2 = moment(toDate);
 			var ms = moment.duration(d2.diff(d1));
 			var span = ms.asMinutes();
-			if (span < 120)
-				duration = span + " min(s)";
-			else {
-				span = ms.asHours();
-				if (span < 24)
-					duration = span + " hr(s)";
-					else {
-						span = Math.round(ms.asDays());
-						duration = span + " day(s)";
-					}
-			}
+			// if (span < 120)
+				duration = span;
+			// else {
+			// 	span = ms.asHours();
+			// 	if (span < 24)
+			// 		duration = span + " hr(s)";
+			// 		else {
+			// 			span = Math.round(ms.asDays());
+			// 			duration = span + " day(s)";
+			// 		}
+			// }
 
 			return duration;
   };

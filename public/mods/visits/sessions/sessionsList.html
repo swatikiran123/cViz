@@ -14,6 +14,9 @@
 
   }
 
+.tdb{
+  background-color: grey;
+}
 
   table.table {
     border: none;
@@ -161,18 +164,18 @@
 
   <tbody class="data-grid-data">
     <tr ng-repeat="schedule in scheduleList | filter: search | orderBy:orderByField:reverseSort" ng-if="showAll">
-      <td>{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
-      <td>{{schedule.session.type}}</td>
-      <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
-      <td>{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
-      <td>{{schedule.session.title}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.type}}{{schedule.status}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.title}}</td>
 
 <!--       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "> <div userdisplay view-mode="nameonly" user-id="schedule.session.owner"></div> </td>
       <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td> -->
 
-      <td>{{schedule.session.location}}</td>
-      <td><userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></td>
-      <td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.location}}</td>
+      <td ng-class="[getClass(schedule.status)]"><userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></td>
+      <td ng-class="[getClass(schedule.status)]">
         <!-- <a class="table-btn" ng-click="editSession($event,schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
         <a class="table-btn" ng-click="deleteSession(schedule)"><span class="glyphicon glyphicon-trash" tooltips tooltip-template="Delete Session"/></a>
       </td>
@@ -180,19 +183,19 @@
 
     <div ng-repeat="schedule in scheduleList | filter:dayFilter as filtered">
     </div>
-    <tr ng-repeat="schedule in filtered | filter:dayFilter | filter:search | orderBy:orderByField:reverseSort" ng-if="showFiltered">
-      <td>{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
-      <td>{{schedule.session.type}}</td>
-      <td>{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
-      <td>{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
-      <td>{{schedule.session.title}}</td>
+    <tr ng-repeat="schedule in filtered | filter:dayFilter | filter:search | orderBy:orderByField:reverseSort" ng-if="showFiltered" >
+      <td ng-class="[getClass(schedule.status)]">{{schedule.scheduleDate | date:'dd MMM yyyy'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.type}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.startTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.endTime | date:'dd/MM/yy hh:mma'}}</td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.title}}</td>
 
 <!--       <td ng-if="schedule.session.type == 'presentation' || schedule.session.type == 'discussion' || schedule.session.type == 'floor-walk' || schedule.session.type == 'visit-wrap-up' "> <div userdisplay view-mode="nameonly" user-id="schedule.session.owner"></div> </td>
       <td ng-if="schedule.session.type == 'breakfast' || schedule.session.type == 'tea-break' || schedule.session.type == 'lunch' || schedule.session.type == 'dinner' "> {{}} </td> -->
 
-      <td>{{schedule.session.location}}</td>
-      <td><userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></td>
-      <td>
+      <td ng-class="[getClass(schedule.status)]">{{schedule.session.location}}</td>
+      <td ng-class="[getClass(schedule.status)]"><userdisplay view-mode="nameonly" user-id="schedule.session.owner" no-user-msg="{{}}"></td>
+      <td ng-class="[getClass(schedule.status)]">
         <a class="table-btn" ng-click="editSession($event,schedule._id)" tooltips tooltip-template="Edit Session"><span class="glyphicon glyphicon-edit" /></a>
         <!-- <a class="table-btn" ng-click="editSession1(schedule._id)"><span class="glyphicon glyphicon-edit" /></a> -->
         <a class="table-btn" ng-click="deleteSession(schedule)" tooltips tooltip-template="Delete Session"><span class="glyphicon glyphicon-trash" /></a>
