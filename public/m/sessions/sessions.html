@@ -87,9 +87,10 @@
 									<div class="agenda-session-overview">
 										<p class="agenda-session-loc">
 											<i class="fa fa-hourglass-half"></i>
-												{{session.session.endTime | duration:session.session.startTime}}&nbsp;&nbsp;&nbsp;
+												{{session.session.endTime | duration:session.session.startTime}} min(s)&nbsp;&nbsp;&nbsp;
+								
 											<i class="fa fa-map-marker"></i>
-												{{session.session.location}}
+										
 										</p>
 										<p> <!--Roboto-->
 										<div ng-hide = "session.session.type == 'Tea-Break' || session.session.type == 'BreakFast' || session.session.type == 'Lunch' || session.session.type == 'Dinner' || session.session.type.toLowerCase() == 'tea-break' || session.session.type.toLowerCase() == 'breakfast'|| session.session.type.toLowerCase() == 'lunch' || session.session.type.toLowerCase() == 'dinner'">
@@ -133,7 +134,7 @@
 											                <button type="button" class="btn btn-warning xsbutn"  ng-click="pushSession(session._id,rtime1,sesnstatus,schedules.date,session.session.startTime,'cancel')" data-dismiss="modal">Drop</button><br><br>
                                                  Duration expand or contract :
                                                                <form  align="center">
-				                                 -15min&nbsp;<input type="range"  id="rangeInput1" step="5" name="rangeInput1" min="-15" max="120" class="rangestyle" ng-model="rtime1" ng-change = "calculation(rtime1)">&nbsp;120  &nbsp;&nbsp;
+				                                 -{{(session.session.endTime | duration:session.session.startTime) - 15}}&nbsp;<input type="range"  id="rangeInput1" step="5" name="rangeInput1" min="-{{(session.session.endTime | duration:session.session.startTime) - 15}}" max="120" class="rangestyle" ng-model="rtime1" ng-change = "calculation(rtime1)">&nbsp;120  &nbsp;&nbsp;
 				                                 <br>
 				                                 {{rtime1}} min
 				                           </form>

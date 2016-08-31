@@ -104,6 +104,15 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			}); // get visitSchedule call back ends
 		}; // refresh method ends
 
+
+	$scope.getClass = function (strValue) {
+		if (strValue == ("cancelled")){
+			console.log("hello");
+			return "tdb";
+	}
+		}
+
+	
 		init();
 		refresh();
 
