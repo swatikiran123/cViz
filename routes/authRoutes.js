@@ -36,19 +36,27 @@ module.exports = function(app, passport) {
         renderHome(req, res);
     });
 
-        function renderHome(req, res){
-            res.locals.pageTitle = "Home";
-            res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
-            res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
-            if("desktop".compare(res.locals.device)){
-                res.redirect(menuBuilder.getDefaultPage(req.user, 'web'));
-            } else {
-                res.redirect(menuBuilder.getDefaultPage(req.user, 'mobile'));
-            }
+    function renderHome(req, res){
+        res.locals.pageTitle = "Home";
+        res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general,angular");
+        res.locals.appAssets = assetBuilder.getAssets("appAssets", "general,home");
+        if("desktop".compare(res.locals.device)){
+            res.redirect(menuBuilder.getDefaultPage(req.user, 'web'));
+        } else {
+            res.redirect(menuBuilder.getDefaultPage(req.user, 'mobile'));
         }
+    }
+
+    app.get('/unauthorized', function(req, res) {
+        res.locals.pageTitle = "Unauthorized Access";
+        res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
+        res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
+        res.render('unauthorized.ejs', {
+        });
+    });
 
     app.get('/app', isLoggedIn, function(req, res) {
-            res.setHeader('content-type', 'application/pdf');
+        res.setHeader('content-type', 'application/pdf');
         res.locals.pageTitle = "App Info";
         res.locals.stdAssets = assetBuilder.getAssets("stdAssets", "general");
         res.locals.appAssets = assetBuilder.getAssets("appAssets", "general");
@@ -92,7 +100,7 @@ module.exports = function(app, passport) {
             console.log(req.params.pwd);
 
             User.findOne({ '_id' :  req.params.userId }, function(err, user) {
-                var emailId = user.local.email;    
+                var emailId = user.local.email;
                 var basePath = 'http://' + req.headers.host + '/login';
                 console.log(basePath);
                 var request = require('request');
@@ -100,15 +108,15 @@ module.exports = function(app, passport) {
                   headers: {'content-type' : 'application/x-www-form-urlencoded'},
                   url:     basePath,
                   form:    { email: emailId , password:req.params.pwd }
-              }, function(error, response, body,dict){ 
+              }, function(error, response, body,dict){
                console.log(body);
                if(body == 'Found. Redirecting to /home')
                {
                    res.locals.pageTitle = "Home";
-                   res.locals.stdAssets = assetBuilder.getAssets("stdAssets", 
+                   res.locals.stdAssets = assetBuilder.getAssets("stdAssets",
 
                     "general,angular");
-                   res.locals.appAssets = assetBuilder.getAssets("appAssets", 
+                   res.locals.appAssets = assetBuilder.getAssets("appAssets",
 
                     "general,home");
                    res.locals.pageTitle = "App Info";

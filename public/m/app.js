@@ -33,12 +33,13 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
-				
+
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log('this is null');
 					console.log(user.groups);
-					if(user.groups.includes("admin") === true){
+
+					if(user.groups=='vManager'|| user.groups=='admin'){
 						var group = "admin";
 					}else
 					if(user.groups.includes("vManager") === true){
@@ -48,8 +49,9 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					}else if(user.groups.includes("user") === true){
 						var  group = "user";
 					}
-										
+
 					if(group=='vManager'|| group=='admin')
+>>>>>>> e5195cfa09cb62b59fe418a920a4fc743d1584af
 					{
 						defer.resolve(response.visits);
 					}
@@ -60,7 +62,7 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					else
 					{
 						defer.reject("Not active visit");
-					}				
+					}
 				}
 				else {
  					 //console.log("Not active visit");
@@ -88,7 +90,7 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 	appServicem.activeVisit = function (id) {
 		var defer = $q.defer();
 		console.log(id);
-		if(id == undefined){ 
+		if(id == undefined){
 		console.log(' this is null');
 		$http.get('/api/v1/secure/visits/all/activeVisit',{
 			cache: true
@@ -96,10 +98,14 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 			$http.get('/token').success(function (user, status) {
 
 				var visitStatus = response.visits.status;
-				
+
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log(user.groups);
+<<<<<<< HEAD
+
+					if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
+=======
 					if(user.groups.includes("admin") === true){
 						var group = "admin";
 					}else
@@ -110,9 +116,10 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 					}else if(user.groups.includes("user") === true){
 						var  group = "user";
 					}
-					
-					
+
+
 					if(group=='vManager'|| group=='admin' || group=='user')
+>>>>>>> e5195cfa09cb62b59fe418a920a4fc743d1584af
 					{
 						defer.resolve(response.visits);
 					}
@@ -145,7 +152,7 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
              console.log(response);
              console.log(status);
              var visitStatus = response.status;
-             
+
              if(response !== undefined){
              	console.log(visitStatus);
              	console.log(user.groups);
@@ -159,8 +166,8 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 					}else if(user.groups.includes("user") === true){
 						var  group = "user";
 					}
-					
-					
+
+
              	if(group=='vManager'|| group=='admin' || group=='user')
              	{
              		defer.resolve(response);

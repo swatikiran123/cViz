@@ -5,6 +5,7 @@
 var express  = require('express');
 var expressLayouts = require('express-ejs-layouts')
 var favicon = require('serve-favicon');
+var helmet = require('helmet');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
@@ -31,6 +32,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(helmet());      // http header security
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.set('layout', 'layouts/mmain')
@@ -101,5 +103,6 @@ var util = require('./scripts/util');
 var appInfoServ = require('./services/appService');
 
 var appInfo = appInfoServ.info();
-console.log(colors.blue(util.formatString("\nApplication: %s ver %s:%s", appInfo.name, appInfo.version, appInfo.gitHash )));
+console.log(colors.blue(util.formatString("\nApplication: %s on %s environment ver %s:%s",
+  appInfo.name, config.get("env"), appInfo.version, appInfo.gitHash )));
 console.log(colors.blue(util.formatString('   running at port %s', port)));

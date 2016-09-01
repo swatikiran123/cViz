@@ -7,7 +7,12 @@ angular.module('clients', ['ngRoute', 'angular-growl'])
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
+      $http.defaults.headers.common["x-access-token"] = user.token.token;
+      $http.defaults.headers.common["x-key"] = user._id;
 		}
+    else {
+      $location.load("/login");
+    }
 	});
 })
 

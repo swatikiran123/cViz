@@ -86,7 +86,6 @@ userSchema.pre('save', function(callback) {
     // Break out if the password hasn't changed
     //if (!user.isModified('password')) return callback();
     this.token = genToken();
-    console.log("token updated");
     callback();
 
   // Password changed so we need to hash it
@@ -118,6 +117,16 @@ userSchema.post('find', function(result) {
   // prints number of milliseconds the query took
   //console.log('find() took ' + (Date.now() - this.start) + ' millis');
 });
+
+// exclude unwanted and sensitive data from exposed results
+userSchema.methods.toJSON = function() {
+  var obj = this.toObject();
+  delete obj.local;
+  delete obj.facebook;
+  delete obj.twitter;
+  delete obj.google;
+  return obj;
+}
 
 // generating a hash
 userSchema.methods.generateHash = function(password) {

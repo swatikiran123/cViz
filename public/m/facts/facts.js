@@ -6,7 +6,9 @@ angular.module('facts', ['ngRoute','pdf'])
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
-			console.log($rootScope.user);
+			//console.log($rootScope.user);
+      $http.defaults.headers.common["x-access-token"] = user.token.token;
+      $http.defaults.headers.common["x-key"] = user._id;
 		}
     else {
 			// user not found, ask to login
@@ -25,22 +27,22 @@ angular.module('facts', ['ngRoute','pdf'])
   .when('/city/:name', {
     templateUrl: '/public/m/city/city.html',
     controller: 'cityCtrl'
-  })	
+  })
 
   .when('/qFacts', {
     templateUrl: '/public/m/facts/segments/qFacts.html',
     controller: 'factsCtrl'
-  })	
+  })
 
   .when('/indiaLocs', {
     templateUrl: '/public/m/facts/segments/indiaLocs.html',
     controller: 'factsCtrl'
-  })  
+  })
 
   .when('/rewards', {
     templateUrl: '/public/m/facts/segments/certs.html',
     controller: 'factsCtrl'
-  })  
+  })
 
 	// if none of the above states are matched, use this as the fallback
   $routeProvider.otherwise('/main');

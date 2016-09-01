@@ -7,6 +7,8 @@ angular.module('users', ['ngRoute','angular-growl','ngMaterial','ngMessages','ng
 		.success(function (user, status) {
 		if (user) {
 			$rootScope.user = user;
+      $http.defaults.headers.common["x-access-token"] = user.token.token;
+      $http.defaults.headers.common["x-key"] = user._id;
 		}
 	});
 })
