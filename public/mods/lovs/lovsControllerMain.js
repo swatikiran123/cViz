@@ -4,7 +4,8 @@ var lovsApp = angular.module('lovs', []);
 lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'growl','$rootScope',
   function($scope, $http, $routeParams, growl,$rootScope) {
 
-
+var refresh = function()
+{
     $http.get('/api/v1/secure/lov/influence').success(function(response) {
       $scope.influence = response.values;
     // console.log($scope.influence);
@@ -40,8 +41,13 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
       $scope.sessionType = response.values;
     // console.log($scope.vertical);
   });
-
-
+};
+refresh();
+    
+function htmlToPlaintext(text) {
+  console.log(text);    
+  return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+}
 
     $scope.addInfluence = function() {
       if ($scope.newInfluenceValue == '' || $scope.newInfluenceValue == undefined)
@@ -57,7 +63,9 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/influence', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New Influence [%s]<br/>added successfully",$scope.newInfluenceValue));
+          console.log("THIS OS REFRESH")
+          refresh();
+          growl.info(parse("New Influence [%s]<br/>added successfully",htmlToPlaintext($scope.newInfluenceValue)));;
           $scope.newInfluenceValue = '';
         });
       }
@@ -105,7 +113,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
           $http.put('/api/v1/secure/lov/regions', obj).success(function(response)
           {
             console.log(response);
-            growl.info(parse("New Region [%s]<br/>added successfully",$scope.newRegionsValue));
+            refresh();
+            growl.info(parse("New Region [%s]<br/>added successfully",htmlToPlaintext($scope.newRegionsValue)));
             $scope.newRegionsValue = '';
           });
       }
@@ -126,7 +135,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/locations', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New Location [%s]<br/>added successfully",$scope.newLocationsValue));
+          refresh();
+          growl.info(parse("New Location [%s]<br/>added successfully",htmlToPlaintext($scope.newLocationsValue)));
           $scope.newLocationsValue = '';
         });
       }
@@ -147,7 +157,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/offerings', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New offerings [%s]<br/>added successfully",$scope.newOfferingsValue));
+          refresh();
+          growl.info(parse("New offerings [%s]<br/>added successfully",htmlToPlaintext($scope.newOfferingsValue)));
           $scope.newOfferingsValue = '';
         });
       }
@@ -169,7 +180,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/contactType', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New Contact-type [%s]<br/>added successfully",$scope.newContactTypeValue));
+          refresh();
+          growl.info(parse("New Contact-type [%s]<br/>added successfully",htmlToPlaintext($scope.newContactTypeValue)));
           $scope.newContactTypeValue = '';
         });
       }
@@ -191,7 +203,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/vertical', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New Vertical [%s]<br/>added successfully",$scope.newVerticalValue));
+          refresh();
+          growl.info(parse("New Vertical [%s]<br/>added successfully",htmlToPlaintext($scope.newVerticalValue)));
           $scope.newVerticalValue = '';
         });
       }
@@ -213,7 +226,8 @@ lovsApp.controller('lovsControllerMain', ['$scope', '$http', '$routeParams', 'gr
         $http.put('/api/v1/secure/lov/sessionType', obj).success(function(response)
         {
           console.log(response);
-          growl.info(parse("New Vertical [%s]<br/>added successfully",$scope.newSessionTypeValue));
+          refresh();
+          growl.info(parse("New Vertical [%s]<br/>added successfully",htmlToPlaintext($scope.newSessionTypeValue)));
           $scope.newSessionTypeValue = '';
         });
       }
