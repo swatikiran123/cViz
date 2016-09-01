@@ -454,13 +454,17 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 	}); // http delete visitSchedule ends
 	}; // delete method ends
 
+	function htmlToPlaintext(text) {
+		console.log(text);    
+		return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+	}
 	$scope.saveSessionTemplate = function(sessionTemplateTitle) {
 	    delete $scope.schedule._id;
 		$scope.schedule.visit = $scope.visit._id;
 		$scope.schedule.invitees = $scope.arraydata;
 		$scope.schedule.session.owner = $scope.ownerId;
 		$scope.schedule.session.supporter = $scope.supporterId;
-        $scope.schedule.sessionTemplateTitle = sessionTemplateTitle;
+        $scope.schedule.sessionTemplateTitle = htmlToPlaintext(sessionTemplateTitle);
 
 
 	  	if($scope.schedule.session.type == "Tea-Break" || $scope.schedule.session.type =="BreakFast" || $scope.schedule.session.type =="Lunch" || $scope.schedule.session.type =="Dinner" || $scope.schedule.session.type.toLowerCase() == "tea-break" || $scope.schedule.session.type.toLowerCase() =="breakfast" || $scope.schedule.session.type.toLowerCase() =="lunch" || $scope.schedule.session.type.toLowerCase() == "dinner")

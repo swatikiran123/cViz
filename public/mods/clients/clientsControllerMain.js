@@ -308,13 +308,17 @@ clientsApp.controller('clientsControllerMain', ['$scope','appUserService', '$htt
       var name = inData.name
       $http.post('/api/v1/secure/clients', inData).success(function(response) {
         refresh();
-        growl.info(parse("New client has been added – [%s]", name));
+        growl.info(parse("New client has been added – [%s]", htmlToPlaintext(name)));
       })
       .error(function(data, status){
         growl.error("Error adding client");
     }); // http post keynoges ends
   }; // create method ends
 
+  function htmlToPlaintext(text) {
+    console.log(text);
+    return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+  }
   $scope.delete = function(clients) {
     var name = clients.name;
     $http.delete('/api/v1/secure/clients/' + clients._id).success(function(response) {

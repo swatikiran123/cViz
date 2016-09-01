@@ -50,21 +50,23 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-//multer for storing the images locally
-// app.use(multer({
-//  // dest: './uploads/',
-//   dest: './public/uploads/profilePics',
-//  rename:function(fieldname,filename){
-//     return Date.now() + '.jpg';
-//   },
-//   onFileUploadComplete: function(file) {
-//   console.log(file.fieldname + ' uploaded to the ' + file.path);
-// }
-// }));
-
 //multer for storing images locally and dynamically based on the entity value.
 app.use('/api/v1/upload/:entity',multer({
   dest: './public/uploads/',
+  onFileUploadStart: function (file) {
+    var mimeType = file.mimetype;
+    var extension = file.extension;
+
+    if(extension !== 'jpg' && extension !=='jpeg' && extension !=='png' &&  extension !=='gif' && extension !=='doc' 
+      && extension !=='docx' && extension !== 'ppt' && extension !=='pptx' && extension !=='xls' &&  extension !=='xlsx' 
+      && extension !=='pdf' && extension !=='mp4' &&  extension !=='mkv' && extension !=='avi' && extension !=='wmv' 
+      && extension !=='mp3' && extension !=='wav' && extension !=='aac' && extension !=='PNG' && extension !=='JPG' 
+      && extension !=='JPEG' && extension!=='GIF')
+    {
+      console.log("INVALID FILE ENTERED INTO SYSTEM");
+      return false;
+    }
+  },
   rename:function(fieldname,filename){
     return Date.now() + '.jpg';
   },
@@ -81,6 +83,20 @@ app.use('/api/v1/upload/:entity',multer({
 //multer for storing images locally and dynamically based on the entity value.
 app.use('/api/v1/multiupload/:entity',multer({
   dest: './public/uploads/',
+  onFileUploadStart: function (file) {
+    var mimeType = file.mimetype;
+    var extension = file.extension;
+
+    if(extension !== 'jpg' && extension !=='jpeg' && extension !=='png' &&  extension !=='gif' && extension !=='doc' 
+      && extension !=='docx' && extension !== 'ppt' && extension !=='pptx' && extension !=='xls' &&  extension !=='xlsx' 
+      && extension !=='pdf' && extension !=='mp4' &&  extension !=='mkv' && extension !=='avi' && extension !=='wmv' 
+      && extension !=='mp3' && extension !=='wav' && extension !=='aac' && extension !=='PNG' && extension !=='JPG' 
+      && extension !=='JPEG' && extension!=='GIF')
+    {
+      console.log("INVALID FILE ENTERED INTO SYSTEM");
+      return false;
+    }
+  },
   rename:function(fieldname,filename){
    return filename + '_' + Date.now();
   },
@@ -93,6 +109,7 @@ app.use('/api/v1/multiupload/:entity',multer({
     console.log(file.fieldname + ' uploaded to the ' + file.path);
   }
 }));
+
 // routes ======================================================================
 require('./routes/main')(app, passport);
 
