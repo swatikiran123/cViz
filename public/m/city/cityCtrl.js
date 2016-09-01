@@ -1,10 +1,19 @@
 var app = angular.module('facts');
 
-app.controller('cityCtrl', function ($scope, $location, $routeParams, $http, NgMap) {
+app.controller('cityCtrl', function ($scope, $location, $routeParams, $http, NgMap, pdfDelegate, $timeout) {
   console.log("City Controller Running");
   $scope.name = $routeParams.name;
   $scope.order = 0;
+  
+      $http.get('/api/v1/secure/facts').success(function(response) {
 
+      $scope.factsList = response;
+console.log($scope.factsList);
+
+    
+
+ // switch scope.mode ends
+    });
   $scope.searchWeather = function () {
    var searchTerm = $scope.name;
    $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=metric&APPID=73136fa514890c15bc4534e7b8a1c0c4',{

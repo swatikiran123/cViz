@@ -32,10 +32,13 @@ keynotesApp.controller('keynotesControllerMain', ['$scope', 'appUserService','$h
       // $scope.keyTruedone=true;
       $scope.signatory1Submit = true;
 
-        $scope.groupMember = $scope.activeUser.groups;
-      if ($scope.activeUser.groups.indexOf("vManager") > -1 ) {
+      $scope.groupMember = $scope.activeUser.groups;
+      if ($scope.activeUser.groups.includes("admin") === true ) {
+        $scope.isSaving= false; 
+      }
+      else if ($scope.activeUser.groups.includes("vManager") === true) {
         $scope.isSaving= true; 
-      }      
+      }     
       // if ($rootScope.user.groups.indexOf("vManager") > -1 ) {
       //   $scope.isSaving= true; 
       // }

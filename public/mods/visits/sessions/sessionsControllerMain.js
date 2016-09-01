@@ -77,13 +77,42 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
 			// console.log($scope.prTypes);
 		});
 
+		$http.get('/api/v1/secure/visits/'+$scope.visitId+'/execs',{
+			cache: true
+		}).success(function(response) {
+			$scope.cscData = response["employees"];
+			$scope.clientData = response["clients"];
+			$scope.uniClient = [];
+		//console.log($scope.clientData);
+		for (var i = 0; i < $scope.clientData.length; i++) {
+			if($scope.clientData[i].association == "customer" || $scope.clientData[i].association == "CUSTOMER"){
+				$scope.uniClient.push($scope.clientData[i]);
+			}
+		}
 
+		for (var i = 0; i < $scope.clientData.length; i++) {
+			if($scope.clientData[i].association == "employee" || $scope.clientData[i].association == "employee"){
+				$scope.cscData.push($scope.clientData[i]);
+			}
+		}
+		console.log($scope.uniClient);
+		console.log($scope.cscData);
+	});
 		var refresh = function(){
 			$http.get('/api/v1/secure/visitSchedules/visit/' + $scope.visitId ).success(function(response) {
 				$scope.scheduleList = response;
 			}); // get visitSchedule call back ends
 		}; // refresh method ends
 
+
+	$scope.getClass = function (strValue) {
+		if (strValue == ("cancelled")){
+			console.log("hello");
+			return "tdb";
+	}
+		}
+
+	
 		init();
 		refresh();
 
@@ -551,6 +580,14 @@ visitsApp.controller('sessionsControllerMain', ['$scope', '$http', '$routeParams
             popupWinindow.document.open();
             popupWinindow.document.write('<link rel="stylesheet" href="/public/assets/w/styles/dataview-table.css" /><link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.css"/><link rel="stylesheet" media="print" href="/public/assets/w/styles/print.css" type="text/css" /><link rel="stylesheet" href="/public/assets/w/styles/printCustom.css" /><body onload="window.print()">' + $scope.innerContents + '</body>');
             popupWinindow.document.close();
+        }
+
+        $scope.calendarInviteSession = function(scheduleId)
+        {
+        	console.log(scheduleId);
+        	$http.get('/api/v1/secure/email/'+ scheduleId +'/calendarinvites').success(function(response) {
+        		console.log(response);
+           	})
         }
 	}
 

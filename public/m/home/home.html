@@ -1,34 +1,37 @@
+<style>
+  .pageheader::-webkit-media-controls {
+    display:none !important;
+}
+</style>
 
-<!-- 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+<div class="pageheader">
+  <video autoplay loop id="video-header" poster="/public/assets/m/video-bg/mountain.jpg">
+          <source src="/public/assets/m/video-bg/mountain.mp4" type="video/mp4"/>
+          <source src="/public/assets/m/video-bg/mountain.webm" type="video/ogg"/>
 
-<div scroll id="profile-details">
-
-    <div class="notifications" ng-hide="group == 'exec'">
+          Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+    <div class="overlay" id="profile-details">
+     
+    <div class="notifications pull-right" ng-hide="group == 'exec'" >
        <!--a type="button" data-toggle="modal" data-target="#myModal"><img src="/public/assets/m/img/ic/ibox-f.png"></a-->
-       <span type="button" ng-if="button=='enable'" data-toggle="modal" data-target="#videoModal"><img class="img-circle" src="/public/assets/m/img/bg/namaste_hands.png" height="35" width="44"></span>
+       <button type="button" class="bc" data-toggle="modal" data-target="#videoModal"><img class="img-circle" src="/public/assets/m/img/bg/namaste_hands.png" height="35" width="44"></button>
 
        <span ng-include src="'/public/m/home/welcome.html'"></span>
    </div>
-   
-
-   <!-- Modal -->
-
-
-
-   <div class="profile-pic"><img src="{{user.avatar}}"></div>
+   <div class="profile-pic" ><img  src="{{user.avatar}}"></div>
    <div class="profile-name">{{user.name.first}} {{user.name.last}}</div>
    <div class="profile-desc">{{user.jobTitle}} {{user.organization}}</div>
 <!--    <div class="profile-location">
      <location-picker ng-model="pickedLocation" limit-to="1"></location-picker>
 
- </div> -->
+ </div> --> 
 
  <div class="scroll-outer" >
     <div class="load" ng-repeat="objs in dayHighlighter"  ng-show="loading"><img src="/public/assets/m/img/bg/ajax-loading.gif"/></div>
     <div id="scrollBox" align="center" class="scroll-inner">
         <div ng-repeat="objs in dayHighlighter">
-        	<a ng-href="/m/visits/#/sessions/{{visitId}}/?day={{objs.day}}">
+          <a ng-href="/m/visits/#/sessions/{{visitId}}/?day={{objs.day}}">
            <div>
             <fieldset>
 <br>
@@ -45,10 +48,10 @@
             </div>
         </div>
     </div>
-
 </div>
+    </div>
 
-
+<div class="icons-pad">
 <div class="container" id="menu">
     <div class="container" id="menu">
         <div class="row">
@@ -129,4 +132,5 @@
       </div>
     </div>
     </div>
+</div>
 </div>

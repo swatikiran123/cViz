@@ -16,7 +16,7 @@
     <ul class="dropdown-menu callouts--left">
       <li><a href="/manage/#/clients/list">Clients</a></li>
       <li><a href="/customize/#/keynotes/list">Keynotes</a></li>
-      <!--li><a href="/customize/#/facts/list">Facts</a></li-->
+      <li><a href="/customize/#/facts/add">Facts</a></li>
       <li><a href="/customize/#/contactList/list">Contact List</a></li>
       <li><a href="/customize/#/meetingPlaces/list">Meeting Places</a></li>
       <li role="separator" class="divider"></li>
@@ -24,7 +24,7 @@
       <li><a href="/customize/#/feedbackTmpl/list">Feedback</a></li>
       <!--li><a href="/customize/#/teasers/list">Teasers</a></li-->
       <li ng-if="<%=locals.user.get('groups').indexOf("admin") > -1%>"><a href="/customize/#/lovs/">List of values</a></li>
-      <li ng-if="<%=locals.user.get('groups').indexOf("vManager") > -1%>"><a href="/customize/#/lovs/details/">List of values</a></li>
+      <li ng-if="<%=locals.user.get('groups').indexOf("vManager") > -1%> && <%=locals.user.get('groups').length == 8%>"><a href="/customize/#/lovs/details/">List of values</a></li>
 
     </ul>
   </li>

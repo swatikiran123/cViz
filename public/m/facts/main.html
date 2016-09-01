@@ -1,5 +1,13 @@
+<style>canvas{width:100%; height:100%;}
 
+ a:nth-child(5) {
+    display: none;
+}
+</style>
+<link rel="stylesheet" href="/public/assets/m/css/basscss.css">
 <div header showprofile="false" icon="fa fa-info-circle" title1="Fact Sheet" title2="CSC India">
+
+
 <div>
 
 
@@ -11,11 +19,10 @@
                 </div>
 
                 <ul class="dropdown-menu">
-                    <li><a href ng-click="openqFacts()">Quick Facts</a></li>
-                    <li class="divider"></li>
+                  
                     <li><a href ng-click="openindiaLocs()">India Delivery Locations</a></li>
-                    <li class="divider"></li>
-                    <li><a href ng-click="opencerts()">Rewards & Recognition</a></li>
+                
+        
                 </ul>
 
              </div>
@@ -23,16 +30,34 @@
           </div>
     </div>
 
-<br>
-<br>
-<br>
-<br>
-        <div class="factsheet-top-block">
 
-            <h1 class="map-title"><!-- Quick Facts --></h1>
+<div ng-repeat="item in factsList" style="padding-top:150px">
+  
+    
+
+<div class="container ">
+    
+
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.indiafact"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+</div>
+
+    </div>
+  </div>
+    </div>
+</div>
+
+       <!--  <div class="factsheet-top-block">
+
+            <h1 class="map-title"></h1>
             <div>
             <img class="cschexagons" src="/public/uploads/images/csc-hexa.jpg">
             </div>
+        </div> -->
             
 <!-- 
             <div class="toprow">
@@ -75,8 +100,8 @@
                 </div>
             </div>
         </div> -->
-</div>
-   <div class="factsheet-down-block">
+
+<!--    <div class="factsheet-down-block">
         <div id="cscJourney">
             <h1 class="map-title">CSC India Journey so far</h1>
             <div class="ftb-journey-block" ng-repeat="journeyImage in journeyImages">
@@ -97,4 +122,4 @@
             </div>
         </div>
    
-   </div>
+   </div> -->

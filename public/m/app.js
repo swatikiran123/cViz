@@ -39,7 +39,19 @@ serv.factory('appService', ['$http', '$q', function ($http, $q){
 					console.log('this is null');
 					console.log(user.groups);
 
-					if(user.groups=='vManager'|| user.groups=='admin')
+					if(user.groups=='vManager'|| user.groups=='admin'){
+						var group = "admin";
+					}else
+					if(user.groups.includes("vManager") === true){
+						var  group = "vManager";
+					}else if(user.groups.includes("exec") === true){
+						var  group = "exec";
+					}else if(user.groups.includes("user") === true){
+						var  group = "user";
+					}
+
+					if(group=='vManager'|| group=='admin')
+>>>>>>> e5195cfa09cb62b59fe418a920a4fc743d1584af
 					{
 						defer.resolve(response.visits);
 					}
@@ -90,8 +102,24 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
 				if(response.visits !== undefined){
 					console.log(visitStatus);
 					console.log(user.groups);
+<<<<<<< HEAD
 
 					if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
+=======
+					if(user.groups.includes("admin") === true){
+						var group = "admin";
+					}else
+					if(user.groups.includes("vManager") === true){
+						var  group = "vManager";
+					}else if(user.groups.includes("exec") === true){
+						var  group = "exec";
+					}else if(user.groups.includes("user") === true){
+						var  group = "user";
+					}
+
+
+					if(group=='vManager'|| group=='admin' || group=='user')
+>>>>>>> e5195cfa09cb62b59fe418a920a4fc743d1584af
 					{
 						defer.resolve(response.visits);
 					}
@@ -128,7 +156,19 @@ serv.factory('appServicem', ['$http', '$q', function ($http, $q){
              if(response !== undefined){
              	console.log(visitStatus);
              	console.log(user.groups);
-             	if(user.groups=='vManager'|| user.groups=='admin' || user.groups=='user')
+             	if(user.groups.includes("admin") === true){
+						var group = "admin";
+					}else
+					if(user.groups.includes("vManager") === true){
+						var  group = "vManager";
+					}else if(user.groups.includes("exec") === true){
+						var  group = "exec";
+					}else if(user.groups.includes("user") === true){
+						var  group = "user";
+					}
+
+
+             	if(group=='vManager'|| group=='admin' || group=='user')
              	{
              		defer.resolve(response);
              	}

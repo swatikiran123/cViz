@@ -30,11 +30,11 @@
       "service": "gmail",
 
       "auth": {
-          "user": "sgoud0099@gmail.com",
+          "user": "randresson0099@gmail.com",
           "pass": "admin0099"
       }
     },
-		"from": "sgoud0099@gmail.com",
+		"from": "randresson0099@gmail.com",
     "send-mails": "true"
   }
 

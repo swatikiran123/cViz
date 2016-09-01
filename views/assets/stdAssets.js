@@ -215,7 +215,15 @@ module.exports = {
 		],
 		"prod":[
 		]
-	}
+	},
+
+		"angular-pdf":{
+		"cdn":[],
+		"dev":[
+		"/public/libs/pdfjs-dist/build/pdf.combined.js",
+		"/public/assets/js/angular-pdf-viewer.min.js"
+		],
+	},
 
 }
 

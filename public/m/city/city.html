@@ -5,8 +5,16 @@
     max-height: 200px;
     overflow-x: hidden;
 }
-
+canvas{width:100%; height:100%;}
+ a:nth-child(5) {
+    display: none;
+}
+.city-card1{
+    font-size: 14px;
+}
 </style>
+
+<link rel="stylesheet" href="/public/assets/m/css/basscss.css">
 <div header showprofile="false" icon="fa fa-info-circle" title1="{{name | uppercase}}" title2="City Facts">
     <div>
 
@@ -54,13 +62,13 @@
  <div class="cvm-gallery-header">
  <div class="city-card1">
         <h1 class="headerTitle">{{name | uppercase}}</h1>
-
+<!-- 
         <div class="header-temp-div">
-            <!-- <img src="/public/assets/m/img/ic/sunny-icon.png" class="sec1"> -->
+
             <img ng-src="{{icon}}"class="sec1">
             <span class="sec2">{{weatherData.main.temp}}</span>
             <span class="sec6">&deg;C</span>
-        </div>
+        </div> -->
 
         <div class="header-precipitation-div">
             <div class="sec1">
@@ -97,7 +105,131 @@
 </div>
 
 <br>
-    <div class="city-card">
+<div class="city-card">
+    <div ng-repeat="item in factsList">
+<div ng-if="name == 'Noida'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.noida"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+<div ng-if="name == 'Indore'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.indore"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+<div ng-if="name == 'Vadodara'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.vadodara"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+</div>
+</div>
+
+<div ng-if="name == 'Mumbai'">
+
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.mumbai"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Hyderabad'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.hyderabad"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'banglore'">
+<div class="conatiner">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.banglore"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Chennai'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.chennai"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Solan'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.solan"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Shimoga'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.shimoga"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Gurgaon'">
+<div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.Gurgaon"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+<div ng-if="name == 'Pune'">
+    <div class="container">
+      <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="item.pune"
+        scale="1"
+        show-toolbar="true"
+        headers="{'x-you-know-whats-awesome': 'EVERYTHING'}"></pdf-viewer>
+    </div>
+</div>
+
+
+</div>
+<!--     <div class="city-card">
     <div class="banner">
         <img ng-src="{{bannerLink}}" />
     </div>
@@ -116,7 +248,7 @@
 
 
     </ul>
-     </div>
+     </div> -->
 
 <br>
 <!--     <div class="city-card1">
