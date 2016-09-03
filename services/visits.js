@@ -14,7 +14,7 @@ var scheduleModel   = require(constants.paths.models +  '/visitSchedule');
 var clientModel           = require(constants.paths.models +  '/client');
 var userModel           = require(constants.paths.models +  '/user');
 var executivesModel		= require(constants.paths.models + '/executives');
-var regionsModel		= require(constants.paths.models + '/regions')
+var regionsModel		= require(constants.paths.models + '/regions');
 
 // Service method definition -- Begin
 var service = {};
@@ -1072,6 +1072,17 @@ var deferred = Q.defer();
 
 								console.log(json.flag);
 								console.log(json._id);
+								if(json.flag == 'updated')
+								{	
+									var emailController = require(constants.paths.scripts + "/email");
+									emailController.calendarInvites(json._id);
+								}
+
+								if(json.flag == 'cancelled')
+								{
+									var emailController = require(constants.paths.scripts + "/email");
+									emailController.cancelledCalendarInvites(json._id);
+								}
 							});	
 					});deferred.resolve(allSessions);
 				

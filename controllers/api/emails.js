@@ -66,7 +66,11 @@ function sendMails(req, res){
 
 		case "calendarinvites":
 			emailService.calendarInvites(req.params.id);
-			break;		
+			break;
+
+		case "cancelcalendarinvites":
+			emailService.cancelledCalendarInvites(req.params.id);
+			break;			
 
 		default:
 			res.status(404).send("Action could not be identified");
