@@ -40,8 +40,12 @@ module.exports = function(req, res, next) {
       users.getOneById(key)
         .then(function(user){
             if (user){
+              var queryStrings = ["groups", "users"];
+              var usersGroupPresent = CheckIfAllQueryStringsExist(req.url, queryStrings);
+
               if ((req.url.indexOf('admin') >= 0 && secure.isInAnyGroups(user,"admin") == true) ||
-              (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)){
+              (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0) || usersGroupPresent || req.url.includes('/users/email/')
+              || req.url.includes('/find/find?query') || req.url.length == 51){
       					next(); // To move to next middleware
               }
               else {
@@ -70,7 +74,14 @@ module.exports = function(req, res, next) {
             });
         });
 
-
+        function CheckIfAllQueryStringsExist(url, qsCollection) {
+        	for (var i = 0; i < qsCollection.length; i++) {
+        		if (url.indexOf(qsCollection[i]) == -1) {
+        			return false;
+        		}
+        	}
+        	return true;
+        }
 
 			// if (dbUser) {
 			// 	if ((req.url.indexOf('admin') >= 0 && dbUser.role == 'admin') || (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {

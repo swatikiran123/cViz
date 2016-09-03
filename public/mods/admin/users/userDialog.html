@@ -24,9 +24,6 @@
 
         <!-- table body -->
         <tbody md-body>
-        <div ng-if="name!=''">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Selected user is a part of the group {{groupNames}}</i>
-        </div>
           <tr md-row ng-repeat="group in grouplist" >
             <td md-cell><input type="checkbox" value="{{group._id}}" ng-checked="selection.indexOf(group._id) > -1" ng-click="toggleSelection(group._id)" class="checkbox-inline"></td>
 						<td class="md-usrTogrp-grName">{{group.name}}</td>
