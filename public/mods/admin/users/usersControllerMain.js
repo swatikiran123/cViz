@@ -10,6 +10,7 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
     var id = $routeParams.id;
     $scope.regEx="/^[0-9]{10,10}$/;";
     $scope.mode=(id==null? 'add': 'edit');
+
     //fetching all the user details by calling refresh function
     var refresh = function() {
       $http.get('/api/v1/secure/admin/users').success(function(response) {
@@ -143,21 +144,40 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
   // getting user details and show dialog box when clicking on group icon
   $scope.getUserDetails = function(id,ev) {
+        // selected groups
+    $scope.selection = [];
+    $scope.selectedgroup = null;
+    // console.log(id);
+    $scope.usersid = id;
+
+    $http.get('/api/v1/secure/admin/groups').success(function(response) {
+      $scope.grouplist = response;
+      $scope.group = "";
+    });
+
+    $http.get('/api/v1/secure/admin/users/' +  id).success(function(response) {
+      $scope.users=response;
+      console.log($scope.users);
+      for (var i=0;i<$scope.users.memberOf.length;i++)
+      {
+        $scope.selection.push($scope.users.memberOf[i]);
+      }
+      // $scope.dataSelection = $scope.selection;
+    });
+     // console.log($scope.selection);
+
     $mdDialog.show({
-     controller: Dialog,
      templateUrl: '/public/mods/admin/users/userDialog.html',
-     locals: { usersid: id },
      parent: angular.element(document.body),
      targetEvent: ev,
-     clickOutsideToClose:true
+     clickOutsideToClose:false,
+     scope:$scope.$new()
    }).then(function(response) {
         refresh();
       });
   };
 
-    // selected groups
-    $scope.selection = [];
-    $scope.selectedgroup = null;
+
 
     // toggle selection for a given group by name
     $scope.toggleSelection = function toggleSelection(groupId) {
@@ -177,7 +197,7 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
     // add user to the group which admin has selected
     $scope.addGroup = function(selection,usersid) {
-
+      console.log(selection);
       for (var i=0;i<selection.length;i++)
       {
 
@@ -213,23 +233,25 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
 
       $http.get('/api/v1/secure/admin/users/' + usersid).success(function(response) {
         $scope.users=response;
-
+        $scope.users.memberOf = [];
+        console.log(selection);
         angular.forEach(selection, function(value, key) {
 
-          // if groups already exists in users data,don't include groups in users data.
-          var groupFound = $scope.users.memberOf.reduce(function(previous, i){
-            if (value === i) return true;
-            return previous;
-          }, false);
-          if (groupFound){
-              //alert('The selected user is already a part of this group.' + value);
-            }
-            //else add group to users data one by one
-            else{
-              $scope.users.memberOf.push(value);
-            }
-          });
+          // // if groups already exists in users data,don't include groups in users data.
+          // var groupFound = $scope.users.memberOf.reduce(function(previous, i){
+          //   if (value === i) return true;
+          //   return previous;
+          // }, false);
+          // if (groupFound){
+          //     //alert('The selected user is already a part of this group.' + value);
+          //   }
+          //   //else add group to users data one by one
+          //   else{
 
+              $scope.users.memberOf.push(value);
+            // }
+          });
+        console.log($scope.users);
         $http.put('/api/v1/secure/admin/users/' + usersid,$scope.users).success(function(response) {
           growl.info(parse("Groups added successfully for user <br/>Name: %s %s<br/>Email: %s"
 						, $scope.users.name.first
@@ -403,28 +425,6 @@ usersApp.controller('usersControllerMain', ['$scope', '$http', '$routeParams','$
   $scope.cancelButton = function () {
     $location.path("/users/");
   }
-  }]);
-
-
-
-function Dialog($scope, $mdDialog,$http,usersid) {
-
-  $scope.usersid = usersid;
-  $scope.name = [];
-  $scope.groupid = [];
-
-  $http.get('/api/v1/secure/admin/users/' +  $scope.usersid).success(function(response) {
-        $scope.users=response;
-        for (var i=0;i<$scope.users.memberOf.length;i++)
-        {
-          $http.get('/api/v1/secure/admin/groups/' + $scope.users.memberOf[i]).success(function(response){
-            $scope.name.push(response.name).toString();
-            $scope.groupid.push(response._id);
-            $scope.groupNames = $scope.name.toString();
-          });
-        }
-  });
-
 
   $scope.hide = function() {
     $mdDialog.hide();
@@ -432,7 +432,38 @@ function Dialog($scope, $mdDialog,$http,usersid) {
   $scope.cancel = function() {
     $mdDialog.cancel();
   };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
+  }]);
+
+
+
+// function Dialog($scope, $mdDialog,$http,usersid) {
+
+//   $scope.usersid = usersid;
+//   $scope.name = [];
+//   $scope.groupid = [];
+//   $scope.selection = [];
+
+//   $http.get('/api/v1/secure/admin/users/' +  $scope.usersid).success(function(response) {
+//         $scope.users=response;
+//         for (var i=0;i<$scope.users.memberOf.length;i++)
+//         {
+//           $scope.selection.push($scope.users.memberOf[i]);
+//           $http.get('/api/v1/secure/admin/groups/' + $scope.users.memberOf[i]).success(function(response){
+//             $scope.name.push(response.name).toString();
+//             $scope.groupid.push(response._id);
+//             $scope.groupNames = $scope.name.toString();
+//           });
+//         }
+//   });
+
+
+//   $scope.hide = function() {
+//     $mdDialog.hide();
+//   };
+//   $scope.cancel = function() {
+//     $mdDialog.cancel();
+//   };
+//   $scope.answer = function(answer) {
+//     $mdDialog.hide(answer);
+//   };
+// }
