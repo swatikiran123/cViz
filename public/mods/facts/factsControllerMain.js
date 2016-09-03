@@ -70,7 +70,7 @@ console.log($scope.mode);
       $scope.array1.push(response.indiafact);
       $scope.array2.push(response.noida);
       $scope.array3.push(response.indore);
-      $scope.array4.push(response.vadadora);
+      $scope.array4.push(response.vadodara);
       $scope.array5.push(response.mumbai);
       $scope.array6.push(response.hyderabad);
       $scope.array7.push(response.banglore);
@@ -95,14 +95,15 @@ console.log($scope.mode);
     $scope.facts.locationfact = $scope.arrayloc.toString();
     $scope.facts.noida = $scope.array2.toString();
     $scope.facts.indore = $scope.array3.toString(); 
-    $scope.facts.vadodora = $scope.array4.toString();
+    $scope.facts.vadodara = $scope.array4.toString();
     $scope.facts.mumbai = $scope.array5.toString();
     $scope.facts.hyderabad = $scope.array6.toString();
     $scope.facts.banglore = $scope.array7.toString();
     $scope.facts.chennai = $scope.array8.toString();
     $scope.facts.solan = $scope.array9.toString(); 
-    $scope.facts.gurgaon = $scope.array10.toString();
-    $scope.facts.pune = $scope.array11.toString(); 
+    $scope.facts.shimoga = $scope.array10.toString();
+     $scope.facts.gurgaon  = $scope.array11.toString();
+    $scope.facts.pune = $scope.array12.toString(); 
 
         
     console.log( $scope.facts.indiafact);
@@ -117,7 +118,7 @@ console.log($scope.mode);
       break;
       } // end of switch scope.mode ends
 
-      $location.path("facts/list");
+      
   } // end of save method
 
   $scope.create = function() {
@@ -158,7 +159,7 @@ console.log($scope.mode);
   $scope.update = function() {
     $http.put('/api/v1/secure/facts/' + $scope.facts._id, $scope.facts).success(function(response) {
       refresh();
-      growl.info(parse("fact [%s]<br/>Edited successfully"));
+      growl.info(parse("fact <br/>Edited successfully"));
     })
     .error(function(data, status){
       growl.error("Error updating fact");
@@ -168,7 +169,6 @@ console.log($scope.mode);
   $scope.cancel = function() {
 
     $scope.facts="";
-    $location.path("facts/list");
   }
 
   $scope.getUser = function(){

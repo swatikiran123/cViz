@@ -289,7 +289,7 @@ function pushSession(req,res){
 
   dataService.pushSession(sessionId, time, sesnstatus, ssnpushtype)
     .then(function(data){
-        res.status(200).send("Session moved successfully");
+        res.status(200).send(data);
     })
     .catch(function (err){
         console.log("exception" + err);
@@ -303,9 +303,12 @@ function  updateSessions(req, res) {
  var allSessions = req.param('allSessions');
 
   dataService.updateSessions(allSessions)
-    .then(function(data){
-        res.status(200).send("Session moved successfully");
-    })
+    .then(function(data) {   
+     if (data){
+            res.send(data);
+        }else {
+            res.sendStatus(404);
+        }})
     .catch(function (err){
         console.log("exception" + err);
         res.status(500).send(err);

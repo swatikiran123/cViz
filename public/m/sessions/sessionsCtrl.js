@@ -40,10 +40,12 @@ angular.module('sessions')
 	var refresh = function() {
 		$http.get('/api/v1/secure/visits/' + avisit._id + '/sessions',{
 		}).success(function(response) {
-
+            
 			$scope.scheduleList = response;
+			console.log($scope.scheduleList);
 			for (var i = 0; i < $scope.scheduleList.length; i++) {
 				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
+		
 					if ($scope.scheduleList[i].sessions[l]!=undefined && $scope.scheduleList[i].sessions[l].invitees!=undefined) {
 						var str= String($scope.scheduleList[i].sessions[l].feedbackElg);
 						$scope.feedbackElg = str.split(/[ ,]+/);
@@ -102,6 +104,21 @@ refresh();
 	}
 
 
+
+
+$scope.none = function()
+{
+
+	for (var i = 0; i < $scope.scheduleList.length; i++) {
+		console.log($scope.scheduleList[i]);
+for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) { 
+console.log($scope.scheduleList[i].sessions[l].flag);
+$scope.scheduleList[i].sessions[l].flag = "none";
+console.log($scope.scheduleList[i].sessions[l].flag);
+}}
+
+}
+
 	$scope.submit = function(){
 
 
@@ -109,10 +126,9 @@ refresh();
          
         
        $scope.allSessions[m].forEach(function(sess){
-					
-					    sess.flag = "updated";
+					sess.currentsession = "updated ";
                        if(sess.status == "cancelled"){
-                       	sess.flag = "cancelled&updated";
+                       	sess.currentsession = "cancelled&updated";
                        }
 					})
 
@@ -125,8 +141,23 @@ refresh();
         'allSessions[]' : $scope.allSessions[m]
           }   
          }).success(function (response) {   
-            $scope.value = response;   
-            refresh();
+            
+        
+
+/*	for (var l = 0; l < response.length; l++){
+				var json = JSON.parse(response[l]);
+		
+		  json.flag = "none";
+           console.log(json._id);
+   
+			$http.put('/api/v1/secure/visitSchedules/' + json._id, json).success(function(response) {
+
+		
+			});
+	}
+*/
+
+
          })   
            .error(function (error) {   
                
@@ -135,6 +166,9 @@ refresh();
 
          }
 
+         $scope.allSessions = [];
+        
+
   }
 
  
@@ -142,31 +176,39 @@ console.log($scope.scheduleList);
 $scope.pushSession = function(sessionId,rtime,sesnstatus,scheduleDate,sessionstarttime,ssnpushtype){
 
 
-$scope.pushobject = {};
+/*$scope.pushobject = {};
 
 $scope.pushobject.id = sessionId;
 $scope.pushobject.rtime = rtime;
 $scope.pushobject.sesnstatus = sesnstatus;
 $scope.pushobject.ssnpushtype = ssnpushtype;
-$scope.pusharray.push($scope.pushobject)
+$scope.pusharray.push($scope.pushobject)*/
+
+console.log($scope.scheduleList);
+console.log(scheduleDate);
 
 	for (var i = 0; i < $scope.scheduleList.length; i++) {
+		console.log($scope.scheduleList[i].date);
 		if($scope.scheduleList[i].date == scheduleDate){
                console.log($scope.scheduleList[i].sessions);
 				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
+			      
                    if(ssnpushtype === "push"){
 				     if($scope.scheduleList[i].sessions[l]._id == sessionId){
-						$scope.scheduleList[i].sessions[l].flag = "changed";
+						$scope.scheduleList[i].sessions[l].currentsession = "changed";
 					
 			/*
 				angular.element('#changedsession').addClass('changed');*/
 				    }
+				   
 				     if($scope.scheduleList[i].sessions[l].session.startTime >= sessionstarttime){
 					if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+				       $scope.scheduleList[i].sessions[l].flag = "none";
 				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
 					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
 				    }
                     else{
+                     $scope.scheduleList[i].sessions[l].flag = "updated";
 					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, rtime);
 					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
 					}
@@ -176,21 +218,26 @@ $scope.pusharray.push($scope.pushobject)
 				}
                  if(ssnpushtype === "duration"){
 				     if($scope.scheduleList[i].sessions[l]._id == sessionId){
-						$scope.scheduleList[i].sessions[l].flag = "changed";
+						$scope.scheduleList[i].sessions[l].currentsession = "changed";
 					
 			/*
 				angular.element('#changedsession').addClass('changed');*/
 				    }
+                     
+
 				    	if($scope.scheduleList[i].sessions[l].session.startTime === sessionstarttime){
+				    		    $scope.scheduleList[i].sessions[l].flag = "updated";
 					$scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
 					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
 					}
 						if($scope.scheduleList[i].sessions[l].session.startTime > sessionstarttime){
-								if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+					if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+				    $scope.scheduleList[i].sessions[l].flag = "none";
 				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
 					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
 				    }
 				    else{
+	                    $scope.scheduleList[i].sessions[l].flag = "updated";
 					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, rtime);
 					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, rtime);	
 					}}
@@ -199,24 +246,32 @@ $scope.pusharray.push($scope.pushobject)
 				}
 				if(ssnpushtype === 'cancel'){
 					    if($scope.scheduleList[i].sessions[l]._id == sessionId){
-						$scope.scheduleList[i].sessions[l].flag = "cancelled";
+						$scope.scheduleList[i].sessions[l].currentsession = "cancelled";
 						$scope.scheduleList[i].sessions[l].status = "cancelled";
-					$scope.st = moment($scope.scheduleList[i].sessions[l].session.startTime);
-			$scope.et = moment($scope.scheduleList[i].sessions[l].session.endTime);
+					
+					    $scope.st = moment($scope.scheduleList[i].sessions[l].session.startTime);
+						$scope.et = moment($scope.scheduleList[i].sessions[l].session.endTime);
 
-			var difference = moment.duration($scope.st.diff($scope.et));
-			var diffInMin = difference.asMinutes();
+						var difference = moment.duration($scope.st.diff($scope.et));
+						var diffInMin = difference.asMinutes();
 		
 	                     
 				    }
+				        if($scope.scheduleList[i].sessions[l].session.startTime === sessionstarttime){
+				
+                        $scope.scheduleList[i].sessions[l].flag = "cancelled";	 
+					 $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
+					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;
+					}
 
-
-				     if($scope.scheduleList[i].sessions[l].session.startTime >= sessionstarttime){
+                     if($scope.scheduleList[i].sessions[l].session.startTime > sessionstarttime){
 					if($scope.scheduleList[i].sessions[l].status == "cancelled"){
+						  $scope.scheduleList[i].sessions[l].flag = "none";	
 				    $scope.scheduleList[i].sessions[l].session.startTime = $scope.scheduleList[i].sessions[l].session.startTime;
 					$scope.scheduleList[i].sessions[l].session.endTime =  $scope.scheduleList[i].sessions[l].session.endTime;		
 				    }
                     else{
+                        $scope.scheduleList[i].sessions[l].flag = "updated";	 
 					$scope.scheduleList[i].sessions[l].session.startTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.startTime, diffInMin);
 					$scope.scheduleList[i].sessions[l].session.endTime =  DateAddTime($scope.scheduleList[i].sessions[l].session.endTime, diffInMin);	
 					}
