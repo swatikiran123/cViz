@@ -92,42 +92,53 @@ function getMyVisits(thisUser, timeline){
 				filter = {client : thisUser.orgRef};  // all visits by his company
 			}
 			else if(secure.isInAnyGroups(thisUser, "exec")){
+				filter = {$or: [{createBy: userId}, {status: /^((?!draft).)*$/}]}
 			}
+			// else if(secure.isInAnyGroups(thisUser, "admin")){
+			// }
 			else if(secure.isInAnyGroups(thisUser, "admin")){
+				filter = {$or: [{createBy: userId}, {status: /^((?!draft).)*$/}]}
 			}
+
 			else if( secure.isInAnyGroups(thisUser, "vManager")){
 				filter = {
 					$or: [
-					{createBy: userId}
-					, {agm: userId}
-					, {anchor: userId}
-					, {secondaryVmanager: userId}
-					, {'cscPersonnel.salesExec': userId}
-					, {'cscPersonnel.accountGM': userId}
-					, {'cscPersonnel.industryExec': userId}
-					, {'cscPersonnel.globalDelivery': userId}
-					, {'cscPersonnel.cre': userId}
-					, {'_id': { $in: sessionVisits }}
-					, {'invitees': userId }
-					]
+					{createBy: userId},
+					{$and: [{
+						$or: [ {agm: userId}
+						, {anchor: userId}
+						, {secondaryVmanager: userId}
+						, {'cscPersonnel.salesExec': userId}
+						, {'cscPersonnel.accountGM': userId}
+						, {'cscPersonnel.industryExec': userId}
+						, {'cscPersonnel.globalDelivery': userId}
+						, {'cscPersonnel.cre': userId}
+						, {'_id': { $in: sessionVisits }}
+						, {'invitees': userId }]},
+						{status:  /^((?!draft).)*$/}
+						]}
+						]
 				};
 			} // end of secure if
 			else if( secure.isInAnyGroups(thisUser, "user")){
 				filter = {
 					$or: [
-					{createBy: userId}
-					, {agm: userId}
-					, {anchor: userId}
-					, {secondaryVmanager: userId}
-					, {'cscPersonnel.salesExec': userId}
-					, {'cscPersonnel.accountGM': userId}
-					, {'cscPersonnel.industryExec': userId}
-					, {'cscPersonnel.globalDelivery': userId}
-					, {'cscPersonnel.cre': userId}
-					, {'_id': { $in: sessionVisits }}
-					, {'invitees': userId }
-					]
-				};
+					{createBy: userId},
+					{$and: [{
+						$or: [ {agm: userId}
+						, {anchor: userId}
+						, {secondaryVmanager: userId}
+						, {'cscPersonnel.salesExec': userId}
+						, {'cscPersonnel.accountGM': userId}
+						, {'cscPersonnel.industryExec': userId}
+						, {'cscPersonnel.globalDelivery': userId}
+						, {'cscPersonnel.cre': userId}
+						, {'_id': { $in: sessionVisits }}
+						, {'invitees': userId }]},
+						{status:  /^((?!draft).)*$/}
+						]}
+						]
+					};
 			}
 
 			var visitsByTimeline = new Array();
