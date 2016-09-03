@@ -33,7 +33,8 @@ var visitScheduleSchema = new mongoose.Schema({
 		email        : { type: String}
 	}],
 
-	flag                            : { type: String, trim: true }
+	flag                            : { type: String, trim: true },
+    currentsession               :{ type: String, trim: true }
 
 });
 

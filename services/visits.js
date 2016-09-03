@@ -1069,8 +1069,11 @@ var deferred = Q.defer();
 									console.log("error updating session");
 									console.log(err.stack);
 								}
-							});	deferred.resolve("Done");
-					});
+
+								console.log(json.flag);
+								console.log(json._id);
+							});	
+					});deferred.resolve(allSessions);
 				
 							return deferred.promise;
 }
