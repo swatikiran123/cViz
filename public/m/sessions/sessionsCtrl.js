@@ -122,40 +122,28 @@ console.log($scope.scheduleList[i].sessions[l].flag);
 	$scope.submit = function(){
 
 
-	for (var m = 0; m < $scope.allSessions.length; m++) {
-         
+	//for (var m = 0; m < $scope.allSessions.length; m++) {
+         var x= $scope.allSessions.length-1;
         
-       $scope.allSessions[m].forEach(function(sess){
+       $scope.allSessions[x].forEach(function(sess){
 					sess.currentsession = "updated ";
                        if(sess.status == "cancelled"){
                        	sess.currentsession = "cancelled&updated";
                        }
 					})
 
-              console.log($scope.allSessions[m]);
+              console.log($scope.allSessions[x]);
         $http({   
             url: "/api/v1/secure/visits/xyz/updatesessions",   
             dataType: 'json',   
             method: 'GET',
 	        params: {
-        'allSessions[]' : $scope.allSessions[m]
+        'allSessions[]' : $scope.allSessions[x]
           }   
          }).success(function (response) {   
             
         
-
-/*	for (var l = 0; l < response.length; l++){
-				var json = JSON.parse(response[l]);
-		
-		  json.flag = "none";
-           console.log(json._id);
-   
-			$http.put('/api/v1/secure/visitSchedules/' + json._id, json).success(function(response) {
-
-		
-			});
-	}
-*/
+    refresh();
 
 
          })   
@@ -164,7 +152,7 @@ console.log($scope.scheduleList[i].sessions[l].flag);
            }); 
              
 
-         }
+      
 
          $scope.allSessions = [];
         
@@ -189,7 +177,7 @@ console.log(scheduleDate);
 
 	for (var i = 0; i < $scope.scheduleList.length; i++) {
 		console.log($scope.scheduleList[i].date);
-		if($scope.scheduleList[i].date == scheduleDate){
+		if($scope.scheduleList[i].date === scheduleDate){
                console.log($scope.scheduleList[i].sessions);
 				for (var l = 0; l < $scope.scheduleList[i].sessions.length; l++) {
 			      

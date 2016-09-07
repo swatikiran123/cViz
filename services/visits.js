@@ -92,53 +92,42 @@ function getMyVisits(thisUser, timeline){
 				filter = {client : thisUser.orgRef};  // all visits by his company
 			}
 			else if(secure.isInAnyGroups(thisUser, "exec")){
-				filter = {$or: [{createBy: userId}, {status: /^((?!draft).)*$/}]}
 			}
-			// else if(secure.isInAnyGroups(thisUser, "admin")){
-			// }
 			else if(secure.isInAnyGroups(thisUser, "admin")){
-				filter = {$or: [{createBy: userId}, {status: /^((?!draft).)*$/}]}
 			}
-
 			else if( secure.isInAnyGroups(thisUser, "vManager")){
 				filter = {
 					$or: [
-					{createBy: userId},
-					{$and: [{
-						$or: [ {agm: userId}
-						, {anchor: userId}
-						, {secondaryVmanager: userId}
-						, {'cscPersonnel.salesExec': userId}
-						, {'cscPersonnel.accountGM': userId}
-						, {'cscPersonnel.industryExec': userId}
-						, {'cscPersonnel.globalDelivery': userId}
-						, {'cscPersonnel.cre': userId}
-						, {'_id': { $in: sessionVisits }}
-						, {'invitees': userId }]},
-						{status:  /^((?!draft).)*$/}
-						]}
-						]
+					{createBy: userId}
+					, {agm: userId}
+					, {anchor: userId}
+					, {secondaryVmanager: userId}
+					, {'cscPersonnel.salesExec': userId}
+					, {'cscPersonnel.accountGM': userId}
+					, {'cscPersonnel.industryExec': userId}
+					, {'cscPersonnel.globalDelivery': userId}
+					, {'cscPersonnel.cre': userId}
+					, {'_id': { $in: sessionVisits }}
+					, {'invitees': userId }
+					]
 				};
 			} // end of secure if
 			else if( secure.isInAnyGroups(thisUser, "user")){
 				filter = {
 					$or: [
-					{createBy: userId},
-					{$and: [{
-						$or: [ {agm: userId}
-						, {anchor: userId}
-						, {secondaryVmanager: userId}
-						, {'cscPersonnel.salesExec': userId}
-						, {'cscPersonnel.accountGM': userId}
-						, {'cscPersonnel.industryExec': userId}
-						, {'cscPersonnel.globalDelivery': userId}
-						, {'cscPersonnel.cre': userId}
-						, {'_id': { $in: sessionVisits }}
-						, {'invitees': userId }]},
-						{status:  /^((?!draft).)*$/}
-						]}
-						]
-					};
+					{createBy: userId}
+					, {agm: userId}
+					, {anchor: userId}
+					, {secondaryVmanager: userId}
+					, {'cscPersonnel.salesExec': userId}
+					, {'cscPersonnel.accountGM': userId}
+					, {'cscPersonnel.industryExec': userId}
+					, {'cscPersonnel.globalDelivery': userId}
+					, {'cscPersonnel.cre': userId}
+					, {'_id': { $in: sessionVisits }}
+					, {'invitees': userId }
+					]
+				};
 			}
 
 			var visitsByTimeline = new Array();
@@ -874,28 +863,10 @@ function getParticipantsForOverAllFeedback(id){
 				else {
 					schedules.forEach(function(sch){
 						if (sch.session.owner!= null) {
-							switch(sch.session.owner.association)
-							{
-							case "employee":	
 							arrAddItem(emp, sch.session.owner);
-							break;
-
-							case "customer":
-							arrAddItem(client,sch.session.owner);
-							}
 						}
 						if (sch.session.supporter!= null) {
-							switch(sch.session.supporter.association)
-							{
-							case "employee":
-							arrAddItem(emp, sch.session.supporter);
-							break;
-
-							case "customer":
-							arrAddItem(client,sch.session.supporter)
-							break;
-						}
-						}
+							arrAddItem(emp, sch.session.supporter);}
 						if (sch.invitees.length!=0 && sch.invitees!= undefined && sch.invitees != null && sch.invitees != "") {
 							for (var i = 0; i < sch.invitees.length; i++) {
 								switch(sch.invitees[i].association)    {
@@ -1058,11 +1029,44 @@ function pushSession(sessionId, time, sesnstatus, ssnpushtype){
 	return deferred.promise;
 }
 
+
 function updateSessions(allSessions){
 var deferred = Q.defer();
-
+console.log(allSessions);
 				allSessions.forEach(function(sess){
 				var json = JSON.parse(sess);
+				if(json.flag == "cancelled"){
+			   scheduleModel
+		      .findOne({'_id': json._id})
+		      .exec(function(err, session){
+				if(err){
+					console.log(err);
+					deferred.reject(err);
+				}      
+				 console.log("original", session.session.startTime);
+	                    console.log("updated", json.session.startTime);
+	                      json.session.startTime = session.session.startTime;
+			                    json.session.endTime = session.session.endTime;
+			                    console.log("updated session...", json);
+			       	   scheduleModel.findByIdAndUpdate(json._id, json, function (err, doc) {
+			                  
+									if (err) {
+										console.log("error updating session");
+										console.log(err.stack);
+									}
+								console.log(json.flag);
+								console.log(json._id);
+
+								if(json.flag == 'cancelled')
+								{
+									var emailController = require(constants.paths.scripts + "/email");
+									emailController.cancelledCalendarInvites(json._id);
+								}
+	               
+								});	
+			    });
+					}
+				else{
 		        scheduleModel.findByIdAndUpdate(json._id, json, function (err, doc) {
 		                    
 								if (err) {
@@ -1078,18 +1082,14 @@ var deferred = Q.defer();
 									emailController.calendarInvites(json._id);
 								}
 
-								if(json.flag == 'cancelled')
-								{
-									var emailController = require(constants.paths.scripts + "/email");
-									emailController.cancelledCalendarInvites(json._id);
-								}
+
 							});	
+		    }
 					});deferred.resolve(allSessions);
 				
 							return deferred.promise;
+
 }
-
-
 function getRegionsHeads(id) {
 	var deferred = Q.defer();
 
