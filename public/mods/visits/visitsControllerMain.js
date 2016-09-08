@@ -3550,8 +3550,260 @@ $scope.saveoverallfeed=function(){
 $scope.viewImageItem = function(x){
   window.open(x,'_blank');
 };
+$scope.Executive=function(){
 
-    
+  $http.get('/api/v1/secure/visits/'+$scope.visitid+'/orderexecs',{
+    cache: true
+  }).success(function(response) {
+    $scope.cscData = response["employees"];
+    $scope.clientData = response["clients"];
+    $scope.uniClient = [];
+    for (var i = 0; i < $scope.clientData.length; i++) {
+      if($scope.clientData[i].association == "customer" || $scope.clientData[i].association == "CUSTOMER"){
+        $scope.uniClient.push($scope.clientData[i]);
+      }
+    }
+
+    for (var i = 0; i < $scope.clientData.length; i++) {
+      if($scope.clientData[i].association == "employee" || $scope.clientData[i].association == "employee"){
+        $scope.cscData.push($scope.clientData[i]);
+      }
+    }
+  })
+}
+$scope.orgOrder= function(ev){
+  $scope.Executive();
+  $mdDialog.show({
+    templateUrl: '/public/mods/visits/orgOrder.html',
+    scope: $scope.$new(),
+    parent: angular.element(document.body),
+    targetEvent: ev,
+    clickOutsideToClose:true
+  })
+}
+$scope.visitorsData=[];
+$scope.putOrder=function(cscData,uniClient){
+  $scope.visitorsData=[];
+  $scope.data=[];
+  for(var i=0;i<$scope.visitors.length;i++){
+    $scope.data.push($scope.visitors[i].visitor);}
+    var newArray1 = uniClient.concat(cscData);
+    for(var i=0;i<newArray1.length;i++){
+     if($scope.data.includes(newArray1[i]._id)== false){
+       $scope.visitorsData.push({
+        visitor: newArray1[i]._id
+      });
+     }
+     else {
+       for(var j=0;j<$scope.data.length;j++){
+         if (newArray1[i]._id == $scope.data[j] ) {
+           $scope.visitorsData.push({
+            visitor: $scope.visitors[j].visitor,
+            influence: $scope.visitors[j].influence
+          });
+         };
+       }
+     }
+   }
+   $http.get('/api/v1/secure/visits/'+$scope.visitid).success(function(response)
+   {
+    $scope.visits = response;
+    var inData = $scope.visits;
+    inData.client=$scope.visits.client._id;
+    inData.visitors=$scope.visitorsData;
+    inData.createBy = $scope.visits.createBy._id;
+    if(inData.cscPersonnel.salesExec != null || inData.cscPersonnel.salesExec != undefined)
+    {
+      inData.cscPersonnel.salesExec = $scope.visits.cscPersonnel.salesExec._id;
+    }
+
+    if(inData.cscPersonnel.salesExec == null || inData.cscPersonnel.salesExec == undefined)
+    {
+      inData.cscPersonnel.salesExec = null;
+    }
+
+    if(inData.cscPersonnel.accountGM != null || inData.cscPersonnel.accountGM != undefined)
+    {
+      inData.cscPersonnel.accountGM = $scope.visits.cscPersonnel.accountGM._id;
+    }
+
+    if(inData.cscPersonnel.accountGM == null || inData.cscPersonnel.accountGM == undefined)
+    {
+      inData.cscPersonnel.accountGM = null;
+    }
+
+    if(inData.cscPersonnel.industryExec != null || inData.cscPersonnel.industryExec != undefined)
+    {
+      inData.cscPersonnel.industryExec = $scope.visits.cscPersonnel.industryExec._id;
+    }
+
+    if(inData.cscPersonnel.industryExec == null || inData.cscPersonnel.industryExec == undefined)
+    {
+      inData.cscPersonnel.industryExec = null;
+    }
+
+    if(inData.cscPersonnel.globalDelivery != null || inData.cscPersonnel.globalDelivery != undefined)
+    {
+      inData.cscPersonnel.globalDelivery = $scope.visits.cscPersonnel.globalDelivery._id;
+    }
+
+    if(inData.cscPersonnel.globalDelivery == null || inData.cscPersonnel.globalDelivery == undefined)
+    {
+      inData.cscPersonnel.globalDelivery = null;
+    }
+
+    if(inData.cscPersonnel.cre != null || inData.cscPersonnel.cre != undefined)
+    {
+      inData.cscPersonnel.cre = $scope.visits.cscPersonnel.cre._id;
+    } 
+
+    if(inData.cscPersonnel.cre == null || inData.cscPersonnel.cre == undefined)
+    {
+      inData.cscPersonnel.cre = null;
+    }
+
+    if(inData.anchor!=null || inData.anchor != undefined)
+    {
+      inData.anchor = $scope.visits.anchor._id;
+    }
+
+    if(inData.anchor==null || inData.anchor == undefined)
+    {
+      inData.anchor = null;
+    }
+
+    if(inData.secondaryVmanager!=null || inData.secondaryVmanager!=undefined)
+    {
+      inData.secondaryVmanager = $scope.visits.secondaryVmanager._id;
+    }
+
+    if(inData.secondaryVmanager==null || inData.secondaryVmanager==undefined)
+    {
+      inData.secondaryVmanager = null;
+    }
+
+    if(inData.feedbackTmpl!=null || inData.feedbackTmpl!=undefined)
+    {
+      inData.feedbackTmpl = $scope.visits.feedbackTmpl._id;
+    }  
+
+    if(inData.feedbackTmpl==null || inData.feedbackTmpl==undefined)
+    {
+      inData.feedbackTmpl = null;
+    }  
+
+    if(inData.sessionTmpl!=null || inData.sessionTmpl!=undefined)
+    {
+      inData.sessionTmpl = $scope.visits.sessionTmpl._id;;
+    }  
+
+    if(inData.sessionTmpl==null || inData.sessionTmpl==undefined)
+    {
+      inData.sessionTmpl = null;
+    }  
+    inData.keynote = $scope.keynotes;
+    inData.comments = $scope.myData;
+    $scope.commentsData = [];
+    $http.put('/api/v1/secure/visits/'+$scope.visitid,inData).success(function(response) {
+      $scope.nextTab($scope.visitid);
+    });
+  })
+}
+
+$scope.up =function(index,arraydata){
+  var num= index
+  var data =arraydata[num];
+  var data1= arraydata[num-1];
+  arraydata[num-1]= data;
+  arraydata[num]=data1;
+}
+$scope.down =function(index,arraydata){
+  var num= index
+  var data =arraydata[num];
+  var data1= arraydata[num+1];
+  arraydata[num+1]= data;
+  arraydata[num]=data1;
+}
+$scope.clickUp= function(num,arraydata,index,collectlist){
+      if (num-1 == index || num <= 0 || num >arraydata.length) {
+        if (num-1 == index ){
+          $scope.err= "The position you want to move is existing position!!";
+        }
+        if (num <= 0 || num >arraydata.length) {
+          $scope.err= "The position you want to move currently does not exists!!";
+        }
+
+        $timeout(function () { $scope.err = ''; }, 5000);
+      }
+      else if(index < num){
+        var num1= num-1;
+        if (num1 - index == 1) {
+          $scope.down(index,arraydata,collectlist);
+        }
+        else{
+          var temp1 =0;
+          temp1= arraydata[index];
+          var temp2 =0;
+          if (collectlist!= undefined  || collectlist!= null ) {
+            temp2= collectlist[index];
+          }
+          for (var i = index; i < arraydata.length ; i++) {
+            if (i != num1) {
+              var t= i+1;
+              arraydata[i]= arraydata[t];
+              if (collectlist!= undefined  || collectlist!= null ) {
+                collectlist[i]= collectlist[t];
+              }
+            }
+            else{
+              arraydata[i] = temp1;
+              if (collectlist!= undefined  || collectlist!= null ) {
+                collectlist[i] = temp2;
+              }
+              i= arraydata.length;
+            }
+          }
+        }
+      }
+      else{
+        var place = num-1;
+        var temp=[];
+        var temp1=[];
+        var j=0,i=0;
+        temp[j]= arraydata[place];
+        arraydata[place]=arraydata[index];
+
+        if (collectlist!= undefined  || collectlist!= null ) {
+          temp1[j]=collectlist[place];
+          collectlist[place]=collectlist[index];
+        }
+        
+        for (i =place+1; i <= arraydata.length; i++) {
+          j++;
+          if (i!=index) {
+            temp[j]= arraydata[i];
+            if (collectlist!= undefined  || collectlist!= null ) {
+              temp1[j]= collectlist[i];}
+              if (temp[j-1] == undefined && (j-1) != -1) {
+                j++;
+              }
+              else{
+                arraydata[i]=temp[j-1];
+                if (collectlist!= undefined  || collectlist!= null ) {
+                  collectlist[i]=temp1[j-1];}
+                }
+              }
+              else{
+                arraydata[i]=temp[j-1];
+                if (collectlist!= undefined  || collectlist!= null ) {
+                  collectlist[i]=temp1[j-1];}
+                }
+
+              };
+              return [arraydata,collectlist];
+            }
+          }
+
 }])
 
 //Autocompleate - Directive

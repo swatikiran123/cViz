@@ -79,6 +79,10 @@ function getWithAction(req, res){
             getParticipantsFeedback(req,res);
             break;
 
+        case "orderexecs":
+            orderexecsId(req,res);
+            break;
+
         case "keynotes":
             getKeynotesById(req,res);
             break;
@@ -230,6 +234,21 @@ function getExecsById(req,res){
 
 function getParticipantsFeedback(req,res){
   dataService.getParticipantsForOverAllFeedback(req.params.id)
+    .then(function(data){
+        if (data){
+            res.send(data);
+        }else {
+            res.status(404).send("Users for the visit overall feedback not found");
+        }
+    })
+    .catch(function (err){
+        console.log("exception" + err);
+        res.status(500).send(err);
+    });
+}
+
+function orderexecsId(req,res){
+  dataService.getParticipantsByIdOrdering(req.params.id)
     .then(function(data){
         if (data){
             res.send(data);

@@ -1,0 +1,65 @@
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+<form>
+	<md-toolbar>
+	<div class="md-toolbar-tools">
+		CSC Participant’s
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="canceldialogvMan()">
+		<md-icon <i class="fa fa-times" aria-label="Close dialog"></i></md-icon>
+	</md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<br>
+<md-dialog-actions layout="row">
+<ul><b>Following are the list of CSC Participant’s where you can sequence priority wise:<br></b>
+	<div ng-if="err" class="error text-danger">{{err}}</div>
+
+
+	<div class="container">
+		<div class="form-inline has-feedback filter-header">
+			<!-- Grid filter -->
+			<table class="table table-striped table-condensed table-responsive table-hover"  cellpadding="0" cellspacing="0">
+				<thead class="data-grid-header">
+					<tr ng-repeat="cscDa in cscData">
+						<td><span class="fa fa-arrow-up" aria-hidden="true" ng-click="up($index,cscData)" ng-if ="$index != 0" tooltips tooltip-template="Shift one place up" ></span>
+							<span class="fa fa-arrow-down" aria-hidden="true" ng-click="down($index,cscData)" ng-if ="$index != cscData.length-1" tooltips tooltip-template="Shift one place down"></span></td>
+							<td>{{cscDa.name.prefix}} {{cscDa.name.first}} {{cscDa.name.middle}} {{cscDa.name.last}} {{cscDa.name.suffix}}</td>
+							<td>{{cscDa.jobTitle}}</td>
+							<td>Move to: <input type="number" name="invite" id="invite" ng-model="num" maxlength="6" size="6" placeholder="Place no">
+								<button class="btn btn-primary" ng-click="clickUp(num,cscData,$index); num = null">Ok</button></td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		<!-- <md-button class="md-primary md-raised pull-right" ng-click="canceldialogvMan();">
+		OK
+	</md-button> -->
+
+	<ul><b>Following are the list of clients where you can sequence priority wise:<br></b>
+
+		<div class="container">
+			<div class="form-inline has-feedback filter-header">
+				<!-- Grid filter -->
+				<table class="table table-striped table-condensed table-responsive table-hover"  cellpadding="0" cellspacing="0">
+					<thead class="data-grid-header">
+						<tr ng-repeat="clientRep in uniClient">
+							<td><span class="fa fa-arrow-up" aria-hidden="true" ng-click="up($index,uniClient)" ng-if ="$index != 0" tooltips tooltip-template="Shift one place up" ></span>
+								<span class="fa fa-arrow-down" aria-hidden="true" ng-click="down($index,uniClient)" ng-if ="$index != uniClient.length-1" tooltips tooltip-template="Shift one place down"></span></td>
+								<td>{{clientRep.name.prefix}} {{clientRep.name.first}} {{clientRep.name.middle}} {{clientRep.name.last}} {{clientRep.name.suffix}}</td>
+								<td>{{clientRep.jobTitle}}</td>
+								<td>Move to: <input type="number" name="invite" id="invite" ng-model="num" maxlength="6" size="6" placeholder="Place no">
+									<button class="btn btn-primary" ng-click="clickUp(num,uniClient,$index); num = null">Ok</button></td>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</md-dialog-actions>
+
+			<md-button class="md-primary md-raised pull-right" ng-click="putOrder(cscData,uniClient);canceldialogvMan();">save
+		</md-button>
+	</form>
+</md-dialog>
+

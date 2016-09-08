@@ -31,6 +31,8 @@ service.deleteById = deleteById;
 service.getMyVisits = getMyVisits;
 service.getKeynotesById = getKeynotesById;
 service.getParticipantsById = getParticipantsById;
+service.getParticipantsByIdOrdering = getParticipantsByIdOrdering;
+
 service.pushSession = pushSession;
 service.updateSessions = updateSessions;
 service.getLocationsById = getLocationsById;
@@ -700,8 +702,7 @@ function deleteById(id) {
 
 	return deferred.promise;
 }
-
-function getParticipantsById(id){
+function getParticipantsByIdOrdering(id){
 	var deferred = Q.defer();
 
 	var emp = [];
@@ -779,6 +780,59 @@ function getParticipantsById(id){
 		}
 	})//end of visit model
 		return deferred.promise;
+}
+
+function getParticipantsById(id){
+	var deferred = Q.defer();
+
+	var emp = [];
+	var client = [];
+
+	model
+	.findOne({ _id: id })
+	.populate('visitors.visitor')//visit.invitees
+
+	.exec(function (err, visit) {
+		if(err) {
+			console.log(err);
+			deferred.reject(err);
+		}
+		else{
+			visit.visitors.forEach(function(v){
+				if (v.visitor!= null && v.visitor!= undefined && v.visitor!= "" ){
+					switch(v.visitor.association)    {
+						case "employee":
+						emp.push(transform(v.visitor));
+						break;
+
+						case "customer":
+						client.push(transform(v.visitor));
+						break;
+					}
+				}
+			})
+			deferred.resolve({
+				"clients": client,
+				"employees": emp
+			});
+		}
+	});
+	function transform(type)
+	{
+		var typeData={
+			_id:type._id,
+			name :type.name,
+			avatar :type.avatar,
+			jobTitle :type.jobTitle,
+			summary :type.summary,
+			email :type.email,
+			contactNo :type.contactNo[0].contactNumber,
+			organization: type.organization,
+			association:type.association
+		}
+		return typeData;
+	}
+	return deferred.promise;
 }
 
 
